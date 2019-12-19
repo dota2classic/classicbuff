@@ -1,0 +1,65 @@
+{
+  "name": "front-starter-kit",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "next",
+    "start": "next start",
+    "build": "next build",
+    "test": "next test",
+    "storybook": "start-storybook -p 6006 -s ./",
+    "build-storybook": "build-storybook",
+    "analyze": "cross-env BUNDLE_ANALYZE=both next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "dependencies": {
+    "next": "^9.1.6",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "apisauce": "^1.1.1",
+    "mobx": "^5.11.0",
+    "mobx-react": "^6.1.1",
+    "mobx-react-devtools": "^6.1.1",
+    "raw-loader": "^3.1.0",
+    "react-modal": "^3.9.1",
+    "react-scripts": "3.2.0",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.21",
+    "@types/react": "^16.9.16",
+    "typescript": "^3.7.3",
+    "@babel/core": "^7.6.2",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-decorators": "^7.6.0",
+    "@storybook/addon-actions": "^5.3.0-alpha.5",
+    "@storybook/addon-knobs": "^5.2.1",
+    "@storybook/addon-links": "^5.3.0-alpha.5",
+    "@storybook/addon-viewport": "^5.2.1",
+    "@storybook/addons": "^5.3.0-alpha.5",
+    "@storybook/react": "^5.3.0-alpha.5",
+    "@types/jest": "24.0.23",
+    "@types/react-dom": "16.9.4",
+    "@types/react-intl": "^2.3.18",
+    "@types/react-modal": "^3.8.2",
+    "@types/storybook__react": "^4.0.2",
+    "@types/styled-jsx": "^2.2.8",
+    "@zeit/next-bundle-analyzer": "^0.1.2",
+    "@zeit/next-source-maps": "0.0.3",
+    "@zeit/next-typescript": "^1.1.1",
+    "babel-plugin-import": "^1.12.2",
+    "cross-env": "^6.0.2",
+    "husky": "^3.0.8",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^1.11.1",
+    "storybook-addon-designs": "^5.1.1",
+    "tsconfig-paths-webpack-plugin": "^3.2.0"
+  }
+}
