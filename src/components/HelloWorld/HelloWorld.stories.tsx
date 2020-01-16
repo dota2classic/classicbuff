@@ -2,7 +2,11 @@ import React from "react";
 import HelloWorld from "./HelloWorld";
 
 export default {
-  title: "Hello World"
+  title: "Design System/Hello World",
+
+  parameters: {
+    component: HelloWorld
+  }
 };
 
-export const simple = () => <HelloWorld />;
+export const simple = () => <HelloWorld hey="123" />;
