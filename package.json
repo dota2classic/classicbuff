@@ -19,17 +19,19 @@
     }
   },
   "dependencies": {
-    "next": "^9.1.6",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
     "apisauce": "^1.1.1",
     "mobx": "^5.11.0",
-    "mobx-react": "^6.1.1",
+    "mobx-react": "^6.1.5",
     "mobx-react-devtools": "^6.1.1",
+    "next": "^9.1.6",
     "raw-loader": "^3.1.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "react-modal": "^3.9.1",
     "react-scripts": "3.2.0",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.13",
+    "storybook": "^5.3.4",
+    "styled-components": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
@@ -49,6 +51,7 @@
     "@types/react-intl": "^2.3.18",
     "@types/react-modal": "^3.8.2",
     "@types/storybook__react": "^4.0.2",
+    "@types/styled-components": "^4.4.2",
     "@types/styled-jsx": "^2.2.8",
     "@zeit/next-bundle-analyzer": "^0.1.2",
     "@zeit/next-source-maps": "0.0.3",

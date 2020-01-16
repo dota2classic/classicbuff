@@ -4,6 +4,13 @@ import HelloWorld from "components/HelloWorld/HelloWorld";
 
 export default () => (
   <>
-    <HelloWorld/>
+    <h1>My page</h1>
+    <HelloWorld />
+
+    <style jsx>{`
+      h1 {
+        color: red;
+      }
+    `}</style>
   </>
 );

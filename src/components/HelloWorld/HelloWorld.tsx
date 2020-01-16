@@ -1,14 +1,8 @@
 import React from "react";
+import styled from "styled-components";
 
-export default () => (
-  <>
-    <h1>Hello world</h1>
+const Content = styled.h2`
+  color: green;
+`;
 
-    {/*language=CSS*/}
-    <style jsx>{`
-      h1 {
-        color: red;
-      }
-    `}</style>
-  </>
-);
+export default () => <Content>Hello World</Content>;
