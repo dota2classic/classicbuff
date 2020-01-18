@@ -11,7 +11,9 @@ const Wrapper = styled.div`
   border-radius: 8px 0 0 8px;
 `;
 
-const Content = styled.div``;
+const Content = styled.div`
+  padding: 0 10px;
+`;
 
 interface IFilterCard {
   onClear: () => void;

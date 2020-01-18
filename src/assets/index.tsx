@@ -25,9 +25,14 @@ type IconName =
   | "sort-down"
   | "sort-up";
 
-export const Icon = ({ name, ...props }: { name: IconName }) => {
-  const svg = require(`!raw-loader!./svg/${name}.svg`);
-  return <IconWrapper dangerouslySetInnerHTML={{ __html: svg.default }} />;
+interface IIcon {
+  name: IconName;
+  onClick?: () => void;
+}
+
+export const Icon = (props: IIcon) => {
+  const svg = require(`!raw-loader!./svg/${props.name}.svg`);
+  return <IconWrapper dangerouslySetInnerHTML={{ __html: svg.default }} onClick={props.onClick} />;
 };
 
 export const AddIcon = () => <Icon name="add" />;

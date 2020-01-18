@@ -1,14 +1,22 @@
-import React, { ChangeEventHandler } from "react";
+import React, { ChangeEventHandler, ReactNode } from "react";
 import styled from "styled-components";
 
 export interface ITextInput {
   value?: string;
   placeholder?: string;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onChange: (value: string) => void;
+  icon?: ReactNode;
 }
 
-export const StyledTextInput = styled.input`
+export const StyledTextInput = styled.div`
   display: flex;
+  position: relative;
+`;
+
+export const StyledInput = styled.input`
+  display: flex;
+
+  flex: 1;
 
   font-family: Roboto;
   font-style: normal;
@@ -22,15 +30,54 @@ export const StyledTextInput = styled.input`
   box-sizing: border-box;
   border-radius: 5px;
 
-  min-width: 420px;
-
   &::placeholder {
     color: #7b8f9d;
   }
+
+  &.with-icon {
+    padding-right: 40px;
+  }
 `;
 
-const TextInput = (props: ITextInput) => <StyledTextInput {...props} />;
+export const IconWrapper = styled.div`
+  position: absolute;
 
-TextInput.defaultProps = {};
+  top: 4px;
+  bottom: 4px;
+  right: 8px;
+
+  display: flex;
+  align-items: center;
+
+  pointer-events: none;
+`;
+
+class TextInput extends React.Component<ITextInput> {
+  static defaultProps = {
+    value: "",
+    onChange: () => undefined,
+    placeholder: "",
+    icon: null
+  };
+
+  render() {
+    let { icon, value, placeholder } = this.props;
+    return (
+      <StyledTextInput>
+        <StyledInput
+          className={icon ? "with-icon" : ""}
+          value={value}
+          placeholder={placeholder}
+          onChange={this.onChange}
+        />
+        {icon && <IconWrapper>{icon}</IconWrapper>}
+      </StyledTextInput>
+    );
+  }
+
+  onChange: ChangeEventHandler<HTMLInputElement> = e => {
+    this.props.onChange(e.target.value);
+  };
+}
 
 export default TextInput;

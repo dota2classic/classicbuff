@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colors } from "../shared/styles";
 
-export const IconWrapper = styled.span`
+export const ButtonIconWrapper = styled.span`
   height: 24px;
   width: 24px;
 `;
@@ -72,11 +72,11 @@ export const StyledButton = styled.button`
      }
   }
   
-  ${IconWrapper} + ${Text} {
+  ${ButtonIconWrapper} + ${Text} {
     margin-left: 4px;
   }
   
-  ${Text} + ${IconWrapper} {
+  ${Text} + ${ButtonIconWrapper} {
     margin-left: 4px;
   }
   

@@ -6,7 +6,7 @@ import { colors } from "../shared/styles";
 interface IAccordion {
   title: string;
   additional?: string;
-  initialVisible?: boolean;
+  initialCollapsed?: boolean;
   children?: ReactNode;
 }
 
@@ -36,44 +36,45 @@ const HeaderAdditional = styled.div`
 
 const Content = styled.div`
   overflow: hidden;
-  transition: max-height 0.45s ease-out;
-  transition-delay: -0.3s;
   height: auto;
-  max-height: 0;
 
-  &.visible {
-    max-height: 3000px;
-    transition: max-height 0.3s ease-in;
-    transition-delay: 0s;
+  max-height: 3000px;
+  transition: max-height 0.3s ease-in;
+  transition-delay: 0s;
+
+  &.collapsed {
+    transition: max-height 0.45s ease-out;
+    transition-delay: -0.3s;
+    max-height: 0;
   }
 
   border-bottom: 1px solid ${colors.frame.stroke};
 `;
 
-class Accordion extends React.Component<IAccordion, { visible: boolean }> {
+class Accordion extends React.Component<IAccordion, { collapsed: boolean }> {
   state = {
-    visible: !!this.props.initialVisible
+    collapsed: !!this.props.initialCollapsed
   };
 
   render() {
     const { title, additional, children } = this.props;
-    const { visible } = this.state;
+    const { collapsed } = this.state;
 
     return (
       <StyledAccordion>
         <Header onClick={this.onToggle}>
           <HeaderText>{title}</HeaderText>
           {additional && <HeaderAdditional>{additional}</HeaderAdditional>}
-          <Icon name={visible ? "expand-less" : "expand-more"} />
+          <Icon name={collapsed ? "expand-less" : "expand-more"} />
         </Header>
-        <Content className={visible ? "visible" : ""}>{children}</Content>
+        <Content className={collapsed ? "collapsed" : ""}>{children}</Content>
       </StyledAccordion>
     );
   }
 
   onToggle = () => {
     this.setState(state => ({
-      visible: !state.visible
+      collapsed: !state.collapsed
     }));
   };
 }

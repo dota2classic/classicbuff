@@ -10,8 +10,8 @@ export default {
 };
 
 export const all = () => (
-  <>
+  <div style={{ width: 260 }}>
     <TextInput placeholder="Введите наименование..." />
     <TextInput placeholder="Введите наименование..." />
-  </>
+  </div>
 );
