@@ -11,12 +11,12 @@ export default {
 };
 
 export const all = () => (
-  <>
+  <div style={{ display: "flex" }}>
     <Button type="primary" iconLeft={<FilterIcon />} text="Кнопка" />
     <Button type="primary" text="Кнопка" />
     <Button type="secondary" text="Кнопка" iconLeft={<FilterIcon />} />
     <Button type="tertiary" text="Кнопка" iconLeft={<FilterIcon />} />
-  </>
+  </div>
 );
 
 export const primary = () => <Button type="primary" text="Кнопка" iconLeft={<FilterIcon />} />;
