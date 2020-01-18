@@ -39,7 +39,13 @@ export const RequestConditions = () => (
 export const RequestProducts = () => (
   <>
     <Toolbar title="Лизинговые продукты">
-      <ToolbarSortBy fields={{ number: "по номеру", date: "по дате", status: "по статусу" }} />
+      <ToolbarSortBy
+        fields={[
+          { key: "number", label: "по номеру", directional: "bi" },
+          { key: "date", label: "по дате", directional: "bi" },
+          { key: "status", label: "по статусу", directional: "uni" }
+        ]}
+      />
       <Divider vertical />
       <div>Вид:</div>
       <Divider vertical />
@@ -54,7 +60,13 @@ export const RequestProposals = () => (
       <input type="checkbox" />
       <label htmlFor="">Показывать АВ</label>
       <Divider vertical />
-      <ToolbarSortBy fields={{ number: "по компании", date: "по сумме договора", cost: "по удорожанию" }} />
+      <ToolbarSortBy
+        fields={[
+          { key: "number", label: "по компании", directional: "bi" },
+          { key: "date", label: "по сумме договора", directional: "bi" },
+          { key: "cost", label: "по удорожанию", directional: "uni" }
+        ]}
+      />
     </Toolbar>
   </>
 );
@@ -62,7 +74,13 @@ export const RequestProposals = () => (
 export const Requests = () => (
   <>
     <Toolbar title="Запросы">
-      <ToolbarSortBy fields={{ number: "по номеру", date: "по дате", cost: "по стоимости" }} />
+      <ToolbarSortBy
+        fields={[
+          { key: "number", label: "по номеру", directional: "bi" },
+          { key: "date", label: "по дате", directional: "bi" },
+          { key: "cost", label: "по стоимости", directional: "bi" }
+        ]}
+      />
       <Divider vertical />
       <Button type="tertiary" text="Фильтры" iconLeft={<FilterIcon />} />
     </Toolbar>
@@ -72,7 +90,13 @@ export const Requests = () => (
 export const Proposals = () => (
   <>
     <Toolbar title="Предложения">
-      <ToolbarSortBy fields={{ number: "по номеру", date: "по дате", cost: "по сумме договора" }} />
+      <ToolbarSortBy
+        fields={[
+          { key: "number", label: "по номеру", directional: "bi" },
+          { key: "date", label: "по дате", directional: "bi" },
+          { key: "cost", label: "по сумме договора", directional: "bi" }
+        ]}
+      />
       <Divider vertical />
       <Button type="tertiary" text="Фильтры" iconLeft={<FilterIcon />} />
     </Toolbar>
@@ -90,7 +114,13 @@ export const Proposal = () => (
 export const MultibidDocs = () => (
   <>
     <Toolbar title="Документы">
-      <ToolbarSortBy fields={{ number: "сначала без файлов", date: "сначала с файлами", cost: "по алфавиту" }} />
+      <ToolbarSortBy
+        fields={[
+          { key: "number", label: "сначала без файлов", directional: "uni" },
+          { key: "date", label: "сначала с файлами", directional: "uni" },
+          { key: "cost", label: "по алфавиту", directional: "bi" }
+        ]}
+      />
       <Divider vertical />
       <Button type="tertiary" text="Фильтры" iconLeft={<FilterIcon />} />
     </Toolbar>
@@ -101,7 +131,12 @@ export const Bids = () => (
   <>
     <Toolbar title="Заявки на лизинг">
       <ToolbarSortBy
-        fields={{ activity: "по активности", number: "по номеру", date: "по дате", status: "по статусу" }}
+        fields={[
+          { key: "activity", label: "по активности", directional: "bi" },
+          { key: "number", label: "по номеру", directional: "bi" },
+          { key: "date", label: "по дате", directional: "bi" },
+          { key: "status", label: "по статусу", directional: "uni" }
+        ]}
       />
       <Divider vertical />
       <Button type="tertiary" text="Фильтры" iconLeft={<FilterIcon />} />

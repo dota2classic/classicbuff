@@ -4,8 +4,12 @@ import { SortDownIcon, SortUpIcon } from "../../assets";
 import styled from "styled-components";
 
 interface IToolbarSortBy {
-  fields: { [key: string]: string };
-  value?: { field: string; direction: "asc" | "desc" };
+  fields: {
+    key: string;
+    label: string;
+    directional: "uni" | "bi";
+  }[];
+  value?: { field: string; direction?: "asc" | "desc" };
   onChange?: (value: { field: string; direction: "asc" | "desc" }) => void;
 }
 
@@ -30,17 +34,17 @@ const StyledToolbarSortBy = styled.div`
 `;
 
 const ToolbarSortBy = (props: IToolbarSortBy) => {
-  const value = props.value || { field: Object.keys(props.fields)[0], direction: "asc" };
+  const value = props.value || { field: props.fields[0].key, direction: "asc" };
 
   return (
     <StyledToolbarSortBy>
       <div>Упорядочить:</div>
-      {Object.keys(props.fields).map(key => (
+      {props.fields.map(({ key, label, directional }) => (
         <Button
           key={key}
-          text={props.fields[key]}
+          text={label}
           type={key == value.field ? "secondary" : "tertiary"}
-          iconRight={key == value.field && icons[value.direction]}
+          iconRight={key === value.field && directional === "bi" ? icons[value.direction!!] : undefined}
         />
       ))}
     </StyledToolbarSortBy>
