@@ -1,14 +1,18 @@
 import React from "react";
+import styled from "styled-components";
+
+const IconSpan = styled.span`
+  line-height: 0;
+`;
 
 const Icon = ({ icon, ...props }: { icon: string }) => {
   const svg = require(`!raw-loader!./svg/${icon}.svg`);
-  return <span dangerouslySetInnerHTML={{ __html: svg.default }} />;
+  return <IconSpan dangerouslySetInnerHTML={{ __html: svg.default }} />;
 };
 
 export const AddIcon = () => <Icon icon="add" />;
 export const DownIcon = () => <Icon icon="sort-down" />;
 export const LogoIcon = () => <Icon icon="logo" />;
-export const SubLogoIcon = () => <Icon icon="sublogo" />;
 export const FilterIcon = () => <Icon icon="filter" />;
 export const PlayIcon = () => <Icon icon="play" />;
 export const PauseIcon = () => <Icon icon="pause" />;

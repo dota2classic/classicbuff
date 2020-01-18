@@ -43,7 +43,7 @@ const ToolbarSortBy = (props: IToolbarSortBy) => {
         <Button
           key={key}
           text={label}
-          type={key == value.field ? "secondary" : "tertiary"}
+          type={key === value.field ? "secondary" : "tertiary"}
           iconRight={key === value.field && directional === "bi" ? icons[value.direction!!] : undefined}
         />
       ))}
