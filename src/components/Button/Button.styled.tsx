@@ -11,6 +11,8 @@ export const Text = styled.span`
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
+
+  margin: 4px 0;
 `;
 
 const colors = {
@@ -21,12 +23,14 @@ const colors = {
 
 export const StyledButton = styled.button`
   border-radius: 5px;
-  padding: 2px 10px;
+  padding: 6px 10px;
 
   display: inline-flex;
   align-items: center;
   outline: none;
   border: none;
+  
+  align-self: center;
   
   cursor: pointer;
   

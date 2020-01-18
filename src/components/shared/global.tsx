@@ -5,5 +5,6 @@ export const GlobalStyle = createGlobalStyle`
   ${normalize}
 
   body {
+    background: #F8FAFB;
   }
 `;

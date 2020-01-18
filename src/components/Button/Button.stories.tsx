@@ -12,12 +12,13 @@ export default {
 
 export const all = () => (
   <>
-    <Button style="primary" iconLeft={<FilterIcon />} text="Кнопка" />
-    <Button style="secondary" text="Кнопка" iconLeft={<FilterIcon />} />
-    <Button style="tertiary" text="Кнопка" iconLeft={<FilterIcon />} />
+    <Button type="primary" iconLeft={<FilterIcon />} text="Кнопка" />
+    <Button type="primary" text="Кнопка" />
+    <Button type="secondary" text="Кнопка" iconLeft={<FilterIcon />} />
+    <Button type="tertiary" text="Кнопка" iconLeft={<FilterIcon />} />
   </>
 );
 
-export const primary = () => <Button style="primary" text="Кнопка" iconLeft={<FilterIcon />} />;
-export const secondary = () => <Button style="secondary" text="Кнопка" iconRight={<FilterIcon />} />;
-export const tertiary = () => <Button style="tertiary" text="Кнопка" iconLeft={<FilterIcon />} />;
+export const primary = () => <Button type="primary" text="Кнопка" iconLeft={<FilterIcon />} />;
+export const secondary = () => <Button type="secondary" text="Кнопка" iconRight={<FilterIcon />} />;
+export const tertiary = () => <Button type="tertiary" text="Кнопка" iconLeft={<FilterIcon />} />;

@@ -3,13 +3,13 @@ import { IconWrapper, StyledButton, Text } from "./Button.styled";
 
 export interface IButton {
   text: string;
-  style: "primary" | "secondary" | "tertiary";
+  type: "primary" | "secondary" | "tertiary";
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
 }
 
 const Button = (props: IButton) => (
-  <StyledButton className={props.style}>
+  <StyledButton className={props.type}>
     {props.iconLeft && <IconWrapper>{props.iconLeft}</IconWrapper>}
     <Text>{props.text}</Text>
     {props.iconRight && <IconWrapper>{props.iconRight}</IconWrapper>}
@@ -17,7 +17,7 @@ const Button = (props: IButton) => (
 );
 
 Button.defaultProps = {
-  style: "primary"
+  type: "primary"
 };
 
 export default Button;

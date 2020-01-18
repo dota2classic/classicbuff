@@ -16,7 +16,7 @@ export default {
 export const all = () => (
   <>
     <Header>
-      <Button style="primary" iconLeft={<AddIcon />} text="Создать запрос" />
+      <Button type="primary" iconLeft={<AddIcon />} text="Создать запрос" />
       <Divider vertical />
       <Input placeholder="Номер запроса, клиент или ИНН, продукт" />
       <Divider vertical />
@@ -27,7 +27,7 @@ export const all = () => (
 
 export const Requests = () => (
   <Header>
-    <Button style="primary" iconLeft={<AddIcon />} text="Создать запрос" />
+    <Button type="primary" iconLeft={<AddIcon />} text="Создать запрос" />
     <Divider vertical />
     <Input placeholder="Номер запроса, клиент или ИНН, продукт" />
     <Divider vertical />
@@ -37,7 +37,7 @@ export const Requests = () => (
 
 export const RequestsPaused = () => (
   <Header>
-    <Button style="primary" iconLeft={<PauseIcon />} text="Продолжить запрос" />
+    <Button type="primary" iconLeft={<PauseIcon />} text="Продолжить запрос" />
     <Divider vertical />
     <Input placeholder="Номер запроса, клиент или ИНН, продукт" />
     <Divider vertical />
@@ -46,6 +46,30 @@ export const RequestsPaused = () => (
 );
 
 export const Proposals = () => (
+  <Header>
+    <Input placeholder="Номер запроса, клиент или ИНН, продукт" />
+    <Divider vertical />
+    <HeaderCart />
+  </Header>
+);
+
+export const NewRequestModal = () => (
+  <Header>
+    <Input placeholder="Номер запроса, клиент или ИНН, продукт" />
+    <Divider vertical />
+    <HeaderCart />
+  </Header>
+);
+
+export const RequestModal = () => (
+  <Header>
+    <Input placeholder="Номер запроса, клиент или ИНН, продукт" />
+    <Divider vertical />
+    <HeaderCart />
+  </Header>
+);
+
+export const ProposalModal = () => (
   <Header>
     <Input placeholder="Номер запроса, клиент или ИНН, продукт" />
     <Divider vertical />

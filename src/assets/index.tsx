@@ -21,3 +21,5 @@ export const LessIcon = () => <Icon icon="less" />;
 export const CalendarIcon = () => <Icon icon="calendar" />;
 export const SearchIcon = () => <Icon icon="search" />;
 export const DoneIcon = () => <Icon icon="done" />;
+export const SortUpIcon = () => <Icon icon="sort-up" />;
+export const SortDownIcon = () => <Icon icon="sort-down" />;
