@@ -9,7 +9,9 @@ const StyledHeader = styled.div`
   display: flex;
   padding: 5px 20px;
   background: #dee7ed;
-  color: ${color.text.header} ${StyledInput} {
+  color: ${color.text.header};
+
+  ${StyledInput} {
     flex: 1;
   }
 `;
