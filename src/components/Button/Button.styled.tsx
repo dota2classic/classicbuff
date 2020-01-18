@@ -34,7 +34,7 @@ export const StyledButton = styled.button`
      background: ${colors.primary};
      color: ${colors.white};
      svg {
-       fill: ${colors.white};
+       fill: ${colors.white} !important;
      }
   }
 
@@ -42,7 +42,7 @@ export const StyledButton = styled.button`
      background: ${colors.secondary};
      color: ${colors.primary};
      svg {
-       fill: ${colors.primary};
+       fill: ${colors.primary} !important;
      }
   }
 
@@ -50,7 +50,7 @@ export const StyledButton = styled.button`
      background: none;
      color: ${colors.primary};
      svg {
-       fill: ${colors.primary};
+       fill: ${colors.primary} !important;
      }
      
      &:hover {
