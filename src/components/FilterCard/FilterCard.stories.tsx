@@ -3,7 +3,7 @@ import FilterCard from "./FilterCard";
 import { action } from "@storybook/addon-actions";
 import Accordion from "../Accordion/Accordion";
 import TextInput from "../forms/TextInput/TextInput";
-import { Icon } from "../../assets";
+import SearchInput from "../forms/SearchInput/SearchInput";
 
 export default {
   title: "Design System/Filter Card",
@@ -20,10 +20,10 @@ export const all = () => (
       <input type="date" />
     </Accordion>
     <Accordion title="Клиент">
-      <TextInput placeholder="Наименование" icon={<Icon name="search" />} />
+      <SearchInput placeholder="Наименование" />
     </Accordion>
     <Accordion title="Марка">
-      <TextInput placeholder="Наименование" />
+      <SearchInput placeholder="Наименование" />
       <input type="checkbox" />
       <input type="checkbox" />
       <input type="checkbox" />

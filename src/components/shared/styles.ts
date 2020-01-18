@@ -1,5 +1,5 @@
 import { css } from "styled-components";
-import tinycolor from "tinycolor2";
+import { darken } from "polished";
 
 export const colors = {
   common: {
@@ -38,11 +38,7 @@ export const colors = {
     secondary: "#CDDBE4"
   },
 
-  createHover: (color: string) =>
-    "#" +
-    tinycolor(colors.frame.tiling)
-      .darken(5)
-      .toHex()
+  createHover: (color: string) => darken(0.1, colors.frame.tiling)
 };
 
 export const text = {

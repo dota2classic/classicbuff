@@ -30,9 +30,16 @@ interface IIcon {
   onClick?: () => void;
 }
 
+const loadIcon = (name: IconName): string => {
+  return require(`!raw-loader!./svg/${name}.svg`).default;
+};
+
+export const iconUrlData = (name: IconName): string => {
+  return loadIcon(name).replace(/fill="#/g, 'fill="%23');
+};
+
 export const Icon = (props: IIcon) => {
-  const svg = require(`!raw-loader!./svg/${props.name}.svg`);
-  return <IconWrapper dangerouslySetInnerHTML={{ __html: svg.default }} onClick={props.onClick} />;
+  return <IconWrapper dangerouslySetInnerHTML={{ __html: loadIcon(props.name) }} onClick={props.onClick} />;
 };
 
 export const AddIcon = () => <Icon name="add" />;

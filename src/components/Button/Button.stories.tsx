@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "./Button";
-import { CloseIcon, FilterIcon } from "../../assets";
+import { FilterIcon } from "../../assets";
 
 export default {
   title: "Design System/Button",
