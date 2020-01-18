@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components";
-import { StyledInput } from "../Input/Input";
+import { StyledTextInput } from "../forms/TextInput/TextInput";
 import Button from "../Button/Button";
 import { CartIcon } from "../../assets";
 import { colors } from "../shared/styles";
@@ -11,7 +11,7 @@ const StyledHeader = styled.div`
   background: #dee7ed;
   color: ${colors.text.header};
 
-  ${StyledInput} {
+  ${StyledTextInput} {
     flex: 1;
   }
 `;

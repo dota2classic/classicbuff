@@ -1,29 +1,49 @@
 import React from "react";
 import styled from "styled-components";
 
-const IconSpan = styled.span`
+const IconWrapper = styled.span`
   line-height: 0;
 `;
 
-const Icon = ({ icon, ...props }: { icon: string }) => {
-  const svg = require(`!raw-loader!./svg/${icon}.svg`);
-  return <IconSpan dangerouslySetInnerHTML={{ __html: svg.default }} />;
+type IconName =
+  | "add"
+  | "calendar"
+  | "cart"
+  | "close"
+  | "done"
+  | "exit"
+  | "expand-less"
+  | "expand-more"
+  | "filter"
+  | "less"
+  | "logo"
+  | "message"
+  | "more"
+  | "pause"
+  | "play"
+  | "search"
+  | "sort-down"
+  | "sort-up";
+
+export const Icon = ({ name, ...props }: { name: IconName }) => {
+  const svg = require(`!raw-loader!./svg/${name}.svg`);
+  return <IconWrapper dangerouslySetInnerHTML={{ __html: svg.default }} />;
 };
 
-export const AddIcon = () => <Icon icon="add" />;
-export const DownIcon = () => <Icon icon="sort-down" />;
-export const LogoIcon = () => <Icon icon="logo" />;
-export const FilterIcon = () => <Icon icon="filter" />;
-export const PlayIcon = () => <Icon icon="play" />;
-export const PauseIcon = () => <Icon icon="pause" />;
-export const MessageIcon = () => <Icon icon="message" />;
-export const CartIcon = () => <Icon icon="cart" />;
-export const ExitIcon = () => <Icon icon="exit" />;
-export const CloseIcon = () => <Icon icon="close" />;
-export const MoreIcon = () => <Icon icon="more" />;
-export const LessIcon = () => <Icon icon="less" />;
-export const CalendarIcon = () => <Icon icon="calendar" />;
-export const SearchIcon = () => <Icon icon="search" />;
-export const DoneIcon = () => <Icon icon="done" />;
-export const SortUpIcon = () => <Icon icon="sort-up" />;
-export const SortDownIcon = () => <Icon icon="sort-down" />;
+export const AddIcon = () => <Icon name="add" />;
+export const DownIcon = () => <Icon name="sort-down" />;
+export const LogoIcon = () => <Icon name="logo" />;
+export const FilterIcon = () => <Icon name="filter" />;
+export const PlayIcon = () => <Icon name="play" />;
+export const PauseIcon = () => <Icon name="pause" />;
+export const MessageIcon = () => <Icon name="message" />;
+export const CartIcon = () => <Icon name="cart" />;
+export const ExitIcon = () => <Icon name="exit" />;
+export const CloseIcon = () => <Icon name="close" />;
+export const MoreIcon = () => <Icon name="more" />;
+export const LessIcon = () => <Icon name="less" />;
+export const CalendarIcon = () => <Icon name="calendar" />;
+export const SearchIcon = () => <Icon name="search" />;
+export const DoneIcon = () => <Icon name="done" />;
+export const SortUpIcon = () => <Icon name="sort-up" />;
+export const SortDownIcon = () => <Icon name="sort-down" />;

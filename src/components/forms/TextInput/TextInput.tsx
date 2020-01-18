@@ -1,13 +1,13 @@
 import React, { ChangeEventHandler } from "react";
 import styled from "styled-components";
 
-export interface IInput {
+export interface ITextInput {
   value?: string;
   placeholder?: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
-export const StyledInput = styled.input`
+export const StyledTextInput = styled.input`
   display: flex;
 
   font-family: Roboto;
@@ -29,8 +29,8 @@ export const StyledInput = styled.input`
   }
 `;
 
-const Input = (props: IInput) => <StyledInput {...props} />;
+const TextInput = (props: ITextInput) => <StyledTextInput {...props} />;
 
-Input.defaultProps = {};
+TextInput.defaultProps = {};
 
-export default Input;
+export default TextInput;

@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "./Button";
-import { FilterIcon } from "../../assets";
+import { CloseIcon, FilterIcon } from "../../assets";
 
 export default {
   title: "Design System/Button",
@@ -11,6 +11,7 @@ export default {
 };
 
 export const all = () => (
+  // todo: remove div style
   <div style={{ display: "flex" }}>
     <Button type="primary" iconLeft={<FilterIcon />} text="Кнопка" />
     <Button type="primary" text="Кнопка" />

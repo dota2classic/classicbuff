@@ -4,7 +4,7 @@ import { AddIcon, FilterIcon, MessageIcon } from "../../assets";
 import Layout from "./Layout";
 import Button from "../Button/Button";
 import Divider from "../Divider/Divider";
-import Input from "../Input/Input";
+import TextInput from "../forms/TextInput/TextInput";
 import Header, { HeaderCart } from "../Header/Header";
 import ToolbarSortBy from "../Toolbar/ToolbarSortedBy";
 import Toolbar from "../Toolbar/Toolbar";
@@ -13,8 +13,7 @@ export default {
   title: "Design System/Layout",
 
   parameters: {
-    component: Sidebar,
-    subcomponents: { SidebarItem }
+    component: Layout
   }
 };
 
@@ -31,7 +30,7 @@ export const all = () => (
     <Header>
       <Button type="primary" iconLeft={<AddIcon />} text="Создать запрос" />
       <Divider vertical />
-      <Input placeholder="Номер запроса, клиент или ИНН, продукт" />
+      <TextInput placeholder="Номер запроса, клиент или ИНН, продукт" />
       <Divider vertical />
       <HeaderCart />
     </Header>

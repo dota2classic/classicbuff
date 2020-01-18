@@ -2,7 +2,7 @@ import React from "react";
 import Header, { HeaderCart } from "./Header";
 import Button from "../Button/Button";
 import { AddIcon, PauseIcon } from "../../assets";
-import Input from "../Input/Input";
+import TextInput from "../forms/TextInput/TextInput";
 import Divider from "../Divider/Divider";
 
 export default {
@@ -18,7 +18,7 @@ export const all = () => (
     <Header>
       <Button type="primary" iconLeft={<AddIcon />} text="Создать запрос" />
       <Divider vertical />
-      <Input placeholder="Номер запроса, клиент или ИНН, продукт" />
+      <TextInput placeholder="Номер запроса, клиент или ИНН, продукт" />
       <Divider vertical />
       <HeaderCart />
     </Header>
@@ -29,7 +29,7 @@ export const Requests = () => (
   <Header>
     <Button type="primary" iconLeft={<AddIcon />} text="Создать запрос" />
     <Divider vertical />
-    <Input placeholder="Номер запроса, клиент или ИНН, продукт" />
+    <TextInput placeholder="Номер запроса, клиент или ИНН, продукт" />
     <Divider vertical />
     <HeaderCart />
   </Header>
@@ -39,7 +39,7 @@ export const RequestsPaused = () => (
   <Header>
     <Button type="primary" iconLeft={<PauseIcon />} text="Продолжить запрос" />
     <Divider vertical />
-    <Input placeholder="Номер запроса, клиент или ИНН, продукт" />
+    <TextInput placeholder="Номер запроса, клиент или ИНН, продукт" />
     <Divider vertical />
     <HeaderCart />
   </Header>
@@ -47,7 +47,7 @@ export const RequestsPaused = () => (
 
 export const Proposals = () => (
   <Header>
-    <Input placeholder="Номер запроса, клиент или ИНН, продукт" />
+    <TextInput placeholder="Номер запроса, клиент или ИНН, продукт" />
     <Divider vertical />
     <HeaderCart />
   </Header>
@@ -55,7 +55,7 @@ export const Proposals = () => (
 
 export const NewRequestModal = () => (
   <Header>
-    <Input placeholder="Номер запроса, клиент или ИНН, продукт" />
+    <TextInput placeholder="Номер запроса, клиент или ИНН, продукт" />
     <Divider vertical />
     <HeaderCart />
   </Header>
@@ -63,7 +63,7 @@ export const NewRequestModal = () => (
 
 export const RequestModal = () => (
   <Header>
-    <Input placeholder="Номер запроса, клиент или ИНН, продукт" />
+    <TextInput placeholder="Номер запроса, клиент или ИНН, продукт" />
     <Divider vertical />
     <HeaderCart />
   </Header>
@@ -71,7 +71,7 @@ export const RequestModal = () => (
 
 export const ProposalModal = () => (
   <Header>
-    <Input placeholder="Номер запроса, клиент или ИНН, продукт" />
+    <TextInput placeholder="Номер запроса, клиент или ИНН, продукт" />
     <Divider vertical />
     <HeaderCart />
   </Header>

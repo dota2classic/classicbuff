@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../shared/styles";
 
 export const IconWrapper = styled.span`
   height: 24px;
@@ -15,12 +16,6 @@ export const Text = styled.span`
   margin: 4px 0;
 `;
 
-const colors = {
-  primary: "#0071C2",
-  secondary: "#DEE7ED",
-  white: "#fff"
-};
-
 export const StyledButton = styled.button`
   border-radius: 5px;
   padding: 2px 10px;
@@ -34,34 +29,49 @@ export const StyledButton = styled.button`
   
   cursor: pointer;
   
+  
   &.primary {
-     background: ${colors.primary};
-     color: ${colors.white};
+     background: ${colors.button.main};
+     color: ${colors.frame.card};
      svg {
-       fill: ${colors.white} !important;
+       fill: ${colors.frame.card} !important;
      }
   }
 
   &.secondary {
-     background: ${colors.secondary};
-     color: ${colors.primary};
+     background: ${colors.frame.bar};
+     color: ${colors.button.main};
      svg {
-       fill: ${colors.primary} !important;
+       fill: ${colors.button.main} !important;
      }
   }
 
   &.tertiary {
      background: none;
-     color: ${colors.primary};
+     color: ${colors.button.main};
      svg {
-       fill: ${colors.primary} !important;
+       fill: ${colors.button.main} !important;
      }
      
      &:hover {
-       background: ${colors.secondary};
+       background: ${colors.frame.bar};
      }
   }
 
+
+  &.icon {
+     padding: 2px;
+     background: none;
+     color: ${colors.button.main};
+     svg {
+       fill: ${colors.button.main} !important;
+     }
+     
+     &:hover {
+       background: ${colors.frame.bar};
+     }
+  }
+  
   ${IconWrapper} + ${Text} {
     margin-left: 4px;
   }
