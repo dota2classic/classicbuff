@@ -2,6 +2,8 @@ import React from "react";
 import Toolbar from "./Toolbar";
 import Button from "../Button/Button";
 import ToolbarSortBy from "./ToolbarSortedBy";
+import Divider from "../Divider/Divider";
+import { FilterIcon } from "../../assets";
 
 export default {
   title: "Design System/Toolbar",
@@ -37,10 +39,11 @@ export const RequestConditions = () => (
 export const RequestProducts = () => (
   <>
     <Toolbar title="Лизинговые продукты">
-      <Button type="tertiary" text="Лизингополучатель" />
-      <Button type="tertiary" text="Предмет лизинга" />
-      <Button type="tertiary" text="Поставка" />
-      <Button type="tertiary" text="Условия сделки" />
+      <ToolbarSortBy fields={{ number: "по номеру", date: "по дате", status: "по статусу" }} />
+      <Divider vertical />
+      <div>Вид:</div>
+      <Divider vertical />
+      <Button type="tertiary" text="Фильтры" iconLeft={<FilterIcon />} />
     </Toolbar>
   </>
 );
@@ -48,10 +51,10 @@ export const RequestProducts = () => (
 export const RequestProposals = () => (
   <>
     <Toolbar title="Коммерческие предложения">
-      <Button type="tertiary" text="Лизингополучатель" />
-      <Button type="tertiary" text="Предмет лизинга" />
-      <Button type="tertiary" text="Поставка" />
-      <Button type="tertiary" text="Условия сделки" />
+      <input type="checkbox" />
+      <label htmlFor="">Показывать АВ</label>
+      <Divider vertical />
+      <ToolbarSortBy fields={{ number: "по компании", date: "по сумме договора", cost: "по удорожанию" }} />
     </Toolbar>
   </>
 );
@@ -60,6 +63,8 @@ export const Requests = () => (
   <>
     <Toolbar title="Запросы">
       <ToolbarSortBy fields={{ number: "по номеру", date: "по дате", cost: "по стоимости" }} />
+      <Divider vertical />
+      <Button type="tertiary" text="Фильтры" iconLeft={<FilterIcon />} />
     </Toolbar>
   </>
 );
@@ -67,10 +72,9 @@ export const Requests = () => (
 export const Proposals = () => (
   <>
     <Toolbar title="Предложения">
-      <Button type="tertiary" text="Лизингополучатель" />
-      <Button type="tertiary" text="Предмет лизинга" />
-      <Button type="tertiary" text="Поставка" />
-      <Button type="tertiary" text="Условия сделки" />
+      <ToolbarSortBy fields={{ number: "по номеру", date: "по дате", cost: "по сумме договора" }} />
+      <Divider vertical />
+      <Button type="tertiary" text="Фильтры" iconLeft={<FilterIcon />} />
     </Toolbar>
   </>
 );
@@ -78,10 +82,7 @@ export const Proposals = () => (
 export const Proposal = () => (
   <>
     <Toolbar title="Предложение 00005-00000032-002">
-      <Button type="tertiary" text="Лизингополучатель" />
-      <Button type="tertiary" text="Предмет лизинга" />
-      <Button type="tertiary" text="Поставка" />
-      <Button type="tertiary" text="Условия сделки" />
+      <div>Гущин И. Ю.</div>
     </Toolbar>
   </>
 );
@@ -89,10 +90,9 @@ export const Proposal = () => (
 export const MultibidDocs = () => (
   <>
     <Toolbar title="Документы">
-      <Button type="tertiary" text="Лизингополучатель" />
-      <Button type="tertiary" text="Предмет лизинга" />
-      <Button type="tertiary" text="Поставка" />
-      <Button type="tertiary" text="Условия сделки" />
+      <ToolbarSortBy fields={{ number: "сначала без файлов", date: "сначала с файлами", cost: "по алфавиту" }} />
+      <Divider vertical />
+      <Button type="tertiary" text="Фильтры" iconLeft={<FilterIcon />} />
     </Toolbar>
   </>
 );
@@ -100,10 +100,11 @@ export const MultibidDocs = () => (
 export const Bids = () => (
   <>
     <Toolbar title="Заявки на лизинг">
-      <Button type="tertiary" text="Лизингополучатель" />
-      <Button type="tertiary" text="Предмет лизинга" />
-      <Button type="tertiary" text="Поставка" />
-      <Button type="tertiary" text="Условия сделки" />
+      <ToolbarSortBy
+        fields={{ activity: "по активности", number: "по номеру", date: "по дате", status: "по статусу" }}
+      />
+      <Divider vertical />
+      <Button type="tertiary" text="Фильтры" iconLeft={<FilterIcon />} />
     </Toolbar>
   </>
 );
