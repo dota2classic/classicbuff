@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { color } from "../shared/styles";
+import { colors } from "../shared/styles";
 import React, { MouseEventHandler, ReactNode } from "react";
 import { ExitIcon } from "../../assets";
 
 const StyledSidebarItem = styled.div`
   padding: 4px 0;
-  border-bottom: 1px solid ${color.text.header};
+  border-bottom: 1px solid ${colors.text.header};
 `;
 
 const Container = styled.a`
@@ -36,7 +36,7 @@ const Container = styled.a`
     background: #293e4c;
   }
 
-  color: ${color.common.background};
+  color: ${colors.common.background};
 `;
 
 const Title = styled.div`
@@ -64,7 +64,7 @@ const LogoutContainer = styled(Container)`
   font-size: 12px;
   line-height: 14px;
 
-  color: ${color.text.secondary};
+  color: ${colors.text.secondary};
 `;
 
 export interface ISidebarLogout {

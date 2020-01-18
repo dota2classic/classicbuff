@@ -3,13 +3,13 @@ import styled from "styled-components";
 import { StyledInput } from "../Input/Input";
 import Button from "../Button/Button";
 import { CartIcon } from "../../assets";
-import { color } from "../shared/styles";
+import { colors } from "../shared/styles";
 
 const StyledHeader = styled.div`
   display: flex;
   padding: 5px 20px;
   background: #dee7ed;
-  color: ${color.text.header};
+  color: ${colors.text.header};
 
   ${StyledInput} {
     flex: 1;

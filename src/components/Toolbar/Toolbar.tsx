@@ -1,14 +1,14 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components";
-import { color } from "../shared/styles";
+import { colors } from "../shared/styles";
 
 const StyledToolbar = styled.div`
   display: flex;
   padding: 6px 20px;
-  background: ${color.common.background};
-  color: ${color.text.header};
+  background: ${colors.common.background};
+  color: ${colors.text.header};
 
-  border-bottom: 1px solid ${color.frame.stroke};
+  border-bottom: 1px solid ${colors.frame.stroke};
 `;
 
 const ToolbarTitle = styled.div`

@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components";
-import { color } from "../shared/styles";
+import { colors } from "../shared/styles";
 import { SidebarLogout } from "./SidebarItem";
 import { LogoIcon } from "../../assets";
 
@@ -8,7 +8,7 @@ const StyledSidebar = styled.div`
   display: flex;
   flex-direction: column;
   width: 240px;
-  background: ${color.common.menu};
+  background: ${colors.common.menu};
 
   padding: 10px 10px;
 `;

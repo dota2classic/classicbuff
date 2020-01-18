@@ -1,6 +1,7 @@
 import { css } from "styled-components";
+import tinycolor from "tinycolor2";
 
-export const color = {
+export const colors = {
   common: {
     menu: "#324B5D",
     background: "#F8FAFB"
@@ -35,7 +36,13 @@ export const color = {
 
   stroke: {
     secondary: "#CDDBE4"
-  }
+  },
+
+  createHover: (color: string) =>
+    "#" +
+    tinycolor(colors.frame.tiling)
+      .darken(5)
+      .toHex()
 };
 
 export const text = {
