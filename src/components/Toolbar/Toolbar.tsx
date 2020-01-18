@@ -4,7 +4,7 @@ import { color } from "../shared/styles";
 
 const StyledToolbar = styled.div`
   display: flex;
-  padding: 5px 20px;
+  padding: 6px 20px;
   background: ${color.common.background};
   color: ${color.text.header};
 

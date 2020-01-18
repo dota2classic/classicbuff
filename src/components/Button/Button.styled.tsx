@@ -23,7 +23,7 @@ const colors = {
 
 export const StyledButton = styled.button`
   border-radius: 5px;
-  padding: 6px 10px;
+  padding: 2px 10px;
 
   display: inline-flex;
   align-items: center;
