@@ -4,6 +4,9 @@ import { colors } from "../shared/styles";
 import FilterCardHeader from "./FilterCardHeader";
 
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
   width: 280px;
 
   background: ${colors.frame.card};
@@ -12,7 +15,9 @@ const Wrapper = styled.div`
 `;
 
 const Content = styled.div`
-  padding: 0 10px;
+  padding: 0 10px 40px;
+
+  overflow-y: scroll;
 `;
 
 interface IFilterCard {

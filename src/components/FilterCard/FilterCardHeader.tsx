@@ -7,6 +7,7 @@ import React from "react";
 const Header = styled.div`
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 
   padding: 0 10px;
   height: 40px;

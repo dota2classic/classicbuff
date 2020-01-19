@@ -8,6 +8,12 @@ import TextInput from "../forms/TextInput/TextInput";
 import Header, { HeaderCart } from "../Header/Header";
 import ToolbarSortBy from "../Toolbar/ToolbarSortedBy";
 import Toolbar from "../Toolbar/Toolbar";
+import { action } from "@storybook/addon-actions";
+import Accordion from "../Accordion/Accordion";
+import SearchInput from "../forms/SearchInput/SearchInput";
+import Finder from "../FilterCard/Finder/Finder";
+import FilterCard from "../FilterCard/FilterCard";
+import { apiFilterCard } from "../FilterCard/FilterCard.stories";
 
 export default {
   title: "Design System/Layout",
@@ -26,6 +32,31 @@ export const all = () => (
         <SidebarItem href="#" title="Заявки на лизинг" right={<MessageIcon />} />
       </Sidebar>
     }
+    filters={
+      <FilterCard onClear={action("onClear")} onClose={action("onClose")}>
+        <Accordion title="Дата создания">
+          <input type="date" />
+          <input type="date" />
+        </Accordion>
+        <Accordion title="Клиент">
+          <SearchInput placeholder="Наименование" />
+        </Accordion>
+
+        <Finder
+          title="Марка"
+          onInitData={apiFilterCard.initData}
+          onSearch={apiFilterCard.search}
+          onChange={action("Марка")}
+        />
+        <Finder
+          title="Модель"
+          onInitData={apiFilterCard.initData}
+          onSearch={apiFilterCard.search}
+          onChange={action("Модель")}
+        />
+      </FilterCard>
+    }
+    showFilters
   >
     <Header>
       <Button type="primary" iconLeft={<AddIcon />} text="Создать запрос" />

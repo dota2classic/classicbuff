@@ -3,7 +3,6 @@ import { action } from "@storybook/addon-actions";
 import { delay } from "utils/delay";
 import FilterCard from "./FilterCard";
 import Accordion from "../Accordion/Accordion";
-import TextInput from "../forms/TextInput/TextInput";
 import SearchInput from "../forms/SearchInput/SearchInput";
 import Finder from "./Finder/Finder";
 import cars from "./Finder/cars.json";
@@ -21,7 +20,7 @@ const toFinderItem = (brand: string, model: string) => ({
   value: brand + " " + model
 });
 
-const api = {
+export const apiFilterCard = {
   search: async (query: string = "") => {
     await delay(300);
     return cars
@@ -46,15 +45,17 @@ export const all = () => (
       <SearchInput placeholder="Наименование" />
     </Accordion>
 
-    <Finder title="Марка" onInitData={api.initData} onSearch={api.search} onChange={action("onChange")} />
-
-    <Accordion title="Модель">
-      <TextInput placeholder="Наименование" />
-      <input type="checkbox" />
-      <input type="checkbox" />
-      <input type="checkbox" />
-      <input type="checkbox" />
-      <button>Показать все</button>
-    </Accordion>
+    <Finder
+      title="Марка"
+      onInitData={apiFilterCard.initData}
+      onSearch={apiFilterCard.search}
+      onChange={action("Марка")}
+    />
+    <Finder
+      title="Модель"
+      onInitData={apiFilterCard.initData}
+      onSearch={apiFilterCard.search}
+      onChange={action("Модель")}
+    />
   </FilterCard>
 );
