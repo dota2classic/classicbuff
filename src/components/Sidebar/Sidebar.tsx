@@ -30,6 +30,7 @@ const SidebarContainer = styled.div`
 
 interface ISidebar {
   email: string;
+  onLogout?: () => void;
   children?: ReactNode;
 }
 
@@ -39,7 +40,7 @@ const Sidebar = (props: ISidebar) => (
       <LogoIcon />
     </SidebarLogo>
     <SidebarContainer>{props.children}</SidebarContainer>
-    <SidebarLogout email={props.email} />
+    <SidebarLogout email={props.email} onClick={props.onLogout} />
   </StyledSidebar>
 );
 

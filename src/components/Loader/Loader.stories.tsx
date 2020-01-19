@@ -3,7 +3,6 @@ import Loader from "./Loader";
 import LoaderBlock from "./LoaderBlock";
 import { boolean, withKnobs } from "@storybook/addon-knobs";
 import LoadingNext from "./LoadingNext";
-import styled from "styled-components";
 
 export default {
   title: "Design System/Loader",

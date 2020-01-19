@@ -1,26 +1,10 @@
 import React from "react";
 import Table from "components/Table/Table";
 import Cells from "./OfferRequestsTableCells";
-
-export type OfferRequestsDTO = {
-  id: string;
-  code: string;
-  date: string;
-  agent: string;
-  lessee_legal_id: string;
-  lessee_description: string;
-  asset_brand: string;
-  asset_model: string;
-  asset_count: number;
-  asset_cost: string;
-  asset_cost_currency: string;
-  assets: string;
-  leasing_term_month: number;
-  leasing_payments_schedule_type: string;
-};
+import { OfferRequestDTO } from "stores/offerRequest/OfferRequestDTO";
 
 interface IOfferRequestTable {
-  data: OfferRequestsDTO[];
+  data: OfferRequestDTO[];
   loading?: boolean;
   hasNext?: boolean;
 }

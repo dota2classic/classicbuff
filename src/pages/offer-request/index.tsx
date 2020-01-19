@@ -1,32 +1,24 @@
-import React, { FC } from "react";
-import Sidebar, { SidebarItem } from "../Sidebar/Sidebar";
+import * as React from "react";
+import { boolean } from "@storybook/addon-knobs";
+import Layout from "../../components/Layout/Layout";
+import Sidebar, { SidebarItem } from "../../components/Sidebar/Sidebar";
 import { AddIcon, Icon, MessageIcon } from "../../assets";
-import Layout from "./Layout";
-import Button from "../Button/Button";
-import Divider from "../Divider/Divider";
-import TextInput from "../forms/TextInput/TextInput";
-import Header, { HeaderCart } from "../Header/Header";
-import ToolbarSortBy from "../Toolbar/ToolbarSortedBy";
-import Toolbar from "../Toolbar/Toolbar";
-import Accordion from "../Accordion/Accordion";
-import SearchInput from "../forms/SearchInput/SearchInput";
-import Finder from "../FilterCard/Finder/Finder";
-import FilterCard from "../FilterCard/FilterCard";
-import OfferRequestTable from "../tables/OfferRequestsTable/OfferRequestsTable";
-import { boolean, withKnobs } from "@storybook/addon-knobs";
-import data from "../tables/OfferRequestsTable/offer-requests-data.json";
-import { apiFilterCard } from "../FilterCard/Finder/Finder.stories";
+import FilterCard from "../../components/FilterCard/FilterCard";
+import Accordion from "../../components/Accordion/Accordion";
+import SearchInput from "../../components/forms/SearchInput/SearchInput";
+import Finder from "../../components/FilterCard/Finder/Finder";
+import { apiFilterCard } from "../../components/FilterCard/Finder/Finder.stories";
+import Header, { HeaderCart } from "../../components/Header/Header";
+import Button from "../../components/Button/Button";
+import Divider from "../../components/Divider/Divider";
+import TextInput from "../../components/forms/TextInput/TextInput";
+import Toolbar from "../../components/Toolbar/Toolbar";
+import ToolbarSortBy from "../../components/Toolbar/ToolbarSortedBy";
+import OfferRequestTable from "../../components/tables/OfferRequestsTable/OfferRequestsTable";
+import data from "../../components/tables/OfferRequestsTable/offer-requests-data.json";
+import SidebarContainer from "../../containers/Sidebar/SidebarContainer";
 
-export default {
-  title: "Design System/Layout",
-
-  parameters: {
-    component: Layout,
-    decorators: [withKnobs]
-  }
-};
-
-export const All: FC = () => {
+export default () => {
   const [search, onChangeSearch] = React.useState<string>("");
 
   const [filtersShown, onChangeFiltersShown] = React.useState<boolean>(false);
@@ -52,6 +44,7 @@ export const All: FC = () => {
       hideFilters();
     }
   };
+
   React.useEffect(() => {
     document.addEventListener("keydown", handleKeyPress);
     return () => document.removeEventListener("keydown", handleKeyPress);
@@ -59,13 +52,7 @@ export const All: FC = () => {
 
   return (
     <Layout
-      sidebar={
-        <Sidebar email="konstantinopolskiy@yandex.ru">
-          <SidebarItem href="#" title="Запросы" active right={<AddIcon />} />
-          <SidebarItem href="#" title="Предложения" />
-          <SidebarItem href="#" title="Заявки на лизинг" right={<MessageIcon />} />
-        </Sidebar>
-      }
+      sidebar={<SidebarContainer />}
       filters={
         <FilterCard onClear={clearAll} onClose={hideFilters}>
           <Accordion title="Дата создания">

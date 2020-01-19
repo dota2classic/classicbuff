@@ -1,16 +1,17 @@
-import * as React from "react";
+import React from "react";
+import Router from "next/router";
+import { NextPageContext } from "next";
 
-import HelloWorld from "components/HelloWorld/HelloWorld";
-
-export default () => (
-  <>
-    <h1>My page</h1>
-    <HelloWorld hey="123" />
-
-    <style jsx>{`
-      h1 {
-        color: red;
-      }
-    `}</style>
-  </>
-);
+export default class extends React.Component {
+  static async getInitialProps({ res }: NextPageContext) {
+    if (res) {
+      res.writeHead(302, {
+        Location: "/offer-request"
+      });
+      res.end();
+    } else {
+      Router.push("/offer-request");
+    }
+    return {};
+  }
+}

@@ -1,7 +1,7 @@
+import React from "react";
 import styled from "styled-components";
 import { colors } from "components/shared/styles";
-import React from "react";
-import { OfferRequestsDTO } from "./OfferRequestsTable";
+import { OfferRequestDTO } from "stores/offerRequest/OfferRequestDTO";
 
 const TwoItemsCell = styled.div`
   div {
@@ -15,7 +15,7 @@ const TwoItemsCell = styled.div`
   }
 `;
 
-type DTO = OfferRequestsDTO;
+type DTO = OfferRequestDTO;
 
 const OfferRequestTableCells = {
   NumberAndDate: (props: DTO) => (

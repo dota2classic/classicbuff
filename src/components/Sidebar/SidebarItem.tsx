@@ -68,10 +68,11 @@ const LogoutContainer = styled(Container)`
 
 export interface ISidebarLogout {
   email: string;
+  onClick?: () => void;
 }
 
 export const SidebarLogout = (props: ISidebarLogout) => (
-  <LogoutContainer>
+  <LogoutContainer onClick={props.onClick}>
     <Title>{props.email}</Title>
     <ExitIcon />
   </LogoutContainer>

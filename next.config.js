@@ -1,15 +1,11 @@
-// const withTypescript = require("@zeit/next-typescript");
-// const withCSS = require("@zeit/next-css");
-// const withLess = require("@zeit/next-less");
 const TsConfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
-// const withSourceMaps = require("@zeit/next-source-maps");
 
 module.exports = withBundleAnalyzer({
   target: "serverless",
 
   env: {
-    API_URL: process.env.API_URL || "https://example.com/api"
+    API_URL: process.env.API_URL || "http://188.120.246.214:8122"
   },
 
   webpack(config, options) {

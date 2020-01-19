@@ -5,10 +5,10 @@
   "scripts": {
     "dev": "next",
     "start": "next start",
-    "build": "next build",
+    "build": "build-storybook -c .storybook -o build",
     "test": "next test",
     "storybook": "start-storybook -p 6006 -s ./",
-    "build-storybook": "build-storybook",
+    "build-storybook": "build-storybook -c .storybook -o build",
     "analyze": "cross-env BUNDLE_ANALYZE=both next build",
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
@@ -21,6 +21,7 @@
   "dependencies": {
     "apisauce": "^1.1.1",
     "classnames": "^2.2.6",
+    "formik": "^2.1.2",
     "mobx": "^5.11.0",
     "mobx-react": "^6.1.5",
     "mobx-react-devtools": "^6.1.1",
