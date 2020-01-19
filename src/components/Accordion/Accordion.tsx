@@ -52,6 +52,11 @@ const Content = styled.div`
   border-bottom: 1px solid ${colors.frame.stroke};
 `;
 
+const ContentInner = styled.div`
+  padding-top: 8px;
+  padding-bottom: 20px;
+`;
+
 class Accordion extends React.Component<IAccordion, { collapsed: boolean }> {
   state = {
     collapsed: !!this.props.initialCollapsed
@@ -68,7 +73,9 @@ class Accordion extends React.Component<IAccordion, { collapsed: boolean }> {
           {additional && <HeaderAdditional>{additional}</HeaderAdditional>}
           <Icon name={collapsed ? "expand-more" : "expand-less"} />
         </Header>
-        <Content className={collapsed ? "collapsed" : ""}>{children}</Content>
+        <Content className={collapsed ? "collapsed" : ""}>
+          <ContentInner>{children}</ContentInner>
+        </Content>
       </StyledAccordion>
     );
   }

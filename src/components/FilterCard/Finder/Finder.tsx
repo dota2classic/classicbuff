@@ -28,6 +28,10 @@ interface IFinderState {
 }
 
 class Finder extends React.Component<IFinder, IFinderState> {
+  static defaultProps = {
+    values: {}
+  };
+
   state: IFinderState = {
     query: "",
     expand: false,

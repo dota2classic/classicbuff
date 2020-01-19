@@ -21,6 +21,7 @@ export type OfferRequestsDTO = {
 
 interface IOfferRequestTable {
   data: OfferRequestsDTO[];
+  loading?: boolean;
 }
 
 const OfferRequestTable = (props: IOfferRequestTable) => (
@@ -33,6 +34,7 @@ const OfferRequestTable = (props: IOfferRequestTable) => (
       [{ cell: Cells.Comment, header: "Комментарий" }]
     ]}
     data={props.data}
+    loading={props.loading}
   />
 );
 

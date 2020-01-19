@@ -12,6 +12,8 @@ const Wrapper = styled.div`
   background: ${colors.frame.card};
   box-shadow: 0 11px 15px rgba(0, 0, 0, 0.2), 0 9px 46px rgba(0, 0, 0, 0.12), 0 24px 38px rgba(0, 0, 0, 0.14);
   border-radius: 8px 0 0 8px;
+
+  max-height: 100%;
 `;
 
 const Content = styled.div`

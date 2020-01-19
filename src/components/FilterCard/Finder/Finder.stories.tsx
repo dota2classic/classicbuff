@@ -6,10 +6,8 @@ import { action } from "@storybook/addon-actions";
 
 export default {
   title: "Design System/Filter Card/Finder",
-
-  parameters: {
-    component: Finder
-  }
+  component: Finder,
+  excludeStories: ["apiFilterCard"]
 };
 
 const toFinderItem = (brand: string, model: string) => ({
@@ -17,7 +15,7 @@ const toFinderItem = (brand: string, model: string) => ({
   value: brand + " " + model
 });
 
-const api = {
+export const apiFilterCard = {
   search: async (query: string = "") => {
     await delay(300);
     return cars
@@ -34,6 +32,11 @@ const api = {
 
 export const all = () => (
   <div style={{ width: 260 }}>
-    <Finder title="Марка" onInitData={api.initData} onSearch={api.search} onChange={action("onChange")} />
+    <Finder
+      title="Марка"
+      onInitData={apiFilterCard.initData}
+      onSearch={apiFilterCard.search}
+      onChange={action("onChange")}
+    />
   </div>
 );

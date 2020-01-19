@@ -8,15 +8,14 @@ import TextInput from "../forms/TextInput/TextInput";
 import Header, { HeaderCart } from "../Header/Header";
 import ToolbarSortBy from "../Toolbar/ToolbarSortedBy";
 import Toolbar from "../Toolbar/Toolbar";
-import { action } from "@storybook/addon-actions";
 import Accordion from "../Accordion/Accordion";
 import SearchInput from "../forms/SearchInput/SearchInput";
 import Finder from "../FilterCard/Finder/Finder";
 import FilterCard from "../FilterCard/FilterCard";
-import { apiFilterCard } from "../FilterCard/FilterCard.stories";
 import OfferRequestTable from "../../containers/tables/OfferRequestsTable/OfferRequestsTable";
-import { withKnobs } from "@storybook/addon-knobs";
+import { boolean, withKnobs } from "@storybook/addon-knobs";
 import data from "../../containers/tables/OfferRequestsTable/offer-requests-data.json";
+import { apiFilterCard } from "../FilterCard/Finder/Finder.stories";
 
 export default {
   title: "Design System/Layout",
@@ -120,7 +119,7 @@ export const All: FC = () => {
         />
       </Toolbar>
 
-      <OfferRequestTable data={data} />
+      <OfferRequestTable data={data} loading={boolean("Loading", false)} />
     </Layout>
   );
 };
