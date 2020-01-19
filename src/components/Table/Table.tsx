@@ -2,6 +2,7 @@ import React, { Component, ReactNode } from "react";
 import styled from "styled-components";
 import { colors } from "../shared/styles";
 import LoaderBlock from "../Loader/LoaderBlock";
+import LoadingNext from "../Loader/LoadingNext";
 
 export type TableColumn<T> = {
   header: ReactNode;
@@ -36,26 +37,7 @@ const TableBody = styled.div`
   flex-direction: column;
   flex: 1;
 
-  position: relative;
-
   overflow-y: scroll;
-
-  &.loading {
-    overflow-y: hidden;
-
-    ::after {
-      content: "";
-      display: block;
-      position: absolute;
-
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-
-      background: rgba(255, 255, 255, 0.5);
-    }
-  }
 `;
 
 const StyledRow = styled.div`
@@ -110,9 +92,10 @@ export default class Table<T> extends Component<{
   data: T[];
 
   loading?: boolean;
+  hasNext?: boolean;
 }> {
   render() {
-    const { columns: groups, data, loading } = this.props;
+    const { columns: groups, data, loading, hasNext } = this.props;
 
     return (
       <StyledTable>
@@ -123,6 +106,8 @@ export default class Table<T> extends Component<{
             {data.map((item, key) => (
               <Row groups={groups} item={item} key={key} />
             ))}
+
+            <LoadingNext hasNext={hasNext} />
           </TableBody>
         </LoaderBlock>
       </StyledTable>

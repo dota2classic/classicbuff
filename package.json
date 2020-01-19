@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "apisauce": "^1.1.1",
+    "classnames": "^2.2.6",
     "mobx": "^5.11.0",
     "mobx-react": "^6.1.5",
     "mobx-react-devtools": "^6.1.1",
@@ -50,6 +51,7 @@
     "@storybook/addons": "^5.3.6",
     "@storybook/preset-create-react-app": "^1.5.2",
     "@storybook/react": "^5.3.6",
+    "@types/classnames": "^2.2.9",
     "@types/jest": "24.0.23",
     "@types/node": "^12.12.21",
     "@types/react": "^16.9.16",

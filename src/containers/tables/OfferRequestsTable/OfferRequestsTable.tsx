@@ -22,6 +22,7 @@ export type OfferRequestsDTO = {
 interface IOfferRequestTable {
   data: OfferRequestsDTO[];
   loading?: boolean;
+  hasNext?: boolean;
 }
 
 const OfferRequestTable = (props: IOfferRequestTable) => (
@@ -35,6 +36,7 @@ const OfferRequestTable = (props: IOfferRequestTable) => (
     ]}
     data={props.data}
     loading={props.loading}
+    hasNext={props.hasNext}
   />
 );
 

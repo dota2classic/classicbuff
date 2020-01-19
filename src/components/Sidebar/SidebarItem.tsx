@@ -15,9 +15,6 @@ const Container = styled.a`
   cursor: pointer;
   text-decoration: none;
 
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
   font-size: 14px;
   line-height: 16px;
 

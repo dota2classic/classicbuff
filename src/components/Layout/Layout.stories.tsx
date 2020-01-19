@@ -27,6 +27,8 @@ export default {
 };
 
 export const All: FC = () => {
+  const [search, onChangeSearch] = React.useState<string>("");
+
   const [filtersShown, onChangeFiltersShown] = React.useState<boolean>(false);
   const [toolbarSortBy, onChangeToolbarSortBy] = React.useState<{ field: string; direction?: "asc" | "desc" }>({
     field: "number",
@@ -95,7 +97,7 @@ export const All: FC = () => {
       <Header>
         <Button type="primary" iconLeft={<AddIcon />} text="Создать запрос" />
         <Divider vertical />
-        <TextInput placeholder="Номер запроса, клиент или ИНН, продукт" />
+        <TextInput placeholder="Номер запроса, клиент или ИНН, продукт" value={search} onChange={onChangeSearch} />
         <Divider vertical />
         <HeaderCart />
       </Header>
@@ -119,7 +121,7 @@ export const All: FC = () => {
         />
       </Toolbar>
 
-      <OfferRequestTable data={data} loading={boolean("Loading", false)} />
+      <OfferRequestTable data={data} loading={boolean("Loading", false)} hasNext={boolean("Has Next", true)} />
     </Layout>
   );
 };
