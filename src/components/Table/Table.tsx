@@ -15,12 +15,15 @@ export type TableGroup<T> = Array<TableColumn<T>>;
 const StyledTable = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 1;
+  overflow: hidden;
 `;
 
 const TableHeader = styled.div`
   display: flex;
   flex-direction: row;
   padding: 10px 0;
+  flex-shrink: 0;
 
   border-bottom: 1px solid ${colors.common.menu};
 
@@ -30,6 +33,9 @@ const TableHeader = styled.div`
 const TableBody = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 1;
+
+  overflow-y: scroll;
 `;
 
 const StyledRow = styled.div`
@@ -39,6 +45,7 @@ const StyledRow = styled.div`
   padding-top: 5px;
   cursor: pointer;
   position: relative;
+  flex-shrink: 0;
 
   transition: background-color 0.15s ease;
 

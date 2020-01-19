@@ -13,7 +13,9 @@ interface IFinder {
 
   onInitData: () => Promise<IFinderItem[]>;
   onSearch: (query: string) => Promise<IFinderItem[]>;
-  onChange: (keys: string[]) => void;
+
+  values: { [key: string]: string };
+  onChange: (values: { [key: string]: string }) => void;
 }
 
 interface IFinderState {
@@ -23,7 +25,6 @@ interface IFinderState {
 
   query: string;
   expand: boolean;
-  checked: { [key: string]: string };
 }
 
 class Finder extends React.Component<IFinder, IFinderState> {
@@ -33,9 +34,7 @@ class Finder extends React.Component<IFinder, IFinderState> {
 
     data: [],
     initData: [],
-    searchResult: [],
-
-    checked: {}
+    searchResult: []
   };
 
   private timeout?: number;
@@ -57,7 +56,7 @@ class Finder extends React.Component<IFinder, IFinderState> {
   }
 
   render() {
-    const checkedLength = Object.keys(this.state.checked).length;
+    const checkedLength = Object.keys(this.props.values).length;
 
     return (
       <Accordion
@@ -70,7 +69,7 @@ class Finder extends React.Component<IFinder, IFinderState> {
           searchResult={this.state.searchResult}
           query={this.state.query}
           onChangeQuery={this.onChangeQuery}
-          checked={this.state.checked}
+          checked={this.props.values}
           onChangeChecked={this.onChangeChecked}
           expand={this.state.expand}
           onToggleExpand={this.onToggleExpand}
@@ -98,24 +97,22 @@ class Finder extends React.Component<IFinder, IFinderState> {
   onToggleExpand = () => this.onChangeExpand(!this.state.expand);
 
   onChangeChecked = (item: IFinderItem, checked: boolean) => {
-    const newState = {
-      ...this.state,
-      checked: { ...this.state.checked }
-    };
+    const values = { ...this.props.values };
 
     if (checked) {
-      newState.checked[item.key] = item.value;
+      values[item.key] = item.value;
 
-      const alreadyInData = !!this.state.data.find(it => it.key === item.key);
-      if (!alreadyInData) {
-        newState.data = this.state.data.concat(item);
+      const notFoundInData = !this.state.data.find(it => it.key === item.key);
+      if (notFoundInData) {
+        this.setState({
+          data: this.state.data.concat(item)
+        });
       }
     } else {
-      delete newState.checked[item.key];
+      delete values[item.key];
     }
 
-    this.setState(newState);
-    this.props.onChange(Object.keys(newState.checked));
+    this.props.onChange(values);
   };
 
   onChangeCollapsed = async (collapsed: boolean) => {
@@ -125,13 +122,21 @@ class Finder extends React.Component<IFinder, IFinderState> {
   };
 
   private sortData = () => {
-    const { checked, data, initData } = this.state;
+    const { values } = this.props;
+    const { data, initData } = this.state;
 
-    const selectedOnly = data.filter(it => checked[it.key]);
-    const resultLength = Math.max(selectedOnly.length, initData.length);
-    const initDataRest = initData.filter(it => !checked[it.key]).slice(0, resultLength);
+    const checked = data.filter(it => values[it.key]);
+    const newChecked = Object.keys(values)
+      .filter(key => !checked.find(it => it.key === key))
+      .map(it => ({
+        key: it,
+        value: values[it]
+      }));
 
-    this.setState({ data: selectedOnly.concat(initDataRest) });
+    const resultLength = Math.max(checked.length + newChecked.length, initData.length);
+    const initDataRest = initData.filter(it => !values[it.key]).slice(0, resultLength);
+
+    this.setState({ data: checked.concat(newChecked, initDataRest) });
   };
 }
 

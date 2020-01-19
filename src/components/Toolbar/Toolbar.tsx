@@ -8,6 +8,8 @@ const StyledToolbar = styled.div`
   background: ${colors.common.background};
   color: ${colors.text.header};
 
+  flex-shrink: 0;
+
   border-bottom: 1px solid ${colors.frame.stroke};
 `;
 

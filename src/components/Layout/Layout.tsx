@@ -10,13 +10,20 @@ interface ILayout {
 
 const StyledLayout = styled.div`
   display: flex;
+  position: relative;
   align-items: stretch;
 
   width: 100%;
   height: 100%;
+
+  max-height: 100vh;
+
+  overflow: hidden;
 `;
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
   flex: 1;
 `;
 

@@ -15,6 +15,7 @@ type IconName =
   | "expand-less"
   | "expand-more"
   | "filter"
+  | "filter-active"
   | "less"
   | "logo"
   | "message"
