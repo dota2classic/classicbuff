@@ -25,6 +25,7 @@ interface IFinderState {
 
   query: string;
   expand: boolean;
+  searchLoading: boolean;
 }
 
 class Finder extends React.Component<IFinder, IFinderState> {
@@ -35,6 +36,7 @@ class Finder extends React.Component<IFinder, IFinderState> {
   state: IFinderState = {
     query: "",
     expand: false,
+    searchLoading: false,
 
     data: [],
     initData: [],
@@ -46,7 +48,7 @@ class Finder extends React.Component<IFinder, IFinderState> {
   @throttle(1000)
   async onSearch(query: string = "") {
     const searchResult = await this.props.onSearch(query);
-    this.setState({ searchResult });
+    this.setState({ searchResult, searchLoading: false });
   }
 
   async componentDidMount() {
@@ -71,6 +73,7 @@ class Finder extends React.Component<IFinder, IFinderState> {
         <FinderView
           data={this.state.data.slice(0, this.state.initData.length)}
           searchResult={this.state.searchResult}
+          searchLoading={this.state.searchLoading}
           query={this.state.query}
           onChangeQuery={this.onChangeQuery}
           checked={this.props.values}
@@ -88,12 +91,12 @@ class Finder extends React.Component<IFinder, IFinderState> {
       return;
     }
 
-    this.setState({ query, expand: true });
+    this.setState({ query, expand: true, searchLoading: true });
     await this.onSearch(query);
   };
 
   onChangeExpand = async (expand: boolean) => {
-    this.setState({ expand, query: "" });
+    this.setState({ expand, query: "", searchLoading: true });
     await this.onSearch("");
     if (!expand) this.timeout = setTimeout(this.sortData, 500);
   };

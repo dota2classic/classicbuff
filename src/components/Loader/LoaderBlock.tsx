@@ -9,7 +9,7 @@ interface ILoaderBlock {
 }
 
 export const StyledLoaderBlock = styled.div`
-  display: inline-flex;
+  display: flex;
   position: relative;
   overflow: hidden;
 `;
@@ -22,7 +22,7 @@ const Overlay = styled.div`
   left: 0;
   right: 0;
 
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.6);
 
   display: flex;
   flex-direction: column;

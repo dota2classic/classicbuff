@@ -4,10 +4,12 @@ import SearchInput from "../../forms/SearchInput/SearchInput";
 import Checkbox from "../../forms/Checkbox/Checkbox";
 import Button from "../../Button/Button";
 import { IFinderItem } from "./Finder";
+import LoaderBlock from "../../Loader/LoaderBlock";
 
 interface IFinderView {
   data: IFinderItem[];
   searchResult: IFinderItem[];
+  searchLoading?: boolean;
 
   query: string;
   onChangeQuery: (query: string) => void;
@@ -20,6 +22,10 @@ interface IFinderView {
 }
 
 const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
   margin: 8px 0;
 
   & > * {
@@ -27,28 +33,39 @@ const Content = styled.div`
   }
 
   &.expand {
-    max-height: 320px;
+    height: 320px;
     overflow-y: scroll;
   }
 `;
 
-const FinderView = (props: IFinderView) => (
-  <>
-    <SearchInput placeholder="Наименование..." value={props.query} onChange={props.onChangeQuery} />
+const NoDataBlock = styled.div``;
 
-    <Content className={props.expand ? "expand" : ""}>
-      {(props.expand ? props.searchResult : props.data).map(it => (
-        <Checkbox
-          key={it.key}
-          label={it.value}
-          checked={!!props.checked[it.key]}
-          onChange={e => props.onChangeChecked(it, e.target.checked)}
-        />
-      ))}
-    </Content>
+const FinderView = (props: IFinderView) => {
+  const showLoader = props.expand && props.searchLoading && props.searchResult.length === 0;
+  const isEmpty = props.expand && !props.searchLoading && props.searchResult.length === 0;
 
-    <Button type="tertiary" text={props.expand ? "Скрыть" : "Показать все"} onClick={props.onToggleExpand} />
-  </>
-);
+  return (
+    <>
+      <SearchInput placeholder="Наименование..." value={props.query} onChange={props.onChangeQuery} />
+
+      <LoaderBlock loading={showLoader}>
+        <Content className={props.expand ? "expand" : ""}>
+          {isEmpty && <NoDataBlock>Ничего не найдено</NoDataBlock>}
+
+          {(props.expand ? props.searchResult : props.data).map(it => (
+            <Checkbox
+              key={it.key}
+              label={it.value}
+              checked={!!props.checked[it.key]}
+              onChange={e => props.onChangeChecked(it, e.target.checked)}
+            />
+          ))}
+        </Content>
+      </LoaderBlock>
+
+      <Button type="tertiary" text={props.expand ? "Скрыть" : "Показать все"} onClick={props.onToggleExpand} />
+    </>
+  );
+};
 
 export default FinderView;
