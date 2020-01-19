@@ -5,8 +5,9 @@ import { colors } from "../shared/styles";
 
 interface IAccordion {
   title: string;
-  additional?: string;
+  additional?: string | number;
   initialCollapsed?: boolean;
+  onChangeCollapsed?: (value: boolean) => void;
   children?: ReactNode;
 }
 
@@ -65,7 +66,7 @@ class Accordion extends React.Component<IAccordion, { collapsed: boolean }> {
         <Header onClick={this.onToggle}>
           <HeaderText>{title}</HeaderText>
           {additional && <HeaderAdditional>{additional}</HeaderAdditional>}
-          <Icon name={collapsed ? "expand-less" : "expand-more"} />
+          <Icon name={collapsed ? "expand-more" : "expand-less"} />
         </Header>
         <Content className={collapsed ? "collapsed" : ""}>{children}</Content>
       </StyledAccordion>
@@ -73,9 +74,9 @@ class Accordion extends React.Component<IAccordion, { collapsed: boolean }> {
   }
 
   onToggle = () => {
-    this.setState(state => ({
-      collapsed: !state.collapsed
-    }));
+    const collapsed = !this.state.collapsed;
+    this.setState({ collapsed });
+    this.props.onChangeCollapsed && this.props.onChangeCollapsed(collapsed);
   };
 }
 
