@@ -64,6 +64,8 @@ const LogoutContainer = styled(Container)`
   font-size: 12px;
   line-height: 14px;
 
+  padding-left: 10px;
+
   color: ${colors.text.secondary};
 `;
 

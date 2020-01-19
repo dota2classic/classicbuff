@@ -28,6 +28,13 @@ const FiltersWrapper = styled.div`
   top: 43px;
   right: 0;
   bottom: 0;
+
+  transform: translate(300px, 0);
+  transition: transform 0.3s ease;
+
+  &.show {
+    transform: translate(0, 0);
+  }
 `;
 
 const Layout = (props: ILayout) => (
