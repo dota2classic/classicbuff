@@ -2,8 +2,7 @@ import React from "react";
 import Accordion from "components/Accordion/Accordion";
 import Finder, { IFinderItem } from "components/Finder/Finder";
 import { clearThrottle, throttle } from "utils/throttle";
-import { IRepository } from "service/Repository";
-import { Entity, Field } from "service/models";
+import { Entity } from "service/models";
 
 interface IFinderContainer<T extends Entity> {
   title: string;
@@ -109,9 +108,7 @@ class FinderContainer<T extends Entity> extends React.Component<IFinderContainer
 
       const notFoundInData = !this.state.data.find(it => it.key === item.key);
       if (notFoundInData) {
-        this.setState({
-          data: this.state.data.concat(item)
-        });
+        this.setState({ data: this.state.data.concat(item) });
       }
     } else {
       delete values[item.key];
@@ -133,10 +130,7 @@ class FinderContainer<T extends Entity> extends React.Component<IFinderContainer
     const checked = data.filter(it => values[it.key]);
     const newChecked = Object.keys(values)
       .filter(key => !checked.find(it => it.key === key))
-      .map(it => ({
-        key: it,
-        value: values[it]
-      }));
+      .map(it => ({ key: it, value: values[it] }));
 
     const resultLength = Math.max(checked.length + newChecked.length, initData.length);
     const initDataRest = initData.filter(it => !values[it.key]).slice(0, resultLength);

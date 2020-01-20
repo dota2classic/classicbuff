@@ -28,6 +28,12 @@ const Filters = styled.div`
   top: 43px;
   right: 0;
   bottom: 0;
+
+  pointer-events: none;
+
+  & > * {
+    pointer-events: all;
+  }
 `;
 
 export interface ILayout {

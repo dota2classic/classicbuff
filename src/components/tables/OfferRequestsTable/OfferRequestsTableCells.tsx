@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "components/shared/styles";
-import { OfferRequestDTO } from "service/models";
+import { OfferRequestDTO } from "entities/OfferRequest";
 
 const TwoItemsCell = styled.div`
   div {

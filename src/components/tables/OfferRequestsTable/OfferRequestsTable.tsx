@@ -1,7 +1,7 @@
 import React from "react";
 import Table from "components/Table/Table";
+import { OfferRequestDTO } from "entities/OfferRequest";
 import Cells from "./OfferRequestsTableCells";
-import { OfferRequestDTO } from "service/models";
 
 interface IOfferRequestTable {
   data: OfferRequestDTO[];

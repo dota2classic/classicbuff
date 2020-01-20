@@ -14,6 +14,13 @@ const Wrapper = styled.div`
   border-radius: 8px 0 0 8px;
 
   max-height: 100%;
+
+  transform: translate3d(100%, 0, 0);
+  transition: transform 0.3s ease;
+
+  &.show {
+    transform: translate3d(100%, 0, 0);
+  }
 `;
 
 const Content = styled.div`
