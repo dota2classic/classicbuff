@@ -9,10 +9,6 @@ export interface IDateInput {
 
 export const StyledDateInput = styled.input`
   display: flex;
-
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
   font-size: 14px;
   line-height: 16px;
 

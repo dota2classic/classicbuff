@@ -7,8 +7,6 @@ export const ButtonIconWrapper = styled.span`
 `;
 
 export const Text = styled.span`
-  font-family: Roboto, serif;
-  font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;

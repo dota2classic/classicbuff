@@ -17,10 +17,6 @@ export const StyledInput = styled.input`
   display: flex;
 
   flex: 1;
-
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
   font-size: 14px;
   line-height: 16px;
 

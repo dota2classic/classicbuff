@@ -43,8 +43,6 @@ export const colors = {
 
 export const text = {
   button: css`
-    font-family: Roboto;
-    font-style: normal;
     font-weight: 500;
     font-size: 14px;
     line-height: 16px;
@@ -54,9 +52,6 @@ export const text = {
   `,
   input: {
     text: css`
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: normal;
       font-size: 14px;
       line-height: 16px;
       /* identical to box height, or 114% */
@@ -64,9 +59,6 @@ export const text = {
       color: #c4c4c4;
     `,
     caption: css`
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: normal;
       font-size: 14px;
       line-height: 16px;
 
@@ -74,9 +66,6 @@ export const text = {
     `,
 
     digit: css`
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: normal;
       font-size: 14px;
       line-height: 14px;
       /* or 100% */
@@ -88,9 +77,6 @@ export const text = {
     `,
 
     tableBlock: css`
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: normal;
       font-size: 14px;
       line-height: 14px;
       /* identical to box height, or 100% */

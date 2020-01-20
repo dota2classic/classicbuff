@@ -14,9 +14,6 @@ const StyledToolbar = styled.div`
 `;
 
 const ToolbarTitle = styled.div`
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
   font-size: 18px;
   line-height: 21px;
   display: flex;
@@ -24,7 +21,7 @@ const ToolbarTitle = styled.div`
 
   flex: 1;
 `;
-
+``;
 interface IToolbar {
   title: ReactNode;
   children?: ReactNode;
