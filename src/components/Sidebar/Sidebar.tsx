@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import styled from "styled-components";
 import { colors } from "../shared/styles";
 import { SidebarLogout } from "./SidebarItem";
-import { LogoIcon } from "../../assets";
+import { Icon } from "../Icon";
 
 const StyledSidebar = styled.div`
   display: flex;
@@ -37,7 +37,7 @@ interface ISidebar {
 const Sidebar = (props: ISidebar) => (
   <StyledSidebar>
     <SidebarLogo>
-      <LogoIcon />
+      <Icon name="logo" />
     </SidebarLogo>
     <SidebarContainer>{props.children}</SidebarContainer>
     <SidebarLogout email={props.email} onClick={props.onLogout} />

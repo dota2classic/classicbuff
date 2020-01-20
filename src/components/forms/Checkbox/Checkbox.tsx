@@ -2,7 +2,7 @@ import React, { ChangeEventHandler } from "react";
 import styled from "styled-components";
 import { colors } from "../../shared/styles";
 import { rgba } from "polished";
-import { iconUrlData } from "../../../assets";
+import { iconUrlData } from "../../Icon";
 
 interface ICheckbox {
   label?: string;

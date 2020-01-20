@@ -1,12 +1,12 @@
 import React from "react";
-import { delay } from "utils/delay";
-import Finder from "./Finder";
-import cars from "./cars.json";
 import { action } from "@storybook/addon-actions";
+import { delay } from "utils/helpers";
+import FinderContainer from "./FinderContainer";
+import apiMock from "./api-mock-finder.json";
 
 export default {
-  title: "Design System/Filter Card/Finder",
-  component: Finder,
+  title: "Container/Filter Card/FinderAdapter",
+  component: FinderContainer,
   excludeStories: ["apiFilterCard"]
 };
 
@@ -18,7 +18,7 @@ const toFinderItem = (brand: string, model: string) => ({
 export const apiFilterCard = {
   search: async (query: string = "") => {
     await delay(300);
-    return cars
+    return apiMock
       .map(it => it.models.map(model => toFinderItem(it.brand, model)))
       .flat()
       .filter(it => it.value.toLowerCase().indexOf(query.toLowerCase()) !== -1)
@@ -26,13 +26,13 @@ export const apiFilterCard = {
   },
   initData: async () => {
     await delay(300);
-    return cars.map(it => toFinderItem(it.brand, it.models[0])).slice(0, 10);
+    return apiMock.map(it => toFinderItem(it.brand, it.models[0])).slice(0, 10);
   }
 };
 
 export const all = () => (
   <div style={{ width: 260 }}>
-    <Finder
+    <FinderContainer
       title="Марка"
       onInitData={apiFilterCard.initData}
       onSearch={apiFilterCard.search}

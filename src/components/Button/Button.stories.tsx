@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "./Button";
-import { FilterIcon } from "../../assets";
+import { Icon } from "../Icon";
 
 export default {
   title: "Design System/Button",
@@ -13,13 +13,13 @@ export default {
 export const all = () => (
   // todo: remove div style
   <div style={{ display: "flex" }}>
-    <Button type="primary" iconLeft={<FilterIcon />} text="Кнопка" />
+    <Button type="primary" iconLeft={<Icon name="filter" />} text="Кнопка" />
     <Button type="primary" text="Кнопка" />
-    <Button type="secondary" text="Кнопка" iconLeft={<FilterIcon />} />
-    <Button type="tertiary" text="Кнопка" iconLeft={<FilterIcon />} />
+    <Button type="secondary" text="Кнопка" iconLeft={<Icon name="filter" />} />
+    <Button type="tertiary" text="Кнопка" iconLeft={<Icon name="filter" />} />
   </div>
 );
 
-export const primary = () => <Button type="primary" text="Кнопка" iconLeft={<FilterIcon />} />;
-export const secondary = () => <Button type="secondary" text="Кнопка" iconRight={<FilterIcon />} />;
-export const tertiary = () => <Button type="tertiary" text="Кнопка" iconLeft={<FilterIcon />} />;
+export const primary = () => <Button type="primary" text="Кнопка" iconLeft={<Icon name="filter" />} />;
+export const secondary = () => <Button type="secondary" text="Кнопка" iconRight={<Icon name="filter" />} />;
+export const tertiary = () => <Button type="tertiary" text="Кнопка" iconLeft={<Icon name="filter" />} />;

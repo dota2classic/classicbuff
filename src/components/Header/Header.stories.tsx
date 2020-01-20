@@ -1,7 +1,7 @@
 import React from "react";
 import Header, { HeaderCart } from "./Header";
 import Button from "../Button/Button";
-import { AddIcon, PauseIcon } from "../../assets";
+import { Icon } from "../Icon";
 import TextInput from "../forms/TextInput/TextInput";
 import Divider from "../Divider/Divider";
 
@@ -16,7 +16,7 @@ export default {
 export const all = () => (
   <>
     <Header>
-      <Button type="primary" iconLeft={<AddIcon />} text="Создать запрос" />
+      <Button type="primary" iconLeft={<Icon name="add" />} text="Создать запрос" />
       <Divider vertical />
       <TextInput placeholder="Номер запроса, клиент или ИНН, продукт" />
       <Divider vertical />
@@ -27,7 +27,7 @@ export const all = () => (
 
 export const Requests = () => (
   <Header>
-    <Button type="primary" iconLeft={<AddIcon />} text="Создать запрос" />
+    <Button type="primary" iconLeft={<Icon name="add" />} text="Создать запрос" />
     <Divider vertical />
     <TextInput placeholder="Номер запроса, клиент или ИНН, продукт" />
     <Divider vertical />
@@ -37,7 +37,7 @@ export const Requests = () => (
 
 export const RequestsPaused = () => (
   <Header>
-    <Button type="primary" iconLeft={<PauseIcon />} text="Продолжить запрос" />
+    <Button type="primary" iconLeft={<Icon name="pause" />} text="Продолжить запрос" />
     <Divider vertical />
     <TextInput placeholder="Номер запроса, клиент или ИНН, продукт" />
     <Divider vertical />

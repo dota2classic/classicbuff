@@ -3,8 +3,8 @@ import { action } from "@storybook/addon-actions";
 import FilterCard from "./FilterCard";
 import Accordion from "../Accordion/Accordion";
 import SearchInput from "../forms/SearchInput/SearchInput";
-import Finder from "./Finder/Finder";
-import { apiFilterCard } from "./Finder/Finder.stories";
+import FinderContainer from "../../containers/common/filters/Finder/FinderContainer";
+import { apiFilterCard } from "../../containers/common/filters/Finder/Finder.stories";
 
 export default {
   title: "Design System/Filter Card",
@@ -34,14 +34,14 @@ export const All = () => {
           <SearchInput placeholder="Наименование" />
         </Accordion>
 
-        <Finder
+        <FinderContainer
           title="Марка"
           onInitData={apiFilterCard.initData}
           onSearch={apiFilterCard.search}
           onChange={onChangeBrand}
           values={brand}
         />
-        <Finder
+        <FinderContainer
           title="Модель"
           onInitData={apiFilterCard.initData}
           onSearch={apiFilterCard.search}

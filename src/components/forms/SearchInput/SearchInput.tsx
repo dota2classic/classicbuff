@@ -1,6 +1,6 @@
 import React from "react";
 import TextInput from "../TextInput/TextInput";
-import { Icon } from "../../../assets";
+import { Icon } from "../../Icon";
 import styled from "styled-components";
 
 export interface ISearchInput {

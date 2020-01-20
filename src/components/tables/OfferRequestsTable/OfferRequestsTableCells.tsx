@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "components/shared/styles";
-import { OfferRequestDTO } from "stores/offerRequest/OfferRequestDTO";
+import { OfferRequestDTO } from "service/models";
 
 const TwoItemsCell = styled.div`
   div {
@@ -27,8 +27,8 @@ const OfferRequestTableCells = {
 
   ClientAndINN: (props: DTO) => (
     <TwoItemsCell>
-      <div>{props.code}</div>
-      <div>{props.date}</div>
+      <div>{props.lessee_description}</div>
+      <div>{props.lessee_legal_id}</div>
     </TwoItemsCell>
   ),
 
@@ -48,7 +48,7 @@ const OfferRequestTableCells = {
 
   Comment: (props: DTO) => (
     <>
-      <div>Comment</div>
+      <div>{props.comment}</div>
     </>
   )
 };

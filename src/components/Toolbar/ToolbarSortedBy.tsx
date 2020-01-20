@@ -1,77 +1,72 @@
 import React from "react";
-import Button from "../Button/Button";
-import { SortDownIcon, SortUpIcon } from "../../assets";
 import styled from "styled-components";
+import { Entity, Field } from "service/models";
+import Button from "../Button/Button";
+import { Icon } from "../Icon";
+import { OrderDescriptor } from "../../service/OrderStore";
+import { Order } from "../../service/Repository";
 
-interface IToolbarSortBy {
-  fields: {
-    key: string;
-    label: string;
-    directional: "uni" | "bi";
-  }[];
-  value?: { field: string; direction?: "asc" | "desc" };
-  onChange?: (value: { field: string; direction?: "asc" | "desc" }) => void;
+interface IToolbarSortBy<T extends Entity> {
+  data: OrderDescriptor<T>[];
+  value?: Order<T>;
+  onChange?: (value: Order<T>) => void;
 }
 
 const icons = {
-  asc: <SortDownIcon />,
-  desc: <SortUpIcon />
+  asc: <Icon name="sort-down" />,
+  desc: <Icon name="sort-up" />
 };
 
 const StyledToolbarSortBy = styled.div`
   display: inline-flex;
   align-items: center;
 
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 16px;
-
   * + * {
     margin-left: 10px;
   }
 `;
 
-class ToolbarSortBy extends React.Component<IToolbarSortBy> {
+class ToolbarSortBy<T extends Entity> extends React.Component<IToolbarSortBy<T>> {
   render() {
-    const value = this.props.value || { field: this.props.fields[0].key, direction: "asc" };
+    const value = this.props.value || { field: this.props.data[0].field, direction: "asc" };
 
     return (
       <StyledToolbarSortBy>
         <div>Упорядочить:</div>
-        {this.props.fields.map(({ key, label, directional }) => (
-          <Button
-            key={key}
-            text={label}
-            type={key === value.field ? "secondary" : "tertiary"}
-            iconRight={key === value.field && directional === "bi" ? icons[value.direction!!] : undefined}
-            onClick={() => this.onClick(key)}
-          />
-        ))}
+        {this.props.data
+          .map(it => ({ ...it, active: it.field === value.field }))
+          .map(it => (
+            <Button
+              key={it.field as string}
+              text={it.label}
+              type={it.active ? "secondary" : "tertiary"}
+              iconRight={it.active && it.directional === "bi" && icons[value.direction!!]}
+              onClick={() => this.onClick(it.field)}
+            />
+          ))}
       </StyledToolbarSortBy>
     );
   }
 
-  onClick = (key: string) => {
-    const { fields, value, onChange } = this.props;
+  onClick = (field: Field<T>) => {
+    const { data, value, onChange } = this.props;
 
-    const field = fields.find(it => it.key === key);
+    const item = data.find(it => it.field === field);
 
-    if (!value || !onChange || !field) return;
+    if (!value || !onChange || !item) return;
 
-    const isActive = value.field === key;
-    const isBiDirection = field.directional === "bi";
+    const isActive = value.field === field;
+    const isBiDirection = item.directional === "bi";
 
     if (isActive) {
       if (isBiDirection) {
-        onChange({ field: key, direction: value.direction === "asc" ? "desc" : "asc" });
+        onChange({ field, direction: value.direction === "asc" ? "desc" : "asc" });
       }
     } else {
       if (isBiDirection) {
-        onChange({ field: key, direction: "asc" });
+        onChange({ field, direction: "asc" });
       } else {
-        onChange({ field: key });
+        onChange({ field });
       }
     }
   };

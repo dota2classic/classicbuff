@@ -1,12 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import SearchInput from "../../forms/SearchInput/SearchInput";
-import Checkbox from "../../forms/Checkbox/Checkbox";
-import Button from "../../Button/Button";
-import { IFinderItem } from "./Finder";
-import LoaderBlock from "../../Loader/LoaderBlock";
+import SearchInput from "../forms/SearchInput/SearchInput";
+import Checkbox from "../forms/Checkbox/Checkbox";
+import Button from "../Button/Button";
+import LoaderBlock from "../Loader/LoaderBlock";
 
-interface IFinderView {
+export interface IFinderItem {
+  key: string;
+  value: string;
+}
+
+export interface IFinder {
   data: IFinderItem[];
   searchResult: IFinderItem[];
   searchLoading?: boolean;
@@ -40,7 +44,7 @@ const Content = styled.div`
 
 const NoDataBlock = styled.div``;
 
-const FinderView = (props: IFinderView) => {
+const Finder = (props: IFinder) => {
   const showLoader = props.expand && props.searchLoading && props.searchResult.length === 0;
   const isEmpty = props.expand && !props.searchLoading && props.searchResult.length === 0;
 
@@ -68,4 +72,4 @@ const FinderView = (props: IFinderView) => {
   );
 };
 
-export default FinderView;
+export default Finder;

@@ -12,6 +12,8 @@ export const StyledLoaderBlock = styled.div`
   display: flex;
   position: relative;
   overflow: hidden;
+
+  flex: 1;
 `;
 
 const Overlay = styled.div`

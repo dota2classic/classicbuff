@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components";
-import { Icon } from "../../assets";
+import { Icon } from "../Icon";
 import { colors } from "../shared/styles";
 
 interface IAccordion {

@@ -1,13 +1,6 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components";
 
-interface ILayout {
-  sidebar: ReactNode;
-  filters: ReactNode;
-  showFilters?: boolean;
-  children?: ReactNode;
-}
-
 const StyledLayout = styled.div`
   display: flex;
   position: relative;
@@ -27,7 +20,7 @@ const Container = styled.div`
   flex: 1;
 `;
 
-const FiltersWrapper = styled.div`
+const Filters = styled.div`
   display: flex;
   flex-direction: row;
 
@@ -35,20 +28,19 @@ const FiltersWrapper = styled.div`
   top: 43px;
   right: 0;
   bottom: 0;
-
-  transform: translate(300px, 0);
-  transition: transform 0.3s ease;
-
-  &.show {
-    transform: translate(0, 0);
-  }
 `;
+
+export interface ILayout {
+  sidebar: ReactNode;
+  filters: ReactNode;
+  children?: ReactNode;
+}
 
 const Layout = (props: ILayout) => (
   <StyledLayout>
     {props.sidebar}
     <Container>{props.children}</Container>
-    <FiltersWrapper className={props.showFilters ? "show" : ""}>{props.filters}</FiltersWrapper>
+    <Filters>{props.filters}</Filters>
   </StyledLayout>
 );
 

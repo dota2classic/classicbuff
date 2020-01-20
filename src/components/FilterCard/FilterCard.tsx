@@ -23,13 +23,14 @@ const Content = styled.div`
 `;
 
 interface IFilterCard {
+  show?: boolean;
   onClear: () => void;
   onClose: () => void;
   children?: ReactNode;
 }
 
 const FilterCard = (props: IFilterCard) => (
-  <Wrapper>
+  <Wrapper className={props.show ? "show" : ""}>
     <FilterCardHeader onClear={props.onClear} onClose={props.onClose} />
     <Content>{props.children}</Content>
   </Wrapper>

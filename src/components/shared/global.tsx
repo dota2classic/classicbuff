@@ -5,7 +5,7 @@ import { colors } from "./styles";
 export const GlobalStyle = createGlobalStyle`
   ${normalize}
 
-  html, body, #root {
+  html, body, #root, #__next {
     height: 100%;
   }
   

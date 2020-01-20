@@ -24,10 +24,10 @@ const createApi = (config: Partial<ApisauceConfig> = {}) => {
   return {
     inner: api,
     core: {
-      directoryList: (data: any) => api.post("/core/directory_list", data),
+      directoryList: (...directories: any[]) => api.post("/core/directory_list/", { directories }),
       item: {
-        get: (type: string, id: string) => api.get("/core/item/${type}/${id}"),
-        save: (type: string, data: any) => api.post("/core/item/${type}", data)
+        get: (type: string, id: string) => api.get("/core/item/${type}/${id}/"),
+        save: (type: string, data: any) => api.post("/core/item/${type}/", data)
       }
     },
     auth: {

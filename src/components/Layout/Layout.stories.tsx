@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Sidebar, { SidebarItem } from "../Sidebar/Sidebar";
-import { AddIcon, Icon, MessageIcon } from "../../assets";
+import { Icon } from "../Icon";
 import Layout from "./Layout";
 import Button from "../Button/Button";
 import Divider from "../Divider/Divider";
@@ -10,12 +10,12 @@ import ToolbarSortBy from "../Toolbar/ToolbarSortedBy";
 import Toolbar from "../Toolbar/Toolbar";
 import Accordion from "../Accordion/Accordion";
 import SearchInput from "../forms/SearchInput/SearchInput";
-import Finder from "../FilterCard/Finder/Finder";
+import FinderContainer from "../../containers/common/filters/Finder/FinderContainer";
 import FilterCard from "../FilterCard/FilterCard";
 import OfferRequestTable from "../tables/OfferRequestsTable/OfferRequestsTable";
 import { boolean, withKnobs } from "@storybook/addon-knobs";
 import data from "../tables/OfferRequestsTable/offer-requests-data.json";
-import { apiFilterCard } from "../FilterCard/Finder/Finder.stories";
+import { apiFilterCard } from "../../containers/common/filters/Finder/Finder.stories";
 
 export default {
   title: "Design System/Layout",
@@ -61,9 +61,9 @@ export const All: FC = () => {
     <Layout
       sidebar={
         <Sidebar email="konstantinopolskiy@yandex.ru">
-          <SidebarItem href="#" title="Запросы" active right={<AddIcon />} />
+          <SidebarItem href="#" title="Запросы" active right={<Icon name="add" />} />
           <SidebarItem href="#" title="Предложения" />
-          <SidebarItem href="#" title="Заявки на лизинг" right={<MessageIcon />} />
+          <SidebarItem href="#" title="Заявки на лизинг" right={<Icon name="message" />} />
         </Sidebar>
       }
       filters={
@@ -76,14 +76,14 @@ export const All: FC = () => {
             <SearchInput placeholder="Наименование" />
           </Accordion>
 
-          <Finder
+          <FinderContainer
             title="Марка"
             values={brand}
             onChange={onChangeBrand}
             onInitData={apiFilterCard.initData}
             onSearch={apiFilterCard.search}
           />
-          <Finder
+          <FinderContainer
             title="Модель"
             values={model}
             onChange={onChangeModel}
@@ -92,10 +92,9 @@ export const All: FC = () => {
           />
         </FilterCard>
       }
-      showFilters={filtersShown}
     >
       <Header>
-        <Button type="primary" iconLeft={<AddIcon />} text="Создать запрос" />
+        <Button type="primary" iconLeft={<Icon name="Add" />} text="Создать запрос" />
         <Divider vertical />
         <TextInput placeholder="Номер запроса, клиент или ИНН, продукт" value={search} onChange={onChangeSearch} />
         <Divider vertical />
@@ -105,9 +104,9 @@ export const All: FC = () => {
       <Toolbar title="Запросы">
         <ToolbarSortBy
           fields={[
-            { key: "number", label: "по номеру", directional: "bi" },
-            { key: "date", label: "по дате", directional: "bi" },
-            { key: "cost", label: "по стоимости", directional: "bi" }
+            { field: "number", label: "по номеру", directional: "bi" },
+            { field: "date", label: "по дате", directional: "bi" },
+            { field: "cost", label: "по стоимости", directional: "bi" }
           ]}
           value={toolbarSortBy}
           onChange={onChangeToolbarSortBy}

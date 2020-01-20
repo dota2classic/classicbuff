@@ -1,8 +1,8 @@
+import React from "react";
 import styled from "styled-components";
 import { colors } from "../shared/styles";
 import Button from "../Button/Button";
-import { CloseIcon } from "../../assets";
-import React from "react";
+import { Icon } from "../Icon";
 
 const Header = styled.div`
   display: flex;
@@ -51,7 +51,7 @@ const FilterCardHeader = (props: IFilterCardHeader) => (
       <Button type="tertiary" text="Сбросить все" onClick={props.onClear} />
     </HeaderContent>
     <CloseButton onClick={props.onClose}>
-      <CloseIcon />
+      <Icon name="close" />
     </CloseButton>
   </Header>
 );

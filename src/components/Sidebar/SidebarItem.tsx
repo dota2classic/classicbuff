@@ -1,7 +1,8 @@
-import styled from "styled-components";
-import { colors } from "../shared/styles";
 import React, { MouseEventHandler, ReactNode } from "react";
-import { ExitIcon } from "../../assets";
+import styled from "styled-components";
+import Link from "next/link";
+import { Icon } from "../Icon";
+import { colors } from "../shared/styles";
 
 const StyledSidebarItem = styled.div`
   padding: 4px 0;
@@ -40,7 +41,7 @@ const Title = styled.div`
   flex: 1;
 `;
 
-interface ISidebarItem {
+export interface ISidebarItem {
   title: string;
   href: string;
   onClick?: MouseEventHandler<HTMLAnchorElement>;
@@ -50,10 +51,12 @@ interface ISidebarItem {
 
 export const SidebarItem = (props: ISidebarItem) => (
   <StyledSidebarItem>
-    <Container className={props.active ? "active" : ""} href={props.href} onClick={props.onClick}>
-      <Title>{props.title}</Title>
-      {props.right}
-    </Container>
+    <Link href={props.href}>
+      <Container className={props.active ? "active" : ""}>
+        <Title>{props.title}</Title>
+        {props.right}
+      </Container>
+    </Link>
   </StyledSidebarItem>
 );
 
@@ -74,6 +77,6 @@ export interface ISidebarLogout {
 export const SidebarLogout = (props: ISidebarLogout) => (
   <LogoutContainer onClick={props.onClick}>
     <Title>{props.email}</Title>
-    <ExitIcon />
+    <Icon name="exit" />
   </LogoutContainer>
 );

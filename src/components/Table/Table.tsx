@@ -97,6 +97,8 @@ export default class Table<T> extends Component<{
   render() {
     const { columns: groups, data, loading, hasNext } = this.props;
 
+    console.log("Table", this.props);
+
     return (
       <StyledTable>
         <HeaderRow groups={groups} />

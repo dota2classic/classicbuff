@@ -3,7 +3,7 @@ import Toolbar from "./Toolbar";
 import Button from "../Button/Button";
 import ToolbarSortBy from "./ToolbarSortedBy";
 import Divider from "../Divider/Divider";
-import { FilterIcon } from "../../assets";
+import { Icon } from "../Icon";
 
 export default {
   title: "Design System/Toolbar",
@@ -41,15 +41,15 @@ export const RequestProducts = () => (
     <Toolbar title="Лизинговые продукты">
       <ToolbarSortBy
         fields={[
-          { key: "number", label: "по номеру", directional: "bi" },
-          { key: "date", label: "по дате", directional: "bi" },
-          { key: "status", label: "по статусу", directional: "uni" }
+          { field: "number", label: "по номеру", directional: "bi" },
+          { field: "date", label: "по дате", directional: "bi" },
+          { field: "status", label: "по статусу", directional: "uni" }
         ]}
       />
       <Divider vertical />
       <div>Вид:</div>
       <Divider vertical />
-      <Button type="tertiary" text="Фильтры" iconLeft={<FilterIcon />} />
+      <Button type="tertiary" text="Фильтры" iconLeft={<Icon name="Filter" />} />
     </Toolbar>
   </>
 );
@@ -62,9 +62,9 @@ export const RequestProposals = () => (
       <Divider vertical />
       <ToolbarSortBy
         fields={[
-          { key: "number", label: "по компании", directional: "bi" },
-          { key: "date", label: "по сумме договора", directional: "bi" },
-          { key: "cost", label: "по удорожанию", directional: "uni" }
+          { field: "number", label: "по компании", directional: "bi" },
+          { field: "date", label: "по сумме договора", directional: "bi" },
+          { field: "cost", label: "по удорожанию", directional: "uni" }
         ]}
       />
     </Toolbar>
@@ -76,13 +76,13 @@ export const Requests = () => (
     <Toolbar title="Запросы">
       <ToolbarSortBy
         fields={[
-          { key: "number", label: "по номеру", directional: "bi" },
-          { key: "date", label: "по дате", directional: "bi" },
-          { key: "cost", label: "по стоимости", directional: "bi" }
+          { field: "number", label: "по номеру", directional: "bi" },
+          { field: "date", label: "по дате", directional: "bi" },
+          { field: "cost", label: "по стоимости", directional: "bi" }
         ]}
       />
       <Divider vertical />
-      <Button type="tertiary" text="Фильтры" iconLeft={<FilterIcon />} />
+      <Button type="tertiary" text="Фильтры" iconLeft={<Icon name="Filter" />} />
     </Toolbar>
   </>
 );
@@ -92,13 +92,13 @@ export const Proposals = () => (
     <Toolbar title="Предложения">
       <ToolbarSortBy
         fields={[
-          { key: "number", label: "по номеру", directional: "bi" },
-          { key: "date", label: "по дате", directional: "bi" },
-          { key: "cost", label: "по сумме договора", directional: "bi" }
+          { field: "number", label: "по номеру", directional: "bi" },
+          { field: "date", label: "по дате", directional: "bi" },
+          { field: "cost", label: "по сумме договора", directional: "bi" }
         ]}
       />
       <Divider vertical />
-      <Button type="tertiary" text="Фильтры" iconLeft={<FilterIcon />} />
+      <Button type="tertiary" text="Фильтры" iconLeft={<Icon name="Filter" />} />
     </Toolbar>
   </>
 );
@@ -116,13 +116,13 @@ export const MultibidDocs = () => (
     <Toolbar title="Документы">
       <ToolbarSortBy
         fields={[
-          { key: "number", label: "сначала без файлов", directional: "uni" },
-          { key: "date", label: "сначала с файлами", directional: "uni" },
-          { key: "cost", label: "по алфавиту", directional: "bi" }
+          { field: "number", label: "сначала без файлов", directional: "uni" },
+          { field: "date", label: "сначала с файлами", directional: "uni" },
+          { field: "cost", label: "по алфавиту", directional: "bi" }
         ]}
       />
       <Divider vertical />
-      <Button type="tertiary" text="Фильтры" iconLeft={<FilterIcon />} />
+      <Button type="tertiary" text="Фильтры" iconLeft={<Icon name="Filter" />} />
     </Toolbar>
   </>
 );
@@ -132,14 +132,14 @@ export const Bids = () => (
     <Toolbar title="Заявки на лизинг">
       <ToolbarSortBy
         fields={[
-          { key: "activity", label: "по активности", directional: "bi" },
-          { key: "number", label: "по номеру", directional: "bi" },
-          { key: "date", label: "по дате", directional: "bi" },
-          { key: "status", label: "по статусу", directional: "uni" }
+          { field: "activity", label: "по активности", directional: "bi" },
+          { field: "number", label: "по номеру", directional: "bi" },
+          { field: "date", label: "по дате", directional: "bi" },
+          { field: "status", label: "по статусу", directional: "uni" }
         ]}
       />
       <Divider vertical />
-      <Button type="tertiary" text="Фильтры" iconLeft={<FilterIcon />} />
+      <Button type="tertiary" text="Фильтры" iconLeft={<Icon name="Filter" />} />
     </Toolbar>
   </>
 );

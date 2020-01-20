@@ -1,14 +1,11 @@
 import React from "react";
+import Accordion from "components/Accordion/Accordion";
+import Finder, { IFinderItem } from "components/Finder/Finder";
 import { clearThrottle, throttle } from "utils/throttle";
-import Accordion from "../../Accordion/Accordion";
-import FinderView from "./FinderView";
+import { IRepository } from "service/Repository";
+import { Entity, Field } from "service/models";
 
-export interface IFinderItem {
-  key: string;
-  value: string;
-}
-
-interface IFinder {
+interface IFinderContainer<T extends Entity> {
   title: string;
 
   onInitData: () => Promise<IFinderItem[]>;
@@ -18,7 +15,7 @@ interface IFinder {
   onChange: (values: { [key: string]: string }) => void;
 }
 
-interface IFinderState {
+interface IFinderContainerState {
   data: IFinderItem[];
   initData: IFinderItem[];
   searchResult: IFinderItem[];
@@ -28,12 +25,13 @@ interface IFinderState {
   searchLoading: boolean;
 }
 
-class Finder extends React.Component<IFinder, IFinderState> {
+class FinderContainer<T extends Entity> extends React.Component<IFinderContainer<T>, IFinderContainerState> {
   static defaultProps = {
-    values: {}
+    value: {},
+    displayField: "description"
   };
 
-  state: IFinderState = {
+  state: IFinderContainerState = {
     query: "",
     expand: false,
     searchLoading: false,
@@ -70,7 +68,7 @@ class Finder extends React.Component<IFinder, IFinderState> {
         additional={checkedLength ? checkedLength : ""}
         onChangeCollapsed={this.onChangeCollapsed}
       >
-        <FinderView
+        <Finder
           data={this.state.data.slice(0, this.state.initData.length)}
           searchResult={this.state.searchResult}
           searchLoading={this.state.searchLoading}
@@ -147,4 +145,4 @@ class Finder extends React.Component<IFinder, IFinderState> {
   };
 }
 
-export default Finder;
+export default FinderContainer;

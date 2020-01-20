@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import styled from "styled-components";
 import { StyledTextInput } from "../forms/TextInput/TextInput";
 import Button from "../Button/Button";
-import { CartIcon } from "../../assets";
+import { Icon } from "../Icon";
 import { colors } from "../shared/styles";
 
 const StyledHeader = styled.div`
@@ -22,6 +22,6 @@ interface IHeader {
 
 const Header = ({ children }: IHeader) => <StyledHeader>{children}</StyledHeader>;
 
-export const HeaderCart = () => <Button type="tertiary" iconLeft={<CartIcon />} text="40" />;
+export const HeaderCart = () => <Button type="tertiary" iconLeft={<Icon name="cart" />} text="40" />;
 
 export default Header;
