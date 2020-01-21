@@ -9,7 +9,7 @@ interface IOfferRequestTable {
   loading?: boolean;
   hasNext?: boolean;
 
-  loadMore: (page: number) => void;
+  loadMore: () => void;
 }
 
 const OfferRequestTable = (props: IOfferRequestTable) => (

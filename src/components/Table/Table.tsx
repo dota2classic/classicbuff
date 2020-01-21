@@ -39,6 +39,11 @@ const TableBody = styled.div`
   flex: 1;
 
   overflow-y: scroll;
+
+  &.disable-hover,
+  &.disable-hover * {
+    pointer-events: none !important;
+  }
 `;
 
 const StyledRow = styled.div`
@@ -88,15 +93,36 @@ const StyledColumn = styled.div`
   }
 `;
 
-export default class Table<T> extends Component<{
+export interface ITable<T> {
   columns: Array<TableGroup<T>>;
   data: T[];
 
   loading?: boolean;
   hasNext?: boolean;
 
-  loadMore: (page: number) => void;
-}> {
+  loadMore: () => void;
+}
+
+export default class Table<T> extends Component<ITable<T>> {
+  state = { scroll: false };
+
+  timer: number = 0;
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.onScroll);
+  }
+
+  componentWillUnmount() {
+    window.addEventListener("scroll", this.onScroll);
+  }
+
+  onScroll = () => {
+    clearTimeout(this.timer);
+    this.setState({ scroll: true });
+
+    this.timer = setTimeout(() => this.setState({ scroll: false }), 500);
+  };
+
   render() {
     const { columns: groups, data, loading, hasNext, loadMore } = this.props;
 
@@ -104,18 +130,13 @@ export default class Table<T> extends Component<{
       <StyledTable>
         <HeaderRow groups={groups} />
 
-        <LoaderBlock loading={loading && data.length == 0}>
-          <TableBody>
-            <InfiniteScroll
-              pageStart={0}
-              useWindow={false}
-              loadMore={loadMore}
-              hasMore={hasNext}
-              loader={<LoadingNext hasNext={true} />}
-            >
+        <LoaderBlock loading={loading && data.length === 0}>
+          <TableBody className={this.state.scroll ? "disable-hover" : ""}>
+            <InfiniteScroll pageStart={0} useWindow={false} loadMore={loadMore} hasMore={true}>
               {data.map((item, key) => (
                 <Row groups={groups} item={item} key={key} />
               ))}
+              <LoadingNext hasNext={hasNext} />
             </InfiniteScroll>
           </TableBody>
         </LoaderBlock>

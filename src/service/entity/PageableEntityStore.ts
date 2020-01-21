@@ -4,6 +4,7 @@ import { EntityStore } from "./EntityStore";
 import { OrderStore } from "../OrderStore";
 import { Filter, IRepository, Order } from "../Repository";
 import { FilterStore } from "../FilterStore";
+import { throttle } from "../../utils/throttle";
 
 export class PageableEntityStore<T extends Entity> {
   @observable loading = false;
@@ -11,7 +12,7 @@ export class PageableEntityStore<T extends Entity> {
   @observable hasNext = false;
 
   @observable page = 0;
-  @observable pageSize = 20;
+  @observable pageSize = 50;
 
   @observable error: boolean | string = false;
 
@@ -40,15 +41,15 @@ export class PageableEntityStore<T extends Entity> {
     await this.loadPage(1);
   };
 
+  @throttle(1000)
   @action
-  public loadNext = async () => {
+  async loadNext() {
     if (!this.hasNext) return;
     await this.loadPage(this.page + 1);
-  };
+  }
 
   @action
   public loadMore = async (page: number) => {
-    console.log("loadMore", page);
     await this.loadPage(page);
   };
 
@@ -88,6 +89,8 @@ export class PageableEntityStore<T extends Entity> {
       order: this.order.toArray(),
       filter: this.filter.toArray()
     };
+
+    console.log(request);
 
     try {
       this.loading = true;
