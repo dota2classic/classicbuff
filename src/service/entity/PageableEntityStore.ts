@@ -46,6 +46,12 @@ export class PageableEntityStore<T extends Entity> {
     await this.loadPage(this.page + 1);
   };
 
+  @action
+  public loadMore = async (page: number) => {
+    console.log("loadMore", page);
+    await this.loadPage(page);
+  };
+
   // orders and filters
 
   @action

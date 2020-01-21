@@ -5,8 +5,11 @@ import Cells from "./OfferRequestsTableCells";
 
 interface IOfferRequestTable {
   data: OfferRequestDTO[];
+
   loading?: boolean;
   hasNext?: boolean;
+
+  loadMore: (page: number) => void;
 }
 
 const OfferRequestTable = (props: IOfferRequestTable) => (
@@ -21,6 +24,7 @@ const OfferRequestTable = (props: IOfferRequestTable) => (
     data={props.data}
     loading={props.loading}
     hasNext={props.hasNext}
+    loadMore={props.loadMore}
   />
 );
 

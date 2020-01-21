@@ -1,4 +1,5 @@
 import React, { Component, ReactNode } from "react";
+import InfiniteScroll from "react-infinite-scroller";
 import styled from "styled-components";
 import { colors } from "../shared/styles";
 import LoaderBlock from "../Loader/LoaderBlock";
@@ -93,21 +94,29 @@ export default class Table<T> extends Component<{
 
   loading?: boolean;
   hasNext?: boolean;
+
+  loadMore: (page: number) => void;
 }> {
   render() {
-    const { columns: groups, data, loading, hasNext } = this.props;
+    const { columns: groups, data, loading, hasNext, loadMore } = this.props;
 
     return (
       <StyledTable>
         <HeaderRow groups={groups} />
 
-        <LoaderBlock loading={loading}>
+        <LoaderBlock loading={loading && data.length == 0}>
           <TableBody>
-            {data.map((item, key) => (
-              <Row groups={groups} item={item} key={key} />
-            ))}
-
-            <LoadingNext hasNext={hasNext} />
+            <InfiniteScroll
+              pageStart={0}
+              useWindow={false}
+              loadMore={loadMore}
+              hasMore={hasNext}
+              loader={<LoadingNext hasNext={true} />}
+            >
+              {data.map((item, key) => (
+                <Row groups={groups} item={item} key={key} />
+              ))}
+            </InfiniteScroll>
           </TableBody>
         </LoaderBlock>
       </StyledTable>
