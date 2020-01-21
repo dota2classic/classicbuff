@@ -5,7 +5,7 @@ import FinderContainer from "./FinderContainer";
 import apiMock from "./api-mock-finder.json";
 
 export default {
-  title: "Container/Filter Card/FinderAdapter",
+  title: "Container/Filter Card/Finder Container",
   component: FinderContainer,
   excludeStories: ["apiFilterCard"]
 };
@@ -37,6 +37,7 @@ export const all = () => (
       onInitData={apiFilterCard.initData}
       onSearch={apiFilterCard.search}
       onChange={action("onChange")}
+      values={{}}
     />
   </div>
 );

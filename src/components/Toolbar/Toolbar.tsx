@@ -21,13 +21,13 @@ const ToolbarTitle = styled.div`
 
   flex: 1;
 `;
-``;
+
 interface IToolbar {
   title: ReactNode;
   children?: ReactNode;
 }
 
-const Toolbar = ({ title, children }: IToolbar) => (
+export const Toolbar = ({ title, children }: IToolbar) => (
   <StyledToolbar>
     <ToolbarTitle>{title}</ToolbarTitle>
     {children}

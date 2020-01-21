@@ -4,7 +4,7 @@ import FilterCard from "./FilterCard";
 import Accordion from "../Accordion/Accordion";
 import SearchInput from "../forms/SearchInput/SearchInput";
 import FinderContainer from "../../containers/common/filters/Finder/FinderContainer";
-import { apiFilterCard } from "../../containers/common/filters/Finder/Finder.stories";
+import { apiFilterCard } from "../../containers/common/filters/Finder/FinderContainer.stories";
 
 export default {
   title: "Design System/Filter Card",

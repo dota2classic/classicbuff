@@ -15,7 +15,10 @@ import FilterCard from "../FilterCard/FilterCard";
 import OfferRequestTable from "../tables/OfferRequestsTable/OfferRequestsTable";
 import { boolean, withKnobs } from "@storybook/addon-knobs";
 import data from "../tables/OfferRequestsTable/offer-requests-data.json";
-import { apiFilterCard } from "../../containers/common/filters/Finder/Finder.stories";
+import { OrderDescriptor } from "../../service/OrderStore";
+import { OfferRequestDTO } from "../../entities/OfferRequest";
+import { Order } from "../../service/Repository";
+import { apiFilterCard } from "../../containers/common/filters/Finder/FinderContainer.stories";
 
 export default {
   title: "Design System/Layout",
@@ -30,8 +33,8 @@ export const All: FC = () => {
   const [search, onChangeSearch] = React.useState<string>("");
 
   const [filtersShown, onChangeFiltersShown] = React.useState<boolean>(false);
-  const [toolbarSortBy, onChangeToolbarSortBy] = React.useState<{ field: string; direction?: "asc" | "desc" }>({
-    field: "number",
+  const [toolbarSortBy, onChangeToolbarSortBy] = React.useState<Order<OfferRequestDTO>>({
+    field: "code",
     direction: "asc"
   });
   const [brand, onChangeBrand] = React.useState<{ [key: string]: string }>({});
@@ -67,7 +70,7 @@ export const All: FC = () => {
         </Sidebar>
       }
       filters={
-        <FilterCard onClear={clearAll} onClose={hideFilters}>
+        <FilterCard onClear={clearAll} onClose={hideFilters} show={filtersShown}>
           <Accordion title="Дата создания">
             <input type="date" />
             <input type="date" />
@@ -94,7 +97,7 @@ export const All: FC = () => {
       }
     >
       <Header>
-        <Button type="primary" iconLeft={<Icon name="Add" />} text="Создать запрос" />
+        <Button type="primary" iconLeft={<Icon name="add" />} text="Создать запрос" />
         <Divider vertical />
         <TextInput placeholder="Номер запроса, клиент или ИНН, продукт" value={search} onChange={onChangeSearch} />
         <Divider vertical />
@@ -103,12 +106,14 @@ export const All: FC = () => {
 
       <Toolbar title="Запросы">
         <ToolbarSortBy
-          fields={[
-            { field: "number", label: "по номеру", directional: "bi" },
-            { field: "date", label: "по дате", directional: "bi" },
-            { field: "cost", label: "по стоимости", directional: "bi" }
-          ]}
-          value={toolbarSortBy}
+          data={
+            [
+              { field: "code", label: "по номеру", directional: "bi" },
+              { field: "date", label: "по дате", directional: "bi" },
+              { field: "asset_cost", label: "по стоимости", directional: "bi" }
+            ] as OrderDescriptor<OfferRequestDTO>[]
+          }
+          value={toolbarSortBy as Order<OfferRequestDTO>}
           onChange={onChangeToolbarSortBy}
         />
         <Divider vertical />
