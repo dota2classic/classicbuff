@@ -19,6 +19,7 @@ import { OrderDescriptor } from "../../service/OrderStore";
 import { OfferRequestDTO } from "../../entities/OfferRequest";
 import { Order } from "../../service/Repository";
 import { apiFilterCard } from "../../containers/common/filters/Finder/FinderContainer.stories";
+import { action } from "@storybook/addon-actions";
 
 export default {
   title: "Design System/Layout",
@@ -125,7 +126,12 @@ export const All: FC = () => {
         />
       </Toolbar>
 
-      <OfferRequestTable data={data} loading={boolean("Loading", false)} hasNext={boolean("Has Next", true)} />
+      <OfferRequestTable
+        data={data}
+        loading={boolean("Loading", false)}
+        hasNext={boolean("Has Next", true)}
+        loadMore={action("Load More")}
+      />
     </Layout>
   );
 };
