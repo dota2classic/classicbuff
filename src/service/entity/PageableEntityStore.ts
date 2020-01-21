@@ -49,7 +49,7 @@ export class PageableEntityStore<T extends Entity> {
   // orders and filters
 
   @action
-  public changeOrder = async (order?: Order<T>) => {
+  public changeOrder = async (order: Order<T>) => {
     this.order.onChange(order);
     await this.loadFirstPage();
   };

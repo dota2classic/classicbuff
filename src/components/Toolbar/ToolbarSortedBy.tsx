@@ -8,8 +8,8 @@ import { Order } from "../../service/Repository";
 
 interface IToolbarSortBy<T extends Entity> {
   data: OrderDescriptor<T>[];
-  value?: Order<T>;
-  onChange?: (value: Order<T>) => void;
+  value: Order<T>;
+  onChange: (value: Order<T>) => void;
 }
 
 const icons = {
@@ -28,7 +28,7 @@ const StyledToolbarSortBy = styled.div`
 
 class ToolbarSortBy<T extends Entity> extends React.Component<IToolbarSortBy<T>> {
   render() {
-    const value = this.props.value || { field: this.props.data[0].field, direction: "asc" };
+    const value = this.props.value || { field: "", direction: undefined };
 
     return (
       <StyledToolbarSortBy>
@@ -53,10 +53,19 @@ class ToolbarSortBy<T extends Entity> extends React.Component<IToolbarSortBy<T>>
 
     const item = data.find(it => it.field === field);
 
-    if (!value || !onChange || !item) return;
+    if (!onChange || !item) return;
+    const isBiDirection = item.directional === "bi";
+
+    if (!value) {
+      if (isBiDirection) {
+        onChange({ field, direction: "asc" });
+      } else {
+        onChange({ field });
+      }
+      return;
+    }
 
     const isActive = value.field === field;
-    const isBiDirection = item.directional === "bi";
 
     if (isActive) {
       if (isBiDirection) {

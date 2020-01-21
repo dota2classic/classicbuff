@@ -10,16 +10,18 @@ export interface OrderDescriptor<T extends Entity> {
 
 export class OrderStore<T extends Entity> {
   @observable
-  value?: Order<T>;
+  value: Order<T>;
 
   readonly fields: OrderDescriptor<T>[];
 
   constructor(fields: OrderDescriptor<T>[]) {
     this.fields = fields;
+    this.value = { field: fields[0].field };
+    if (fields[0].directional === "bi") this.value.direction = "asc";
   }
 
   @action
-  onChange = (value?: Order<T>) => (this.value = value);
+  onChange = (value: Order<T>) => (this.value = value);
 
   toArray = () => (this.value ? [this.value] : []);
 }

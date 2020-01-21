@@ -5,8 +5,8 @@ import Divider from "components/Divider/Divider";
 import Button from "components/Button/Button";
 import { Icon } from "components/Icon";
 import Toolbar from "components/Toolbar/Toolbar";
-import uiStore from "service/uiStore";
 import store from "./service/store";
+import uiStore from "../../service/uiStore";
 
 @observer
 export class OfferRequestsToolbar extends React.Component {
