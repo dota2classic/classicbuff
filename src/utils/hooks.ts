@@ -15,7 +15,7 @@ export const handleKeyDown = (key: string | string[] | string[][], handler: (e?:
     const keys = typeof key === "string" ? [key] : key.flat();
 
     const handle = (e: KeyboardEvent) => {
-      if (e.key in keys) {
+      if (keys.includes(e.key)) {
         handler(e);
       }
     };

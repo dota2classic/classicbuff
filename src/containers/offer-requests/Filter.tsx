@@ -73,7 +73,7 @@ export class OfferRequestsFilters extends React.Component<{}, State> {
   };
 
   handleESC = (e: KeyboardEvent) => {
-    if (e.key in KeyName.ESC) uiStore.closeFilters();
+    if (KeyName.ESC.includes(e.key)) uiStore.closeFilters();
   };
 
   componentDidMount(): void {
