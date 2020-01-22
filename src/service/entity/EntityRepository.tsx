@@ -23,8 +23,15 @@ export class EntityRepository<T extends Entity> implements IRepository<T> {
         page: pageable.page || 1,
         page_size: pageable.size || 10,
         order: pageable.order || [],
-        filters: pageable.filters || []
+        filters: pageable.filters?.map(it => {
+          if (typeof it.value === "object") {
+            return { ...it, value: Object.keys(it.value) };
+          }
+          return it;
+        })
       };
+
+      console.log(request);
 
       const response = await api.core.directoryList(request);
       if (!response.ok) {

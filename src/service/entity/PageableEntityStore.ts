@@ -62,8 +62,8 @@ export class PageableEntityStore<T extends Entity> {
   };
 
   @action
-  public changeFilter = async (value: Filter<T>, extraInfo?: any) => {
-    this.filter.onChange(value, extraInfo);
+  public changeFilter = async (value: Filter<T>) => {
+    this.filter.onChange(value);
     await this.loadFirstPage();
   };
 
@@ -87,7 +87,7 @@ export class PageableEntityStore<T extends Entity> {
       page,
       size: this.pageSize,
       order: this.order.toArray(),
-      filter: this.filter.toArray()
+      filters: this.filter.toArray()
     };
 
     console.log(request);

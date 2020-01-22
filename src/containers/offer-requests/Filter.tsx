@@ -21,9 +21,38 @@ export class OfferRequestsFilters extends React.Component<{}, State> {
     brand: {},
     model: {}
   };
-
-  onChangeBrand = (brand: { [key: string]: string }) => this.setState({ brand });
-  onChangeModel = (model: { [key: string]: string }) => this.setState({ model });
+  fetchBrand = {
+    onInitData: async () =>
+      (
+        await brandRepository.getAll({
+          size: 10
+        })
+      ).data.map(it => ({ key: brandRepository.name + "/" + it.id, value: it.description })),
+    onSearch: async (query: string) =>
+      (
+        await brandRepository.getAll({
+          size: 50,
+          order: [{ field: "description", direction: "asc" }],
+          filters: [{ field: "description", comp: "fsearch", value: query }]
+        })
+      ).data.map(it => ({ key: brandRepository.name + "/" + it.id, value: it.description }))
+  };
+  fetchModel = {
+    onInitData: async () =>
+      (
+        await modelRepository.getAll({
+          size: 10
+        })
+      ).data.map(it => ({ key: modelRepository.name + "/" + it.id, value: it.description })),
+    onSearch: async (query: string) =>
+      (
+        await modelRepository.getAll({
+          size: 50,
+          order: [{ field: "description", direction: "asc" }],
+          filters: [{ field: "description", comp: "fsearch", value: query }]
+        })
+      ).data.map(it => ({ key: modelRepository.name + "/" + it.id, value: it.description }))
+  };
 
   handleESC = (e: KeyboardEvent) => {
     if (e.key in KeyName.ESC) uiStore.closeFilters();
@@ -38,40 +67,6 @@ export class OfferRequestsFilters extends React.Component<{}, State> {
   }
 
   render() {
-    const fetchBrand = {
-      onInitData: async () =>
-        (
-          await brandRepository.getAll({
-            size: 10
-          })
-        ).data.map(it => ({ key: it.id, value: it.description })),
-      onSearch: async (query: string) =>
-        (
-          await brandRepository.getAll({
-            size: 50,
-            order: [{ field: "description", direction: "asc" }],
-            filters: [{ field: "description", comp: "fsearch", value: query }]
-          })
-        ).data.map(it => ({ key: it.id, value: it.description }))
-    };
-
-    const fetchModel = {
-      onInitData: async () =>
-        (
-          await modelRepository.getAll({
-            size: 10
-          })
-        ).data.map(it => ({ key: it.id, value: it.description })),
-      onSearch: async (query: string) =>
-        (
-          await modelRepository.getAll({
-            size: 50,
-            order: [{ field: "description", direction: "asc" }],
-            filters: [{ field: "description", comp: "fsearch", value: query }]
-          })
-        ).data.map(it => ({ key: it.id, value: it.description }))
-    };
-
     return (
       <FilterCard show={uiStore.filterOpened} onClear={offerRequestStore.filter.onClear} onClose={uiStore.closeFilters}>
         <Accordion title="Дата создания">
@@ -85,18 +80,42 @@ export class OfferRequestsFilters extends React.Component<{}, State> {
 
         <FinderContainer
           title="Марка"
-          values={this.state.brand}
-          onChange={this.onChangeBrand}
-          onInitData={fetchBrand.onInitData}
-          onSearch={fetchBrand.onSearch}
+          values={offerRequestStore.filter.values["asset_brand"]?.value as { [key: string]: string }}
+          onChange={values => {
+            console.log(values);
+
+            if (Object.keys(values).length === 0) {
+              offerRequestStore.removeFilter("asset_brand");
+              return;
+            }
+
+            offerRequestStore.changeFilter({
+              field: "asset_brand",
+              comp: "in",
+              value: values
+            });
+          }}
+          onInitData={this.fetchBrand.onInitData}
+          onSearch={this.fetchBrand.onSearch}
         />
 
         <FinderContainer
           title="Модель"
-          values={this.state.model}
-          onChange={this.onChangeModel}
-          onInitData={fetchModel.onInitData}
-          onSearch={fetchModel.onSearch}
+          values={offerRequestStore.filter.values["asset_model"]?.value as { [key: string]: string }}
+          onChange={values => {
+            if (Object.keys(values).length === 0) {
+              offerRequestStore.removeFilter("asset_model");
+              return;
+            }
+
+            offerRequestStore.changeFilter({
+              field: "asset_model",
+              comp: "in",
+              value: values
+            });
+          }}
+          onInitData={this.fetchModel.onInitData}
+          onSearch={this.fetchModel.onSearch}
         />
       </FilterCard>
     );

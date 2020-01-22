@@ -36,5 +36,5 @@ export type Filter<T extends Entity> = {
     | "contains" // совпадение
     | "fsearch"; // неточное совпадение с сортировкой по релевантности
 
-  value: number | string | string[];
+  value: number | string | string[] | { [key: string]: string };
 };

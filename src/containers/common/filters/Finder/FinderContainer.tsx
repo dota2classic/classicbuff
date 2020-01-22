@@ -26,8 +26,7 @@ interface IFinderContainerState {
 
 class FinderContainer<T extends Entity> extends React.Component<IFinderContainer<T>, IFinderContainerState> {
   static defaultProps = {
-    value: {},
-    displayField: "description"
+    values: {}
   };
 
   state: IFinderContainerState = {
