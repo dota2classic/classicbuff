@@ -1,6 +1,7 @@
 import { IRepository, Page, Pageable } from "../Repository";
 import api from "../api/api";
 import { Entity, EntityMeta, Field } from "../models";
+import representationsStore from "../representationsStore";
 
 export class EntityRepository<T extends Entity> implements IRepository<T> {
   name: string;
@@ -40,10 +41,11 @@ export class EntityRepository<T extends Entity> implements IRepository<T> {
         throw Error("");
       }
 
-      const data = (response.data as any)[request.name];
+      const data = response.data as any;
+      representationsStore.add((data.reference_repr as any) || {});
 
       return {
-        data: data.values,
+        data: data[request.name].values,
         representations: data.reference_repr
       } as Page<T>;
     } catch (e) {

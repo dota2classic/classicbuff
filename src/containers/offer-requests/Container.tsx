@@ -1,7 +1,7 @@
 import React from "react";
-import OfferRequestTable from "components/tables/OfferRequestsTable/OfferRequestsTable";
 import store from "./service/store";
 import { observer } from "mobx-react";
+import OfferRequestTable from "./Table/OfferRequestsTable";
 
 @observer
 export class OfferRequestsContainer extends React.Component {

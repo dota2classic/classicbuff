@@ -12,14 +12,11 @@ import Accordion from "../Accordion/Accordion";
 import SearchInput from "../forms/SearchInput/SearchInput";
 import FinderContainer from "../../containers/common/filters/Finder/FinderContainer";
 import FilterCard from "../FilterCard/FilterCard";
-import OfferRequestTable from "../tables/OfferRequestsTable/OfferRequestsTable";
-import { boolean, withKnobs } from "@storybook/addon-knobs";
-import data from "../tables/OfferRequestsTable/offer-requests-data.json";
+import { withKnobs } from "@storybook/addon-knobs";
 import { OrderDescriptor } from "../../service/OrderStore";
 import { OfferRequestDTO } from "../../entities/OfferRequest";
 import { Order } from "../../service/Repository";
 import { apiFilterCard } from "../../containers/common/filters/Finder/FinderContainer.stories";
-import { action } from "@storybook/addon-actions";
 
 export default {
   title: "Design System/Layout",
@@ -125,13 +122,6 @@ export const All: FC = () => {
           onClick={showFilters}
         />
       </Toolbar>
-
-      <OfferRequestTable
-        data={data}
-        loading={boolean("Loading", false)}
-        hasNext={boolean("Has Next", true)}
-        loadMore={action("Load More")}
-      />
     </Layout>
   );
 };

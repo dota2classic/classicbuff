@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { colors } from "components/shared/styles";
 import { OfferRequestDTO } from "entities/OfferRequest";
+import ViewRepresentation from "../../ViewRepresentation";
+import { formatPrice } from "../../../utils/format/formatPrice";
 
 const TwoItemsCell = styled.div`
   div {
@@ -41,7 +43,9 @@ const OfferRequestTableCells = {
 
   CostAndTerm: (props: DTO) => (
     <TwoItemsCell>
-      <div>{props.asset_cost + "\u00A0" + props.asset_cost_currency}</div>
+      <div>
+        {formatPrice(props.asset_cost) + "\u00A0"} <ViewRepresentation value={props.asset_cost_currency} />
+      </div>
       <div>{props.leasing_term_month} мес.</div>
     </TwoItemsCell>
   ),
