@@ -12,6 +12,8 @@ export interface IFinderItem {
 
 export interface IFinder {
   data: IFinderItem[];
+  dataLoading?: boolean;
+
   searchResult: IFinderItem[];
   searchLoading?: boolean;
 
@@ -31,6 +33,7 @@ const Content = styled.div`
   flex: 1;
 
   margin: 8px 0;
+  min-height: 280px;
 
   & > * {
     margin-bottom: 4px;
@@ -45,7 +48,9 @@ const Content = styled.div`
 const NoDataBlock = styled.div``;
 
 const Finder = (props: IFinder) => {
-  const showLoader = props.expand && props.searchLoading && props.searchResult.length === 0;
+  const showLoader = props.expand
+    ? props.searchLoading && props.searchResult.length === 0
+    : props.dataLoading && props.data.length === 0;
   const isEmpty = props.expand && !props.searchLoading && props.searchResult.length === 0;
 
   return (

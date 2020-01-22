@@ -41,7 +41,16 @@ export class OfferRequestsFilters extends React.Component<{}, State> {
     onInitData: async () =>
       (
         await modelRepository.getAll({
-          size: 10
+          size: 10,
+          filters: offerRequestStore.filter.values["asset_brand"]
+            ? [
+                {
+                  field: "brand",
+                  comp: "in",
+                  value: offerRequestStore.filter.values["asset_brand"].value
+                }
+              ]
+            : []
         })
       ).data.map(it => ({ key: modelRepository.name + "/" + it.id, value: it.description })),
     onSearch: async (query: string) =>
@@ -101,6 +110,11 @@ export class OfferRequestsFilters extends React.Component<{}, State> {
 
         <FinderContainer
           title="Модель"
+          key={
+            offerRequestStore.filter.values["asset_brand"]?.value
+              ? Object.keys(offerRequestStore.filter.values["asset_brand"].value).join("-")
+              : "default-model"
+          }
           values={offerRequestStore.filter.values["asset_model"]?.value as { [key: string]: string }}
           onChange={values => {
             if (Object.keys(values).length === 0) {

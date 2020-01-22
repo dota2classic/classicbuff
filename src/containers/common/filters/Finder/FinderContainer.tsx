@@ -21,6 +21,7 @@ interface IFinderContainerState {
 
   query: string;
   expand: boolean;
+  dataLoading: boolean;
   searchLoading: boolean;
 }
 
@@ -33,6 +34,7 @@ class FinderContainer<T extends Entity> extends React.Component<IFinderContainer
     query: "",
     expand: false,
     searchLoading: false,
+    dataLoading: true,
 
     data: [],
     initData: [],
@@ -49,7 +51,7 @@ class FinderContainer<T extends Entity> extends React.Component<IFinderContainer
 
   async componentDidMount() {
     const data = await this.props.onInitData();
-    this.setState({ data, initData: data });
+    this.setState({ data, initData: data, dataLoading: false }, this.sortData);
   }
 
   componentWillUnmount() {
@@ -69,6 +71,7 @@ class FinderContainer<T extends Entity> extends React.Component<IFinderContainer
         <Finder
           data={this.state.data.slice(0, this.state.initData.length)}
           searchResult={this.state.searchResult}
+          dataLoading={this.state.dataLoading}
           searchLoading={this.state.searchLoading}
           query={this.state.query}
           onChangeQuery={this.onChangeQuery}
