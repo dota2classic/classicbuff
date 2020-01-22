@@ -2,9 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { colors } from "components/shared/styles";
 import { OfferRequestDTO } from "entities/OfferRequest";
-import ViewRepresentation from "../../ViewRepresentation";
 import { formatPrice } from "../../../utils/format/formatPrice";
 import { formatDateStr } from "../../../utils/format/formateDateStr";
+import currenciesStore from "../../../service/currenciesStore";
+import { observer } from "mobx-react";
+import ViewRepresentation from "../../ViewRepresentation";
 
 const TwoItemsCell = styled.div`
   div {
@@ -19,6 +21,21 @@ const TwoItemsCell = styled.div`
 `;
 
 type DTO = OfferRequestDTO;
+
+@observer
+class CurrencySymbol extends React.Component<{ value: string }> {
+  render() {
+    const currency = currenciesStore.values[this.props.value];
+
+    console.log(currenciesStore.values);
+
+    if (currency) {
+      return <>{currency.symbol || currency.description}</>;
+    }
+
+    return <ViewRepresentation value={this.props.value} />;
+  }
+}
 
 const OfferRequestTableCells = {
   NumberAndDate: (props: DTO) => (
@@ -45,7 +62,7 @@ const OfferRequestTableCells = {
   CostAndTerm: (props: DTO) => (
     <TwoItemsCell>
       <div>
-        {formatPrice(props.asset_cost) + "\u00A0"} <ViewRepresentation value={props.asset_cost_currency} />
+        {formatPrice(props.asset_cost) + "\u00A0"} <CurrencySymbol value={props.asset_cost_currency} />
       </div>
       <div>{props.leasing_term_month} мес.</div>
     </TwoItemsCell>

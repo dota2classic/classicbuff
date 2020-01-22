@@ -115,8 +115,6 @@ export class OfferRequestsFilters extends React.Component<{}, State> {
           title="Марка"
           values={offerRequestStore.filter.values["asset_brand"]?.value as { [key: string]: string }}
           onChange={values => {
-            console.log(values);
-
             if (Object.keys(values).length === 0) {
               offerRequestStore.removeFilter("asset_brand");
               return;
