@@ -34,7 +34,7 @@ export type Filter<T extends Entity> = {
     | "in" // вхождение в список
     | "lte" // меньше или равно
     | "contains" // совпадение
-    | "ftsearch"; // неточное совпадение с сортировкой по релевантности
+    | "fsearch"; // неточное совпадение с сортировкой по релевантности
 
   value: number | string | string[];
 };
