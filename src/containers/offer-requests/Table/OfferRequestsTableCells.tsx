@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styled from "styled-components";
 import { colors } from "components/shared/styles";
 import { OfferRequestDTO } from "entities/OfferRequest";
@@ -27,8 +27,6 @@ class CurrencySymbol extends React.Component<{ value: string }> {
   render() {
     const currency = currenciesStore.values[this.props.value];
 
-    console.log(currenciesStore.values);
-
     if (currency) {
       return <>{currency.symbol || currency.description}</>;
     }
@@ -37,40 +35,51 @@ class CurrencySymbol extends React.Component<{ value: string }> {
   }
 }
 
-const OfferRequestTableCells = {
-  NumberAndDate: (props: DTO) => (
+const OfferRequestTableCells: {
+  [key: string]: (props: {
+    cellData?: any;
+    columnData?: any;
+    columnIndex: number;
+    dataKey: string;
+    isScrolling: boolean;
+    parent?: any;
+    rowData: DTO;
+    rowIndex: number;
+  }) => ReactNode;
+} = {
+  NumberAndDate: ({ rowData }) => (
     <TwoItemsCell>
-      <div>{props.code}</div>
-      <div>{formatDateStr(props.date)}</div>
+      <div>{rowData.code}</div>
+      <div>{formatDateStr(rowData.date)}</div>
     </TwoItemsCell>
   ),
 
-  ClientAndINN: (props: DTO) => (
+  ClientAndINN: ({ rowData }) => (
     <TwoItemsCell>
-      <div>{props.lessee_description}</div>
-      <div>{props.lessee_legal_id}</div>
+      <div>{rowData.lessee_description}</div>
+      <div>{rowData.lessee_legal_id}</div>
     </TwoItemsCell>
   ),
 
-  AssetsAndCount: (props: DTO) => (
+  AssetsAndCount: ({ rowData }) => (
     <TwoItemsCell>
-      <div>{props.assets}</div>
-      <div>{props.asset_count} шт.</div>
+      <div>{rowData.assets}</div>
+      <div>{rowData.asset_count} шт.</div>
     </TwoItemsCell>
   ),
 
-  CostAndTerm: (props: DTO) => (
+  CostAndTerm: ({ rowData }) => (
     <TwoItemsCell>
       <div>
-        {formatPrice(props.asset_cost) + "\u00A0"} <CurrencySymbol value={props.asset_cost_currency} />
+        {formatPrice(rowData.asset_cost) + "\u00A0"} <CurrencySymbol value={rowData.asset_cost_currency} />
       </div>
-      <div>{props.leasing_term_month} мес.</div>
+      <div>{rowData.leasing_term_month} мес.</div>
     </TwoItemsCell>
   ),
 
-  Comment: (props: DTO) => (
+  Comment: ({ rowData }) => (
     <>
-      <div>{props.comment}</div>
+      <div>{rowData.comment}</div>
     </>
   )
 };

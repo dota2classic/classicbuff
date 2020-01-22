@@ -45,7 +45,7 @@ export class PageableEntityStore<T extends Entity> {
   @throttle(1000)
   @action
   async loadNext() {
-    if (!this.hasNext) return;
+    if (!this.hasNext || this.loadingMore) return;
     await this.loadPage(this.page + 1);
   }
 

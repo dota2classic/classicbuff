@@ -6,6 +6,7 @@ import Loader from "./Loader";
 interface ILoaderBlock {
   loading?: boolean;
   children?: ReactNode;
+  marginTop?: number;
 }
 
 export const StyledLoaderBlock = styled.div`
@@ -16,10 +17,10 @@ export const StyledLoaderBlock = styled.div`
   flex: 1;
 `;
 
-const Overlay = styled.div`
+const Overlay = styled.div<{ top?: number }>`
   position: absolute;
 
-  top: 0;
+  top: ${props => props.top || 0}px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -47,7 +48,7 @@ const Overlay = styled.div`
 const LoaderBlock = (props: ILoaderBlock) => (
   <StyledLoaderBlock>
     {props.children}
-    <Overlay className={cx(props.loading && "visible")}>
+    <Overlay className={cx(props.loading && "visible")} top={props.marginTop}>
       <Loader />
     </Overlay>
   </StyledLoaderBlock>
