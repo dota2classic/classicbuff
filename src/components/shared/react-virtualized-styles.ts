@@ -13,6 +13,7 @@ export const reactVirtualizedStyles = css`
   /* Grid default theme */
 
   .ReactVirtualized__Grid {
+    outline: none;
   }
 
   .ReactVirtualized__Grid__innerScrollContainer {

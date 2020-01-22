@@ -88,8 +88,6 @@ class OfferRequestTable extends React.Component<IOfferRequestTable> {
               rowGetter={this.rowGetter}
               rowClassName={getRowClassName}
               headerClassName={headerClassName}
-              estimatedRowSize={20}
-              overscanRowCount={20}
               onScroll={this.onScroll}
             >
               <Column
