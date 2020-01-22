@@ -6,7 +6,7 @@ import Button from "components/Button/Button";
 import { Icon } from "components/Icon";
 import Toolbar from "components/Toolbar/Toolbar";
 import store from "./service/store";
-import uiStore from "../../service/uiStore";
+import uiStore from "service/uiStore";
 
 @observer
 export class OfferRequestsToolbar extends React.Component {

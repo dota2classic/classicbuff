@@ -91,8 +91,6 @@ export class PageableEntityStore<T extends Entity> {
       filters: this.filter.toArray()
     };
 
-    console.log(request);
-
     try {
       if (request.page == 1) {
         this.loading = true;

@@ -1,11 +1,10 @@
 import * as React from "react";
-import { FC } from "react";
 import Sidebar, { ISidebarItem, SidebarItem as SidebarItemComponent } from "components/Sidebar/Sidebar";
 import { Icon } from "components/Icon";
 import authService from "service/auth/authService";
 import { useRouter } from "next/router";
 
-const SidebarItem: FC<Omit<ISidebarItem, "active">> = (props: Omit<ISidebarItem, "active">) => (
+const SidebarItem = (props: Omit<ISidebarItem, "active">) => (
   <SidebarItemComponent {...props} active={useRouter().pathname === props.href} />
 );
 

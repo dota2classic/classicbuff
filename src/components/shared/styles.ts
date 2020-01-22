@@ -1,4 +1,3 @@
-import { css } from "styled-components";
 import { darken } from "polished";
 
 export const colors = {
@@ -38,50 +37,6 @@ export const colors = {
     secondary: "#CDDBE4"
   },
 
+  // fixme: unused color => remove func
   createHover: (color: string) => darken(0.1, colors.frame.tiling)
-};
-
-export const text = {
-  button: css`
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 16px;
-    /* identical to box height, or 114% */
-
-    color: #c4c4c4;
-  `,
-  input: {
-    text: css`
-      font-size: 14px;
-      line-height: 16px;
-      /* identical to box height, or 114% */
-
-      color: #c4c4c4;
-    `,
-    caption: css`
-      font-size: 14px;
-      line-height: 16px;
-
-      color: #c4c4c4;
-    `,
-
-    digit: css`
-      font-size: 14px;
-      line-height: 14px;
-      /* or 100% */
-
-      letter-spacing: 0.05em;
-      font-feature-settings: "tnum" on, "lnum" on;
-
-      color: #c4c4c4;
-    `,
-
-    tableBlock: css`
-      font-size: 14px;
-      line-height: 14px;
-      /* identical to box height, or 100% */
-
-      color: #c4c4c4;
-    `
-  }
 };

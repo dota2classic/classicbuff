@@ -140,7 +140,6 @@ class OfferRequestTable extends React.Component<IOfferRequestTable> {
   rowGetter = ({ index }: { index: number }) => this.props.data[index];
 
   onScroll = (props: { clientHeight: number; scrollHeight: number; scrollTop: number }) => {
-    // console.log((props.scrollHeight - props.clientHeight - props.scrollTop) / props.clientHeight);
     const pagesToBottom = (props.scrollHeight - props.clientHeight - props.scrollTop) / props.clientHeight;
     if (pagesToBottom < 1) {
       this.props.loadMore();

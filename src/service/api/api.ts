@@ -1,25 +1,7 @@
 import apisauce, { ApisauceConfig } from "apisauce";
-import { LocalStorage } from "service/localStorage";
 
 const createApi = (config: Partial<ApisauceConfig> = {}) => {
-  const api = apisauce.create({
-    baseURL: process.env.API_URL,
-    ...config
-  });
-
-  const token = LocalStorage.getItem("assess_token");
-
-  if (token && token.length) {
-    api.setHeader("authorization", `JWT ${token}`);
-  }
-
-  const authMonitor = (response: any) => {
-    if (response.status === 401) {
-      console.log("401", response);
-    }
-  };
-
-  api.addMonitor(authMonitor);
+  const api = apisauce.create({ baseURL: process.env.API_URL, ...config });
 
   return {
     inner: api,

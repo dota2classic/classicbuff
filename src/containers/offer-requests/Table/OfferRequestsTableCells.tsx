@@ -2,11 +2,11 @@ import React, { ReactNode } from "react";
 import styled from "styled-components";
 import { colors } from "components/shared/styles";
 import { OfferRequestDTO } from "entities/OfferRequest";
-import { formatPrice } from "../../../utils/format/formatPrice";
-import { formatDateStr } from "../../../utils/format/formateDateStr";
-import currenciesStore from "../../../service/currenciesStore";
+import { formatPrice } from "utils/format/formatPrice";
+import { formatDateStr } from "utils/format/formateDateStr";
+import currenciesStore from "service/currenciesStore";
 import { observer } from "mobx-react";
-import ViewRepresentation from "../../ViewRepresentation";
+import { Entity } from "service/models";
 
 const TwoItemsCell = styled.div`
   div {
@@ -20,33 +20,18 @@ const TwoItemsCell = styled.div`
   }
 `;
 
-type DTO = OfferRequestDTO;
-
 @observer
 class CurrencySymbol extends React.Component<{ value: string }> {
   render() {
     const currency = currenciesStore.values[this.props.value];
 
-    if (currency) {
-      return <>{currency.symbol || currency.description}</>;
-    }
-
-    return <ViewRepresentation value={this.props.value} />;
+    return currency.symbol || currency.description;
   }
 }
 
-const OfferRequestTableCells: {
-  [key: string]: (props: {
-    cellData?: any;
-    columnData?: any;
-    columnIndex: number;
-    dataKey: string;
-    isScrolling: boolean;
-    parent?: any;
-    rowData: DTO;
-    rowIndex: number;
-  }) => ReactNode;
-} = {
+type Cell<T extends Entity> = (props: { rowData: T }) => ReactNode;
+
+const OfferRequestTableCells: { [key: string]: Cell<OfferRequestDTO> } = {
   NumberAndDate: ({ rowData }) => (
     <TwoItemsCell>
       <div>{rowData.code}</div>
@@ -77,11 +62,7 @@ const OfferRequestTableCells: {
     </TwoItemsCell>
   ),
 
-  Comment: ({ rowData }) => (
-    <>
-      <div>{rowData.comment}</div>
-    </>
-  )
+  Comment: ({ rowData }) => <div>{rowData.comment}</div>
 };
 
 export default OfferRequestTableCells;

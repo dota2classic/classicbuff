@@ -1,10 +1,9 @@
 import * as React from "react";
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { Field, Form, Formik } from "formik";
 import authService from "service/auth/authService";
 import Router from "next/router";
-import { WithRouterProps } from "next/dist/client/with-router";
 
-export default class LoginPage extends React.Component<WithRouterProps> {
+export default class LoginPage extends React.Component {
   async componentDidMount() {
     if (authService.authorized) {
       await Router.push("/offer-request");
@@ -19,11 +18,7 @@ export default class LoginPage extends React.Component<WithRouterProps> {
           {({ isSubmitting }) => (
             <Form>
               <Field type="text" name="username" />
-              <ErrorMessage name="username" component="div" />
-
               <Field type="password" name="password" />
-              <ErrorMessage name="password" component="div" />
-
               <button type="submit" disabled={isSubmitting}>
                 Submit
               </button>
@@ -33,8 +28,4 @@ export default class LoginPage extends React.Component<WithRouterProps> {
       </>
     );
   }
-}
-
-if (typeof window !== "undefined") {
-  (window as any).router = Router;
 }
