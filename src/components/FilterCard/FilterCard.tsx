@@ -10,16 +10,22 @@ const Wrapper = styled.div`
   width: 280px;
 
   background: ${colors.frame.card};
-  box-shadow: 0 11px 15px rgba(0, 0, 0, 0.2), 0 9px 46px rgba(0, 0, 0, 0.12), 0 24px 38px rgba(0, 0, 0, 0.14);
   border-radius: 8px 0 0 8px;
 
   max-height: 100%;
 
-  transform: translate3d(100%, 0, 0);
-  transition: transform 0.3s ease;
+  transform: translate3d(20%, 0, 0);
+  transition: all 0.15s ease;
+
+  pointer-events: none;
+  opacity: 0;
 
   &.show {
+    pointer-events: all;
+    opacity: 1;
+
     transform: translate3d(0, 0, 0);
+    box-shadow: 0 11px 15px rgba(0, 0, 0, 0.2), 0 9px 46px rgba(0, 0, 0, 0.12), 0 24px 38px rgba(0, 0, 0, 0.14);
   }
 `;
 

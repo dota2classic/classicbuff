@@ -25,11 +25,15 @@ const Filters = styled.div`
   flex-direction: row;
 
   position: absolute;
-  top: 43px;
+  top: 0;
   right: 0;
   bottom: 0;
 
+  padding-left: 40px;
+  padding-top: 43px;
+
   pointer-events: none;
+  overflow: hidden;
 
   & > * {
     pointer-events: all;
