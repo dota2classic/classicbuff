@@ -49,6 +49,7 @@ export class OfferRequestsFilters extends React.Component<{}, State> {
         (
           await brandRepository.getAll({
             size: 50,
+            order: [{ field: "description", direction: "asc" }],
             filters: [{ field: "description", comp: "fsearch", value: query }]
           })
         ).data.map(it => ({ key: it.id, value: it.description }))
@@ -65,6 +66,7 @@ export class OfferRequestsFilters extends React.Component<{}, State> {
         (
           await modelRepository.getAll({
             size: 50,
+            order: [{ field: "description", direction: "asc" }],
             filters: [{ field: "description", comp: "fsearch", value: query }]
           })
         ).data.map(it => ({ key: it.id, value: it.description }))
