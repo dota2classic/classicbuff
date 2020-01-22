@@ -87,13 +87,28 @@ export class OfferRequestsFilters extends React.Component<{}, State> {
   render() {
     return (
       <FilterCard show={uiStore.filterOpened} onClear={offerRequestStore.clearFilters} onClose={uiStore.closeFilters}>
-        <Accordion title="Дата создания">
+        <Accordion title="Дата создания" initialCollapsed>
           <input type="date" />
           <input type="date" />
         </Accordion>
 
         <Accordion title="Клиент">
-          <SearchInput placeholder="Наименование" />
+          <SearchInput
+            placeholder="Наименование"
+            value={offerRequestStore.filter.values["lessee_description"]?.value as string | undefined}
+            onChange={value => {
+              if (!value) {
+                offerRequestStore.removeFilter("lessee_description");
+                return;
+              }
+
+              offerRequestStore.changeFilter({
+                field: "lessee_description",
+                comp: "fsearch",
+                value: value
+              });
+            }}
+          />
         </Accordion>
 
         <FinderContainer
