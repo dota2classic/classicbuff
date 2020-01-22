@@ -3,7 +3,7 @@ import { normalize } from "styled-normalize";
 import { colors } from "./styles";
 
 export const fontUrl =
-  "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap&subset=cyrillic";
+  "https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700,800,900&display=swap&subset=cyrillic";
 
 export const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -34,5 +34,11 @@ export const GlobalStyle = createGlobalStyle`
   
   * {
     box-sizing: border-box;
+    
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
   }
 `;

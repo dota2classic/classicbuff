@@ -4,6 +4,7 @@ import { colors } from "components/shared/styles";
 import { OfferRequestDTO } from "entities/OfferRequest";
 import ViewRepresentation from "../../ViewRepresentation";
 import { formatPrice } from "../../../utils/format/formatPrice";
+import { formatDateStr } from "../../../utils/format/formateDateStr";
 
 const TwoItemsCell = styled.div`
   div {
@@ -23,7 +24,7 @@ const OfferRequestTableCells = {
   NumberAndDate: (props: DTO) => (
     <TwoItemsCell>
       <div>{props.code}</div>
-      <div>{props.date}</div>
+      <div>{formatDateStr(props.date)}</div>
     </TwoItemsCell>
   ),
 
