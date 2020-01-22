@@ -5,7 +5,7 @@ module.exports = withBundleAnalyzer({
   target: "serverless",
 
   env: {
-    API_URL: process.env.API_URL || "http://188.120.246.214:8122"
+    API_URL: process.env.API_URL || "https://leasingdev.iteampro.ru:6777/"
   },
 
   webpack(config, options) {
