@@ -130,7 +130,7 @@ export default class Table<T> extends Component<ITable<T>> {
       <StyledTable>
         <HeaderRow groups={groups} />
 
-        <LoaderBlock loading={loading && data.length === 0}>
+        <LoaderBlock loading={loading}>
           <TableBody className={this.state.scroll ? "disable-hover" : ""}>
             <InfiniteScroll pageStart={0} useWindow={false} loadMore={loadMore} hasMore={true}>
               {data.map((item, key) => (

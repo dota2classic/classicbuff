@@ -8,6 +8,7 @@ import { throttle } from "../../utils/throttle";
 
 export class PageableEntityStore<T extends Entity> {
   @observable loading = false;
+  @observable loadingMore = false;
   @observable empty = false;
   @observable hasNext = false;
 
@@ -93,7 +94,11 @@ export class PageableEntityStore<T extends Entity> {
     console.log(request);
 
     try {
-      this.loading = true;
+      if (request.page == 1) {
+        this.loading = true;
+      } else {
+        this.loadingMore = true;
+      }
       const { data } = await this.repository.getAll(request);
 
       if (request.page > 1) {
@@ -110,6 +115,7 @@ export class PageableEntityStore<T extends Entity> {
       this.error = true;
     } finally {
       this.loading = false;
+      this.loadingMore = false;
     }
   };
 }

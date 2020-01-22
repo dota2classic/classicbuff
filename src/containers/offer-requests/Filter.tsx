@@ -68,7 +68,7 @@ export class OfferRequestsFilters extends React.Component<{}, State> {
 
   render() {
     return (
-      <FilterCard show={uiStore.filterOpened} onClear={offerRequestStore.filter.onClear} onClose={uiStore.closeFilters}>
+      <FilterCard show={uiStore.filterOpened} onClear={offerRequestStore.clearFilters} onClose={uiStore.closeFilters}>
         <Accordion title="Дата создания">
           <input type="date" />
           <input type="date" />
