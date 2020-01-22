@@ -58,7 +58,16 @@ export class OfferRequestsFilters extends React.Component<{}, State> {
         await modelRepository.getAll({
           size: 50,
           order: [{ field: "description", direction: "asc" }],
-          filters: [{ field: "description", comp: "fsearch", value: query }]
+          filters: offerRequestStore.filter.values["asset_brand"]
+            ? [
+                {
+                  field: "brand",
+                  comp: "in",
+                  value: offerRequestStore.filter.values["asset_brand"].value
+                },
+                { field: "description", comp: "fsearch", value: query }
+              ]
+            : [{ field: "description", comp: "fsearch", value: query }]
         })
       ).data.map(it => ({ key: modelRepository.name + "/" + it.id, value: it.description }))
   };
