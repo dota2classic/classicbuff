@@ -64,7 +64,11 @@ export class PageableEntityStore<T extends Entity> {
 
   @action
   public changeFilter = async (value: Filter<T>) => {
-    this.filter.onChange(value);
+    if (!value.value) {
+      this.filter.onRemove(value.field);
+    } else {
+      this.filter.onChange(value);
+    }
     await this.loadFirstPage();
   };
 
@@ -110,6 +114,7 @@ export class PageableEntityStore<T extends Entity> {
       this.empty = data.length == 0 && request.page == 0;
       this.error = false;
     } catch (e) {
+      console.error(e);
       this.error = true;
     } finally {
       this.loading = false;

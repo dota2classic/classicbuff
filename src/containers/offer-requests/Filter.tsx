@@ -96,36 +96,16 @@ export class OfferRequestsFilters extends React.Component<{}, State> {
           <SearchInput
             placeholder="Наименование"
             value={offerRequestStore.filter.values["lessee_description"]?.value as string | undefined}
-            onChange={value => {
-              if (!value) {
-                offerRequestStore.removeFilter("lessee_description");
-                return;
-              }
-
-              offerRequestStore.changeFilter({
-                field: "lessee_description",
-                comp: "fsearch",
-                value: value
-              });
-            }}
+            onChange={value =>
+              offerRequestStore.changeFilter({ field: "lessee_description", comp: "fsearch", value: value })
+            }
           />
         </Accordion>
 
         <FinderContainer
           title="Марка"
           values={offerRequestStore.filter.values["asset_brand"]?.value as { [key: string]: string }}
-          onChange={values => {
-            if (Object.keys(values).length === 0) {
-              offerRequestStore.removeFilter("asset_brand");
-              return;
-            }
-
-            offerRequestStore.changeFilter({
-              field: "asset_brand",
-              comp: "in",
-              value: values
-            });
-          }}
+          onChange={values => offerRequestStore.changeFilter({ field: "asset_brand", comp: "in", value: values })}
           onInitData={this.fetchBrand.onInitData}
           onSearch={this.fetchBrand.onSearch}
         />
@@ -138,18 +118,7 @@ export class OfferRequestsFilters extends React.Component<{}, State> {
               : "default-model"
           }
           values={offerRequestStore.filter.values["asset_model"]?.value as { [key: string]: string }}
-          onChange={values => {
-            if (Object.keys(values).length === 0) {
-              offerRequestStore.removeFilter("asset_model");
-              return;
-            }
-
-            offerRequestStore.changeFilter({
-              field: "asset_model",
-              comp: "in",
-              value: values
-            });
-          }}
+          onChange={values => offerRequestStore.changeFilter({ field: "asset_model", comp: "in", value: values })}
           onInitData={this.fetchModel.onInitData}
           onSearch={this.fetchModel.onSearch}
         />

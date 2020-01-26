@@ -70,8 +70,8 @@ class FinderContainer<T extends Entity> extends React.Component<IFinderContainer
       >
         <Finder
           data={this.state.data.slice(0, this.state.initData.length)}
-          searchResult={this.state.searchResult}
           dataLoading={this.state.dataLoading}
+          searchResult={this.state.searchResult}
           searchLoading={this.state.searchLoading}
           query={this.state.query}
           onChangeQuery={this.onChangeQuery}
