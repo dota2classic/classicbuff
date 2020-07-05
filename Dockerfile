@@ -9,9 +9,7 @@ EXPOSE 3000
 WORKDIR /opt/app
 COPY . /opt/app
 
-ARG API_URL=https://example.com/api
-
-RUN API_URL=$API_URL yarn && yarn build
+RUN yarn && yarn build
 
 CMD [ "yarn", "start" ]
 

@@ -33,6 +33,7 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           <meta charSet="utf-8" />
+          <link rel="stylesheet" href="/static/style.css" />
           <script src="/static/build_info.js" />
         </Head>
         <body>
