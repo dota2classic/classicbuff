@@ -7,6 +7,7 @@ import Layout from "../../components/Layout";
 import { Table, Tr } from "../../components/LadderRow";
 import PlayerMatch from "../../components/PlayerMatch";
 import { Score } from "../match/[id]";
+import { numToSteamId } from "../../utils/numSteamId";
 
 export const HeroPreview = styled.img`
   width: 60px;
@@ -47,7 +48,8 @@ export default () => {
   useEffect(() => {
     const fetch = async () => {
       if (!id) return;
-      const res: any = await api.get<PlayerInfo>("/player", { steam_id: id });
+      const formattedId = numToSteamId(Number(id));
+      const res: any = await api.get<PlayerInfo>("/player", { steam_id: formattedId });
       setHistory(res.data.matches);
       setPlayer(res.data.player);
     };
@@ -57,21 +59,28 @@ export default () => {
     return () => clearInterval(int);
   }, [id]);
 
-  console.log(history, player);
   if (!player) return null;
 
   return (
-    <Layout title={`${player.name}, ${player.mmr} MMR`}>
+    <Layout
+      title={
+        <div>
+          <div style={{ fontSize: 20 }}>{player.name}</div>
+          <div style={{ fontSize: 14, marginTop: 20 }}>{player.mmr} MMR</div>
+        </div>
+      }
+    >
       <Table className={"compact"}>
         <thead>
           <Tr>
             <th>ID</th>
             <th>Длительность</th>
             <th>Герой</th>
+            <th>Предметы</th>
             <th>Результат</th>
-            <th>K</th>
-            <th>D</th>
-            <th>A</th>
+            <th style={{ width: 40 }}>K</th>
+            <th style={{ width: 40 }}>D</th>
+            <th style={{ width: 40 }}>A</th>
           </Tr>
         </thead>
         <tbody>

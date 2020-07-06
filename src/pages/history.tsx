@@ -5,6 +5,8 @@ import { LadderElement, Match } from "../shared";
 import api from "../service/api";
 import styled from "styled-components";
 import Router from "next/router";
+import { formatDuration } from "./match/[id]";
+import { formatDateStr } from "../utils/format/formateDateStr";
 
 export const HeroPreview = styled.img`
   width: 60px;
@@ -12,18 +14,14 @@ export const HeroPreview = styled.img`
   margin: 4px;
 `;
 
-const TeamTd = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  & span {
-    margin-bottom: 10px;
-  }
-`;
-
 const Heroes = styled.div`
   display: flex;
   flex-direction: row;
+`;
+
+const MatchIdCol = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 export default () => {
   const [page, setPage] = useState(0);
@@ -46,43 +44,46 @@ export default () => {
 
   return (
     <Layout title="dota2classic.ru 6.81b история матчей">
-      <Table>
+      <Table className="compact">
         <thead>
           <Tr>
-            <th>ID</th>
+            <th>ID матча</th>
             <th>Режим</th>
-            <th>Radiant team</th>
-            <th>Dire team</th>
+            <th>Победитель</th>
+            <th>Длительность</th>
+            <th className="green">Radiant team</th>
+            <th className="red">Dire team</th>
           </Tr>
         </thead>
         <tbody>
           {history.map(it => (
-            <Tr onClick={() => Router.push("/match/[id]", `/match/${it.id}`)}>
-              <td className={"green"}>{it.id}</td>
-              <td>{it.type === 0 ? "Ranked" : "Unranked"}</td>
+            <Tr className={"link"} onClick={() => Router.push("/match/[id]", `/match/${it.id}`)}>
+              <td className={"green tiny"}>
+                <MatchIdCol>
+                  <span>{it.id}</span>
+                  <span style={{ fontSize: 14, marginTop: 2, color: "#c2c2c2" }}>{formatDateStr(it.timestamp)}</span>
+                </MatchIdCol>
+              </td>
+              <td className={"tiny"}>{it.type === 0 ? "Ranked" : "Unranked"}</td>
+              <td className={it.radiant_win ? "green" : "red"}>{it.radiant_win ? "Radiant" : "Dire"}</td>
+              <td>{formatDuration(it.duration)}</td>
               <td className={it.radiant_win ? "green" : "red"}>
-                <TeamTd>
-                  <span>{!it.radiant_win ? "Поражение" : "Победа"}</span>
-                  <Heroes>
-                    {it.players
-                      .filter(it => it.team === 2)
-                      .map(it => (
-                        <HeroPreview src={`/static/heroes/${it.hero}.png`} />
-                      ))}
-                  </Heroes>
-                </TeamTd>
+                <Heroes>
+                  {it.players
+                    .filter(it => it.team === 2)
+                    .map(it => (
+                      <HeroPreview src={`/static/heroes/${it.hero}.png`} />
+                    ))}
+                </Heroes>
               </td>
               <td className={it.radiant_win ? "red" : "green"}>
-                <TeamTd>
-                  <span>{it.radiant_win ? "Поражение" : "Победа"}</span>
-                  <Heroes>
-                    {it.players
-                      .filter(it => it.team === 3)
-                      .map(it => (
-                        <HeroPreview src={`/static/heroes/${it.hero}.png`} />
-                      ))}
-                  </Heroes>
-                </TeamTd>
+                <Heroes>
+                  {it.players
+                    .filter(it => it.team === 3)
+                    .map(it => (
+                      <HeroPreview src={`/static/heroes/${it.hero}.png`} />
+                    ))}
+                </Heroes>
               </td>
             </Tr>
           ))}

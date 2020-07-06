@@ -6,41 +6,39 @@ import Layout from "../../components/Layout";
 import { Table, Tr } from "../../components/LadderRow";
 import api from "../../service/api";
 import Link from "next/link";
+import { steamIdToNum } from "../../utils/numSteamId";
+import HeroIcon from "../../components/HeroIcon";
+import ItemIcon from "../../components/ItemIcon";
 
-const HeroPreview = styled.img`
-  width: 70px;
-  height: auto;
-`;
-
-const ItemPreview = styled.img`
-  width: auto;
-  height: 35px;
-  object-fit: cover;
-`;
-
-const ItemsContainer = styled.div`
+export const ItemsContainer = styled.div`
   display: flex;
   position: relative;
   flex-direction: row;
+
+  & img + img {
+    margin-left: 8px;
+  }
+
+  width: fit-content;
 `;
 const PlayerRow = (p: Player) => {
   const items = p.items.split(",").map(it => it.substr(5));
-  console.log(p.player.name.trim() || "(Пустой ник)");
+  const playerUrl = `/player/${steamIdToNum(p.player.steam_id)}`;
   return (
     <Tr>
       <td>{p.level}</td>
       <td>
-        <Link href={`/player/${p.player.steam_id}`}>
-          <HeroPreview src={`/static/heroes/${p.hero}.png`} />
+        <Link href={playerUrl}>
+          <HeroIcon hero={p.hero} />
         </Link>
       </td>
       <td>
-        <Link href={`/player/${p.player.steam_id}`}>{(p.player.name.length && p.player.name) || "(Пустой ник)"}</Link>
+        <Link href={playerUrl}>{(p.player.name.length && p.player.name) || "(Пустой ник)"}</Link>
       </td>
       <td>
         <ItemsContainer>
           {items.map(it => (
-            <ItemPreview src={`/static/items/${it}.png`} />
+            <ItemIcon item={it} />
           ))}
         </ItemsContainer>
       </td>
@@ -107,6 +105,19 @@ const Duration = styled.div`
   color: #c2c2c2;
 `;
 
+const Winner = styled.div`
+  &.green {
+    color: #92a525;
+  }
+
+  &.red {
+    color: #c23c2a;
+  }
+
+  font-size: 24px;
+  text-align: center;
+  text-transform: uppercase;
+`;
 export const Score = styled.div`
   margin: 20px;
 
@@ -128,13 +139,13 @@ const TeamTable = ({ players }: { players: Player[] }) => {
         <Tr>
           <th style={{ width: 30 }}>Уровень</th>
           <th style={{ width: 60 }}>Герой</th>
-          <th style={{ width: 150 }}>Игрок</th>
+          <th style={{ width: 250 }}>Игрок</th>
           <th>Предметы</th>
-          <th style={{ width: 30 }}>K</th>
-          <th style={{ width: 30 }}>D</th>
-          <th style={{ width: 30 }}>A</th>
-          <th style={{ width: 30 }}>LH/D</th>
-          <th style={{ width: 30 }}>GPM/XPM</th>
+          <th style={{ width: 40 }}>K</th>
+          <th style={{ width: 40 }}>D</th>
+          <th style={{ width: 40 }}>A</th>
+          <th style={{ width: 40 }}>LH/D</th>
+          <th style={{ width: 40 }}>GPM/XPM</th>
         </Tr>
       </thead>
       <tbody>
@@ -178,6 +189,9 @@ export default () => {
   return (
     <Layout title={`dota2classic.ru 6.81b матч #${id}`}>
       <MatchResult className={match?.radiant_win ? "green" : "red"}>
+        <Winner className={match?.radiant_win ? "green" : "red"}>
+          {match?.radiant_win ? "Победа Radiant" : "Победа Dire"}
+        </Winner>
         <ScoreTable>
           <Score className={"green"}>{sumKills(match!!.players.filter(it => it.team === 2))}</Score>
           <Duration>{formatDuration(match.duration)}</Duration>

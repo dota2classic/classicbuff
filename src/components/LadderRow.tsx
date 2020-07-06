@@ -2,11 +2,15 @@ import { LadderElement } from "../shared";
 import styled from "styled-components";
 import React, { PropsWithChildren } from "react";
 import Link from "next/link";
+import { steamIdToNum } from "../utils/numSteamId";
 
 export const Tr = styled.tr`
   line-height: 16px;
   color: #5e5e5e;
   font-size: 14px;
+  &.link {
+    cursor: pointer;
+  }
 
   &.even {
     background-color: rgba(255, 255, 255, 0.04);
@@ -19,6 +23,7 @@ export const Tr = styled.tr`
   & a {
     text-decoration: none;
   }
+
   & td,
   a {
     color: #c2c2c2;
@@ -26,11 +31,13 @@ export const Tr = styled.tr`
 `;
 
 export default (props: LadderElement & { index: number }) => {
+  const playerUrl = `/player/${steamIdToNum(props.steam_id)}`;
+
   return (
     <Tr className={props.index % 2 === 0 ? "even" : "odd"}>
       <td>{props.index}</td>
       <td>
-        <Link href={`/player/${props.steam_id}`}>{props.name}</Link>
+        <Link href={playerUrl}>{props.name}</Link>
       </td>
       <td>{props.mmr}</td>
     </Tr>
@@ -47,24 +54,30 @@ export const LadderHeader = () => (
 
 export const Table = styled.table`
   & thead > tr {
-    background-color: #000000;
+    background-color: black;
   }
 
   width: 100%;
 
   & th {
-    border: 1px solid #101010;
+    border: 1px solid #010101;
   }
 
   & td {
     border: 1px solid black;
   }
 
-  & td.red {
+  & th.red,
+  td.red {
     color: #c23c2a;
   }
 
-  & td.green {
+  & td.tiny {
+    font-size: 14px !important;
+  }
+
+  & th.green,
+  td.green {
     color: #92a525;
   }
 
@@ -72,13 +85,14 @@ export const Table = styled.table`
   th {
     padding: 12px;
     font-size: 16px;
+    font-weight: 500;
     text-align: left;
   }
 
   &.compact {
     & td,
     th {
-      padding: 4px;
+      padding: 2px;
       font-size: 16px;
       text-align: center;
     }

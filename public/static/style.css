@@ -2,4 +2,21 @@ body {
   margin: 0;
   font-size: 16px;
   overflow-x: hidden;
+  font-family: "PT Sans";
+  background: #15191d;
+}
+
+/* pt-sans-regular - latin_cyrillic-ext_cyrillic */
+@font-face {
+  font-family: "PT Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/static/fonts/pt-sans-v11-latin_cyrillic-ext_cyrillic-regular.eot"); /* IE9 Compat Modes */
+  src: local("PT Sans"), local("PTSans-Regular"),
+    url("/static/fonts/pt-sans-v11-latin_cyrillic-ext_cyrillic-regular.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("/static/fonts/pt-sans-v11-latin_cyrillic-ext_cyrillic-regular.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("/static/fonts/pt-sans-v11-latin_cyrillic-ext_cyrillic-regular.woff") format("woff"),
+    /* Modern Browsers */ url("/static/fonts/pt-sans-v11-latin_cyrillic-ext_cyrillic-regular.ttf") format("truetype"),
+    /* Safari, Android, iOS */ url("/static/fonts/pt-sans-v11-latin_cyrillic-ext_cyrillic-regular.svg#PTSans")
+      format("svg"); /* Legacy iOS */
 }
