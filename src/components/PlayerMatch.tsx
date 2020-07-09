@@ -6,19 +6,23 @@ import { HeroPreview } from "../pages/player/[id]";
 import { formatDuration, ItemsContainer } from "../pages/match/[id]";
 import ItemIcon from "./ItemIcon";
 import { formatDateStr } from "../utils/format/formateDateStr";
-
+import cx from "classnames";
 export interface PlayerMatchInfo {
   player: LadderElement;
   match: Match;
+  index: number;
 }
-export default ({ match, player }: PlayerMatchInfo) => {
+export default ({ match, player, index }: PlayerMatchInfo) => {
   const pim = match.players.find(it => it.player.steam_id === player.steam_id)!!;
   const isWin = match.radiant_win ? pim.team === 2 : pim.team === 3;
   const items = pim.items.split(",").map(it => it.substr(5));
   return (
-    <Tr className={"link"} onClick={() => Router.push("/match/[id]", `/match/${match.id}`)}>
+    <Tr
+      className={cx("link", index % 2 === 0 ? "even" : "odd")}
+      onClick={() => Router.push("/match/[id]", `/match/${match.id}`)}
+    >
       <td className={"green"}>
-        {match.id} <br />{" "}
+        {match.id} <br />
         <span style={{ fontSize: 12, marginTop: 2, color: "#c2c2c2" }}>{formatDateStr(match.timestamp)}</span>
       </td>
       <td>{formatDuration(match.duration)}</td>

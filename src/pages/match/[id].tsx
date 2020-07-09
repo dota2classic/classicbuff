@@ -9,7 +9,7 @@ import Link from "next/link";
 import { steamIdToNum } from "../../utils/numSteamId";
 import HeroIcon from "../../components/HeroIcon";
 import ItemIcon from "../../components/ItemIcon";
-
+import Head from "next/head";
 export const ItemsContainer = styled.div`
   display: flex;
   position: relative;
@@ -188,6 +188,9 @@ export default () => {
   if (!match) return null;
   return (
     <Layout title={`dota2classic.ru 6.81b матч #${id}`}>
+      <Head>
+        <title>Матч {id}</title>
+      </Head>
       <MatchResult className={match?.radiant_win ? "green" : "red"}>
         <Winner className={match?.radiant_win ? "green" : "red"}>
           {match?.radiant_win ? "Победа Radiant" : "Победа Dire"}

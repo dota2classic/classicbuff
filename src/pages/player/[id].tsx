@@ -8,6 +8,7 @@ import { Table, Tr } from "../../components/LadderRow";
 import PlayerMatch from "../../components/PlayerMatch";
 import { Score } from "../match/[id]";
 import { numToSteamId } from "../../utils/numSteamId";
+import Head from "next/head";
 
 export const HeroPreview = styled.img`
   width: 60px;
@@ -70,6 +71,9 @@ export default () => {
         </div>
       }
     >
+      <Head>
+        <title>Профиль игрока {player.name}</title>
+      </Head>
       <Table className={"compact"}>
         <thead>
           <Tr>
@@ -84,8 +88,8 @@ export default () => {
           </Tr>
         </thead>
         <tbody>
-          {history.map(it => (
-            <PlayerMatch player={player} match={it} />
+          {history.map((it, index) => (
+            <PlayerMatch index={index} player={player} match={it} />
           ))}
         </tbody>
       </Table>

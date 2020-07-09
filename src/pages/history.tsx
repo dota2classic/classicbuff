@@ -7,7 +7,8 @@ import styled from "styled-components";
 import Router from "next/router";
 import { formatDuration } from "./match/[id]";
 import { formatDateStr } from "../utils/format/formateDateStr";
-
+import Head from "next/head";
+import cx from "classnames";
 export const HeroPreview = styled.img`
   width: 60px;
   height: auto;
@@ -44,6 +45,9 @@ export default () => {
 
   return (
     <Layout title="dota2classic.ru 6.81b история матчей">
+      <Head>
+        <title>История матчей</title>
+      </Head>
       <Table className="compact">
         <thead>
           <Tr>
@@ -56,8 +60,11 @@ export default () => {
           </Tr>
         </thead>
         <tbody>
-          {history.map(it => (
-            <Tr className={"link"} onClick={() => Router.push("/match/[id]", `/match/${it.id}`)}>
+          {history.map((it, index) => (
+            <Tr
+              className={cx("link", index % 2 === 0 ? "even" : "odd")}
+              onClick={() => Router.push("/match/[id]", `/match/${it.id}`)}
+            >
               <td className={"green tiny"}>
                 <MatchIdCol>
                   <span>{it.id}</span>

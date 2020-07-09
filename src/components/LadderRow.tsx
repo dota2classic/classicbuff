@@ -37,7 +37,9 @@ export default (props: LadderElement & { index: number }) => {
     <Tr className={props.index % 2 === 0 ? "even" : "odd"}>
       <td>{props.index}</td>
       <td>
-        <Link href={playerUrl}>{props.name}</Link>
+        <Link href={playerUrl}>
+          <a style={{ fontWeight: "bold" }}>{props.name}</a>
+        </Link>
       </td>
       <td>{props.mmr}</td>
     </Tr>

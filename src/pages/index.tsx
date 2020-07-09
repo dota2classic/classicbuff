@@ -4,6 +4,7 @@ import { LadderElement } from "../shared";
 import LadderRow, { LadderHeader, Table } from "../components/LadderRow";
 import Layout from "../components/Layout";
 import styled from "styled-components";
+import Head from "next/head";
 
 const Thin = styled.div`
   max-width: 800px;
@@ -27,6 +28,9 @@ export default () => {
 
   return (
     <Layout title="dota2classic.ru 6.81b leaderboard">
+      <Head>
+        <title>Ладдер</title>
+      </Head>
       <Thin>
         <Table>
           <thead>
