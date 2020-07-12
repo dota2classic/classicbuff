@@ -53,14 +53,14 @@ export default (p: PropsWithChildren<{ title: ReactNode }>) => {
   return (
     <LayoutContainer>
       <HeaderWrapper>
-        <a href="https://vk.com/club191796288">
-          <LinkWrapper src="https://downradar.ru/img/upload/logo/vk-com.png" alt="" />
-        </a>
         <a href="https://discord.gg/VU5wjA8">
-          <LinkWrapper src="https://www.freepnglogos.com/uploads/discord-logo-png/concours-discord-cartes-voeux-fortnite-france-6.png" />
+          <LinkWrapper src="/static/icons/dis2.png" />
+        </a>
+        <a href="https://vk.com/club191796288">
+          <LinkWrapper src="/static/icons/vk1.png" alt="" />
         </a>
         <Link href={"/"}>
-          <SiteLink>Ладдер</SiteLink>
+          <SiteLink>Таблица лидеров</SiteLink>
         </Link>
         <Link href={"/history"}>
           <SiteLink>История матчей</SiteLink>

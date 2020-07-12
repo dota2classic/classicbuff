@@ -29,7 +29,7 @@ export default () => {
   return (
     <Layout title="dota2classic.ru 6.81b leaderboard">
       <Head>
-        <title>Ладдер</title>
+        <title>Таблица лидеров</title>
       </Head>
       <Thin>
         <Table>

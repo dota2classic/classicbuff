@@ -4,6 +4,19 @@ export interface LadderElement {
   steam_id: string;
 }
 
+export interface PlayerStatsDto {
+  playerSteamId: string;
+  gpm: number;
+  xpm: number;
+  kda: number;
+  games: number;
+  wins: number;
+  loss: number;
+  last_hits: number;
+  denies: number;
+  hero: string;
+}
+
 export interface Player {
   id: number;
   team: 2 | 3;

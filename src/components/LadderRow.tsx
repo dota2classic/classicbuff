@@ -41,7 +41,7 @@ export default (props: LadderElement & { index: number }) => {
           <a style={{ fontWeight: "bold" }}>{props.name}</a>
         </Link>
       </td>
-      <td>{props.mmr}</td>
+      <td style={{ textAlign: "center" }}>{props.mmr}</td>
     </Tr>
   );
 };
@@ -50,7 +50,7 @@ export const LadderHeader = () => (
   <Tr>
     <th>Место</th>
     <th>Игрок</th>
-    <th>MMR</th>
+    <th style={{ textAlign: "center" }}>MMR</th>
   </Tr>
 );
 
@@ -91,6 +91,9 @@ export const Table = styled.table`
     text-align: left;
   }
 
+  &.very-compact {
+    width: fit-content;
+  }
   &.compact {
     & td,
     th {

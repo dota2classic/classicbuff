@@ -5,4 +5,6 @@ import { DotaIcon } from "./HeroIcon";
 interface Props {
   item: string;
 }
-export default (p: Props) => <DotaIcon className={"item"} src={`/static/items/${p.item}.png`} />;
+export default (p: Props) => (
+  <DotaIcon className={"item"} src={`/static/items/${p.item.includes("recipe") ? "recipe" : p.item}.png`} />
+);

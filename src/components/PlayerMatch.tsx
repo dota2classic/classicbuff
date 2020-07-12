@@ -42,6 +42,12 @@ export default ({ match, player, index }: PlayerMatchInfo) => {
       <td>{pim.kills}</td>
       <td>{pim.deaths}</td>
       <td>{pim.assists}</td>
+      <td>
+        {pim.last_hits}/{pim.denies}
+      </td>
+      <td>
+        {pim.gpm}/{pim.xpm}
+      </td>
     </Tr>
   );
 };
