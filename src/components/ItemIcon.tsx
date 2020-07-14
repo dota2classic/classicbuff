@@ -6,5 +6,5 @@ interface Props {
   item: string;
 }
 export default (p: Props) => (
-  <DotaIcon className={"item"} src={`/static/items/${p.item.includes("recipe") ? "recipe" : p.item}.png`} />
+  <DotaIcon className={"item"} src={`/static/items/${p.item.includes("recipe") ? "recipe" : p.item}.jpg`} />
 );

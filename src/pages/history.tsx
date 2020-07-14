@@ -9,6 +9,7 @@ import { formatDuration } from "./match/[id]";
 import { formatDateStr } from "../utils/format/formateDateStr";
 import Head from "next/head";
 import cx from "classnames";
+import HeroIcon from "../components/HeroIcon";
 export const HeroPreview = styled.img`
   width: 60px;
   height: auto;
@@ -79,7 +80,7 @@ export default () => {
                   {it.players
                     .filter(it => it.team === 2)
                     .map(it => (
-                      <HeroPreview src={`/static/heroes/${it.hero}.png`} />
+                      <HeroIcon hero={it.hero} />
                     ))}
                 </Heroes>
               </td>
@@ -88,7 +89,7 @@ export default () => {
                   {it.players
                     .filter(it => it.team === 3)
                     .map(it => (
-                      <HeroPreview src={`/static/heroes/${it.hero}.png`} />
+                      <HeroIcon hero={it.hero} />
                     ))}
                 </Heroes>
               </td>
