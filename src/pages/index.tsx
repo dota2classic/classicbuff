@@ -27,9 +27,13 @@ export default () => {
   }, []);
 
   return (
-    <Layout title="dota2classic.ru 6.81b leaderboard">
+    <Layout title={<h1>Таблица лидеров</h1>}>
       <Head>
-        <title>Таблица лидеров</title>
+        <title>Таблица лидеров - dota2classic.ru</title>
+        <meta
+          name="description"
+          content="dota2classic.ru - таблица лидеров в рейтинговом сезоне. Классическая старая дота 6.81"
+        />
       </Head>
       <Thin>
         <Table>

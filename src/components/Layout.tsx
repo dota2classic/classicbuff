@@ -54,10 +54,10 @@ export default (p: PropsWithChildren<{ title: ReactNode }>) => {
     <LayoutContainer>
       <HeaderWrapper>
         <a href="https://discord.gg/VU5wjA8">
-          <LinkWrapper src="/static/icons/dis2.png" />
+          <LinkWrapper alt={"Discord logo"} src="/static/icons/dis2.png" />
         </a>
         <a href="https://vk.com/club191796288">
-          <LinkWrapper src="/static/icons/vk1.png" alt="" />
+          <LinkWrapper alt={"Vk logo"} src="/static/icons/vk1.png" />
         </a>
         <Link href={"/"}>
           <SiteLink>Таблица лидеров</SiteLink>
