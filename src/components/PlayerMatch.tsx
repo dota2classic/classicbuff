@@ -7,6 +7,7 @@ import { formatDuration, ItemsContainer } from "../pages/match/[id]";
 import ItemIcon from "./ItemIcon";
 import { formatDateStr } from "../utils/format/formateDateStr";
 import cx from "classnames";
+import HeroIcon from "./HeroIcon";
 export interface PlayerMatchInfo {
   player: LadderElement;
   match: Match;
@@ -27,12 +28,12 @@ export default ({ match, player, index }: PlayerMatchInfo) => {
       </td>
       <td>{formatDuration(match.duration)}</td>
       <td>
-        <HeroPreview src={`/static/heroes/${pim.hero}.png`} />
+        <HeroIcon hero={pim.hero} />
       </td>
       <td>
         <ItemsContainer>
-          {items.map(it => (
-            <ItemIcon item={it} />
+          {items.map((it, index) => (
+            <ItemIcon key={index} item={it} />
           ))}
         </ItemsContainer>
       </td>

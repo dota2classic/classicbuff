@@ -10,6 +10,10 @@ import { steamIdToNum } from "../../utils/numSteamId";
 import HeroIcon from "../../components/HeroIcon";
 import ItemIcon from "../../components/ItemIcon";
 import Head from "next/head";
+import PlayerRow from "../../components/PlayerRow";
+import TeamTable from "../../components/TeamTable";
+import { NextApiRequest, NextPageContext } from "next";
+import useWillMount from "../../utils/useWillMount";
 export const ItemsContainer = styled.div`
   display: flex;
   position: relative;
@@ -21,39 +25,6 @@ export const ItemsContainer = styled.div`
 
   width: fit-content;
 `;
-const PlayerRow = (p: Player) => {
-  const items = p.items.split(",").map(it => it.substr(5));
-  const playerUrl = `/player/${steamIdToNum(p.player.steam_id)}`;
-  return (
-    <Tr>
-      <td>{p.level}</td>
-      <td>
-        <Link href={playerUrl}>
-          <HeroIcon hero={p.hero} />
-        </Link>
-      </td>
-      <td>
-        <Link href={playerUrl}>{(p.player.name.length && p.player.name) || "(Пустой ник)"}</Link>
-      </td>
-      <td>
-        <ItemsContainer>
-          {items.map(it => (
-            <ItemIcon item={it} />
-          ))}
-        </ItemsContainer>
-      </td>
-      <td>{p.kills}</td>
-      <td>{p.deaths}</td>
-      <td>{p.assists}</td>
-      <td>
-        {p.last_hits}/{p.denies}
-      </td>
-      <td>
-        {p.gpm}/{p.xpm}
-      </td>
-    </Tr>
-  );
-};
 
 const MatchResult = styled.div`
   font-size: 20px;
@@ -132,54 +103,30 @@ export const Score = styled.div`
   font-size: 24px;
 `;
 
-const TeamTable = ({ players }: { players: Player[] }) => {
-  return (
-    <Table className="compact">
-      <thead>
-        <Tr>
-          <th style={{ width: 30 }}>Уровень</th>
-          <th style={{ width: 60 }}>Герой</th>
-          <th style={{ width: 250 }}>Игрок</th>
-          <th>Предметы</th>
-          <th style={{ width: 40 }}>K</th>
-          <th style={{ width: 40 }}>D</th>
-          <th style={{ width: 40 }}>A</th>
-          <th style={{ width: 40 }}>LH/D</th>
-          <th style={{ width: 40 }}>GPM/XPM</th>
-        </Tr>
-      </thead>
-      <tbody>
-        {players.map(it => (
-          <PlayerRow {...it} />
-        ))}
-      </tbody>
-    </Table>
-  );
+const fetchMatch = (id: number): Promise<Match> => {
+  return api
+    .get<Match>("/match", { id })
+    .then(it => it.data as Match);
 };
 
 const sumKills = (players: Player[]) => {
   let sum = 0;
   players.forEach(it => (sum += it.kills));
-
   return sum;
 };
 
-export default () => {
-  const [match, setMatch] = useState<Match>();
+const Page = (p: Partial<{ match: Match }>) => {
+  const [match, setMatch] = useState<Match | undefined>(p.match);
 
   const { id } = useRouter().query;
 
   useEffect(() => {
     const fetch = () => {
       if (!Number.isNaN(Number(id))) {
-        api
-          .get<Match>("/match", { id })
-          .then(it => {
-            setMatch(it.data as Match);
-          });
+        fetchMatch(Number(id)).then(setMatch);
       }
     };
-    fetch();
+    if (!p.match) fetch();
     const int = setInterval(fetch, 10000);
 
     return () => clearInterval(int);
@@ -216,8 +163,12 @@ export default () => {
     </Layout>
   );
 };
-/**
- docker pull enchantinggg4/mmbot:dotabuff
- docker ps -q --filter "name=dotabuff" | grep -q . && docker stop dotabuff && docker rm -fv dotabuff
- docker run -dit --name dotabuff -p 0.0.0.0:3000:3000 enchantinggg4/mmbot:dotabuff
- */
+
+Page.getInitialProps = async (ctx: NextPageContext) => {
+  const { id } = ctx.query;
+  return {
+    match: await fetchMatch(Number(id))
+  };
+};
+
+export default Page;

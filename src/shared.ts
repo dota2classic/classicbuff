@@ -6,6 +6,7 @@ export interface LadderElement {
 
 export interface PlayerStatsDto {
   playerSteamId: string;
+  id: number;
   gpm: number;
   xpm: number;
   kda: number;

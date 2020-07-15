@@ -11,6 +11,8 @@ import { numToSteamId } from "../../utils/numSteamId";
 import Head from "next/head";
 import HeroIcon from "../../components/HeroIcon";
 import { Tab, Tabs } from "../../components/Tabs";
+import getHeroRating from "../../utils/getHeroRating";
+import { NextPageContext } from "next";
 
 export const HeroPreview = styled.img`
   width: 60px;
@@ -18,51 +20,44 @@ export const HeroPreview = styled.img`
   margin: 4px;
 `;
 
-const TeamTd = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  & span {
-    margin-bottom: 10px;
-  }
-`;
-
-const Heroes = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
 interface PlayerInfo {
   matches: Match[];
   player: LadderElement;
 }
-export default () => {
+
+const fetchPlayer = async (id: number): Promise<[Match[], LadderElement, PlayerStatsDto[]]> => {
+  const formattedId = numToSteamId(Number(id));
+  const res: any = await api.get<PlayerInfo>("/player", { steam_id: formattedId });
+  const res2: any = await api.get<PlayerStatsDto[]>("/player/stats", { steam_id: formattedId });
+
+  const s = res2.data;
+  s.heroes.sort((a: PlayerStatsDto, b: PlayerStatsDto) => getHeroRating(b) - getHeroRating(a));
+
+  return [res.data.matches, res.data.player, s.heroes];
+};
+
+interface Props {
+  history: Match[];
+  player: LadderElement;
+  stats: PlayerStatsDto[];
+}
+const Page = (props: Partial<Props>) => {
   const { id } = useRouter().query;
 
-  const [history, setHistory] = useState<Match[]>([]);
-  const [player, setPlayer] = useState<LadderElement>();
-  const [stats, setStats] = useState<PlayerStatsDto[]>([]);
+  const [history, setHistory] = useState<Match[]>(props.history || []);
+  const [player, setPlayer] = useState<LadderElement | undefined>(props.player);
+  const [stats, setStats] = useState<PlayerStatsDto[]>(props.stats || []);
 
   useEffect(() => {
-    const getHeroRating = (it: PlayerStatsDto) => {
-      const wr = Number(it.wins) / Number(it.games);
-      const gamesPlayed = Number(it.games);
-      const avgKda = Number(it.kda);
-      return gamesPlayed * avgKda + wr * 100;
-    };
     const fetch = async () => {
       if (!id) return;
-      const formattedId = numToSteamId(Number(id));
-      const res: any = await api.get<PlayerInfo>("/player", { steam_id: formattedId });
-      const res2: any = await api.get<PlayerStatsDto[]>("/player/stats", { steam_id: formattedId });
-
-      const s = res2.data;
-      s.heroes.sort((a: PlayerStatsDto, b: PlayerStatsDto) => getHeroRating(b) - getHeroRating(a));
-      setHistory(res.data.matches);
-      setStats(s.heroes);
-      setPlayer(res.data.player);
+      const [history, player, stats] = await fetchPlayer(Number(id));
+      setHistory(history);
+      setStats(stats);
+      setPlayer(player);
     };
-    fetch();
+
+    if (!player) fetch();
     const int = setInterval(fetch, 10000);
 
     return () => clearInterval(int);
@@ -109,7 +104,7 @@ export default () => {
           </thead>
           <tbody>
             {stats.map(it => (
-              <Tr>
+              <Tr key={`${it.hero}${it.id}${it.gpm}${it.xpm}${it.kda}`}>
                 <td>
                   <HeroIcon hero={it.hero} />
                 </td>
@@ -152,3 +147,16 @@ export default () => {
     </Layout>
   );
 };
+
+Page.getInitialProps = async (ctx: NextPageContext) => {
+  const { id } = ctx.query;
+
+  const [history, player, stats] = await fetchPlayer(Number(id));
+  return {
+    history,
+    player,
+    stats
+  };
+};
+
+export default Page;

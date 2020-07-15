@@ -10,11 +10,7 @@ import { formatDateStr } from "../utils/format/formateDateStr";
 import Head from "next/head";
 import cx from "classnames";
 import HeroIcon from "../components/HeroIcon";
-export const HeroPreview = styled.img`
-  width: 60px;
-  height: auto;
-  margin: 4px;
-`;
+import { NextPageContext } from "next";
 
 const Heroes = styled.div`
   display: flex;
@@ -25,23 +21,54 @@ const MatchIdCol = styled.div`
   display: flex;
   flex-direction: column;
 `;
-export default () => {
+
+const NextButton = styled.button`
+  border: none;
+  color: #c2c2c2;
+  font-size: 20px;
+  padding: 8px;
+  margin-top: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  &:hover {
+    background: rgba(0, 0, 0, 0.3);
+  }
+  background: rgba(0, 0, 0, 0.1);
+`;
+
+const fetchHistoryPage = async (page: number): Promise<Match[]> => {
+  const res = await api.get<Match[]>("/matches", { page });
+
+  return res.data as Match[];
+};
+
+const Page = (p: Partial<{ history: Match[] }>) => {
   const [page, setPage] = useState(0);
-  const [history, setHistory] = useState<Match[]>([]);
+  const [hasMore, setHasMore] = useState(false);
+  const [history, setHistory] = useState<Match[]>(p.history || []);
+
+  const fetch = async () => {
+    const items = await fetchHistoryPage(page);
+    const newH = [...history];
+
+    items.forEach(it => {
+      if (!newH.find(z => z.id === it.id)) {
+        newH.push(it);
+      }
+    });
+    setHasMore(items.length === 30);
+    setHistory(newH);
+  };
 
   useEffect(() => {
-    const fetch = () => {
-      api
-        .get<Match[]>("/matches", { page })
-        .then(it => {
-          console.log(it);
-          setHistory(it.data as Match[]);
-        });
-    };
-    fetch();
     const int = setInterval(fetch, 10000);
 
     return () => clearInterval(int);
+  });
+
+  useEffect(() => {
+    fetch();
   }, [page]);
 
   return (
@@ -80,7 +107,7 @@ export default () => {
                   {it.players
                     .filter(it => it.team === 2)
                     .map(it => (
-                      <HeroIcon hero={it.hero} />
+                      <HeroIcon key={it.hero} hero={it.hero} />
                     ))}
                 </Heroes>
               </td>
@@ -89,7 +116,7 @@ export default () => {
                   {it.players
                     .filter(it => it.team === 3)
                     .map(it => (
-                      <HeroIcon hero={it.hero} />
+                      <HeroIcon key={it.hero} hero={it.hero} />
                     ))}
                 </Heroes>
               </td>
@@ -97,6 +124,24 @@ export default () => {
           ))}
         </tbody>
       </Table>
+      {hasMore && (
+        <NextButton
+          onClick={() => {
+            setPage(page + 1);
+          }}
+        >
+          More
+        </NextButton>
+      )}
     </Layout>
   );
 };
+
+Page.getInitialProps = async (ctx: NextPageContext) => {
+  const history = await fetchHistoryPage(0);
+  return {
+    history
+  };
+};
+
+export default Page;
