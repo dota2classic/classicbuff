@@ -34,6 +34,15 @@ export interface Player {
   hero: string;
 }
 
+export interface HeroSummary {
+  games: number;
+  wins: number;
+  losses: number;
+  kills: number;
+  deaths: number;
+  assists: number;
+  hero: string;
+}
 export interface Match {
   id: number;
   duration: number;

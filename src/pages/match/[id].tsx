@@ -150,12 +150,12 @@ const Page = (p: Partial<{ match: Match }>) => {
       </MatchResult>
       <Showcase>
         <TeamShowcase>
-          <Team className={match?.radiant_win ? "green" : "red"}>Radiant</Team>
+          <Team className={"green"}>Radiant</Team>
           <TeamTable players={match!!.players.filter(it => it.team === 2)} />
         </TeamShowcase>
 
         <TeamShowcase>
-          <Team className={!match?.radiant_win ? "green" : "red"}>Dire</Team>
+          <Team className={"red"}>Dire</Team>
 
           <TeamTable players={match!!.players.filter(it => it.team === 3)} />
         </TeamShowcase>

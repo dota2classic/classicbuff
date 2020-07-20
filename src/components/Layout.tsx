@@ -44,10 +44,9 @@ const SiteLink = styled.a`
 `;
 
 const Title = styled.div`
-  margin: auto;
   color: #d9d9d9;
   font-size: 20px;
-  margin-bottom: 40px;
+  margin: auto auto 40px;
 `;
 export default (p: PropsWithChildren<{ title: ReactNode }>) => {
   return (
@@ -64,6 +63,9 @@ export default (p: PropsWithChildren<{ title: ReactNode }>) => {
         </Link>
         <Link href={"/history"}>
           <SiteLink>История матчей</SiteLink>
+        </Link>
+        <Link href={"/heroes"}>
+          <SiteLink>Герои</SiteLink>
         </Link>
       </HeaderWrapper>
 

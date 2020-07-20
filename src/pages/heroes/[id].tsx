@@ -1,64 +1,32 @@
-import LadderRow, { LadderHeader, Table, Tr } from "../components/LadderRow";
-import Layout from "../components/Layout";
+import Router, { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { LadderElement, Match } from "../shared";
-import api from "../service/api";
-import styled from "styled-components";
-import Router from "next/router";
-import { formatDuration } from "./match/[id]";
-import { formatDateStr } from "../utils/format/formateDateStr";
+import Layout from "../../components/Layout";
 import Head from "next/head";
+import { Table, Tr } from "../../components/LadderRow";
 import cx from "classnames";
-import HeroIcon from "../components/HeroIcon";
-import { NextPageContext } from "next";
+import { formatDateStr } from "../../utils/format/formateDateStr";
+import { formatDuration } from "../match/[id]";
+import HeroIcon from "../../components/HeroIcon";
+import { Match } from "../../shared";
+import api from "../../service/api";
+import { Heroes, MatchIdCol } from "../history";
+import heroName from "../../utils/heroName";
 
-export const Heroes = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-export const MatchIdCol = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const NextButton = styled.button`
-  border: none;
-  color: #c2c2c2;
-  font-size: 20px;
-  padding: 8px;
-  margin-top: 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: 0.3s ease;
-  &:hover {
-    background: rgba(0, 0, 0, 0.3);
-  }
-  background: rgba(0, 0, 0, 0.1);
-`;
-
-const fetchHistoryPage = async (page: number): Promise<Match[]> => {
-  const res = await api.get<Match[]>("/matches", { page });
+const fetchHistoryPage = async (hero: string): Promise<Match[]> => {
+  const res = await api.get<Match[]>("/matches_hero", { hero });
 
   return res.data as Match[];
 };
 
-const Page = (p: Partial<{ history: Match[] }>) => {
-  const [page, setPage] = useState(0);
-  const [hasMore, setHasMore] = useState(false);
-  const [history, setHistory] = useState<Match[]>(p.history || []);
+export default () => {
+  const { id } = useRouter().query;
+
+  const [history, setHistory] = useState<Match[]>([]);
 
   const fetch = async () => {
-    const items = await fetchHistoryPage(page);
-    const newH = [...history];
+    const items = await fetchHistoryPage(id as string);
 
-    items.forEach(it => {
-      if (!newH.find(z => z.id === it.id)) {
-        newH.push(it);
-      }
-    });
-    setHasMore(items.length === 30);
-    setHistory(newH);
+    setHistory(items);
   };
 
   useEffect(() => {
@@ -69,12 +37,12 @@ const Page = (p: Partial<{ history: Match[] }>) => {
 
   useEffect(() => {
     fetch();
-  }, [page]);
+  }, [id]);
 
   return (
-    <Layout title="dota2classic.ru 6.81b история матчей">
+    <Layout title={`История матчей ${heroName(id as string)}`}>
       <Head>
-        <title>История матчей</title>
+        <title>{heroName(id as string)}</title>
       </Head>
       <Table className="compact">
         <thead>
@@ -124,24 +92,6 @@ const Page = (p: Partial<{ history: Match[] }>) => {
           ))}
         </tbody>
       </Table>
-      {hasMore && (
-        <NextButton
-          onClick={() => {
-            setPage(page + 1);
-          }}
-        >
-          More
-        </NextButton>
-      )}
     </Layout>
   );
 };
-
-Page.getInitialProps = async (ctx: NextPageContext) => {
-  const history = await fetchHistoryPage(0);
-  return {
-    history
-  };
-};
-
-export default Page;
