@@ -18,6 +18,11 @@ export interface PlayerStatsDto {
   hero: string;
 }
 
+export interface User {
+  discord_id: string;
+  steam_id?: string;
+}
+
 export interface Player {
   id: number;
   team: 2 | 3;

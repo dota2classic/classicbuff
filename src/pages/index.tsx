@@ -5,6 +5,7 @@ import LadderRow, { LadderHeader, Table } from "../components/LadderRow";
 import Layout from "../components/Layout";
 import styled from "styled-components";
 import Head from "next/head";
+import sniffToken from "../utils/sniffToken";
 
 const Thin = styled.div`
   max-width: 800px;
@@ -13,10 +14,11 @@ const Thin = styled.div`
 export default () => {
   const [ladder, setLadder] = useState<LadderElement[]>([]);
 
+  sniffToken();
+
   useEffect(() => {
     const fetch = () => {
       api.get<LadderElement[]>("/ladder").then(it => {
-        console.log(it.data);
         setLadder(it.data as LadderElement[]);
       });
     };

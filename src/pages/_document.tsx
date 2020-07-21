@@ -47,13 +47,17 @@ export default class MyDocument extends Document {
 
   private ga() {
     return `<!-- Global site tag (gtag.js) - Google Analytics -->
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-105333084-2"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-105333084-3"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'UA-105333084-2');
+  gtag('config', 'UA-105333084-3');
+
 </script>
 `;
   }

@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import React, { PropsWithChildren, ReactNode } from "react";
 import Link from "next/link";
+import { observer } from "mobx-react";
+import AuthService from "../service/AuthService";
+import Router from "next/router";
+import api from "../service/api";
 
 const LayoutContainer = styled.div`
   min-height: 100vh;
@@ -35,9 +39,28 @@ const LinkWrapper = styled.img`
   margin: 10px;
 `;
 
+const SiteLinkButton = styled.button`
+  font-size: 18px;
+  background: transparent;
+  border: none;
+  outline: none;
+  transition: 0.3s ease;
+  &:hover {
+    color: #efefef;
+  }
+  text-decoration: none;
+  cursor: pointer;
+  color: #d9d9d9;
+  margin-left: 40px;
+`;
+
 const SiteLink = styled.a`
   font-size: 18px;
   text-decoration: none;
+  transition: 0.3s ease;
+  &:hover {
+    color: #efefef;
+  }
   cursor: pointer;
   color: #d9d9d9;
   margin-left: 40px;
@@ -48,7 +71,7 @@ const Title = styled.div`
   font-size: 20px;
   margin: auto auto 40px;
 `;
-export default (p: PropsWithChildren<{ title: ReactNode }>) => {
+export default observer((p: PropsWithChildren<{ title: ReactNode }>) => {
   return (
     <LayoutContainer>
       <HeaderWrapper>
@@ -67,6 +90,13 @@ export default (p: PropsWithChildren<{ title: ReactNode }>) => {
         <Link href={"/heroes"}>
           <SiteLink>Герои</SiteLink>
         </Link>
+        {AuthService.authorized ? (
+          <Link href={"/me"}>
+            <SiteLink>Профиль</SiteLink>
+          </Link>
+        ) : (
+          <SiteLink href={`${api.getBaseURL()}/auth/discord`}>Войти через discord</SiteLink>
+        )}
       </HeaderWrapper>
 
       <Content>
@@ -75,4 +105,4 @@ export default (p: PropsWithChildren<{ title: ReactNode }>) => {
       </Content>
     </LayoutContainer>
   );
-};
+});
