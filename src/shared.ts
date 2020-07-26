@@ -48,6 +48,7 @@ export interface HeroSummary {
   assists: number;
   hero: string;
 }
+
 export interface Match {
   id: number;
   duration: number;

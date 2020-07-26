@@ -6,6 +6,7 @@ import api from "../../service/api";
 import { Table, Tr } from "../../components/LadderRow";
 import PlayerMatch from "../../components/PlayerMatch";
 import HeroSummaryRow from "../../components/HeroSummaryRow";
+import SmartTable from "../../components/SmartTable";
 
 const fetchHeroes = async (): Promise<HeroSummary[]> => {
   const res = await api.get<HeroSummary[]>("/heroes");
@@ -21,16 +22,34 @@ const fetchHeroes = async (): Promise<HeroSummary[]> => {
   });
 };
 
+export interface HeroSummaryPresentation {
+  hero: string;
+  index: number;
+  kda: number;
+  winrate: number;
+  games: number;
+}
+
 export default () => {
-  const [heroes, setHeroes] = useState<HeroSummary[]>([]);
+  const [heroes, setHeroes] = useState<HeroSummaryPresentation[]>([]);
 
   useEffect(() => {
     const fetch = () => {
-      fetchHeroes().then(setHeroes);
+      fetchHeroes().then(its =>
+        setHeroes(
+          its.map((it, index) => ({
+            index,
+            hero: it.hero,
+            winrate: (it.wins / Math.max(it.games, 1)) * 100,
+            kda: (it.kills + it.assists) / Math.max(it.deaths, 1),
+            games: it.games
+          }))
+        )
+      );
     };
 
     fetch();
-    const int = setInterval(fetch, 10000);
+    const int = setInterval(fetch, 1000);
     return () => clearInterval(int);
   }, []);
 
@@ -40,22 +59,18 @@ export default () => {
         <title>Герои - dota2classic.ru</title>
         <meta name="description" content="dota2classic.ru - список героев и их успеваемость" />
       </Head>
-      <Table className={"compact"}>
-        <thead>
-          <Tr>
-            <th />
-            <th>Герой</th>
-            <th>Игр</th>
-            <th>Winrate</th>
-            <th>KDA</th>
-          </Tr>
-        </thead>
-        <tbody>
-          {heroes.map((it, index) => (
-            <HeroSummaryRow {...it} index={index} />
-          ))}
-        </tbody>
-      </Table>
+
+      <SmartTable<HeroSummaryPresentation>
+        data={heroes}
+        renderRow={HeroSummaryRow}
+        sort={{
+          hero: it => it.hero,
+          kda: it => it.kda,
+          winrate: it => it.winrate,
+          games: it => it.games
+        }}
+        head={[{ index: "" }, { hero: "Герой" }, { games: "Сыграно игр" }, { winrate: "Winrate" }, { kda: "KDA" }]}
+      />
     </Layout>
   );
 };

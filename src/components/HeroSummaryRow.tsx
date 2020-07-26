@@ -6,8 +6,9 @@ import cx from "classnames";
 import heroes from "../texts/heroes";
 import Router from "next/router";
 import heroName from "../utils/heroName";
+import { HeroSummaryPresentation } from "../pages/heroes";
 
-export default (p: HeroSummary & { index: number }) => {
+export default (p: HeroSummaryPresentation & { index: number }) => {
   return (
     <Tr
       onClick={() => Router.push("/heroes/[id]", `/heroes/${p.hero}`)}
@@ -18,8 +19,8 @@ export default (p: HeroSummary & { index: number }) => {
       </td>
       <td style={{ textTransform: "capitalize" }}>{heroName(p.hero)}</td>
       <td>{p.games}</td>
-      <td>{((p.wins / Math.max(p.games, 1)) * 100).toFixed(2)}%</td>
-      <td>{((p.kills + p.assists) / Math.max(p.deaths, 1)).toFixed(2)}</td>
+      <td>{p.winrate.toFixed(2)}%</td>
+      <td>{p.kda.toFixed(2)}</td>
     </Tr>
   );
 };

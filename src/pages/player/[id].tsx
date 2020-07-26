@@ -39,9 +39,29 @@ const fetchPlayer = async (id: number): Promise<[Match[], LadderElement, PlayerS
 
 const Page = () => {
   const { id } = useRouter().query;
+  const [player, setPlayer] = useState<LadderElement | undefined>();
+
+  useEffect(() => {
+    const fetch = async () => {
+      const res: any = await api.get<PlayerInfo>("/player", { steam_id: numToSteamId(Number(id)) });
+      console.log(res.data);
+      setPlayer(res.data.player);
+    };
+    fetch();
+  }, [id]);
 
   return (
-    <Layout title={`Профиль игрока`}>
+    <Layout
+      title={
+        <div>
+          <div style={{ fontSize: 20 }}>{player?.name}</div>
+          <div style={{ fontSize: 14, marginTop: 20 }}>{player?.mmr} MMR</div>
+        </div>
+      }
+    >
+      <Head>
+        <title>Профиль игрока {player?.name}</title>
+      </Head>
       <PlayerPage steam_id={numToSteamId(Number(id))} />
     </Layout>
   );
