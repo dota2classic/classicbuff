@@ -33,7 +33,7 @@ const HeaderWrapper = styled.div`
   padding: 40px;
 `;
 
-const LinkWrapper = styled.img`
+export const LinkWrapper = styled.img`
   height: 40px;
   width: auto;
   margin: 10px;
