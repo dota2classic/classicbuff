@@ -134,7 +134,7 @@ const Page = (p: Partial<{ match: Match }>) => {
 
   if (!match) return null;
   return (
-    <Layout title={`dota2classic.ru 6.81b матч #${id}`}>
+    <Layout title={<h3>Матч #{id}</h3>}>
       <Head>
         <title>Матч {id}</title>
       </Head>

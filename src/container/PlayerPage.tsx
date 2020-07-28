@@ -85,8 +85,12 @@ export default (p: Props) => {
                 <th style={{ width: 60 }}>KDA</th>
                 <th style={{ width: 60 }}>GPM</th>
                 <th style={{ width: 60 }}>XPM</th>
-                <th style={{ width: 60 }}>Last hits</th>
-                <th style={{ width: 60 }}>Denies</th>
+                <th className={"omit"} style={{ width: 60 }}>
+                  Last hits
+                </th>
+                <th className={"omit"} style={{ width: 60 }}>
+                  Denies
+                </th>
               </Tr>
             </thead>
             <tbody>
@@ -100,8 +104,8 @@ export default (p: Props) => {
                   <td>{it.kda.toFixed(2)}</td>
                   <td>{it.gpm.toFixed(0)}</td>
                   <td>{it.xpm.toFixed(0)}</td>
-                  <td>{Number(it.last_hits).toFixed(0)}</td>
-                  <td>{Number(it.denies).toFixed(0)}</td>
+                  <td className={"omit"}>{Number(it.last_hits).toFixed(0)}</td>
+                  <td className={"omit"}> {Number(it.denies).toFixed(0)}</td>
                 </Tr>
               ))}
             </tbody>
@@ -114,15 +118,19 @@ export default (p: Props) => {
           <thead>
             <Tr>
               <th>ID</th>
-              <th>Длительность</th>
+              <th style={{ width: 20, textOverflow: "ellipsis" }}>Длительность</th>
               <th>Герой</th>
-              <th>Предметы</th>
+              <th className={"omit"}>Предметы</th>
               <th>Результат</th>
               <th style={{ width: 40 }}>K</th>
               <th style={{ width: 40 }}>D</th>
               <th style={{ width: 40 }}>A</th>
-              <th style={{ width: 40 }}>L/D</th>
-              <th style={{ width: 40 }}>GPM/XPM</th>
+              <th className={"omit"} style={{ width: 40 }}>
+                L/D
+              </th>
+              <th className={"omit"} style={{ width: 40 }}>
+                GPM/XPM
+              </th>
             </Tr>
           </thead>
           <tbody>

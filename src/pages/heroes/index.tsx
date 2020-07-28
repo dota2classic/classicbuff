@@ -54,7 +54,7 @@ export default () => {
   }, []);
 
   return (
-    <Layout title={<h1>Герои</h1>}>
+    <Layout title={<h3>Герои</h3>}>
       <Head>
         <title>Герои - dota2classic.ru</title>
         <meta name="description" content="dota2classic.ru - список героев и их успеваемость" />

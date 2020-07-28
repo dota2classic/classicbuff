@@ -15,13 +15,15 @@ export default (p: Player) => {
       <td>{p.level}</td>
       <td>
         <Link href={playerUrl}>
-          <HeroIcon hero={p.hero} />
+          <a>
+            <HeroIcon hero={p.hero} />
+          </a>
         </Link>
       </td>
       <td>
         <Link href={playerUrl}>{(p.player.name.length && p.player.name) || "(Пустой ник)"}</Link>
       </td>
-      <td>
+      <td className={"omit"}>
         <ItemsContainer>
           {items.map((it, index) => (
             <ItemIcon key={index} item={it} />

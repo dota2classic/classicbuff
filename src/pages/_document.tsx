@@ -30,18 +30,20 @@ export default class MyDocument extends Document {
 
   private ym() {
     return `<!-- Yandex.Metrika counter -->
+<!-- Yandex.Metrika counter -->
 <script type="text/javascript" >
    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-   ym(65607208, "init", {
+   ym(65944870, "init", {
         clickmap:true,
         trackLinks:true,
-        accurateTrackBounce:true
+        accurateTrackBounce:true,
+        webvisor:true
    });
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/65607208" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<noscript><div><img src="https://mc.yandex.ru/watch/65944870" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->`;
   }
 
@@ -75,6 +77,7 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
           <span dangerouslySetInnerHTML={{ __html: this.ga() }} />
+          <span dangerouslySetInnerHTML={{ __html: this.ym() }} />
         </body>
       </html>
     );

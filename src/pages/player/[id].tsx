@@ -53,10 +53,9 @@ const Page = () => {
   return (
     <Layout
       title={
-        <div>
-          <div style={{ fontSize: 20 }}>{player?.name}</div>
-          <div style={{ fontSize: 14, marginTop: 20 }}>{player?.mmr} MMR</div>
-        </div>
+        <h3>
+          {player?.name}, {player?.mmr} MMR
+        </h3>
       }
     >
       <Head>

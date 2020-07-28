@@ -83,8 +83,8 @@ const Page = (p: Partial<{ history: Match[] }>) => {
             <th>Режим</th>
             <th>Победитель</th>
             <th>Длительность</th>
-            <th className="green">Radiant team</th>
-            <th className="red">Dire team</th>
+            <th className="green omit">Radiant team</th>
+            <th className="red omit">Dire team</th>
           </Tr>
         </thead>
         <tbody>
@@ -102,7 +102,7 @@ const Page = (p: Partial<{ history: Match[] }>) => {
               <td className={"tiny"}>{it.type === 0 ? "Ranked" : "Unranked"}</td>
               <td className={it.radiant_win ? "green" : "red"}>{it.radiant_win ? "Radiant" : "Dire"}</td>
               <td>{formatDuration(it.duration)}</td>
-              <td className={it.radiant_win ? "green" : "red"}>
+              <td className={cx(it.radiant_win ? "green" : "red", "omit")}>
                 <Heroes>
                   {it.players
                     .filter(it => it.team === 2)
@@ -111,7 +111,7 @@ const Page = (p: Partial<{ history: Match[] }>) => {
                     ))}
                 </Heroes>
               </td>
-              <td className={it.radiant_win ? "red" : "green"}>
+              <td className={cx(it.radiant_win ? "red" : "green", "omit")}>
                 <Heroes>
                   {it.players
                     .filter(it => it.team === 3)

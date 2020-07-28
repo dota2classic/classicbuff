@@ -30,7 +30,7 @@ export default ({ match, player, index }: PlayerMatchInfo) => {
       <td>
         <HeroIcon hero={pim.hero} />
       </td>
-      <td>
+      <td className={"omit"}>
         <ItemsContainer>
           {items.map((it, index) => (
             <ItemIcon key={index} item={it} />
@@ -43,10 +43,10 @@ export default ({ match, player, index }: PlayerMatchInfo) => {
       <td>{pim.kills}</td>
       <td>{pim.deaths}</td>
       <td>{pim.assists}</td>
-      <td>
+      <td className={"omit"}>
         {pim.last_hits}/{pim.denies}
       </td>
-      <td>
+      <td className={"omit"}>
         {pim.gpm}/{pim.xpm}
       </td>
     </Tr>

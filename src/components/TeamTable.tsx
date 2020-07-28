@@ -11,7 +11,7 @@ export default ({ players }: { players: Player[] }) => {
           <th style={{ width: 30 }}>Уровень</th>
           <th style={{ width: 60 }}>Герой</th>
           <th style={{ width: 250 }}>Игрок</th>
-          <th>Предметы</th>
+          <th className={"omit"}>Предметы</th>
           <th style={{ width: 40 }}>K</th>
           <th style={{ width: 40 }}>D</th>
           <th style={{ width: 40 }}>A</th>

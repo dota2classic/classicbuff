@@ -24,6 +24,13 @@ export const Tr = styled.tr`
     text-decoration: none;
   }
 
+  & td.omit,
+  th.omit {
+    @media (max-width: 600px) {
+      display: none;
+    }
+  }
+
   & td,
   a {
     color: #c2c2c2;
@@ -35,7 +42,11 @@ export default (props: LadderElement & { index: number }) => {
 
   return (
     <Tr className={props.index % 2 === 0 ? "even" : "odd"}>
-      <td>{props.index}</td>
+      <td>
+        <Link href={playerUrl}>
+          <a>{props.index}</a>
+        </Link>
+      </td>
       <td>
         <Link href={playerUrl}>
           <a style={{ fontWeight: "bold" }}>{props.name}</a>

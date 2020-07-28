@@ -7,16 +7,37 @@ import Link from "next/link";
 const LandingBody = styled.div`
   color: #c2c2c2;
 
-  & p {
-    font-size: 18px;
+  @media (max-width: 600px) {
+    width: 100vw;
+    overflow: hidden;
   }
 
-  & img.compact {
-    width: 40%;
+  & p {
+    font-size: 18px;
+
+    @media (max-width: 600px) {
+      padding: 6px 20px 6px 20px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    & img + img {
+      margin-top: 20px;
+    }
+  }
+  & img {
+    @media (max-width: 600px) {
+      max-height: 30vh;
+    }
   }
 
   & img.semi-compact {
     width: 70%;
+
+    @media (max-width: 600px) {
+      max-height: 30vh;
+      width: 100%;
+    }
   }
 
   & a {
@@ -50,14 +71,20 @@ export default () => {
           версию The International 2014 года.
         </p>
         <p>
+          Ты не одинок в мыслях, что старая дота была лучше, ламповее, баланснее. И мечта поиграть в старую доту не у
+          тебя одного - поэтому и появился этот проект.
+        </p>
+        <img src="/static/landing/old.png" alt="" />
+        <img src="/static/landing/profile.jpeg" alt="" />
+        <p>
           Начать играть очень просто - нужно только скачать и распаковать архив с клиентом игры. Скачать можно с{" "}
           <a href="https://yadi.sk/d/7jOGNrUcpppedg">Яндекс Диска</a> или{" "}
           <a href="https://drive.google.com/open?id=1-pmNQZfgjN6b8YYTLgv7HidnB7zIYqAv">Google Drive</a>
         </p>
         <p>Все начиналось с того, что руками хостилось лобби, по паролю присоединялись те, кто хочет играть</p>
         <p>
-          Сейчас же это полу-автоматический матчмейкинг в <a href="https://discord.gg/VU5wjA8">discord сервере.</a>{" "}
-          Поиск игры происходит следующим образом:
+          Сейчас же это автоматический матчмейкинг в <a href="https://discord.gg/VU5wjA8">discord сервере.</a> Поиск
+          игры происходит следующим образом:
         </p>
         <p>
           Если хочешь поиграть, ставь реакцию пуджа в сообщении в канале{" "}
@@ -66,7 +93,7 @@ export default () => {
         <img className={"semi-compact"} src="/static/landing/pudge.png" />
         <p>
           Когда набирается 10 человек, специальный бот, отвечающий за матчмейкинг, присылает в личные сообщения проверку
-          на готовность
+          на готовность.
         </p>
         <img className={"semi-compact"} src="/static/landing/accept.png" alt="" />
         <p>В нем нужно нажать на реакцию, чтобы принять или отклонить матч.</p>
