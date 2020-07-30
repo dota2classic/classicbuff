@@ -5,12 +5,13 @@ import { observer } from "mobx-react";
 import AuthService from "../service/AuthService";
 import Router, { useRouter } from "next/router";
 import api from "../service/api";
+import useWillMount from "../utils/useWillMount";
 
 const LayoutContainer = styled.div`
   min-height: 100vh;
   width: 100vw;
   //padding-top: 200px;
-  background: #15191d;
+  background: #101213;
   padding-bottom: 200px;
 
   @media (max-width: 600px) {
@@ -26,6 +27,17 @@ const Content = styled.div`
   align-items: center;
   width: 60%;
   min-width: 600px;
+
+  &.landing {
+    margin-top: 0px;
+    width: 60%;
+    @media (max-width: 600px) {
+      width: 100vw;
+      max-width: 100vw;
+      min-width: unset;
+      margin-top: 0px;
+    }
+  }
 
   @media (max-width: 600px) {
     width: 100vw;
@@ -44,6 +56,10 @@ const HeaderWrapper = styled.div`
   align-items: center;
   padding: 40px;
 
+  &.compact {
+    padding: 0px;
+  }
+
   @media (max-width: 600px) {
     display: none;
   }
@@ -53,12 +69,17 @@ export const LinkWrapper = styled.img`
   height: 40px;
   width: auto;
   margin: 10px;
+  cursor: pointer;
 `;
 
 const SiteLink = styled.a`
   font-size: 18px;
-  text-decoration: none;
   transition: 0.3s ease;
+  display: flex;
+  align-items: center;
+  text-decoration: underline;
+  text-underline-position: under;
+
   &:hover {
     color: #efefef;
   }
@@ -135,15 +156,18 @@ const CloseIcon = styled.img`
   margin-right: 10px;
   position: relative;
 `;
-export default observer((p: PropsWithChildren<{ title: ReactNode }>) => {
+export default observer((p: PropsWithChildren<{ landing?: boolean; title?: ReactNode }>) => {
   const router = useRouter();
+  useWillMount(() => {
+    AuthService.fetchMe();
+  });
   const menu = "menu" in router.query;
   return (
     <LayoutContainer>
       {menu && (
         <MobileMenu>
           <CloseIcon onClick={() => Router.back()} src={"/static/unnamed.png"} />
-          <Link href={"/"}>
+          <Link href={"/leaderboard"}>
             <SiteLink>
               <Icon src={"/static/items/rapier.jpg"} />
               Таблица лидеров
@@ -174,16 +198,25 @@ export default observer((p: PropsWithChildren<{ title: ReactNode }>) => {
               Войти через discord
             </SiteLink>
           )}
+          <div style={{ height: "30%" }} />
+
+          <SiteLink href="https://discord.gg/VU5wjA8">
+            <Icon src={"/static/icons/dis2.png"} />
+            Discord сервер
+          </SiteLink>
+          <SiteLink href="https://discord.gg/VU5wjA8">
+            <Icon src={"/static/icons/vk1.png"} />
+            Группа VK
+          </SiteLink>
         </MobileMenu>
       )}
       <HeaderWrapper>
-        <a href="https://discord.gg/VU5wjA8">
-          <LinkWrapper alt={"Discord logo"} src="/static/icons/dis2.png" />
-        </a>
-        <a href="https://vk.com/club191796288">
-          <LinkWrapper alt={"Vk logo"} src="/static/icons/vk1.png" />
-        </a>
         <Link href={"/"}>
+          <SiteLink>
+            <span style={{ textTransform: "uppercase" }}>dota2classic</span>
+          </SiteLink>
+        </Link>
+        <Link href={"/leaderboard"}>
           <SiteLink>Таблица лидеров</SiteLink>
         </Link>
         <Link href={"/history"}>
@@ -200,14 +233,21 @@ export default observer((p: PropsWithChildren<{ title: ReactNode }>) => {
           <SiteLink href={`${api.getBaseURL()}/auth/discord`}>Войти через discord</SiteLink>
         )}
       </HeaderWrapper>
-
-      <Content>
+      <HeaderWrapper className="compact">
+        <a href="https://discord.gg/VU5wjA8">
+          <LinkWrapper alt={"Discord logo"} src="/static/icons/dis2.png" />
+        </a>
+        <a href="https://vk.com/club191796288">
+          <LinkWrapper alt={"Vk logo"} src="/static/icons/vk1.png" />
+        </a>
+      </HeaderWrapper>
+      <Content className={(p.landing && "landing") || undefined}>
         <Title>
           <MenuIcon
             onClick={() => Router.push(`${router.pathname}?menu`, `${router.asPath}?menu`)}
             src={"/static/menu.svg"}
           />
-          <span>{p.title}</span>
+          {p.title && <span>{p.title}</span>}
         </Title>
         {p.children}
       </Content>

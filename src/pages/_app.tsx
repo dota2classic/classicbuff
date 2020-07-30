@@ -2,6 +2,7 @@ import React from "react";
 import App from "next/app";
 import { Provider } from "mobx-react";
 import AuthService from "../service/AuthService";
+import { TokenSniffer } from "../utils/sniffToken";
 
 export default class MyApp extends App<any> {
   render() {
@@ -9,6 +10,7 @@ export default class MyApp extends App<any> {
     return (
       <>
         <Provider authService={AuthService}>
+          <TokenSniffer />
           <Component {...pageProps} />
         </Provider>
       </>
