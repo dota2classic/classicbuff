@@ -60,7 +60,7 @@ export default () => {
         <meta name="description" content="dota2classic.ru - список героев и их успеваемость" />
       </Head>
 
-      <SmartTable<HeroSummaryPresentation>
+      <SmartTable
         data={heroes}
         renderRow={HeroSummaryRow}
         sort={{

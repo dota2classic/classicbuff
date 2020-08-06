@@ -1,16 +1,18 @@
-import LadderRow, { LadderHeader, Table, Tr } from "../components/LadderRow";
+import { Table, Tr } from "../components/LadderRow";
 import Layout from "../components/Layout";
 import React, { useEffect, useState } from "react";
-import { LadderElement, Match } from "../shared";
+import { Match } from "../shared";
 import api from "../service/api";
 import styled from "styled-components";
-import Router from "next/router";
-import { formatDuration } from "./match/[id]";
-import { formatDateStr } from "../utils/format/formateDateStr";
 import Head from "next/head";
-import cx from "classnames";
-import HeroIcon from "../components/HeroIcon";
 import { NextPageContext } from "next";
+import { MatchmakingMode } from "../utils/format/formatGameMode";
+import MatchRow from "../components/MatchRow";
+import { Tab, Tabs } from "../components/Tabs";
+import HistoryStore from "../stores/HistoryStore";
+
+import { observer, useLocalStore } from "mobx-react";
+import useWillMount from "../utils/useWillMount";
 
 export const Heroes = styled.div`
   display: flex;
@@ -37,45 +39,47 @@ const NextButton = styled.button`
   background: rgba(0, 0, 0, 0.1);
 `;
 
-const fetchHistoryPage = async (page: number): Promise<Match[]> => {
-  const res = await api.get<Match[]>("/matches", { page });
+const Page = observer((p: Partial<{ history: Match[] }>) => {
+  const store = useLocalStore(() => new HistoryStore());
 
-  return res.data as Match[];
-};
-
-const Page = (p: Partial<{ history: Match[] }>) => {
-  const [page, setPage] = useState(0);
-  const [hasMore, setHasMore] = useState(false);
-  const [history, setHistory] = useState<Match[]>(p.history || []);
-
-  const fetch = async () => {
-    const items = await fetchHistoryPage(page);
-    const newH = [...history];
-
-    items.forEach(it => {
-      if (!newH.find(z => z.id === it.id)) {
-        newH.push(it);
-      }
-    });
-    setHasMore(items.length === 30);
-    setHistory(newH);
-  };
-
-  useEffect(() => {
-    const int = setInterval(fetch, 10000);
-
-    return () => clearInterval(int);
+  useWillMount(() => {
+    if (p.history) {
+      store.matches = p.history;
+    }
   });
 
   useEffect(() => {
-    fetch();
-  }, [page]);
+    store.fetch();
+  }, []);
 
   return (
     <Layout title="dota2classic.ru 6.81b история матчей">
       <Head>
         <title>История матчей</title>
       </Head>
+      <Tabs>
+        <Tab
+          onClick={() => (store.mode = MatchmakingMode.RANKED)}
+          className={(store.mode === MatchmakingMode.RANKED && "active") || undefined}
+        >
+          Ranked
+        </Tab>
+        <Tab
+          onClick={() => (store.mode = MatchmakingMode.UNRANKED)}
+          className={(store.mode === MatchmakingMode.UNRANKED && "active") || undefined}
+        >
+          Unranked
+        </Tab>
+        <Tab
+          onClick={() => (store.mode = MatchmakingMode.SOLOMID)}
+          className={(store.mode === MatchmakingMode.SOLOMID && "active") || undefined}
+        >
+          1x1
+        </Tab>
+        <Tab onClick={() => (store.mode = undefined)} className={(store.mode === undefined && "active") || undefined}>
+          Все
+        </Tab>
+      </Tabs>
       <Table className="compact">
         <thead>
           <Tr>
@@ -88,46 +92,15 @@ const Page = (p: Partial<{ history: Match[] }>) => {
           </Tr>
         </thead>
         <tbody>
-          {history.map((it, index) => (
-            <Tr
-              className={cx("link", index % 2 === 0 ? "even" : "odd")}
-              onClick={() => Router.push("/match/[id]", `/match/${it.id}`)}
-            >
-              <td className={"green tiny"}>
-                <MatchIdCol>
-                  <span>{it.id}</span>
-                  <span style={{ fontSize: 14, marginTop: 2, color: "#c2c2c2" }}>{formatDateStr(it.timestamp)}</span>
-                </MatchIdCol>
-              </td>
-              <td className={"tiny"}>{it.type === 0 ? "Ranked" : "Unranked"}</td>
-              <td className={it.radiant_win ? "green" : "red"}>{it.radiant_win ? "Radiant" : "Dire"}</td>
-              <td>{formatDuration(it.duration)}</td>
-              <td className={cx(it.radiant_win ? "green" : "red", "omit")}>
-                <Heroes>
-                  {it.players
-                    .filter(it => it.team === 2)
-                    .map(it => (
-                      <HeroIcon key={it.hero} hero={it.hero} />
-                    ))}
-                </Heroes>
-              </td>
-              <td className={cx(it.radiant_win ? "red" : "green", "omit")}>
-                <Heroes>
-                  {it.players
-                    .filter(it => it.team === 3)
-                    .map(it => (
-                      <HeroIcon key={it.hero} hero={it.hero} />
-                    ))}
-                </Heroes>
-              </td>
-            </Tr>
+          {store.matches.map((it, index) => (
+            <MatchRow index={index} {...it} />
           ))}
         </tbody>
       </Table>
-      {hasMore && (
+      {store.hasMore && (
         <NextButton
           onClick={() => {
-            setPage(page + 1);
+            store.page++;
           }}
         >
           More
@@ -135,13 +108,6 @@ const Page = (p: Partial<{ history: Match[] }>) => {
       )}
     </Layout>
   );
-};
-
-Page.getInitialProps = async (ctx: NextPageContext) => {
-  const history = await fetchHistoryPage(0);
-  return {
-    history
-  };
-};
+});
 
 export default Page;

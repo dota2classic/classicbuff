@@ -1,3 +1,5 @@
+import { MatchmakingMode } from "./utils/format/formatGameMode";
+
 export interface LadderElement {
   name: string;
   mmr: number;
@@ -54,6 +56,6 @@ export interface Match {
   duration: number;
   radiant_win: boolean;
   timestamp: string;
-  type: number;
+  type: MatchmakingMode;
   players: Player[];
 }

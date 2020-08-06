@@ -86,7 +86,7 @@ export const Table = styled.table`
   }
 
   & td.tiny {
-    font-size: 14px !important;
+    font-size: 12px !important;
   }
 
   & th.green,
@@ -97,7 +97,7 @@ export const Table = styled.table`
   & td,
   th {
     padding: 12px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     text-align: left;
   }
@@ -109,7 +109,7 @@ export const Table = styled.table`
     & td,
     th {
       padding: 2px;
-      font-size: 16px;
+      font-size: 14px;
       text-align: center;
     }
   }
