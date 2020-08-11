@@ -2,9 +2,9 @@ export enum MatchmakingMode {
   RANKED = 0,
   UNRANKED = 1,
   SOLOMID = 2,
-  DIRETIDE
+  DIRETIDE = 3,
+  GREEVILING = 4
 }
-
 export default (mode: MatchmakingMode) => {
   if (mode === MatchmakingMode.SOLOMID) {
     return "1x1 mid";
