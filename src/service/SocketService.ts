@@ -31,7 +31,7 @@ class SocketService {
     return this.mode !== undefined;
   }
   constructor() {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && localStorage.getItem("dev") === "true") {
       console.log("Socket initiated");
       this.socket = io(local ? "ws://localhost:5003" : "wss://dota2classic.ru", {
         transports: ["websocket"],

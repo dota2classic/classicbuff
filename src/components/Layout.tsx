@@ -25,7 +25,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 60%;
+  width: fit-content;
   min-width: 600px;
 
   &.landing {
@@ -74,6 +74,7 @@ export const LinkWrapper = styled.img`
 
 const SiteLink = styled.a`
   font-size: 18px;
+
   transition: 0.3s ease;
   display: flex;
   align-items: center;
@@ -132,10 +133,10 @@ const MobileMenu = styled.div`
     align-items: center;
     display: flex;
     transition: 0.3s;
-    color: #4ab19d;
-    &:hover {
-      color: #a9f5e6;
-    }
+    //color: #4ab19d;
+    //&:hover {
+    //  color: #a9f5e6;
+    //}
     font-size: 20px;
   }
 `;
@@ -167,26 +168,33 @@ export default observer((p: PropsWithChildren<{ landing?: boolean; title?: React
       {menu && (
         <MobileMenu>
           <CloseIcon onClick={() => Router.back()} src={"/static/unnamed.png"} />
-          <Link href={"/leaderboard"}>
+          <Link passHref href={"/leaderboard"}>
             <SiteLink>
               <Icon src={"/static/items/rapier.jpg"} />
               Таблица лидеров
             </SiteLink>
           </Link>
-          <Link href={"/history"}>
+
+          <Link passHref href={"/download"}>
+            <SiteLink>
+              <Icon src={"/static/items/aegis.jpg"} />
+              Играть
+            </SiteLink>
+          </Link>
+          <Link passHref href={"/history"}>
             <SiteLink>
               <Icon src={"/static/items/tpscroll.jpg"} />
               История матчей
             </SiteLink>
           </Link>
-          <Link href={"/heroes"}>
+          <Link passHref href={"/heroes"}>
             <SiteLink>
               <Icon src={"/static/heroes/npc_dota_hero_axe.jpg"} />
               Герои
             </SiteLink>
           </Link>
           {AuthService.authorized ? (
-            <Link href={"/me"}>
+            <Link passHref href={"/me"}>
               <SiteLink>
                 <Icon src={"/static/items/aegis.jpg"} />
                 Профиль
@@ -211,22 +219,25 @@ export default observer((p: PropsWithChildren<{ landing?: boolean; title?: React
         </MobileMenu>
       )}
       <HeaderWrapper>
-        <Link href={"/"}>
+        <Link passHref href={"/"}>
           <SiteLink>
             <span style={{ textTransform: "uppercase" }}>dota2classic</span>
           </SiteLink>
         </Link>
-        <Link href={"/leaderboard"}>
+        <Link passHref href={"/download"}>
+          <SiteLink>Играть</SiteLink>
+        </Link>
+        <Link passHref href={"/leaderboard"}>
           <SiteLink>Таблица лидеров</SiteLink>
         </Link>
-        <Link href={"/history"}>
+        <Link passHref href={"/history"}>
           <SiteLink>История матчей</SiteLink>
         </Link>
-        <Link href={"/heroes"}>
+        <Link passHref href={"/heroes"}>
           <SiteLink>Герои</SiteLink>
         </Link>
         {AuthService.authorized ? (
-          <Link href={"/me"}>
+          <Link passHref href={"/me"}>
             <SiteLink>Профиль</SiteLink>
           </Link>
         ) : (

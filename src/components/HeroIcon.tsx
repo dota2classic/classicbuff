@@ -5,6 +5,10 @@ export const DotaIcon = styled.img`
   height: 40px;
   object-fit: contain;
 
+  @media (max-width: 1200px) {
+    height: 30px;
+  }
+
   &.item {
   }
 `;

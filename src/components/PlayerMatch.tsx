@@ -1,4 +1,4 @@
-import { LadderElement, Match } from "../shared";
+import { LadderElement, Match, Player } from "../shared";
 import Router from "next/router";
 import { Tr } from "./LadderRow";
 import React from "react";
@@ -8,13 +8,15 @@ import ItemIcon from "./ItemIcon";
 import { formatDateStr } from "../utils/format/formateDateStr";
 import cx from "classnames";
 import HeroIcon from "./HeroIcon";
+import formatGameMode from "../utils/format/formatGameMode";
 export interface PlayerMatchInfo {
-  player: LadderElement;
+  player: LadderElement | Player;
   match: Match;
   index: number;
 }
 export default ({ match, player, index }: PlayerMatchInfo) => {
-  const pim = match.players.find(it => it.player.steam_id === player.steam_id)!!;
+  const pim =
+    ("steam_id" in player && match.players.find(it => it.player.steam_id === player.steam_id)!!) || (player as Player);
   const isWin = match.radiant_win ? pim.team === 2 : pim.team === 3;
   const items = pim.items.split(",").map(it => it.substr(5));
   return (
@@ -26,6 +28,7 @@ export default ({ match, player, index }: PlayerMatchInfo) => {
         {match.id} <br />
         <span style={{ fontSize: 12, marginTop: 2, color: "#c2c2c2" }}>{formatDateStr(match.timestamp)}</span>
       </td>
+      <td>{formatGameMode(match.type)}</td>
       <td>{formatDuration(match.duration)}</td>
       <td>
         <HeroIcon hero={pim.hero} />

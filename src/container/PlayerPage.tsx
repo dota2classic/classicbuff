@@ -73,7 +73,7 @@ export default (p: Props) => {
           {overall && (
             <Tabs>
               <Tab>Игр сыграно: {overall.games}</Tab>
-              <Tab>Winrate: {((overall.wins / overall.games) * 100).toFixed(2)}%</Tab>
+              <Tab>Winrate: {((overall.wins / Math.max(overall.games, 1)) * 100).toFixed(2)}%</Tab>
             </Tabs>
           )}
           <Table className="compact">
@@ -100,7 +100,7 @@ export default (p: Props) => {
                     <HeroIcon hero={it.hero} />
                   </td>
                   <td>{it.games}</td>
-                  <td>{((Number(it.wins) / it.games) * 100).toFixed(2)}%</td>
+                  <td>{((Number(it.wins) / Math.max(it.games, 1)) * 100).toFixed(2)}%</td>
                   <td>{it.kda.toFixed(2)}</td>
                   <td>{it.gpm.toFixed(0)}</td>
                   <td>{it.xpm.toFixed(0)}</td>
@@ -118,6 +118,7 @@ export default (p: Props) => {
           <thead>
             <Tr>
               <th>ID</th>
+              <th>Режим</th>
               <th style={{ width: 20, textOverflow: "ellipsis" }}>Длительность</th>
               <th>Герой</th>
               <th className={"omit"}>Предметы</th>
