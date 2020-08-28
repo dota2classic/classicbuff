@@ -20,8 +20,8 @@ interface Overall {
   loss: number;
 }
 const fetchPlayer = async (steam_id: string): Promise<[Match[], LadderElement, PlayerStatsDto[], Overall]> => {
-  const res: any = await api.get<PlayerInfo>("/player", { steam_id });
-  const res2: any = await api.get<PlayerStatsDto[]>("/player/stats", { steam_id });
+  const res: any = await api.get<PlayerInfo>("/public/player", { steam_id });
+  const res2: any = await api.get<PlayerStatsDto[]>("/public/player/stats", { steam_id });
 
   const s = res2.data;
   s.heroes.sort((a: PlayerStatsDto, b: PlayerStatsDto) => getHeroRating(b) - getHeroRating(a));

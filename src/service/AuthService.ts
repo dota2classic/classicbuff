@@ -23,7 +23,7 @@ class AuthService {
 
   @action.bound
   public async fetchMe() {
-    const me = await api.get<User>("/me");
+    const me = await api.get<User>("/public/me");
     if (me.ok && me.data) {
       this.me = me.data;
     }

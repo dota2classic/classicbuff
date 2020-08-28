@@ -21,14 +21,14 @@ export const HeroPreview = styled.img`
   margin: 4px;
 `;
 
-interface PlayerInfo {
+export interface PlayerInfo {
   matches: Match[];
   player: LadderElement;
 }
 
 const fetchPlayer = async (id: number): Promise<[Match[], LadderElement, PlayerStatsDto[]]> => {
   const formattedId = numToSteamId(Number(id));
-  const res: any = await api.get<PlayerInfo>("/player", { steam_id: formattedId });
+  const res: any = await api.get<PlayerInfo>("/public/player", { steam_id: formattedId });
   const res2: any = await api.get<PlayerStatsDto[]>("/player/stats", { steam_id: formattedId });
 
   const s = res2.data;
@@ -43,7 +43,7 @@ const Page = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const res: any = await api.get<PlayerInfo>("/player", { steam_id: numToSteamId(Number(id)) });
+      const res: any = await api.get<PlayerInfo>("/public/player", { steam_id: numToSteamId(Number(id)) });
       console.log(res.data);
       setPlayer(res.data.player);
     };

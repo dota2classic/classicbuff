@@ -16,7 +16,7 @@ export default () => {
 
   useEffect(() => {
     const fetch = () => {
-      api.get<LadderElement[]>("/ladder").then(it => {
+      api.get<LadderElement[]>("/public/ladder").then(it => {
         setLadder(it.data as LadderElement[]);
       });
     };

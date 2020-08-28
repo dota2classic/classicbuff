@@ -212,7 +212,7 @@ export default observer((p: PropsWithChildren<{ landing?: boolean; title?: React
             <Icon src={"/static/icons/dis2.png"} />
             Discord сервер
           </SiteLink>
-          <SiteLink href="https://discord.gg/VU5wjA8">
+          <SiteLink href="https://vk.com/club191796288">
             <Icon src={"/static/icons/vk1.png"} />
             Группа VK
           </SiteLink>

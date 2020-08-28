@@ -9,7 +9,7 @@ EXPOSE 3000
 WORKDIR /opt/app
 COPY . /opt/app
 
-RUN yarn && yarn build
+RUN npm install && npm run build
 
-CMD [ "yarn", "start" ]
+CMD [ "npm", "run", "start" ]
 
