@@ -9,4 +9,13 @@ const api = create({
   }
 });
 
+const monitor = async (response: ApiResponse<any>) => {
+  if ((response.status == 401 || response.status == 403) && !response.config?.url?.includes("/admin")) {
+    // not-admin requests.
+    await Router.push("/");
+  }
+};
+
+if (typeof window !== "undefined") api.addMonitor(monitor);
+
 export default api;

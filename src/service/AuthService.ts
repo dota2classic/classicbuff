@@ -1,5 +1,5 @@
 import { action, computed, observable } from "mobx";
-import { User } from "../shared";
+import { Role, User } from "../shared";
 import api from "./api";
 
 class AuthService {
@@ -12,6 +12,11 @@ class AuthService {
   @computed
   public get authorized(): boolean {
     return !!this.token;
+  }
+
+  @computed
+  public get isAdmin(): boolean {
+    return this.me?.role === Role.ADMIN;
   }
 
   public constructor() {

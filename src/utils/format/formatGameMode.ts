@@ -14,5 +14,7 @@ export default (mode: MatchmakingMode) => {
     return "Ranked";
   } else if (mode === MatchmakingMode.UNRANKED) {
     return "Unranked";
+  } else if (mode === MatchmakingMode.GREEVILING) {
+    return "Гряволы";
   }
 };

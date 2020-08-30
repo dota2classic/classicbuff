@@ -1,5 +1,9 @@
 import { MatchmakingMode } from "./utils/format/formatGameMode";
 
+export enum Role {
+  USER,
+  ADMIN
+}
 export interface LadderElement {
   name: string;
   mmr: number;
@@ -22,6 +26,7 @@ export interface PlayerStatsDto {
 
 export interface User {
   discord_id: string;
+  role: Role;
   steam_id?: string;
 }
 

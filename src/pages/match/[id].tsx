@@ -105,7 +105,7 @@ export const Score = styled.div`
 
 const fetchMatch = (id: number): Promise<Match> => {
   return api
-    .get<Match>("/match", { id })
+    .get<Match>("/public/match", { id })
     .then(it => it.data as Match);
 };
 

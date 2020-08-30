@@ -29,7 +29,7 @@ export interface PlayerInfo {
 const fetchPlayer = async (id: number): Promise<[Match[], LadderElement, PlayerStatsDto[]]> => {
   const formattedId = numToSteamId(Number(id));
   const res: any = await api.get<PlayerInfo>("/public/player", { steam_id: formattedId });
-  const res2: any = await api.get<PlayerStatsDto[]>("/player/stats", { steam_id: formattedId });
+  const res2: any = await api.get<PlayerStatsDto[]>("/public/player/stats", { steam_id: formattedId });
 
   const s = res2.data;
   s.heroes.sort((a: PlayerStatsDto, b: PlayerStatsDto) => getHeroRating(b) - getHeroRating(a));

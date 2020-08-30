@@ -15,7 +15,7 @@ import MatchRow from "../../components/MatchRow";
 import PlayerMatch from "../../components/PlayerMatch";
 
 const fetchHistoryPage = async (hero: string): Promise<Match[]> => {
-  const res = await api.get<Match[]>("/matches_hero", { hero });
+  const res = await api.get<Match[]>("/public/matches_hero", { hero });
 
   return res.data as Match[];
 };

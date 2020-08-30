@@ -9,7 +9,7 @@ import HeroSummaryRow from "../../components/HeroSummaryRow";
 import SmartTable from "../../components/SmartTable";
 
 const fetchHeroes = async (): Promise<HeroSummary[]> => {
-  const res = await api.get<HeroSummary[]>("/heroes");
+  const res = await api.get<HeroSummary[]>("/public/heroes");
 
   return (res.data as HeroSummary[]).sort(function(a, b) {
     if (a.hero < b.hero) {

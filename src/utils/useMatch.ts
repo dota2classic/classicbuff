@@ -9,7 +9,7 @@ export default (mid: string | number) => {
   const [ladder, setLadder] = useState<Match | undefined>(undefined);
 
   useWillMount(async () => {
-    const pinfo = await api.get<Match>("/match", { id: mid });
+    const pinfo = await api.get<Match>("/public/match", { id: mid });
     if (pinfo.data) {
       setLadder(pinfo.data);
     }
