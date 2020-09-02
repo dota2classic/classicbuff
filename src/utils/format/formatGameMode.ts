@@ -18,6 +18,6 @@ export default (mode: MatchmakingMode) => {
   } else if (mode === MatchmakingMode.GREEVILING) {
     return "Гряволы";
   } else if (mode === MatchmakingMode.ABILITY_DRAFT) {
-    return "Avility Draft";
+    return "Ability Draft";
   }
 };

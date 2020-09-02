@@ -37,12 +37,21 @@ export default () => {
       <Table className="compact">
         <thead>
           <Tr>
-            <th>ID матча</th>
+            <th>ID</th>
             <th>Режим</th>
-            <th>Победитель</th>
-            <th>Длительность</th>
-            <th className="green omit">Radiant team</th>
-            <th className="red omit">Dire team</th>
+            <th style={{ width: 20, textOverflow: "ellipsis" }}>Длительность</th>
+            <th>Герой</th>
+            <th className={"omit"}>Предметы</th>
+            <th>Результат</th>
+            <th style={{ width: 40 }}>K</th>
+            <th style={{ width: 40 }}>D</th>
+            <th style={{ width: 40 }}>A</th>
+            <th className={"omit"} style={{ width: 40 }}>
+              L/D
+            </th>
+            <th className={"omit"} style={{ width: 40 }}>
+              GPM/XPM
+            </th>
           </Tr>
         </thead>
         <tbody>

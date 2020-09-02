@@ -15,6 +15,7 @@ import TeamTable from "../../components/TeamTable";
 import { NextApiRequest, NextPageContext } from "next";
 import useWillMount from "../../utils/useWillMount";
 import useMatch from "../../data/useMatch";
+import formatGameMode from "../../utils/format/formatGameMode";
 export const ItemsContainer = styled.div`
   display: flex;
   position: relative;
@@ -125,7 +126,13 @@ const Page = (p: Partial<{ match: Match }>) => {
 
   const match = data.Match;
   return (
-    <Layout title={<h3>Матч #{id}</h3>}>
+    <Layout
+      title={
+        <h3>
+          {formatGameMode(match.type)}, Матч #{id}
+        </h3>
+      }
+    >
       <Head>
         <title>Матч {id}</title>
       </Head>
