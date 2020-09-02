@@ -36,11 +36,14 @@ export const AdminLayout = (p: PropsWithChildren<{}>) => {
   return (
     <ALayout>
       <Sidebar>
+        <Link passHref href={"/"}>
+          <SidebarItem>Главная</SidebarItem>
+        </Link>
         <Link passHref href={"/admin/"}>
-          <SidebarItem>Dashboard</SidebarItem>
+          <SidebarItem>Очереди</SidebarItem>
         </Link>
         <Link passHref href={"/admin/servers"}>
-          <SidebarItem>Servers</SidebarItem>
+          <SidebarItem>Сервера</SidebarItem>
         </Link>
       </Sidebar>
       <Body>{p.children}</Body>

@@ -1,4 +1,4 @@
-import { Player } from "../shared";
+import { PlayerInMatch } from "../shared";
 import { steamIdToNum } from "../utils/numSteamId";
 import { Tr } from "./LadderRow";
 import Link from "next/link";
@@ -7,7 +7,7 @@ import ItemIcon from "./ItemIcon";
 import React from "react";
 import { ItemsContainer } from "../pages/match/[id]";
 
-export default (p: Player) => {
+export default (p: PlayerInMatch) => {
   const items = p.items.split(",").map(it => it.substr(5));
   const playerUrl = `/player/${steamIdToNum(p.player.steam_id)}`;
   return (

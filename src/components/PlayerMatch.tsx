@@ -1,8 +1,7 @@
-import { LadderElement, Match, Player } from "../shared";
+import { Player, Match, PlayerInMatch } from "../shared";
 import Router from "next/router";
 import { Tr } from "./LadderRow";
 import React from "react";
-import { HeroPreview } from "../pages/player/[id]";
 import { formatDuration, ItemsContainer } from "../pages/match/[id]";
 import ItemIcon from "./ItemIcon";
 import { formatDateStr } from "../utils/format/formateDateStr";
@@ -10,13 +9,14 @@ import cx from "classnames";
 import HeroIcon from "./HeroIcon";
 import formatGameMode from "../utils/format/formatGameMode";
 export interface PlayerMatchInfo {
-  player: LadderElement | Player;
+  player: Player | PlayerInMatch;
   match: Match;
   index: number;
 }
 export default ({ match, player, index }: PlayerMatchInfo) => {
   const pim =
-    ("steam_id" in player && match.players.find(it => it.player.steam_id === player.steam_id)!!) || (player as Player);
+    ("steam_id" in player && match.players.find(it => it.player.steam_id === player.steam_id)!!) ||
+    (player as PlayerInMatch);
   const isWin = match.radiant_win ? pim.team === 2 : pim.team === 3;
   const items = pim.items.split(",").map(it => it.substr(5));
   return (

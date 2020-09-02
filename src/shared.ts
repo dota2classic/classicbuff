@@ -4,7 +4,18 @@ export enum Role {
   USER,
   ADMIN
 }
-export interface LadderElement {
+
+export interface PlayerStats {
+  heroes: PlayerStatsDto[];
+  overall: Overall;
+}
+export interface Overall {
+  games: number;
+  wins: number;
+  loss: number;
+}
+
+export interface Player {
   name: string;
   mmr: number;
   steam_id: string;
@@ -30,13 +41,13 @@ export interface User {
   steam_id?: string;
 }
 
-export interface Player {
+export interface PlayerInMatch {
   id: number;
   team: 2 | 3;
   kills: number;
   deaths: number;
   assists: number;
-  player: LadderElement;
+  player: Player;
   items: string;
   level: number;
   gpm: number;
@@ -62,5 +73,11 @@ export interface Match {
   radiant_win: boolean;
   timestamp: string;
   type: MatchmakingMode;
-  players: Player[];
+  players: PlayerInMatch[];
+}
+
+export interface Page<T> {
+  data: T[];
+  page: number;
+  pages: number;
 }

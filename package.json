@@ -24,6 +24,8 @@
     "classnames": "^2.2.6",
     "discord-oauth2": "^2.3.0",
     "formik": "^2.1.5",
+    "graphql": "^15.3.0",
+    "graphql-request": "^3.0.0",
     "mobx": "^5.15.6",
     "mobx-react": "^6.3.0",
     "mobx-react-devtools": "^6.1.1",

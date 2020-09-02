@@ -13,6 +13,8 @@ import { Heroes, MatchIdCol } from "../history";
 import heroName from "../../utils/heroName";
 import MatchRow from "../../components/MatchRow";
 import PlayerMatch from "../../components/PlayerMatch";
+import useHeroHistory from "../../data/useHeroHistory";
+import Pagination from "../../components/Pagination";
 
 const fetchHistoryPage = async (hero: string): Promise<Match[]> => {
   const res = await api.get<Match[]>("/public/matches_hero", { hero });
@@ -23,23 +25,9 @@ const fetchHistoryPage = async (hero: string): Promise<Match[]> => {
 export default () => {
   const { id } = useRouter().query;
 
-  const [history, setHistory] = useState<Match[]>([]);
+  const [page, setPage] = useState(0);
 
-  const fetch = async () => {
-    const items = await fetchHistoryPage(id as string);
-
-    setHistory(items);
-  };
-
-  useEffect(() => {
-    const int = setInterval(fetch, 10000);
-
-    return () => clearInterval(int);
-  });
-
-  useEffect(() => {
-    fetch();
-  }, [id]);
+  const { data } = useHeroHistory(page, id as string);
 
   return (
     <Layout title={<h3>{heroName(id as string)}</h3>}>
@@ -58,11 +46,19 @@ export default () => {
           </Tr>
         </thead>
         <tbody>
-          {history.map((it, index) => (
+          {data?.HeroMatches.data.map((it, index) => (
             <PlayerMatch player={it.players.find(it => it.hero === id)!!} index={index} match={it} />
           ))}
         </tbody>
       </Table>
+      {data?.HeroMatches && (
+        <Pagination
+          pages={data?.HeroMatches.pages}
+          page={page}
+          next={() => setPage(page + 1)}
+          prev={() => setPage(Math.max(0, page - 1))}
+        />
+      )}
     </Layout>
   );
 };

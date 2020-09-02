@@ -3,7 +3,8 @@ export enum MatchmakingMode {
   UNRANKED = 1,
   SOLOMID = 2,
   DIRETIDE = 3,
-  GREEVILING = 4
+  GREEVILING = 4,
+  ABILITY_DRAFT = 5
 }
 export default (mode: MatchmakingMode) => {
   if (mode === MatchmakingMode.SOLOMID) {
@@ -16,5 +17,7 @@ export default (mode: MatchmakingMode) => {
     return "Unranked";
   } else if (mode === MatchmakingMode.GREEVILING) {
     return "Гряволы";
+  } else if (mode === MatchmakingMode.ABILITY_DRAFT) {
+    return "Avility Draft";
   }
 };

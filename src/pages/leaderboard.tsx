@@ -1,30 +1,19 @@
 import React, { useEffect, useState } from "react";
 import api from "../service/api";
-import { LadderElement } from "../shared";
+import { Player } from "../shared";
 import LadderRow, { LadderHeader, Table } from "../components/LadderRow";
 import Layout from "../components/Layout";
 import styled from "styled-components";
 import Head from "next/head";
 import sniffToken from "../utils/sniffToken";
+import useLadder from "../data/useLadder";
 
 const Thin = styled.div`
   max-width: 800px;
   width: 100%;
 `;
 export default () => {
-  const [ladder, setLadder] = useState<LadderElement[]>([]);
-
-  useEffect(() => {
-    const fetch = () => {
-      api.get<LadderElement[]>("/public/ladder").then(it => {
-        setLadder(it.data as LadderElement[]);
-      });
-    };
-    fetch();
-    const int = setInterval(fetch, 10000);
-
-    return () => clearInterval(int);
-  }, []);
+  const { data } = useLadder();
 
   return (
     <Layout title={<h1>Таблица лидеров</h1>}>
@@ -41,7 +30,7 @@ export default () => {
             <LadderHeader />
           </thead>
           <tbody>
-            {ladder.map((it, index) => (
+            {data?.Ladder.map((it, index) => (
               <LadderRow index={index + 1} {...it} key={it.steam_id} />
             ))}
           </tbody>

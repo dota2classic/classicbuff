@@ -13,6 +13,12 @@ export const Tab = styled.div`
   padding: 12px;
   cursor: pointer;
 
+  & * {
+    color: inherit;
+    text-decoration: none;
+    font-size: inherit;
+  }
+
   &.active {
     ::before {
       content: "";

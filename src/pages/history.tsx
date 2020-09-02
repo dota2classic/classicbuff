@@ -2,17 +2,15 @@ import { Table, Tr } from "../components/LadderRow";
 import Layout from "../components/Layout";
 import React, { useEffect, useState } from "react";
 import { Match } from "../shared";
-import api from "../service/api";
 import styled from "styled-components";
 import Head from "next/head";
-import { NextPageContext } from "next";
 import { MatchmakingMode } from "../utils/format/formatGameMode";
 import MatchRow from "../components/MatchRow";
 import { Tab, Tabs } from "../components/Tabs";
-import HistoryStore from "../stores/HistoryStore";
 
-import { observer, useLocalStore } from "mobx-react";
-import useWillMount from "../utils/useWillMount";
+import { observer } from "mobx-react";
+import useHistory from "../data/useHistory";
+import Pagination from "../components/Pagination";
 
 export const Heroes = styled.div`
   display: flex;
@@ -24,33 +22,12 @@ export const MatchIdCol = styled.div`
   flex-direction: column;
 `;
 
-const NextButton = styled.button`
-  border: none;
-  color: #c2c2c2;
-  font-size: 20px;
-  padding: 8px;
-  margin-top: 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: 0.3s ease;
-  &:hover {
-    background: rgba(0, 0, 0, 0.3);
-  }
-  background: rgba(0, 0, 0, 0.1);
-`;
-
 const Page = observer((p: Partial<{ history: Match[] }>) => {
-  const store = useLocalStore(() => new HistoryStore());
+  const [page, setPage] = useState(0);
+  const [mode, setMode] = useState<MatchmakingMode | undefined>(MatchmakingMode.RANKED);
 
-  useWillMount(() => {
-    if (p.history) {
-      store.matches = p.history;
-    }
-  });
-
-  useEffect(() => {
-    store.fetch();
-  }, []);
+  useEffect(() => setPage(0), [mode]);
+  const { data } = useHistory(page, mode);
 
   return (
     <Layout title="dota2classic.ru 6.81b история матчей">
@@ -59,24 +36,24 @@ const Page = observer((p: Partial<{ history: Match[] }>) => {
       </Head>
       <Tabs>
         <Tab
-          onClick={() => (store.mode = MatchmakingMode.RANKED)}
-          className={(store.mode === MatchmakingMode.RANKED && "active") || undefined}
+          onClick={() => setMode(MatchmakingMode.RANKED)}
+          className={(mode === MatchmakingMode.RANKED && "active") || undefined}
         >
           Ranked
         </Tab>
         <Tab
-          onClick={() => (store.mode = MatchmakingMode.UNRANKED)}
-          className={(store.mode === MatchmakingMode.UNRANKED && "active") || undefined}
+          onClick={() => setMode(MatchmakingMode.UNRANKED)}
+          className={(mode === MatchmakingMode.UNRANKED && "active") || undefined}
         >
           Unranked
         </Tab>
         <Tab
-          onClick={() => (store.mode = MatchmakingMode.SOLOMID)}
-          className={(store.mode === MatchmakingMode.SOLOMID && "active") || undefined}
+          onClick={() => setMode(MatchmakingMode.SOLOMID)}
+          className={(mode === MatchmakingMode.SOLOMID && "active") || undefined}
         >
           1x1
         </Tab>
-        <Tab onClick={() => (store.mode = undefined)} className={(store.mode === undefined && "active") || undefined}>
+        <Tab onClick={() => setMode(undefined)} className={(mode === undefined && "active") || undefined}>
           Все
         </Tab>
       </Tabs>
@@ -92,19 +69,18 @@ const Page = observer((p: Partial<{ history: Match[] }>) => {
           </Tr>
         </thead>
         <tbody>
-          {store.matches.map((it, index) => (
+          {data?.History?.data.map((it, index) => (
             <MatchRow index={index} {...it} />
           ))}
         </tbody>
       </Table>
-      {store.hasMore && (
-        <NextButton
-          onClick={() => {
-            store.page++;
-          }}
-        >
-          More
-        </NextButton>
+      {data?.History && (
+        <Pagination
+          pages={data.History.pages}
+          page={page}
+          next={() => setPage(page + 1)}
+          prev={() => setPage(Math.max(0, page - 1))}
+        />
       )}
     </Layout>
   );

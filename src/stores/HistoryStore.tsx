@@ -9,34 +9,4 @@ export default class HistoryStore {
 
   @observable
   public mode?: MatchmakingMode = MatchmakingMode.RANKED;
-
-  @observable
-  public hasMore: boolean = true;
-
-  @observable
-  public matches: Match[] = [];
-
-  constructor() {
-    observe(this, "mode", () => {
-      runInAction(() => {
-        console.log("Mode changed, reesetting matches");
-        this.matches = [];
-        this.page = 0;
-        this.fetch();
-      });
-    });
-
-    observe(this, "page", () => {
-      console.log("Page changed, fetch.");
-      this.fetch();
-    });
-  }
-
-  @action
-  public async fetch() {
-    const res = await api.get<Match[]>("/public/matches", { page: this.page, mode: this.mode });
-    const data: Match[] = res.data as any;
-    this.hasMore = data.length === 30;
-    this.matches.push(...data);
-  }
 }

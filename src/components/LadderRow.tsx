@@ -1,4 +1,4 @@
-import { LadderElement } from "../shared";
+import { Player } from "../shared";
 import styled from "styled-components";
 import React, { PropsWithChildren } from "react";
 import Link from "next/link";
@@ -37,7 +37,7 @@ export const Tr = styled.tr`
   }
 `;
 
-export default (props: LadderElement & { index: number }) => {
+export default (props: Player & { index: number }) => {
   const playerUrl = `/player/${steamIdToNum(props.steam_id)}`;
 
   return (

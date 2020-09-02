@@ -3,24 +3,10 @@ import Layout, { LinkWrapper } from "../components/Layout";
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import LadderRow from "../components/LadderRow";
-import { LadderElement } from "../shared";
 import heroName from "../utils/heroName";
-import usePlayer from "../utils/usePlayer";
-import useMatch from "../utils/useMatch";
 import { formatDuration } from "./match/[id]";
-
-const CardImage = styled.div`
-  width: auto;
-  height: 300px;
-  object-fit: cover;
-  transition: 0.7s ease;
-  position: relative;
-
-  @media (max-width: 600px) {
-    height: 100px;
-  }
-`;
+import usePlayer from "../data/usePlayer";
+import useMatch from "../data/useMatch";
 
 const WelcomeText = styled.div`
   text-align: center;
@@ -147,9 +133,9 @@ export const CardBlock = ({ value, title, player, hero, match }: Props) => {
         <CardTitle>{title}</CardTitle>
         <CardValue>{value}</CardValue>
         <CardHero>
-          {heroName(hero)}, {(m?.duration && formatDuration(m?.duration)) || ``}
+          {heroName(hero)}, {(m?.data?.Match.duration && formatDuration(m?.data?.Match.duration)) || ``}
         </CardHero>
-        <CardPlayer>{p?.name || ""}</CardPlayer>
+        <CardPlayer>{p?.data?.Player.name || ""}</CardPlayer>
       </Card>
     </Link>
   );

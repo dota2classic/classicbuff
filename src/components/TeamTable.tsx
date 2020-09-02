@@ -1,9 +1,9 @@
-import { Player } from "../shared";
+import { PlayerInMatch } from "../shared";
 import { Table, Tr } from "./LadderRow";
 import PlayerRow from "./PlayerRow";
 import React from "react";
 
-export default ({ players }: { players: Player[] }) => {
+export default ({ players }: { players: PlayerInMatch[] }) => {
   return (
     <Table className="compact">
       <thead>

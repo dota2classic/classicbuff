@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { Match, Player } from "../../shared";
+import { Match, PlayerInMatch } from "../../shared";
 import Layout from "../../components/Layout";
 import { Table, Tr } from "../../components/LadderRow";
 import api from "../../service/api";
@@ -14,6 +14,7 @@ import PlayerRow from "../../components/PlayerRow";
 import TeamTable from "../../components/TeamTable";
 import { NextApiRequest, NextPageContext } from "next";
 import useWillMount from "../../utils/useWillMount";
+import useMatch from "../../data/useMatch";
 export const ItemsContainer = styled.div`
   display: flex;
   position: relative;
@@ -109,30 +110,20 @@ const fetchMatch = (id: number): Promise<Match> => {
     .then(it => it.data as Match);
 };
 
-const sumKills = (players: Player[]) => {
+const sumKills = (players: PlayerInMatch[]) => {
   let sum = 0;
   players.forEach(it => (sum += it.kills));
   return sum;
 };
 
 const Page = (p: Partial<{ match: Match }>) => {
-  const [match, setMatch] = useState<Match | undefined>(p.match);
-
   const { id } = useRouter().query;
 
-  useEffect(() => {
-    const fetch = () => {
-      if (!Number.isNaN(Number(id))) {
-        fetchMatch(Number(id)).then(setMatch);
-      }
-    };
-    if (!p.match) fetch();
-    const int = setInterval(fetch, 10000);
+  const { data } = useMatch(Number(id));
 
-    return () => clearInterval(int);
-  }, [id]);
+  if (!data?.Match) return null;
 
-  if (!match) return null;
+  const match = data.Match;
   return (
     <Layout title={<h3>Матч #{id}</h3>}>
       <Head>

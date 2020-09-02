@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Router, { useRouter } from "next/router";
-import { LadderElement, Match, PlayerStatsDto } from "../shared";
+import { Player, Match, PlayerStatsDto } from "../shared";
 import api from "../service/api";
 import Layout from "../components/Layout";
 import { Table, Tr } from "../components/LadderRow";
@@ -25,7 +25,7 @@ export const HeroPreview = styled.img`
 
 interface PlayerInfo {
   matches: Match[];
-  player: LadderElement;
+  player: Player;
 }
 const Hint = styled.a`
   font-size: 16px;

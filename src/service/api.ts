@@ -10,7 +10,7 @@ const api = create({
 });
 
 const monitor = async (response: ApiResponse<any>) => {
-  if ((response.status == 401 || response.status == 403) && !response.config?.url?.includes("/admin")) {
+  if ((response.status == 401 || response.status == 403) && response.config?.url?.includes("/admin")) {
     // not-admin requests.
     await Router.push("/");
   }

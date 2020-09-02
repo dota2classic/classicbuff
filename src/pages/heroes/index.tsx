@@ -7,6 +7,7 @@ import { Table, Tr } from "../../components/LadderRow";
 import PlayerMatch from "../../components/PlayerMatch";
 import HeroSummaryRow from "../../components/HeroSummaryRow";
 import SmartTable from "../../components/SmartTable";
+import useHeroes from "../../data/useHeroes";
 
 const fetchHeroes = async (): Promise<HeroSummary[]> => {
   const res = await api.get<HeroSummary[]>("/public/heroes");
@@ -31,27 +32,7 @@ export interface HeroSummaryPresentation {
 }
 
 export default () => {
-  const [heroes, setHeroes] = useState<HeroSummaryPresentation[]>([]);
-
-  useEffect(() => {
-    const fetch = () => {
-      fetchHeroes().then(its =>
-        setHeroes(
-          its.map((it, index) => ({
-            index,
-            hero: it.hero,
-            winrate: (it.wins / Math.max(it.games, 1)) * 100,
-            kda: (it.kills + it.assists) / Math.max(it.deaths, 1),
-            games: it.games
-          }))
-        )
-      );
-    };
-
-    fetch();
-    const int = setInterval(fetch, 1000);
-    return () => clearInterval(int);
-  }, []);
+  const { data } = useHeroes();
 
   return (
     <Layout title={<h3>Герои</h3>}>
@@ -61,7 +42,13 @@ export default () => {
       </Head>
 
       <SmartTable
-        data={heroes}
+        data={(data?.Heroes || []).map((it, index) => ({
+          index,
+          hero: it.hero,
+          winrate: (it.wins / Math.max(it.games, 1)) * 100,
+          kda: (it.kills + it.assists) / Math.max(it.deaths, 1),
+          games: it.games
+        }))}
         renderRow={HeroSummaryRow}
         sort={{
           hero: it => it.hero,
