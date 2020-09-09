@@ -2,6 +2,17 @@
 
 schema {
   query: Query
+  mutation: Mutation
+}
+
+type GameServerOperatorDTO {
+  gameServers: [GameServersDTO!]!
+  url: String!
+}
+
+type GameServersDTO {
+  running: Boolean!
+  url: String!
 }
 
 type HeroSummary {
@@ -14,6 +25,11 @@ type HeroSummary {
   wins: Float!
 }
 
+type ImageEntity {
+  id: String!
+  path: String!
+}
+
 type Match {
   duration: Float!
   id: Float!
@@ -21,6 +37,12 @@ type Match {
   radiant_win: Boolean!
   timestamp: String!
   type: Float!
+}
+
+type Mutation {
+  KillServer(url: String!): [GameServerOperatorDTO!]!
+  StartServer(mode: MatchmakingMode!, url: String!): [GameServerOperatorDTO!]!
+  createTeam(image: String!, name: String!): TeamEntity!
 }
 
 type OverallStats {
@@ -33,6 +55,18 @@ type PaginatedMatch {
   data: [Match!]
   page: Float!
   pages: Float!
+}
+
+type PaginatedTeam {
+  data: [TeamEntity!]
+  page: Float!
+  pages: Float!
+}
+
+type PartyDTO {
+  id: Float!
+  leader: QueuePlayerDTO!
+  players: [QueuePlayerDTO!]!
 }
 
 type Player {
@@ -77,6 +111,7 @@ type PlayerStatsModel {
 }
 
 type Query {
+  GameServers: [GameServerOperatorDTO!]!
   HeroMatches(hero: String!, page: Int!): PaginatedMatch!
   Heroes: [HeroSummary!]!
   History(mode: Int, page: Int!): PaginatedMatch!
@@ -85,4 +120,52 @@ type Query {
   Player(steam_id: String!): Player!
   PlayerHistory(hero: String, page: Int!, steam_id: String!): PaginatedMatch!
   PlayerStats(steam_id: String!): PlayerStatsModel!
+  Queues: [QueueDTO!]!
+  Rooms: [RoomDTO!]!
+  Team(id: Int!): TeamEntity!
+  Teams(page: Int!): PaginatedTeam!
+}
+
+type QueueDTO {
+  mode: Float!
+  parties: [PartyDTO!]!
+}
+
+type QueuePlayerDTO {
+  id: String!
+  name: String!
+  realm: Float!
+}
+
+type RoomDTO {
+  id: Float!
+  parties: [PartyDTO!]!
+}
+
+type TeamEntity {
+  creator: User!
+  id: Float!
+  image: ImageEntity!
+  members: [TeamMemberEntity!]!
+  name: String!
+}
+
+type TeamMemberEntity {
+  user: User!
+}
+
+type User {
+  discord_id: String!
+  player: Player!
+  role: Float!
+  steam_id: String!
+}
+
+enum MatchmakingMode {
+  ABILITY_DRAFT
+  DIRETIDE
+  GREEVILING
+  RANKED
+  SOLOMID
+  UNRANKED
 }

@@ -73,7 +73,7 @@ export const LinkWrapper = styled.img`
 `;
 
 const SiteLink = styled.a`
-  font-size: 18px;
+  font-size: 16px;
 
   transition: 0.3s ease;
   display: flex;
@@ -157,14 +157,13 @@ const CloseIcon = styled.img`
   margin-right: 10px;
   position: relative;
 `;
-export default observer((p: PropsWithChildren<{ landing?: boolean; title?: ReactNode }>) => {
+
+const DefaultHeader = () => {
   const router = useRouter();
-  useWillMount(() => {
-    AuthService.fetchMe();
-  });
   const menu = "menu" in router.query;
+
   return (
-    <LayoutContainer>
+    <>
       {menu && (
         <MobileMenu>
           <CloseIcon onClick={() => Router.back()} src={"/static/unnamed.png"} />
@@ -191,6 +190,12 @@ export default observer((p: PropsWithChildren<{ landing?: boolean; title?: React
             <SiteLink>
               <Icon src={"/static/heroes/npc_dota_hero_axe.jpg"} />
               Герои
+            </SiteLink>
+          </Link>
+          <Link passHref href={"/heroes"}>
+            <SiteLink>
+              <Icon src={"/static/heroes/npc_dota_hero_axe.jpg"} />
+              Турниры
             </SiteLink>
           </Link>
           {AuthService.authorized ? (
@@ -236,6 +241,10 @@ export default observer((p: PropsWithChildren<{ landing?: boolean; title?: React
         <Link passHref href={"/heroes"}>
           <SiteLink>Герои</SiteLink>
         </Link>
+        <Link passHref href={"/teams"}>
+          <SiteLink>Турниры</SiteLink>
+        </Link>
+
         {AuthService.authorized ? (
           <Link passHref href={"/me"}>
             <SiteLink>Профиль</SiteLink>
@@ -252,6 +261,73 @@ export default observer((p: PropsWithChildren<{ landing?: boolean; title?: React
           <LinkWrapper alt={"Vk logo"} src="/static/icons/vk1.png" />
         </a>
       </HeaderWrapper>
+    </>
+  );
+};
+
+const TournamentHeader = () => {
+  return (
+    <>
+      <HeaderWrapper>
+        <Link passHref href={"/"}>
+          <SiteLink>
+            <span style={{ textTransform: "uppercase" }}>dota2classic</span>
+          </SiteLink>
+        </Link>
+
+        <Link passHref href={"/download"}>
+          <SiteLink>Команды</SiteLink>
+        </Link>
+
+        <Link passHref href={"/download"}>
+          <SiteLink>Турниры</SiteLink>
+        </Link>
+
+        {AuthService.authorized ? (
+          <Link passHref href={"/me"}>
+            <SiteLink>Профиль</SiteLink>
+          </Link>
+        ) : (
+          <SiteLink href={`${api.getBaseURL()}/auth/discord`}>Войти через discord</SiteLink>
+        )}
+      </HeaderWrapper>
+    </>
+  );
+};
+
+export const TournamentLayout = (p: PropsWithChildren<{ landing?: boolean; title?: ReactNode }>) => {
+  useWillMount(() => {
+    AuthService.fetchMe();
+  });
+  const router = useRouter();
+
+  return (
+    <LayoutContainer>
+      <TournamentHeader />
+
+      <Content className={(p.landing && "landing") || undefined}>
+        <Title>
+          <MenuIcon
+            onClick={() => Router.push(`${router.pathname}?menu`, `${router.asPath}?menu`)}
+            src={"/static/menu.svg"}
+          />
+          {p.title && <span>{p.title}</span>}
+        </Title>
+        {p.children}
+      </Content>
+    </LayoutContainer>
+  );
+};
+
+export default observer((p: PropsWithChildren<{ landing?: boolean; title?: ReactNode }>) => {
+  useWillMount(() => {
+    AuthService.fetchMe();
+  });
+  const router = useRouter();
+  return (
+    <LayoutContainer>
+      <DefaultHeader />
+
       <Content className={(p.landing && "landing") || undefined}>
         <Title>
           <MenuIcon

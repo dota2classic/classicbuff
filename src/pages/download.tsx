@@ -30,19 +30,19 @@ export default () => {
           Нажимать на поиск игры в самом клиенте <span style={{ textDecoration: "underline" }}>НЕ НУЖНО</span>
         </InfoText>
         <CardBlock
-          img={"https://sun9-21.userapi.com/c855620/v855620490/1f0449/Fb0lOsyZi6o.jpg"}
-          text={"Нужно только распаковать архив с клиентом. Все просто!"}
-        />
-        <LeadButton target="__blank" href={"https://drive.google.com/open?id=1-pmNQZfgjN6b8YYTLgv7HidnB7zIYqAv"}>
-          Скачать через Google.Drive
-        </LeadButton>
-
-        <CardBlock
           img={"https://sun9-43.userapi.com/c855620/v855620490/1f045d/97zKHlEnSyM.jpg"}
           text={"Нужно только распаковать архив с клиентом. Все просто!"}
         />
+        <LeadButton target="__blank" href={"https://drive.google.com/open?id=1-pmNQZfgjN6b8YYTLgv7HidnB7zIYqAv"}>
+          Скачать через Google Диск
+        </LeadButton>
+
         <LeadButton target="__blank" href={"https://yadi.sk/d/7jOGNrUcpppedg"}>
-          Скачать через Яндекс Диск
+          Скачать через Яндекс.Диск
+        </LeadButton>
+
+        <LeadButton download href={"/static/Dota_2_Classic_6.81b.torrent"}>
+          Скачать Torrent
         </LeadButton>
       </LeadButtons>
       <br />
@@ -51,3 +51,5 @@ export default () => {
     </Layout>
   );
 };
+
+// b1e7d404c726: Extracting [==============>                                    ]  51.81MB/175.9MB

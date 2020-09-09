@@ -67,6 +67,27 @@ export interface HeroSummary {
   hero: string;
 }
 
+export interface User {
+  steam_id?: string;
+  discord_id: string;
+  player?: Player;
+}
+export interface ImageEntity {
+  id: string;
+  path: string;
+}
+
+export interface TeamMemberEntity {
+  user: User;
+}
+export interface TeamEntity {
+  name: string;
+  id: number;
+  image: ImageEntity;
+  creator: User;
+  members: TeamMemberEntity[];
+}
+
 export interface Match {
   id: number;
   duration: number;

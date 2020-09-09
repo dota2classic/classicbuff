@@ -56,7 +56,7 @@ export default () => {
           winrate: it => it.winrate,
           games: it => it.games
         }}
-        head={[{ index: "" }, { hero: "Герой" }, { games: "Сыграно игр" }, { winrate: "Winrate" }, { kda: "KDA" }]}
+        head={[{ index: "" }, { hero: "Герой" }, { games: "Сыграно матчей" }, { winrate: "Winrate" }, { kda: "KDA" }]}
       />
     </Layout>
   );

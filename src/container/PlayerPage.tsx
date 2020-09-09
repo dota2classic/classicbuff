@@ -99,7 +99,7 @@ export default (p: Props) => {
             }}
             head={[
               { hero: "Герой" },
-              { games: "Сыграно игр" },
+              { games: "Сыграно матчей" },
               { winrate: "Winrate" },
               { kda: "KDA" },
               { xpm: "XPM" },

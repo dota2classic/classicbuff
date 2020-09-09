@@ -168,7 +168,7 @@ export default () => {
 
       <List>
         <li>Версия The International 2014</li>
-        <li>Клиент игры до обновления Reborn(Новая жизнь)</li>
+        <li>Клиент игры до обновления Reborn (Новая жизнь)</li>
         <li>Работает через Steam</li>
       </List>
       <CardRow>
@@ -189,9 +189,9 @@ export default () => {
         <CardBlock img={"/static/landing/9.png"} text={"Techies еще не добавили!"} />
       </CardRow>
       <List>
-        <li>Старые способности героев и удаленные предметы</li>
+        <li>Старые способности героев и удалённые предметы</li>
         <li>Diretide 2012 года</li>
-        <li>Отсутствует techies</li>
+        <li>Отсутствует Techies</li>
       </List>
       <LeadButtons>
         <Link href={"/download"}>

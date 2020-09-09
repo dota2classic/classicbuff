@@ -67,3 +67,31 @@ export const PlayerFragment = gql`
     name
   }
 `;
+
+export const FullTeamFragment = gql`
+  fragment FullTeamFragment on TeamEntity {
+    name
+    id
+    image {
+      id
+      path
+    }
+    creator {
+      discord_id
+      steam_id
+      player {
+        name
+      }
+    }
+    members {
+      user {
+        discord_id
+        steam_id
+        player {
+          name
+          mmr
+        }
+      }
+    }
+  }
+`;
