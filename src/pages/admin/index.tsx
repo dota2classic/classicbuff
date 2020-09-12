@@ -8,9 +8,11 @@ import { QueueDTO } from "../../utils/dto";
 import frwd from "../../utils/frwd";
 import Queue from "../../components/admin/Queue";
 import { AdminLayout } from "../../components/admin/AdminLayout";
+import useTeams from "../../data/useTeams";
+import useQueues from "../../data/admin/useQueues";
 
 const Page = () => {
-  const { data, error, isValidating, revalidate } = useSWR("/admin/queues", frwd<QueueDTO[]>(api.get));
+  const { data, error, isValidating, revalidate } = useQueues();
 
   console.log(data);
 
@@ -18,7 +20,7 @@ const Page = () => {
     <AdminLayout>
       {!data && `Loading...`}
 
-      {data?.map(d => (
+      {data?.Queues.map(d => (
         <Queue invalidate={revalidate} {...d} />
       ))}
     </AdminLayout>

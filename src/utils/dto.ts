@@ -6,6 +6,7 @@ export interface GameServersDTO {
 export interface GameServerDTO {
   url: string;
   running: boolean;
+  mode?: MatchmakingMode;
 }
 
 export interface ServerOperatorDTO {
@@ -15,6 +16,7 @@ export interface ServerOperatorDTO {
 
 export interface RoomDTO {
   id: number;
+  mode: MatchmakingMode;
   parties: PartyDTO[];
 }
 

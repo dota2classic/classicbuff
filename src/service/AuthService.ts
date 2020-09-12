@@ -1,6 +1,7 @@
 import { action, computed, observable } from "mobx";
 import { Role, User } from "../shared";
 import api from "./api";
+import { GQLClient } from "../data/client";
 
 class AuthService {
   @observable
@@ -38,12 +39,14 @@ class AuthService {
   public setToken(token: string) {
     this.token = token;
     api.setHeader("Authorization", `JWT ${token}`);
+    GQLClient.setHeader("Authorization", `JWT ${token}`);
     localStorage.setItem("token", token);
   }
 
   public logout() {
     this.token = undefined;
     api.deleteHeader("Authorization");
+    GQLClient.setHeader("Authorization", ``);
     localStorage.removeItem("token");
   }
 }

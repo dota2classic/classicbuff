@@ -11,6 +11,7 @@ type GameServerOperatorDTO {
 }
 
 type GameServersDTO {
+  mode: Float
   running: Boolean!
   url: String!
 }
@@ -41,8 +42,11 @@ type Match {
 
 type Mutation {
   KillServer(url: String!): [GameServerOperatorDTO!]!
+  RestartServer(mode: MatchmakingMode!, url: String!): [GameServerOperatorDTO!]!
   StartServer(mode: MatchmakingMode!, url: String!): [GameServerOperatorDTO!]!
   createTeam(image: String!, name: String!): TeamEntity!
+  createTournament(mode: Dota_GameMode!, name: String!): TournamentEntity!
+  joinTournament(id: Float!, team_id: Float!): TournamentEntity!
 }
 
 type OverallStats {
@@ -124,6 +128,7 @@ type Query {
   Rooms: [RoomDTO!]!
   Team(id: Int!): TeamEntity!
   Teams(page: Int!): PaginatedTeam!
+  Tournaments: [TournamentEntity!]!
 }
 
 type QueueDTO {
@@ -139,6 +144,7 @@ type QueuePlayerDTO {
 
 type RoomDTO {
   id: Float!
+  mode: Float!
   parties: [PartyDTO!]!
 }
 
@@ -154,11 +160,43 @@ type TeamMemberEntity {
   user: User!
 }
 
+type TournamentEntity {
+  entries: [TournamentTeamEntryEntity!]!
+  id: Float!
+  mode: Float!
+  name: String!
+  open: Boolean!
+}
+
+type TournamentTeamEntryEntity {
+  id: Float!
+  team: TeamEntity!
+  tournament: TournamentEntity!
+}
+
 type User {
   discord_id: String!
   player: Player!
   role: Float!
   steam_id: String!
+}
+
+enum Dota_GameMode {
+  ABILITY_DRAFT
+  ALLPICK
+  ALL_RANDOM
+  BALANCED_DRAFT
+  CAPTAINS_MODE
+  DIRETIDE
+  GREEVILING
+  LEAST_PLAYED
+  LIMITED_HEROES
+  MID_ONLY
+  RANDOM_DRAFT
+  REVERSE_CAPTAINS_MODE
+  SINGLE_DRAFT
+  SOLOMID
+  TUTORIAL
 }
 
 enum MatchmakingMode {

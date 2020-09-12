@@ -49,7 +49,7 @@ const Party = styled.div`
   border-radius: 2px;
 `;
 
-const QParty = (p: PartyDTO & { invalidate: () => void; mode: MatchmakingMode }) => {
+export const QParty = (p: PartyDTO & { invalidate: () => void; mode: MatchmakingMode }) => {
   const isLeader = (qp: QueuePlayerDTO) => p.leader.id === qp.id;
   return (
     <Party>

@@ -1,19 +1,16 @@
 import { AdminLayout } from "../../components/admin/AdminLayout";
 import React from "react";
-import useSWR from "swr";
-import frwd from "../../utils/frwd";
-import { QueueDTO, ServerOperatorDTO } from "../../utils/dto";
-import api from "../../service/api";
 import ServerOperator from "../../components/admin/ServerOperator";
+import useServers from "../../data/admin/useServers";
 
 const Page = () => {
-  const { data, error, isValidating, revalidate } = useSWR("/admin/gameservers", frwd<ServerOperatorDTO[]>(api.get));
+  const { data, error, isValidating, revalidate } = useServers();
 
   console.log(data);
 
   return (
     <AdminLayout>
-      {data?.map(it => (
+      {data?.GameServers.map(it => (
         <ServerOperator {...it} revalidate={revalidate} />
       ))}
     </AdminLayout>

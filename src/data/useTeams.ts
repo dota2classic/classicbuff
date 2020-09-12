@@ -3,9 +3,9 @@ import useSWR from "swr";
 import { local } from "../config";
 import { Match, Page, TeamEntity } from "../shared";
 import { FullTeamFragment } from "./fragments";
+import { GQLClient } from "./client";
 
-const API = local ? "http://localhost:5002/graphql" : "https://dota2classic.ru/prod-api/graphql";
-const fetcher = (variables?: any) => (query: any) => request(API, query, variables);
+const fetcher = (variables?: any) => (query: any) => GQLClient.request(query, variables);
 
 const query = gql`
   ${FullTeamFragment}
