@@ -2,7 +2,7 @@ import * as React from "react";
 import { ChangeEventHandler, ReactNode } from "react";
 import styled from "styled-components";
 import api from "../service/api";
-import { ImageEntity } from "../shared";
+import { ImageEntity } from "../generated/sdk";
 
 interface ImageUploaderProps {
   children: ReactNode;

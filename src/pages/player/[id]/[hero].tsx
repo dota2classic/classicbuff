@@ -1,29 +1,30 @@
 import React, { useEffect, useState } from "react";
 import Router, { useRouter } from "next/router";
-import usePlayer, { prefetchPlayer } from "../../../data/usePlayer";
 import { numToSteamId, steamIdToNum } from "../../../utils/numSteamId";
 import Layout from "../../../components/Layout";
 import Head from "next/head";
 import { NextPageContext } from "next";
-import { Match, Player } from "../../../shared";
 import { Table, Tr } from "../../../components/LadderRow";
 import PlayerMatch from "../../../components/PlayerMatch";
 import Pagination from "../../../components/Pagination";
-import { MatchmakingMode } from "../../../utils/format/formatGameMode";
-import useHistory from "../../../data/useHistory";
-import usePlayerHistory from "../../../data/usePlayerHistory";
 import { Tab, Tabs } from "../../../components/Tabs";
 import Link from "next/link";
+import { usePlayerHistoryQuery } from "../../../generated/sdk";
+import { BaseGQLConfig } from "../../../shared";
 
-interface InitialProps {
-  data?: { Player: Player };
-}
-const Page = (p: InitialProps) => {
+const Page = () => {
   const { id, hero } = useRouter().query;
 
   const [page, setPage] = useState(0);
 
-  const { data } = usePlayerHistory(numToSteamId(Number(id)), String(hero), page);
+  const { data } = usePlayerHistoryQuery({
+    ...BaseGQLConfig,
+    variables: {
+      sid: numToSteamId(Number(id)),
+      hero: String(hero),
+      page
+    }
+  });
   const player = data?.Player;
 
   return (
@@ -66,7 +67,7 @@ const Page = (p: InitialProps) => {
           </Tr>
         </thead>
         <tbody>
-          {data?.PlayerHistory.data.map((it, index) => (
+          {data?.PlayerHistory.data?.map((it, index) => (
             <PlayerMatch index={index} player={data?.Player} match={it} />
           ))}
         </tbody>
@@ -81,13 +82,6 @@ const Page = (p: InitialProps) => {
       )}
     </Layout>
   );
-};
-
-Page.getInitialProps = async (ctx: NextPageContext) => {
-  const { id } = ctx.query;
-
-  const data = await prefetchPlayer(numToSteamId(Number(id)));
-  return { data };
 };
 
 export default Page;

@@ -1,15 +1,19 @@
-import useTeams from "../../data/useTeams";
 import React, { useState } from "react";
-import Layout, { TournamentLayout } from "../../components/Layout";
+import { TournamentLayout } from "../../components/Layout";
 import TeamPreview from "../../components/TeamPreview";
 import AuthService from "../../service/AuthService";
-import Button, { LinkButton } from "../../components/Button";
+import { LinkButton } from "../../components/Button";
 import { observer } from "mobx-react";
 import Link from "next/link";
+import { useTeamsQuery } from "../../generated/sdk";
 
 export default observer(() => {
   const [page, setPage] = useState(0);
-  const { data } = useTeams(page);
+  const { data } = useTeamsQuery({
+    variables: {
+      page
+    }
+  });
 
   return (
     <TournamentLayout>
@@ -20,7 +24,7 @@ export default observer(() => {
       )}
 
       <br />
-      {data?.Teams.data.map(TeamPreview)}
+      {data?.Teams.data?.map(TeamPreview)}
     </TournamentLayout>
   );
 });

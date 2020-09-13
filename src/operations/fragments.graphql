@@ -1,0 +1,95 @@
+fragment FullTeamFragment on TeamEntity {
+  name
+  id
+  image {
+    id
+    path
+  }
+  creator {
+    discord_id
+    steam_id
+    player {
+      ...PlayerFragment
+    }
+  }
+  members {
+    user {
+      discord_id
+      steam_id
+      player {
+        ...PlayerFragment
+      }
+    }
+  }
+}
+
+fragment MatchNoPlayersFragment on Match {
+  duration
+  radiant_win
+  timestamp
+  id
+  type
+  players {
+    ...PlayerInMatchFragment
+  }
+}
+
+fragment PlayerInMatchFragment on PlayerInMatch {
+  id
+
+  hero
+  items
+  level
+
+  team
+
+  kills
+  deaths
+  assists
+
+  gpm
+  xpm
+
+  last_hits
+  denies
+}
+
+fragment FullPlayerInMatchFragment on PlayerInMatch {
+  player {
+    ...PlayerFragment
+  }
+  id
+
+  hero
+  items
+  level
+
+  team
+
+  kills
+  deaths
+  assists
+
+  gpm
+  xpm
+
+  last_hits
+  denies
+}
+
+fragment FullMatchFragment on Match {
+  duration
+  id
+  radiant_win
+  timestamp
+  type
+  players {
+    ...FullPlayerInMatchFragment
+  }
+}
+
+fragment PlayerFragment on Player {
+  mmr
+  steam_id
+  name
+}

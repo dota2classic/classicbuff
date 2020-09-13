@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from "react";
-import api from "../service/api";
-import { Player } from "../shared";
+import React from "react";
 import LadderRow, { LadderHeader, Table } from "../components/LadderRow";
 import Layout from "../components/Layout";
 import styled from "styled-components";
 import Head from "next/head";
-import sniffToken from "../utils/sniffToken";
-import useLadder from "../data/useLadder";
+import { useLadderQuery } from "../generated/sdk";
+import { BaseGQLConfig } from "../shared";
 
 const Thin = styled.div`
   max-width: 800px;
   width: 100%;
 `;
 export default () => {
-  const { data } = useLadder();
+  const { data } = useLadderQuery(BaseGQLConfig);
 
   return (
     <Layout title={<h1>Таблица лидеров</h1>}>

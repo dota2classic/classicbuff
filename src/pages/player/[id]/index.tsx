@@ -1,22 +1,21 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import Router, { useRouter } from "next/router";
-import usePlayer, { prefetchPlayer } from "../../../data/usePlayer";
+import React from "react";
+import { useRouter } from "next/router";
 import { numToSteamId } from "../../../utils/numSteamId";
 import Layout from "../../../components/Layout";
 import Head from "next/head";
 import PlayerPage from "../../../container/PlayerPage";
-import { NextPageContext } from "next";
-import { Match, Player } from "../../../shared";
+import { usePlayerQuery } from "generated/sdk";
+import { BaseGQLConfig } from "../../../shared";
 
-interface InitialProps {
-  data?: { Player: Player };
-}
-const Page = (p: InitialProps) => {
+const Page = () => {
   const { id } = useRouter().query;
 
-  console.log(id, Number(id), useRouter().query.id);
-  const { data } = usePlayer(numToSteamId(Number(id)), p.data);
+  const { data } = usePlayerQuery({
+    ...BaseGQLConfig,
+    variables: {
+      id: numToSteamId(Number(id))
+    }
+  });
 
   const player = data?.Player;
 
@@ -34,13 +33,6 @@ const Page = (p: InitialProps) => {
       <PlayerPage steam_id={numToSteamId(Number(id))} />
     </Layout>
   );
-};
-
-Page.getInitialProps = async (ctx: NextPageContext) => {
-  const { id } = ctx.query;
-
-  const data = await prefetchPlayer(numToSteamId(Number(id)));
-  return { data };
 };
 
 export default Page;

@@ -1,0 +1,12 @@
+overwrite: true
+schema: "http://localhost:5002/graphql"
+documents: "src/**/*.graphql"
+watch: true
+generates:
+  src/generated/sdk.ts:
+    config:
+      gqlImport: "@apollo/client#gql"
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo

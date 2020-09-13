@@ -1,15 +1,17 @@
 import { AdminLayout } from "../../components/admin/AdminLayout";
 import React from "react";
-import useServers from "../../data/admin/useServers";
-import useRooms from "../../data/admin/useRooms";
 import Room from "../../components/admin/Room";
+import { useRoomsQuery } from "../../generated/sdk";
+import { BaseGQLConfig } from "../../shared";
 
 export default () => {
-  const { data, error, isValidating, revalidate } = useRooms();
+  const { data } = useRoomsQuery({
+    ...BaseGQLConfig
+  });
 
   return (
     <AdminLayout>
-      {data?.Rooms.map(it => (
+      {data?.Rooms?.map(it => (
         <Room {...it} />
       ))}
     </AdminLayout>

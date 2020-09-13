@@ -44,9 +44,10 @@ type Mutation {
   KillServer(url: String!): [GameServerOperatorDTO!]!
   RestartServer(mode: MatchmakingMode!, url: String!): [GameServerOperatorDTO!]!
   StartServer(mode: MatchmakingMode!, url: String!): [GameServerOperatorDTO!]!
+  SubmitInvitation(accept: Boolean!, id: Float!): [TeamEntity!]!
   createTeam(image: String!, name: String!): TeamEntity!
-  createTournament(mode: Dota_GameMode!, name: String!): TournamentEntity!
-  joinTournament(id: Float!, team_id: Float!): TournamentEntity!
+  inviteToTeam(id: Int!, uid: String!): TeamInvitationEntity!
+  updateTeam(id: Int!, image: String, name: String): TeamEntity!
 }
 
 type OverallStats {
@@ -127,8 +128,9 @@ type Query {
   Queues: [QueueDTO!]!
   Rooms: [RoomDTO!]!
   Team(id: Int!): TeamEntity!
+  TeamInvitations: [TeamInvitationEntity!]!
   Teams(page: Int!): PaginatedTeam!
-  Tournaments: [TournamentEntity!]!
+  Users(name: String!): [User!]!
 }
 
 type QueueDTO {
@@ -156,22 +158,14 @@ type TeamEntity {
   name: String!
 }
 
-type TeamMemberEntity {
+type TeamInvitationEntity {
+  id: Float!
+  team: TeamEntity!
   user: User!
 }
 
-type TournamentEntity {
-  entries: [TournamentTeamEntryEntity!]!
-  id: Float!
-  mode: Float!
-  name: String!
-  open: Boolean!
-}
-
-type TournamentTeamEntryEntity {
-  id: Float!
-  team: TeamEntity!
-  tournament: TournamentEntity!
+type TeamMemberEntity {
+  user: User!
 }
 
 type User {
@@ -179,24 +173,6 @@ type User {
   player: Player!
   role: Float!
   steam_id: String!
-}
-
-enum Dota_GameMode {
-  ABILITY_DRAFT
-  ALLPICK
-  ALL_RANDOM
-  BALANCED_DRAFT
-  CAPTAINS_MODE
-  DIRETIDE
-  GREEVILING
-  LEAST_PLAYED
-  LIMITED_HEROES
-  MID_ONLY
-  RANDOM_DRAFT
-  REVERSE_CAPTAINS_MODE
-  SINGLE_DRAFT
-  SOLOMID
-  TUTORIAL
 }
 
 enum MatchmakingMode {

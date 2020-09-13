@@ -1,8 +1,8 @@
-import { PartyDTO, QueueDTO, QueuePlayerDTO } from "../../utils/dto";
 import styled from "styled-components";
 import React from "react";
 import formatGameMode, { MatchmakingMode } from "../../utils/format/formatGameMode";
 import api from "../../service/api";
+import { PartyDto, QueueDto, QueuePlayerDto } from "../../generated/sdk";
 
 const QueueBlock = styled.div`
   display: flex;
@@ -49,8 +49,8 @@ const Party = styled.div`
   border-radius: 2px;
 `;
 
-export const QParty = (p: PartyDTO & { invalidate: () => void; mode: MatchmakingMode }) => {
-  const isLeader = (qp: QueuePlayerDTO) => p.leader.id === qp.id;
+export const QParty = (p: PartyDto & { invalidate: () => void; mode: MatchmakingMode }) => {
+  const isLeader = (qp: QueuePlayerDto) => p.leader.id === qp.id;
   return (
     <Party>
       <button
@@ -72,7 +72,7 @@ interface Props {
   invalidate: () => void;
 }
 
-export default (q: QueueDTO & Props) => {
+export default (q: QueueDto & Props) => {
   return (
     <QueueBlock>
       <GameMode>

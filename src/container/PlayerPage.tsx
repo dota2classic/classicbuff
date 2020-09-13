@@ -3,12 +3,13 @@ import { Tab, Tabs } from "../components/Tabs";
 import { Table, Tr } from "../components/LadderRow";
 import HeroIcon from "../components/HeroIcon";
 import PlayerMatch from "../components/PlayerMatch";
-import usePlayerPage from "../data/usePlayerPage";
 import Pagination from "../components/Pagination";
 import SmartTable from "../components/SmartTable";
 import Router from "next/router";
 import { steamIdToNum } from "../utils/numSteamId";
 import getHeroRating from "../utils/getHeroRating";
+import { usePlayerPageQuery } from "../generated/sdk";
+import { BaseGQLConfig } from "../shared";
 
 interface Props {
   steam_id: string;
@@ -45,7 +46,13 @@ const HeroSummaryRow = (it: HeroSummaryInfo) => (
 export default (p: Props) => {
   const [page, setPage] = useState(0);
 
-  const { data } = usePlayerPage(p.steam_id, page);
+  const { data } = usePlayerPageQuery({
+    ...BaseGQLConfig,
+    variables: {
+      steam_id: p.steam_id,
+      page
+    }
+  });
 
   const [tab, setTab] = useState(0);
 
@@ -134,7 +141,7 @@ export default (p: Props) => {
               </Tr>
             </thead>
             <tbody>
-              {data?.PlayerHistory.data.map((it, index) => (
+              {data?.PlayerHistory.data?.map((it, index) => (
                 <PlayerMatch index={index} player={data?.Player} match={it} />
               ))}
             </tbody>

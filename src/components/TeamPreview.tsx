@@ -1,8 +1,8 @@
-import { TeamEntity } from "../shared";
 import styled from "styled-components";
 import React from "react";
 import image from "../utils/image";
 import Link from "next/link";
+import { FullTeamFragmentFragment, TeamEntity } from "../generated/sdk";
 
 const TeamRow = styled.a`
   display: flex;
@@ -29,7 +29,7 @@ const TeamImage = styled.img`
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-right: none;
 `;
-export default (team: TeamEntity) => (
+export default (team: FullTeamFragmentFragment) => (
   <Link passHref href={`/teams/${team.id}`}>
     <TeamRow>
       <TeamImage src={image(team.image)} />

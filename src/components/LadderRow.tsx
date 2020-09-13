@@ -1,8 +1,8 @@
-import { Player } from "../shared";
 import styled from "styled-components";
-import React, { PropsWithChildren } from "react";
+import React from "react";
 import Link from "next/link";
 import { steamIdToNum } from "../utils/numSteamId";
+import { Player, PlayerFragmentFragment } from "../generated/sdk";
 
 export const Tr = styled.tr`
   line-height: 16px;
@@ -37,7 +37,7 @@ export const Tr = styled.tr`
   }
 `;
 
-export default (props: Player & { index: number }) => {
+export default (props: PlayerFragmentFragment & { index: number }) => {
   const playerUrl = `/player/${steamIdToNum(props.steam_id)}`;
 
   return (

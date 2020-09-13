@@ -1,21 +1,14 @@
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import { Match, PlayerInMatch } from "../../shared";
+import React from "react";
 import Layout from "../../components/Layout";
-import { Table, Tr } from "../../components/LadderRow";
 import api from "../../service/api";
-import Link from "next/link";
-import { steamIdToNum } from "../../utils/numSteamId";
-import HeroIcon from "../../components/HeroIcon";
-import ItemIcon from "../../components/ItemIcon";
 import Head from "next/head";
-import PlayerRow from "../../components/PlayerRow";
 import TeamTable from "../../components/TeamTable";
-import { NextApiRequest, NextPageContext } from "next";
-import useWillMount from "../../utils/useWillMount";
-import useMatch from "../../data/useMatch";
+import { NextPageContext } from "next";
 import formatGameMode from "../../utils/format/formatGameMode";
+import { Match, PlayerInMatch, PlayerInMatchFragmentFragment, useMatchQuery } from "../../generated/sdk";
+import { BaseGQLConfig } from "../../shared";
 export const ItemsContainer = styled.div`
   display: flex;
   position: relative;
@@ -111,7 +104,7 @@ const fetchMatch = (id: number): Promise<Match> => {
     .then(it => it.data as Match);
 };
 
-const sumKills = (players: PlayerInMatch[]) => {
+const sumKills = (players: PlayerInMatchFragmentFragment[]) => {
   let sum = 0;
   players.forEach(it => (sum += it.kills));
   return sum;
@@ -120,7 +113,12 @@ const sumKills = (players: PlayerInMatch[]) => {
 const Page = (p: Partial<{ match: Match }>) => {
   const { id } = useRouter().query;
 
-  const { data } = useMatch(Number(id));
+  const { data } = useMatchQuery({
+    ...BaseGQLConfig,
+    variables: {
+      id: Number(id)
+    }
+  });
 
   if (!data?.Match) return null;
 

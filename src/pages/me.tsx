@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Router, { useRouter } from "next/router";
-import { Player, Match, PlayerStatsDto } from "../shared";
 import api from "../service/api";
 import Layout from "../components/Layout";
-import { Table, Tr } from "../components/LadderRow";
-import PlayerMatch from "../components/PlayerMatch";
-import { numToSteamId } from "../utils/numSteamId";
-import Head from "next/head";
-import HeroIcon from "../components/HeroIcon";
-import { Tab, Tabs } from "../components/Tabs";
-import getHeroRating from "../utils/getHeroRating";
-import { NextPageContext } from "next";
 import useWillMount from "../utils/useWillMount";
 import AuthService from "../service/AuthService";
 import { observer } from "mobx-react";
@@ -23,10 +14,6 @@ export const HeroPreview = styled.img`
   margin: 4px;
 `;
 
-interface PlayerInfo {
-  matches: Match[];
-  player: Player;
-}
 const Hint = styled.a`
   font-size: 16px;
 `;

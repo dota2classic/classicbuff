@@ -1,17 +1,26 @@
-import { GameServerDTO, ServerOperatorDTO } from "../../utils/dto";
 import styled from "styled-components";
 import React, { useState } from "react";
 import { AdminTable } from "./AdminTable";
 import serverOperatorName from "../../utils/serverOperatorName";
-import formatGameMode, { MatchmakingMode } from "../../utils/format/formatGameMode";
-import api from "../../service/api";
-import { GQLMatchmakingMode, killServer, restartServer, startServer } from "../../data/admin/serverMutations";
-import { mutate } from "swr";
+import formatGameMode, { MatchmakingMode as MM } from "../../utils/format/formatGameMode";
+import {
+  GameServerOperatorDto,
+  GameServersDto,
+  MatchmakingMode,
+  useKillServerMutation,
+  useRestartServerMutation,
+  useStartServerMutation
+} from "../../generated/sdk";
 
 const Operator = styled.div``;
 
-const TableRow = (it: GameServerDTO & { revalidate: () => void }) => {
-  const [runMode, setRunMode] = useState<GQLMatchmakingMode | undefined>(undefined);
+const TableRow = (it: GameServersDto & { revalidate: () => void }) => {
+  const [runMode, setRunMode] = useState<MatchmakingMode | undefined>(undefined);
+
+  const [startServer] = useStartServerMutation();
+  const [killServer] = useKillServerMutation();
+
+  const [restartServer] = useRestartServerMutation();
 
   return (
     <tr>
@@ -22,27 +31,43 @@ const TableRow = (it: GameServerDTO & { revalidate: () => void }) => {
       <td>
         {it.running ? (
           <>
-            <button onClick={() => killServer(it.url).then(it.revalidate)}>Остановить</button>
-            <button onClick={() => restartServer(it.url, runMode!!).then(it.revalidate)}>Перезапустить</button>
+            <button onClick={() => killServer({ variables: { url: it.url } }).then(it.revalidate)}>Остановить</button>
+            <button
+              onClick={() =>
+                restartServer({
+                  variables: {
+                    url: it.url,
+                    mode: runMode!!
+                  }
+                }).then(it.revalidate)
+              }
+            >
+              Перезапустить
+            </button>
           </>
         ) : (
           <>
             <select
               onChange={e => {
-                const v = e.target.value as GQLMatchmakingMode;
+                const v = e.target.value as MatchmakingMode;
                 setRunMode(v);
               }}
             >
               <option value={undefined}>Выберите режим</option>
-              <option value={GQLMatchmakingMode.RANKED}>{formatGameMode(MatchmakingMode.RANKED)}</option>
-              <option value={GQLMatchmakingMode.UNRANKED}>{formatGameMode(MatchmakingMode.UNRANKED)}</option>
-              <option value={GQLMatchmakingMode.SOLOMID}>{formatGameMode(MatchmakingMode.SOLOMID)}</option>
-              <option value={GQLMatchmakingMode.DIRETIDE}>{formatGameMode(MatchmakingMode.DIRETIDE)}</option>
-              <option value={GQLMatchmakingMode.GREEVILING}>{formatGameMode(MatchmakingMode.GREEVILING)}</option>
+              <option value={MatchmakingMode.Ranked}>{formatGameMode(MM.RANKED)}</option>
+              <option value={MatchmakingMode.Unranked}>{formatGameMode(MM.UNRANKED)}</option>
+              <option value={MatchmakingMode.Solomid}>{formatGameMode(MM.SOLOMID)}</option>
+              <option value={MatchmakingMode.Diretide}>{formatGameMode(MM.DIRETIDE)}</option>
+              <option value={MatchmakingMode.Greeviling}>{formatGameMode(MM.GREEVILING)}</option>
             </select>
             <button
               onClick={async () => {
-                startServer(it.url, runMode!!).then(it.revalidate);
+                startServer({
+                  variables: {
+                    url: it.url,
+                    mode: runMode!!
+                  }
+                }).then(it.revalidate);
               }}
               disabled={runMode === undefined}
             >
@@ -55,7 +80,7 @@ const TableRow = (it: GameServerDTO & { revalidate: () => void }) => {
   );
 };
 
-export default (p: ServerOperatorDTO & { revalidate: () => void }) => {
+export default (p: GameServerOperatorDto & { revalidate: () => void }) => {
   return (
     <Operator>
       <h3 style={{ textTransform: "capitalize" }}>{serverOperatorName(p.url)}</h3>

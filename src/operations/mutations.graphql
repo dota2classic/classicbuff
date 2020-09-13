@@ -1,0 +1,73 @@
+mutation restartServer($url: String!, $mode: MatchmakingMode!) {
+  RestartServer(mode: $mode, url: $url) {
+    url
+    gameServers {
+      url
+      running
+    }
+  }
+}
+
+mutation startServer($url: String!, $mode: MatchmakingMode!) {
+  StartServer(mode: $mode, url: $url) {
+    url
+    gameServers {
+      url
+      running
+    }
+  }
+}
+
+mutation killServer($url: String!) {
+  KillServer(url: $url) {
+    url
+    gameServers {
+      url
+      running
+    }
+  }
+}
+
+mutation updateTeam($id: Int!, $name: String, $image: String) {
+  updateTeam(id: $id, image: $image, name: $name) {
+    name
+    id
+    image {
+      id
+    }
+    creator {
+      player {
+        name
+      }
+    }
+    members {
+      user {
+        player {
+          name
+        }
+      }
+    }
+  }
+}
+
+mutation createTeam($image: String!, $name: String!) {
+  createTeam(image: $image, name: $name) {
+    name
+    id
+    image {
+      id
+    }
+    creator {
+      player {
+        name
+      }
+    }
+    members {
+      user {
+        player {
+          name
+        }
+      }
+    }
+  }
+}

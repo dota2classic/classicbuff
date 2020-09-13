@@ -1,7 +1,7 @@
 import { Table, Tr } from "../components/LadderRow";
 import Layout from "../components/Layout";
 import React, { useEffect, useState } from "react";
-import { Match } from "../shared";
+import { BaseGQLConfig } from "../shared";
 import styled from "styled-components";
 import Head from "next/head";
 import { MatchmakingMode } from "../utils/format/formatGameMode";
@@ -9,8 +9,8 @@ import MatchRow from "../components/MatchRow";
 import { Tab, Tabs } from "../components/Tabs";
 
 import { observer } from "mobx-react";
-import useHistory from "../data/useHistory";
 import Pagination from "../components/Pagination";
+import { Match, useHistoryQuery } from "../generated/sdk";
 
 export const Heroes = styled.div`
   display: flex;
@@ -27,7 +27,13 @@ const Page = observer((p: Partial<{ history: Match[] }>) => {
   const [mode, setMode] = useState<MatchmakingMode | undefined>(MatchmakingMode.RANKED);
 
   useEffect(() => setPage(0), [mode]);
-  const { data } = useHistory(page, mode);
+  const { data } = useHistoryQuery({
+    ...BaseGQLConfig,
+    variables: {
+      page,
+      mode
+    }
+  });
 
   return (
     <Layout title="dota2classic.ru 6.81b история матчей">
@@ -69,7 +75,7 @@ const Page = observer((p: Partial<{ history: Match[] }>) => {
           </Tr>
         </thead>
         <tbody>
-          {data?.History?.data.map((it, index) => (
+          {data?.History?.data?.map((it, index) => (
             <MatchRow index={index} {...it} />
           ))}
         </tbody>

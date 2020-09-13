@@ -1,4 +1,4 @@
-import { PlayerStatsDto } from "../shared";
+import { PlayerStatsDto } from "../generated/sdk";
 
 export default (it: PlayerStatsDto) => {
   const wr = Number(it.wins) / Number(it.games);

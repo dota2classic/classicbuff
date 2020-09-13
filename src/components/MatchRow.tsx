@@ -1,4 +1,3 @@
-import { Match } from "../shared";
 import cx from "classnames";
 import Router from "next/router";
 import { formatDateStr } from "../utils/format/formateDateStr";
@@ -8,8 +7,9 @@ import HeroIcon from "./HeroIcon";
 import { Tr } from "./LadderRow";
 import React from "react";
 import { Heroes, MatchIdCol } from "../pages/history";
+import { Match, MatchNoPlayersFragmentFragment } from "../generated/sdk";
 
-export default (it: Match & { index: number }) => {
+export default (it: MatchNoPlayersFragmentFragment & { index: number }) => {
   const isMid = it.type === MatchmakingMode.SOLOMID;
 
   const radiant = it.players.filter(it => it.team === 2);

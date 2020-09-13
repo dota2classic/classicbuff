@@ -1,27 +1,22 @@
 import styled from "styled-components";
-import { TeamEntity } from "../shared";
 import React from "react";
 import { Table, Tr } from "./LadderRow";
 import Link from "next/link";
 import { steamIdToNum } from "../utils/numSteamId";
+import { TeamEntity } from "../generated/sdk";
 
 const Roster = styled.div`
   color: white;
   flex-direction: column;
+  width: 100%;
   & h3 {
   }
-`;
-
-const TeamMember = styled.a`
-  display: flex;
-  color: white;
-  flex-direction: row;
 `;
 
 export default (team: TeamEntity) => {
   return (
     <Roster>
-      <h3>Игроки</h3>
+      <h3>Состав</h3>
 
       <Table>
         <thead>

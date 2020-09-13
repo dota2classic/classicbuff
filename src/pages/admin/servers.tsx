@@ -1,17 +1,18 @@
 import { AdminLayout } from "../../components/admin/AdminLayout";
 import React from "react";
 import ServerOperator from "../../components/admin/ServerOperator";
-import useServers from "../../data/admin/useServers";
+import { useGameServersQuery } from "../../generated/sdk";
+import { BaseGQLConfig } from "../../shared";
 
 const Page = () => {
-  const { data, error, isValidating, revalidate } = useServers();
-
-  console.log(data);
+  const { data, refetch } = useGameServersQuery({
+    ...BaseGQLConfig
+  });
 
   return (
     <AdminLayout>
       {data?.GameServers.map(it => (
-        <ServerOperator {...it} revalidate={revalidate} />
+        <ServerOperator {...it} revalidate={refetch} />
       ))}
     </AdminLayout>
   );

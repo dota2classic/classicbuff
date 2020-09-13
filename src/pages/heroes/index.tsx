@@ -1,13 +1,11 @@
 import Head from "next/head";
 import Layout from "../../components/Layout";
-import React, { useEffect, useState } from "react";
-import { HeroSummary, Match } from "../../shared";
+import React from "react";
 import api from "../../service/api";
-import { Table, Tr } from "../../components/LadderRow";
-import PlayerMatch from "../../components/PlayerMatch";
 import HeroSummaryRow from "../../components/HeroSummaryRow";
 import SmartTable from "../../components/SmartTable";
-import useHeroes from "../../data/useHeroes";
+import { HeroSummary, useHeroesQuery } from "../../generated/sdk";
+import { BaseGQLConfig } from "../../shared";
 
 const fetchHeroes = async (): Promise<HeroSummary[]> => {
   const res = await api.get<HeroSummary[]>("/public/heroes");
@@ -32,7 +30,9 @@ export interface HeroSummaryPresentation {
 }
 
 export default () => {
-  const { data } = useHeroes();
+  const { data } = useHeroesQuery({
+    ...BaseGQLConfig
+  });
 
   return (
     <Layout title={<h3>Герои</h3>}>

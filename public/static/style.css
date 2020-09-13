@@ -1,3 +1,17 @@
+.ReactModal__Content {
+  background: #15191d !important;
+
+  z-index: 5 !important;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.ReactModal__Overlay {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  z-index: 10 !important;
+}
+
 body {
   margin: 0;
   font-size: 16px;

@@ -1,4 +1,3 @@
-import { PlayerInMatch } from "../shared";
 import { steamIdToNum } from "../utils/numSteamId";
 import { Tr } from "./LadderRow";
 import Link from "next/link";
@@ -6,8 +5,9 @@ import HeroIcon from "./HeroIcon";
 import ItemIcon from "./ItemIcon";
 import React from "react";
 import { ItemsContainer } from "../pages/match/[id]";
+import { FullPlayerInMatchFragmentFragment, PlayerInMatchFragmentFragment } from "../generated/sdk";
 
-export default (p: PlayerInMatch) => {
+export default (p: FullPlayerInMatchFragmentFragment) => {
   const items = p.items.split(",").map(it => it.substr(5));
   const playerUrl = `/player/${steamIdToNum(p.player.steam_id)}`;
   return (

@@ -1,4 +1,3 @@
-import { Player, Match, PlayerInMatch } from "../shared";
 import Router from "next/router";
 import { Tr } from "./LadderRow";
 import React from "react";
@@ -8,11 +7,21 @@ import { formatDateStr } from "../utils/format/formateDateStr";
 import cx from "classnames";
 import HeroIcon from "./HeroIcon";
 import formatGameMode from "../utils/format/formatGameMode";
+import {
+  FullMatchFragmentFragment,
+  Match,
+  Player,
+  PlayerFragmentFragment,
+  PlayerInMatch,
+  PlayerInMatchFragmentFragment
+} from "../generated/sdk";
+
 export interface PlayerMatchInfo {
-  player: Player | PlayerInMatch;
-  match: Match;
+  player: PlayerFragmentFragment | PlayerInMatchFragmentFragment;
+  match: FullMatchFragmentFragment;
   index: number;
 }
+
 export default ({ match, player, index }: PlayerMatchInfo) => {
   const pim =
     ("steam_id" in player && match.players.find(it => it.player.steam_id === player.steam_id)!!) ||

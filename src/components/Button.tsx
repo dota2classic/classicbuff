@@ -11,8 +11,14 @@ const Button = styled.button`
   font-family: "Trajan Pro 3", sans-serif;
   color: white;
 
+  width: fit-content;
+  &:disabled {
+    background: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+  }
+
   cursor: pointer;
-  &:hover {
+  &:hover:not(:disabled) {
     background: rgba(0, 0, 0, 0.8);
   }
 `;
