@@ -17,7 +17,7 @@ query history($page: Int!, $mode: Int) {
 query heroHistory($page: Int!, $hero: String!) {
   HeroMatches(hero: $hero, page: $page) {
     data {
-      ...FullMatchFragment
+      ...MatchNoPlayersFragment
     }
     page
     pages

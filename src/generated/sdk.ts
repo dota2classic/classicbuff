@@ -347,7 +347,7 @@ export type HeroHistoryQueryVariables = Exact<{
 
 export type HeroHistoryQuery = { __typename?: "Query" } & {
   HeroMatches: { __typename?: "PaginatedMatch" } & Pick<PaginatedMatch, "page" | "pages"> & {
-      data?: Maybe<Array<{ __typename?: "Match" } & FullMatchFragmentFragment>>;
+      data?: Maybe<Array<{ __typename?: "Match" } & MatchNoPlayersFragmentFragment>>;
     };
 };
 
@@ -710,13 +710,13 @@ export const HeroHistoryDocument = gql`
   query heroHistory($page: Int!, $hero: String!) {
     HeroMatches(hero: $hero, page: $page) {
       data {
-        ...FullMatchFragment
+        ...MatchNoPlayersFragment
       }
       page
       pages
     }
   }
-  ${FullMatchFragmentFragmentDoc}
+  ${MatchNoPlayersFragmentFragmentDoc}
 `;
 
 /**

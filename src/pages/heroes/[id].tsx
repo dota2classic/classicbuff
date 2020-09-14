@@ -15,11 +15,13 @@ export default () => {
 
   const [page, setPage] = useState(0);
 
+  const hero = id as string;
+
   const { data } = useHeroHistoryQuery({
     ...BaseGQLConfig,
     variables: {
       page,
-      hero: id as string
+      hero
     }
   });
 
