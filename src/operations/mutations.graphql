@@ -28,46 +28,33 @@ mutation killServer($url: String!) {
   }
 }
 
-mutation updateTeam($id: Int!, $name: String, $image: String) {
-  updateTeam(id: $id, image: $image, name: $name) {
-    name
-    id
-    image {
-      id
-    }
-    creator {
-      player {
-        name
-      }
-    }
-    members {
-      user {
-        player {
-          name
-        }
-      }
-    }
+mutation updateTeam($id: Int!, $name: String, $tag: String, $image: String) {
+  updateTeam(id: $id, image: $image, name: $name, tag: $tag) {
+    ...TeamFragment
   }
 }
 
-mutation createTeam($image: String!, $name: String!) {
-  createTeam(image: $image, name: $name) {
+mutation createTeam($image: String!, $tag: String!, $name: String!) {
+  createTeam(image: $image, tag: $tag, name: $name) {
+    ...TeamFragment
+  }
+}
+
+mutation invitePlayer($id: Int!, $uid: String!) {
+  inviteToTeam(id: $id, uid: $uid) {
+    id
+  }
+}
+
+mutation kickPlayer($id: Int!, $uid: String!) {
+  kickPlayer(id: $id, uid: $uid) {
+    ...FullTeamFragment
+  }
+}
+
+mutation submitTeamInvitation($id: Int!, $accept: Boolean!) {
+  SubmitInvitation(id: $id, accept: $accept) {
     name
     id
-    image {
-      id
-    }
-    creator {
-      player {
-        name
-      }
-    }
-    members {
-      user {
-        player {
-          name
-        }
-      }
-    }
   }
 }

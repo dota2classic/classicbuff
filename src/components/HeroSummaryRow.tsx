@@ -6,12 +6,9 @@ import Router from "next/router";
 import heroName from "../utils/heroName";
 import { HeroSummaryPresentation } from "../pages/heroes";
 
-export default (p: HeroSummaryPresentation & { index: number }) => {
+export default (p: HeroSummaryPresentation) => {
   return (
-    <Tr
-      onClick={() => Router.push("/heroes/[id]", `/heroes/${p.hero}`)}
-      className={cx("link", p.index % 2 === 0 ? "even" : "odd")}
-    >
+    <Tr onClick={() => Router.push("/heroes/[id]", `/heroes/${p.hero}`)} className={cx("link")}>
       <td>
         <HeroIcon hero={p.hero} />
       </td>

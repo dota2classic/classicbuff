@@ -37,7 +37,8 @@ const NewTeam = () => {
     const team = await createTeam({
       variables: {
         image: img.id,
-        name: data.name
+        name: data.name,
+        tag: data.tag
       }
     });
     await Router.push(`/teams/${team.data?.createTeam.id}`);
@@ -56,7 +57,8 @@ const NewTeam = () => {
           </ImageUploader>
         </div>
         {/* register your input into the hook by invoking the "register" function */}
-        <Input name="name" placeholder="Название команды" ref={register({ required: true })} />
+        <Input name="name" placeholder="Название команды" ref={register({ required: true, maxLength: 20 })} />
+        <Input name="tag" placeholder="Тег" ref={register({ required: true, maxLength: 8 })} />
 
         <Button>Создать команду</Button>
       </Form>

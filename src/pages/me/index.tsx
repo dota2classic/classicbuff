@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Router, { useRouter } from "next/router";
-import api from "../service/api";
-import Layout from "../components/Layout";
-import useWillMount from "../utils/useWillMount";
-import AuthService from "../service/AuthService";
+import api from "../../service/api";
+import Layout from "../../components/Layout";
+import useWillMount from "../../utils/useWillMount";
+import AuthService from "../../service/AuthService";
 import { observer } from "mobx-react";
-import PlayerPage from "../container/PlayerPage";
+import PlayerPage from "../../container/PlayerPage";
 
 export const HeroPreview = styled.img`
   width: 60px;

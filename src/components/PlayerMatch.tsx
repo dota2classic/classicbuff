@@ -9,8 +9,7 @@ import HeroIcon from "./HeroIcon";
 import formatGameMode from "../utils/format/formatGameMode";
 import {
   FullMatchFragmentFragment,
-  Match,
-  Player,
+  MatchNoPlayersFragmentFragment,
   PlayerFragmentFragment,
   PlayerInMatch,
   PlayerInMatchFragmentFragment
@@ -18,13 +17,14 @@ import {
 
 export interface PlayerMatchInfo {
   player: PlayerFragmentFragment | PlayerInMatchFragmentFragment;
-  match: FullMatchFragmentFragment;
+  match: FullMatchFragmentFragment | MatchNoPlayersFragmentFragment;
   index: number;
 }
 
 export default ({ match, player, index }: PlayerMatchInfo) => {
   const pim =
-    ("steam_id" in player && match.players.find(it => it.player.steam_id === player.steam_id)!!) ||
+    ("steam_id" in player &&
+      (match as FullMatchFragmentFragment).players.find(it => it.player.steam_id === player.steam_id)!!) ||
     (player as PlayerInMatch);
   const isWin = match.radiant_win ? pim.team === 2 : pim.team === 3;
   const items = pim.items.split(",").map(it => it.substr(5));

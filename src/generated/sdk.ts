@@ -64,19 +64,26 @@ export type Mutation = {
   __typename?: "Mutation";
   createTeam: TeamEntity;
   inviteToTeam: TeamInvitationEntity;
+  kickPlayer: TeamEntity;
   KillServer: Array<GameServerOperatorDto>;
   RestartServer: Array<GameServerOperatorDto>;
   StartServer: Array<GameServerOperatorDto>;
-  SubmitInvitation: Array<TeamEntity>;
+  SubmitInvitation: TeamEntity;
   updateTeam: TeamEntity;
 };
 
 export type MutationCreateTeamArgs = {
   image: Scalars["String"];
   name: Scalars["String"];
+  tag: Scalars["String"];
 };
 
 export type MutationInviteToTeamArgs = {
+  id: Scalars["Int"];
+  uid: Scalars["String"];
+};
+
+export type MutationKickPlayerArgs = {
   id: Scalars["Int"];
   uid: Scalars["String"];
 };
@@ -97,13 +104,14 @@ export type MutationStartServerArgs = {
 
 export type MutationSubmitInvitationArgs = {
   accept: Scalars["Boolean"];
-  id: Scalars["Float"];
+  id: Scalars["Int"];
 };
 
 export type MutationUpdateTeamArgs = {
   id: Scalars["Int"];
   image?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
+  tag?: Maybe<Scalars["String"]>;
 };
 
 export type OverallStats = {
@@ -195,6 +203,7 @@ export type Query = {
   Team: TeamEntity;
   TeamInvitations: Array<TeamInvitationEntity>;
   Teams: PaginatedTeam;
+  User: User;
   Users: Array<User>;
 };
 
@@ -234,6 +243,10 @@ export type QueryTeamsArgs = {
   page: Scalars["Int"];
 };
 
+export type QueryUserArgs = {
+  id: Scalars["String"];
+};
+
 export type QueryUsersArgs = {
   name: Scalars["String"];
 };
@@ -265,6 +278,7 @@ export type TeamEntity = {
   image: ImageEntity;
   members: Array<TeamMemberEntity>;
   name: Scalars["String"];
+  tag: Scalars["String"];
 };
 
 export type TeamInvitationEntity = {
@@ -276,6 +290,7 @@ export type TeamInvitationEntity = {
 
 export type TeamMemberEntity = {
   __typename?: "TeamMemberEntity";
+  team: TeamEntity;
   user: User;
 };
 
@@ -285,9 +300,10 @@ export type User = {
   player: Player;
   role: Scalars["Float"];
   steam_id: Scalars["String"];
+  team?: Maybe<TeamMemberEntity>;
 };
 
-export type FullTeamFragmentFragment = { __typename?: "TeamEntity" } & Pick<TeamEntity, "name" | "id"> & {
+export type FullTeamFragmentFragment = { __typename?: "TeamEntity" } & Pick<TeamEntity, "name" | "id" | "tag"> & {
     image: { __typename?: "ImageEntity" } & Pick<ImageEntity, "id" | "path">;
     creator: { __typename?: "User" } & Pick<User, "discord_id" | "steam_id"> & {
         player: { __typename?: "Player" } & PlayerFragmentFragment;
@@ -323,6 +339,20 @@ export type FullMatchFragmentFragment = { __typename?: "Match" } & Pick<
 
 export type PlayerFragmentFragment = { __typename?: "Player" } & Pick<Player, "mmr" | "steam_id" | "name">;
 
+export type SmallTeamFragment = { __typename?: "TeamEntity" } & Pick<TeamEntity, "name" | "id" | "tag"> & {
+    image: { __typename?: "ImageEntity" } & Pick<ImageEntity, "id" | "path">;
+  };
+
+export type TeamFragmentFragment = { __typename?: "TeamEntity" } & Pick<TeamEntity, "name" | "id"> & {
+    image: { __typename?: "ImageEntity" } & Pick<ImageEntity, "id">;
+    creator: { __typename?: "User" } & { player: { __typename?: "Player" } & Pick<Player, "name"> };
+    members: Array<
+      { __typename?: "TeamMemberEntity" } & {
+        user: { __typename?: "User" } & { player: { __typename?: "Player" } & Pick<Player, "name"> };
+      }
+    >;
+  };
+
 export type MatchQueryVariables = Exact<{
   id: Scalars["Int"];
 }>;
@@ -351,9 +381,25 @@ export type HeroHistoryQuery = { __typename?: "Query" } & {
     };
 };
 
+export type PlayerStatsQueryVariables = Exact<{
+  steam_id: Scalars["String"];
+}>;
+
+export type PlayerStatsQuery = { __typename?: "Query" } & {
+  PlayerStats: { __typename?: "PlayerStatsModel" } & {
+    heroes: Array<
+      { __typename?: "PlayerStatsDto" } & Pick<
+        PlayerStatsDto,
+        "denies" | "games" | "gpm" | "kda" | "hero" | "last_hits" | "loss" | "playerSteamId" | "wins" | "xpm"
+      >
+    >;
+    overall: { __typename?: "OverallStats" } & Pick<OverallStats, "wins" | "loss" | "games">;
+  };
+};
+
 export type PlayerHistoryQueryVariables = Exact<{
   sid: Scalars["String"];
-  hero: Scalars["String"];
+  hero?: Maybe<Scalars["String"]>;
   page: Scalars["Int"];
 }>;
 
@@ -464,6 +510,38 @@ export type GameServersQuery = { __typename?: "Query" } & {
   >;
 };
 
+export type UsersQueryVariables = Exact<{
+  name: Scalars["String"];
+}>;
+
+export type UsersQuery = { __typename?: "Query" } & {
+  Users: Array<
+    { __typename?: "User" } & Pick<User, "discord_id"> & { player: { __typename?: "Player" } & PlayerFragmentFragment }
+  >;
+};
+
+export type TeamInvitesQueryVariables = Exact<{ [key: string]: never }>;
+
+export type TeamInvitesQuery = { __typename?: "Query" } & {
+  TeamInvitations: Array<
+    { __typename?: "TeamInvitationEntity" } & Pick<TeamInvitationEntity, "id"> & {
+        team: { __typename?: "TeamEntity" } & Pick<TeamEntity, "name" | "id"> & {
+            image: { __typename?: "ImageEntity" } & Pick<ImageEntity, "id" | "path">;
+          };
+      }
+  >;
+};
+
+export type UserQueryVariables = Exact<{
+  id: Scalars["String"];
+}>;
+
+export type UserQuery = { __typename?: "Query" } & {
+  User: { __typename?: "User" } & {
+    team?: Maybe<{ __typename?: "TeamMemberEntity" } & { team: { __typename?: "TeamEntity" } & SmallTeamFragment }>;
+  };
+};
+
 export type RestartServerMutationVariables = Exact<{
   url: Scalars["String"];
   mode: MatchmakingMode;
@@ -505,36 +583,49 @@ export type KillServerMutation = { __typename?: "Mutation" } & {
 export type UpdateTeamMutationVariables = Exact<{
   id: Scalars["Int"];
   name?: Maybe<Scalars["String"]>;
+  tag?: Maybe<Scalars["String"]>;
   image?: Maybe<Scalars["String"]>;
 }>;
 
 export type UpdateTeamMutation = { __typename?: "Mutation" } & {
-  updateTeam: { __typename?: "TeamEntity" } & Pick<TeamEntity, "name" | "id"> & {
-      image: { __typename?: "ImageEntity" } & Pick<ImageEntity, "id">;
-      creator: { __typename?: "User" } & { player: { __typename?: "Player" } & Pick<Player, "name"> };
-      members: Array<
-        { __typename?: "TeamMemberEntity" } & {
-          user: { __typename?: "User" } & { player: { __typename?: "Player" } & Pick<Player, "name"> };
-        }
-      >;
-    };
+  updateTeam: { __typename?: "TeamEntity" } & TeamFragmentFragment;
 };
 
 export type CreateTeamMutationVariables = Exact<{
   image: Scalars["String"];
+  tag: Scalars["String"];
   name: Scalars["String"];
 }>;
 
 export type CreateTeamMutation = { __typename?: "Mutation" } & {
-  createTeam: { __typename?: "TeamEntity" } & Pick<TeamEntity, "name" | "id"> & {
-      image: { __typename?: "ImageEntity" } & Pick<ImageEntity, "id">;
-      creator: { __typename?: "User" } & { player: { __typename?: "Player" } & Pick<Player, "name"> };
-      members: Array<
-        { __typename?: "TeamMemberEntity" } & {
-          user: { __typename?: "User" } & { player: { __typename?: "Player" } & Pick<Player, "name"> };
-        }
-      >;
-    };
+  createTeam: { __typename?: "TeamEntity" } & TeamFragmentFragment;
+};
+
+export type InvitePlayerMutationVariables = Exact<{
+  id: Scalars["Int"];
+  uid: Scalars["String"];
+}>;
+
+export type InvitePlayerMutation = { __typename?: "Mutation" } & {
+  inviteToTeam: { __typename?: "TeamInvitationEntity" } & Pick<TeamInvitationEntity, "id">;
+};
+
+export type KickPlayerMutationVariables = Exact<{
+  id: Scalars["Int"];
+  uid: Scalars["String"];
+}>;
+
+export type KickPlayerMutation = { __typename?: "Mutation" } & {
+  kickPlayer: { __typename?: "TeamEntity" } & FullTeamFragmentFragment;
+};
+
+export type SubmitTeamInvitationMutationVariables = Exact<{
+  id: Scalars["Int"];
+  accept: Scalars["Boolean"];
+}>;
+
+export type SubmitTeamInvitationMutation = { __typename?: "Mutation" } & {
+  SubmitInvitation: { __typename?: "TeamEntity" } & Pick<TeamEntity, "name" | "id">;
 };
 
 export const PlayerFragmentFragmentDoc = gql`
@@ -548,6 +639,7 @@ export const FullTeamFragmentFragmentDoc = gql`
   fragment FullTeamFragment on TeamEntity {
     name
     id
+    tag
     image {
       id
       path
@@ -632,6 +724,38 @@ export const FullMatchFragmentFragmentDoc = gql`
     }
   }
   ${FullPlayerInMatchFragmentFragmentDoc}
+`;
+export const SmallTeamFragmentDoc = gql`
+  fragment SmallTeam on TeamEntity {
+    name
+    id
+    tag
+    image {
+      id
+      path
+    }
+  }
+`;
+export const TeamFragmentFragmentDoc = gql`
+  fragment TeamFragment on TeamEntity {
+    name
+    id
+    image {
+      id
+    }
+    creator {
+      player {
+        name
+      }
+    }
+    members {
+      user {
+        player {
+          name
+        }
+      }
+    }
+  }
 `;
 export const MatchDocument = gql`
   query match($id: Int!) {
@@ -749,8 +873,61 @@ export function useHeroHistoryLazyQuery(
 export type HeroHistoryQueryHookResult = ReturnType<typeof useHeroHistoryQuery>;
 export type HeroHistoryLazyQueryHookResult = ReturnType<typeof useHeroHistoryLazyQuery>;
 export type HeroHistoryQueryResult = Apollo.QueryResult<HeroHistoryQuery, HeroHistoryQueryVariables>;
+export const PlayerStatsDocument = gql`
+  query playerStats($steam_id: String!) {
+    PlayerStats(steam_id: $steam_id) {
+      heroes {
+        denies
+        games
+        gpm
+        kda
+        hero
+        last_hits
+        loss
+        playerSteamId
+        wins
+        xpm
+      }
+      overall {
+        wins
+        loss
+        games
+      }
+    }
+  }
+`;
+
+/**
+ * __usePlayerStatsQuery__
+ *
+ * To run a query within a React component, call `usePlayerStatsQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePlayerStatsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePlayerStatsQuery({
+ *   variables: {
+ *      steam_id: // value for 'steam_id'
+ *   },
+ * });
+ */
+export function usePlayerStatsQuery(
+  baseOptions?: Apollo.QueryHookOptions<PlayerStatsQuery, PlayerStatsQueryVariables>
+) {
+  return Apollo.useQuery<PlayerStatsQuery, PlayerStatsQueryVariables>(PlayerStatsDocument, baseOptions);
+}
+export function usePlayerStatsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<PlayerStatsQuery, PlayerStatsQueryVariables>
+) {
+  return Apollo.useLazyQuery<PlayerStatsQuery, PlayerStatsQueryVariables>(PlayerStatsDocument, baseOptions);
+}
+export type PlayerStatsQueryHookResult = ReturnType<typeof usePlayerStatsQuery>;
+export type PlayerStatsLazyQueryHookResult = ReturnType<typeof usePlayerStatsLazyQuery>;
+export type PlayerStatsQueryResult = Apollo.QueryResult<PlayerStatsQuery, PlayerStatsQueryVariables>;
 export const PlayerHistoryDocument = gql`
-  query playerHistory($sid: String!, $hero: String!, $page: Int!) {
+  query playerHistory($sid: String!, $hero: String, $page: Int!) {
     PlayerHistory(steam_id: $sid, page: $page, hero: $hero) {
       data {
         ...FullMatchFragment
@@ -1170,6 +1347,125 @@ export function useGameServersLazyQuery(
 export type GameServersQueryHookResult = ReturnType<typeof useGameServersQuery>;
 export type GameServersLazyQueryHookResult = ReturnType<typeof useGameServersLazyQuery>;
 export type GameServersQueryResult = Apollo.QueryResult<GameServersQuery, GameServersQueryVariables>;
+export const UsersDocument = gql`
+  query users($name: String!) {
+    Users(name: $name) {
+      discord_id
+      player {
+        ...PlayerFragment
+      }
+    }
+  }
+  ${PlayerFragmentFragmentDoc}
+`;
+
+/**
+ * __useUsersQuery__
+ *
+ * To run a query within a React component, call `useUsersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUsersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUsersQuery({
+ *   variables: {
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useUsersQuery(baseOptions?: Apollo.QueryHookOptions<UsersQuery, UsersQueryVariables>) {
+  return Apollo.useQuery<UsersQuery, UsersQueryVariables>(UsersDocument, baseOptions);
+}
+export function useUsersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UsersQuery, UsersQueryVariables>) {
+  return Apollo.useLazyQuery<UsersQuery, UsersQueryVariables>(UsersDocument, baseOptions);
+}
+export type UsersQueryHookResult = ReturnType<typeof useUsersQuery>;
+export type UsersLazyQueryHookResult = ReturnType<typeof useUsersLazyQuery>;
+export type UsersQueryResult = Apollo.QueryResult<UsersQuery, UsersQueryVariables>;
+export const TeamInvitesDocument = gql`
+  query teamInvites {
+    TeamInvitations {
+      id
+      team {
+        name
+        image {
+          id
+          path
+        }
+        id
+      }
+    }
+  }
+`;
+
+/**
+ * __useTeamInvitesQuery__
+ *
+ * To run a query within a React component, call `useTeamInvitesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTeamInvitesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTeamInvitesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useTeamInvitesQuery(
+  baseOptions?: Apollo.QueryHookOptions<TeamInvitesQuery, TeamInvitesQueryVariables>
+) {
+  return Apollo.useQuery<TeamInvitesQuery, TeamInvitesQueryVariables>(TeamInvitesDocument, baseOptions);
+}
+export function useTeamInvitesLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<TeamInvitesQuery, TeamInvitesQueryVariables>
+) {
+  return Apollo.useLazyQuery<TeamInvitesQuery, TeamInvitesQueryVariables>(TeamInvitesDocument, baseOptions);
+}
+export type TeamInvitesQueryHookResult = ReturnType<typeof useTeamInvitesQuery>;
+export type TeamInvitesLazyQueryHookResult = ReturnType<typeof useTeamInvitesLazyQuery>;
+export type TeamInvitesQueryResult = Apollo.QueryResult<TeamInvitesQuery, TeamInvitesQueryVariables>;
+export const UserDocument = gql`
+  query user($id: String!) {
+    User(id: $id) {
+      team {
+        team {
+          ...SmallTeam
+        }
+      }
+    }
+  }
+  ${SmallTeamFragmentDoc}
+`;
+
+/**
+ * __useUserQuery__
+ *
+ * To run a query within a React component, call `useUserQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUserQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useUserQuery(baseOptions?: Apollo.QueryHookOptions<UserQuery, UserQueryVariables>) {
+  return Apollo.useQuery<UserQuery, UserQueryVariables>(UserDocument, baseOptions);
+}
+export function useUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserQuery, UserQueryVariables>) {
+  return Apollo.useLazyQuery<UserQuery, UserQueryVariables>(UserDocument, baseOptions);
+}
+export type UserQueryHookResult = ReturnType<typeof useUserQuery>;
+export type UserLazyQueryHookResult = ReturnType<typeof useUserLazyQuery>;
+export type UserQueryResult = Apollo.QueryResult<UserQuery, UserQueryVariables>;
 export const RestartServerDocument = gql`
   mutation restartServer($url: String!, $mode: MatchmakingMode!) {
     RestartServer(mode: $mode, url: $url) {
@@ -1290,27 +1586,12 @@ export type KillServerMutationHookResult = ReturnType<typeof useKillServerMutati
 export type KillServerMutationResult = Apollo.MutationResult<KillServerMutation>;
 export type KillServerMutationOptions = Apollo.BaseMutationOptions<KillServerMutation, KillServerMutationVariables>;
 export const UpdateTeamDocument = gql`
-  mutation updateTeam($id: Int!, $name: String, $image: String) {
-    updateTeam(id: $id, image: $image, name: $name) {
-      name
-      id
-      image {
-        id
-      }
-      creator {
-        player {
-          name
-        }
-      }
-      members {
-        user {
-          player {
-            name
-          }
-        }
-      }
+  mutation updateTeam($id: Int!, $name: String, $tag: String, $image: String) {
+    updateTeam(id: $id, image: $image, name: $name, tag: $tag) {
+      ...TeamFragment
     }
   }
+  ${TeamFragmentFragmentDoc}
 `;
 export type UpdateTeamMutationFn = Apollo.MutationFunction<UpdateTeamMutation, UpdateTeamMutationVariables>;
 
@@ -1329,6 +1610,7 @@ export type UpdateTeamMutationFn = Apollo.MutationFunction<UpdateTeamMutation, U
  *   variables: {
  *      id: // value for 'id'
  *      name: // value for 'name'
+ *      tag: // value for 'tag'
  *      image: // value for 'image'
  *   },
  * });
@@ -1342,27 +1624,12 @@ export type UpdateTeamMutationHookResult = ReturnType<typeof useUpdateTeamMutati
 export type UpdateTeamMutationResult = Apollo.MutationResult<UpdateTeamMutation>;
 export type UpdateTeamMutationOptions = Apollo.BaseMutationOptions<UpdateTeamMutation, UpdateTeamMutationVariables>;
 export const CreateTeamDocument = gql`
-  mutation createTeam($image: String!, $name: String!) {
-    createTeam(image: $image, name: $name) {
-      name
-      id
-      image {
-        id
-      }
-      creator {
-        player {
-          name
-        }
-      }
-      members {
-        user {
-          player {
-            name
-          }
-        }
-      }
+  mutation createTeam($image: String!, $tag: String!, $name: String!) {
+    createTeam(image: $image, tag: $tag, name: $name) {
+      ...TeamFragment
     }
   }
+  ${TeamFragmentFragmentDoc}
 `;
 export type CreateTeamMutationFn = Apollo.MutationFunction<CreateTeamMutation, CreateTeamMutationVariables>;
 
@@ -1380,6 +1647,7 @@ export type CreateTeamMutationFn = Apollo.MutationFunction<CreateTeamMutation, C
  * const [createTeamMutation, { data, loading, error }] = useCreateTeamMutation({
  *   variables: {
  *      image: // value for 'image'
+ *      tag: // value for 'tag'
  *      name: // value for 'name'
  *   },
  * });
@@ -1392,3 +1660,122 @@ export function useCreateTeamMutation(
 export type CreateTeamMutationHookResult = ReturnType<typeof useCreateTeamMutation>;
 export type CreateTeamMutationResult = Apollo.MutationResult<CreateTeamMutation>;
 export type CreateTeamMutationOptions = Apollo.BaseMutationOptions<CreateTeamMutation, CreateTeamMutationVariables>;
+export const InvitePlayerDocument = gql`
+  mutation invitePlayer($id: Int!, $uid: String!) {
+    inviteToTeam(id: $id, uid: $uid) {
+      id
+    }
+  }
+`;
+export type InvitePlayerMutationFn = Apollo.MutationFunction<InvitePlayerMutation, InvitePlayerMutationVariables>;
+
+/**
+ * __useInvitePlayerMutation__
+ *
+ * To run a mutation, you first call `useInvitePlayerMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useInvitePlayerMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [invitePlayerMutation, { data, loading, error }] = useInvitePlayerMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      uid: // value for 'uid'
+ *   },
+ * });
+ */
+export function useInvitePlayerMutation(
+  baseOptions?: Apollo.MutationHookOptions<InvitePlayerMutation, InvitePlayerMutationVariables>
+) {
+  return Apollo.useMutation<InvitePlayerMutation, InvitePlayerMutationVariables>(InvitePlayerDocument, baseOptions);
+}
+export type InvitePlayerMutationHookResult = ReturnType<typeof useInvitePlayerMutation>;
+export type InvitePlayerMutationResult = Apollo.MutationResult<InvitePlayerMutation>;
+export type InvitePlayerMutationOptions = Apollo.BaseMutationOptions<
+  InvitePlayerMutation,
+  InvitePlayerMutationVariables
+>;
+export const KickPlayerDocument = gql`
+  mutation kickPlayer($id: Int!, $uid: String!) {
+    kickPlayer(id: $id, uid: $uid) {
+      ...FullTeamFragment
+    }
+  }
+  ${FullTeamFragmentFragmentDoc}
+`;
+export type KickPlayerMutationFn = Apollo.MutationFunction<KickPlayerMutation, KickPlayerMutationVariables>;
+
+/**
+ * __useKickPlayerMutation__
+ *
+ * To run a mutation, you first call `useKickPlayerMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useKickPlayerMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [kickPlayerMutation, { data, loading, error }] = useKickPlayerMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      uid: // value for 'uid'
+ *   },
+ * });
+ */
+export function useKickPlayerMutation(
+  baseOptions?: Apollo.MutationHookOptions<KickPlayerMutation, KickPlayerMutationVariables>
+) {
+  return Apollo.useMutation<KickPlayerMutation, KickPlayerMutationVariables>(KickPlayerDocument, baseOptions);
+}
+export type KickPlayerMutationHookResult = ReturnType<typeof useKickPlayerMutation>;
+export type KickPlayerMutationResult = Apollo.MutationResult<KickPlayerMutation>;
+export type KickPlayerMutationOptions = Apollo.BaseMutationOptions<KickPlayerMutation, KickPlayerMutationVariables>;
+export const SubmitTeamInvitationDocument = gql`
+  mutation submitTeamInvitation($id: Int!, $accept: Boolean!) {
+    SubmitInvitation(id: $id, accept: $accept) {
+      name
+      id
+    }
+  }
+`;
+export type SubmitTeamInvitationMutationFn = Apollo.MutationFunction<
+  SubmitTeamInvitationMutation,
+  SubmitTeamInvitationMutationVariables
+>;
+
+/**
+ * __useSubmitTeamInvitationMutation__
+ *
+ * To run a mutation, you first call `useSubmitTeamInvitationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSubmitTeamInvitationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [submitTeamInvitationMutation, { data, loading, error }] = useSubmitTeamInvitationMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      accept: // value for 'accept'
+ *   },
+ * });
+ */
+export function useSubmitTeamInvitationMutation(
+  baseOptions?: Apollo.MutationHookOptions<SubmitTeamInvitationMutation, SubmitTeamInvitationMutationVariables>
+) {
+  return Apollo.useMutation<SubmitTeamInvitationMutation, SubmitTeamInvitationMutationVariables>(
+    SubmitTeamInvitationDocument,
+    baseOptions
+  );
+}
+export type SubmitTeamInvitationMutationHookResult = ReturnType<typeof useSubmitTeamInvitationMutation>;
+export type SubmitTeamInvitationMutationResult = Apollo.MutationResult<SubmitTeamInvitationMutation>;
+export type SubmitTeamInvitationMutationOptions = Apollo.BaseMutationOptions<
+  SubmitTeamInvitationMutation,
+  SubmitTeamInvitationMutationVariables
+>;

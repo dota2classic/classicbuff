@@ -12,11 +12,10 @@ export const Tr = styled.tr`
     cursor: pointer;
   }
 
-  &.even {
+  &:nth-child(even) {
     background-color: rgba(255, 255, 255, 0.04);
   }
-
-  &.odd {
+  &:nth-child(odd) {
     background-color: rgba(255, 255, 255, 0.02);
   }
 

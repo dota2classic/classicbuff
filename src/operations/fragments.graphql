@@ -1,6 +1,7 @@
 fragment FullTeamFragment on TeamEntity {
   name
   id
+  tag
   image {
     id
     path
@@ -92,4 +93,34 @@ fragment PlayerFragment on Player {
   mmr
   steam_id
   name
+}
+
+fragment SmallTeam on TeamEntity {
+  name
+  id
+  tag
+  image {
+    id
+    path
+  }
+}
+
+fragment TeamFragment on TeamEntity {
+  name
+  id
+  image {
+    id
+  }
+  creator {
+    player {
+      name
+    }
+  }
+  members {
+    user {
+      player {
+        name
+      }
+    }
+  }
 }

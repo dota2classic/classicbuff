@@ -3,7 +3,7 @@ import { Table, Tr } from "./LadderRow";
 import { observer, useLocalStore } from "mobx-react";
 interface Props<T> {
   data: T[];
-  renderRow: (t: T & { index: number }) => ReactElement;
+  renderRow: (t: T) => ReactElement;
   head: Partial<{ [key in keyof T]: ReactNode }>[];
   sort: Partial<{ [key in keyof T]: (t: T) => any }>;
   defaultSort?: keyof T;
@@ -50,7 +50,7 @@ export default observer(function<T>(props: Props<T>) {
   useEffect(() => {
     doSortStuff();
   }, [props.data, sortKey]);
-  const Row: React.FunctionComponent<T & { index: number }> = props.renderRow;
+  const Row: React.FunctionComponent<T> = props.renderRow;
 
   return (
     <Table className="compact">
@@ -94,8 +94,8 @@ export default observer(function<T>(props: Props<T>) {
         </Tr>
       </thead>
       <tbody>
-        {sortedData.map((it, index) => (
-          <Row {...it} index={index} />
+        {sortedData.map(it => (
+          <Row {...it} />
         ))}
       </tbody>
     </Table>

@@ -3,7 +3,9 @@ import React from "react";
 import { Table, Tr } from "./LadderRow";
 import Link from "next/link";
 import { steamIdToNum } from "../utils/numSteamId";
-import { TeamEntity } from "../generated/sdk";
+import { TeamEntity, useKickPlayerMutation } from "../generated/sdk";
+import AuthService from "../service/AuthService";
+import Button from "./Button";
 
 const Roster = styled.div`
   color: white;
@@ -13,7 +15,11 @@ const Roster = styled.div`
   }
 `;
 
-export default (team: TeamEntity) => {
+export default (team: TeamEntity & { refetch: () => void }) => {
+  const isOwner = AuthService.me?.discord_id === team.creator?.discord_id;
+
+  const [kick] = useKickPlayerMutation();
+
   return (
     <Roster>
       <h3>Состав</h3>
@@ -24,6 +30,7 @@ export default (team: TeamEntity) => {
             <th />
             <th>Никнейм</th>
             <th>Рейтинг</th>
+            {isOwner && <th>Действия</th>}
           </Tr>
         </thead>
         <tbody>
@@ -33,11 +40,29 @@ export default (team: TeamEntity) => {
               <td>
                 <Link href={`/player/${steamIdToNum(it.user.steam_id!!)}`}>
                   <a>
-                    {(it.user.discord_id === team.creator.discord_id && "👑") || undefined} {it.user.player?.name}
+                    {(it.user.discord_id === team.creator.discord_id && "👑") || undefined} {team.tag}.
+                    {it.user.player?.name}
                   </a>
                 </Link>
               </td>
               <td>{it.user.player?.mmr}</td>
+              {isOwner && (
+                <td>
+                  <Button
+                    onClick={async () => {
+                      await kick({
+                        variables: {
+                          id: team.id,
+                          uid: it.user.discord_id
+                        }
+                      });
+                      team.refetch();
+                    }}
+                  >
+                    Кикнуть
+                  </Button>
+                </td>
+              )}
             </Tr>
           ))}
         </tbody>

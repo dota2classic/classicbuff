@@ -241,9 +241,9 @@ const DefaultHeader = () => {
         <Link passHref href={"/heroes"}>
           <SiteLink>Герои</SiteLink>
         </Link>
-        {/*<Link passHref href={"/teams"}>*/}
-        {/*  <SiteLink>Турниры</SiteLink>*/}
-        {/*</Link>*/}
+        <Link passHref href={"/teams"}>
+          <SiteLink>Турниры</SiteLink>
+        </Link>
 
         {AuthService.authorized ? (
           <Link passHref href={"/me"}>
@@ -275,7 +275,7 @@ const TournamentHeader = () => {
           </SiteLink>
         </Link>
 
-        <Link passHref href={"/download"}>
+        <Link passHref href={"/teams"}>
           <SiteLink>Команды</SiteLink>
         </Link>
 

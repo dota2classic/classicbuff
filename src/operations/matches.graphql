@@ -24,7 +24,29 @@ query heroHistory($page: Int!, $hero: String!) {
   }
 }
 
-query playerHistory($sid: String!, $hero: String!, $page: Int!) {
+query playerStats($steam_id: String!) {
+  PlayerStats(steam_id: $steam_id) {
+    heroes {
+      denies
+      games
+      gpm
+      kda
+      hero
+      last_hits
+      loss
+      playerSteamId
+      wins
+      xpm
+    }
+    overall {
+      wins
+      loss
+      games
+    }
+  }
+}
+
+query playerHistory($sid: String!, $hero: String, $page: Int!) {
   PlayerHistory(steam_id: $sid, page: $page, hero: $hero) {
     data {
       ...FullMatchFragment
@@ -157,5 +179,38 @@ query gameServers {
       mode
     }
     url
+  }
+}
+
+query users($name: String!) {
+  Users(name: $name) {
+    discord_id
+    player {
+      ...PlayerFragment
+    }
+  }
+}
+
+query teamInvites {
+  TeamInvitations {
+    id
+    team {
+      name
+      image {
+        id
+        path
+      }
+      id
+    }
+  }
+}
+
+query user($id: String!) {
+  User(id: $id) {
+    team {
+      team {
+        ...SmallTeam
+      }
+    }
   }
 }
