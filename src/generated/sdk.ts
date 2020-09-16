@@ -532,6 +532,12 @@ export type TeamInvitesQuery = { __typename?: "Query" } & {
   >;
 };
 
+export type TeamInvitesCountQueryVariables = Exact<{ [key: string]: never }>;
+
+export type TeamInvitesCountQuery = { __typename?: "Query" } & {
+  TeamInvitations: Array<{ __typename?: "TeamInvitationEntity" } & Pick<TeamInvitationEntity, "id">>;
+};
+
 export type UserQueryVariables = Exact<{
   id: Scalars["String"];
 }>;
@@ -1428,6 +1434,45 @@ export function useTeamInvitesLazyQuery(
 export type TeamInvitesQueryHookResult = ReturnType<typeof useTeamInvitesQuery>;
 export type TeamInvitesLazyQueryHookResult = ReturnType<typeof useTeamInvitesLazyQuery>;
 export type TeamInvitesQueryResult = Apollo.QueryResult<TeamInvitesQuery, TeamInvitesQueryVariables>;
+export const TeamInvitesCountDocument = gql`
+  query teamInvitesCount {
+    TeamInvitations {
+      id
+    }
+  }
+`;
+
+/**
+ * __useTeamInvitesCountQuery__
+ *
+ * To run a query within a React component, call `useTeamInvitesCountQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTeamInvitesCountQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTeamInvitesCountQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useTeamInvitesCountQuery(
+  baseOptions?: Apollo.QueryHookOptions<TeamInvitesCountQuery, TeamInvitesCountQueryVariables>
+) {
+  return Apollo.useQuery<TeamInvitesCountQuery, TeamInvitesCountQueryVariables>(TeamInvitesCountDocument, baseOptions);
+}
+export function useTeamInvitesCountLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<TeamInvitesCountQuery, TeamInvitesCountQueryVariables>
+) {
+  return Apollo.useLazyQuery<TeamInvitesCountQuery, TeamInvitesCountQueryVariables>(
+    TeamInvitesCountDocument,
+    baseOptions
+  );
+}
+export type TeamInvitesCountQueryHookResult = ReturnType<typeof useTeamInvitesCountQuery>;
+export type TeamInvitesCountLazyQueryHookResult = ReturnType<typeof useTeamInvitesCountLazyQuery>;
+export type TeamInvitesCountQueryResult = Apollo.QueryResult<TeamInvitesCountQuery, TeamInvitesCountQueryVariables>;
 export const UserDocument = gql`
   query user($id: String!) {
     User(id: $id) {

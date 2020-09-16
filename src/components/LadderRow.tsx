@@ -15,6 +15,7 @@ export const Tr = styled.tr`
   &:nth-child(even) {
     background-color: rgba(255, 255, 255, 0.04);
   }
+
   &:nth-child(odd) {
     background-color: rgba(255, 255, 255, 0.02);
   }
@@ -66,7 +67,7 @@ export const LadderHeader = () => (
 
 export const Table = styled.table`
   & thead > tr {
-    background-color: black;
+    background-color: black !important;
   }
 
   width: 100%;

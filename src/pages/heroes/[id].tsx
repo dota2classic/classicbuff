@@ -28,7 +28,7 @@ export default () => {
   return (
     <Layout title={<h3>{heroName(id as string)}</h3>}>
       <Head>
-        <title>{heroName(id as string)}</title>
+        <title>{heroName(id as string)} - dota2classic.ru</title>
       </Head>
       <Table className="compact">
         <thead>

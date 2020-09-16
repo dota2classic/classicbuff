@@ -1,5 +1,5 @@
 export const formatDateStr = (value: string | number): string => {
-  return new Date(Number(value) + 1000 * 60 * 60 * 3).toLocaleString("ru-RU", {
+  return new Date(Number(value)).toLocaleString("ru-RU", {
     month: "short",
     day: "numeric",
     hour: "2-digit",

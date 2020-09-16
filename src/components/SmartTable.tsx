@@ -7,6 +7,7 @@ interface Props<T> {
   head: Partial<{ [key in keyof T]: ReactNode }>[];
   sort: Partial<{ [key in keyof T]: (t: T) => any }>;
   defaultSort?: keyof T;
+  reverse?: boolean;
 }
 enum SortState {
   ASC,
@@ -20,7 +21,13 @@ export default observer(function<T>(props: Props<T>) {
         order: SortState;
       }
     | undefined
-  >((props.defaultSort && { key: props.defaultSort as string, order: SortState.ASC }) || undefined);
+  >(
+    (props.defaultSort && {
+      key: props.defaultSort as string,
+      order: props.reverse ? SortState.DESC : SortState.ASC
+    }) ||
+      undefined
+  );
 
   const doSortStuff = () => {
     if (!sortKey) {

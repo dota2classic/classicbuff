@@ -35,7 +35,7 @@ export default () => {
   });
 
   return (
-    <Layout title={<h3>Герои</h3>}>
+    <Layout title="Герои">
       <Head>
         <title>Герои - dota2classic.ru</title>
         <meta name="description" content="dota2classic.ru - список героев и их успеваемость" />
@@ -50,6 +50,8 @@ export default () => {
           games: it.games
         }))}
         renderRow={HeroSummaryRow}
+        defaultSort="hero"
+        reverse
         sort={{
           hero: it => it.hero,
           kda: it => it.kda,

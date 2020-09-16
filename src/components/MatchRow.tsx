@@ -28,7 +28,7 @@ export default (it: MatchNoPlayersFragmentFragment & { index: number }) => {
         </MatchIdCol>
       </td>
       <td className={"tiny"}>{formatGameMode(it.type)}</td>
-      <td className={it.radiant_win ? "green" : "red"}>{it.radiant_win ? "Radiant" : "Dire"}</td>
+      <td className={it.radiant_win ? "green" : "red"}>{it.radiant_win ? "Свет" : "Тьма"}</td>
       <td>{formatDuration(it.duration)}</td>
       <td className={cx(it.radiant_win ? "green" : "red", "omit")}>
         <Heroes>

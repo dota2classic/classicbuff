@@ -7,6 +7,7 @@ import { observer } from "mobx-react";
 import Link from "next/link";
 import { useTeamsQuery } from "../../generated/sdk";
 import { Table, Tr } from "../../components/LadderRow";
+import Head from "next/head";
 
 export default observer(() => {
   const [page, setPage] = useState(0);
@@ -18,6 +19,11 @@ export default observer(() => {
 
   return (
     <TournamentLayout>
+      <Head>
+        <title>Команды - dota2classic.ru</title>
+        <meta name="description" content="dota2classic.ru - список команд и их успеваемость" />
+      </Head>
+
       {AuthService.authorized && (
         <Link passHref href={`/teams/new`}>
           <LinkButton>Создать команду</LinkButton>

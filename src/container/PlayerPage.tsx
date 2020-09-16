@@ -8,14 +8,14 @@ import SmartTable from "../components/SmartTable";
 import Router, { useRouter } from "next/router";
 import { steamIdToNum } from "../utils/numSteamId";
 import getHeroRating from "../utils/getHeroRating";
-import { usePlayerPageQuery, useUserQuery } from "../generated/sdk";
+import { usePlayerPageQuery, useTeamInvitesCountQuery, useUserQuery } from "../generated/sdk";
 import { BaseGQLConfig } from "../shared";
 import AuthService from "../service/AuthService";
 import TeamPreview from "../components/TeamPreview";
 import PlayerHistoryTab from "./PlayerHistoryTab";
 import PlayerHeroesTab from "./PlayerHeroesTab";
 import PlayerTeamTab from "./PlayerTeamTab";
-
+import cx from "classnames";
 interface Props {
   steam_id: string;
 }
@@ -28,12 +28,25 @@ export default (p: Props) => {
 
   const { tab: initialTab } = useRouter().query;
 
-  const [tab, setTab] = useState(Number.isNaN(Number(initialTab)) ? 0 : Number(initialTab));
+  const [tab, setTab] = useState(0);
+
+  useEffect(() => {
+    const newTab = Number(initialTab);
+    if (!Number.isNaN(newTab)) {
+      setTab(newTab);
+    }
+  }, [initialTab]);
 
   const isMine = AuthService.me?.steam_id === p.steam_id;
 
+  const { data } = useTeamInvitesCountQuery({
+    ...BaseGQLConfig
+  });
+
   const setTabAction = async (tab: number) => {
-    await Router.push(`?tab=${tab}`, `?tab=${tab}`, { shallow: true });
+    await Router.push(Router.pathname.split("?")[0] + `?tab=${tab}`, Router.asPath.split("?")[0] + `?tab=${tab}`, {
+      shallow: true
+    });
     setTab(tab);
   };
 
@@ -48,8 +61,22 @@ export default (p: Props) => {
         </Tab>
 
         {isMine && (
-          <Tab className={(tab == 2 && "active") || undefined} onClick={() => setTabAction(2)}>
+          <Tab
+            className={cx((tab == 2 && "active") || undefined, data?.TeamInvitations.length && "interesting")}
+            onClick={() => setTabAction(2)}
+          >
             Приглашения в команду
+          </Tab>
+        )}
+
+        {isMine && (
+          <Tab
+            onClick={() => {
+              AuthService.logout();
+              return Router.push("/");
+            }}
+          >
+            Выйти
           </Tab>
         )}
       </Tabs>

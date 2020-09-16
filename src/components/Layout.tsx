@@ -95,10 +95,14 @@ const SiteLink = styled.a`
 const Title = styled.div`
   color: #d9d9d9;
   font-size: 20px;
-  margin: auto auto 40px;
+  margin: auto auto 0px;
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  & span {
+    margin-bottom: 20px;
+  }
 
   @media (max-width: 600px) {
     font-size: 16px;

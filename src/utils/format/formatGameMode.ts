@@ -8,13 +8,13 @@ export enum MatchmakingMode {
 }
 export default (mode: MatchmakingMode) => {
   if (mode === MatchmakingMode.SOLOMID) {
-    return "1x1 mid";
+    return "1x1 Мид";
   } else if (mode === MatchmakingMode.DIRETIDE) {
     return "Diretide";
   } else if (mode === MatchmakingMode.RANKED) {
-    return "Ranked";
+    return "Рейтинг";
   } else if (mode === MatchmakingMode.UNRANKED) {
-    return "Unranked";
+    return "Обычная";
   } else if (mode === MatchmakingMode.GREEVILING) {
     return "Гряволы";
   } else if (mode === MatchmakingMode.ABILITY_DRAFT) {

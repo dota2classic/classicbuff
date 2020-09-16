@@ -14,7 +14,7 @@ export default () => {
   const { data } = useLadderQuery(BaseGQLConfig);
 
   return (
-    <Layout title={<h1>Таблица лидеров</h1>}>
+    <Layout title="Таблица лидеров">
       <Head>
         <title>Таблица лидеров - dota2classic.ru</title>
         <meta

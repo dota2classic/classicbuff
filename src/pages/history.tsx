@@ -36,22 +36,22 @@ const Page = observer((p: Partial<{ history: Match[] }>) => {
   });
 
   return (
-    <Layout title="dota2classic.ru 6.81b история матчей">
+    <Layout title="История матчей">
       <Head>
-        <title>История матчей</title>
+        <title>История матчей - dota2classic.ru</title>
       </Head>
       <Tabs>
         <Tab
           onClick={() => setMode(MatchmakingMode.RANKED)}
           className={(mode === MatchmakingMode.RANKED && "active") || undefined}
         >
-          Ranked
+          Рейтинг
         </Tab>
         <Tab
           onClick={() => setMode(MatchmakingMode.UNRANKED)}
           className={(mode === MatchmakingMode.UNRANKED && "active") || undefined}
         >
-          Unranked
+          Обычные
         </Tab>
         <Tab
           onClick={() => setMode(MatchmakingMode.SOLOMID)}
@@ -70,8 +70,8 @@ const Page = observer((p: Partial<{ history: Match[] }>) => {
             <th>Режим</th>
             <th>Победитель</th>
             <th>Длительность</th>
-            <th className="green omit">Radiant team</th>
-            <th className="red omit">Dire team</th>
+            <th className="green omit">Силы Света</th>
+            <th className="red omit">Силы Тьмы</th>
           </Tr>
         </thead>
         <tbody>

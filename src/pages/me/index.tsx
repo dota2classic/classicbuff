@@ -7,6 +7,7 @@ import useWillMount from "../../utils/useWillMount";
 import AuthService from "../../service/AuthService";
 import { observer } from "mobx-react";
 import PlayerPage from "../../container/PlayerPage";
+import Head from "next/head";
 
 export const HeroPreview = styled.img`
   width: 60px;
@@ -24,7 +25,11 @@ const Page = observer(() => {
   });
 
   return (
-    <Layout title={`Profile ${AuthService.me?.discord_id}`}>
+    <Layout title={`Ваш профиль`}>
+      <Head>
+        <title>Профиль - dota2classic.ru</title>
+      </Head>
+
       <Hint
         href="#"
         onClick={() => {

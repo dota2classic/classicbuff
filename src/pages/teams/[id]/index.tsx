@@ -118,7 +118,7 @@ export default () => {
   return (
     <Layout>
       <Head>
-        <title>{data?.Team.name || ""}</title>
+        <title>{data?.Team.name || "Загрузка..."}</title>
       </Head>
       <LogoContainer revalidate={refetch} isMember={isCreator} team={team} />
       <TeamName>{team?.name}</TeamName>;

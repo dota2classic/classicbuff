@@ -205,6 +205,12 @@ query teamInvites {
   }
 }
 
+query teamInvitesCount {
+  TeamInvitations {
+    id
+  }
+}
+
 query user($id: String!) {
   User(id: $id) {
     team {
