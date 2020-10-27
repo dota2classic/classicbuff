@@ -1,9 +1,12 @@
 import { Table, Tr } from "./LadderRow";
 import PlayerRow from "./PlayerRow";
 import React from "react";
-import { FullPlayerInMatchFragmentFragment, PlayerInMatch, PlayerInMatchFragmentFragment } from "../generated/sdk";
+import { PlayerInMatchDto, PlayerInMatchWithNameDto } from "../api/back/models";
 
-export default ({ players }: { players: FullPlayerInMatchFragmentFragment[] }) => {
+interface Props {
+  players: PlayerInMatchWithNameDto[];
+}
+export default ({ players }: Props) => {
   return (
     <Table className="compact">
       <thead>
@@ -21,7 +24,7 @@ export default ({ players }: { players: FullPlayerInMatchFragmentFragment[] }) =
       </thead>
       <tbody>
         {players.map(it => (
-          <PlayerRow key={it.id} {...it} />
+          <PlayerRow key={it.steamId} {...it} />
         ))}
       </tbody>
     </Table>

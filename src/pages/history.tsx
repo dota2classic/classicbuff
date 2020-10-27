@@ -11,6 +11,7 @@ import { Tab, Tabs } from "../components/Tabs";
 import { observer } from "mobx-react";
 import Pagination from "../components/Pagination";
 import { Match, useHistoryQuery } from "../generated/sdk";
+import { useApi } from "../api/hooks";
 
 export const Heroes = styled.div`
   display: flex;
@@ -27,13 +28,8 @@ const Page = observer((p: Partial<{ history: Match[] }>) => {
   const [mode, setMode] = useState<MatchmakingMode | undefined>(MatchmakingMode.RANKED);
 
   useEffect(() => setPage(0), [mode]);
-  const { data } = useHistoryQuery({
-    ...BaseGQLConfig,
-    variables: {
-      page,
-      mode
-    }
-  });
+
+  const { data } = useApi().matchApi.useMatchControllerMatches(page, undefined, mode);
 
   return (
     <Layout title="История матчей">
@@ -75,14 +71,14 @@ const Page = observer((p: Partial<{ history: Match[] }>) => {
           </Tr>
         </thead>
         <tbody>
-          {data?.History?.data?.map((it, index) => (
-            <MatchRow index={index} {...it} />
+          {data?.data.map((it, index) => (
+            <MatchRow {...it} />
           ))}
         </tbody>
       </Table>
-      {data?.History && (
+      {data && (
         <Pagination
-          pages={data.History.pages}
+          pages={data.pages}
           page={page}
           next={() => setPage(page + 1)}
           prev={() => setPage(Math.max(0, page - 1))}

@@ -210,9 +210,9 @@ const DefaultHeader = () => {
               </SiteLink>
             </Link>
           ) : (
-            <SiteLink href={`${api.getBaseURL()}/auth/discord`}>
+            <SiteLink href={`${api.getBaseURL()}/auth/steam`}>
               <Icon src={"/static/items/recipe.jpg"} />
-              Войти через discord
+              Войти через steam
             </SiteLink>
           )}
           <div style={{ height: "30%" }} />
@@ -254,7 +254,7 @@ const DefaultHeader = () => {
             <SiteLink>Профиль</SiteLink>
           </Link>
         ) : (
-          <SiteLink href={`${api.getBaseURL()}/auth/discord`}>Войти через discord</SiteLink>
+          <SiteLink href={`${api.getBaseURL()}/auth/steam`}>Войти через steam</SiteLink>
         )}
       </HeaderWrapper>
       <HeaderWrapper className="compact">
@@ -292,7 +292,7 @@ const TournamentHeader = () => {
             <SiteLink>Профиль</SiteLink>
           </Link>
         ) : (
-          <SiteLink href={`${api.getBaseURL()}/auth/discord`}>Войти через discord</SiteLink>
+          <SiteLink href={`${api.getBaseURL()}/auth/steam`}>Войти через steam</SiteLink>
         )}
       </HeaderWrapper>
     </>

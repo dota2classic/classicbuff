@@ -5,11 +5,11 @@ import HeroIcon from "./HeroIcon";
 import ItemIcon from "./ItemIcon";
 import React from "react";
 import { ItemsContainer } from "../pages/match/[id]";
-import { FullPlayerInMatchFragmentFragment, PlayerInMatchFragmentFragment } from "../generated/sdk";
+import { PlayerInMatchWithNameDto } from "../api/back/models";
 
-export default (p: FullPlayerInMatchFragmentFragment) => {
-  const items = p.items.split(",").map(it => it.substr(5));
-  const playerUrl = `/player/${steamIdToNum(p.player.steam_id)}`;
+export default (p: PlayerInMatchWithNameDto) => {
+  const items = p.items.map(it => it.substr(5));
+  const playerUrl = `/player/${steamIdToNum(p.steamId)}`;
   return (
     <Tr>
       <td>{p.level}</td>
@@ -21,7 +21,7 @@ export default (p: FullPlayerInMatchFragmentFragment) => {
         </Link>
       </td>
       <td>
-        <Link href={playerUrl}>{(p.player.name.length && p.player.name) || "(Пустой ник)"}</Link>
+        <Link href={playerUrl}>{(p.name.length && p.name) || "(Пустой ник)"}</Link>
       </td>
       <td className={"omit"}>
         <ItemsContainer>
@@ -34,7 +34,7 @@ export default (p: FullPlayerInMatchFragmentFragment) => {
       <td>{p.deaths}</td>
       <td>{p.assists}</td>
       <td>
-        {p.last_hits}/{p.denies}
+        {p.lastHits}/{p.denies}
       </td>
       <td>
         {p.gpm}/{p.xpm}

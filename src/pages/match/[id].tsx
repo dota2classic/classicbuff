@@ -7,8 +7,11 @@ import Head from "next/head";
 import TeamTable from "../../components/TeamTable";
 import { NextPageContext } from "next";
 import formatGameMode from "../../utils/format/formatGameMode";
-import { Match, PlayerInMatch, PlayerInMatchFragmentFragment, useMatchQuery } from "../../generated/sdk";
+import { Match, PlayerInMatchFragmentFragment, useMatchQuery } from "../../generated/sdk";
 import { BaseGQLConfig } from "../../shared";
+import { useApi } from "../../api/hooks";
+import { PlayerInMatchDto } from "../../api/back/models";
+
 export const ItemsContainer = styled.div`
   display: flex;
   position: relative;
@@ -104,7 +107,7 @@ const fetchMatch = (id: number): Promise<Match> => {
     .then(it => it.data as Match);
 };
 
-const sumKills = (players: PlayerInMatchFragmentFragment[]) => {
+const sumKills = (players: PlayerInMatchDto[]) => {
   let sum = 0;
   players.forEach(it => (sum += it.kills));
   return sum;
@@ -113,47 +116,41 @@ const sumKills = (players: PlayerInMatchFragmentFragment[]) => {
 const Page = (p: Partial<{ match: Match }>) => {
   const { id } = useRouter().query;
 
-  const { data } = useMatchQuery({
-    ...BaseGQLConfig,
-    variables: {
-      id: Number(id)
-    }
-  });
+  const { data: match } = useApi().matchApi.useMatchControllerMatch(Number(id));
 
-  if (!data?.Match) return null;
+  if (!match) return null;
 
-  const match = data.Match;
   return (
     <Layout
       title={
         <h3>
-          {formatGameMode(match.type)}, Матч #{id}
+          {formatGameMode(match.mode)}, Матч #{id}
         </h3>
       }
     >
       <Head>
         <title>Матч {id}</title>
       </Head>
-      <MatchResult className={match?.radiant_win ? "green" : "red"}>
-        <Winner className={match?.radiant_win ? "green" : "red"}>
-          {match?.radiant_win ? "Победа Radiant" : "Победа Dire"}
+      <MatchResult className={match?.winner === 2 ? "green" : "red"}>
+        <Winner className={match?.winner === 2 ? "green" : "red"}>
+          {match?.winner === 2 ? "Победа Radiant" : "Победа Dire"}
         </Winner>
         <ScoreTable>
-          <Score className={"green"}>{sumKills(match!!.players.filter(it => it.team === 2))}</Score>
+          <Score className={"green"}>{sumKills(match.radiant)}</Score>
           <Duration>{formatDuration(match.duration)}</Duration>
-          <Score className={"red"}>{sumKills(match!!.players.filter(it => it.team === 3))}</Score>
+          <Score className={"red"}>{sumKills(match.dire)}</Score>
         </ScoreTable>
       </MatchResult>
       <Showcase>
         <TeamShowcase>
           <Team className={"green"}>Radiant</Team>
-          <TeamTable players={match!!.players.filter(it => it.team === 2)} />
+          <TeamTable players={match.radiant} />
         </TeamShowcase>
 
         <TeamShowcase>
           <Team className={"red"}>Dire</Team>
 
-          <TeamTable players={match!!.players.filter(it => it.team === 3)} />
+          <TeamTable players={match.dire} />
         </TeamShowcase>
       </Showcase>
     </Layout>

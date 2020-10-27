@@ -6,7 +6,7 @@ export enum MatchmakingMode {
   GREEVILING = 4,
   ABILITY_DRAFT = 5
 }
-export default (mode: MatchmakingMode) => {
+export default (mode: any) => {
   if (mode === MatchmakingMode.SOLOMID) {
     return "1x1 Мид";
   } else if (mode === MatchmakingMode.DIRETIDE) {

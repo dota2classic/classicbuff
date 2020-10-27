@@ -13,7 +13,9 @@
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build",
     "docker": "docker build . -t enchantinggg4/mmbot:dotabuff && docker push enchantinggg4/mmbot:dotabuff",
-    "gql": "graphql-codegen --config codegen.yml"
+    "gql": "graphql-codegen --config codegen.yml",
+    "apigen": "openapi-generator generate -i http://rev.yoldi.agency:5000/api-json -g typescript-fetch -t ./.openapi-generator/typescript-fetch-swr -o ./generated --additional-properties useSingleRequestParameter=false && rm -rf src/api/back && cp -r ./generated src/api/back && rm -rf ./generated",
+    "apigen:local": "openapi-generator  generate --skip-validate-spec -i http://localhost:6001/api-json -g typescript-fetch -t ./.openapi-generator/typescript-fetch-swr -o ./generated --additional-properties useSingleRequestParameter=false && rm -rf src/api/back && cp -r ./generated src/api/back && rm -rf ./generated"
   },
   "husky": {
     "hooks": {
@@ -23,6 +25,7 @@
   "dependencies": {
     "@apollo/client": "^3.1.5",
     "apisauce": "^1.1.2",
+    "browser-cookies": "^1.2.0",
     "classnames": "^2.2.6",
     "discord-oauth2": "^2.3.0",
     "formik": "^2.1.5",
