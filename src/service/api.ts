@@ -3,7 +3,7 @@ import Router from "next/router";
 import { local } from "../config";
 
 const api = create({
-  baseURL: local ? "http://localhost:6001/v1" : "https://dota2classic.ru/prod-api",
+  baseURL: local ? "http://localhost:6001/v1" : "https://dev.dota2classic.ru/api",
   headers: {
     accept: "application/json"
   }
