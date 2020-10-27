@@ -1,1 +1,1 @@
-export const local = true;
+export const local = process.env.DEV === "true";

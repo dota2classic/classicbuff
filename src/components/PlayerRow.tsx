@@ -5,9 +5,9 @@ import HeroIcon from "./HeroIcon";
 import ItemIcon from "./ItemIcon";
 import React from "react";
 import { ItemsContainer } from "../pages/match/[id]";
-import { PlayerInMatchWithNameDto } from "../api/back/models";
+import { PlayerInMatchDto } from "../api/back/models";
 
-export default (p: PlayerInMatchWithNameDto) => {
+export default (p: PlayerInMatchDto) => {
   const items = p.items.map(it => it.substr(5));
   const playerUrl = `/player/${steamIdToNum(p.steamId)}`;
   return (

@@ -1,10 +1,10 @@
 import { Table, Tr } from "./LadderRow";
 import PlayerRow from "./PlayerRow";
 import React from "react";
-import { PlayerInMatchDto, PlayerInMatchWithNameDto } from "../api/back/models";
+import { PlayerInMatchDto } from "../api/back/models";
 
 interface Props {
-  players: PlayerInMatchWithNameDto[];
+  players: PlayerInMatchDto[];
 }
 export default ({ players }: Props) => {
   return (

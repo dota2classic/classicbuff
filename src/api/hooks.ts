@@ -4,7 +4,7 @@ import { local } from "../config";
 
 export class AppApi {
   private readonly apiParams: ConfigurationParameters = {
-    basePath: local ? "http://localhost:6001" : "https://dota2classic.ru/prod-api"
+    basePath: local ? "http://localhost:6001" : "https://dev.dota2classic.ru/api"
   };
   private readonly apiConfig = new Configuration(this.apiParams);
 
