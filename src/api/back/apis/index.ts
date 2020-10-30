@@ -1,2 +1,2 @@
-export * from "./DefaultApi";
 export * from "./MatchApi";
+export * from "./PlayerApi";

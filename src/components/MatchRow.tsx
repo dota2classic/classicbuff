@@ -10,8 +10,6 @@ import { Heroes, MatchIdCol } from "../pages/history";
 import { MatchDto, MatchDtoModeEnum } from "../api/back/models";
 
 export default (it: MatchDto) => {
-  const isMid = it.mode === MatchDtoModeEnum.SOLOMID;
-
   const radiant = it.radiant;
 
   const dire = it.dire;

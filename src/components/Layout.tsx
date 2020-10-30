@@ -245,8 +245,8 @@ const DefaultHeader = () => {
         <Link passHref href={"/heroes"}>
           <SiteLink>Герои</SiteLink>
         </Link>
-        <Link passHref href={"/teams"}>
-          <SiteLink>Турниры</SiteLink>
+        <Link passHref href={"/queue"}>
+          <SiteLink>Играть</SiteLink>
         </Link>
 
         {AuthService.authorized ? (

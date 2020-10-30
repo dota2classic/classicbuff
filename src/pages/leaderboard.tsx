@@ -5,13 +5,14 @@ import styled from "styled-components";
 import Head from "next/head";
 import { useLadderQuery } from "../generated/sdk";
 import { BaseGQLConfig } from "../shared";
+import { useApi } from "../api/hooks";
 
 const Thin = styled.div`
   max-width: 800px;
   width: 100%;
 `;
 export default () => {
-  const { data } = useLadderQuery(BaseGQLConfig);
+  const { data } = useApi().playerApi.usePlayerControllerLeaderboard();
 
   return (
     <Layout title="Таблица лидеров">
@@ -28,8 +29,8 @@ export default () => {
             <LadderHeader />
           </thead>
           <tbody>
-            {data?.Ladder.map((it, index) => (
-              <LadderRow index={index + 1} {...it} key={it.steam_id} />
+            {data?.map(it => (
+              <LadderRow {...it} key={it.steamId} />
             ))}
           </tbody>
         </Table>

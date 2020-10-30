@@ -4,27 +4,22 @@ import { numToSteamId } from "../../../utils/numSteamId";
 import Layout from "../../../components/Layout";
 import Head from "next/head";
 import PlayerPage from "../../../container/PlayerPage";
-import { usePlayerQuery } from "generated/sdk";
-import { BaseGQLConfig } from "../../../shared";
+import { useApi } from "../../../api/hooks";
 
 const Page = () => {
   const { id } = useRouter().query;
 
-  const { data } = usePlayerQuery({
-    ...BaseGQLConfig,
-    variables: {
-      id: numToSteamId(Number(id))
-    }
-  });
-
-  const player = data?.Player;
+  const { data: player } = useApi().playerApi.usePlayerControllerPlayerSummary(numToSteamId(Number(id)));
 
   return (
     <Layout
       title={
-        <h3>
-          {player?.name}, {player?.mmr} MMR
-        </h3>
+        <>
+          <h3 style={{ textAlign: "center" }}>{player?.name}</h3>
+          <h4 style={{ textAlign: "center" }}>
+            {player?.rank} Ранг, {player?.mmr} MMR
+          </h4>
+        </>
       }
     >
       <Head>

@@ -39,7 +39,7 @@ const Page = observer(() => {
       >
         Выйти
       </Hint>
-      {(AuthService.me?.steam_id && <PlayerPage steam_id={AuthService.me?.steam_id} />) || (
+      {(AuthService.me?.steamId && <PlayerPage steam_id={AuthService.me?.steamId} />) || (
         <Hint href={`${api.getBaseURL()}/auth/steam`}>Подключи стим, чтобы увидеть свою статистику</Hint>
       )}
     </Layout>

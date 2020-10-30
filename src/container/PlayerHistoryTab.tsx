@@ -4,6 +4,7 @@ import Pagination from "../components/Pagination";
 import React, { useState } from "react";
 import { usePlayerHistoryQuery } from "../generated/sdk";
 import { BaseGQLConfig } from "../shared";
+import { useApi } from "../api/hooks";
 
 interface Props {
   steam_id: string;
@@ -11,13 +12,7 @@ interface Props {
 export default (props: Props) => {
   const [page, setPage] = useState(0);
 
-  const { data } = usePlayerHistoryQuery({
-    ...BaseGQLConfig,
-    variables: {
-      sid: props.steam_id,
-      page
-    }
-  });
+  const { data } = useApi().matchApi.useMatchControllerPlayerMatches(props.steam_id, page);
 
   return (
     <>
@@ -42,14 +37,14 @@ export default (props: Props) => {
           </Tr>
         </thead>
         <tbody>
-          {data?.PlayerHistory.data?.map((it, index) => (
-            <PlayerMatch index={index} player={data?.Player} match={it} />
+          {data?.data.map((it, index) => (
+            <PlayerMatch index={index} player={props.steam_id} match={it} />
           ))}
         </tbody>
       </Table>
-      {data?.PlayerHistory && (
+      {data && (
         <Pagination
-          pages={data?.PlayerHistory.pages}
+          pages={data?.pages}
           page={page}
           next={() => setPage(page + 1)}
           prev={() => setPage(Math.max(0, page - 1))}

@@ -1,16 +1,19 @@
-import { MatchApi } from "./back/apis";
+import { MatchApi, PlayerApi } from "./back/apis";
 import { Configuration, ConfigurationParameters } from "./back";
 import { local } from "../config";
+import AuthService from "../service/AuthService";
 
 export class AppApi {
-  private readonly apiParams: ConfigurationParameters = {
-    basePath: local ? "http://localhost:6001" : "https://dev.dota2classic.ru/api"
+  apiParams: ConfigurationParameters = {
+    basePath: local ? "http://localhost:6001" : "https://dev.dota2classic.ru/api",
+    accessToken: () => AuthService.token!!
   };
   private readonly apiConfig = new Configuration(this.apiParams);
 
   readonly matchApi = new MatchApi(this.apiConfig);
+  readonly playerApi = new PlayerApi(this.apiConfig);
 }
 
-const api = new AppApi();
+export const appApi = new AppApi();
 
-export const useApi = () => api;
+export const useApi = () => appApi;

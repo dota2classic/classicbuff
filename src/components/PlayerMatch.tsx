@@ -7,27 +7,19 @@ import { formatDateStr } from "../utils/format/formateDateStr";
 import cx from "classnames";
 import HeroIcon from "./HeroIcon";
 import formatGameMode from "../utils/format/formatGameMode";
-import {
-  FullMatchFragmentFragment,
-  MatchNoPlayersFragmentFragment,
-  PlayerFragmentFragment,
-  PlayerInMatch,
-  PlayerInMatchFragmentFragment
-} from "../generated/sdk";
+import { MatchDto } from "../api/back/models";
 
 export interface PlayerMatchInfo {
-  player: PlayerFragmentFragment | PlayerInMatchFragmentFragment;
-  match: FullMatchFragmentFragment | MatchNoPlayersFragmentFragment;
+  player: string;
+  match: MatchDto;
   index: number;
 }
 
 export default ({ match, player, index }: PlayerMatchInfo) => {
-  const pim =
-    ("steam_id" in player &&
-      (match as FullMatchFragmentFragment).players.find(it => it.player.steam_id === player.steam_id)!!) ||
-    (player as PlayerInMatch);
-  const isWin = match.radiant_win ? pim.team === 2 : pim.team === 3;
-  const items = pim.items.split(",").map(it => it.substr(5));
+  const pim = [...match.radiant].concat(match.dire).find(it => it.steamId === player)!!;
+
+  const isWin = match.winner === pim.team;
+  const items = pim.items.map(it => it.substr(5));
   return (
     <Tr
       className={cx("link", index % 2 === 0 ? "even" : "odd")}
@@ -37,7 +29,7 @@ export default ({ match, player, index }: PlayerMatchInfo) => {
         {match.id} <br />
         <span style={{ fontSize: 12, marginTop: 2, color: "#c2c2c2" }}>{formatDateStr(match.timestamp)}</span>
       </td>
-      <td>{formatGameMode(match.type)}</td>
+      <td>{formatGameMode(match.mode)}</td>
       <td>{formatDuration(match.duration)}</td>
       <td>
         <HeroIcon hero={pim.hero} />
@@ -56,7 +48,7 @@ export default ({ match, player, index }: PlayerMatchInfo) => {
       <td>{pim.deaths}</td>
       <td>{pim.assists}</td>
       <td className={"omit"}>
-        {pim.last_hits}/{pim.denies}
+        {pim.lastHits}/{pim.denies}
       </td>
       <td className={"omit"}>
         {pim.gpm}/{pim.xpm}

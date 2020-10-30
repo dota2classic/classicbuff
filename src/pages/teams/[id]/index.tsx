@@ -3,7 +3,6 @@ import { TeamEntity, useTeamQuery, useUpdateTeamMutation } from "../../../genera
 import ImageUploader from "../../../components/ImageUploader";
 import image from "../../../utils/image";
 import React, { useEffect, useState } from "react";
-import Input from "../../../components/Input";
 import Button, { LinkButton } from "../../../components/Button";
 import { useModal } from "react-modal-hook";
 import InviteMemberModal from "../../../components/InviteMemberModal";
@@ -113,7 +112,8 @@ export default () => {
 
   const team: TeamEntity | undefined = data?.Team as any;
 
-  const isCreator: boolean = data?.Team.creator?.discord_id === AuthService.me?.discord_id;
+  // const isCreator: boolean = data?.Team.creator?.discord_id === AuthService.me?.discord_id;
+  const isCreator: boolean = false;
 
   return (
     <Layout>

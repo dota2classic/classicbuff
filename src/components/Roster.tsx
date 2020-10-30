@@ -16,7 +16,8 @@ const Roster = styled.div`
 `;
 
 export default (team: TeamEntity & { refetch: () => void }) => {
-  const isOwner = AuthService.me?.discord_id === team.creator?.discord_id;
+  // const isOwner = AuthService.me?.discord_id === team.creator?.discord_id;
+  const isOwner = false;
 
   const [kick] = useKickPlayerMutation();
 

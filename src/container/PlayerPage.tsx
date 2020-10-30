@@ -37,7 +37,8 @@ export default (p: Props) => {
     }
   }, [initialTab]);
 
-  const isMine = AuthService.me?.steam_id === p.steam_id;
+  // const isMine = AuthService.me?.steam_id === p.steam_id;
+  const isMine = false;
 
   const { data } = useTeamInvitesCountQuery({
     ...BaseGQLConfig
@@ -81,12 +82,12 @@ export default (p: Props) => {
         )}
       </Tabs>
 
-      {teamData?.User?.team?.team && (
-        <>
-          <TeamPreview {...teamData?.User?.team?.team} />
-          <br />
-        </>
-      )}
+      {/*{teamData?.User?.team?.team && (*/}
+      {/*  <>*/}
+      {/*    <TeamPreview {...teamData?.User?.team?.team} />*/}
+      {/*    <br />*/}
+      {/*  </>*/}
+      {/*)}*/}
 
       {tab === 0 && <PlayerHistoryTab steam_id={p.steam_id} />}
       {tab === 1 && <PlayerHeroesTab steam_id={p.steam_id} />}

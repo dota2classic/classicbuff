@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import React from "react";
 import Link from "next/link";
-import { steamIdToNum } from "../utils/numSteamId";
-import { Player, PlayerFragmentFragment } from "../generated/sdk";
+import { LeaderboardEntryDto } from "../api/back/models";
 
 export const Tr = styled.tr`
   line-height: 16px;
@@ -37,14 +36,14 @@ export const Tr = styled.tr`
   }
 `;
 
-export default (props: PlayerFragmentFragment & { index: number }) => {
-  const playerUrl = `/player/${steamIdToNum(props.steam_id)}`;
+export default (props: LeaderboardEntryDto) => {
+  const playerUrl = `/player/${props.id}`;
 
   return (
-    <Tr className={props.index % 2 === 0 ? "even" : "odd"}>
+    <Tr>
       <td>
         <Link href={playerUrl}>
-          <a>{props.index}</a>
+          <a>{props.rank + 1}</a>
         </Link>
       </td>
       <td>
