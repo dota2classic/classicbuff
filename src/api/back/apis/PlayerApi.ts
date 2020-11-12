@@ -19,6 +19,12 @@ import {
   LeaderboardEntryDto,
   LeaderboardEntryDtoFromJSON,
   LeaderboardEntryDtoToJSON,
+  PartyDto,
+  PartyDtoFromJSON,
+  PartyDtoToJSON,
+  PlayerPreviewDto,
+  PlayerPreviewDtoFromJSON,
+  PlayerPreviewDtoToJSON,
   PlayerSummaryDto,
   PlayerSummaryDtoFromJSON,
   PlayerSummaryDtoToJSON
@@ -30,6 +36,10 @@ export interface PlayerControllerLeaderboardRequest {
 
 export interface PlayerControllerPlayerSummaryRequest {
   id: string;
+}
+
+export interface PlayerControllerSearchRequest {
+  name: string;
 }
 
 /**
@@ -142,6 +152,57 @@ export class PlayerApi extends runtime.BaseAPI {
 
   /**
    */
+  private async playerControllerMyPartyRaw(): Promise<runtime.ApiResponse<PartyDto>> {
+    this.playerControllerMyPartyValidation();
+    const context = this.playerControllerMyPartyContext();
+    const response = await this.request(context);
+
+    return new runtime.JSONApiResponse(response, jsonValue => PartyDtoFromJSON(jsonValue));
+  }
+
+  /**
+   */
+  private playerControllerMyPartyValidation() {}
+
+  /**
+   */
+  playerControllerMyPartyContext(): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    return {
+      path: `/v1/player/party`,
+      method: "GET",
+      headers: headerParameters,
+      query: queryParameters
+    };
+  }
+
+  /**
+   */
+  playerControllerMyParty = async (): Promise<PartyDto> => {
+    const response = await this.playerControllerMyPartyRaw();
+    return await response.value();
+  };
+
+  usePlayerControllerMyParty(config?: ConfigInterface<PartyDto, Error>) {
+    let valid = true;
+
+    const context = this.playerControllerMyPartyContext();
+    return useSWR(JSON.stringify(context), valid ? () => this.playerControllerMyParty() : undefined, config);
+  }
+
+  /**
+   */
   private async playerControllerPlayerSummaryRaw(
     requestParameters: PlayerControllerPlayerSummaryRequest
   ): Promise<runtime.ApiResponse<PlayerSummaryDto>> {
@@ -194,5 +255,65 @@ export class PlayerApi extends runtime.BaseAPI {
 
     const context = this.playerControllerPlayerSummaryContext({ id: id! });
     return useSWR(JSON.stringify(context), valid ? () => this.playerControllerPlayerSummary(id!) : undefined, config);
+  }
+
+  /**
+   */
+  private async playerControllerSearchRaw(
+    requestParameters: PlayerControllerSearchRequest
+  ): Promise<runtime.ApiResponse<Array<PlayerPreviewDto>>> {
+    this.playerControllerSearchValidation(requestParameters);
+    const context = this.playerControllerSearchContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.JSONApiResponse(response, jsonValue => jsonValue.map(PlayerPreviewDtoFromJSON));
+  }
+
+  /**
+   */
+  private playerControllerSearchValidation(requestParameters: PlayerControllerSearchRequest) {
+    if (requestParameters.name === null || requestParameters.name === undefined) {
+      throw new runtime.RequiredError(
+        "name",
+        "Required parameter requestParameters.name was null or undefined when calling playerControllerSearch."
+      );
+    }
+  }
+
+  /**
+   */
+  playerControllerSearchContext(requestParameters: PlayerControllerSearchRequest): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    if (requestParameters.name !== undefined) {
+      queryParameters["name"] = requestParameters.name;
+    }
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    return {
+      path: `/v1/player/search`,
+      method: "GET",
+      headers: headerParameters,
+      query: queryParameters
+    };
+  }
+
+  /**
+   */
+  playerControllerSearch = async (name: string): Promise<Array<PlayerPreviewDto>> => {
+    const response = await this.playerControllerSearchRaw({ name: name });
+    return await response.value();
+  };
+
+  usePlayerControllerSearch(name: string, config?: ConfigInterface<Array<PlayerPreviewDto>, Error>) {
+    let valid = true;
+
+    if (name === null || name === undefined || Number.isNaN(name)) {
+      valid = false;
+    }
+
+    const context = this.playerControllerSearchContext({ name: name! });
+    return useSWR(JSON.stringify(context), valid ? () => this.playerControllerSearch(name!) : undefined, config);
   }
 }

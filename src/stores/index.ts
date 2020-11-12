@@ -7,3 +7,5 @@ export const stores = {
 };
 
 export const useStores = () => stores;
+
+if (typeof window !== "undefined") (window as any).stores = stores;

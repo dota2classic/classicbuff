@@ -1,7 +1,14 @@
 import { action, observable, observe } from "mobx";
 import io from "socket.io-client";
-import * as path from "path";
-import { GameFound, LauncherServerStarted, Messages, ReadyCheckUpdate, RoomState, UpdateQueue } from "./messages";
+import {
+  GameFound,
+  LauncherServerStarted,
+  Messages,
+  PartyInviteReceivedMessage,
+  ReadyCheckUpdate,
+  RoomState,
+  UpdateQueue
+} from "./messages";
 
 import { MatchmakingMode } from "../utils/format/formatGameMode";
 import { AuthService } from "../service/AuthService";
@@ -141,6 +148,20 @@ export class Game {
     this.pendingGame = undefined;
   };
 
+  async inviteToParty(id: string) {
+    this.socket.emit(Messages.INVITE_TO_PARTY, {
+      id
+    });
+  }
+
+  private async partyInviteReceived(t: PartyInviteReceivedMessage) {
+    // ok here we need to display yes/no shit
+  }
+
+  private async partyInviteExpired(t: PartyInviteReceivedMessage) {
+    // ok here we need to display yes/no shit
+  }
+
   connect() {
     if (typeof window === "undefined") return;
 
@@ -176,6 +197,8 @@ export class Game {
     this.socket.on(Messages.QUEUE_STATE, this.queueState);
     this.socket.on(Messages.MATCH_FINISHED, this.matchFinished);
     this.socket.on(Messages.MATCH_STATE, this.matchState);
+    this.socket.on(Messages.PARTY_INVITE_RECEIVED, this.partyInviteReceived);
+    this.socket.on(Messages.PARTY_INVITE_EXPIRED, this.partyInviteExpired);
   }
 
   disconnect() {

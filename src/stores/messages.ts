@@ -11,6 +11,10 @@ export class RoomState {
   ) {}
 }
 
+export class PartyInviteReceivedMessage {
+  constructor(public readonly partyId: string, public readonly leader: string, public readonly inviteId: string) {}
+}
+
 export enum Messages {
   AUTH = "AUTH",
   QUEUE_UPDATE = "QUEUE_UPDATE",
@@ -25,7 +29,10 @@ export enum Messages {
   QUEUE_STATE = "QUEUE_STATE",
   MATCH_FINISHED = "MATCH_FINISHED",
   MATCH_STATE = "MATCH_STATE",
-  BROWSER_AUTH = "BROWSER_AUTH"
+  BROWSER_AUTH = "BROWSER_AUTH",
+  INVITE_TO_PARTY = "INVITE_TO_PARTY",
+  PARTY_INVITE_RECEIVED = "PARTY_INVITE_RECEIVED",
+  PARTY_INVITE_EXPIRED = "PARTY_INVITE_EXPIRED"
 }
 
 export interface ReadyCheckUpdate {
@@ -58,4 +65,8 @@ export interface ReadyCheck {
 
 export interface LauncherServerStarted {
   url: string;
+}
+
+export interface PartyInvite {
+  id: string;
 }

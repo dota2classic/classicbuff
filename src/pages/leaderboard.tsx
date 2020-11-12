@@ -3,8 +3,6 @@ import LadderRow, { LadderHeader, Table } from "../components/LadderRow";
 import Layout from "../components/Layout";
 import styled from "styled-components";
 import Head from "next/head";
-import { useLadderQuery } from "../generated/sdk";
-import { BaseGQLConfig } from "../shared";
 import { useApi } from "../api/hooks";
 
 const Thin = styled.div`

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import React from "react";
 import { useStores } from "../../stores";
 
-const Modal = styled.div`
+export const Modal = styled.div`
   z-index: 100;
   position: absolute;
   left: 0;
@@ -22,7 +22,7 @@ const Modal = styled.div`
   box-shadow: 0 0 30px 10px rgba(150, 150, 150, 0.25);
 `;
 
-const ModalWrapper = styled.div`
+export const ModalWrapper = styled.div`
   position: fixed;
   left: 0;
   right: 0;
