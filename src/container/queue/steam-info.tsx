@@ -125,12 +125,7 @@ export default observer(() => {
         ))}
 
         <PartyItem className={"invite"} onClick={() => setInviteOpen(true)}>
-          <img
-            src={
-              "https://lh3.googleusercontent.com/proxy/J512cKBJXpO9NkQ4ihbyiIbWgHd78U-3eK7xACKPXI-J1YUnEWhRuTRKKZbaPWY4wzsaIRoPB2Xvqnyjzm31yXixj8wN0m4"
-            }
-            alt=""
-          />
+          <img src={"/static/plus.png"} alt="" />
         </PartyItem>
       </PartyContents>
       {stores.game.searchingMode !== undefined && (

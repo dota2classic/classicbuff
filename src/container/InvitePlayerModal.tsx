@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { useApi } from "../api/hooks";
 import Input from "../components/Input";
 import { useStores } from "../stores";
+import useOutsideClick from "../utils/useOutsideClick";
 
 const Modal = styled.div`
   z-index: 100;
@@ -84,12 +85,15 @@ export const InvitePlayerModal = ({ open, close }: Props) => {
   const [search, setSearch] = useState("");
   const { data } = useApi().playerApi.usePlayerControllerSearch(search);
 
+  const comp = useRef(null);
   const { game } = useStores();
+
+  useOutsideClick(close, comp);
 
   if (open)
     return (
       <ModalWrapper>
-        <Modal>
+        <Modal ref={comp}>
           <Title>Искать</Title>
           <Input placeholder={"Никнейм игрока"} value={search} onChange={e => setSearch(e.target.value)} />
 
