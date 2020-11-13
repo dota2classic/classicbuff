@@ -1,9 +1,10 @@
 import { Game } from "./Game";
 import AuthService from "../service/AuthService";
+import { appApi } from "../api/hooks";
 
 export const stores = {
   auth: AuthService,
-  game: new Game(AuthService)
+  game: new Game(AuthService, appApi)
 };
 
 export const useStores = () => stores;

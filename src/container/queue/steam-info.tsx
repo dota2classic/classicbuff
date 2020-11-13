@@ -7,7 +7,7 @@ import formatGameMode from "../../utils/format/formatGameMode";
 import { useApi } from "../../api/hooks";
 import cx from "classnames";
 import { InvitePlayerModal } from "../InvitePlayerModal";
-import { PlayerPreviewDto } from "../../api/back/models";
+
 const InfoRow = styled.div`
   display: flex;
   flex-direction: row;
@@ -113,6 +113,8 @@ export default observer(() => {
   const stores = useStores();
   const { data } = useApi().playerApi.usePlayerControllerMyParty();
 
+  const { data: party } = useApi().playerApi.usePlayerControllerMyParty();
+
   const [inviteOpen, setInviteOpen] = useState(false);
   return (
     <InfoRow>
@@ -136,6 +138,9 @@ export default observer(() => {
       )}
 
       <div style={{ flex: 1 }} />
+      {party && party.players.length > 1 && (
+        <CancelFindGameButton onClick={() => stores.game.leaveParty()}>Покинуть группу</CancelFindGameButton>
+      )}
       {(stores.game.searchingMode !== undefined && (
         <CancelFindGameButton onClick={() => stores.game.cancelSearch()}>Отменить поиск</CancelFindGameButton>
       )) || (

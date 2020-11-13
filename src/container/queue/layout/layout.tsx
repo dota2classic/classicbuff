@@ -7,6 +7,7 @@ import { SelectedGameMode } from "./SelectedGameMode";
 import { colors } from "../../../shared";
 import { useStores } from "../../../stores";
 import { AcceptGameModal } from "../AcceptGameModal";
+import { AcceptPartyModal } from "../AcceptPartyModal";
 
 const AppLayout = styled.div`
   width: 100vw;
@@ -33,6 +34,7 @@ export const Layout = observer(({ children }: PropsWithChildren<{}>) => {
           <SteamInfo />
           <SelectedGameMode />
           <AcceptGameModal />
+          <AcceptPartyModal />
         </Content>
       </AppLayout>
     );

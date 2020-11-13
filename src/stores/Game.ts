@@ -12,6 +12,8 @@ import {
 
 import { MatchmakingMode } from "../utils/format/formatGameMode";
 import { AuthService } from "../service/AuthService";
+import { mutate } from "swr";
+import { AppApi } from "../api/hooks";
 
 const isDev = process.env.DEV === "true";
 
@@ -29,6 +31,14 @@ export class Game {
 
   @observable
   public activeMode: MatchmakingMode = MatchmakingMode.SOLOMID;
+
+  @observable
+  public pendingPartyInvite?: PartyInviteReceivedMessage = undefined;
+  // public pendingPartyInvite?: PartyInviteReceivedMessage = {
+  //   partyId: "c3a2a638-6f66-42b0-997e-fe7e29fee0a3",
+  //   leader: "$$ КОТ БАЗИЛИО $$",
+  //   inviteId: "1e570d96-f47e-4de3-9c14-edad81701637"
+  // };
 
   @observable
   public pendingGame: PendingGameInfo | undefined = undefined;
@@ -49,7 +59,7 @@ export class Game {
 
   private socket!: SocketIOClient.Socket;
 
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService, private readonly api: AppApi) {}
 
   private matchState = (url?: string) => {
     this.serverURL = url;
@@ -148,19 +158,42 @@ export class Game {
     this.pendingGame = undefined;
   };
 
-  async inviteToParty(id: string) {
+  inviteToParty = async (id: string) => {
     this.socket.emit(Messages.INVITE_TO_PARTY, {
       id
     });
-  }
+  };
 
-  private async partyInviteReceived(t: PartyInviteReceivedMessage) {
+  private partyInviteReceived = async (t: PartyInviteReceivedMessage) => {
     // ok here we need to display yes/no shit
-  }
+    this.pendingPartyInvite = t;
+    console.log("HEY?", this.pendingPartyInvite);
+  };
 
-  private async partyInviteExpired(t: PartyInviteReceivedMessage) {
+  private partyInviteExpired = async (t: string) => {
     // ok here we need to display yes/no shit
-  }
+    if (this.pendingPartyInvite?.inviteId === t) {
+      this.pendingPartyInvite = undefined;
+    }
+  };
+
+  public submitPartyInvite = async (accept: boolean) => {
+    if (this.pendingPartyInvite) {
+      this.socket.emit(Messages.ACCEPT_PARTY_INVITE, {
+        accept,
+        id: this.pendingPartyInvite.inviteId
+      });
+      this.pendingPartyInvite = undefined;
+    }
+  };
+
+  leaveParty = () => {
+    this.socket.emit(Messages.LEAVE_PARTY);
+  };
+
+  partyUpdated = async () => {
+    await mutate(JSON.stringify(this.api.playerApi.playerControllerMyPartyContext()), undefined, true);
+  };
 
   connect() {
     if (typeof window === "undefined") return;
@@ -199,6 +232,7 @@ export class Game {
     this.socket.on(Messages.MATCH_STATE, this.matchState);
     this.socket.on(Messages.PARTY_INVITE_RECEIVED, this.partyInviteReceived);
     this.socket.on(Messages.PARTY_INVITE_EXPIRED, this.partyInviteExpired);
+    this.socket.on(Messages.PARTY_UPDATED, this.partyUpdated);
   }
 
   disconnect() {
