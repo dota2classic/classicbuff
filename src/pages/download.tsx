@@ -21,7 +21,7 @@ export default () => {
       </Head>
       <LeadButtons>
         <InfoText>
-          Внимание: Поиск игры происходит через{" "}
+          Внимание: Поиск игры происходит через сайт или{" "}
           <a style={{ color: `#d9d9d9` }} href="https://discord.gg/VU5wjA8">
             Discord сервер
           </a>
@@ -51,5 +51,3 @@ export default () => {
     </Layout>
   );
 };
-
-// b1e7d404c726: Extracting [==============>                                    ]  51.81MB/175.9MB

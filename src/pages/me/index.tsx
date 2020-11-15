@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Router, { useRouter } from "next/router";
-import api from "../../service/api";
 import Layout from "../../components/Layout";
 import useWillMount from "../../utils/useWillMount";
 import AuthService from "../../service/AuthService";
 import { observer } from "mobx-react";
 import PlayerPage from "../../container/PlayerPage";
 import Head from "next/head";
+import { appApi } from "../../api/hooks";
 
 export const HeroPreview = styled.img`
   width: 60px;
@@ -40,7 +40,7 @@ const Page = observer(() => {
         Выйти
       </Hint>
       {(AuthService.me?.steamId && <PlayerPage steam_id={AuthService.me?.steamId} />) || (
-        <Hint href={`${api.getBaseURL()}/auth/steam`}>Подключи стим, чтобы увидеть свою статистику</Hint>
+        <Hint href={`${appApi.apiParams.basePath}/v1/auth/steam`}>Подключи стим, чтобы увидеть свою статистику</Hint>
       )}
     </Layout>
   );

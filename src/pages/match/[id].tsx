@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import React from "react";
 import Layout from "../../components/Layout";
-import api from "../../service/api";
 import Head from "next/head";
 import TeamTable from "../../components/TeamTable";
 import { NextPageContext } from "next";
@@ -101,12 +100,6 @@ export const Score = styled.div`
   font-size: 24px;
 `;
 
-const fetchMatch = (id: number): Promise<Match> => {
-  return api
-    .get<Match>("/public/match", { id })
-    .then(it => it.data as Match);
-};
-
 const sumKills = (players: PlayerInMatchDto[]) => {
   let sum = 0;
   players.forEach(it => (sum += it.kills));
@@ -155,13 +148,6 @@ const Page = (p: Partial<{ match: Match }>) => {
       </Showcase>
     </Layout>
   );
-};
-
-Page.getInitialProps = async (ctx: NextPageContext) => {
-  const { id } = ctx.query;
-  return {
-    match: await fetchMatch(Number(id))
-  };
 };
 
 export default Page;

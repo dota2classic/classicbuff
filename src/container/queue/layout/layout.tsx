@@ -8,6 +8,8 @@ import { colors } from "../../../shared";
 import { useStores } from "../../../stores";
 import { AcceptGameModal } from "../AcceptGameModal";
 import { AcceptPartyModal } from "../AcceptPartyModal";
+import { LeadButton } from "../../../pages";
+import { appApi } from "../../../api/hooks";
 
 const AppLayout = styled.div`
   width: 100vw;
@@ -38,5 +40,10 @@ export const Layout = observer(({ children }: PropsWithChildren<{}>) => {
         </Content>
       </AppLayout>
     );
-  else return <h1>Для поиска игры нужно войти в свой Steam аккаунт</h1>;
+  else
+    return (
+      <LeadButton href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
+        Для поиска игры нужно войти в свой Steam аккаунт
+      </LeadButton>
+    );
 });

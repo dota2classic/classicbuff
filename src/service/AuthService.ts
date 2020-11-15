@@ -1,5 +1,4 @@
 import { action, computed, observable } from "mobx";
-import api from "./api";
 import { Role } from "../shared";
 import cookies from "browser-cookies";
 import { appApi } from "../api/hooks";
@@ -75,16 +74,16 @@ export class AuthService {
   @action.bound
   public setToken(token: string) {
     this.token = token;
-    api.setHeader("Authorization", `JWT ${token}`);
     appApi.apiParams.accessToken = token;
     localStorage.setItem("token", token);
   }
 
+  @action.bound
   public logout() {
     this.token = undefined;
-    api.deleteHeader("Authorization");
     appApi.apiParams.accessToken = undefined;
     localStorage.removeItem("token");
+    cookies.erase("dota2classic_auth_token");
   }
 }
 

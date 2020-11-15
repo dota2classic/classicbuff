@@ -1,6 +1,5 @@
-import api from "../service/api";
 import { ImageEntity } from "../generated/sdk";
-
+import { appApi } from "../api/hooks";
 export default (img: ImageEntity) => {
-  return `${api.getBaseURL()}/static/${img?.path}`;
+  return `${appApi.apiParams.basePath}/static/${img?.path}`;
 };

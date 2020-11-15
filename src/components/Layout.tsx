@@ -4,8 +4,8 @@ import Link from "next/link";
 import { observer } from "mobx-react";
 import AuthService from "../service/AuthService";
 import Router, { useRouter } from "next/router";
-import api from "../service/api";
 import useWillMount from "../utils/useWillMount";
+import { appApi } from "../api/hooks";
 
 const LayoutContainer = styled.div`
   min-height: 100vh;
@@ -210,7 +210,7 @@ const DefaultHeader = () => {
               </SiteLink>
             </Link>
           ) : (
-            <SiteLink href={`${api.getBaseURL()}/v1/auth/steam`}>
+            <SiteLink href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
               <Icon src={"/static/items/recipe.jpg"} />
               Войти через steam
             </SiteLink>
@@ -234,6 +234,9 @@ const DefaultHeader = () => {
           </SiteLink>
         </Link>
         <Link passHref href={"/download"}>
+          <SiteLink>Скачать</SiteLink>
+        </Link>
+        <Link passHref href={"/queue"}>
           <SiteLink>Играть</SiteLink>
         </Link>
         <Link passHref href={"/leaderboard"}>
@@ -242,19 +245,16 @@ const DefaultHeader = () => {
         <Link passHref href={"/history"}>
           <SiteLink>История матчей</SiteLink>
         </Link>
-        <Link passHref href={"/heroes"}>
-          <SiteLink>Герои</SiteLink>
-        </Link>
-        <Link passHref href={"/queue"}>
-          <SiteLink>Играть</SiteLink>
-        </Link>
+        {/*<Link passHref href={"/heroes"}>*/}
+        {/*  <SiteLink>Герои</SiteLink>*/}
+        {/*</Link>*/}
 
         {AuthService.authorized ? (
           <Link passHref href={"/me"}>
             <SiteLink>Профиль</SiteLink>
           </Link>
         ) : (
-          <SiteLink href={`${api.getBaseURL()}/v1/auth/steam`}>Войти через steam</SiteLink>
+          <SiteLink href={`${appApi.apiParams.basePath}/v1/auth/steam`}>Войти через steam</SiteLink>
         )}
       </HeaderWrapper>
       <HeaderWrapper className="compact">
@@ -292,7 +292,7 @@ const TournamentHeader = () => {
             <SiteLink>Профиль</SiteLink>
           </Link>
         ) : (
-          <SiteLink href={`${api.getBaseURL()}/v1/auth/steam`}>Войти через steam</SiteLink>
+          <SiteLink href={`${appApi.apiParams.basePath}/v1/auth/steam`}>Войти через steam</SiteLink>
         )}
       </HeaderWrapper>
     </>
