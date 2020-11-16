@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React from "react";
 import formatGameMode, { MatchmakingMode } from "../../utils/format/formatGameMode";
-import api from "../../service/api";
+// import api from "../../service/api";
 import { PartyDto, QueueDto, QueuePlayerDto } from "../../generated/sdk";
 
 const QueueBlock = styled.div`
@@ -55,7 +55,7 @@ export const QParty = (p: PartyDto & { invalidate: () => void; mode: Matchmaking
     <Party>
       <button
         onClick={async () => {
-          await api.post("/admin/queue_remove_party", { mode: p.mode, partyId: p.id });
+          // await api.post("/admin/queue_remove_party", { mode: p.mode, partyId: p.id });
           p.invalidate();
         }}
       >

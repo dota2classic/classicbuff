@@ -1,7 +1,6 @@
 import * as React from "react";
 import { ChangeEventHandler, ReactNode } from "react";
 import styled from "styled-components";
-import api from "../service/api";
 import { ImageEntity } from "../generated/sdk";
 
 interface ImageUploaderProps {
@@ -35,12 +34,12 @@ const ImageUploader = ({ onChange, onError, disabled, children }: ImageUploaderP
     const form = new FormData();
     form.append("image", file);
 
-    const response = await api.post<ImageEntity>(`/public/upload`, form, {
-      headers: {
-        "content-type": "multipart/form-data"
-      }
-    });
-    onChange(response.data as ImageEntity);
+    // const response = await api.post<ImageEntity>(`/public/upload`, form, {
+    //   headers: {
+    //     "content-type": "multipart/form-data"
+    //   }
+    // });
+    // onChange(response.data as ImageEntity);
     setLoading(false);
   };
 
