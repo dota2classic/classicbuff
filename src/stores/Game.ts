@@ -200,7 +200,7 @@ export class Game {
 
     this.socket = isDev
       ? io("ws://localhost:5010", { transports: ["websocket"] })
-      : io("wss://dev.dota2classic.ru", {
+      : io("wss://dota2classic.ru", {
           path: "/launcher",
           transports: ["websocket"]
         });
