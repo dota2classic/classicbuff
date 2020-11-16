@@ -5,7 +5,7 @@ import AuthService from "../service/AuthService";
 
 export class AppApi {
   apiParams: ConfigurationParameters = {
-    basePath: local ? "http://localhost:6001" : "https://dev.dota2classic.ru/api",
+    basePath: local ? "http://localhost:6001" : "https://dota2classic.ru/api",
     accessToken: () => AuthService.token!!,
     fetchApi: (input, init) => {
       return window.fetch(input, init).then(t => {
