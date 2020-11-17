@@ -159,11 +159,11 @@ export default () => {
         можно поиграть в старую версию легендарной игры.
       </WelcomeText>
       <CardRow>
-        <CardBlock text={"Версия The International 2014"} img={"/static/landing/1.png"} />
+        <CardBlock text={"Версия The International 2014"} img={"https://dota2classic.ru/api/static/landing/1.png"} />
 
-        <CardBlock text={"Клиент игры до обновления Reborn"} img={"/static/landing/2.png"} />
+        <CardBlock text={"Клиент игры до обновления Reborn"} img={"https://dota2classic.ru/api/static/landing/2.png"} />
 
-        <CardBlock text={"Работает через Steam"} img={"/static/landing/3.png"} />
+        <CardBlock text={"Работает через Steam"} img={"https://dota2classic.ru/api/static/landing/3.png"} />
       </CardRow>
 
       <List>
@@ -172,9 +172,9 @@ export default () => {
         <li>Работает через Steam</li>
       </List>
       <CardRow>
-        <CardBlock text={"Движок Source 1"} img={"/static/landing/4.png"} />
-        <CardBlock text={"Классический баланс"} img={"/static/landing/5.png"} />
-        <CardBlock text={"Оригинальный ландшафт"} img={"/static/landing/6.png"} />
+        <CardBlock text={"Движок Source 1"} img={"https://dota2classic.ru/api/static/landing/4.png"} />
+        <CardBlock text={"Классический баланс"} img={"https://dota2classic.ru/api/static/landing/5.png"} />
+        <CardBlock text={"Оригинальный ландшафт"} img={"https://dota2classic.ru/api/static/landing/6.png"} />
       </CardRow>
 
       <List>
@@ -183,10 +183,10 @@ export default () => {
         <li>Оригинальный ландшафт</li>
       </List>
       <CardRow>
-        <CardBlock text={"Удаленные предметы"} img={"/static/landing/7.png"} />
+        <CardBlock text={"Удаленные предметы"} img={"https://dota2classic.ru/api/static/landing/7.png"} />
 
-        <CardBlock img={"/static/landing/8.png"} text={"Diretide 2012 года"} />
-        <CardBlock img={"/static/landing/9.png"} text={"Techies еще не добавили!"} />
+        <CardBlock img={"https://dota2classic.ru/api/static/landing/8.png"} text={"Diretide 2012 года"} />
+        <CardBlock img={"https://dota2classic.ru/api/static/landing/9.png"} text={"Techies еще не добавили!"} />
       </CardRow>
       <List>
         <li>Старые способности героев и удалённые предметы</li>

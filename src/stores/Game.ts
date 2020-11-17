@@ -111,7 +111,7 @@ export class Game {
       iAccepted: false
     };
 
-    new Audio("/static/sound/match.mp3").play();
+    new Audio("https://dota2classic.ru/api/static/sound/match.mp3").play();
   };
 
   private updateReadyCheck = (data: ReadyCheckUpdate) => {

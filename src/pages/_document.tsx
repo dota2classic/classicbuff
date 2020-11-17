@@ -69,8 +69,8 @@ export default class MyDocument extends Document {
         <Head>
           <meta charSet="utf-8" />
           <link rel="canonical" href="https://dota2classic.ru" />
-          <link rel="icon" type="image/png" href="/static/favicon.png" />
-          <link rel="stylesheet" href="/static/style.css" />
+          <link rel="icon" type="image/png" href="https://dota2classic.ru/api/static/favicon.png" />
+          <link rel="stylesheet" href="https://dota2classic.ru/api/static/style.css" />
           <script src="/static/build_info.js" />
         </Head>
         <body>

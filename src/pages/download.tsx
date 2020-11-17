@@ -41,7 +41,7 @@ export default () => {
           Скачать через Яндекс.Диск
         </LeadButton>
 
-        <LeadButton download href={"/static/Dota_2_Classic_6.81b.torrent"}>
+        <LeadButton download href={"https://dota2classic.ru/api/static/Dota_2_Classic_6.81b.torrent"}>
           Скачать Torrent
         </LeadButton>
       </LeadButtons>

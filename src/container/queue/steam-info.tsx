@@ -127,7 +127,7 @@ export default observer(() => {
         ))}
 
         <PartyItem className={"invite"} onClick={() => setInviteOpen(true)}>
-          <img src={"/static/plus.png"} alt="" />
+          <img src={"https://dota2classic.ru/api/static/plus.png"} alt="" />
         </PartyItem>
       </PartyContents>
       {stores.game.searchingMode !== undefined && (

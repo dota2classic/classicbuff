@@ -170,59 +170,59 @@ const DefaultHeader = () => {
     <>
       {menu && (
         <MobileMenu>
-          <CloseIcon onClick={() => Router.back()} src={"/static/unnamed.png"} />
+          <CloseIcon onClick={() => Router.back()} src={"https://dota2classic.ru/api/static/unnamed.png"} />
           <Link passHref href={"/leaderboard"}>
             <SiteLink>
-              <Icon src={"/static/items/rapier.jpg"} />
+              <Icon src={"https://dota2classic.ru/api/static/items/rapier.jpg"} />
               Таблица лидеров
             </SiteLink>
           </Link>
 
           <Link passHref href={"/download"}>
             <SiteLink>
-              <Icon src={"/static/items/aegis.jpg"} />
+              <Icon src={"https://dota2classic.ru/api/static/items/aegis.jpg"} />
               Играть
             </SiteLink>
           </Link>
           <Link passHref href={"/history"}>
             <SiteLink>
-              <Icon src={"/static/items/tpscroll.jpg"} />
+              <Icon src={"https://dota2classic.ru/api/static/items/tpscroll.jpg"} />
               История матчей
             </SiteLink>
           </Link>
           <Link passHref href={"/heroes"}>
             <SiteLink>
-              <Icon src={"/static/heroes/npc_dota_hero_axe.jpg"} />
+              <Icon src={"https://dota2classic.ru/apistatic/heroes/npc_dota_hero_axe.jpg"} />
               Герои
             </SiteLink>
           </Link>
           <Link passHref href={"/heroes"}>
             <SiteLink>
-              <Icon src={"/static/heroes/npc_dota_hero_axe.jpg"} />
+              <Icon src={"https://dota2classic.ru/api/static/heroes/npc_dota_hero_axe.jpg"} />
               Турниры
             </SiteLink>
           </Link>
           {AuthService.authorized ? (
             <Link passHref href={"/me"}>
               <SiteLink>
-                <Icon src={"/static/items/aegis.jpg"} />
+                <Icon src={"https://dota2classic.ru/api/static/items/aegis.jpg"} />
                 Профиль
               </SiteLink>
             </Link>
           ) : (
             <SiteLink href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
-              <Icon src={"/static/items/recipe.jpg"} />
+              <Icon src={"https://dota2classic.ru/api/static/items/recipe.jpg"} />
               Войти через steam
             </SiteLink>
           )}
           <div style={{ height: "30%" }} />
 
           <SiteLink href="https://discord.gg/VU5wjA8">
-            <Icon src={"/static/icons/dis2.png"} />
+            <Icon src={"https://dota2classic.ru/api/static/icons/dis2.png"} />
             Discord сервер
           </SiteLink>
           <SiteLink href="https://vk.com/club191796288">
-            <Icon src={"/static/icons/vk1.png"} />
+            <Icon src={"https://dota2classic.ru/api/static/icons/vk1.png"} />
             Группа VK
           </SiteLink>
         </MobileMenu>
@@ -259,10 +259,10 @@ const DefaultHeader = () => {
       </HeaderWrapper>
       <HeaderWrapper className="compact">
         <a href="https://discord.gg/VU5wjA8">
-          <LinkWrapper alt={"Discord logo"} src="/static/icons/dis2.png" />
+          <LinkWrapper alt={"Discord logo"} src="https://dota2classic.ru/api/static/icons/dis2.png" />
         </a>
         <a href="https://vk.com/club191796288">
-          <LinkWrapper alt={"Vk logo"} src="/static/icons/vk1.png" />
+          <LinkWrapper alt={"Vk logo"} src="https://dota2classic.ru/api/static/icons/vk1.png" />
         </a>
       </HeaderWrapper>
     </>
@@ -313,7 +313,7 @@ export const TournamentLayout = (p: PropsWithChildren<{ landing?: boolean; title
         <Title>
           <MenuIcon
             onClick={() => Router.push(`${router.pathname}?menu`, `${router.asPath}?menu`)}
-            src={"/static/menu.svg"}
+            src={"https://dota2classic.ru/api/static/menu.svg"}
           />
           {p.title && <span>{p.title}</span>}
         </Title>
@@ -336,7 +336,7 @@ export default observer((p: PropsWithChildren<{ landing?: boolean; title?: React
         <Title>
           <MenuIcon
             onClick={() => Router.push(`${router.pathname}?menu`, `${router.asPath}?menu`)}
-            src={"/static/menu.svg"}
+            src={"https://dota2classic.ru/api/static/menu.svg"}
           />
           {p.title && <span>{p.title}</span>}
         </Title>
