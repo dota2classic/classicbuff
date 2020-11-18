@@ -59,14 +59,17 @@ const DiscordBlock = () => {
 
   if (data?.error)
     return (
-      <DiscordContainer>
-        <Hint>
-          Бот не может найти Ваш аккаунт! А вы есть у нас в{" "}
-          <a className={"link"} target={"__blank"} href="https://discord.gg/VU5wjA8">
-            дискорде?
-          </a>
-        </Hint>
-      </DiscordContainer>
+      <Connections>
+        <DiscordContainer>
+          <Hint>
+            Бот не может найти Ваш аккаунт! А вы есть у нас в{" "}
+            <a className={"link"} target={"__blank"} href="https://discord.gg/VU5wjA8">
+              дискорде?
+            </a>
+          </Hint>
+        </DiscordContainer>
+        <LinkButton href={`${appApi.apiParams.basePath}/v1/auth/discord`}>Подключить другой Discord</LinkButton>
+      </Connections>
     );
   if (!data?.discord)
     return (
