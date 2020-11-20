@@ -49,6 +49,12 @@ export interface LeaderboardEntryDto {
    * @memberof LeaderboardEntryDto
    */
   rank: number;
+  /**
+   *
+   * @type {Array<string>}
+   * @memberof LeaderboardEntryDto
+   */
+  roles: Array<LeaderboardEntryDtoRolesEnum>;
 }
 
 export function LeaderboardEntryDtoFromJSON(json: any): LeaderboardEntryDto {
@@ -64,7 +70,8 @@ export function LeaderboardEntryDtoFromJSONTyped(json: any, ignoreDiscriminator:
     name: json["name"],
     id: json["id"],
     mmr: json["mmr"],
-    rank: json["rank"]
+    rank: json["rank"],
+    roles: json["roles"]
   };
 }
 
@@ -80,6 +87,19 @@ export function LeaderboardEntryDtoToJSON(value?: LeaderboardEntryDto | null): a
     name: value.name,
     id: value.id,
     mmr: value.mmr,
-    rank: value.rank
+    rank: value.rank,
+    roles: value.roles
   };
+}
+
+/**
+ * @export
+ * @enum {string}
+ */
+export enum LeaderboardEntryDtoRolesEnum {
+  PLAYER = "PLAYER",
+  OLD = "OLD",
+  HUMAN = "HUMAN",
+  MODERATOR = "MODERATOR",
+  ADMIN = "ADMIN"
 }

@@ -45,6 +45,12 @@ export interface PlayerSummaryDto {
   mmr: number;
   /**
    *
+   * @type {Array<string>}
+   * @memberof PlayerSummaryDto
+   */
+  roles: Array<PlayerSummaryDtoRolesEnum>;
+  /**
+   *
    * @type {number}
    * @memberof PlayerSummaryDto
    */
@@ -64,6 +70,7 @@ export function PlayerSummaryDtoFromJSONTyped(json: any, ignoreDiscriminator: bo
     name: json["name"],
     id: json["id"],
     mmr: json["mmr"],
+    roles: json["roles"],
     rank: json["rank"]
   };
 }
@@ -80,6 +87,19 @@ export function PlayerSummaryDtoToJSON(value?: PlayerSummaryDto | null): any {
     name: value.name,
     id: value.id,
     mmr: value.mmr,
+    roles: value.roles,
     rank: value.rank
   };
+}
+
+/**
+ * @export
+ * @enum {string}
+ */
+export enum PlayerSummaryDtoRolesEnum {
+  PLAYER = "PLAYER",
+  OLD = "OLD",
+  HUMAN = "HUMAN",
+  MODERATOR = "MODERATOR",
+  ADMIN = "ADMIN"
 }

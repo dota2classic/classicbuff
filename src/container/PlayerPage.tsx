@@ -20,11 +20,11 @@ interface Props {
   steam_id: string;
 }
 export default (p: Props) => {
-  const { data: teamData } = useUserQuery({
-    variables: {
-      id: p.steam_id
-    }
-  });
+  // const { data: teamData } = useUserQuery({
+  //   variables: {
+  //     id: p.steam_id
+  //   }
+  // });
 
   const { tab: initialTab } = useRouter().query;
 

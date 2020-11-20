@@ -2,6 +2,7 @@ import styled from "styled-components";
 import React from "react";
 import Link from "next/link";
 import { LeaderboardEntryDto } from "../api/back/models";
+import { RoleNames, RoleValue } from "../utils/format/roles";
 
 export const Tr = styled.tr`
   line-height: 16px;
@@ -36,8 +37,67 @@ export const Tr = styled.tr`
   }
 `;
 
+export const Role = styled.div`
+  width: 10px;
+  height: 10px;
+  position: relative;
+
+  border-radius: 50%;
+  margin-right: 5px;
+  font-size: 14px;
+
+  cursor: pointer;
+  & + & {
+    margin-left: 5px;
+  }
+  &.OLD {
+    background: purple;
+  }
+
+  &.HUMAN {
+    background: #cda71b;
+  }
+
+  &.ADMIN {
+    background: #c10303;
+  }
+
+  &.MODERATOR {
+    background: #335ae7;
+  }
+
+  &:hover {
+    & div {
+      display: block;
+      pointer-events: auto;
+      opacity: 1;
+    }
+  }
+
+  & div {
+    left: -60px;
+    top: 20px;
+    transition: 0.3s ease;
+    display: block;
+    pointer-events: none;
+    opacity: 0;
+    padding: 10px;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+  }
+`;
+
+const NameContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+`;
+
 export default (props: LeaderboardEntryDto) => {
   const playerUrl = `/player/${props.id}`;
+
+  const highestRole = props.roles.sort((a, b) => RoleValue[b] - RoleValue[a])[0] || "PLAYER";
 
   return (
     <Tr>
@@ -48,7 +108,14 @@ export default (props: LeaderboardEntryDto) => {
       </td>
       <td>
         <Link href={playerUrl}>
-          <a style={{ fontWeight: "bold" }}>{props.name}</a>
+          <NameContainer>
+            {highestRole !== "PLAYER" && (
+              <Role className={highestRole}>
+                <div>{RoleNames[highestRole]}</div>
+              </Role>
+            )}
+            <a style={{ fontWeight: "bold" }}>{props.name}</a>
+          </NameContainer>
         </Link>
       </td>
       <td style={{ textAlign: "center" }}>{props.mmr}</td>

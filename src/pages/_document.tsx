@@ -47,6 +47,12 @@ export default class MyDocument extends Document {
 <!-- /Yandex.Metrika counter -->`;
   }
 
+  private adSense() {
+    return `
+    <script data-ad-client="ca-pub-2522763197238996" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+`;
+  }
+
   private ga() {
     return `<!-- Global site tag (gtag.js) - Google Analytics -->
 
@@ -78,6 +84,7 @@ export default class MyDocument extends Document {
           <NextScript />
           <span dangerouslySetInnerHTML={{ __html: this.ga() }} />
           <span dangerouslySetInnerHTML={{ __html: this.ym() }} />
+          <span dangerouslySetInnerHTML={{ __html: this.adSense() }} />
         </body>
       </html>
     );
