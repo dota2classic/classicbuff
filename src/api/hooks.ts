@@ -1,4 +1,4 @@
-import { MatchApi, PlayerApi } from "./back/apis";
+import { AdminApi, MatchApi, PlayerApi } from "./back/apis";
 import { Configuration, ConfigurationParameters } from "./back";
 import { local } from "../config";
 import AuthService from "../service/AuthService";
@@ -21,6 +21,7 @@ export class AppApi {
 
   readonly matchApi = new MatchApi(this.apiConfig);
   readonly playerApi = new PlayerApi(this.apiConfig);
+  readonly adminApi = new AdminApi(this.apiConfig);
 }
 
 export const appApi = new AppApi();

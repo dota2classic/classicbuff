@@ -1,5 +1,4 @@
 import { action, computed, observable } from "mobx";
-import { Role } from "../shared";
 import cookies from "browser-cookies";
 import { appApi } from "../api/hooks";
 import { PlayerSummaryDto } from "../api/back/models";

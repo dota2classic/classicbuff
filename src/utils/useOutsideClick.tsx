@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 export const eventIncludes = (element: any, e: any) => {
   try {
     return element && !e.composedPath().includes(element);
@@ -27,3 +27,20 @@ export default function useOutsideClick(onOuterClick: (e: any) => void, innerRef
     [onOuterClick, innerRef] // invoke again, if deps have changed
   );
 }
+
+export const useEscapePress = (callback: () => void) => {
+  const escFunction = useCallback(event => {
+    if (event.keyCode === 27) {
+      //Do whatever when esc is pressed
+      callback();
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("keydown", escFunction, false);
+
+    return () => {
+      document.removeEventListener("keydown", escFunction, false);
+    };
+  }, []);
+};

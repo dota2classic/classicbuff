@@ -17,6 +17,11 @@ const Input = styled.input`
   }
 
   margin-bottom: 20px;
+  &.small {
+    padding: 6px;
+    font-size: 14px;
+    margin-bottom: 0;
+  }
 `;
 
 export default Input;

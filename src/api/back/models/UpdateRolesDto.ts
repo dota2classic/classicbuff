@@ -27,10 +27,16 @@ export interface UpdateRolesDto {
   steamId: string;
   /**
    *
-   * @type {Array<string>}
+   * @type {string}
    * @memberof UpdateRolesDto
    */
-  roles: Array<UpdateRolesDtoRolesEnum>;
+  role: UpdateRolesDtoRoleEnum;
+  /**
+   *
+   * @type {number}
+   * @memberof UpdateRolesDto
+   */
+  endTime: number;
 }
 
 export function UpdateRolesDtoFromJSON(json: any): UpdateRolesDto {
@@ -43,7 +49,8 @@ export function UpdateRolesDtoFromJSONTyped(json: any, ignoreDiscriminator: bool
   }
   return {
     steamId: json["steam_id"],
-    roles: json["roles"]
+    role: json["role"],
+    endTime: json["end_time"]
   };
 }
 
@@ -56,7 +63,8 @@ export function UpdateRolesDtoToJSON(value?: UpdateRolesDto | null): any {
   }
   return {
     steam_id: value.steamId,
-    roles: value.roles
+    role: value.role,
+    end_time: value.endTime
   };
 }
 
@@ -64,7 +72,7 @@ export function UpdateRolesDtoToJSON(value?: UpdateRolesDto | null): any {
  * @export
  * @enum {string}
  */
-export enum UpdateRolesDtoRolesEnum {
+export enum UpdateRolesDtoRoleEnum {
   PLAYER = "PLAYER",
   OLD = "OLD",
   HUMAN = "HUMAN",

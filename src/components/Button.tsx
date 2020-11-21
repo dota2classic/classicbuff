@@ -17,6 +17,11 @@ const Button = styled.button`
     cursor: not-allowed;
   }
 
+  &.small {
+    font-size: 14px;
+    padding: 6px;
+  }
+
   cursor: pointer;
   &:hover:not(:disabled) {
     background: rgba(0, 0, 0, 0.8);

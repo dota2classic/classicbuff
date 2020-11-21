@@ -77,6 +77,7 @@ export const Role = styled.div`
   & div {
     left: -60px;
     top: 20px;
+    z-index: 5;
     transition: 0.3s ease;
     display: block;
     pointer-events: none;

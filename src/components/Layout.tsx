@@ -152,7 +152,7 @@ const Icon = styled.img`
   margin-right: 10px;
 `;
 
-const CloseIcon = styled.img`
+export const CloseIcon = styled.img`
   width: 35px;
   height: 35px;
   object-fit: cover;

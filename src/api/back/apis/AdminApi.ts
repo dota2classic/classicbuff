@@ -27,7 +27,10 @@ import {
   GameSessionDtoToJSON,
   UpdateRolesDto,
   UpdateRolesDtoFromJSON,
-  UpdateRolesDtoToJSON
+  UpdateRolesDtoToJSON,
+  UserRoleSummaryDto,
+  UserRoleSummaryDtoFromJSON,
+  UserRoleSummaryDtoToJSON
 } from "../models";
 
 export interface AdminUserControllerUpdateRoleRequest {
@@ -38,10 +41,65 @@ export interface ServerControllerDebugEventRequest {
   eventAdminDto: EventAdminDto;
 }
 
+export interface ServerControllerStopServerRequest {
+  body: string;
+}
+
 /**
  *
  */
 export class AdminApi extends runtime.BaseAPI {
+  /**
+   */
+  private async adminUserControllerListRolesRaw(): Promise<runtime.ApiResponse<Array<UserRoleSummaryDto>>> {
+    this.adminUserControllerListRolesValidation();
+    const context = this.adminUserControllerListRolesContext();
+    const response = await this.request(context);
+
+    return new runtime.JSONApiResponse(response, jsonValue => jsonValue.map(UserRoleSummaryDtoFromJSON));
+  }
+
+  /**
+   */
+  private adminUserControllerListRolesValidation() {}
+
+  /**
+   */
+  adminUserControllerListRolesContext(): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    return {
+      path: `/v1/admin/users/roles`,
+      method: "GET",
+      headers: headerParameters,
+      query: queryParameters
+    };
+  }
+
+  /**
+   */
+  adminUserControllerListRoles = async (): Promise<Array<UserRoleSummaryDto>> => {
+    const response = await this.adminUserControllerListRolesRaw();
+    return await response.value();
+  };
+
+  useAdminUserControllerListRoles(config?: ConfigInterface<Array<UserRoleSummaryDto>, Error>) {
+    let valid = true;
+
+    const context = this.adminUserControllerListRolesContext();
+    return useSWR(JSON.stringify(context), valid ? () => this.adminUserControllerListRoles() : undefined, config);
+  }
+
   /**
    */
   private async adminUserControllerUpdateRoleRaw(
@@ -253,4 +311,59 @@ export class AdminApi extends runtime.BaseAPI {
     const context = this.serverControllerServerPoolContext();
     return useSWR(JSON.stringify(context), valid ? () => this.serverControllerServerPool() : undefined, config);
   }
+
+  /**
+   */
+  private async serverControllerStopServerRaw(
+    requestParameters: ServerControllerStopServerRequest
+  ): Promise<runtime.ApiResponse<void>> {
+    this.serverControllerStopServerValidation(requestParameters);
+    const context = this.serverControllerStopServerContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.VoidApiResponse(response);
+  }
+
+  /**
+   */
+  private serverControllerStopServerValidation(requestParameters: ServerControllerStopServerRequest) {
+    if (requestParameters.body === null || requestParameters.body === undefined) {
+      throw new runtime.RequiredError(
+        "body",
+        "Required parameter requestParameters.body was null or undefined when calling serverControllerStopServer."
+      );
+    }
+  }
+
+  /**
+   */
+  serverControllerStopServerContext(requestParameters: ServerControllerStopServerRequest): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    headerParameters["Content-Type"] = "application/json";
+
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    return {
+      path: `/v1/servers/stop_server`,
+      method: "POST",
+      headers: headerParameters,
+      query: queryParameters,
+      body: requestParameters.body as any
+    };
+  }
+
+  /**
+   */
+  serverControllerStopServer = async (body: string): Promise<void> => {
+    await this.serverControllerStopServerRaw({ body: body });
+  };
 }

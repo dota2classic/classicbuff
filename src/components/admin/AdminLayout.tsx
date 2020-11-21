@@ -16,7 +16,8 @@ const ALayout = styled.div`
   flex-direction: row;
   min-height: 100vh;
   width: 100vw;
-  background: #edeef0;
+  //background: #edeef0;
+  background: #101213;
   font-family: Roboto, sans-serif;
 `;
 
@@ -29,7 +30,9 @@ const Body = styled.div`
 
 const SidebarItem = styled.a`
   font-size: 18px;
-  color: black;
+  color: white;
+  text-decoration: none;
+  margin-top: 20px;
 `;
 
 export const AdminLayout = (p: PropsWithChildren<{}>) => {
@@ -45,8 +48,8 @@ export const AdminLayout = (p: PropsWithChildren<{}>) => {
         <Link passHref href={"/admin/servers"}>
           <SidebarItem>Сервера</SidebarItem>
         </Link>
-        <Link passHref href={"/admin/rooms"}>
-          <SidebarItem>Комнаты</SidebarItem>
+        <Link passHref href={"/admin/roles"}>
+          <SidebarItem>Роли</SidebarItem>
         </Link>
       </Sidebar>
       <Body>{p.children}</Body>

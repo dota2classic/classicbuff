@@ -13,6 +13,8 @@
  */
 
 import { exists, mapValues } from "../runtime";
+import { MatchInfoDto, MatchInfoDtoFromJSON, MatchInfoDtoFromJSONTyped, MatchInfoDtoToJSON } from "./";
+
 /**
  *
  * @export
@@ -33,10 +35,10 @@ export interface GameSessionDto {
   matchId: number;
   /**
    *
-   * @type {object}
+   * @type {MatchInfoDto}
    * @memberof GameSessionDto
    */
-  info: object;
+  info: MatchInfoDto;
 }
 
 export function GameSessionDtoFromJSON(json: any): GameSessionDto {
@@ -50,7 +52,7 @@ export function GameSessionDtoFromJSONTyped(json: any, ignoreDiscriminator: bool
   return {
     url: json["url"],
     matchId: json["matchId"],
-    info: json["info"]
+    info: MatchInfoDtoFromJSON(json["info"])
   };
 }
 
@@ -64,6 +66,6 @@ export function GameSessionDtoToJSON(value?: GameSessionDto | null): any {
   return {
     url: value.url,
     matchId: value.matchId,
-    info: value.info
+    info: MatchInfoDtoToJSON(value.info)
   };
 }
