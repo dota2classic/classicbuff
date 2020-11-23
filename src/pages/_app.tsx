@@ -9,6 +9,7 @@ import { local } from "../config";
 import { setContext } from "@apollo/client/link/context";
 import { Game } from "../stores/Game";
 import { stores } from "../stores";
+import { captureComponentException } from "../utils/sentry";
 
 const API = local ? "http://localhost:5002/graphql" : "https://dota2classic.ru/prod-api/graphql";
 
@@ -33,6 +34,11 @@ export const client = new ApolloClient({
 });
 
 export default class MyApp extends App<any> {
+  componentDidCatch(error: Error, errorInfo: any) {
+    captureComponentException(error, errorInfo);
+    super.componentDidCatch(error, errorInfo);
+  }
+
   render() {
     const { Component, pageProps } = this.props;
     return (
