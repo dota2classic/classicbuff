@@ -20,7 +20,7 @@ export default (mode: any) => {
     return "Гряволы";
   } else if (mode === MatchmakingMode.ABILITY_DRAFT) {
     return "Ability Draft";
-  } else if (mode === MatchmakingMode.ABILITY_DRAFT) {
+  } else if (mode === MatchmakingMode.BOTS) {
     return "Боты";
   }
 };
