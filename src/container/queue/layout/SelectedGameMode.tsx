@@ -48,6 +48,12 @@ const texts: { [key in MatchmakingMode]: ReactNode } = {
       Обычная игра 5х5 без рейтинга. Этот режим менее популярен, чем <b>{formatGameMode(MatchmakingMode.RANKED)}</b>
     </span>
   ),
+  [MatchmakingMode.BOTS]: (
+    <span>
+      Пустые слоты заполняются ботами. Если есть хотя бы 2 игрока в поиске, то игра найдется. Проверка происходит каждые
+      10 минут.
+    </span>
+  ),
   [MatchmakingMode.SOLOMID]: (
     <span>
       Отличный способ вспомнить карту, старые способности, привыкнуть к Source 1. Второй по популярности режим

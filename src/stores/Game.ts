@@ -54,7 +54,8 @@ export class Game {
     [MatchmakingMode.UNRANKED]: 0,
     [MatchmakingMode.SOLOMID]: 0,
     [MatchmakingMode.DIRETIDE]: 0,
-    [MatchmakingMode.GREEVILING]: 0
+    [MatchmakingMode.GREEVILING]: 0,
+    [MatchmakingMode.BOTS]: 0
   };
 
   private socket!: SocketIOClient.Socket;

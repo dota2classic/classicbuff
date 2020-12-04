@@ -127,10 +127,10 @@ export const GameModes = observer(() => {
 
       <MOption className={"header"}>Поиск игры</MOption>
       <MatchmakingOption mode={MatchmakingMode.RANKED} />
-      <MatchmakingOption mode={MatchmakingMode.UNRANKED} />
+      {/*<MatchmakingOption mode={MatchmakingMode.UNRANKED} />*/}
       <MatchmakingOption mode={MatchmakingMode.SOLOMID} />
-      {/*<MatchmakingOption mode={MatchmakingMode.ABILITY_DRAFT} />*/}
-      {/*<MatchmakingOption mode={MatchmakingMode.DIRETIDE} />*/}
+      <MatchmakingOption mode={MatchmakingMode.BOTS} />
+      <MatchmakingOption mode={MatchmakingMode.DIRETIDE} />
       {/*<MatchmakingOption mode={MatchmakingMode.GREEVILING} />*/}
     </Options>
   );
