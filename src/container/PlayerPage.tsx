@@ -40,9 +40,9 @@ export default (p: Props) => {
   // const isMine = AuthService.me?.steam_id === p.steam_id;
   const isMine = false;
 
-  const { data } = useTeamInvitesCountQuery({
-    ...BaseGQLConfig
-  });
+  // const { data } = useTeamInvitesCountQuery({
+  //   ...BaseGQLConfig
+  // });
 
   const setTabAction = async (tab: number) => {
     await Router.push(Router.pathname.split("?")[0] + `?tab=${tab}`, Router.asPath.split("?")[0] + `?tab=${tab}`, {
@@ -61,14 +61,14 @@ export default (p: Props) => {
           Общая статистика
         </Tab>
 
-        {isMine && (
-          <Tab
-            className={cx((tab == 2 && "active") || undefined, data?.TeamInvitations.length && "interesting")}
-            onClick={() => setTabAction(2)}
-          >
-            Приглашения в команду
-          </Tab>
-        )}
+        {/*{isMine && (*/}
+        {/*  <Tab*/}
+        {/*    className={cx((tab == 2 && "active") || undefined, data?.TeamInvitations.length && "interesting")}*/}
+        {/*    onClick={() => setTabAction(2)}*/}
+        {/*  >*/}
+        {/*    Приглашения в команду*/}
+        {/*  </Tab>*/}
+        {/*)}*/}
 
         {isMine && (
           <Tab

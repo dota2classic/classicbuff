@@ -16,6 +16,9 @@ import * as runtime from "../runtime";
 import useSWR, { ConfigInterface } from "swr";
 
 import {
+  HeroStatsDto,
+  HeroStatsDtoFromJSON,
+  HeroStatsDtoToJSON,
   LeaderboardEntryDto,
   LeaderboardEntryDtoFromJSON,
   LeaderboardEntryDtoToJSON,
@@ -25,6 +28,9 @@ import {
   PartyDto,
   PartyDtoFromJSON,
   PartyDtoToJSON,
+  PlayerGeneralStatsDto,
+  PlayerGeneralStatsDtoFromJSON,
+  PlayerGeneralStatsDtoToJSON,
   PlayerPreviewDto,
   PlayerPreviewDtoFromJSON,
   PlayerPreviewDtoToJSON,
@@ -32,6 +38,14 @@ import {
   PlayerSummaryDtoFromJSON,
   PlayerSummaryDtoToJSON
 } from "../models";
+
+export interface PlayerControllerGeneralSummaryRequest {
+  id: string;
+}
+
+export interface PlayerControllerHeroSummaryRequest {
+  id: string;
+}
 
 export interface PlayerControllerLeaderboardRequest {
   version?: string;
@@ -98,6 +112,118 @@ export class PlayerApi extends runtime.BaseAPI {
 
     const context = this.playerControllerConnectionsContext();
     return useSWR(JSON.stringify(context), valid ? () => this.playerControllerConnections() : undefined, config);
+  }
+
+  /**
+   */
+  private async playerControllerGeneralSummaryRaw(
+    requestParameters: PlayerControllerGeneralSummaryRequest
+  ): Promise<runtime.ApiResponse<PlayerGeneralStatsDto>> {
+    this.playerControllerGeneralSummaryValidation(requestParameters);
+    const context = this.playerControllerGeneralSummaryContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.JSONApiResponse(response, jsonValue => PlayerGeneralStatsDtoFromJSON(jsonValue));
+  }
+
+  /**
+   */
+  private playerControllerGeneralSummaryValidation(requestParameters: PlayerControllerGeneralSummaryRequest) {
+    if (requestParameters.id === null || requestParameters.id === undefined) {
+      throw new runtime.RequiredError(
+        "id",
+        "Required parameter requestParameters.id was null or undefined when calling playerControllerGeneralSummary."
+      );
+    }
+  }
+
+  /**
+   */
+  playerControllerGeneralSummaryContext(requestParameters: PlayerControllerGeneralSummaryRequest): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    return {
+      path: `/v1/player/summary/general/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+      method: "GET",
+      headers: headerParameters,
+      query: queryParameters
+    };
+  }
+
+  /**
+   */
+  playerControllerGeneralSummary = async (id: string): Promise<PlayerGeneralStatsDto> => {
+    const response = await this.playerControllerGeneralSummaryRaw({ id: id });
+    return await response.value();
+  };
+
+  usePlayerControllerGeneralSummary(id: string, config?: ConfigInterface<PlayerGeneralStatsDto, Error>) {
+    let valid = true;
+
+    if (id === null || id === undefined || Number.isNaN(id)) {
+      valid = false;
+    }
+
+    const context = this.playerControllerGeneralSummaryContext({ id: id! });
+    return useSWR(JSON.stringify(context), valid ? () => this.playerControllerGeneralSummary(id!) : undefined, config);
+  }
+
+  /**
+   */
+  private async playerControllerHeroSummaryRaw(
+    requestParameters: PlayerControllerHeroSummaryRequest
+  ): Promise<runtime.ApiResponse<Array<HeroStatsDto>>> {
+    this.playerControllerHeroSummaryValidation(requestParameters);
+    const context = this.playerControllerHeroSummaryContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.JSONApiResponse(response, jsonValue => jsonValue.map(HeroStatsDtoFromJSON));
+  }
+
+  /**
+   */
+  private playerControllerHeroSummaryValidation(requestParameters: PlayerControllerHeroSummaryRequest) {
+    if (requestParameters.id === null || requestParameters.id === undefined) {
+      throw new runtime.RequiredError(
+        "id",
+        "Required parameter requestParameters.id was null or undefined when calling playerControllerHeroSummary."
+      );
+    }
+  }
+
+  /**
+   */
+  playerControllerHeroSummaryContext(requestParameters: PlayerControllerHeroSummaryRequest): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    return {
+      path: `/v1/player/summary/hero/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+      method: "GET",
+      headers: headerParameters,
+      query: queryParameters
+    };
+  }
+
+  /**
+   */
+  playerControllerHeroSummary = async (id: string): Promise<Array<HeroStatsDto>> => {
+    const response = await this.playerControllerHeroSummaryRaw({ id: id });
+    return await response.value();
+  };
+
+  usePlayerControllerHeroSummary(id: string, config?: ConfigInterface<Array<HeroStatsDto>, Error>) {
+    let valid = true;
+
+    if (id === null || id === undefined || Number.isNaN(id)) {
+      valid = false;
+    }
+
+    const context = this.playerControllerHeroSummaryContext({ id: id! });
+    return useSWR(JSON.stringify(context), valid ? () => this.playerControllerHeroSummary(id!) : undefined, config);
   }
 
   /**

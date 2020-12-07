@@ -2,12 +2,11 @@ import { Tab, Tabs } from "../components/Tabs";
 import SmartTable from "../components/SmartTable";
 import getHeroRating from "../utils/getHeroRating";
 import React from "react";
-import { usePlayerStatsQuery } from "generated/sdk";
-import { BaseGQLConfig } from "../shared";
 import { Tr } from "../components/LadderRow";
 import Router from "next/router";
 import { steamIdToNum } from "../utils/numSteamId";
 import HeroIcon from "../components/HeroIcon";
+import { useApi } from "../api/hooks";
 
 interface Props {
   steam_id: string;
@@ -42,22 +41,26 @@ const HeroSummaryRow = (it: HeroSummaryInfo) => (
 );
 
 export default (props: Props) => {
-  const { data } = usePlayerStatsQuery({
-    ...BaseGQLConfig,
-    variables: {
-      steam_id: props.steam_id
-    }
-  });
+  // const { data } = usePlayerStatsQuery({
+  //   ...BaseGQLConfig,
+  //   variables: {
+  //     steam_id: props.steam_id
+  //   }
+  // });
 
-  const overall = data?.PlayerStats.overall;
+  const { data } = useApi().playerApi.usePlayerControllerHeroSummary(props.steam_id);
+  const { data: playerData } = useApi().playerApi.usePlayerControllerGeneralSummary(props.steam_id);
+  const overall = playerData;
 
-  const heroesData = data?.PlayerStats.heroes || [];
+  const heroesData = data || [];
   return (
     <>
       {overall && (
         <Tabs>
-          <Tab>Игр сыграно: {overall.games}</Tab>
-          <Tab>Winrate: {((overall.wins / Math.max(overall.games, 1)) * 100).toFixed(2)}%</Tab>
+          <Tab>
+            Игр сыграно: {overall.gamesPlayedAll}, рейтинговых {overall.gamesPlayed}
+          </Tab>
+          <Tab>Winrate: {((overall.wins / Math.max(overall.gamesPlayed, 1)) * 100).toFixed(2)}%</Tab>
         </Tabs>
       )}
 
@@ -69,7 +72,7 @@ export default (props: Props) => {
           kda: it.kda,
           gpm: it.gpm,
           xpm: it.xpm,
-          last_hits: it.last_hits,
+          last_hits: it.lastHits,
           denies: it.denies,
           steamId: props.steam_id,
           rating: getHeroRating(it)
