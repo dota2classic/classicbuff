@@ -10,6 +10,7 @@ import { Match, PlayerInMatchFragmentFragment, useMatchQuery } from "../../gener
 import { BaseGQLConfig } from "../../shared";
 import { useApi } from "../../api/hooks";
 import { PlayerInMatchDto } from "../../api/back/models";
+import { InlineHtml } from "../../components/ads/ads";
 
 export const ItemsContainer = styled.div`
   display: flex;
@@ -124,6 +125,18 @@ const Page = (p: Partial<{ match: Match }>) => {
       <Head>
         <title>Матч {id}</title>
       </Head>
+      <InlineHtml
+        html={`<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2522763197238996"
+     data-ad-slot="8833451645"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>`}
+      />
+
       <MatchResult className={match?.winner === 2 ? "green" : "red"}>
         <Winner className={match?.winner === 2 ? "green" : "red"}>
           {match?.winner === 2 ? "Победа Radiant" : "Победа Dire"}

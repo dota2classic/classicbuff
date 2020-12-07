@@ -78,13 +78,13 @@ export default class MyDocument extends Document {
           <link rel="icon" type="image/png" href="https://dota2classic.ru/api/static/favicon.png" />
           <link rel="stylesheet" href="https://dota2classic.ru/api/static/style.css" />
           <script src="/static/build_info.js" />
+          <span dangerouslySetInnerHTML={{ __html: this.adSense() }} />
         </Head>
         <body>
           <Main />
           <NextScript />
           <span dangerouslySetInnerHTML={{ __html: this.ga() }} />
           <span dangerouslySetInnerHTML={{ __html: this.ym() }} />
-          <span dangerouslySetInnerHTML={{ __html: this.adSense() }} />
         </body>
       </html>
     );
