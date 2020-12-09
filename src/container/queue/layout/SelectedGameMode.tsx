@@ -5,6 +5,7 @@ import formatGameMode, { MatchmakingMode } from "../../../utils/format/formatGam
 import { colors } from "../../../shared";
 import Link from "next/link";
 import { useStores } from "../../../stores";
+import { AdBanner, BigAdBanner } from "../../../components/ads/ads";
 
 const Container = styled.div`
   flex: 1;
@@ -76,6 +77,11 @@ export const SelectedGameMode = observer(() => {
       <ShortInfo>
         <div className={"game-mode"}>{formatGameMode(game.activeMode)}</div>
         {texts[game.activeMode]}
+
+        <br />
+        <br />
+        <br />
+        <AdBanner />
       </ShortInfo>
     </Container>
   );
