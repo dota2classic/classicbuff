@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../../components/Layout";
 import Head from "next/head";
 import TeamTable from "../../components/TeamTable";
@@ -10,7 +10,7 @@ import { Match, PlayerInMatchFragmentFragment, useMatchQuery } from "../../gener
 import { BaseGQLConfig } from "../../shared";
 import { useApi } from "../../api/hooks";
 import { PlayerInMatchDto } from "../../api/back/models";
-import { InlineHtml } from "../../components/ads/ads";
+import { AdBanner, InlineHtml } from "../../components/ads/ads";
 
 export const ItemsContainer = styled.div`
   display: flex;
@@ -109,7 +109,6 @@ const sumKills = (players: PlayerInMatchDto[]) => {
 
 const Page = (p: Partial<{ match: Match }>) => {
   const { id } = useRouter().query;
-
   const { data: match } = useApi().matchApi.useMatchControllerMatch(Number(id));
 
   if (!match) return null;
@@ -125,17 +124,7 @@ const Page = (p: Partial<{ match: Match }>) => {
       <Head>
         <title>Матч {id}</title>
       </Head>
-      <InlineHtml
-        html={`<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-2522763197238996"
-     data-ad-slot="8833451645"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>`}
-      />
+      <AdBanner />
 
       <MatchResult className={match?.winner === 2 ? "green" : "red"}>
         <Winner className={match?.winner === 2 ? "green" : "red"}>
