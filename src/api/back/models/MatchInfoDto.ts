@@ -103,7 +103,8 @@ export enum MatchInfoDtoModeEnum {
   DIRETIDE = "DIRETIDE",
   GREEVILING = "GREEVILING",
   ABILITYDRAFT = "ABILITY_DRAFT",
-  TOURNAMENT = "TOURNAMENT"
+  TOURNAMENT = "TOURNAMENT",
+  BOTS = "BOTS"
 }
 /**
  * @export

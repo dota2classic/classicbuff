@@ -1,20 +1,16 @@
 import React from "react";
-import Queue from "../../components/admin/Queue";
 import { AdminLayout } from "../../components/admin/AdminLayout";
-import { useQueuesQuery } from "../../generated/sdk";
-import { BaseGQLConfig } from "../../shared";
+import { LiveMatch } from "../../components/live/LiveMatch";
+import { useApi } from "../../api/hooks";
 
 const Page = () => {
-  const { data, refetch } = useQueuesQuery({
-    ...BaseGQLConfig
+  const { data } = useApi().matchApi.useMatchControllerLiveMatches({
+    refreshInterval: 1000
   });
-
   return (
     <AdminLayout>
-      {!data && `Loading...`}
-
-      {data?.Queues.map(d => (
-        <Queue invalidate={refetch} {...d} />
+      {data?.map(t => (
+        <LiveMatch {...t} />
       ))}
     </AdminLayout>
   );

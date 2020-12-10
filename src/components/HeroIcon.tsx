@@ -9,6 +9,9 @@ export const DotaIcon = styled.img`
     height: 30px;
   }
 
+  &.small {
+    height: 30px;
+  }
   &.item {
   }
 `;

@@ -187,7 +187,7 @@ const DefaultHeader = () => {
           <Link passHref href={"/history"}>
             <SiteLink>
               <Icon src={"https://dota2classic.ru/api/static/items/tpscroll.jpg"} />
-              История матчей
+              Матчи
             </SiteLink>
           </Link>
           <Link passHref href={"/heroes"}>
@@ -243,7 +243,7 @@ const DefaultHeader = () => {
           <SiteLink>Таблица лидеров</SiteLink>
         </Link>
         <Link passHref href={"/history"}>
-          <SiteLink>История матчей</SiteLink>
+          <SiteLink>Матчи</SiteLink>
         </Link>
         {/*<Link passHref href={"/heroes"}>*/}
         {/*  <SiteLink>Герои</SiteLink>*/}
