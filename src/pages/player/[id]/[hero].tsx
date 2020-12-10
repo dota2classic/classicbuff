@@ -8,8 +8,6 @@ import PlayerMatch from "../../../components/PlayerMatch";
 import Pagination from "../../../components/Pagination";
 import { Tab, Tabs } from "../../../components/Tabs";
 import Link from "next/link";
-import { usePlayerHistoryQuery } from "../../../generated/sdk";
-import { BaseGQLConfig } from "../../../shared";
 import { useApi } from "../../../api/hooks";
 import { RoleNames, RoleValue } from "../../../utils/format/roles";
 

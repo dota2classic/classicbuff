@@ -1,7 +1,6 @@
 import { Table, Tr } from "../components/LadderRow";
 import Layout from "../components/Layout";
 import React, { useEffect, useState } from "react";
-import { BaseGQLConfig } from "../shared";
 import styled from "styled-components";
 import Head from "next/head";
 import formatGameMode, { MatchmakingMode } from "../utils/format/formatGameMode";
@@ -10,10 +9,7 @@ import { Tab, Tabs } from "../components/Tabs";
 
 import { observer } from "mobx-react";
 import Pagination from "../components/Pagination";
-import { Match, useHistoryQuery } from "../generated/sdk";
 import { useApi } from "../api/hooks";
-import { LinkButton } from "../components/Button";
-import { mockLiveMatch } from "../utils/mockLiveMatch";
 import { formatDuration } from "./match/[id]";
 import Link from "next/link";
 
@@ -51,7 +47,7 @@ const LiveMatchEngage = styled.div`
   }
 `;
 
-const Page = observer((p: Partial<{ history: Match[] }>) => {
+const Page = observer(() => {
   const [page, setPage] = useState(0);
   const [mode, setMode] = useState<MatchmakingMode | undefined>(MatchmakingMode.RANKED);
 

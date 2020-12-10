@@ -4,10 +4,7 @@ import React, { useEffect } from "react";
 import Layout from "../../components/Layout";
 import Head from "next/head";
 import TeamTable from "../../components/TeamTable";
-import { NextPageContext } from "next";
 import formatGameMode from "../../utils/format/formatGameMode";
-import { Match, PlayerInMatchFragmentFragment, useMatchQuery } from "../../generated/sdk";
-import { BaseGQLConfig } from "../../shared";
 import { useApi } from "../../api/hooks";
 import { PlayerInMatchDto } from "../../api/back/models";
 import { AdBanner, InlineHtml } from "../../components/ads/ads";
@@ -107,7 +104,7 @@ const sumKills = (players: PlayerInMatchDto[]) => {
   return sum;
 };
 
-const Page = (p: Partial<{ match: Match }>) => {
+const Page = () => {
   const { id } = useRouter().query;
   const { data: match } = useApi().matchApi.useMatchControllerMatch(Number(id));
 

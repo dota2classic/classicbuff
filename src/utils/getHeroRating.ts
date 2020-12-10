@@ -1,4 +1,3 @@
-import { PlayerStatsDto } from "../generated/sdk";
 import { HeroStatsDto } from "../api/back/models";
 
 export default (it: HeroStatsDto) => {

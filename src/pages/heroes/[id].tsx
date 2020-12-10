@@ -1,7 +1,7 @@
 import Router, { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { BaseGQLConfig } from "../../shared";
-import { Match, useHeroHistoryQuery } from "../../generated/sdk";
+// import { Match, useHeroHistoryQuery } from "../../generated/sdk";
 
 export default () => {
   const { id } = useRouter().query;
@@ -10,13 +10,13 @@ export default () => {
 
   const hero = id as string;
 
-  const { data } = useHeroHistoryQuery({
-    ...BaseGQLConfig,
-    variables: {
-      page,
-      hero
-    }
-  });
+  // const { data } = useHeroHistoryQuery({
+  //   ...BaseGQLConfig,
+  //   variables: {
+  //     page,
+  //     hero
+  //   }
+  // });
 
   return null;
   // return (

@@ -84,7 +84,7 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
           <span dangerouslySetInnerHTML={{ __html: this.ga() }} />
-          <span dangerouslySetInnerHTML={{ __html: this.ym() }} />
+          {/*<span dangerouslySetInnerHTML={{ __html: this.ym() }} />*/}
         </body>
       </html>
     );

@@ -3,7 +3,6 @@ import { Layout as QueueLayout } from "../container/queue/layout/layout";
 import React, { useEffect } from "react";
 import Layout from "../components/Layout";
 import { useStores } from "../stores";
-import { useApi } from "../api/hooks";
 
 const Queue = () => {
   const { game } = useStores();

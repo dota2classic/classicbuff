@@ -1,12 +1,12 @@
 import * as React from "react";
 import { ChangeEventHandler, ReactNode } from "react";
 import styled from "styled-components";
-import { ImageEntity } from "../generated/sdk";
+// import { ImageEntity } from "../generated/sdk";
 
 interface ImageUploaderProps {
   children: ReactNode;
   disabled?: boolean;
-  onChange: (url: ImageEntity) => void;
+  onChange: (url: any) => void;
   onError?: () => void;
 }
 

@@ -2,8 +2,6 @@ import { Table, Tr } from "../components/LadderRow";
 import PlayerMatch from "../components/PlayerMatch";
 import Pagination from "../components/Pagination";
 import React, { useState } from "react";
-import { usePlayerHistoryQuery } from "../generated/sdk";
-import { BaseGQLConfig } from "../shared";
 import { useApi } from "../api/hooks";
 
 interface Props {
