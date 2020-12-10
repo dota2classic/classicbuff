@@ -12,6 +12,7 @@ import Pagination from "../components/Pagination";
 import { useApi } from "../api/hooks";
 import { formatDuration } from "./match/[id]";
 import Link from "next/link";
+import { AdBanner, InlineAdBanner } from "../components/ads/ads";
 
 export const Heroes = styled.div`
   display: flex;
@@ -72,7 +73,6 @@ const Page = observer(() => {
           </Link>
         </LiveMatchEngage>
       )}
-
       <Tabs>
         <Tab
           onClick={() => setMode(MatchmakingMode.RANKED)}
@@ -113,6 +113,8 @@ const Page = observer(() => {
           ))}
         </tbody>
       </Table>
+      <br />
+      <AdBanner />
       {data && (
         <Pagination
           pages={data.pages}

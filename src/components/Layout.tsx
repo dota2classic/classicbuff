@@ -70,6 +70,10 @@ export const LinkWrapper = styled.img`
   width: auto;
   margin: 10px;
   cursor: pointer;
+
+  &.small {
+    height: 35px;
+  }
 `;
 
 const SiteLink = styled.a`
@@ -225,6 +229,10 @@ const DefaultHeader = () => {
             <Icon src={"https://dota2classic.ru/api/static/icons/vk1.png"} />
             Группа VK
           </SiteLink>
+          <SiteLink href="https://www.youtube.com/user/facts2dota">
+            <Icon src={"/static/youtube.png"} />
+            Канал Youtube
+          </SiteLink>
         </MobileMenu>
       )}
       <HeaderWrapper>
@@ -263,6 +271,10 @@ const DefaultHeader = () => {
         </a>
         <a href="https://vk.com/club191796288">
           <LinkWrapper alt={"Vk logo"} src="https://dota2classic.ru/api/static/icons/vk1.png" />
+        </a>
+
+        <a href="https://www.youtube.com/user/facts2dota">
+          <LinkWrapper className={"small"} alt={"Vk logo"} src="/static/youtube.png" />
         </a>
       </HeaderWrapper>
     </>

@@ -7,6 +7,7 @@ import { formatDuration } from "../../pages/match/[id]";
 import { LinkButton } from "../Button";
 import Link from "next/link";
 import { steamIdToNum } from "../../utils/numSteamId";
+import { AdBanner } from "../ads/ads";
 
 const Map = styled.div`
   margin-left: 20px;
@@ -184,6 +185,7 @@ export const LiveMatch = (liveMatch: LiveMatchDto) => {
   const watchUrl = `${host}:${port + 5}`;
   return (
     <MatchInfo>
+      <AdBanner />
       <MatchOverview>
         <div>{formatGameMode(liveMatch.type)}</div>
         <div>{formatDuration(liveMatch.duration)}</div>

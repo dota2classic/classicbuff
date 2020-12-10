@@ -7,6 +7,7 @@ import PlayerPage from "../../../container/PlayerPage";
 import { useApi } from "../../../api/hooks";
 import { RoleNames, RoleValue } from "../../../utils/format/roles";
 import { Role } from "../../../components/LadderRow";
+import { AdBanner } from "../../../components/ads/ads";
 
 const Page = () => {
   const { id } = useRouter().query;
@@ -16,24 +17,21 @@ const Page = () => {
   const highestRole = player?.roles.sort((a, b) => RoleValue[b] - RoleValue[a])[0] || "PLAYER";
 
   return (
-    <Layout
-      title={
-        <>
-          <h3 style={{ textAlign: "center", display: "flex", flexDirection: "row", alignItems: "center" }}>
-            <Role className={highestRole}>
-              <div>{RoleNames[highestRole]}</div>
-            </Role>
-            {player?.name}
-          </h3>
-          <h4 style={{ textAlign: "center" }}>
-            {player?.rank} Ранг, {player?.mmr} MMR
-          </h4>
-        </>
-      }
-    >
+    <Layout>
       <Head>
         <title>Профиль игрока {player?.name}</title>
       </Head>
+      <div style={{ color: "white" }}>
+        <h3 style={{ textAlign: "center", display: "flex", flexDirection: "row", alignItems: "center" }}>
+          <Role className={highestRole}>
+            <div>{RoleNames[highestRole]}</div>
+          </Role>
+          {player?.name}
+        </h3>
+        <h4 style={{ textAlign: "center" }}>
+          {player?.rank} Ранг, {player?.mmr} MMR
+        </h4>
+      </div>
       <PlayerPage steam_id={numToSteamId(Number(id))} />
     </Layout>
   );

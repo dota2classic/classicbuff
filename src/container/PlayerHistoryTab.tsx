@@ -3,6 +3,8 @@ import PlayerMatch from "../components/PlayerMatch";
 import Pagination from "../components/Pagination";
 import React, { useState } from "react";
 import { useApi } from "../api/hooks";
+import { AdBanner } from "../components/ads/ads";
+import Layout from "../components/Layout";
 
 interface Props {
   steam_id: string;
@@ -40,6 +42,8 @@ export default (props: Props) => {
           ))}
         </tbody>
       </Table>
+      <br />
+      <AdBanner />
       {data && (
         <Pagination
           pages={data?.pages}

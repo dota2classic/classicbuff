@@ -7,6 +7,7 @@ import Router from "next/router";
 import { steamIdToNum } from "../utils/numSteamId";
 import HeroIcon from "../components/HeroIcon";
 import { useApi } from "../api/hooks";
+import { AdBanner } from "../components/ads/ads";
 
 interface Props {
   steam_id: string;
@@ -101,6 +102,8 @@ export default (props: Props) => {
           { denies: "DN" }
         ]}
       />
+      <br />
+      <AdBanner />
     </>
   );
 };
