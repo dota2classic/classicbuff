@@ -230,7 +230,7 @@ const DefaultHeader = () => {
             Группа VK
           </SiteLink>
           <SiteLink href="https://www.youtube.com/user/facts2dota">
-            <Icon src={"/static/youtube.png"} />
+            <Icon src={"https://dota2classic.ru/api/static/youtube.png"} />
             Канал Youtube
           </SiteLink>
         </MobileMenu>
@@ -274,7 +274,7 @@ const DefaultHeader = () => {
         </a>
 
         <a href="https://www.youtube.com/user/facts2dota">
-          <LinkWrapper className={"small"} alt={"Vk logo"} src="/static/youtube.png" />
+          <LinkWrapper className={"small"} alt={"Vk logo"} src="https://dota2classic.ru/api/static/youtube.png" />
         </a>
       </HeaderWrapper>
     </>
