@@ -26,9 +26,8 @@ const NoGamesInfo = styled.div`
   }
 `;
 export default () => {
-  // const { data } = useApi().matchApi.useMatchControllerLiveMatches();
+  const { data } = useApi().matchApi.useMatchControllerLiveMatches();
 
-  const data = [mockLiveMatch];
   return (
     <Layout>
       <Head>
