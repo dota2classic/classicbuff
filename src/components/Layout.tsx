@@ -209,13 +209,13 @@ const DefaultHeader = () => {
           {AuthService.authorized ? (
             <Link passHref href={"/me"}>
               <SiteLink>
-                <Icon src={"https://dota2classic.ru/api/static/items/aegis.jpg"} />
+                <Icon src={"https://dota2classic.ru/api/static/items/aegis.jpg.webp"} />
                 Профиль
               </SiteLink>
             </Link>
           ) : (
             <SiteLink href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
-              <Icon src={"https://dota2classic.ru/api/static/items/recipe.jpg"} />
+              <Icon src={"https://dota2classic.ru/api/static/items/recipe.jpg.webp"} />
               Войти через steam
             </SiteLink>
           )}

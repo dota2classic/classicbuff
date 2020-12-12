@@ -123,7 +123,7 @@ const TeamInfoBlock = ({ heroes, team }: Props) => {
       {heroes.map(hero => (
         <PlayerRow>
           <PlayerHeroRow>
-            <img src={`https://dota2classic.ru/api/static/heroes/${hero.hero}.jpg`} alt="" />
+            <img src={`https://dota2classic.ru/api/static/heroes/${hero.hero}.jpg.webp`} alt="" />
             {hero.bot ? (
               <span className="player-name">{hero.bot ? "Бот" : hero.name}</span>
             ) : (
@@ -198,7 +198,7 @@ export const LiveMatch = (liveMatch: LiveMatchDto) => {
               key={hero.hero}
               x={hero.posX}
               y={hero.posY}
-              src={`https://dota2classic.ru/api/static/heroes/${hero.hero}.jpg`}
+              src={`https://dota2classic.ru/api/static/heroes/${hero.hero}.jpg.webp`}
             />
           ))}
         </Map>

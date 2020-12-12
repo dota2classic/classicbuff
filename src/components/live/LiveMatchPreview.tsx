@@ -77,7 +77,7 @@ export const LiveMatchPreview = (match: LiveMatchDto) => {
               key={hero.hero}
               x={hero.posX}
               y={hero.posY}
-              src={`https://dota2classic.ru/api/static/heroes/${hero.hero}.jpg`}
+              src={`https://dota2classic.ru/api/static/heroes/${hero.hero}.jpg.webp`}
             />
           ))}
         </Map>
