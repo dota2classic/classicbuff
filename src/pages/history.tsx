@@ -53,7 +53,7 @@ const Page = observer(() => {
   const [mode, setMode] = useState<MatchmakingMode | undefined>(MatchmakingMode.RANKED);
 
   useEffect(() => setPage(0), [mode]);
-  const { data: liveMatches } = useApi().matchApi.useMatchControllerLiveMatches();
+  const { data: liveMatches } = useApi().liveApi.useLiveMatchControllerListMatches();
   const { data } = useApi().matchApi.useMatchControllerMatches(page, undefined, mode);
 
   const firstLiveMatch = (liveMatches && liveMatches[0]) || undefined;

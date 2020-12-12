@@ -4,16 +4,7 @@ import { LiveMatch } from "../../components/live/LiveMatch";
 import { useApi } from "../../api/hooks";
 
 const Page = () => {
-  const { data } = useApi().matchApi.useMatchControllerLiveMatches({
-    refreshInterval: 1000
-  });
-  return (
-    <AdminLayout>
-      {data?.map(t => (
-        <LiveMatch {...t} />
-      ))}
-    </AdminLayout>
-  );
+  return <AdminLayout></AdminLayout>;
 };
 
 export default Page;

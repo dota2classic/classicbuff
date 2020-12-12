@@ -6,6 +6,7 @@ import { useApi } from "../../api/hooks";
 import styled from "styled-components";
 import Link from "next/link";
 import { mockLiveMatch } from "../../utils/mockLiveMatch";
+import { LiveMatchPreview } from "../../components/live/LiveMatchPreview";
 
 const NoGamesInfo = styled.div`
   color: #c2c2c2;
@@ -26,7 +27,9 @@ const NoGamesInfo = styled.div`
   }
 `;
 export default () => {
-  const { data } = useApi().matchApi.useMatchControllerLiveMatches();
+  const { data } = useApi().liveApi.useLiveMatchControllerListMatches({
+    refreshInterval: 1000
+  });
 
   return (
     <Layout>
@@ -44,7 +47,7 @@ export default () => {
       )}
 
       {data?.map(t => (
-        <LiveMatch {...t} />
+        <LiveMatchPreview {...t} />
       ))}
     </Layout>
   );

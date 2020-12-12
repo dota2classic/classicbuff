@@ -16,9 +16,6 @@ import * as runtime from "../runtime";
 import useSWR, { ConfigInterface } from "swr";
 
 import {
-  LiveMatchDto,
-  LiveMatchDtoFromJSON,
-  LiveMatchDtoToJSON,
   MatchDto,
   MatchDtoFromJSON,
   MatchDtoToJSON,
@@ -49,49 +46,6 @@ export interface MatchControllerPlayerMatchesRequest {
  *
  */
 export class MatchApi extends runtime.BaseAPI {
-  /**
-   */
-  private async matchControllerLiveMatchesRaw(): Promise<runtime.ApiResponse<Array<LiveMatchDto>>> {
-    this.matchControllerLiveMatchesValidation();
-    const context = this.matchControllerLiveMatchesContext();
-    const response = await this.request(context);
-
-    return new runtime.JSONApiResponse(response, jsonValue => jsonValue.map(LiveMatchDtoFromJSON));
-  }
-
-  /**
-   */
-  private matchControllerLiveMatchesValidation() {}
-
-  /**
-   */
-  matchControllerLiveMatchesContext(): runtime.RequestOpts {
-    const queryParameters: any = {};
-
-    const headerParameters: runtime.HTTPHeaders = {};
-
-    return {
-      path: `/v1/match/live/list`,
-      method: "GET",
-      headers: headerParameters,
-      query: queryParameters
-    };
-  }
-
-  /**
-   */
-  matchControllerLiveMatches = async (): Promise<Array<LiveMatchDto>> => {
-    const response = await this.matchControllerLiveMatchesRaw();
-    return await response.value();
-  };
-
-  useMatchControllerLiveMatches(config?: ConfigInterface<Array<LiveMatchDto>, Error>) {
-    let valid = true;
-
-    const context = this.matchControllerLiveMatchesContext();
-    return useSWR(JSON.stringify(context), valid ? () => this.matchControllerLiveMatches() : undefined, config);
-  }
-
   /**
    */
   private async matchControllerMatchRaw(

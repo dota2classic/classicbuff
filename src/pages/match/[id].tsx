@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React from "react";
 import Layout from "../../components/Layout";
 import Head from "next/head";
 import TeamTable from "../../components/TeamTable";
 import formatGameMode from "../../utils/format/formatGameMode";
 import { useApi } from "../../api/hooks";
 import { PlayerInMatchDto } from "../../api/back/models";
-import { AdBanner, InlineHtml } from "../../components/ads/ads";
+import { AdBanner } from "../../components/ads/ads";
+import { LiveMatch } from "../../components/live/LiveMatch";
 
 export const ItemsContainer = styled.div`
   display: flex;
@@ -106,8 +107,29 @@ const sumKills = (players: PlayerInMatchDto[]) => {
 
 const Page = () => {
   const { id } = useRouter().query;
-  const { data: match } = useApi().matchApi.useMatchControllerMatch(Number(id));
+  const mid = Number(id);
+  const { data: match } = useApi().matchApi.useMatchControllerMatch(mid);
 
+  const { data: liveMatch } = useApi().liveApi.useLiveMatchControllerLiveMatch(mid, {
+    refreshInterval: 1000
+  });
+
+  if (liveMatch) {
+    return (
+      <Layout
+        title={
+          <h3>
+            LIVE {formatGameMode(liveMatch.type)}, Матч #{id}
+          </h3>
+        }
+      >
+        <Head>
+          <title>Матч {id}</title>
+        </Head>
+        <LiveMatch {...liveMatch} />
+      </Layout>
+    );
+  }
   if (!match) return null;
 
   return (
