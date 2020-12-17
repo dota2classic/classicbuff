@@ -183,6 +183,8 @@ export const LiveMatch = (liveMatch: LiveMatchDto) => {
   const host = liveMatch.server.split(":")[0];
   const port = parseInt(liveMatch.server.split(":")[1]);
   const watchUrl = `${host}:${port + 5}`;
+
+  console.log("rerender");
   return (
     <MatchInfo>
       <AdBanner />

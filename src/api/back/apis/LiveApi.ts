@@ -15,7 +15,14 @@
 import * as runtime from "../runtime";
 import useSWR, { ConfigInterface } from "swr";
 
-import { LiveMatchDto, LiveMatchDtoFromJSON, LiveMatchDtoToJSON } from "../models";
+import {
+  LiveMatchDto,
+  LiveMatchDtoFromJSON,
+  LiveMatchDtoToJSON,
+  LiveMatchSseDto,
+  LiveMatchSseDtoFromJSON,
+  LiveMatchSseDtoToJSON
+} from "../models";
 
 export interface LiveMatchControllerLiveMatchRequest {
   id: number;
@@ -72,12 +79,12 @@ export class LiveApi extends runtime.BaseAPI {
    */
   private async liveMatchControllerLiveMatchRaw(
     requestParameters: LiveMatchControllerLiveMatchRequest
-  ): Promise<runtime.ApiResponse<LiveMatchDto>> {
+  ): Promise<runtime.ApiResponse<LiveMatchSseDto>> {
     this.liveMatchControllerLiveMatchValidation(requestParameters);
     const context = this.liveMatchControllerLiveMatchContext(requestParameters);
     const response = await this.request(context);
 
-    return new runtime.JSONApiResponse(response, jsonValue => LiveMatchDtoFromJSON(jsonValue));
+    return new runtime.JSONApiResponse(response, jsonValue => LiveMatchSseDtoFromJSON(jsonValue));
   }
 
   /**
@@ -108,12 +115,12 @@ export class LiveApi extends runtime.BaseAPI {
 
   /**
    */
-  liveMatchControllerLiveMatch = async (id: number): Promise<LiveMatchDto> => {
+  liveMatchControllerLiveMatch = async (id: number): Promise<LiveMatchSseDto> => {
     const response = await this.liveMatchControllerLiveMatchRaw({ id: id });
     return await response.value();
   };
 
-  useLiveMatchControllerLiveMatch(id: number, config?: ConfigInterface<LiveMatchDto, Error>) {
+  useLiveMatchControllerLiveMatch(id: number, config?: ConfigInterface<LiveMatchSseDto, Error>) {
     let valid = true;
 
     if (id === null || id === undefined || Number.isNaN(id)) {

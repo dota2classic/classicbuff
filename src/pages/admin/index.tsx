@@ -1,7 +1,7 @@
 import React from "react";
 import { AdminLayout } from "../../components/admin/AdminLayout";
-import { LiveMatch } from "../../components/live/LiveMatch";
 import { useApi } from "../../api/hooks";
+import { useEventSource } from "../../utils/useEventSource";
 
 const Page = () => {
   return <AdminLayout></AdminLayout>;

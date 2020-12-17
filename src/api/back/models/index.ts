@@ -5,6 +5,7 @@ export * from "./GameSessionDto";
 export * from "./HeroStatsDto";
 export * from "./LeaderboardEntryDto";
 export * from "./LiveMatchDto";
+export * from "./LiveMatchSseDto";
 export * from "./MatchDto";
 export * from "./MatchInfoDto";
 export * from "./MatchPageDto";

@@ -6,8 +6,9 @@ import Head from "next/head";
 import TeamTable from "../../components/TeamTable";
 import formatGameMode from "../../utils/format/formatGameMode";
 import { useApi } from "../../api/hooks";
-import { PlayerInMatchDto } from "../../api/back/models";
+import { LiveMatchDto, LiveMatchDtoFromJSON, PlayerInMatchDto } from "../../api/back/models";
 import { AdBanner } from "../../components/ads/ads";
+import { useEventSource } from "../../utils/useEventSource";
 import { LiveMatch } from "../../components/live/LiveMatch";
 
 export const ItemsContainer = styled.div`
@@ -108,11 +109,14 @@ const sumKills = (players: PlayerInMatchDto[]) => {
 const Page = () => {
   const { id } = useRouter().query;
   const mid = Number(id);
-  const { data: match } = useApi().matchApi.useMatchControllerMatch(mid);
-
-  const { data: liveMatch } = useApi().liveApi.useLiveMatchControllerLiveMatch(mid, {
-    refreshInterval: 1000
+  const { data: match } = useApi().matchApi.useMatchControllerMatch(mid, {
+    refreshInterval: 5000
   });
+
+  const liveMatch = useEventSource<LiveMatchDto>(
+    useApi().liveApi.liveMatchControllerLiveMatchContext({ id: mid }),
+    LiveMatchDtoFromJSON.bind(null)
+  );
 
   if (liveMatch) {
     return (
