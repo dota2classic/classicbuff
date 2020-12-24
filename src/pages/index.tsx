@@ -147,7 +147,7 @@ export default () => {
   return (
     <Layout landing>
       <Head>
-        <title>Классическая Dota</title>
+        <title>Классическая Dota 2</title>
         <meta
           name="description"
           content="dota2classic.ru - discord сервер для игры в классическую доту 6.81 2014 года"
