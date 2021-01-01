@@ -26,6 +26,11 @@ const Button = styled.button`
   &:hover:not(:disabled) {
     background: rgba(0, 0, 0, 0.8);
   }
+
+  &.icon {
+    width: 42px;
+    height: 42px;
+  }
 `;
 
 export const LinkButton = styled.a`

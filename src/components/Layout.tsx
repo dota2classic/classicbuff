@@ -274,7 +274,11 @@ const DefaultHeader = () => {
         </a>
 
         <a href="https://www.youtube.com/user/facts2dota">
-          <LinkWrapper className={"small"} alt={"Vk logo"} src="https://dota2classic.ru/api/static/youtube.png" />
+          <LinkWrapper
+            className={"small"}
+            alt={"Vk logo"}
+            src="https://cdn.discordapp.com/attachments/724018264283414618/791790363237023814/yt3.png"
+          />
         </a>
       </HeaderWrapper>
     </>

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Layout, { LinkWrapper } from "../components/Layout";
+import Layout from "../components/Layout";
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
@@ -177,6 +177,20 @@ export default () => {
         <li>Клиент игры до обновления Reborn (Новая жизнь)</li>
         <li>Работает через Steam</li>
       </List>
+
+      <CardRow>
+        <iframe
+          style={{ width: 940 }}
+          height={450}
+          // width={1792}
+          // height={840}
+          src="https://www.youtube.com/embed/Itc52FAMam0"
+          frameBorder={0}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </CardRow>
+
       <CardRow>
         <CardBlock text={"Движок Source 1"} img={"https://dota2classic.ru/api/static/landing/4.png.webp"} />
         <CardBlock text={"Классический баланс"} img={"https://dota2classic.ru/api/static/landing/5.png.webp"} />

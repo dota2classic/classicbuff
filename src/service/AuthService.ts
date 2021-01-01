@@ -1,7 +1,8 @@
-import { action, computed, observable } from "mobx";
+import { action, computed, observable, toJS } from "mobx";
 import cookies from "browser-cookies";
 import { appApi } from "../api/hooks";
 import { PlayerSummaryDto } from "../api/back/models";
+import { Role } from "../components/LadderRow";
 
 export class AuthService {
   @observable
@@ -31,8 +32,8 @@ export class AuthService {
 
   @computed
   public get isAdmin(): boolean {
-    // return this.me?.role === Role.ADMIN;
-    return false;
+    console.log(this.me, "?F?F?F");
+    return !!this.me?.roles.find(t => t === "ADMIN");
   }
 
   private parseJwt(token: string) {
@@ -59,7 +60,6 @@ export class AuthService {
       const t = localStorage.getItem("token");
       const cookieT = AuthService.cookieToken();
 
-      console.log(t, cookieT);
       if (t) this.setToken(t);
       if (cookieT) this.setToken(cookieT);
     }
@@ -68,6 +68,8 @@ export class AuthService {
   @action.bound
   public async fetchMe() {
     this.me = await appApi.playerApi.playerControllerMe();
+
+    console.log("pepea", toJS(this.me));
   }
 
   @action.bound

@@ -8,6 +8,7 @@ import { local } from "../config";
 import { Game } from "../stores/Game";
 import { stores } from "../stores";
 import { captureComponentException } from "../utils/sentry";
+import "react-datepicker/dist/react-datepicker.css";
 
 const API = local ? "http://localhost:5002/graphql" : "https://dota2classic.ru/prod-api/graphql";
 

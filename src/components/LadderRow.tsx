@@ -35,6 +35,35 @@ export const Tr = styled.tr`
   a {
     color: #c2c2c2;
   }
+
+  //&.OLD {
+  //  background: purple;
+  //}
+  //
+  //&.HUMAN {
+  //  background: #cda71b;
+  //}
+  //
+  //&.ADMIN {
+  //  background: #c10303;
+  //}
+  //
+  //&.MODERATOR {
+  //  background: #335ae7;
+  //}
+  & .ROLE_OLD {
+    color: purple;
+  }
+  & .ROLE_MODERATOR {
+    color: #335ae7;
+  }
+
+  & .ROLE_ADMIN {
+    color: #c10303;
+  }
+  & .ROLE_HUMAN {
+    color: #cda71b;
+  }
 `;
 
 export const Role = styled.div`

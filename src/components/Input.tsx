@@ -22,6 +22,9 @@ const Input = styled.input`
     font-size: 14px;
     margin-bottom: 0;
   }
+  &.iso {
+    margin-bottom: 0;
+  }
 `;
 
 export default Input;

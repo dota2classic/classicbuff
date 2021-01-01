@@ -4,6 +4,6 @@ export const steamIdToNum = (steamId: string) => {
 
 // [U:1:1093914365]
 
-export const numToSteamId = (num: number) => {
+export const numToSteamId = (num: number | string) => {
   return `[U:1:${num}]`;
 };

@@ -16,6 +16,9 @@ import * as runtime from "../runtime";
 import useSWR, { ConfigInterface } from "swr";
 
 import {
+  BanHammerDto,
+  BanHammerDtoFromJSON,
+  BanHammerDtoToJSON,
   EventAdminDto,
   EventAdminDtoFromJSON,
   EventAdminDtoToJSON,
@@ -28,10 +31,26 @@ import {
   UpdateRolesDto,
   UpdateRolesDtoFromJSON,
   UpdateRolesDtoToJSON,
+  UserBanSummaryDto,
+  UserBanSummaryDtoFromJSON,
+  UserBanSummaryDtoToJSON,
   UserRoleSummaryDto,
   UserRoleSummaryDtoFromJSON,
   UserRoleSummaryDtoToJSON
 } from "../models";
+
+export interface AdminUserControllerBanIdRequest {
+  id: string;
+  banHammerDto: BanHammerDto;
+}
+
+export interface AdminUserControllerBanOfRequest {
+  id: string;
+}
+
+export interface AdminUserControllerRoleOfRequest {
+  id: string;
+}
 
 export interface AdminUserControllerUpdateRoleRequest {
   updateRolesDto: UpdateRolesDto;
@@ -49,6 +68,131 @@ export interface ServerControllerStopServerRequest {
  *
  */
 export class AdminApi extends runtime.BaseAPI {
+  /**
+   */
+  private async adminUserControllerBanIdRaw(
+    requestParameters: AdminUserControllerBanIdRequest
+  ): Promise<runtime.ApiResponse<void>> {
+    this.adminUserControllerBanIdValidation(requestParameters);
+    const context = this.adminUserControllerBanIdContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.VoidApiResponse(response);
+  }
+
+  /**
+   */
+  private adminUserControllerBanIdValidation(requestParameters: AdminUserControllerBanIdRequest) {
+    if (requestParameters.id === null || requestParameters.id === undefined) {
+      throw new runtime.RequiredError(
+        "id",
+        "Required parameter requestParameters.id was null or undefined when calling adminUserControllerBanId."
+      );
+    }
+    if (requestParameters.banHammerDto === null || requestParameters.banHammerDto === undefined) {
+      throw new runtime.RequiredError(
+        "banHammerDto",
+        "Required parameter requestParameters.banHammerDto was null or undefined when calling adminUserControllerBanId."
+      );
+    }
+  }
+
+  /**
+   */
+  adminUserControllerBanIdContext(requestParameters: AdminUserControllerBanIdRequest): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    headerParameters["Content-Type"] = "application/json";
+
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    return {
+      path: `/v1/admin/users/ban/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+      method: "POST",
+      headers: headerParameters,
+      query: queryParameters,
+      body: BanHammerDtoToJSON(requestParameters.banHammerDto)
+    };
+  }
+
+  /**
+   */
+  adminUserControllerBanId = async (id: string, banHammerDto: BanHammerDto): Promise<void> => {
+    await this.adminUserControllerBanIdRaw({ id: id, banHammerDto: banHammerDto });
+  };
+
+  /**
+   */
+  private async adminUserControllerBanOfRaw(
+    requestParameters: AdminUserControllerBanOfRequest
+  ): Promise<runtime.ApiResponse<UserBanSummaryDto>> {
+    this.adminUserControllerBanOfValidation(requestParameters);
+    const context = this.adminUserControllerBanOfContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.JSONApiResponse(response, jsonValue => UserBanSummaryDtoFromJSON(jsonValue));
+  }
+
+  /**
+   */
+  private adminUserControllerBanOfValidation(requestParameters: AdminUserControllerBanOfRequest) {
+    if (requestParameters.id === null || requestParameters.id === undefined) {
+      throw new runtime.RequiredError(
+        "id",
+        "Required parameter requestParameters.id was null or undefined when calling adminUserControllerBanOf."
+      );
+    }
+  }
+
+  /**
+   */
+  adminUserControllerBanOfContext(requestParameters: AdminUserControllerBanOfRequest): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    return {
+      path: `/v1/admin/users/ban/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+      method: "GET",
+      headers: headerParameters,
+      query: queryParameters
+    };
+  }
+
+  /**
+   */
+  adminUserControllerBanOf = async (id: string): Promise<UserBanSummaryDto> => {
+    const response = await this.adminUserControllerBanOfRaw({ id: id });
+    return await response.value();
+  };
+
+  useAdminUserControllerBanOf(id: string, config?: ConfigInterface<UserBanSummaryDto, Error>) {
+    let valid = true;
+
+    if (id === null || id === undefined || Number.isNaN(id)) {
+      valid = false;
+    }
+
+    const context = this.adminUserControllerBanOfContext({ id: id! });
+    return useSWR(JSON.stringify(context), valid ? () => this.adminUserControllerBanOf(id!) : undefined, config);
+  }
+
   /**
    */
   private async adminUserControllerListRolesRaw(): Promise<runtime.ApiResponse<Array<UserRoleSummaryDto>>> {
@@ -98,6 +242,70 @@ export class AdminApi extends runtime.BaseAPI {
 
     const context = this.adminUserControllerListRolesContext();
     return useSWR(JSON.stringify(context), valid ? () => this.adminUserControllerListRoles() : undefined, config);
+  }
+
+  /**
+   */
+  private async adminUserControllerRoleOfRaw(
+    requestParameters: AdminUserControllerRoleOfRequest
+  ): Promise<runtime.ApiResponse<UserRoleSummaryDto>> {
+    this.adminUserControllerRoleOfValidation(requestParameters);
+    const context = this.adminUserControllerRoleOfContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.JSONApiResponse(response, jsonValue => UserRoleSummaryDtoFromJSON(jsonValue));
+  }
+
+  /**
+   */
+  private adminUserControllerRoleOfValidation(requestParameters: AdminUserControllerRoleOfRequest) {
+    if (requestParameters.id === null || requestParameters.id === undefined) {
+      throw new runtime.RequiredError(
+        "id",
+        "Required parameter requestParameters.id was null or undefined when calling adminUserControllerRoleOf."
+      );
+    }
+  }
+
+  /**
+   */
+  adminUserControllerRoleOfContext(requestParameters: AdminUserControllerRoleOfRequest): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    return {
+      path: `/v1/admin/users/roles/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+      method: "GET",
+      headers: headerParameters,
+      query: queryParameters
+    };
+  }
+
+  /**
+   */
+  adminUserControllerRoleOf = async (id: string): Promise<UserRoleSummaryDto> => {
+    const response = await this.adminUserControllerRoleOfRaw({ id: id });
+    return await response.value();
+  };
+
+  useAdminUserControllerRoleOf(id: string, config?: ConfigInterface<UserRoleSummaryDto, Error>) {
+    let valid = true;
+
+    if (id === null || id === undefined || Number.isNaN(id)) {
+      valid = false;
+    }
+
+    const context = this.adminUserControllerRoleOfContext({ id: id! });
+    return useSWR(JSON.stringify(context), valid ? () => this.adminUserControllerRoleOf(id!) : undefined, config);
   }
 
   /**

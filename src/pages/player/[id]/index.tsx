@@ -7,7 +7,10 @@ import PlayerPage from "../../../container/PlayerPage";
 import { useApi } from "../../../api/hooks";
 import { RoleNames, RoleValue } from "../../../utils/format/roles";
 import { Role } from "../../../components/LadderRow";
-import { AdBanner } from "../../../components/ads/ads";
+import AuthService from "../../../service/AuthService";
+import { LinkButton } from "../../../components/Button";
+import Link from "next/link";
+import { observer } from "mobx-react";
 
 const Page = () => {
   const { id } = useRouter().query;
@@ -16,6 +19,7 @@ const Page = () => {
 
   const highestRole = player?.roles.sort((a, b) => RoleValue[b] - RoleValue[a])[0] || "PLAYER";
 
+  console.log(AuthService.isAdmin);
   return (
     <Layout>
       <Head>
@@ -32,9 +36,15 @@ const Page = () => {
           {player?.rank} Ранг, {player?.mmr} MMR
         </h4>
       </div>
+      {AuthService.isAdmin && (
+        <Link href={"/admin/player/[id]"} as={`/admin/player/${id}`}>
+          <LinkButton>В админке</LinkButton>
+        </Link>
+      )}
+
       <PlayerPage steam_id={numToSteamId(Number(id))} />
     </Layout>
   );
 };
 
-export default Page;
+export default observer(Page);

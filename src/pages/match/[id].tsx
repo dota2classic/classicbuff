@@ -118,6 +118,45 @@ const Page = () => {
     LiveMatchDtoFromJSON.bind(null)
   );
 
+  if (match)
+    return (
+      <Layout
+        title={
+          <h3>
+            {formatGameMode(match.mode)}, Матч #{id}
+          </h3>
+        }
+      >
+        <Head>
+          <title>Матч {id}</title>
+        </Head>
+        <AdBanner />
+
+        <MatchResult className={match?.winner === 2 ? "green" : "red"}>
+          <Winner className={match?.winner === 2 ? "green" : "red"}>
+            {match?.winner === 2 ? "Победа Radiant" : "Победа Dire"}
+          </Winner>
+          <ScoreTable>
+            <Score className={"green"}>{sumKills(match.radiant)}</Score>
+            <Duration>{formatDuration(match.duration)}</Duration>
+            <Score className={"red"}>{sumKills(match.dire)}</Score>
+          </ScoreTable>
+        </MatchResult>
+        <Showcase>
+          <TeamShowcase>
+            <Team className={"green"}>Radiant</Team>
+            <TeamTable players={match.radiant} />
+          </TeamShowcase>
+
+          <TeamShowcase>
+            <Team className={"red"}>Dire</Team>
+
+            <TeamTable players={match.dire} />
+          </TeamShowcase>
+        </Showcase>
+      </Layout>
+    );
+
   if (liveMatch) {
     return (
       <Layout
@@ -134,45 +173,7 @@ const Page = () => {
       </Layout>
     );
   }
-  if (!match) return null;
-
-  return (
-    <Layout
-      title={
-        <h3>
-          {formatGameMode(match.mode)}, Матч #{id}
-        </h3>
-      }
-    >
-      <Head>
-        <title>Матч {id}</title>
-      </Head>
-      <AdBanner />
-
-      <MatchResult className={match?.winner === 2 ? "green" : "red"}>
-        <Winner className={match?.winner === 2 ? "green" : "red"}>
-          {match?.winner === 2 ? "Победа Radiant" : "Победа Dire"}
-        </Winner>
-        <ScoreTable>
-          <Score className={"green"}>{sumKills(match.radiant)}</Score>
-          <Duration>{formatDuration(match.duration)}</Duration>
-          <Score className={"red"}>{sumKills(match.dire)}</Score>
-        </ScoreTable>
-      </MatchResult>
-      <Showcase>
-        <TeamShowcase>
-          <Team className={"green"}>Radiant</Team>
-          <TeamTable players={match.radiant} />
-        </TeamShowcase>
-
-        <TeamShowcase>
-          <Team className={"red"}>Dire</Team>
-
-          <TeamTable players={match.dire} />
-        </TeamShowcase>
-      </Showcase>
-    </Layout>
-  );
+  return null;
 };
 
 export default Page;
