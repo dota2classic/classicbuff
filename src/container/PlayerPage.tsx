@@ -4,41 +4,17 @@ import Router, { useRouter } from "next/router";
 import AuthService from "../service/AuthService";
 import PlayerHistoryTab from "./PlayerHistoryTab";
 import PlayerHeroesTab from "./PlayerHeroesTab";
+import cx from "classnames";
+import { DiscordBlock } from "../components/DiscordBlock";
+import { useTab } from "../utils/useTab";
 
 interface Props {
   steam_id: string;
 }
 export default (p: Props) => {
-  // const { data: teamData } = useUserQuery({
-  //   variables: {
-  //     id: p.steam_id
-  //   }
-  // });
+  const [tab, setTabAction] = useTab("tab", 0);
 
-  const { tab: initialTab } = useRouter().query;
-
-  const [tab, setTab] = useState(0);
-
-  useEffect(() => {
-    const newTab = Number(initialTab);
-    if (!Number.isNaN(newTab)) {
-      setTab(newTab);
-    }
-  }, [initialTab]);
-
-  // const isMine = AuthService.me?.steam_id === p.steam_id;
-  const isMine = false;
-
-  // const { data } = useTeamInvitesCountQuery({
-  //   ...BaseGQLConfig
-  // });
-
-  const setTabAction = async (tab: number) => {
-    await Router.push(Router.pathname.split("?")[0] + `?tab=${tab}`, Router.asPath.split("?")[0] + `?tab=${tab}`, {
-      shallow: true
-    });
-    setTab(tab);
-  };
+  const isMine = AuthService.me?.steamId === p.steam_id;
 
   return (
     <>
@@ -50,14 +26,11 @@ export default (p: Props) => {
           Общая статистика
         </Tab>
 
-        {/*{isMine && (*/}
-        {/*  <Tab*/}
-        {/*    className={cx((tab == 2 && "active") || undefined, data?.TeamInvitations.length && "interesting")}*/}
-        {/*    onClick={() => setTabAction(2)}*/}
-        {/*  >*/}
-        {/*    Приглашения в команду*/}
-        {/*  </Tab>*/}
-        {/*)}*/}
+        {isMine && (
+          <Tab className={cx(tab == 2 && "active")} onClick={() => setTabAction(2)}>
+            Discord
+          </Tab>
+        )}
 
         {isMine && (
           <Tab
@@ -80,6 +53,11 @@ export default (p: Props) => {
 
       {tab === 0 && <PlayerHistoryTab steam_id={p.steam_id} />}
       {tab === 1 && <PlayerHeroesTab steam_id={p.steam_id} />}
+      {tab === 2 && (
+        <>
+          <DiscordBlock />
+        </>
+      )}
       {/*{tab === 2 && <PlayerTeamTab />}*/}
     </>
   );

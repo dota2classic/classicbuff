@@ -55,7 +55,6 @@ const Title = styled.div`
 export const AcceptPartyModal = observer(() => {
   const { game } = useStores();
 
-  console.log(game.pendingPartyInvite);
   if (!game.pendingPartyInvite) return null;
 
   return (

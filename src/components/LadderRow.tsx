@@ -3,10 +3,11 @@ import React from "react";
 import Link from "next/link";
 import { LeaderboardEntryDto } from "../api/back/models";
 import { RoleNames, RoleValue } from "../utils/format/roles";
+import { colors } from "../shared";
 
 export const Tr = styled.tr`
   line-height: 16px;
-  color: #5e5e5e;
+  color: ${colors.primaryTextDark};
   font-size: 14px;
   &.link {
     cursor: pointer;
@@ -33,27 +34,13 @@ export const Tr = styled.tr`
 
   & td,
   a {
-    color: #c2c2c2;
+    color: ${colors.primaryText};
   }
 
-  //&.OLD {
-  //  background: purple;
-  //}
-  //
-  //&.HUMAN {
-  //  background: #cda71b;
-  //}
-  //
-  //&.ADMIN {
-  //  background: #c10303;
-  //}
-  //
-  //&.MODERATOR {
-  //  background: #335ae7;
-  //}
   & .ROLE_OLD {
     color: purple;
   }
+
   & .ROLE_MODERATOR {
     color: #335ae7;
   }
@@ -80,19 +67,19 @@ export const Role = styled.div`
     margin-left: 5px;
   }
   &.OLD {
-    background: purple;
+    background: ${colors.roles.old};
   }
 
   &.HUMAN {
-    background: #cda71b;
+    background: ${colors.roles.human};
   }
 
   &.ADMIN {
-    background: #c10303;
+    background: ${colors.roles.admin};
   }
 
   &.MODERATOR {
-    background: #335ae7;
+    background: ${colors.roles.moderator};
   }
 
   &:hover {
@@ -173,7 +160,7 @@ export const Table = styled.table`
   }
 
   & td {
-    border: 1px solid black;
+    border: 1px solid ${colors.evenDarkerBg};
   }
 
   & th.red,
@@ -204,7 +191,7 @@ export const Table = styled.table`
   &.compact {
     & td,
     th {
-      padding: 2px;
+      padding: 4px;
       font-size: 14px;
       text-align: center;
     }

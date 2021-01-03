@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Hint = styled.picture`
+export const Hint = styled.picture`
   background: transparent;
   transition: 0.3s ease;
 

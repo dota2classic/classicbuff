@@ -8,6 +8,7 @@ import { LinkButton } from "../Button";
 import Link from "next/link";
 import { steamIdToNum } from "../../utils/numSteamId";
 import { AdBanner } from "../ads/ads";
+import { MinimapHero } from "./MinimapHero";
 
 const Map = styled.div`
   margin-left: 20px;
@@ -184,7 +185,6 @@ export const LiveMatch = (liveMatch: LiveMatchDto) => {
   const port = parseInt(liveMatch.server.split(":")[1]);
   const watchUrl = `${host}:${port + 5}`;
 
-  console.log("rerender");
   return (
     <MatchInfo>
       <AdBanner />
@@ -196,12 +196,13 @@ export const LiveMatch = (liveMatch: LiveMatchDto) => {
         <TeamInfoBlock team={2} heroes={r} />
         <Map>
           {liveMatch.heroes.map(hero => (
-            <Hero
-              key={hero.hero}
-              x={hero.posX}
-              y={hero.posY}
-              src={`https://dota2classic.ru/api/static/heroes/${hero.hero}.jpg.webp`}
-            />
+            <MinimapHero key={hero.hero} x={hero.posX} y={hero.posY} hero={hero.hero} team={hero.team} />
+            // <Hero
+            //   key={hero.hero}
+            //   x={hero.posX}
+            //   y={hero.posY}
+            //   src={`https://dota2classic.ru/api/static/heroes/${hero.hero}.jpg.webp`}
+            // />
           ))}
         </Map>
         <TeamInfoBlock team={3} heroes={d} />

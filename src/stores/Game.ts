@@ -95,8 +95,6 @@ export class Game {
   };
 
   private joinGame = (data: LauncherServerStarted) => {
-    console.log("YEAH! time to join da game!", data.url);
-
     if (this.pendingGame) {
       this.serverURL = data.url;
     }

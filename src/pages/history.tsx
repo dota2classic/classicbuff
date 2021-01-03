@@ -13,6 +13,7 @@ import { useApi } from "../api/hooks";
 import { formatDuration } from "./match/[id]";
 import Link from "next/link";
 import { AdBanner, InlineAdBanner } from "../components/ads/ads";
+import { useTab } from "../utils/useTab";
 
 export const Heroes = styled.div`
   display: flex;
@@ -49,12 +50,11 @@ const LiveMatchEngage = styled.div`
 `;
 
 const Page = observer(() => {
-  const [page, setPage] = useState(0);
-  const [mode, setMode] = useState<MatchmakingMode | undefined>(MatchmakingMode.RANKED);
-
+  const [mode, setTabAction] = useTab("mode", MatchmakingMode.RANKED);
+  const [page, setPage] = useTab("page", 0);
   useEffect(() => setPage(0), [mode]);
   const { data: liveMatches } = useApi().liveApi.useLiveMatchControllerListMatches();
-  const { data } = useApi().matchApi.useMatchControllerMatches(page, undefined, mode);
+  const { data } = useApi().matchApi.useMatchControllerMatches(page!!, undefined, mode);
 
   const firstLiveMatch = (liveMatches && liveMatches[0]) || undefined;
 
@@ -75,24 +75,24 @@ const Page = observer(() => {
       )}
       <Tabs>
         <Tab
-          onClick={() => setMode(MatchmakingMode.RANKED)}
+          onClick={() => setTabAction(MatchmakingMode.RANKED)}
           className={(mode === MatchmakingMode.RANKED && "active") || undefined}
         >
           Рейтинг
         </Tab>
         <Tab
-          onClick={() => setMode(MatchmakingMode.UNRANKED)}
+          onClick={() => setTabAction(MatchmakingMode.UNRANKED)}
           className={(mode === MatchmakingMode.UNRANKED && "active") || undefined}
         >
           Обычные
         </Tab>
         <Tab
-          onClick={() => setMode(MatchmakingMode.SOLOMID)}
+          onClick={() => setTabAction(MatchmakingMode.SOLOMID)}
           className={(mode === MatchmakingMode.SOLOMID && "active") || undefined}
         >
           1x1
         </Tab>
-        <Tab onClick={() => setMode(undefined)} className={(mode === undefined && "active") || undefined}>
+        <Tab onClick={() => setTabAction(undefined)} className={(mode === undefined && "active") || undefined}>
           Все
         </Tab>
       </Tabs>
@@ -118,9 +118,9 @@ const Page = observer(() => {
       {data && (
         <Pagination
           pages={data.pages}
-          page={page}
-          next={() => setPage(page + 1)}
-          prev={() => setPage(Math.max(0, page - 1))}
+          page={page!!}
+          next={() => setPage(page!! + 1)}
+          prev={() => setPage(Math.max(0, page!! - 1))}
         />
       )}
     </Layout>

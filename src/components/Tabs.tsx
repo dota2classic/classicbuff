@@ -1,9 +1,9 @@
 import styled from "styled-components";
+import { colors } from "../shared";
 
 export const Tabs = styled.div`
   display: flex;
   flex-direction: row;
-  color: #c2c2c2;
   margin: 10px;
 `;
 
@@ -18,9 +18,11 @@ export const Tab = styled.div`
 
   transition: 0.3s ease;
 
+  color: ${colors.primaryText};
+
   ::before {
     content: "";
-    background: rgba(102, 187, 255, 0.05);
+    background: ${colors.transparentTint};
     height: 2px;
     position: absolute;
     bottom: 0;
@@ -31,10 +33,10 @@ export const Tab = styled.div`
   }
 
   &:hover {
-    color: rgba(255, 255, 255, 0.6);
+    color: ${colors.primaryTextHighlight};
     &::before {
       content: "";
-      background: rgba(102, 187, 255, 0.05);
+      background: ${colors.transparentTint};
       height: 2px;
       position: absolute;
       bottom: 0;

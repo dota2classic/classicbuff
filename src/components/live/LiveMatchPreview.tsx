@@ -4,6 +4,7 @@ import React from "react";
 import formatGameMode from "../../utils/format/formatGameMode";
 import { formatDuration } from "../../pages/match/[id]";
 import Link from "next/link";
+import { MinimapHero } from "./MinimapHero";
 
 const Container = styled.div`
   display: flex;
@@ -73,12 +74,7 @@ export const LiveMatchPreview = (match: LiveMatchDto) => {
       <Link href={`/match/[id]`} as={`/match/${match.matchId}`} passHref>
         <Map>
           {match.heroes.map(hero => (
-            <Hero
-              key={hero.hero}
-              x={hero.posX}
-              y={hero.posY}
-              src={`https://dota2classic.ru/api/static/heroes/${hero.hero}.jpg.webp`}
-            />
+            <MinimapHero key={hero.hero} x={hero.posX} y={hero.posY} hero={hero.hero} team={hero.team} small />
           ))}
         </Map>
       </Link>

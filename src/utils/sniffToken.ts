@@ -8,7 +8,6 @@ const sniffToken = () => {
   useEffect(() => {
     const token = router.query.token as string;
     if (token) {
-      console.log("Sniffed token!");
       AuthService.setToken(token);
       router.replace("/", "/", { shallow: true });
     }

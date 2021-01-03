@@ -77,7 +77,9 @@ export default class MyDocument extends Document {
           <link rel="canonical" href="https://dota2classic.ru" />
           <link rel="icon" type="image/png" href="https://dota2classic.ru/api/static/favicon.png" />
           <link rel="stylesheet" href="https://dota2classic.ru/api/static/style.css" />
+          <link rel="stylesheet" href="/static/minimap.css" />
           <script src="/static/build_info.js" />
+
           <span dangerouslySetInnerHTML={{ __html: this.adSense() }} />
         </Head>
         <body>

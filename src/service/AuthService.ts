@@ -32,7 +32,6 @@ export class AuthService {
 
   @computed
   public get isAdmin(): boolean {
-    console.log(this.me, "?F?F?F");
     return !!this.me?.roles.find(t => t === "ADMIN");
   }
 
@@ -68,8 +67,6 @@ export class AuthService {
   @action.bound
   public async fetchMe() {
     this.me = await appApi.playerApi.playerControllerMe();
-
-    console.log("pepea", toJS(this.me));
   }
 
   @action.bound

@@ -8,12 +8,12 @@ import cx from "classnames";
 import { appApi } from "../api/hooks";
 import useWillMount from "../utils/useWillMount";
 import { observer } from "mobx-react";
+import { colors } from "../shared";
 
 const LayoutContainer = styled.div`
   min-height: 100vh;
   width: 100vw;
-  //padding-top: 200px;
-  background: #101213;
+  background: ${colors.darkBg};
   padding-bottom: 200px;
 
   @media (max-width: 600px) {
@@ -56,10 +56,7 @@ const HeaderWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding-top: 40px;
-  padding-right: 40px;
-  padding-left: 40px;
-  padding-bottom: 20px;
+  padding: 40px 40px 20px;
 
   &.compact {
     padding: 0px;
@@ -91,10 +88,10 @@ const SiteLink = styled.a`
   text-underline-position: under;
 
   &:hover {
-    color: #efefef;
+    color: ${colors.primaryTextHighlight};
   }
   cursor: pointer;
-  color: #d9d9d9;
+  color: ${colors.primaryText};
   margin-left: 40px;
   @media (max-width: 600px) {
     margin-left: 0;
@@ -176,8 +173,6 @@ const DefaultHeader = () => {
   const menu = "menu" in router.query;
 
   const asPath = router.asPath;
-
-  console.log(asPath, asPath === "/me");
 
   return (
     <>

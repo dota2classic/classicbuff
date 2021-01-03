@@ -19,7 +19,6 @@ const Page = () => {
 
   const highestRole = player?.roles.sort((a, b) => RoleValue[b] - RoleValue[a])[0] || "PLAYER";
 
-  console.log(AuthService.isAdmin);
   return (
     <Layout>
       <Head>
