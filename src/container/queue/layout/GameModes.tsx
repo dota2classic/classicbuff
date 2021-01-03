@@ -78,7 +78,7 @@ const SettingsIcon = styled.img`
 const UserInfo = styled.div`
   display: flex;
   flex-direction: row;
-  margin-bottom: 80px;
+  margin-bottom: 5px;
   padding: 20px;
   border-bottom: 1px solid #242424;
   border-top: 1px solid #242424;

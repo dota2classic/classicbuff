@@ -10,6 +10,7 @@ import { LiveMatchDto, LiveMatchDtoFromJSON, PlayerInMatchDto } from "../../api/
 import { AdBanner } from "../../components/ads/ads";
 import { useEventSource } from "../../utils/useEventSource";
 import { LiveMatch } from "../../components/live/LiveMatch";
+import { colors } from "../../shared";
 
 export const ItemsContainer = styled.div`
   display: flex;
@@ -120,18 +121,14 @@ const Page = () => {
 
   if (match)
     return (
-      <Layout
-        title={
-          <h3>
-            {formatGameMode(match.mode)}, Матч #{id}
-          </h3>
-        }
-      >
+      <Layout>
         <Head>
           <title>Матч {id}</title>
         </Head>
         <AdBanner />
-
+        <h2 style={{ color: colors.primaryText }}>
+          {formatGameMode(match.mode)}, Матч #{id}
+        </h2>
         <MatchResult className={match?.winner === 2 ? "green" : "red"}>
           <Winner className={match?.winner === 2 ? "green" : "red"}>
             {match?.winner === 2 ? "Победа Radiant" : "Победа Dire"}
