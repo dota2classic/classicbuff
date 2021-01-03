@@ -128,36 +128,6 @@ const MenuIcon = styled.img`
   }
 `;
 
-const MobileMenu = styled.div`
-  position: absolute;
-  display: flex;
-  width: 100vw;
-  padding: 20px;
-  flex-direction: column;
-  background: #15191d;
-  z-index: 5;
-  height: 100vh;
-
-  & ${SiteLink} {
-    margin-top: 20px;
-    align-items: center;
-    display: flex;
-    transition: 0.3s;
-    //color: #4ab19d;
-    //&:hover {
-    //  color: #a9f5e6;
-    //}
-    font-size: 20px;
-  }
-`;
-const Icon = styled.img`
-  width: auto;
-  height: 25px;
-  object-fit: cover;
-  max-width: 35px;
-  margin-right: 10px;
-`;
-
 export const CloseIcon = styled.img`
   width: 35px;
   height: 35px;
@@ -170,75 +140,11 @@ export const CloseIcon = styled.img`
 
 const DefaultHeader = () => {
   const router = useRouter();
-  const menu = "menu" in router.query;
 
   const asPath = router.asPath;
 
   return (
     <>
-      {/*{menu && (*/}
-      {/*  <MobileMenu>*/}
-      {/*    <CloseIcon onClick={() => Router.back()} src={"https://dota2classic.ru/api/static/unnamed.png"} />*/}
-      {/*    <Link passHref href={"/leaderboard"}>*/}
-      {/*      <SiteLink>*/}
-      {/*        <Icon src={"https://dota2classic.ru/api/static/items/rapier.jpg"} />*/}
-      {/*        Таблица лидеров*/}
-      {/*      </SiteLink>*/}
-      {/*    </Link>*/}
-
-      {/*    <Link passHref href={"/download"}>*/}
-      {/*      <SiteLink>*/}
-      {/*        <Icon src={"https://dota2classic.ru/api/static/items/aegis.jpg"} />*/}
-      {/*        Играть*/}
-      {/*      </SiteLink>*/}
-      {/*    </Link>*/}
-      {/*    <Link passHref href={"/history"}>*/}
-      {/*      <SiteLink>*/}
-      {/*        <Icon src={"https://dota2classic.ru/api/static/items/tpscroll.jpg"} />*/}
-      {/*        Матчи*/}
-      {/*      </SiteLink>*/}
-      {/*    </Link>*/}
-      {/*    <Link passHref href={"/heroes"}>*/}
-      {/*      <SiteLink>*/}
-      {/*        <Icon src={"https://dota2classic.ru/apistatic/heroes/npc_dota_hero_axe.jpg"} />*/}
-      {/*        Герои*/}
-      {/*      </SiteLink>*/}
-      {/*    </Link>*/}
-      {/*    <Link passHref href={"/heroes"}>*/}
-      {/*      <SiteLink>*/}
-      {/*        <Icon src={"https://dota2classic.ru/api/static/heroes/npc_dota_hero_axe.jpg"} />*/}
-      {/*        Турниры*/}
-      {/*      </SiteLink>*/}
-      {/*    </Link>*/}
-      {/*    {AuthService.authorized ? (*/}
-      {/*      <Link passHref href={"/me"}>*/}
-      {/*        <SiteLink>*/}
-      {/*          <Icon src={"https://dota2classic.ru/api/static/items/aegis.jpg.webp"} />*/}
-      {/*          Профиль*/}
-      {/*        </SiteLink>*/}
-      {/*      </Link>*/}
-      {/*    ) : (*/}
-      {/*      <SiteLink href={`${appApi.apiParams.basePath}/v1/auth/steam`}>*/}
-      {/*        <Icon src={"https://dota2classic.ru/api/static/items/recipe.jpg.webp"} />*/}
-      {/*        Войти через steam*/}
-      {/*      </SiteLink>*/}
-      {/*    )}*/}
-      {/*    <div style={{ height: "30%" }} />*/}
-
-      {/*    <SiteLink href="https://discord.gg/VU5wjA8">*/}
-      {/*      <Icon src={"https://dota2classic.ru/api/static/icons/dis2.png"} />*/}
-      {/*      Discord сервер*/}
-      {/*    </SiteLink>*/}
-      {/*    <SiteLink href="https://vk.com/club191796288">*/}
-      {/*      <Icon src={"https://dota2classic.ru/api/static/icons/vk1.png"} />*/}
-      {/*      Группа VK*/}
-      {/*    </SiteLink>*/}
-      {/*    <SiteLink href="https://www.youtube.com/user/facts2dota">*/}
-      {/*      <Icon src={"https://dota2classic.ru/api/static/youtube.png"} />*/}
-      {/*      Канал Youtube*/}
-      {/*    </SiteLink>*/}
-      {/*  </MobileMenu>*/}
-      {/*)}*/}
       <HeaderWrapper>
         <Tabs>
           <Tab className={cx(asPath === "/" && "active")}>
@@ -369,6 +275,8 @@ export default observer((p: PropsWithChildren<{ landing?: boolean; title?: React
     AuthService.fetchMe();
   });
   const router = useRouter();
+
+  console.log(router);
   return (
     <LayoutContainer>
       <DefaultHeader />
