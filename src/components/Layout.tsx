@@ -1,11 +1,13 @@
 import styled from "styled-components";
-import React, { PropsWithChildren, ReactNode, useState } from "react";
+import React, { PropsWithChildren, ReactNode } from "react";
 import Link from "next/link";
-import { observer } from "mobx-react";
 import AuthService from "../service/AuthService";
 import Router, { useRouter } from "next/router";
-import useWillMount from "../utils/useWillMount";
+import { Tab, Tabs } from "./Tabs";
+import cx from "classnames";
 import { appApi } from "../api/hooks";
+import useWillMount from "../utils/useWillMount";
+import { observer } from "mobx-react";
 
 const LayoutContainer = styled.div`
   min-height: 100vh;
@@ -54,7 +56,10 @@ const HeaderWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 40px;
+  padding-top: 40px;
+  padding-right: 40px;
+  padding-left: 40px;
+  padding-bottom: 20px;
 
   &.compact {
     padding: 0px;
@@ -170,100 +175,125 @@ const DefaultHeader = () => {
   const router = useRouter();
   const menu = "menu" in router.query;
 
+  const asPath = router.asPath;
+
+  console.log(asPath, asPath === "/me");
+
   return (
     <>
-      {menu && (
-        <MobileMenu>
-          <CloseIcon onClick={() => Router.back()} src={"https://dota2classic.ru/api/static/unnamed.png"} />
-          <Link passHref href={"/leaderboard"}>
-            <SiteLink>
-              <Icon src={"https://dota2classic.ru/api/static/items/rapier.jpg"} />
-              Таблица лидеров
-            </SiteLink>
-          </Link>
+      {/*{menu && (*/}
+      {/*  <MobileMenu>*/}
+      {/*    <CloseIcon onClick={() => Router.back()} src={"https://dota2classic.ru/api/static/unnamed.png"} />*/}
+      {/*    <Link passHref href={"/leaderboard"}>*/}
+      {/*      <SiteLink>*/}
+      {/*        <Icon src={"https://dota2classic.ru/api/static/items/rapier.jpg"} />*/}
+      {/*        Таблица лидеров*/}
+      {/*      </SiteLink>*/}
+      {/*    </Link>*/}
 
-          <Link passHref href={"/download"}>
-            <SiteLink>
-              <Icon src={"https://dota2classic.ru/api/static/items/aegis.jpg"} />
-              Играть
-            </SiteLink>
-          </Link>
-          <Link passHref href={"/history"}>
-            <SiteLink>
-              <Icon src={"https://dota2classic.ru/api/static/items/tpscroll.jpg"} />
-              Матчи
-            </SiteLink>
-          </Link>
-          <Link passHref href={"/heroes"}>
-            <SiteLink>
-              <Icon src={"https://dota2classic.ru/apistatic/heroes/npc_dota_hero_axe.jpg"} />
-              Герои
-            </SiteLink>
-          </Link>
-          <Link passHref href={"/heroes"}>
-            <SiteLink>
-              <Icon src={"https://dota2classic.ru/api/static/heroes/npc_dota_hero_axe.jpg"} />
-              Турниры
-            </SiteLink>
-          </Link>
-          {AuthService.authorized ? (
-            <Link passHref href={"/me"}>
-              <SiteLink>
-                <Icon src={"https://dota2classic.ru/api/static/items/aegis.jpg.webp"} />
-                Профиль
-              </SiteLink>
-            </Link>
-          ) : (
-            <SiteLink href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
-              <Icon src={"https://dota2classic.ru/api/static/items/recipe.jpg.webp"} />
-              Войти через steam
-            </SiteLink>
-          )}
-          <div style={{ height: "30%" }} />
+      {/*    <Link passHref href={"/download"}>*/}
+      {/*      <SiteLink>*/}
+      {/*        <Icon src={"https://dota2classic.ru/api/static/items/aegis.jpg"} />*/}
+      {/*        Играть*/}
+      {/*      </SiteLink>*/}
+      {/*    </Link>*/}
+      {/*    <Link passHref href={"/history"}>*/}
+      {/*      <SiteLink>*/}
+      {/*        <Icon src={"https://dota2classic.ru/api/static/items/tpscroll.jpg"} />*/}
+      {/*        Матчи*/}
+      {/*      </SiteLink>*/}
+      {/*    </Link>*/}
+      {/*    <Link passHref href={"/heroes"}>*/}
+      {/*      <SiteLink>*/}
+      {/*        <Icon src={"https://dota2classic.ru/apistatic/heroes/npc_dota_hero_axe.jpg"} />*/}
+      {/*        Герои*/}
+      {/*      </SiteLink>*/}
+      {/*    </Link>*/}
+      {/*    <Link passHref href={"/heroes"}>*/}
+      {/*      <SiteLink>*/}
+      {/*        <Icon src={"https://dota2classic.ru/api/static/heroes/npc_dota_hero_axe.jpg"} />*/}
+      {/*        Турниры*/}
+      {/*      </SiteLink>*/}
+      {/*    </Link>*/}
+      {/*    {AuthService.authorized ? (*/}
+      {/*      <Link passHref href={"/me"}>*/}
+      {/*        <SiteLink>*/}
+      {/*          <Icon src={"https://dota2classic.ru/api/static/items/aegis.jpg.webp"} />*/}
+      {/*          Профиль*/}
+      {/*        </SiteLink>*/}
+      {/*      </Link>*/}
+      {/*    ) : (*/}
+      {/*      <SiteLink href={`${appApi.apiParams.basePath}/v1/auth/steam`}>*/}
+      {/*        <Icon src={"https://dota2classic.ru/api/static/items/recipe.jpg.webp"} />*/}
+      {/*        Войти через steam*/}
+      {/*      </SiteLink>*/}
+      {/*    )}*/}
+      {/*    <div style={{ height: "30%" }} />*/}
 
-          <SiteLink href="https://discord.gg/VU5wjA8">
-            <Icon src={"https://dota2classic.ru/api/static/icons/dis2.png"} />
-            Discord сервер
-          </SiteLink>
-          <SiteLink href="https://vk.com/club191796288">
-            <Icon src={"https://dota2classic.ru/api/static/icons/vk1.png"} />
-            Группа VK
-          </SiteLink>
-          <SiteLink href="https://www.youtube.com/user/facts2dota">
-            <Icon src={"https://dota2classic.ru/api/static/youtube.png"} />
-            Канал Youtube
-          </SiteLink>
-        </MobileMenu>
-      )}
+      {/*    <SiteLink href="https://discord.gg/VU5wjA8">*/}
+      {/*      <Icon src={"https://dota2classic.ru/api/static/icons/dis2.png"} />*/}
+      {/*      Discord сервер*/}
+      {/*    </SiteLink>*/}
+      {/*    <SiteLink href="https://vk.com/club191796288">*/}
+      {/*      <Icon src={"https://dota2classic.ru/api/static/icons/vk1.png"} />*/}
+      {/*      Группа VK*/}
+      {/*    </SiteLink>*/}
+      {/*    <SiteLink href="https://www.youtube.com/user/facts2dota">*/}
+      {/*      <Icon src={"https://dota2classic.ru/api/static/youtube.png"} />*/}
+      {/*      Канал Youtube*/}
+      {/*    </SiteLink>*/}
+      {/*  </MobileMenu>*/}
+      {/*)}*/}
       <HeaderWrapper>
-        <Link passHref href={"/"}>
-          <SiteLink>
-            <span style={{ textTransform: "uppercase" }}>dota2classic</span>
-          </SiteLink>
-        </Link>
-        <Link passHref href={"/download"}>
-          <SiteLink>Скачать</SiteLink>
-        </Link>
-        <Link passHref href={"/queue"}>
-          <SiteLink>Играть</SiteLink>
-        </Link>
-        <Link passHref href={"/leaderboard"}>
-          <SiteLink>Таблица лидеров</SiteLink>
-        </Link>
-        <Link passHref href={"/history"}>
-          <SiteLink>Матчи</SiteLink>
-        </Link>
-        {/*<Link passHref href={"/heroes"}>*/}
-        {/*  <SiteLink>Герои</SiteLink>*/}
-        {/*</Link>*/}
+        <Tabs>
+          <Tab className={cx(asPath === "/" && "active")}>
+            <Link passHref href={"/"}>
+              <span style={{ textTransform: "uppercase" }}>dota2classic</span>
+            </Link>
+          </Tab>
+          <Tab className={cx(asPath === "/download" && "active")}>
+            <Link passHref href={"/download"}>
+              <a>Скачать</a>
+            </Link>
+          </Tab>
+          <Tab className={cx(asPath === "/queue" && "active")}>
+            <Link passHref href={"/queue"}>
+              <a>Играть</a>
+            </Link>
+          </Tab>
+          <Tab className={cx(asPath === "/support" && "active")}>
+            <Link passHref href={"/support"}>
+              <a>Поддержка</a>
+            </Link>
+          </Tab>
+          <Tab className={cx(asPath === "/leaderboard" && "active")}>
+            <Link passHref href={"/leaderboard"}>
+              <a>Таблица лидеров</a>
+            </Link>
+          </Tab>
+          <Tab className={cx(asPath === "/history" && "active")}>
+            <Link passHref href={"/history"}>
+              <a>Матчи</a>
+            </Link>
+          </Tab>
+          {/*<Tab className={cx(asPath === "/heroes" && "active")}>*/}
+          {/*  <Link passHref href={"/heroes"}>*/}
+          {/*    <a>Таблица лидеров</a>*/}
+          {/*  </Link>*/}
+          {/*</Tab>*/}
 
-        {AuthService.authorized ? (
-          <Link passHref href={"/me"}>
-            <SiteLink>Профиль</SiteLink>
-          </Link>
-        ) : (
-          <SiteLink href={`${appApi.apiParams.basePath}/v1/auth/steam`}>Войти через steam</SiteLink>
-        )}
+          {AuthService.authorized ? (
+            <Tab className={cx(asPath === "/me" && "active")}>
+              <Link passHref href={"/me"}>
+                <a>Профиль</a>
+              </Link>
+            </Tab>
+          ) : (
+            <Tab className={cx(asPath === "/me" && "active")}>
+              <a href={`${appApi.apiParams.basePath}/v1/auth/steam`}>Войти через steam</a>
+            </Tab>
+          )}
+        </Tabs>
       </HeaderWrapper>
       <HeaderWrapper className="compact">
         <a href="https://discord.gg/VU5wjA8">

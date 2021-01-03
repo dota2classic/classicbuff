@@ -32,7 +32,7 @@ const CardImage = styled.img`
   }
 `;
 
-const WelcomeText = styled.div`
+export const WelcomeText = styled.div`
   text-align: center;
   //text-transform: uppercase;
   font-weight: 400;
@@ -44,7 +44,7 @@ const WelcomeText = styled.div`
     font-size: 20px;
   }
 `;
-const Card = styled.div`
+export const Card = styled.div`
   display: flex;
   height: 300px;
   flex: 1;
@@ -95,7 +95,7 @@ export const LeadButtons = styled.div`
   flex-direction: column;
 `;
 
-const List = styled.ul`
+export const List = styled.ul`
   color: #d9d9d9;
   font-size: 22px;
   align-self: flex-start;
@@ -131,7 +131,7 @@ export const CardBlock = ({ img, text }: Props) => {
   );
 };
 
-const CardRow = styled.div`
+export const CardRow = styled.div`
     display: flex;
     flex-direction: row;
     ${Card} + ${Card} {
@@ -141,6 +141,10 @@ const CardRow = styled.div`
       margin-top: 20px;
     }
     margin-top: 100px;
+    
+    &.inline {
+      margin-top: 20px;
+    }
 `;
 
 export default () => {
@@ -178,18 +182,18 @@ export default () => {
         <li>Работает через Steam</li>
       </List>
 
-      <CardRow>
-        <iframe
-          style={{ width: 940 }}
-          height={450}
-          // width={1792}
-          // height={840}
-          src="https://www.youtube.com/embed/Itc52FAMam0"
-          frameBorder={0}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
-      </CardRow>
+      {/*<CardRow>*/}
+      {/*  <iframe*/}
+      {/*    style={{ width: 940 }}*/}
+      {/*    height={450}*/}
+      {/*    // width={1792}*/}
+      {/*    // height={840}*/}
+      {/*    src="https://www.youtube.com/embed/Itc52FAMam0"*/}
+      {/*    frameBorder={0}*/}
+      {/*    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"*/}
+      {/*    allowFullScreen*/}
+      {/*  />*/}
+      {/*</CardRow>*/}
 
       <CardRow>
         <CardBlock text={"Движок Source 1"} img={"https://dota2classic.ru/api/static/landing/4.png.webp"} />

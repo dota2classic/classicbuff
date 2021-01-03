@@ -3,6 +3,7 @@ import Layout from "../components/Layout";
 import { CardBlock, LeadButton, LeadButtons } from "./index";
 import Head from "next/head";
 import styled from "styled-components";
+import Link from "next/link";
 
 const InfoText = styled.div`
   font-size: 18px;
@@ -21,7 +22,11 @@ export default () => {
       </Head>
       <LeadButtons>
         <InfoText>
-          Внимание: Поиск игры происходит через сайт или{" "}
+          Внимание: Поиск игры происходит через{" "}
+          <Link passHref href={`/queue`}>
+            <a style={{ color: `#d9d9d9` }}>сайт</a>
+          </Link>{" "}
+          или{" "}
           <a style={{ color: `#d9d9d9` }} href="https://discord.gg/VU5wjA8">
             Discord сервер
           </a>
