@@ -28,6 +28,9 @@ import {
   GameSessionDto,
   GameSessionDtoFromJSON,
   GameSessionDtoToJSON,
+  StopServerDto,
+  StopServerDtoFromJSON,
+  StopServerDtoToJSON,
   UpdateRolesDto,
   UpdateRolesDtoFromJSON,
   UpdateRolesDtoToJSON,
@@ -61,7 +64,7 @@ export interface ServerControllerDebugEventRequest {
 }
 
 export interface ServerControllerStopServerRequest {
-  body: string;
+  stopServerDto: StopServerDto;
 }
 
 /**
@@ -535,10 +538,10 @@ export class AdminApi extends runtime.BaseAPI {
   /**
    */
   private serverControllerStopServerValidation(requestParameters: ServerControllerStopServerRequest) {
-    if (requestParameters.body === null || requestParameters.body === undefined) {
+    if (requestParameters.stopServerDto === null || requestParameters.stopServerDto === undefined) {
       throw new runtime.RequiredError(
-        "body",
-        "Required parameter requestParameters.body was null or undefined when calling serverControllerStopServer."
+        "stopServerDto",
+        "Required parameter requestParameters.stopServerDto was null or undefined when calling serverControllerStopServer."
       );
     }
   }
@@ -565,13 +568,13 @@ export class AdminApi extends runtime.BaseAPI {
       method: "POST",
       headers: headerParameters,
       query: queryParameters,
-      body: requestParameters.body as any
+      body: StopServerDtoToJSON(requestParameters.stopServerDto)
     };
   }
 
   /**
    */
-  serverControllerStopServer = async (body: string): Promise<void> => {
-    await this.serverControllerStopServerRaw({ body: body });
+  serverControllerStopServer = async (stopServerDto: StopServerDto): Promise<void> => {
+    await this.serverControllerStopServerRaw({ stopServerDto: stopServerDto });
   };
 }

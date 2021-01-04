@@ -14,7 +14,7 @@ export const GameServer = (it: GameServerDto) => {
         <Button
           className="small"
           onClick={async () => {
-            await appApi.adminApi.serverControllerStopServer(it.url);
+            await appApi.adminApi.serverControllerStopServer({ url: it.url });
             await mutate(JSON.stringify(appApi.adminApi.serverControllerLiveSessionsContext()), undefined, true);
           }}
         >

@@ -20,6 +20,7 @@ export * from "./PlayerInfo";
 export * from "./PlayerPreviewDto";
 export * from "./PlayerSummaryDto";
 export * from "./RoleSubscriptionEntryDto";
+export * from "./StopServerDto";
 export * from "./UpdateRolesDto";
 export * from "./UserBanSummaryDto";
 export * from "./UserRoleSummaryDto";
