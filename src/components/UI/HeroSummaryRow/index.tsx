@@ -1,10 +1,16 @@
 import React from "react";
-import { Tr } from "./LadderRow";
-import HeroIcon from "./UI/HeroIcon";
 import cx from "classnames";
 import Router from "next/router";
-import heroName from "../utils/heroName";
-import { HeroSummaryPresentation } from "../pages/heroes";
+import heroName from "../../../utils/heroName";
+import { HeroIcon } from "../HeroIcon";
+import { Tr } from "../Table";
+
+export interface HeroSummaryPresentation {
+  hero: string;
+  kda: number;
+  winrate: number;
+  games: number;
+}
 
 export default (p: HeroSummaryPresentation) => {
   return (

@@ -1,7 +1,7 @@
-import { Table, Tr } from "./LadderRow";
 import PlayerRow from "./PlayerRow";
 import React from "react";
 import { PlayerInMatchDto } from "../api/back/models";
+import { Table, Tr } from "./UI/Table";
 
 interface Props {
   players: PlayerInMatchDto[];

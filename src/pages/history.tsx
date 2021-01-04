@@ -1,11 +1,10 @@
-import { Table, Tr } from "../components/LadderRow";
 import Layout from "../components/Layout";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Head from "next/head";
 import formatGameMode, { MatchmakingMode } from "../utils/format/formatGameMode";
 import MatchRow from "../components/MatchRow";
-import { Tab, Tabs } from "../components/Tabs";
+import { Tab, Tabs } from "../components/UI/Tabs";
 
 import { observer } from "mobx-react";
 import Pagination from "../components/Pagination";
@@ -14,6 +13,7 @@ import { formatDuration } from "./match/[id]";
 import Link from "next/link";
 import { AdBanner, InlineAdBanner } from "../components/ads/ads";
 import { useTab } from "../utils/useTab";
+import { Table, Tr } from "components/UI/Table";
 
 export const Heroes = styled.div`
   display: flex;

@@ -1,12 +1,12 @@
 import { AdminLayout } from "../../../components/admin/AdminLayout";
 import React, { useState } from "react";
-import { Table, Tr } from "../../../components/LadderRow";
 import { useApi } from "../../../api/hooks";
 import { UserRole } from "../../../components/admin-new/UserRole";
 import { UserRoleSummaryDto } from "../../../api/back/models";
 import { ManageRolesModal } from "../../../components/admin-new/ManageRolesModal";
 import { SelectUserModal } from "../../../components/admin-new/SelectUserModal";
 import Button from "../../../components/UI/Button";
+import { Table, Tr } from "../../../components/UI/Table";
 
 export default () => {
   const { data } = useApi().adminApi.useAdminUserControllerListRoles();

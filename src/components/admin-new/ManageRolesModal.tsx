@@ -2,15 +2,15 @@ import styled from "styled-components";
 import { RoleSubscriptionEntryDto, RoleSubscriptionEntryDtoRoleEnum, UserRoleSummaryDto } from "../../api/back/models";
 import React, { useEffect, useRef, useState } from "react";
 import useOutsideClick, { useEscapePress } from "../../utils/useOutsideClick";
-import { Table, Tr } from "../LadderRow";
 import { RoleNames } from "../../utils/format/roles";
 import { formatDateFullStr, numericDate } from "../../utils/format/formateDateStr";
 import Button from "../UI/Button";
-import Input from "../Input";
+import Input from "../UI/Input";
 import InputMask from "react-input-mask";
 import { appApi } from "../../api/hooks";
 import Router from "next/router";
 import { CloseIcon } from "../Layout";
+import { Table, Tr } from "../UI/Table";
 
 const Modal = styled.div`
   z-index: 100;

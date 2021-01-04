@@ -17,19 +17,6 @@ const DiscordContainer = styled.div`
   margin-bottom: 10px;
 `;
 
-const DiscordAvatar = styled.img`
-  width: 50px;
-  height: 50px;
-  border-radius: 4px;
-`;
-
-const DiscordName = styled.div`
-  font-size: 20px;
-  color: white;
-  margin-left: 10px;
-  margin-right: 10px;
-`;
-
 export const DiscordBlock = () => {
   const { data } = useApi().playerApi.usePlayerControllerConnections();
 

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React, { useRef, useState } from "react";
 import { useApi } from "../../api/hooks";
 import useOutsideClick from "../../utils/useOutsideClick";
-import Input from "../Input";
+import Input from "../UI/Input";
 
 const Modal = styled.div`
   z-index: 100;

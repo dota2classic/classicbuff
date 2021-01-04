@@ -3,7 +3,7 @@ import React, { PropsWithChildren, ReactNode } from "react";
 import Link from "next/link";
 import AuthService from "../service/AuthService";
 import Router, { useRouter } from "next/router";
-import { Tab, Tabs } from "./Tabs";
+import { Tab, Tabs } from "./UI/Tabs";
 import cx from "classnames";
 import { appApi } from "../api/hooks";
 import useWillMount from "../utils/useWillMount";
@@ -164,7 +164,7 @@ const DefaultHeader = () => {
           </Tab>
           <Tab className={cx(asPath === "/donate" && "active")}>
             <Link passHref href={"/donate"}>
-              <a>Поддержка</a>
+              <a>Пожертвовать</a>
             </Link>
           </Tab>
           <Tab className={cx(asPath === "/leaderboard" && "active")}>
@@ -172,7 +172,7 @@ const DefaultHeader = () => {
               <a>Таблица лидеров</a>
             </Link>
           </Tab>
-          <Tab className={cx(asPath === "/history" && "active")}>
+          <Tab className={cx(asPath.startsWith("/history") && "active")}>
             <Link passHref href={"/history"}>
               <a>Матчи</a>
             </Link>

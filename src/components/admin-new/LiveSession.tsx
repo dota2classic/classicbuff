@@ -1,11 +1,11 @@
 import { GameSessionDto } from "../../api/back/models";
 import React from "react";
-import { Tr } from "../LadderRow";
 import formatGameMode from "../../utils/format/formatGameMode";
 import styled from "styled-components";
 import Button from "../UI/Button";
 import { appApi } from "../../api/hooks";
 import { mutate } from "swr";
+import { Tr } from "../UI/Table";
 
 const TooltipTeams = styled.div`
   position: relative;

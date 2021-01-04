@@ -1,9 +1,9 @@
 import { GameServerDto } from "../../api/back/models";
 import React from "react";
-import { Tr } from "../LadderRow";
 import { appApi } from "../../api/hooks";
 import { mutate } from "swr";
 import Button from "../UI/Button";
+import { Tr } from "../UI/Table";
 
 export const GameServer = (it: GameServerDto) => {
   return (

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Tab, Tabs } from "../components/Tabs";
+import { Tab, Tabs } from "../components/UI/Tabs";
 import Router, { useRouter } from "next/router";
 import AuthService from "../service/AuthService";
 import PlayerHistoryTab from "./PlayerHistoryTab";
@@ -44,13 +44,6 @@ export default (p: Props) => {
         )}
       </Tabs>
 
-      {/*{teamData?.User?.team?.team && (*/}
-      {/*  <>*/}
-      {/*    <TeamPreview {...teamData?.User?.team?.team} />*/}
-      {/*    <br />*/}
-      {/*  </>*/}
-      {/*)}*/}
-
       {tab === 0 && <PlayerHistoryTab steam_id={p.steam_id} />}
       {tab === 1 && <PlayerHeroesTab steam_id={p.steam_id} />}
       {tab === 2 && (
@@ -58,7 +51,6 @@ export default (p: Props) => {
           <DiscordBlock />
         </>
       )}
-      {/*{tab === 2 && <PlayerTeamTab />}*/}
     </>
   );
 };

@@ -2,7 +2,6 @@ import { action, computed, observable, toJS } from "mobx";
 import cookies from "browser-cookies";
 import { appApi } from "../api/hooks";
 import { PlayerSummaryDto } from "../api/back/models";
-import { Role } from "../components/LadderRow";
 
 export class AuthService {
   @observable

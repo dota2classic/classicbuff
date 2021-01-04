@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { useApi } from "../api/hooks";
-import Input from "../components/Input";
+import Input from "../components/UI/Input";
 import { useStores } from "../stores";
 import useOutsideClick from "../utils/useOutsideClick";
 

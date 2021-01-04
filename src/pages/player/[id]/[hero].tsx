@@ -3,13 +3,14 @@ import { useRouter } from "next/router";
 import { numToSteamId } from "../../../utils/numSteamId";
 import Layout from "../../../components/Layout";
 import Head from "next/head";
-import { Role, Table, Tr } from "../../../components/LadderRow";
+import { Role } from "../../../components/LadderRow";
 import PlayerMatch from "../../../components/PlayerMatch";
 import Pagination from "../../../components/Pagination";
-import { Tab, Tabs } from "../../../components/Tabs";
+import { Tab, Tabs } from "../../../components/UI/Tabs";
 import Link from "next/link";
 import { useApi } from "../../../api/hooks";
 import { RoleNames, RoleValue } from "../../../utils/format/roles";
+import { Table, Tr } from "../../../components/UI/Table";
 
 const Page = () => {
   const { id, hero } = useRouter().query;

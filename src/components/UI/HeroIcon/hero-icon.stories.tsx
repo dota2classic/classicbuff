@@ -1,4 +1,4 @@
-import HeroIcon from "./index";
+import { HeroIcon } from "./index";
 import React from "react";
 
 export default {

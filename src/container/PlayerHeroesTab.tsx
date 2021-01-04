@@ -1,13 +1,13 @@
-import { Tab, Tabs } from "../components/Tabs";
+import { Tab, Tabs } from "../components/UI/Tabs";
 import SmartTable from "../components/SmartTable";
 import getHeroRating from "../utils/getHeroRating";
 import React from "react";
-import { Tr } from "../components/LadderRow";
 import Router from "next/router";
 import { steamIdToNum } from "../utils/numSteamId";
-import HeroIcon from "../components/UI/HeroIcon";
+import { HeroIcon } from "../components/UI/HeroIcon";
 import { useApi } from "../api/hooks";
 import { AdBanner } from "../components/ads/ads";
+import { Tr } from "../components/UI/Table";
 
 interface Props {
   steam_id: string;
@@ -42,13 +42,6 @@ const HeroSummaryRow = (it: HeroSummaryInfo) => (
 );
 
 export default (props: Props) => {
-  // const { data } = usePlayerStatsQuery({
-  //   ...BaseGQLConfig,
-  //   variables: {
-  //     steam_id: props.steam_id
-  //   }
-  // });
-
   const { data } = useApi().playerApi.usePlayerControllerHeroSummary(props.steam_id);
   const { data: playerData } = useApi().playerApi.usePlayerControllerGeneralSummary(props.steam_id);
   const overall = playerData;

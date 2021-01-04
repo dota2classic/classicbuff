@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../shared";
+import { colors } from "../../../shared";
 
 export const Tabs = styled.div`
   display: flex;
@@ -46,13 +46,6 @@ export const Tab = styled.div`
     }
   }
 
-  &.interesting {
-    color: rgba(44, 157, 246, 0.8);
-    &:hover {
-      color: rgba(44, 157, 246, 1);
-    }
-  }
-
   & * {
     color: inherit;
     text-decoration: none;
@@ -62,7 +55,7 @@ export const Tab = styled.div`
   &.active {
     ::before {
       content: "";
-      background: rgb(102, 187, 255);
+      background: ${colors.blueHighlight};
       height: 2px;
       position: absolute;
       bottom: 0;

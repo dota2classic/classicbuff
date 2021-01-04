@@ -1,10 +1,9 @@
-import { Table, Tr } from "../components/LadderRow";
 import PlayerMatch from "../components/PlayerMatch";
 import Pagination from "../components/Pagination";
 import React, { useState } from "react";
 import { useApi } from "../api/hooks";
 import { AdBanner } from "../components/ads/ads";
-import Layout from "../components/Layout";
+import { Table, Tr } from "../components/UI/Table";
 
 interface Props {
   steam_id: string;

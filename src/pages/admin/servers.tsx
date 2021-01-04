@@ -2,9 +2,9 @@ import { AdminLayout } from "../../components/admin/AdminLayout";
 import React from "react";
 import { useApi } from "../../api/hooks";
 import { GameServer } from "../../components/admin-new/GameServer";
-import { Table, Tr } from "components/LadderRow";
 import styled from "styled-components";
 import { LiveSession } from "../../components/admin-new/LiveSession";
+import { Tr, Table } from "../../components/UI/Table";
 
 const Section = styled.h3`
   color: white;

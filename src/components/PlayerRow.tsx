@@ -1,11 +1,11 @@
 import { steamIdToNum } from "../utils/numSteamId";
-import { Tr } from "./LadderRow";
 import Link from "next/link";
-import HeroIcon from "./UI/HeroIcon";
-import ItemIcon from "./UI/ItemIcon";
+import { HeroIcon } from "./UI/HeroIcon";
+import { ItemIcon } from "./UI/ItemIcon";
 import React from "react";
 import { ItemsContainer } from "../pages/match/[id]";
 import { PlayerInMatchDto } from "../api/back/models";
+import { Tr } from "./UI/Table";
 
 export default (p: PlayerInMatchDto) => {
   const items = p.items.map(it => it.substr(5));

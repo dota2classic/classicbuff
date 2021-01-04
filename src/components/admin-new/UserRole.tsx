@@ -1,8 +1,9 @@
 import { UserRoleSummaryDto } from "../../api/back/models";
 import React from "react";
-import { Role, Tr } from "../LadderRow";
 import styled from "styled-components";
 import { RoleNames } from "../../utils/format/roles";
+import { Tr } from "../UI/Table";
+import { Role } from "../LadderRow";
 
 const RolesPreview = styled.div`
   display: flex;

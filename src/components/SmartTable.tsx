@@ -1,6 +1,6 @@
 import React, { ReactElement, ReactNode, useEffect, useState } from "react";
-import { Table, Tr } from "./LadderRow";
 import { observer, useLocalStore } from "mobx-react";
+import { Table, Tr } from "./UI/Table";
 interface Props<T> {
   data: T[];
   renderRow: (t: T) => ReactElement;

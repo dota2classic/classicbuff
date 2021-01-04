@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React from "react";
-import ItemIcon from "../UI/ItemIcon";
+import { ItemIcon } from "../UI/ItemIcon";
 import formatGameMode from "../../utils/format/formatGameMode";
 import { LiveMatchDto, PlayerInfo } from "../../api/back/models";
 import { formatDuration } from "../../pages/match/[id]";
@@ -19,17 +19,6 @@ const Map = styled.div`
   position: relative;
   background-size: contain;
   background-image: url("https://cdn.discordapp.com/attachments/680541777454956552/680767904672907333/Minimap_pre6.png");
-`;
-
-const Hero = styled.img<{ x: number; y: number }>`
-  width: 30px;
-  height: 30px;
-  object-fit: cover;
-  position: absolute;
-  transition: 0.3s ease;
-  left: ${p => p.x * 100}%;
-  bottom: ${p => p.y * 100}%;
-  border-radius: 20%;
 `;
 
 const TeamInfo = styled.div`

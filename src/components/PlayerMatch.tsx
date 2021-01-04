@@ -1,13 +1,13 @@
 import Router from "next/router";
-import { Tr } from "./LadderRow";
 import React from "react";
 import { formatDuration, ItemsContainer } from "../pages/match/[id]";
-import ItemIcon from "./UI/ItemIcon";
+import { ItemIcon } from "./UI/ItemIcon";
 import { formatDateStr } from "../utils/format/formateDateStr";
 import cx from "classnames";
-import HeroIcon from "./UI/HeroIcon";
+import { HeroIcon } from "./UI/HeroIcon";
 import formatGameMode from "../utils/format/formatGameMode";
 import { MatchDto } from "../api/back/models";
+import { Tr } from "./UI/Table";
 
 export interface PlayerMatchInfo {
   player: string;

@@ -1,9 +1,10 @@
 import React from "react";
-import LadderRow, { LadderHeader, Table } from "../components/LadderRow";
+import LadderRow, { LadderHeader } from "../components/LadderRow";
 import Layout from "../components/Layout";
 import styled from "styled-components";
 import Head from "next/head";
 import { useApi } from "../api/hooks";
+import { Table } from "../components/UI/Table";
 
 const Thin = styled.div`
   max-width: 800px;

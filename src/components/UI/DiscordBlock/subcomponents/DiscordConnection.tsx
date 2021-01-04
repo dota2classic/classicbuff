@@ -8,6 +8,10 @@ const DiscordContainer = styled.div`
   align-items: center;
   padding: 10px;
   margin-bottom: 10px;
+  border-radius: 4px;
+  height: fit-content;
+  flex: 1;
+  border: 1px solid ${colors.transparentTint};
 `;
 
 const DiscordAvatar = styled.img`
