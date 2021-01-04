@@ -6,7 +6,8 @@ export const Hint = styled.a`
   text-decoration: none;
   color: white;
 
-  & .link {
+  & .link,
+  & a {
     color: #9a5cd7;
     text-decoration: none;
   }

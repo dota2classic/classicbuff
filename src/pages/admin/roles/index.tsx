@@ -6,7 +6,7 @@ import { UserRole } from "../../../components/admin-new/UserRole";
 import { UserRoleSummaryDto } from "../../../api/back/models";
 import { ManageRolesModal } from "../../../components/admin-new/ManageRolesModal";
 import { SelectUserModal } from "../../../components/admin-new/SelectUserModal";
-import Button from "../../../components/Button";
+import Button from "../../../components/UI/Button";
 
 export default () => {
   const { data } = useApi().adminApi.useAdminUserControllerListRoles();

@@ -5,7 +5,7 @@ import React from "react";
 import { Tr } from "../components/LadderRow";
 import Router from "next/router";
 import { steamIdToNum } from "../utils/numSteamId";
-import HeroIcon from "../components/HeroIcon";
+import HeroIcon from "../components/UI/HeroIcon";
 import { useApi } from "../api/hooks";
 import { AdBanner } from "../components/ads/ads";
 

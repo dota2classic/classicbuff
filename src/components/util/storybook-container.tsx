@@ -6,4 +6,10 @@ export const StorybookContainer = styled.div`
   width: 100vw;
   padding: 20px;
   background: ${colors.darkBg};
+
+  display: flex;
+  flex-direction: column;
+  & > * {
+    margin-top: 20px;
+  }
 `;

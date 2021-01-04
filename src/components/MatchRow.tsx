@@ -3,7 +3,7 @@ import Router from "next/router";
 import { formatDateStr } from "../utils/format/formateDateStr";
 import formatGameMode from "../utils/format/formatGameMode";
 import { formatDuration } from "../pages/match/[id]";
-import HeroIcon from "./HeroIcon";
+import HeroIcon from "./UI/HeroIcon";
 import { Tr } from "./LadderRow";
 import React from "react";
 import { Heroes, MatchIdCol } from "../pages/history";

@@ -2,7 +2,7 @@ import { useApi } from "../../api/hooks";
 import styled from "styled-components";
 import React, { useState } from "react";
 import { Table, Tr } from "../LadderRow";
-import Button from "components/Button";
+import Button from "components/UI/Button";
 import { RoleSubscriptionEntryDto, RoleSubscriptionEntryDtoRoleEnum } from "../../api/back/models";
 import { RoleNames } from "../../utils/format/roles";
 import DatePicker from "react-datepicker";

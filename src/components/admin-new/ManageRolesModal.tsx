@@ -5,7 +5,7 @@ import useOutsideClick, { useEscapePress } from "../../utils/useOutsideClick";
 import { Table, Tr } from "../LadderRow";
 import { RoleNames } from "../../utils/format/roles";
 import { formatDateFullStr, numericDate } from "../../utils/format/formateDateStr";
-import Button from "../Button";
+import Button from "../UI/Button";
 import Input from "../Input";
 import InputMask from "react-input-mask";
 import { appApi } from "../../api/hooks";

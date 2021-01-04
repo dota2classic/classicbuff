@@ -1,8 +1,9 @@
-import { appApi, useApi } from "../../api/hooks";
+import { appApi, useApi } from "../../../api/hooks";
 import { LinkButton } from "../Button";
 import React from "react";
 import styled from "styled-components";
 import { Hint } from "../Hint";
+import { DiscordConnection } from "./subcomponents/DiscordConnection";
 
 const Connections = styled.div`
   display: flex;
@@ -54,10 +55,7 @@ export const DiscordBlock = () => {
     );
   return (
     <Connections>
-      <DiscordContainer>
-        <DiscordAvatar src={data.discord.avatar} />
-        <DiscordName>{data.discord.name}</DiscordName>
-      </DiscordContainer>
+      <DiscordConnection image={data.discord.avatar} name={data.discord.name} />
       <LinkButton href={`${appApi.apiParams.basePath}/v1/auth/discord`}>Привязать другой аккаунт</LinkButton>
     </Connections>
   );

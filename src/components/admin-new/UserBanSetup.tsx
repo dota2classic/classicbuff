@@ -2,7 +2,7 @@ import { useApi } from "../../api/hooks";
 import { Table, Tr } from "../LadderRow";
 import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
-import Button from "../Button";
+import Button from "../UI/Button";
 import Input from "../Input";
 
 interface Props {

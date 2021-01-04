@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../../../shared";
 
 const Button = styled.button`
   padding: 12px;
@@ -9,11 +10,13 @@ const Button = styled.button`
   border-radius: 4px;
   transition: 0.3s ease;
   font-family: "Trajan Pro 3", sans-serif;
-  color: white;
+  color: ${colors.primaryText};
 
   width: fit-content;
+
   &:disabled {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.1);
+    color: ${colors.primaryTextDark};
     cursor: not-allowed;
   }
 
@@ -23,7 +26,9 @@ const Button = styled.button`
   }
 
   cursor: pointer;
+
   &:hover:not(:disabled) {
+    color: ${colors.primaryTextHighlight};
     background: rgba(0, 0, 0, 0.8);
   }
 
@@ -34,6 +39,7 @@ const Button = styled.button`
 `;
 
 export const LinkButton = styled.a`
+  width: fit-content;
   padding: 12px;
   border: none;
   text-decoration: none;
@@ -43,10 +49,11 @@ export const LinkButton = styled.a`
   border-radius: 4px;
   transition: 0.3s ease;
   font-family: "Trajan Pro 3", sans-serif;
-  color: white;
+  color: ${colors.primaryText};
 
   cursor: pointer;
   &:hover {
+    color: ${colors.primaryTextHighlight};
     background: rgba(0, 0, 0, 0.8);
   }
 `;

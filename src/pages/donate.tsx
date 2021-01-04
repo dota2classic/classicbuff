@@ -106,7 +106,7 @@ export default () => {
       <Price>81₽ / месяц</Price>
       <List>
         <li>
-          Возможность менять никнейм в нашем <a href="https://discord.gg/VU5wjA8">discord сервере</a>
+          Возможность менять никнейм на нашем сервере в <a href="https://discord.gg/VU5wjA8">Discord</a>
         </li>
         <li className="new">Возможность смотреть игры</li>
         <li className="new">Возможность искать рейтинговые игры в группе</li>
@@ -126,7 +126,7 @@ export default () => {
           </Role>
         </li>
         <li>
-          Дополнительные привилегии на нашем <a href="https://discord.gg/VU5wjA8">discord сервере</a>
+          Дополнительные привилегии на нашем сервере в <a href="https://discord.gg/VU5wjA8">Discord</a>
         </li>
         <li>Участники с этой ролью попадают в список людей, оказавших значительную поддержку серверу.</li>
         <li className="new">Возможность перекалибровки</li>

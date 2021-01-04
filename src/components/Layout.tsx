@@ -162,8 +162,8 @@ const DefaultHeader = () => {
               <a>Играть</a>
             </Link>
           </Tab>
-          <Tab className={cx(asPath === "/support" && "active")}>
-            <Link passHref href={"/support"}>
+          <Tab className={cx(asPath === "/donate" && "active")}>
+            <Link passHref href={"/donate"}>
               <a>Поддержка</a>
             </Link>
           </Tab>

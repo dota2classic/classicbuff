@@ -1,6 +1,6 @@
 import React from "react";
 import { Tr } from "./LadderRow";
-import HeroIcon from "./HeroIcon";
+import HeroIcon from "./UI/HeroIcon";
 import cx from "classnames";
 import Router from "next/router";
 import heroName from "../utils/heroName";

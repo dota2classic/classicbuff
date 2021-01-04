@@ -5,7 +5,7 @@ import AuthService from "../service/AuthService";
 import PlayerHistoryTab from "./PlayerHistoryTab";
 import PlayerHeroesTab from "./PlayerHeroesTab";
 import cx from "classnames";
-import { DiscordBlock } from "../components/DiscordBlock";
+import { DiscordBlock } from "../components/UI/DiscordBlock";
 import { useTab } from "../utils/useTab";
 
 interface Props {

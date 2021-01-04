@@ -1,7 +1,7 @@
-import styled from "styled-components";
 import React from "react";
-import { DotaIcon } from "./HeroIcon";
 import cx from "classnames";
+import { DotaIcon } from "../HeroIcon";
+
 interface Props {
   item: string;
   small?: boolean;

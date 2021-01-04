@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import React from "react";
-import ItemIcon from "../ItemIcon";
+import ItemIcon from "../UI/ItemIcon";
 import formatGameMode from "../../utils/format/formatGameMode";
 import { LiveMatchDto, PlayerInfo } from "../../api/back/models";
 import { formatDuration } from "../../pages/match/[id]";
-import { LinkButton } from "../Button";
+import { LinkButton } from "../UI/Button";
 import Link from "next/link";
 import { steamIdToNum } from "../../utils/numSteamId";
 import { AdBanner } from "../ads/ads";

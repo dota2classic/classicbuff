@@ -3,7 +3,7 @@ import React from "react";
 import { Tr } from "../LadderRow";
 import { appApi } from "../../api/hooks";
 import { mutate } from "swr";
-import Button from "../Button";
+import Button from "../UI/Button";
 
 export const GameServer = (it: GameServerDto) => {
   return (

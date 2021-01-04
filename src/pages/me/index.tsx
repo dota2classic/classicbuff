@@ -8,7 +8,7 @@ import { observer } from "mobx-react";
 import PlayerPage from "../../container/PlayerPage";
 import Head from "next/head";
 import { appApi, useApi } from "../../api/hooks";
-import { Hint } from "../../components/Hint";
+import { Hint } from "../../components/UI/Hint";
 
 const Page = observer(() => {
   useWillMount(() => {
