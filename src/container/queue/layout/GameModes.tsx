@@ -56,6 +56,7 @@ const MOption = styled.div`
 `;
 interface MProps {
   mode: MatchmakingMode;
+  unrankedGamesLeft?: number;
 }
 
 const SteamLogo = styled.img`
@@ -97,21 +98,32 @@ const Username = styled.div`
 
 const MatchmakingOption = observer((props: MProps) => {
   const { game } = useStores();
+
+  const lockedCuzNewbie =
+    props.unrankedGamesLeft !== undefined && props.unrankedGamesLeft > 0 && props.mode === MatchmakingMode.RANKED;
+
+  console.log(lockedCuzNewbie);
   return (
     <MOption
       className={cx(
         game.searchingMode === props.mode && "active",
         game.activeMode === props.mode && "current",
-        game.searchingMode !== undefined && game.searchingMode !== props.mode && "disabled"
+        game.searchingMode !== undefined && game.searchingMode !== props.mode && "disabled",
+        lockedCuzNewbie && "disabled"
       )}
       onClick={() => {
+        if (lockedCuzNewbie) return;
         if (!(game.searchingMode !== undefined && game.searchingMode !== props.mode)) {
           game.activeMode = props.mode;
         }
       }}
     >
       <span>{formatGameMode(props.mode)}</span>
-      <span className={"info"}>{game.inQueue[props.mode]} в поиске</span>
+      {props.unrankedGamesLeft && props.unrankedGamesLeft > 0 ? (
+        <span className={"info"}>{props.unrankedGamesLeft} игр до разблокировки рейтинга</span>
+      ) : (
+        <span className={"info"}>{game.inQueue[props.mode]} в поиске</span>
+      )}
     </MOption>
   );
 });
@@ -126,7 +138,7 @@ export const GameModes = observer(() => {
       </UserInfo>
 
       <MOption className={"header"}>Поиск игры</MOption>
-      <MatchmakingOption mode={MatchmakingMode.RANKED} />
+      <MatchmakingOption unrankedGamesLeft={auth.me?.unrankedGamesLeft} mode={MatchmakingMode.RANKED} />
       <MatchmakingOption mode={MatchmakingMode.UNRANKED} />
       <MatchmakingOption mode={MatchmakingMode.SOLOMID} />
       <MatchmakingOption mode={MatchmakingMode.BOTS} />

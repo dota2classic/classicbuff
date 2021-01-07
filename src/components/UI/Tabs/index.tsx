@@ -7,10 +7,11 @@ export const Tabs = styled.div`
   margin: 10px;
 `;
 
-export const Tab = styled.div`
+export const Tab = styled.a`
   position: relative;
   font-size: 16px;
   padding: 12px;
+  text-decoration: none;
   cursor: pointer;
 
   display: flex;

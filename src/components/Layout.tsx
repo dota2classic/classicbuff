@@ -147,36 +147,26 @@ const DefaultHeader = () => {
     <>
       <HeaderWrapper>
         <Tabs>
-          <Tab className={cx(asPath === "/" && "active")}>
-            <Link passHref href={"/"}>
+          <Link passHref href={"/"}>
+            <Tab className={cx(asPath === "/" && "active")}>
               <span style={{ textTransform: "uppercase" }}>dota2classic</span>
-            </Link>
-          </Tab>
-          <Tab className={cx(asPath === "/download" && "active")}>
-            <Link passHref href={"/download"}>
-              <a>Скачать</a>
-            </Link>
-          </Tab>
-          <Tab className={cx(asPath === "/queue" && "active")}>
-            <Link passHref href={"/queue"}>
-              <a>Играть</a>
-            </Link>
-          </Tab>
-          <Tab className={cx(asPath === "/donate" && "active")}>
-            <Link passHref href={"/donate"}>
-              <a>Пожертвовать</a>
-            </Link>
-          </Tab>
-          <Tab className={cx(asPath === "/leaderboard" && "active")}>
-            <Link passHref href={"/leaderboard"}>
-              <a>Таблица лидеров</a>
-            </Link>
-          </Tab>
-          <Tab className={cx(asPath.startsWith("/history") && "active")}>
-            <Link passHref href={"/history"}>
-              <a>Матчи</a>
-            </Link>
-          </Tab>
+            </Tab>
+          </Link>
+          <Link passHref href={"/download"}>
+            <Tab className={cx(asPath === "/download" && "active")}>Скачать</Tab>
+          </Link>
+          <Link passHref href={"/queue"}>
+            <Tab className={cx(asPath === "/queue" && "active")}>Играть</Tab>
+          </Link>
+          <Link passHref href={"/donate"}>
+            <Tab className={cx(asPath === "/donate" && "active")}>Пожертвовать</Tab>
+          </Link>
+          <Link passHref href={"/leaderboard"}>
+            <Tab className={cx(asPath === "/leaderboard" && "active")}>Таблица лидеров</Tab>
+          </Link>
+          <Link passHref href={"/history"}>
+            <Tab className={cx(asPath.startsWith("/history") && "active")}>Матчи</Tab>
+          </Link>
           {/*<Tab className={cx(asPath === "/heroes" && "active")}>*/}
           {/*  <Link passHref href={"/heroes"}>*/}
           {/*    <a>Таблица лидеров</a>*/}
@@ -184,11 +174,9 @@ const DefaultHeader = () => {
           {/*</Tab>*/}
 
           {AuthService.authorized ? (
-            <Tab className={cx(asPath === "/me" && "active")}>
-              <Link passHref href={"/me"}>
-                <a>Профиль</a>
-              </Link>
-            </Tab>
+            <Link passHref href={"/me"}>
+              <Tab className={cx(asPath === "/me" && "active")}>Профиль</Tab>
+            </Link>
           ) : (
             <Tab className={cx(asPath === "/me" && "active")}>
               <a href={`${appApi.apiParams.basePath}/v1/auth/steam`}>Войти через steam</a>

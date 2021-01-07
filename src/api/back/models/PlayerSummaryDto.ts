@@ -55,6 +55,12 @@ export interface PlayerSummaryDto {
    * @memberof PlayerSummaryDto
    */
   rank: number;
+  /**
+   *
+   * @type {number}
+   * @memberof PlayerSummaryDto
+   */
+  unrankedGamesLeft: number;
 }
 
 export function PlayerSummaryDtoFromJSON(json: any): PlayerSummaryDto {
@@ -71,7 +77,8 @@ export function PlayerSummaryDtoFromJSONTyped(json: any, ignoreDiscriminator: bo
     id: json["id"],
     mmr: json["mmr"],
     roles: json["roles"],
-    rank: json["rank"]
+    rank: json["rank"],
+    unrankedGamesLeft: json["unrankedGamesLeft"]
   };
 }
 
@@ -88,7 +95,8 @@ export function PlayerSummaryDtoToJSON(value?: PlayerSummaryDto | null): any {
     id: value.id,
     mmr: value.mmr,
     roles: value.roles,
-    rank: value.rank
+    rank: value.rank,
+    unrankedGamesLeft: value.unrankedGamesLeft
   };
 }
 
