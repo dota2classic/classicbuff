@@ -6,6 +6,7 @@ import React from "react";
 import { ItemsContainer } from "../pages/match/[id]";
 import { PlayerInMatchDto } from "../api/back/models";
 import { Tr } from "./UI/Table";
+import { isBot } from "../utils/isBot";
 
 export default (p: PlayerInMatchDto) => {
   const items = p.items.map(it => it.substr(5));
@@ -21,7 +22,13 @@ export default (p: PlayerInMatchDto) => {
         </Link>
       </td>
       <td>
-        <Link href={playerUrl}>{(p.name.length && p.name) || "(Пустой ник)"}</Link>
+        {isBot(p.steamId) ? (
+          <span>Бот</span>
+        ) : (
+          <Link passHref href={playerUrl}>
+            <a>{(p.name.length && p.name) || "(Пустой ник)"}</a>
+          </Link>
+        )}
       </td>
       <td className={"omit"}>
         <ItemsContainer>

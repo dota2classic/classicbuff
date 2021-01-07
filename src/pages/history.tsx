@@ -78,19 +78,25 @@ const Page = observer(() => {
           onClick={() => setTabAction(MatchmakingMode.RANKED)}
           className={(mode === MatchmakingMode.RANKED && "active") || undefined}
         >
-          Рейтинг
+          {formatGameMode(MatchmakingMode.RANKED)}
         </Tab>
         <Tab
           onClick={() => setTabAction(MatchmakingMode.UNRANKED)}
           className={(mode === MatchmakingMode.UNRANKED && "active") || undefined}
         >
-          Обычные
+          {formatGameMode(MatchmakingMode.UNRANKED)}
         </Tab>
         <Tab
           onClick={() => setTabAction(MatchmakingMode.SOLOMID)}
           className={(mode === MatchmakingMode.SOLOMID && "active") || undefined}
         >
-          1x1
+          {formatGameMode(MatchmakingMode.SOLOMID)}
+        </Tab>
+        <Tab
+          onClick={() => setTabAction(MatchmakingMode.BOTS)}
+          className={(mode === MatchmakingMode.BOTS && "active") || undefined}
+        >
+          {formatGameMode(MatchmakingMode.BOTS)}
         </Tab>
         <Tab onClick={() => setTabAction(undefined)} className={(mode === undefined && "active") || undefined}>
           Все
