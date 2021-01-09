@@ -139,9 +139,9 @@ export const GameModes = observer(() => {
 
       <MOption className={"header"}>Поиск игры</MOption>
       <MatchmakingOption unrankedGamesLeft={auth.me?.unrankedGamesLeft} mode={MatchmakingMode.RANKED} />
-      <MatchmakingOption mode={MatchmakingMode.UNRANKED} />
-      <MatchmakingOption mode={MatchmakingMode.SOLOMID} />
+      {/*<MatchmakingOption mode={MatchmakingMode.UNRANKED} />*/}
       <MatchmakingOption mode={MatchmakingMode.BOTS} />
+      <MatchmakingOption mode={MatchmakingMode.SOLOMID} />
       <MatchmakingOption mode={MatchmakingMode.DIRETIDE} />
       {/*<MatchmakingOption mode={MatchmakingMode.GREEVILING} />*/}
     </Options>

@@ -115,10 +115,10 @@ const TeamInfoBlock = ({ heroes, team }: Props) => {
           <PlayerHeroRow>
             <img src={`https://dota2classic.ru/api/static/heroes/${hero.hero}.jpg.webp`} alt="" />
             {hero.bot ? (
-              <span className="player-name">{hero.bot ? "Бот" : hero.name}</span>
+              <span className="player-name">{"Бот"}</span>
             ) : (
               <Link href={`/player/${steamIdToNum(hero.steamId)}`}>
-                <a className="player-name">{hero.bot ? "Бот" : hero.name}</a>
+                <a className="player-name">{hero.name}</a>
               </Link>
             )}
             <KDAItems>

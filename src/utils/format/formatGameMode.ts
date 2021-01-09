@@ -21,6 +21,6 @@ export default (mode: any) => {
   } else if (mode === MatchmakingMode.ABILITY_DRAFT) {
     return "Ability Draft";
   } else if (mode === MatchmakingMode.BOTS) {
-    return "Боты";
+    return "Обычная(боты)";
   }
 };

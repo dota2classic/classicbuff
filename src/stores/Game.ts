@@ -100,6 +100,13 @@ export class Game {
     }
   };
 
+  // early event, server is alive, but match results are ready. no need to show "join game" now
+  private matchResults = (data: { url: string }) => {
+    if (this.serverURL === data.url) {
+      this.serverURL = undefined;
+    }
+  };
+
   @action
   private gameFound = ({ mode, total, roomID, accepted }: GameFound) => {
     this.pendingGame = {
@@ -229,6 +236,7 @@ export class Game {
     this.socket.on(Messages.QUEUE_STATE, this.queueState);
     this.socket.on(Messages.MATCH_FINISHED, this.matchFinished);
     this.socket.on(Messages.MATCH_STATE, this.matchState);
+    this.socket.on(Messages.MATCH_RESULTS_READY, this.matchResults);
     this.socket.on(Messages.PARTY_INVITE_RECEIVED, this.partyInviteReceived);
     this.socket.on(Messages.PARTY_INVITE_EXPIRED, this.partyInviteExpired);
     this.socket.on(Messages.PARTY_UPDATED, this.partyUpdated);

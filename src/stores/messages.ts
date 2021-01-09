@@ -1,4 +1,5 @@
 import { MatchmakingMode } from "../utils/format/formatGameMode";
+import { MatchInfoDto } from "../api/back/models";
 
 export class RoomState {
   constructor(
@@ -28,6 +29,7 @@ export enum Messages {
   ROOM_NOT_READY = "ROOM_NOT_READY",
   QUEUE_STATE = "QUEUE_STATE",
   MATCH_FINISHED = "MATCH_FINISHED",
+  MATCH_RESULTS_READY = "MATCH_RESULTS_READY",
   MATCH_STATE = "MATCH_STATE",
   BROWSER_AUTH = "BROWSER_AUTH",
   INVITE_TO_PARTY = "INVITE_TO_PARTY",
@@ -68,6 +70,7 @@ export interface ReadyCheck {
 
 export interface LauncherServerStarted {
   url: string;
+  info: MatchInfoDto;
 }
 
 export interface PartyInvite {
