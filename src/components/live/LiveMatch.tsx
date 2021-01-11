@@ -172,7 +172,7 @@ export const LiveMatch = (liveMatch: LiveMatchDto) => {
 
   const host = liveMatch.server.split(":")[0];
   const port = parseInt(liveMatch.server.split(":")[1]);
-  const watchUrl = `${host}:${port + 5}`;
+  const watchUrl = `steam://connect/${host}:${port + 5}`;
 
   return (
     <MatchInfo>
