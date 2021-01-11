@@ -9,6 +9,7 @@ import { appApi } from "../api/hooks";
 import useWillMount from "../utils/useWillMount";
 import { observer } from "mobx-react";
 import { colors } from "../shared";
+import { steamIdToNum } from "../utils/numSteamId";
 
 const LayoutContainer = styled.div`
   min-height: 100vh;
@@ -174,8 +175,10 @@ const DefaultHeader = () => {
           {/*</Tab>*/}
 
           {AuthService.authorized ? (
-            <Link passHref href={"/me"}>
-              <Tab className={cx(asPath === "/me" && "active")}>Профиль</Tab>
+            <Link passHref href={`/player/${steamIdToNum(AuthService.steamID || "")}`}>
+              <Tab className={cx(asPath === `/player/${steamIdToNum(AuthService.steamID || "")}` && "active")}>
+                Профиль
+              </Tab>
             </Link>
           ) : (
             <Tab className={cx(asPath === "/me" && "active")}>
