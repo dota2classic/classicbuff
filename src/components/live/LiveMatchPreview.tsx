@@ -9,8 +9,12 @@ import { MinimapHero } from "./MinimapHero";
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
   text-decoration: none;
+  width: 100%;
+
+  & + & {
+    margin-top: 5px;
+  }
 `;
 
 const Map = styled.a`
@@ -23,22 +27,11 @@ const Map = styled.a`
   background-size: contain;
   background-image: url("https://cdn.discordapp.com/attachments/680541777454956552/680767904672907333/Minimap_pre6.png");
 `;
-
-const Hero = styled.img<{ x: number; y: number }>`
-  width: 15px;
-  height: 15px;
-  object-fit: cover;
-  position: absolute;
-  transition: 0.3s ease;
-  left: ${p => p.x * 100}%;
-  bottom: ${p => p.y * 100}%;
-  border-radius: 20%;
-`;
-
 const GameInfo = styled.div`
   display: flex;
   flex-direction: column;
   color: #c2c2c2;
+  flex: 1;
 `;
 
 const InfoRow = styled.div`

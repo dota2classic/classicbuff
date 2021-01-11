@@ -26,7 +26,7 @@ const CancelFindGameButton = styled.div`
 
   border: 1px solid grey;
 
-  margin-right: 20px;
+  margin-right: 100px;
   cursor: pointer;
 
   transition: 0.3s ease;

@@ -81,23 +81,29 @@ const Page = observer(() => {
           {formatGameMode(MatchmakingMode.RANKED)}
         </Tab>
         <Tab
-          onClick={() => setTabAction(MatchmakingMode.UNRANKED)}
-          className={(mode === MatchmakingMode.UNRANKED && "active") || undefined}
+          onClick={() => setTabAction(MatchmakingMode.BOTS)}
+          className={(mode === MatchmakingMode.BOTS && "active") || undefined}
         >
-          {formatGameMode(MatchmakingMode.UNRANKED)}
+          {formatGameMode(MatchmakingMode.BOTS)}
         </Tab>
+        {/*<Tab*/}
+        {/*  onClick={() => setTabAction(MatchmakingMode.UNRANKED)}*/}
+        {/*  className={(mode === MatchmakingMode.UNRANKED && "active") || undefined}*/}
+        {/*>*/}
+        {/*  {formatGameMode(MatchmakingMode.UNRANKED)}*/}
+        {/*</Tab>*/}
         <Tab
           onClick={() => setTabAction(MatchmakingMode.SOLOMID)}
           className={(mode === MatchmakingMode.SOLOMID && "active") || undefined}
         >
           {formatGameMode(MatchmakingMode.SOLOMID)}
         </Tab>
-        <Tab
-          onClick={() => setTabAction(MatchmakingMode.BOTS)}
-          className={(mode === MatchmakingMode.BOTS && "active") || undefined}
-        >
-          {formatGameMode(MatchmakingMode.BOTS)}
-        </Tab>
+        {/*<Tab*/}
+        {/*  onClick={() => setTabAction(MatchmakingMode.BOTS)}*/}
+        {/*  className={(mode === MatchmakingMode.BOTS && "active") || undefined}*/}
+        {/*>*/}
+        {/*  {formatGameMode(MatchmakingMode.BOTS)}*/}
+        {/*</Tab>*/}
         <Tab onClick={() => setTabAction(undefined)} className={(mode === undefined && "active") || undefined}>
           Все
         </Tab>
