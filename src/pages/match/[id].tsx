@@ -110,10 +110,11 @@ const sumKills = (players: PlayerInMatchDto[]) => {
 const Page = () => {
   const { id } = useRouter().query;
   const mid = Number(id);
-  const { data: match } = useApi().matchApi.useMatchControllerMatch(mid, {
+  const { data: match, error } = useApi().matchApi.useMatchControllerMatch(mid, {
     refreshInterval: 5000
   });
 
+  console.log(error, "MATCH ERROR");
   const liveMatch = useEventSource<LiveMatchDto>(
     useApi().liveApi.liveMatchControllerLiveMatchContext({ id: mid }),
     LiveMatchDtoFromJSON.bind(null)
@@ -169,6 +170,10 @@ const Page = () => {
         <LiveMatch {...liveMatch} />
       </Layout>
     );
+  }
+
+  if ((error as any)?.status === 404) {
+    return <Layout title={<h3>Матч не найден</h3>}></Layout>;
   }
   return null;
 };
