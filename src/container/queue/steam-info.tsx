@@ -118,9 +118,6 @@ export default observer(() => {
 
   const { data: party } = useApi().playerApi.usePlayerControllerMyParty();
 
-  // const hasOld = AuthService.hasOld;
-  const hasOld = false;
-
   const [inviteOpen, setInviteOpen] = useState(false);
   const [oldRequiredOpen, setOldRequiredOpen] = useState(false);
   return (
@@ -137,7 +134,7 @@ export default observer(() => {
         <PartyItem
           className={cx("invite")}
           onClick={() => {
-            if (hasOld) {
+            if (AuthService.hasOld) {
               setInviteOpen(true);
             } else {
               setOldRequiredOpen(true);
