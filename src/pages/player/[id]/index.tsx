@@ -7,7 +7,7 @@ import PlayerPage from "../../../container/PlayerPage";
 import { useApi } from "../../../api/hooks";
 import { RoleNames, RoleValue } from "../../../utils/format/roles";
 import { Role } from "../../../components/LadderRow";
-import AuthService from "../../../service/AuthService";
+import AuthService from "../../../service/AuthServiceService";
 import { LinkButton } from "../../../components/UI/Button";
 import Link from "next/link";
 import { observer } from "mobx-react";

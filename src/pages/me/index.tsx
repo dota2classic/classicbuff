@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Router from "next/router";
 import Layout from "../../components/Layout";
 import useWillMount from "../../utils/useWillMount";
-import AuthService from "../../service/AuthService";
+import AuthService from "../../service/AuthServiceService";
 import { observer } from "mobx-react";
 import PlayerPage from "../../container/PlayerPage";
 import Head from "next/head";

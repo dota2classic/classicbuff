@@ -1,7 +1,7 @@
 import React from "react";
 import App from "next/app";
 import { Provider } from "mobx-react";
-import AuthService from "../service/AuthService";
+import AuthService from "../service/AuthServiceService";
 import { TokenSniffer } from "../utils/sniffToken";
 import { ModalProvider } from "react-modal-hook";
 import { local } from "../config";

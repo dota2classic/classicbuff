@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React, { PropsWithChildren, ReactNode } from "react";
 import Link from "next/link";
-import AuthService from "../service/AuthService";
+import AuthService from "../service/AuthServiceService";
 import Router, { useRouter } from "next/router";
 import { Tab, Tabs } from "./UI/Tabs";
 import cx from "classnames";
@@ -173,6 +173,12 @@ const DefaultHeader = () => {
           {/*    <a>Таблица лидеров</a>*/}
           {/*  </Link>*/}
           {/*</Tab>*/}
+
+          {AuthService.isAdmin && (
+            <Link passHref href={"/admin/servers"}>
+              <Tab className={cx(asPath.startsWith("/admin/servers") && "active")}>Админка</Tab>
+            </Link>
+          )}
 
           {AuthService.authorized ? (
             <Link passHref href={`/player/${steamIdToNum(AuthService.steamID || "")}`}>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Tab, Tabs } from "../components/UI/Tabs";
 import Router, { useRouter } from "next/router";
-import AuthService from "../service/AuthService";
+import AuthService from "../service/AuthServiceService";
 import PlayerHistoryTab from "./PlayerHistoryTab";
 import PlayerHeroesTab from "./PlayerHeroesTab";
 import cx from "classnames";

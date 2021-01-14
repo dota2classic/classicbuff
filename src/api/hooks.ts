@@ -1,7 +1,7 @@
 import { AdminApi, LiveApi, MatchApi, PlayerApi } from "./back/apis";
 import { Configuration, ConfigurationParameters } from "./back";
 import { local } from "../config";
-import AuthService from "../service/AuthService";
+import AuthService from "../service/AuthServiceService";
 
 export class AppApi {
   apiParams: ConfigurationParameters = {

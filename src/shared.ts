@@ -26,7 +26,7 @@ export const colors = {
   },
 
   roles: {
-    old: "#800080",
+    old: "#8d178d",
     human: "#cda71b",
     moderator: "#335ae7",
     admin: "#c10303"

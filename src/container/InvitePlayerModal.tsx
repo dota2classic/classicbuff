@@ -62,13 +62,6 @@ const Title = styled.div`
   color: white;
   margin-top: 20px;
 `;
-
-const InviteList = styled.div`
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
-  height: fit-content;
-`;
 const PlayerList = styled.div`
   overflow: auto;
   display: flex;

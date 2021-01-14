@@ -1,10 +1,12 @@
 import { LiveMatchDto } from "../../api/back/models";
 import styled from "styled-components";
-import React from "react";
+import React, { useState } from "react";
 import formatGameMode from "../../utils/format/formatGameMode";
 import { formatDuration } from "../../pages/match/[id]";
 import Link from "next/link";
 import { MinimapHero } from "./MinimapHero";
+import { OldRequiredModal } from "../modal/OldRequiredModal";
+import AuthService from "../../service/AuthServiceService";
 
 const Container = styled.div`
   display: flex;
@@ -58,12 +60,15 @@ const InfoRow = styled.div`
 export const LiveMatchPreview = (match: LiveMatchDto) => {
   const rScore = match.heroes.filter(t => t.team === 2).reduce((a, b) => a + b.kills, 0);
   const dScore = match.heroes.filter(t => t.team === 3).reduce((a, b) => a + b.kills, 0);
+  const [oldRequiredOpen, setOldRequiredOpen] = useState(false);
 
   const host = match.server.split(":")[0];
   const port = parseInt(match.server.split(":")[1]);
-  const watchUrl = `${host}:${port + 5}`;
+  const watchUrl = `steam://connect/${host}:${port + 5}`;
+
   return (
     <Container>
+      <OldRequiredModal open={oldRequiredOpen} close={() => setOldRequiredOpen(false)} />
       <Link href={`/match/[id]`} as={`/match/${match.matchId}`} passHref>
         <Map>
           {match.heroes.map(hero => (
@@ -90,9 +95,13 @@ export const LiveMatchPreview = (match: LiveMatchDto) => {
         </InfoRow>
 
         <InfoRow>
-          <a target={"__blank"} href={watchUrl}>
-            Смотреть игру в клиенте
-          </a>
+          {AuthService.hasOld ? (
+            <a target={"__blank"} href={watchUrl}>
+              Смотреть игру в клиенте
+            </a>
+          ) : (
+            <span onClick={() => setOldRequiredOpen(true)}>Смотреть игру в клиенте</span>
+          )}
         </InfoRow>
       </GameInfo>
     </Container>

@@ -42,9 +42,9 @@ export const AdminLayout = (p: PropsWithChildren<{}>) => {
         <Link passHref href={"/"}>
           <SidebarItem>Главная</SidebarItem>
         </Link>
-        <Link passHref href={"/admin/"}>
-          <SidebarItem>Очереди</SidebarItem>
-        </Link>
+        {/*<Link passHref href={"/admin/"}>*/}
+        {/*  <SidebarItem>Очереди</SidebarItem>*/}
+        {/*</Link>*/}
         <Link passHref href={"/admin/servers"}>
           <SidebarItem>Сервера</SidebarItem>
         </Link>

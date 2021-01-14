@@ -1,9 +1,9 @@
 import { action, computed, observable, toJS } from "mobx";
 import cookies from "browser-cookies";
 import { appApi } from "../api/hooks";
-import { PlayerSummaryDto } from "../api/back/models";
+import { PlayerSummaryDto, RoleSubscriptionEntryDtoRoleEnum } from "../api/back/models";
 
-export class AuthService {
+export class AuthServiceService {
   @observable
   public token?: string;
 
@@ -27,6 +27,23 @@ export class AuthService {
     if (!this.token) return undefined;
 
     return this.parseJwt(this.token)?.sub;
+  }
+
+  @computed
+  public get roles(): RoleSubscriptionEntryDtoRoleEnum[] | undefined {
+    if (!this.token) return undefined;
+
+    return this.parseJwt(this.token)?.roles;
+  }
+
+  @computed
+  public get hasOld(): boolean {
+    return this.roles?.includes(RoleSubscriptionEntryDtoRoleEnum.OLD) || this.hasHuman || false;
+  }
+
+  @computed
+  public get hasHuman(): boolean {
+    return this.roles?.includes(RoleSubscriptionEntryDtoRoleEnum.HUMAN) || false;
   }
 
   @computed
@@ -56,7 +73,7 @@ export class AuthService {
   public constructor() {
     if (typeof window !== "undefined") {
       const t = localStorage.getItem("token");
-      const cookieT = AuthService.cookieToken();
+      const cookieT = AuthServiceService.cookieToken();
 
       if (t) this.setToken(t);
       if (cookieT) this.setToken(cookieT);
@@ -84,4 +101,4 @@ export class AuthService {
   }
 }
 
-export default new AuthService();
+export default new AuthServiceService();

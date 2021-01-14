@@ -1,5 +1,5 @@
 import { Game } from "./Game";
-import AuthService from "../service/AuthService";
+import AuthService from "../service/AuthServiceService";
 import { appApi } from "../api/hooks";
 
 export const stores = {

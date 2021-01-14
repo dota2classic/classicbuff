@@ -11,7 +11,7 @@ import {
 } from "./messages";
 
 import { MatchmakingMode } from "../utils/format/formatGameMode";
-import { AuthService } from "../service/AuthService";
+import { AuthServiceService } from "../service/AuthServiceService";
 import { mutate } from "swr";
 import { AppApi } from "../api/hooks";
 
@@ -60,7 +60,7 @@ export class Game {
 
   private socket!: SocketIOClient.Socket;
 
-  constructor(private readonly authService: AuthService, private readonly api: AppApi) {}
+  constructor(private readonly authService: AuthServiceService, private readonly api: AppApi) {}
 
   private matchState = (url?: string) => {
     this.serverURL = url;

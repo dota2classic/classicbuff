@@ -7,6 +7,9 @@ import formatGameMode from "../../utils/format/formatGameMode";
 import { useApi } from "../../api/hooks";
 import cx from "classnames";
 import { InvitePlayerModal } from "../InvitePlayerModal";
+import AuthService from "../../service/AuthServiceService";
+import { RoleSubscriptionEntryDtoRoleEnum } from "../../api/back/models";
+import { OldRequiredModal } from "../../components/modal/OldRequiredModal";
 
 const InfoRow = styled.div`
   display: flex;
@@ -115,10 +118,15 @@ export default observer(() => {
 
   const { data: party } = useApi().playerApi.usePlayerControllerMyParty();
 
+  // const hasOld = AuthService.hasOld;
+  const hasOld = false;
+
   const [inviteOpen, setInviteOpen] = useState(false);
+  const [oldRequiredOpen, setOldRequiredOpen] = useState(false);
   return (
     <InfoRow>
       <InvitePlayerModal open={inviteOpen} close={() => setInviteOpen(false)} />
+      <OldRequiredModal open={oldRequiredOpen} close={() => setOldRequiredOpen(false)} />
       <PartyContents>
         {data?.players.map(t => (
           <PartyItem className={cx(t.steamId === data?.leader.steamId && "leader")}>
@@ -126,7 +134,16 @@ export default observer(() => {
           </PartyItem>
         ))}
 
-        <PartyItem className={"invite"} onClick={() => setInviteOpen(true)}>
+        <PartyItem
+          className={cx("invite")}
+          onClick={() => {
+            if (hasOld) {
+              setInviteOpen(true);
+            } else {
+              setOldRequiredOpen(true);
+            }
+          }}
+        >
           <img src={"https://dota2classic.ru/api/static/plus.png"} alt="" />
         </PartyItem>
       </PartyContents>

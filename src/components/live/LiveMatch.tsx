@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useState } from "react";
 import { ItemIcon } from "../UI/ItemIcon";
 import formatGameMode from "../../utils/format/formatGameMode";
 import { LiveMatchDto, PlayerInfo } from "../../api/back/models";
@@ -9,6 +9,7 @@ import Link from "next/link";
 import { steamIdToNum } from "../../utils/numSteamId";
 import { AdBanner } from "../ads/ads";
 import { MinimapHero } from "./MinimapHero";
+import AuthService from "../../service/AuthServiceService";
 
 const Map = styled.div`
   margin-left: 20px;
@@ -169,6 +170,7 @@ const MatchOverview = styled.div`
 export const LiveMatch = (liveMatch: LiveMatchDto) => {
   const r = liveMatch.heroes.filter(t => t.team === 2);
   const d = liveMatch.heroes.filter(t => t.team === 3);
+  const [oldRequiredOpen, setOldRequiredOpen] = useState(false);
 
   const host = liveMatch.server.split(":")[0];
   const port = parseInt(liveMatch.server.split(":")[1]);
@@ -186,20 +188,18 @@ export const LiveMatch = (liveMatch: LiveMatchDto) => {
         <Map>
           {liveMatch.heroes.map(hero => (
             <MinimapHero key={hero.hero} x={hero.posX} y={hero.posY} hero={hero.hero} team={hero.team} />
-            // <Hero
-            //   key={hero.hero}
-            //   x={hero.posX}
-            //   y={hero.posY}
-            //   src={`https://dota2classic.ru/api/static/heroes/${hero.hero}.jpg.webp`}
-            // />
           ))}
         </Map>
         <TeamInfoBlock team={3} heroes={d} />
       </Wrapper>
       <MatchOverview>
-        <LinkButton target={"__blank"} href={watchUrl}>
-          Смотреть игру в клиенте
-        </LinkButton>
+        {AuthService.hasOld ? (
+          <LinkButton target={"__blank"} href={watchUrl}>
+            Смотреть игру в клиенте
+          </LinkButton>
+        ) : (
+          <span onClick={() => setOldRequiredOpen(true)}>Смотреть игру в клиенте</span>
+        )}
       </MatchOverview>
     </MatchInfo>
   );

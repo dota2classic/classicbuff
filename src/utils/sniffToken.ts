@@ -1,6 +1,6 @@
 import useWillMount from "./useWillMount";
 import { useRouter } from "next/router";
-import AuthService from "../service/AuthService";
+import AuthService from "../service/AuthServiceService";
 import { useEffect } from "react";
 
 const sniffToken = () => {
