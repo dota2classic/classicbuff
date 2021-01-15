@@ -1,7 +1,7 @@
-import { action, computed, observable, toJS } from "mobx";
+import { action, computed, observable } from "mobx";
 import cookies from "browser-cookies";
 import { appApi } from "../api/hooks";
-import { PlayerSummaryDto, RoleSubscriptionEntryDtoRoleEnum } from "../api/back/models";
+import { PlayerSummaryDto, PlayerSummaryDtoRolesEnum, RoleSubscriptionEntryDtoRoleEnum } from "../api/back/models";
 
 export class AuthServiceService {
   @observable
@@ -37,13 +37,33 @@ export class AuthServiceService {
   }
 
   @computed
+  public get hasOldFromMe(): boolean {
+    return this.me?.roles.includes(PlayerSummaryDtoRolesEnum.OLD) || this.hasHumanFromMe || false;
+  }
+
+  @computed
+  public get hasHumanFromMe(): boolean {
+    return this.me?.roles.includes(PlayerSummaryDtoRolesEnum.HUMAN) || false;
+  }
+
+  @computed
+  public get hasOldToken(): boolean {
+    return this.roles?.includes(RoleSubscriptionEntryDtoRoleEnum.OLD) || this.hasHumanToken || false;
+  }
+
+  @computed
+  public get hasHumanToken(): boolean {
+    return this.roles?.includes(RoleSubscriptionEntryDtoRoleEnum.HUMAN) || false;
+  }
+
+  @computed
   public get hasOld(): boolean {
-    return this.roles?.includes(RoleSubscriptionEntryDtoRoleEnum.OLD) || this.hasHuman || false;
+    return this.hasOldFromMe || this.hasOldToken;
   }
 
   @computed
   public get hasHuman(): boolean {
-    return this.roles?.includes(RoleSubscriptionEntryDtoRoleEnum.HUMAN) || false;
+    return this.hasHumanFromMe || this.hasHumanToken;
   }
 
   @computed
