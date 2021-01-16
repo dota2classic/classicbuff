@@ -123,7 +123,10 @@ export default observer(() => {
   return (
     <InfoRow>
       <InvitePlayerModal open={inviteOpen} close={() => setInviteOpen(false)} />
-      <OldRequiredModal open={oldRequiredOpen} close={() => setOldRequiredOpen(false)} />
+      <OldRequiredModal open={oldRequiredOpen} close={() => setOldRequiredOpen(false)}>
+        Мы приносим извинения - группы для обычного режима должны быть бесплатными, но пока это не так. Мы постараемся
+        исправить это как можно скорее!
+      </OldRequiredModal>
       <PartyContents>
         {data?.players.map(t => (
           <PartyItem className={cx(t.steamId === data?.leader.steamId && "leader")}>

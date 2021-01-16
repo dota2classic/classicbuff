@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { PropsWithChildren, useRef } from "react";
 import styled from "styled-components";
 import useOutsideClick from "../../../utils/useOutsideClick";
 import { ColoredRole } from "../../UI/ColoredRole";
@@ -56,7 +56,7 @@ interface Props {
   open: boolean;
 }
 
-export const OldRequiredModal = ({ open, close }: Props) => {
+export const OldRequiredModal = ({ open, close, children }: PropsWithChildren<Props>) => {
   const comp = useRef(null);
   useOutsideClick(close, comp);
 
@@ -68,8 +68,9 @@ export const OldRequiredModal = ({ open, close }: Props) => {
           Эта функция доступна только игрокам с ролью <ColoredRole className="old">Древний</ColoredRole> и выше!
         </Title>
 
-        <MainText>Поддержи проект и получи доступ к эксклюзивным возможностям!</MainText>
-
+        {(children && <MainText>{children}</MainText>) || (
+          <MainText>Поддержи проект и получи доступ к эксклюзивным возможностям!</MainText>
+        )}
         <Buttons>
           <Link href="/donate" passHref>
             <LinkButton>Узнать больше</LinkButton>
