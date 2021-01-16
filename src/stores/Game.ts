@@ -30,7 +30,7 @@ export class Game {
   public searchingMode?: MatchmakingMode;
 
   @observable
-  public activeMode: MatchmakingMode = MatchmakingMode.BOTS;
+  public activeMode: MatchmakingMode = MatchmakingMode.UNRANKED;
 
   @observable
   public pendingPartyInvite?: PartyInviteReceivedMessage = undefined;
