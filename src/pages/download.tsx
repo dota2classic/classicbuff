@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/Layout";
-import { CardBlock, LeadButton, LeadButtons } from "./index";
+import { CardBlock, CardRow, LeadButton, LeadButtons } from "./index";
 import Head from "next/head";
 import styled from "styled-components";
 import Link from "next/link";
@@ -20,6 +20,20 @@ export default () => {
           content="dota2classic.ru - discord сервер для игры в классическую доту 6.81 2014 года"
         />
       </Head>
+
+      <CardRow>
+        <iframe
+          style={{ width: 940 }}
+          height={450}
+          // width={1792}
+          // height={840}
+          src="https://www.youtube.com/embed/MkqRP6Ia1Pc"
+          frameBorder={0}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </CardRow>
+
       <LeadButtons>
         <InfoText>
           Внимание: Поиск игры происходит через{" "}
