@@ -1,5 +1,5 @@
 import heroes from "../texts/heroes";
 
-export default (fullname?: string) => {
-  return heroes.find(it => it.tag === fullname)?.name || "";
+export default (fullName?: string) => {
+  return heroes.find(it => it.tag === fullName)?.name || "";
 };
