@@ -1,7 +1,12 @@
 import { observer } from "mobx-react-lite";
 import styled from "styled-components";
-import React from "react";
+import React, { useEffect } from "react";
 import { useStores } from "../../stores";
+import { MatchmakingMode } from "../../utils/format/formatGameMode";
+import Button, { LinkButton } from "../../components/UI/Button";
+import Input from "../../components/UI/Input";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import AuthServiceService from "../../service/AuthServiceService";
 
 export const Modal = styled.div`
   z-index: 100;
@@ -13,7 +18,7 @@ export const Modal = styled.div`
   margin: auto;
 
   width: 300px;
-  height: 150px;
+  height: fit-content;
   background: #1d1f22;
 
   padding: 40px;
@@ -31,60 +36,6 @@ export const ModalWrapper = styled.div`
   background: rgba(0, 0, 0, 0.6);
 `;
 
-const LinkButton = styled.a`
-  outline: none;
-  background: #212325;
-  padding-top: 12px;
-  padding-bottom: 12px;
-
-  cursor: pointer;
-  transition: 0.3s ease;
-
-  &:hover {
-    color: #e2e2e2;
-    background: #121213;
-  }
-  text-align: center;
-  flex: 1;
-  color: #c4c4c4;
-  font-size: 18px;
-  font-family: "Trajan Pro 3", sans-serif;
-
-  border: 1px solid #a7a5a5;
-  border-radius: 6px;
-
-  & + & {
-    margin-left: 30px;
-  }
-`;
-
-const Button = styled.button`
-  outline: none;
-  background: #212325;
-  padding-top: 12px;
-  padding-bottom: 12px;
-
-  cursor: pointer;
-  transition: 0.3s ease;
-
-  &:hover {
-    color: #e2e2e2;
-    background: #121213;
-  }
-  text-align: center;
-  flex: 1;
-  color: #c4c4c4;
-  font-size: 18px;
-  font-family: "Trajan Pro 3", sans-serif;
-
-  border: 1px solid #a7a5a5;
-  border-radius: 6px;
-
-  & + & {
-    margin-left: 30px;
-  }
-`;
-
 const GameReady = styled.div`
   text-align: center;
   font-size: 24px;
@@ -95,7 +46,9 @@ const GameReady = styled.div`
 const Buttons = styled.div`
   display: flex;
   flex-direction: row;
-  margin-top: 60px;
+  margin-top: 40px;
+
+  justify-content: space-between;
 `;
 
 const AcceptDot = styled.div`
@@ -107,7 +60,7 @@ const AcceptDot = styled.div`
   border-radius: 50%;
 
   &.accepted {
-    background: #012f01;
+    background: #094c09;
   }
 `;
 const AcceptDots = styled.div`
@@ -119,6 +72,18 @@ const AcceptDots = styled.div`
 const IAcceptGameModal = () => {
   const { game } = useStores();
 
+  useEffect(() => {
+    game.pendingGame = {
+      mode: MatchmakingMode.RANKED,
+      accepted: 5,
+      total: 10,
+      roomID: "Fd",
+      iAccepted: true
+    };
+
+    game.serverURL = "glory.dota2classic.ru:27015";
+  }, []);
+
   if (game.serverURL)
     return (
       <ModalWrapper>
@@ -129,6 +94,20 @@ const IAcceptGameModal = () => {
               Подключиться к игре
             </LinkButton>
           </Buttons>
+          <div style={{ marginTop: 5 }} />
+
+          <Input style={{ width: "100%" }} readonly className="iso" value={`connect ${game.serverURL}`} />
+          <div style={{ marginTop: 5 }} />
+          <CopyToClipboard
+            text={JSON.stringify({
+              server: game.serverURL,
+              sid: AuthServiceService.me?.steamId,
+              uid: AuthServiceService.me?.id,
+              url: `https://dota2classic.ru/player/${AuthServiceService.me?.id}`
+            })}
+          >
+            <Button className="small">Техническая информация</Button>
+          </CopyToClipboard>
         </Modal>
       </ModalWrapper>
     );
