@@ -96,7 +96,7 @@ const IAcceptGameModal = () => {
           </Buttons>
           <div style={{ marginTop: 5 }} />
 
-          <Input style={{ width: "100%" }} readonly className="iso" value={`connect ${game.serverURL}`} />
+          <Input style={{ width: "100%" }} readOnly className="iso" value={`connect ${game.serverURL}`} />
           <div style={{ marginTop: 5 }} />
           <CopyToClipboard
             text={JSON.stringify({

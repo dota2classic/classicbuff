@@ -21,19 +21,6 @@ export default () => {
         />
       </Head>
 
-      <CardRow>
-        <iframe
-          style={{ width: 940 }}
-          height={450}
-          // width={1792}
-          // height={840}
-          src="https://www.youtube.com/embed/MkqRP6Ia1Pc"
-          frameBorder={0}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
-      </CardRow>
-
       <LeadButtons>
         <InfoText>
           Внимание: Поиск игры происходит через{" "}
@@ -48,10 +35,10 @@ export default () => {
         <InfoText>
           Нажимать на поиск игры в самом клиенте <span style={{ textDecoration: "underline" }}>НЕ НУЖНО</span>
         </InfoText>
-        <CardBlock
-          img={"https://sun9-43.userapi.com/c855620/v855620490/1f045d/97zKHlEnSyM.jpg"}
-          text={"Нужно только распаковать архив с клиентом. Все просто!"}
-        />
+        {/*<CardBlock*/}
+        {/*  img={"https://sun9-43.userapi.com/c855620/v855620490/1f045d/97zKHlEnSyM.jpg"}*/}
+        {/*  text={"Нужно только распаковать архив с клиентом. Все просто!"}*/}
+        {/*/>*/}
         <LeadButton target="__blank" href={"https://drive.google.com/open?id=1-pmNQZfgjN6b8YYTLgv7HidnB7zIYqAv"}>
           Скачать через Google Диск
         </LeadButton>
@@ -67,6 +54,18 @@ export default () => {
       <br />
       <br />
       <br />
+      <CardRow>
+        <iframe
+          style={{ width: 940 }}
+          height={450}
+          // width={1792}
+          // height={840}
+          src="https://www.youtube.com/embed/MkqRP6Ia1Pc"
+          frameBorder={0}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </CardRow>
     </Layout>
   );
 };
