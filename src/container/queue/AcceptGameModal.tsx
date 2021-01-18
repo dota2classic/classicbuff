@@ -71,19 +71,6 @@ const AcceptDots = styled.div`
 `;
 const IAcceptGameModal = () => {
   const { game } = useStores();
-
-  useEffect(() => {
-    game.pendingGame = {
-      mode: MatchmakingMode.RANKED,
-      accepted: 5,
-      total: 10,
-      roomID: "Fd",
-      iAccepted: true
-    };
-
-    game.serverURL = "glory.dota2classic.ru:27015";
-  }, []);
-
   if (game.serverURL)
     return (
       <ModalWrapper>
