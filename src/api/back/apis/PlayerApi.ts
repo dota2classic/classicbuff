@@ -22,6 +22,9 @@ import {
   LeaderboardEntryDto,
   LeaderboardEntryDtoFromJSON,
   LeaderboardEntryDtoToJSON,
+  MeDto,
+  MeDtoFromJSON,
+  MeDtoToJSON,
   MyProfileDto,
   MyProfileDtoFromJSON,
   MyProfileDtoToJSON,
@@ -281,12 +284,12 @@ export class PlayerApi extends runtime.BaseAPI {
 
   /**
    */
-  private async playerControllerMeRaw(): Promise<runtime.ApiResponse<PlayerSummaryDto>> {
+  private async playerControllerMeRaw(): Promise<runtime.ApiResponse<MeDto>> {
     this.playerControllerMeValidation();
     const context = this.playerControllerMeContext();
     const response = await this.request(context);
 
-    return new runtime.JSONApiResponse(response, jsonValue => PlayerSummaryDtoFromJSON(jsonValue));
+    return new runtime.JSONApiResponse(response, jsonValue => MeDtoFromJSON(jsonValue));
   }
 
   /**
@@ -318,12 +321,12 @@ export class PlayerApi extends runtime.BaseAPI {
 
   /**
    */
-  playerControllerMe = async (): Promise<PlayerSummaryDto> => {
+  playerControllerMe = async (): Promise<MeDto> => {
     const response = await this.playerControllerMeRaw();
     return await response.value();
   };
 
-  usePlayerControllerMe(config?: ConfigInterface<PlayerSummaryDto, Error>) {
+  usePlayerControllerMe(config?: ConfigInterface<MeDto, Error>) {
     let valid = true;
 
     const context = this.playerControllerMeContext();

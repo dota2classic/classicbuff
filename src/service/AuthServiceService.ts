@@ -1,14 +1,20 @@
 import { action, computed, observable } from "mobx";
 import cookies from "browser-cookies";
 import { appApi } from "../api/hooks";
-import { PlayerSummaryDto, PlayerSummaryDtoRolesEnum, RoleSubscriptionEntryDtoRoleEnum } from "../api/back/models";
+import {
+  MeDto,
+  MeDtoRolesEnum,
+  PlayerSummaryDto,
+  PlayerSummaryDtoRolesEnum,
+  RoleSubscriptionEntryDtoRoleEnum
+} from "../api/back/models";
 
 export class AuthServiceService {
   @observable
   public token?: string;
 
   @observable
-  public me?: PlayerSummaryDto;
+  public me?: MeDto;
 
   @computed
   public get authorized(): boolean {
@@ -38,12 +44,12 @@ export class AuthServiceService {
 
   @computed
   public get hasOldFromMe(): boolean {
-    return this.me?.roles.includes(PlayerSummaryDtoRolesEnum.OLD) || this.hasHumanFromMe || false;
+    return this.me?.roles.includes(MeDtoRolesEnum.OLD) || this.hasHumanFromMe || false;
   }
 
   @computed
   public get hasHumanFromMe(): boolean {
-    return this.me?.roles.includes(PlayerSummaryDtoRolesEnum.HUMAN) || false;
+    return this.me?.roles.includes(MeDtoRolesEnum.HUMAN) || false;
   }
 
   @computed
@@ -97,6 +103,8 @@ export class AuthServiceService {
 
       if (t) this.setToken(t);
       if (cookieT) this.setToken(cookieT);
+
+      setInterval(() => this.fetchMe(), 5000);
     }
   }
 

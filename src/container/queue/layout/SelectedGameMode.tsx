@@ -5,7 +5,8 @@ import formatGameMode, { MatchmakingMode } from "../../../utils/format/formatGam
 import { colors } from "../../../shared";
 import Link from "next/link";
 import { useStores } from "../../../stores";
-import { AdBanner, BigAdBanner } from "../../../components/ads/ads";
+import { AdBanner } from "../../../components/ads/ads";
+import { BanStatusInfo } from "../../../components/UI/BanStatusInfo";
 
 const Container = styled.div`
   flex: 1;
@@ -70,13 +71,14 @@ const texts: { [key in MatchmakingMode]: ReactNode } = {
 };
 
 export const SelectedGameMode = observer(() => {
-  const { game } = useStores();
+  const { game, auth } = useStores();
 
   return (
     <Container>
       <ShortInfo>
         <div className={"game-mode"}>{formatGameMode(game.activeMode)}</div>
-        {texts[game.activeMode]}
+
+        {(auth.me?.banStatus?.isBanned && <BanStatusInfo ban={auth.me.banStatus} />) || texts[game.activeMode]}
 
         <br />
         <br />

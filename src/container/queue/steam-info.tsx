@@ -42,6 +42,39 @@ const CancelFindGameButton = styled.div`
   }
 `;
 
+const SearchGameButton = styled.button`
+  outline: none;
+  padding: 10px;
+  color: ${colors.primaryText};
+  font-family: "Trajan Pro 3", sans-serif;
+
+  border: 1px solid ${colors.dota.green};
+  border-radius: 2px;
+
+  font-size: 18px;
+  margin-right: 100px;
+  cursor: pointer;
+
+  transition: 0.3s ease;
+  background-color: ${colors.evenDarkerBg};
+
+  &.banned {
+    color: ${colors.primaryTextDark};
+    border-color: ${colors.dota.red};
+  }
+  &.search {
+  }
+
+  .cancel {
+  }
+
+  &:hover {
+    border-radius: 4px;
+    color: ${colors.primaryTextHighlight};
+    background-color: ${colors.darkBg};
+  }
+`;
+
 export const pendingAnimation = keyframes`
   0% {
     color: ${colors.primaryTextDark2};
@@ -71,7 +104,7 @@ const PartyContents = styled.div`
   display: flex;
   flex-direction: row;
 
-  width: 300px;
+  width: 400px;
 `;
 
 const PartyItem = styled.div`
@@ -147,23 +180,33 @@ export default observer(() => {
           <img src={"https://dota2classic.ru/api/static/plus.png"} alt="" />
         </PartyItem>
       </PartyContents>
+
+      {party && party.players.length > 1 && (
+        <CancelFindGameButton onClick={() => stores.game.leaveParty()}>Покинуть группу</CancelFindGameButton>
+      )}
+      {(stores.game.searchingMode !== undefined && (
+        <SearchGameButton className="cancel" onClick={() => stores.game.cancelSearch()}>
+          Отменить поиск
+        </SearchGameButton>
+      )) || (
+        <SearchGameButton
+          disabled={AuthService.me?.banStatus.isBanned}
+          className={cx("search", AuthService.me?.banStatus.isBanned && "banned")}
+          onClick={() => {
+            if (AuthService.me === undefined) return;
+            if (AuthService.me?.banStatus.isBanned) return;
+            stores.game.startSearch(stores.game.activeMode);
+          }}
+        >
+          Искать игру
+        </SearchGameButton>
+      )}
+
       {stores.game.searchingMode !== undefined && (
         <SearchGameBar>
           <span>Поиск {formatGameMode(stores.game.searchingMode)}</span>
           <span className={"info"}>игроков: {stores.game.inQueue[stores.game.activeMode]}</span>
         </SearchGameBar>
-      )}
-
-      <div style={{ flex: 1 }} />
-      {party && party.players.length > 1 && (
-        <CancelFindGameButton onClick={() => stores.game.leaveParty()}>Покинуть группу</CancelFindGameButton>
-      )}
-      {(stores.game.searchingMode !== undefined && (
-        <CancelFindGameButton onClick={() => stores.game.cancelSearch()}>Отменить поиск</CancelFindGameButton>
-      )) || (
-        <CancelFindGameButton onClick={() => stores.game.startSearch(stores.game.activeMode)}>
-          Искать игру
-        </CancelFindGameButton>
       )}
     </InfoRow>
   );

@@ -11,6 +11,7 @@ export * from "./LiveMatchSseDto";
 export * from "./MatchDto";
 export * from "./MatchInfoDto";
 export * from "./MatchPageDto";
+export * from "./MeDto";
 export * from "./MyProfileDto";
 export * from "./PartyDto";
 export * from "./PlayerGeneralStatsDto";
