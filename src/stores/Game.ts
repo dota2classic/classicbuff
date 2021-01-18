@@ -14,6 +14,7 @@ import { MatchmakingMode } from "../utils/format/formatGameMode";
 import { AuthServiceService } from "../service/AuthServiceService";
 import { mutate } from "swr";
 import { AppApi } from "../api/hooks";
+import { Sound } from "./sound";
 
 const isDev = process.env.DEV === "true";
 
@@ -97,6 +98,8 @@ export class Game {
   private joinGame = (data: LauncherServerStarted) => {
     if (this.pendingGame) {
       this.serverURL = data.url;
+
+      new Audio(Sound.NOTIFY_GAME).play();
     }
   };
 
@@ -117,7 +120,7 @@ export class Game {
       iAccepted: false
     };
 
-    new Audio("https://dota2classic.ru/api/static/sound/match.mp3").play();
+    new Audio(Sound.MATCH_GAME).play();
   };
 
   private updateReadyCheck = (data: ReadyCheckUpdate) => {
