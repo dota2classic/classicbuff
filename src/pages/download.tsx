@@ -39,11 +39,11 @@ export default () => {
         {/*  img={"https://sun9-43.userapi.com/c855620/v855620490/1f045d/97zKHlEnSyM.jpg"}*/}
         {/*  text={"Нужно только распаковать архив с клиентом. Все просто!"}*/}
         {/*/>*/}
-        <LeadButton target="__blank" href={"https://drive.google.com/open?id=1-pmNQZfgjN6b8YYTLgv7HidnB7zIYqAv"}>
+        <LeadButton target="__blank" href={"https://drive.google.com/file/d/1JXpkBlcOkNXkVDIFM9RxZD1dZpEOuX3y/view"}>
           Скачать через Google Диск
         </LeadButton>
 
-        <LeadButton target="__blank" href={"https://yadi.sk/d/7jOGNrUcpppedg"}>
+        <LeadButton target="__blank" href={"https://yadi.sk/d/C1P5uvQvfhwUZA"}>
           Скачать через Яндекс.Диск
         </LeadButton>
 
