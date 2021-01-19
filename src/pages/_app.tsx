@@ -14,7 +14,7 @@ const API = local ? "http://localhost:5002/graphql" : "https://dota2classic.ru/p
 
 export default class MyApp extends App<any> {
   componentDidCatch(error: Error, errorInfo: any) {
-    captureComponentException(error, errorInfo);
+    // captureComponentException(error, errorInfo);
     super.componentDidCatch(error, errorInfo);
   }
 

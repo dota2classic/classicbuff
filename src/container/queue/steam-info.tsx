@@ -54,6 +54,7 @@ const SearchGameButton = styled.button`
   font-size: 18px;
   margin-right: 100px;
   cursor: pointer;
+  white-space: pre;
 
   transition: 0.3s ease;
   background-color: ${colors.evenDarkerBg};

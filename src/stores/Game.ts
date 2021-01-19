@@ -10,11 +10,12 @@ import {
   UpdateQueue
 } from "./messages";
 
-import { MatchmakingMode } from "../utils/format/formatGameMode";
+import { load } from "recaptcha-v3";
 import { AuthServiceService } from "../service/AuthServiceService";
 import { mutate } from "swr";
 import { AppApi } from "../api/hooks";
 import { Sound } from "./sound";
+import { MatchmakingMode } from "../utils/format/formatGameMode";
 
 const isDev = process.env.DEV === "true";
 
@@ -134,8 +135,15 @@ export class Game {
     this.inQueue[data.mode] = data.inQueue;
   };
 
-  private authorize() {
-    this.socket.emit(Messages.BROWSER_AUTH, this.authService.token);
+  private async authorize() {
+    const rec = await load("6LdAAzMaAAAAAMkvZFWPQ2Xr0kmIaPtDc6lsVUD9");
+
+    const result = await rec.execute("socketconnect");
+
+    this.socket.emit(Messages.BROWSER_AUTH, {
+      token: this.authService.token,
+      recaptchaToken: result
+    });
   }
 
   cancelSearch() {
@@ -214,16 +222,15 @@ export class Game {
           transports: ["websocket"]
         });
 
-    observe(this.authService, "steamID", steamId => {
+    console.log("help me dady please");
+    observe(this.authService, "steamID", async steamId => {
       if (steamId) {
-        this.authorize();
+        await this.authorize();
       } else {
         console.log(`No steam id, no auth yet`);
       }
     });
-    this.socket.on("connect", () => {
-      this.authorize();
-    });
+    this.socket.on("connect", () => this.authorize());
 
     this.socket.on("disconnect", () => {
       this.pendingGame = undefined;
