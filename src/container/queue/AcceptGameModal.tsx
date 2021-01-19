@@ -1,8 +1,7 @@
 import { observer } from "mobx-react-lite";
 import styled from "styled-components";
-import React, { useEffect } from "react";
+import React from "react";
 import { useStores } from "../../stores";
-import { MatchmakingMode } from "../../utils/format/formatGameMode";
 import Button, { LinkButton } from "../../components/UI/Button";
 import Input from "../../components/UI/Input";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -71,6 +70,16 @@ const AcceptDots = styled.div`
 `;
 const IAcceptGameModal = () => {
   const { game } = useStores();
+
+  if (game.isServerSearch)
+    return (
+      <ModalWrapper>
+        <Modal>
+          <GameReady>Идет поиск игрового сервера...</GameReady>
+        </Modal>
+      </ModalWrapper>
+    );
+
   if (game.serverURL)
     return (
       <ModalWrapper>
@@ -83,7 +92,9 @@ const IAcceptGameModal = () => {
           </Buttons>
           <div style={{ marginTop: 5 }} />
 
-          <Input style={{ width: "100%" }} readOnly className="iso" value={`connect ${game.serverURL}`} />
+          <CopyToClipboard text={`connect ${game.serverURL}`}>
+            <Input style={{ width: "100%" }} readOnly className="iso" value={`connect ${game.serverURL}`} />
+          </CopyToClipboard>
           <div style={{ marginTop: 5 }} />
           <CopyToClipboard
             text={JSON.stringify({

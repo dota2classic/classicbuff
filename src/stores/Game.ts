@@ -1,4 +1,4 @@
-import { action, observable, observe } from "mobx";
+import { action, computed, observable, observe } from "mobx";
 import io from "socket.io-client";
 import {
   GameFound,
@@ -41,6 +41,12 @@ export class Game {
   //   leader: "$$ КОТ БАЗИЛИО $$",
   //   inviteId: "1e570d96-f47e-4de3-9c14-edad81701637"
   // };
+
+  @computed
+  public get isServerSearch() {
+    if (!this.pendingGame) return false;
+    return this.pendingGame.accepted === this.pendingGame.total && !this.serverURL;
+  }
 
   @observable
   public pendingGame: PendingGameInfo | undefined = undefined;

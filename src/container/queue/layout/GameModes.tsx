@@ -119,7 +119,7 @@ const MatchmakingOption = observer((props: MProps) => {
     >
       <span>{formatGameMode(props.mode)}</span>
       {props.unrankedGamesLeft && props.unrankedGamesLeft > 0 ? (
-        <span className={"info"}>{props.unrankedGamesLeft} игр до разблокировки рейтинга</span>
+        <span className={"info"}>{props.unrankedGamesLeft} игр до разблокировки режима</span>
       ) : (
         <span className={"info"}>{game.inQueue[props.mode]} в поиске</span>
       )}
