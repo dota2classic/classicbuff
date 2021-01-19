@@ -95,17 +95,6 @@ const IAcceptGameModal = () => {
           <CopyToClipboard text={`connect ${game.serverURL}`}>
             <Input style={{ width: "100%" }} readOnly className="iso" value={`connect ${game.serverURL}`} />
           </CopyToClipboard>
-          <div style={{ marginTop: 5 }} />
-          <CopyToClipboard
-            text={JSON.stringify({
-              server: game.serverURL,
-              sid: AuthServiceService.me?.steamId,
-              uid: AuthServiceService.me?.id,
-              url: `https://dota2classic.ru/player/${AuthServiceService.me?.id}`
-            })}
-          >
-            <Button className="small">Техническая информация</Button>
-          </CopyToClipboard>
         </Modal>
       </ModalWrapper>
     );
