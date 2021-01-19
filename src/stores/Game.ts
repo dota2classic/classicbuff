@@ -70,6 +70,25 @@ export class Game {
 
   constructor(private readonly authService: AuthServiceService, private readonly api: AppApi) {}
 
+  private blinkTab = () => {
+    let i = 0;
+    const baseTabName = "Поиск игры - dota2classic.ru";
+    const blinkingName = "Игра найдена!";
+    const interval = setInterval(() => {
+      if (i >= 10) {
+        clearInterval(interval);
+        document.title = blinkingName;
+        return;
+      }
+      if (i % 2 === 0) {
+        document.title = blinkingName;
+      } else {
+        document.title = baseTabName;
+      }
+      i++;
+    }, 1000);
+  };
+
   private matchState = (url?: string) => {
     this.serverURL = url;
   };
@@ -126,7 +145,7 @@ export class Game {
       roomID,
       iAccepted: false
     };
-
+    this.blinkTab();
     new Audio(Sound.MATCH_GAME).play();
   };
 
