@@ -97,12 +97,11 @@ const Username = styled.div`
 `;
 
 const MatchmakingOption = observer((props: MProps) => {
-  const { game } = useStores();
+  const { game, auth } = useStores();
 
   const lockedCuzNewbie =
-    props.unrankedGamesLeft !== undefined && props.unrankedGamesLeft > 0 && props.mode === MatchmakingMode.RANKED;
+    props.unrankedGamesLeft !== undefined && props.unrankedGamesLeft > 0 && props.mode !== MatchmakingMode.BOTS;
 
-  console.log(lockedCuzNewbie);
   return (
     <MOption
       className={cx(
@@ -139,10 +138,10 @@ export const GameModes = observer(() => {
 
       <MOption className={"header"}>Поиск игры</MOption>
       <MatchmakingOption unrankedGamesLeft={auth.me?.unrankedGamesLeft} mode={MatchmakingMode.RANKED} />
-      <MatchmakingOption mode={MatchmakingMode.UNRANKED} />
-      {/*<MatchmakingOption mode={MatchmakingMode.BOTS} />*/}
+      <MatchmakingOption unrankedGamesLeft={auth.me?.unrankedGamesLeft} mode={MatchmakingMode.UNRANKED} />
+      <MatchmakingOption mode={MatchmakingMode.BOTS} />
       {/*<MatchmakingOption mode={MatchmakingMode.SOLOMID} />*/}
-      <MatchmakingOption mode={MatchmakingMode.DIRETIDE} />
+      {/*<MatchmakingOption mode={MatchmakingMode.DIRETIDE} />*/}
       {/*<MatchmakingOption mode={MatchmakingMode.GREEVILING} />*/}
     </Options>
   );
