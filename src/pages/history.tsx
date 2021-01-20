@@ -81,10 +81,10 @@ const Page = observer(() => {
           {formatGameMode(MatchmakingMode.RANKED)}
         </Tab>
         <Tab
-          onClick={() => setTabAction(MatchmakingMode.BOTS)}
-          className={(mode === MatchmakingMode.BOTS && "active") || undefined}
+          onClick={() => setTabAction(MatchmakingMode.UNRANKED)}
+          className={(mode === MatchmakingMode.UNRANKED && "active") || undefined}
         >
-          {formatGameMode(MatchmakingMode.BOTS)}
+          {formatGameMode(MatchmakingMode.UNRANKED)}
         </Tab>
         {/*<Tab*/}
         {/*  onClick={() => setTabAction(MatchmakingMode.UNRANKED)}*/}
