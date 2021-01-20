@@ -240,7 +240,7 @@ export default observer(() => {
 
       {onlineData && (
         <InfoTab>
-          <span>{onlineData.inGame} online</span>
+          <span>{onlineData.inGame} онлайн</span>
           <span>{onlineData.servers - onlineData.sessions} свободных серверов</span>
           <span>Игр идет: {onlineData.sessions}</span>
         </InfoTab>

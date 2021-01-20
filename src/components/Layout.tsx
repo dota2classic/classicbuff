@@ -166,6 +166,8 @@ const DefaultHeader = () => {
 
   const { data } = useApi().statsApi.useStatsControllerMe();
 
+  const { data: liveData } = useApi().liveApi.useLiveMatchControllerListMatches();
+
   return (
     <>
       <HeaderWrapper>
@@ -189,6 +191,13 @@ const DefaultHeader = () => {
           </Link>
           <Link passHref href={"/history"}>
             <Tab className={cx(asPath.startsWith("/history") && "active")}>Матчи</Tab>
+          </Link>
+
+          <Link passHref href={"/live"}>
+            <Tab className={cx(asPath.startsWith("/live") && "active")}>
+              Live
+              {liveData && <span className="badge">{liveData?.length}</span>}
+            </Tab>
           </Link>
           {/*<Tab className={cx(asPath === "/heroes" && "active")}>*/}
           {/*  <Link passHref href={"/heroes"}>*/}
@@ -233,7 +242,7 @@ const DefaultHeader = () => {
 
         {data && (
           <InfoTab>
-            <span>{data.inGame} online</span>
+            <span>{data.inGame} онлайн</span>
             <span>{data.sessions} игр</span>
           </InfoTab>
         )}

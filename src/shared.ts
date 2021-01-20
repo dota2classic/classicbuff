@@ -17,6 +17,7 @@ export const colors = {
   primaryTextDark: "rgb(131,130,130)",
   primaryTextDark2: "rgb(83,82,82)",
   transparentTint: "rgba(65,168,252,0.15)",
+  transparentTint2: "rgba(65,168,252,0.01)",
   blueHighlight: "rgb(77,169,243)",
   error: "rgb(198,38,38)",
 

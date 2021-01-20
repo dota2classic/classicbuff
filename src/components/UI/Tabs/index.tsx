@@ -21,6 +21,21 @@ export const Tab = styled.a`
 
   color: ${colors.primaryText};
 
+  & .badge {
+    border-radius: 50%;
+    color: ${colors.blueHighlight};
+    background: ${colors.transparentTint};
+    font-size: 12px;
+    width: 16px;
+    height: 16px;
+    max-width: 16px;
+    max-height: 16px;
+    text-align: center;
+    position: absolute;
+    right: -5px;
+    top: 5px;
+  }
+
   ::before {
     content: "";
     background: ${colors.transparentTint};

@@ -53,26 +53,13 @@ const Page = observer(() => {
   const [mode, setTabAction] = useTab("mode", MatchmakingMode.RANKED);
   const [page, setPage] = useTab("page", 0);
   useEffect(() => setPage(0), [mode]);
-  const { data: liveMatches } = useApi().liveApi.useLiveMatchControllerListMatches();
   const { data } = useApi().matchApi.useMatchControllerMatches(page!!, undefined, mode);
-
-  const firstLiveMatch = (liveMatches && liveMatches[0]) || undefined;
 
   return (
     <Layout title={"История матчей"}>
       <Head>
         <title>История матчей - dota2classic.ru</title>
       </Head>
-      {firstLiveMatch && (
-        <LiveMatchEngage>
-          <div className="title">Сейчас идет игра!</div>
-          <Link href={"/live"}>
-            <a className="info-link">
-              {formatGameMode(firstLiveMatch.type)}, время {formatDuration(firstLiveMatch.duration)}
-            </a>
-          </Link>
-        </LiveMatchEngage>
-      )}
       <Tabs>
         <Tab
           onClick={() => setTabAction(MatchmakingMode.RANKED)}
