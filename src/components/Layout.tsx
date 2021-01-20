@@ -5,7 +5,7 @@ import AuthService from "../service/AuthServiceService";
 import Router, { useRouter } from "next/router";
 import { Tab, Tabs } from "./UI/Tabs";
 import cx from "classnames";
-import { appApi } from "../api/hooks";
+import { appApi, useApi } from "../api/hooks";
 import useWillMount from "../utils/useWillMount";
 import { observer } from "mobx-react";
 import { colors } from "../shared";
@@ -18,6 +18,12 @@ const LayoutContainer = styled.div`
   padding-bottom: 200px;
 
   @media (max-width: 600px) {
+    padding-bottom: 0;
+  }
+
+  &.no-scroll {
+    max-height: 100vh;
+    overflow-y: hidden;
     padding-bottom: 0;
   }
 `;
@@ -139,10 +145,26 @@ export const CloseIcon = styled.img`
   position: relative;
 `;
 
+const InfoTab = styled.div`
+  position: relative;
+  font-size: 14px;
+  padding: 12px;
+  text-decoration: none;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+
+  transition: 0.3s ease;
+
+  color: ${colors.primaryText};
+`;
 const DefaultHeader = () => {
   const router = useRouter();
 
   const asPath = router.asPath;
+
+  const { data } = useApi().statsApi.useStatsControllerMe();
 
   return (
     <>
@@ -208,6 +230,13 @@ const DefaultHeader = () => {
             src="https://cdn.discordapp.com/attachments/724018264283414618/791790363237023814/yt3.png"
           />
         </a>
+
+        {data && (
+          <InfoTab>
+            <span>{data.inGame} online</span>
+            <span>{data.sessions} игр</span>
+          </InfoTab>
+        )}
       </HeaderWrapper>
     </>
   );
@@ -267,7 +296,7 @@ export const TournamentLayout = (p: PropsWithChildren<{ landing?: boolean; title
   );
 };
 
-export default observer((p: PropsWithChildren<{ landing?: boolean; title?: ReactNode }>) => {
+export default observer((p: PropsWithChildren<{ landing?: boolean; noScroll?: boolean; title?: ReactNode }>) => {
   useWillMount(() => {
     AuthService.fetchMe();
   });
@@ -275,10 +304,10 @@ export default observer((p: PropsWithChildren<{ landing?: boolean; title?: React
 
   console.log(router);
   return (
-    <LayoutContainer>
+    <LayoutContainer className={cx(p.noScroll && "no-scroll")}>
       <DefaultHeader />
 
-      <Content className={(p.landing && "landing") || undefined}>
+      <Content className={cx(p.landing && "landing")}>
         <Title>
           <MenuIcon
             onClick={() => Router.push(`${router.pathname}?menu`, `${router.asPath}?menu`)}

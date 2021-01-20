@@ -16,7 +16,7 @@ const Queue = () => {
   }, []);
 
   return (
-    <Layout title="Поиск игры">
+    <Layout noScroll title="Поиск игры">
       <Head>
         <title>Поиск игры - dota2classic.ru</title>
         <meta name="description" content="dota2classic.ru - поиск игры" />

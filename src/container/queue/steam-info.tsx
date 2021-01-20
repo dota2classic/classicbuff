@@ -3,13 +3,14 @@ import { observer } from "mobx-react-lite";
 import styled, { keyframes } from "styled-components";
 import { colors } from "../../shared";
 import { useStores } from "../../stores";
-import formatGameMode from "../../utils/format/formatGameMode";
+import formatGameMode, { MatchmakingMode } from "../../utils/format/formatGameMode";
 import { useApi } from "../../api/hooks";
 import cx from "classnames";
 import { InvitePlayerModal } from "../InvitePlayerModal";
 import AuthService from "../../service/AuthServiceService";
-import { RoleSubscriptionEntryDtoRoleEnum } from "../../api/back/models";
 import { OldRequiredModal } from "../../components/modal/OldRequiredModal";
+import { Role } from "../../components/LadderRow";
+import { ColoredRole } from "../../components/UI/ColoredRole";
 
 const InfoRow = styled.div`
   display: flex;
@@ -74,6 +75,21 @@ const SearchGameButton = styled.button`
     color: ${colors.primaryTextHighlight};
     background-color: ${colors.darkBg};
   }
+`;
+
+const InfoTab = styled.div`
+  position: relative;
+  font-size: 12px;
+  padding: 12px;
+  text-decoration: none;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+
+  transition: 0.3s ease;
+
+  color: ${colors.primaryText};
 `;
 
 export const pendingAnimation = keyframes`
@@ -150,16 +166,20 @@ export default observer(() => {
   const stores = useStores();
   const { data } = useApi().playerApi.usePlayerControllerMyParty();
 
+  const { data: onlineData } = useApi().statsApi.useStatsControllerMe();
+
   const { data: party } = useApi().playerApi.usePlayerControllerMyParty();
 
   const [inviteOpen, setInviteOpen] = useState(false);
   const [oldRequiredOpen, setOldRequiredOpen] = useState(false);
+
+  const everythingLoaded = !!(party && stores.auth.me);
   return (
     <InfoRow>
       <InvitePlayerModal open={inviteOpen} close={() => setInviteOpen(false)} />
       <OldRequiredModal open={oldRequiredOpen} close={() => setOldRequiredOpen(false)}>
-        Мы приносим извинения - группы для обычного режима должны быть бесплатными, но пока это не так. Мы постараемся
-        исправить это как можно скорее!
+        Начать поиск рейтинговой игры в группе может только игрок с подпиской{" "}
+        <ColoredRole className="old">Древний</ColoredRole> или <ColoredRole className="human">Человек</ColoredRole>
       </OldRequiredModal>
       <PartyContents>
         {data?.players.map(t => (
@@ -171,11 +191,12 @@ export default observer(() => {
         <PartyItem
           className={cx("invite")}
           onClick={() => {
-            if (AuthService.hasOld) {
-              setInviteOpen(true);
-            } else {
-              setOldRequiredOpen(true);
-            }
+            setInviteOpen(true);
+            // if (AuthService.hasOld) {
+            //
+            // } else {
+            //   setOldRequiredOpen(true);
+            // }
           }}
         >
           <img src={"https://dota2classic.ru/api/static/plus.png"} alt="" />
@@ -194,9 +215,16 @@ export default observer(() => {
           disabled={AuthService.me?.banStatus.isBanned}
           className={cx("search", AuthService.me?.banStatus.isBanned && "banned")}
           onClick={() => {
-            if (AuthService.me === undefined) return;
             if (AuthService.me?.banStatus.isBanned) return;
-            stores.game.startSearch(stores.game.activeMode);
+
+            if (!everythingLoaded) return;
+
+            const isParty = party!!.players.length > 1;
+            if (isParty && stores.game.activeMode === MatchmakingMode.RANKED && !stores.auth.hasOld) {
+              setOldRequiredOpen(true);
+            } else {
+              stores.game.startSearch(stores.game.activeMode);
+            }
           }}
         >
           Искать игру
@@ -208,6 +236,14 @@ export default observer(() => {
           <span>Поиск {formatGameMode(stores.game.searchingMode)}</span>
           <span className={"info"}>игроков: {stores.game.inQueue[stores.game.activeMode]}</span>
         </SearchGameBar>
+      )}
+
+      {onlineData && (
+        <InfoTab>
+          <span>{onlineData.inGame} online</span>
+          <span>{onlineData.servers - onlineData.sessions} свободных серверов</span>
+          <span>Игр идет: {onlineData.sessions}</span>
+        </InfoTab>
       )}
     </InfoRow>
   );

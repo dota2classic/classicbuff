@@ -97,6 +97,7 @@ export class Game {
     this.pendingGame = undefined;
   };
 
+  @action
   private queueState = (mode?: MatchmakingMode) => {
     this.searchingMode = mode === null ? undefined : mode;
   };

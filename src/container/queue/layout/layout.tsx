@@ -17,6 +17,7 @@ const AppLayout = styled.div`
   background-color: ${colors.darkBg};
   color: ${colors.primaryText};
   display: flex;
+  overflow-y: hidden;
   flex-direction: row;
 `;
 

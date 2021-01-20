@@ -1,6 +1,7 @@
 export * from "./BanHammerDto";
 export * from "./BanStatusDto";
 export * from "./ConnectionDto";
+export * from "./CurrentOnlineDto";
 export * from "./EventAdminDto";
 export * from "./GameServerDto";
 export * from "./GameSessionDto";
