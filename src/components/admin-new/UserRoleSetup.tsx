@@ -1,6 +1,6 @@
 import { useApi } from "../../api/hooks";
 import styled from "styled-components";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "components/UI/Button";
 import { RoleSubscriptionEntryDto, RoleSubscriptionEntryDtoRoleEnum } from "../../api/back/models";
 import { RoleNames } from "../../utils/format/roles";
@@ -86,29 +86,33 @@ const RoleRow = (props: RoleSubscriptionEntryDto) => {
 export const UserRoleSetup = ({ steamId }: Props) => {
   const { data: roleData } = useApi().adminApi.useAdminUserControllerRoleOf(steamId);
 
+  const [combinedRoles, setCombinedRoles] = useState<RoleSubscriptionEntryDto[]>([]);
+
   const managedRoles: RoleSubscriptionEntryDtoRoleEnum[] = [
     RoleSubscriptionEntryDtoRoleEnum.OLD,
     RoleSubscriptionEntryDtoRoleEnum.HUMAN
   ];
 
-  const combinedRoles: RoleSubscriptionEntryDto[] = [];
-  if (roleData) {
-    combinedRoles.push(...roleData.entries);
-  }
-
-  managedRoles.forEach(t => {
-    if (combinedRoles.find(z => z.role === t)) {
-      // if there is role, skip
-    } else {
-      const endTime = new Date();
-      endTime.setDate(endTime.getDate() - 1);
-      combinedRoles.push({
-        role: t,
-        endTime: endTime.getTime(),
-        steamId: steamId
-      });
+  useEffect(() => {
+    const tmp: RoleSubscriptionEntryDto[] = [];
+    if (roleData) {
+      tmp.push(...roleData.entries);
     }
-  });
+    managedRoles.forEach(t => {
+      if (tmp.find(z => z.role === t)) {
+        // if there is role, skip
+      } else {
+        const endTime = new Date();
+        endTime.setDate(endTime.getDate() - 1);
+        tmp.push({
+          role: t,
+          endTime: endTime.getTime(),
+          steamId: steamId
+        });
+      }
+    });
+    setCombinedRoles(tmp);
+  }, [roleData]);
 
   return (
     <RoleBlock>
