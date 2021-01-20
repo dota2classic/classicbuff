@@ -205,7 +205,7 @@ const DefaultHeader = () => {
           {/*  </Link>*/}
           {/*</Tab>*/}
 
-          {AuthService.isAdmin && (
+          {AuthService.isModerator && (
             <Link passHref href={"/admin/servers"}>
               <Tab className={cx(asPath.startsWith("/admin/servers") && "active")}>Админка</Tab>
             </Link>

@@ -35,7 +35,7 @@ const Page = () => {
           {player?.rank} Ранг, {player?.mmr} MMR
         </h4>
       </div>
-      {AuthService.isAdmin && (
+      {AuthService.isModerator && (
         <Link href={"/admin/player/[id]"} as={`/admin/player/${id}`}>
           <LinkButton>В админке</LinkButton>
         </Link>

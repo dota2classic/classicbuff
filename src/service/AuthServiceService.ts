@@ -73,6 +73,11 @@ export class AuthServiceService {
   }
 
   @computed
+  public get isModerator(): boolean {
+    return !!this.me?.roles.find(t => t === "MODERATOR") || this.isAdmin;
+  }
+
+  @computed
   public get isAdmin(): boolean {
     return !!this.me?.roles.find(t => t === "ADMIN");
   }
