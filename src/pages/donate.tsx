@@ -81,6 +81,7 @@ const Price = styled.div`
 
 const Note = styled.div`
   color: #ca3d3d;
+  font-size: 16px;
 `;
 export default () => {
   return (
@@ -129,7 +130,7 @@ export default () => {
           Дополнительные привилегии на нашем сервере в <a href="https://discord.gg/VU5wjA8">Discord</a>
         </li>
         <li>Участники с этой ролью попадают в список людей, оказавших значительную поддержку серверу.</li>
-        <li className="new">Возможность перекалибровки</li>
+        {/*<li className="new">Возможность перекалибровки</li>*/}
         <li className="new">Доджлист до 3 игроков</li>
         <li className="new">Double-down рейтинга</li>
       </List>
@@ -139,7 +140,16 @@ export default () => {
 
       <WelcomeText>Способы поддержки</WelcomeText>
       <br />
+
       <NormalizedContainer>
+        <Note>
+          Внимание! В описаниях к платежу указывайте ссылку на свой профиль на нашем сайте. <br />
+          Пример ссылки на профиль:{" "}
+          <Link passHref href={`https://dota2classic.ru/player/280443916/`}>
+            <a style={{ color: "#d9d9d9", textDecoration: "none" }}>https://dota2classic.ru/player/280443916</a>
+          </Link>
+        </Note>
+
         <Way2Pay>
           <a href="https://boosty.to/dota2classic">Boosty</a>
         </Way2Pay>
@@ -154,13 +164,6 @@ export default () => {
 
         <br />
         <br />
-        <Note>
-          Внимание! В описаниях к платежу указывайте ссылку на свой профиль на нашем сайте. <br />
-          Пример ссылки на профиль:{" "}
-          <Link passHref href={`https://dota2classic.ru/player/280443916/`}>
-            <a style={{ color: "#d9d9d9", textDecoration: "none" }}>https://dota2classic.ru/player/280443916</a>
-          </Link>
-        </Note>
       </NormalizedContainer>
     </Layout>
   );

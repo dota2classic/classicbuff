@@ -2,7 +2,7 @@ import { BanStatusDto } from "../../../api/back/models";
 import styled from "styled-components";
 import React, { ReactNode } from "react";
 import { Hint } from "../Hint";
-import { formatDateStr } from "../../../utils/format/formateDateStr";
+import { formatDateFullStr, formatDateStr } from "../../../utils/format/formateDateStr";
 
 interface Props {
   ban: BanStatusDto;
@@ -27,7 +27,7 @@ export const BanStatusInfo = ({ ban }: Props) => {
       <Hint>Вам запрещен поиск игр в этом режиме</Hint>
       {reasons[(ban.status as unknown) as any] as ReactNode}
 
-      <EndTime>Время окончания: {formatDateStr(ban.bannedUntil - new Date().getTimezoneOffset() * 60000)}</EndTime>
+      <EndTime>Время окончания: {formatDateStr(ban.bannedUntil)}</EndTime>
     </Container>
   );
 };
