@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import { CardBlock, CardRow } from "./index";
 import Link from "next/link";
+import Head from "next/head";
 
 const WelcomeText = styled.div`
   text-align: center;
@@ -86,6 +87,14 @@ const Note = styled.div`
 export default () => {
   return (
     <Layout landing>
+      <Head>
+        <title>Классическая Dota 2</title>
+        <meta
+          name="description"
+          content="dota2classic.ru - discord сервер для игры в классическую доту 6.81 2014 года"
+        />
+      </Head>
+
       <WelcomeText>
         Вы можете поспособствовать развитию сервера и совершить добровольное пожертвование на его продвижение
       </WelcomeText>
