@@ -258,6 +258,8 @@ export class Game {
     });
     this.socket.on("connect", () => this.authorize());
 
+    setTimeout(() => this.authorize(), 3000);
+
     this.socket.on("disconnect", () => {
       this.pendingGame = undefined;
       this.searchingMode = undefined;

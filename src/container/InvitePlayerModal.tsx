@@ -74,39 +74,42 @@ interface Props {
   open: boolean;
 }
 
-export const InvitePlayerModal = ({ open, close }: Props) => {
+const InvitePlayerModalInner = () => {
   const [search, setSearch] = useState("");
+
   const { data } = useApi().playerApi.usePlayerControllerSearch(search);
 
   const comp = useRef(null);
   const { game } = useStores();
-
   useOutsideClick(close, comp);
 
-  if (open)
-    return (
-      <ModalWrapper>
-        <Modal ref={comp}>
-          <Title>Искать</Title>
-          <Input placeholder={"Никнейм игрока"} value={search} onChange={e => setSearch(e.target.value)} />
+  return (
+    <ModalWrapper>
+      <Modal ref={comp}>
+        <Title>Искать</Title>
+        <Input placeholder={"Никнейм игрока"} value={search} onChange={e => setSearch(e.target.value)} />
 
-          <PlayerList>
-            {data?.map(t => (
-              <PlayerPreview
-                key={t.id}
-                onClick={async () => {
-                  await game.inviteToParty(t.id);
-                  close();
-                }}
-              >
-                <img src={t.avatar} alt="" />
-                <span>{t.name}</span>
-              </PlayerPreview>
-            ))}
-          </PlayerList>
-        </Modal>
-      </ModalWrapper>
-    );
+        <PlayerList>
+          {data?.map(t => (
+            <PlayerPreview
+              key={t.id}
+              onClick={async () => {
+                await game.inviteToParty(t.id);
+                close();
+              }}
+            >
+              <img src={t.avatar} alt="" />
+              <span>{t.name}</span>
+            </PlayerPreview>
+          ))}
+        </PlayerList>
+      </Modal>
+    </ModalWrapper>
+  );
+};
+
+export const InvitePlayerModal = ({ open, close }: Props) => {
+  if (open) return <InvitePlayerModalInner />;
 
   return null;
 };
