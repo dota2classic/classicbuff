@@ -63,7 +63,8 @@ export class Game {
     [MatchmakingMode.SOLOMID]: 0,
     [MatchmakingMode.DIRETIDE]: 0,
     [MatchmakingMode.GREEVILING]: 0,
-    [MatchmakingMode.BOTS]: 0
+    [MatchmakingMode.BOTS]: 0,
+    [MatchmakingMode.HIGHROOM]: 0
   };
 
   private socket!: SocketIOClient.Socket;
@@ -100,6 +101,7 @@ export class Game {
   @action
   private queueState = (mode?: MatchmakingMode) => {
     this.searchingMode = mode === null ? undefined : mode;
+    this.activeMode = mode === null || mode === undefined ? this.activeMode : mode;
   };
 
   private roomNotReady = ({ roomID }: any) => {

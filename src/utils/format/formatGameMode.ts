@@ -5,7 +5,8 @@ export enum MatchmakingMode {
   DIRETIDE = 3,
   GREEVILING = 4,
   ABILITY_DRAFT = 5,
-  BOTS = 7
+  BOTS = 7,
+  HIGHROOM = 8
 }
 export default (mode: any) => {
   if (mode === MatchmakingMode.SOLOMID) {
@@ -22,5 +23,7 @@ export default (mode: any) => {
     return "Ability Draft";
   } else if (mode === MatchmakingMode.BOTS) {
     return "Обычная (новички)";
+  } else if (mode === MatchmakingMode.HIGHROOM) {
+    return "High room";
   }
 };

@@ -67,7 +67,8 @@ const texts: { [key in MatchmakingMode]: ReactNode } = {
   [MatchmakingMode.GREEVILING]: <span>Один из самых старых ивентов, проводимых Valve</span>,
   [MatchmakingMode.ABILITY_DRAFT]: (
     <span>Старый добрый Ability Draft. Создай своего героя сам из старых способностей и без талантов!</span>
-  )
+  ),
+  [MatchmakingMode.HIGHROOM]: <span>Режим для поиска игр с высоким рейтингом</span>
 };
 
 export const SelectedGameMode = observer(() => {
