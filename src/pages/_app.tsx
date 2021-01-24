@@ -1,14 +1,12 @@
 import React from "react";
 import App from "next/app";
 import { Provider } from "mobx-react";
-import AuthService from "../service/AuthServiceService";
 import { TokenSniffer } from "../utils/sniffToken";
 import { ModalProvider } from "react-modal-hook";
 import { local } from "../config";
-import { Game } from "../stores/Game";
 import { stores } from "../stores";
-import { captureComponentException } from "../utils/sentry";
 import "react-datepicker/dist/react-datepicker.css";
+import { SWRConfig } from "swr";
 
 const API = local ? "http://localhost:5002/graphql" : "https://dota2classic.ru/prod-api/graphql";
 
@@ -22,10 +20,16 @@ export default class MyApp extends App<any> {
     const { Component, pageProps } = this.props;
     return (
       <ModalProvider>
-        <Provider {...stores}>
-          <TokenSniffer />
-          <Component {...pageProps} />
-        </Provider>
+        <SWRConfig
+          value={{
+            refreshInterval: typeof window === "undefined" ? 0 : 10000
+          }}
+        >
+          <Provider {...stores}>
+            <TokenSniffer />
+            <Component {...pageProps} />
+          </Provider>
+        </SWRConfig>
       </ModalProvider>
     );
   }

@@ -166,7 +166,9 @@ const DefaultHeader = () => {
 
   const { data } = useApi().statsApi.useStatsControllerMe();
 
-  const { data: liveData } = useApi().liveApi.useLiveMatchControllerListMatches();
+  const { data: liveData } = useApi().liveApi.useLiveMatchControllerListMatches({
+    refreshInterval: 30_000
+  });
 
   return (
     <>
