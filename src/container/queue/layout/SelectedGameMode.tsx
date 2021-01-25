@@ -12,6 +12,7 @@ const Container = styled.div`
   flex: 1;
   flex-direction: column;
   padding: 40px 20px 20px;
+  position: relative;
 `;
 
 const ShortInfo = styled.div`
@@ -72,14 +73,14 @@ const texts: { [key in MatchmakingMode]: ReactNode } = {
 };
 
 export const SelectedGameMode = observer(() => {
-  const { game, auth } = useStores();
+  const { auth, queue } = useStores();
 
   return (
     <Container>
       <ShortInfo>
-        <div className={"game-mode"}>{formatGameMode(game.activeMode)}</div>
+        <div className={"game-mode"}>{formatGameMode(queue.selectedMode)}</div>
 
-        {(auth.me?.banStatus?.isBanned && <BanStatusInfo ban={auth.me.banStatus} />) || texts[game.activeMode]}
+        {(queue.selectedModeBanned && <BanStatusInfo ban={auth.me!!.banStatus} />) || texts[queue.selectedMode]}
 
         <br />
         <br />

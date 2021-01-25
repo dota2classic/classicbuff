@@ -3,14 +3,14 @@ import { observer } from "mobx-react-lite";
 import styled, { keyframes } from "styled-components";
 import { colors } from "../../shared";
 import { useStores } from "../../stores";
-import formatGameMode, { MatchmakingMode } from "../../utils/format/formatGameMode";
+import formatGameMode from "../../utils/format/formatGameMode";
 import { useApi } from "../../api/hooks";
 import cx from "classnames";
 import { InvitePlayerModal } from "../InvitePlayerModal";
-import AuthService from "../../service/AuthServiceService";
 import { OldRequiredModal } from "../../components/modal/OldRequiredModal";
-import { Role } from "../../components/LadderRow";
 import { ColoredRole } from "../../components/UI/ColoredRole";
+import { GameCoordinatorState } from "../../stores/queue/game-coordinator.state";
+import { SearchGameButton } from "../../components/UI/SearchGameBar/SearchGameButton";
 
 const InfoRow = styled.div`
   display: flex;
@@ -39,40 +39,6 @@ const CancelFindGameButton = styled.div`
 
   &:hover {
     color: ${colors.primaryText};
-    background-color: ${colors.darkBg};
-  }
-`;
-
-const SearchGameButton = styled.button`
-  outline: none;
-  padding: 10px;
-  color: ${colors.primaryText};
-  font-family: "Trajan Pro 3", sans-serif;
-
-  border: 1px solid ${colors.dota.green};
-  border-radius: 2px;
-
-  font-size: 18px;
-  margin-right: 100px;
-  cursor: pointer;
-  white-space: pre;
-
-  transition: 0.3s ease;
-  background-color: ${colors.evenDarkerBg};
-
-  &.banned {
-    color: ${colors.primaryTextDark};
-    border-color: ${colors.dota.red};
-  }
-  &.search {
-  }
-
-  .cancel {
-  }
-
-  &:hover {
-    border-radius: 4px;
-    color: ${colors.primaryTextHighlight};
     background-color: ${colors.darkBg};
   }
 `;
@@ -106,7 +72,7 @@ export const pendingAnimation = keyframes`
   }
 `;
 const SearchGameBar = styled.div`
-  margin-left: 40px;
+  margin-left: 100px;
   display: flex;
   flex-direction: column;
   border: none;
@@ -162,8 +128,22 @@ const PartyItem = styled.div`
   }
 `;
 
+const GameCoordinatorConnection = () => {
+  const { queue } = useStores();
+
+  return (
+    <InfoRow>
+      {queue.readyState === GameCoordinatorState.DISCONNECTED ? (
+        <SearchGameBar>Идет подключение к игровому координатору...</SearchGameBar>
+      ) : (
+        <SearchGameBar>Происходит авторизация...</SearchGameBar>
+      )}
+    </InfoRow>
+  );
+};
+
 export default observer(() => {
-  const stores = useStores();
+  const { queue } = useStores();
   const { data } = useApi().playerApi.usePlayerControllerMyParty();
 
   const { data: onlineData } = useApi().statsApi.useStatsControllerMe();
@@ -171,70 +151,36 @@ export default observer(() => {
   const { data: party } = useApi().playerApi.usePlayerControllerMyParty();
 
   const [inviteOpen, setInviteOpen] = useState(false);
-  const [oldRequiredOpen, setOldRequiredOpen] = useState(false);
 
-  const everythingLoaded = !!(party && stores.auth.me);
+  if (!queue.ready) {
+    return <GameCoordinatorConnection />;
+  }
   return (
     <InfoRow>
       <InvitePlayerModal open={inviteOpen} close={() => setInviteOpen(false)} />
-      <OldRequiredModal open={oldRequiredOpen} close={() => setOldRequiredOpen(false)}>
-        Начать поиск рейтинговой игры в группе может только игрок с подпиской{" "}
-        <ColoredRole className="old">Древний</ColoredRole> или <ColoredRole className="human">Человек</ColoredRole>
-      </OldRequiredModal>
+
       <PartyContents>
-        {data?.players.map(t => (
+        {queue.party!!.players.map(t => (
           <PartyItem className={cx(t.steamId === data?.leader.steamId && "leader")}>
             <img src={t.avatar} alt="" />
           </PartyItem>
         ))}
 
-        <PartyItem
-          className={cx("invite")}
-          onClick={() => {
-            setInviteOpen(true);
-            // if (AuthService.hasOld) {
-            //
-            // } else {
-            //   setOldRequiredOpen(true);
-            // }
-          }}
-        >
+        <PartyItem className={cx("invite")} onClick={() => setInviteOpen(true)}>
           <img src={"https://dota2classic.ru/api/static/plus.png"} alt="" />
         </PartyItem>
       </PartyContents>
 
       {party && party.players.length > 1 && (
-        <CancelFindGameButton onClick={() => stores.game.leaveParty()}>Покинуть группу</CancelFindGameButton>
-      )}
-      {(stores.game.searchingMode !== undefined && (
-        <SearchGameButton className="cancel" onClick={() => stores.game.cancelSearch()}>
-          Отменить поиск
-        </SearchGameButton>
-      )) || (
-        <SearchGameButton
-          disabled={AuthService.me?.banStatus.isBanned}
-          className={cx("search", AuthService.me?.banStatus.isBanned && "banned")}
-          onClick={() => {
-            if (AuthService.me?.banStatus.isBanned) return;
-
-            if (!everythingLoaded) return;
-
-            const isParty = party!!.players.length > 1;
-            if (isParty && stores.game.activeMode === MatchmakingMode.RANKED && !stores.auth.hasOld) {
-              setOldRequiredOpen(true);
-            } else {
-              stores.game.startSearch(stores.game.activeMode);
-            }
-          }}
-        >
-          Искать игру
-        </SearchGameButton>
+        <CancelFindGameButton onClick={() => queue.leaveParty()}>Покинуть группу</CancelFindGameButton>
       )}
 
-      {stores.game.searchingMode !== undefined && (
+      {/*<SearchGameButton />*/}
+
+      {queue.searchingMode !== undefined && (
         <SearchGameBar>
-          <span>Поиск {formatGameMode(stores.game.searchingMode)}</span>
-          <span className={"info"}>игроков: {stores.game.inQueue[stores.game.activeMode]}</span>
+          <span>Поиск {formatGameMode(queue.searchingMode)}</span>
+          <span className={"info"}>игроков: {queue.inQueue[queue.searchingMode]}</span>
         </SearchGameBar>
       )}
 

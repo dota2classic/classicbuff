@@ -56,7 +56,9 @@ const MOption = styled.div`
 `;
 interface MProps {
   mode: MatchmakingMode;
+  selected: boolean;
   unrankedGamesLeft?: number;
+  onSelect: (mode: MatchmakingMode) => void;
 }
 
 const SteamLogo = styled.img`
@@ -97,7 +99,7 @@ const Username = styled.div`
 `;
 
 const MatchmakingOption = observer((props: MProps) => {
-  const { game, auth } = useStores();
+  const { queue } = useStores();
 
   const lockedCuzNewbie =
     props.unrankedGamesLeft !== undefined && props.unrankedGamesLeft > 0 && props.mode !== MatchmakingMode.BOTS;
@@ -105,15 +107,15 @@ const MatchmakingOption = observer((props: MProps) => {
   return (
     <MOption
       className={cx(
-        game.searchingMode === props.mode && "active",
-        game.activeMode === props.mode && "current",
-        game.searchingMode !== undefined && game.searchingMode !== props.mode && "disabled",
+        queue.searchingMode === props.mode && "active",
+        props.selected && "current",
+        queue.searchingMode !== undefined && queue.searchingMode !== props.mode && "disabled",
         lockedCuzNewbie && "disabled"
       )}
       onClick={() => {
         if (lockedCuzNewbie) return;
-        if (!(game.searchingMode !== undefined && game.searchingMode !== props.mode)) {
-          game.activeMode = props.mode;
+        if (!(queue.searchingMode !== undefined && queue.searchingMode !== props.mode)) {
+          props.onSelect(props.mode);
         }
       }}
     >
@@ -121,14 +123,17 @@ const MatchmakingOption = observer((props: MProps) => {
       {props.unrankedGamesLeft && props.unrankedGamesLeft > 0 ? (
         <span className={"info"}>{props.unrankedGamesLeft} игр до разблокировки режима</span>
       ) : (
-        <span className={"info"}>{game.inQueue[props.mode]} в поиске</span>
+        <span className={"info"}>{queue.inQueue[props.mode]} в поиске</span>
       )}
     </MOption>
   );
 });
 
 export const GameModes = observer(() => {
-  const auth = useStores().auth;
+  const { auth, queue } = useStores();
+
+  const setSelectedMode = (m: MatchmakingMode) => (queue.selectedMode = m);
+
   return (
     <Options>
       <UserInfo>
@@ -138,9 +143,23 @@ export const GameModes = observer(() => {
 
       <MOption className={"header"}>Поиск игры</MOption>
       {/*{auth.me && auth.me.rank <= 75 && <MatchmakingOption mode={MatchmakingMode.HIGHROOM} />}*/}
-      <MatchmakingOption unrankedGamesLeft={auth.me?.unrankedGamesLeft} mode={MatchmakingMode.RANKED} />
-      <MatchmakingOption unrankedGamesLeft={auth.me?.unrankedGamesLeft} mode={MatchmakingMode.UNRANKED} />
-      <MatchmakingOption mode={MatchmakingMode.BOTS} />
+      <MatchmakingOption
+        onSelect={setSelectedMode}
+        selected={queue.selectedMode === MatchmakingMode.RANKED}
+        unrankedGamesLeft={auth.me?.unrankedGamesLeft}
+        mode={MatchmakingMode.RANKED}
+      />
+      <MatchmakingOption
+        onSelect={setSelectedMode}
+        selected={queue.selectedMode === MatchmakingMode.UNRANKED}
+        unrankedGamesLeft={auth.me?.unrankedGamesLeft}
+        mode={MatchmakingMode.UNRANKED}
+      />
+      <MatchmakingOption
+        onSelect={setSelectedMode}
+        selected={queue.selectedMode === MatchmakingMode.BOTS}
+        mode={MatchmakingMode.BOTS}
+      />
       {/*<MatchmakingOption mode={MatchmakingMode.SOLOMID} />*/}
       {/*<MatchmakingOption mode={MatchmakingMode.DIRETIDE} />*/}
       {/*<MatchmakingOption mode={MatchmakingMode.GREEVILING} />*/}

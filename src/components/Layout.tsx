@@ -10,6 +10,9 @@ import useWillMount from "../utils/useWillMount";
 import { observer } from "mobx-react";
 import { colors } from "../shared";
 import { steamIdToNum } from "../utils/numSteamId";
+import { SearchGameBar } from "./UI/SearchGameBar/SearchGameBar";
+import { useGameConnection } from "./util/useGameConnection";
+import { NotificationHold } from "./UI/NotificationHold";
 
 const LayoutContainer = styled.div`
   min-height: 100vh;
@@ -313,11 +316,12 @@ export default observer((p: PropsWithChildren<{ landing?: boolean; noScroll?: bo
   });
   const router = useRouter();
 
-  console.log(router);
+  useGameConnection();
+
   return (
     <LayoutContainer className={cx(p.noScroll && "no-scroll")}>
       <DefaultHeader />
-
+      <NotificationHold />
       <Content className={cx(p.landing && "landing")}>
         <Title>
           <MenuIcon
@@ -328,6 +332,7 @@ export default observer((p: PropsWithChildren<{ landing?: boolean; noScroll?: bo
         </Title>
         {p.children}
       </Content>
+      <SearchGameBar />
     </LayoutContainer>
   );
 });

@@ -9,13 +9,12 @@ import {
   RoomState,
   UpdateQueue
 } from "./messages";
-
-import { load } from "recaptcha-v3";
 import { AuthServiceService } from "../service/AuthServiceService";
 import { mutate } from "swr";
 import { AppApi } from "../api/hooks";
 import { Sound } from "./sound";
 import { MatchmakingMode } from "../utils/format/formatGameMode";
+import { GameCoordinatorListener } from "./queue/game-coordinator.listener";
 
 const isDev = process.env.DEV === "true";
 
@@ -27,6 +26,11 @@ interface PendingGameInfo {
   iAccepted: boolean;
 }
 
+export interface GameSocketEvent<T extends any = unknown> {
+  message: Messages;
+  body: T;
+}
+
 export class Game {
   @observable
   public searchingMode?: MatchmakingMode;
@@ -36,11 +40,18 @@ export class Game {
 
   @observable
   public pendingPartyInvite?: PartyInviteReceivedMessage = undefined;
+
+  private listeners: GameCoordinatorListener[] = [];
+
   // public pendingPartyInvite?: PartyInviteReceivedMessage = {
   //   partyId: "c3a2a638-6f66-42b0-997e-fe7e29fee0a3",
   //   leader: "$$ КОТ БАЗИЛИО $$",
   //   inviteId: "1e570d96-f47e-4de3-9c14-edad81701637"
   // };
+
+  public registerListener(listener: GameCoordinatorListener) {
+    this.listeners.push(listener);
+  }
 
   @computed
   public get isServerSearch() {
@@ -67,9 +78,17 @@ export class Game {
     [MatchmakingMode.HIGHROOM]: 0
   };
 
+  @observable
+  public connected: boolean = false;
+
+  @observable
+  public authorized: boolean = false;
+
   private socket!: SocketIOClient.Socket;
 
-  constructor(private readonly authService: AuthServiceService, private readonly api: AppApi) {}
+  constructor(private readonly authService: AuthServiceService, private readonly api: AppApi) {
+    console.log("WTF?");
+  }
 
   private blinkTab = () => {
     let i = 0;
@@ -93,9 +112,17 @@ export class Game {
   private matchState = (url?: string) => {
     this.serverURL = url;
   };
+
   private matchFinished = ({ roomId }: any) => {
     this.serverURL = undefined;
     this.pendingGame = undefined;
+  };
+
+  private onAuthResponse = ({ success }: any) => {
+    if (success) {
+      console.log(this.listeners.length);
+      this.listeners.forEach(t => t.onAuthorized());
+    }
   };
 
   @action
@@ -159,31 +186,25 @@ export class Game {
     }
   };
 
-  private updateQueue = (data: UpdateQueue) => {
-    this.inQueue[data.mode] = data.inQueue;
+  private onQueueUpdate = (data: UpdateQueue) => {
+    this.listeners.forEach(t => t.onQueueUpdate(data.mode, data.inQueue));
   };
 
-  private async authorize() {
-    const rec = await load("6LdAAzMaAAAAAMkvZFWPQ2Xr0kmIaPtDc6lsVUD9");
-
-    const result = await rec.execute("socketconnect");
-
+  private authorize() {
     this.socket.emit(Messages.BROWSER_AUTH, {
       token: this.authService.token,
-      recaptchaToken: result
+      recaptchaToken: ""
     });
   }
 
-  cancelSearch() {
+  public cancelSearch() {
     this.socket.emit(Messages.LEAVE_ALL_QUEUES);
-    this.searchingMode = undefined;
   }
 
-  startSearch(activeMode: MatchmakingMode) {
+  public startSearch(mode: MatchmakingMode) {
     this.socket.emit(Messages.ENTER_QUEUE, {
-      mode: activeMode
+      mode
     });
-    this.searchingMode = activeMode;
   }
 
   public acceptPendingGame = () => {
@@ -236,12 +257,15 @@ export class Game {
     this.socket.emit(Messages.LEAVE_PARTY);
   };
 
-  partyUpdated = async () => {
-    await mutate(JSON.stringify(this.api.playerApi.playerControllerMyPartyContext()), undefined, true);
+  partyUpdated = () => {
+    this.listeners.forEach(t => t.onPartyUpdated());
+    // await mutate(JSON.stringify(this.api.playerApi.playerControllerMyPartyContext()), undefined, true);
   };
 
-  connect() {
+  public connect() {
     if (typeof window === "undefined") return;
+
+    if (this.socket && this.socket.connected) return;
 
     this.socket = isDev
       ? io("ws://localhost:5010", { transports: ["websocket"] })
@@ -250,7 +274,6 @@ export class Game {
           transports: ["websocket"]
         });
 
-    console.log("help me dady please");
     observe(this.authService, "steamID", async steamId => {
       if (steamId) {
         await this.authorize();
@@ -258,16 +281,20 @@ export class Game {
         console.log(`No steam id, no auth yet`);
       }
     });
-    this.socket.on("connect", () => this.authorize());
 
-    setTimeout(() => this.authorize(), 3000);
-
-    this.socket.on("disconnect", () => {
-      this.pendingGame = undefined;
-      this.searchingMode = undefined;
+    this.socket.on("connect", () => {
+      this.authorize();
+      this.listeners.forEach(t => t.onConnected());
     });
 
-    this.socket.on(Messages.QUEUE_UPDATE, this.updateQueue);
+    this.socket.on("disconnect", () => {
+      this.listeners.forEach(t => t.onDisconnected());
+      this.connected = false;
+      this.authorized = false;
+    });
+
+    this.socket.on(Messages.QUEUE_UPDATE, this.onQueueUpdate);
+    this.socket.on(Messages.AUTH, this.onAuthResponse);
     this.socket.on(Messages.GAME_FOUND, this.gameFound);
     this.socket.on(Messages.READY_CHECK_UPDATE, this.updateReadyCheck);
     this.socket.on(Messages.SERVER_STARTED, this.joinGame);
