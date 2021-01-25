@@ -52,6 +52,17 @@ export class QueueService extends GameCoordinatorListener {
       if (mode !== null) {
         this.selectedMode = Number(mode);
       }
+      // setTimeout(() => {
+      //   this.gameInfo = {
+      //     total: 0,
+      //     accepted: 0,
+      //     mode: MatchmakingMode.BOTS,
+      //     iAccepted: true,
+      //     roomID: "fd",
+      //     serverURL: "adsfasf"
+      //
+      //   }
+      // }, 1000)
     }
   }
 

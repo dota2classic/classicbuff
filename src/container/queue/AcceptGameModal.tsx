@@ -9,7 +9,7 @@ import AuthServiceService from "../../service/AuthServiceService";
 
 export const Modal = styled.div`
   z-index: 100;
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   top: 0;
@@ -24,6 +24,14 @@ export const Modal = styled.div`
   border-radius: 4px;
 
   box-shadow: 0 0 30px 10px rgba(150, 150, 150, 0.25);
+
+  &.inline {
+    right: 50px !important;
+    left: unset;
+    top: unset;
+    bottom: 50px !important;
+    margin: unset;
+  }
 `;
 
 export const ModalWrapper = styled.div`
@@ -82,21 +90,19 @@ const IAcceptGameModal = () => {
 
   if (queue.gameInfo?.serverURL)
     return (
-      <ModalWrapper>
-        <Modal>
-          <GameReady>Игра готова!</GameReady>
-          <Buttons>
-            <LinkButton target={"__blank"} href={`steam://connect/${queue.gameInfo?.serverURL}`}>
-              Подключиться к игре
-            </LinkButton>
-          </Buttons>
-          <div style={{ marginTop: 5 }} />
+      <Modal className="inline">
+        <GameReady>Игра готова!</GameReady>
+        <Buttons>
+          <LinkButton target={"__blank"} href={`steam://connect/${queue.gameInfo?.serverURL}`}>
+            Подключиться к игре
+          </LinkButton>
+        </Buttons>
+        <div style={{ marginTop: 5 }} />
 
-          <CopyToClipboard text={`connect ${queue.gameInfo?.serverURL}`}>
-            <Input style={{ width: "100%" }} readOnly className="iso" value={`connect ${queue.gameInfo?.serverURL}`} />
-          </CopyToClipboard>
-        </Modal>
-      </ModalWrapper>
+        <CopyToClipboard text={`connect ${queue.gameInfo?.serverURL}`}>
+          <Input style={{ width: "100%" }} readOnly className="iso" value={`connect ${queue.gameInfo?.serverURL}`} />
+        </CopyToClipboard>
+      </Modal>
     );
 
   if (!queue.gameInfo) return null;

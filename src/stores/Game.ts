@@ -87,11 +87,8 @@ export class Game {
     this.listeners.forEach(t => t.onServerReady(data));
   };
 
-  // delete?
   private matchResults = (data: { url: string }) => {
-    // if (this.serverURL === data.url) {
-    //   this.serverURL = undefined;
-    // }
+    this.listeners.forEach(t => t.onMatchFinished());
   };
 
   @action

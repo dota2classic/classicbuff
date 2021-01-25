@@ -46,6 +46,10 @@ const SearchGameButtonComp = styled.button`
     color: ${colors.primaryTextDark};
     border-color: ${colors.dota.red};
   }
+  
+  &.ingame{
+  display: none;
+  }
   &.search {
   }
 
@@ -100,7 +104,10 @@ export const SearchGameButton = observer(() => {
       <AcceptGameModal />
       {(queue.searchingMode !== undefined && (
         <EmbedCancelSearch>
-          <SearchGameButtonComp className="cancel" onClick={() => queue.cancelSearch()}>
+          <SearchGameButtonComp
+            className={cx("cancel", queue.gameInfo?.serverURL && "ingame")}
+            onClick={() => queue.cancelSearch()}
+          >
             Отменить поиск
           </SearchGameButtonComp>
           {!isQueuePage && (
@@ -113,7 +120,11 @@ export const SearchGameButton = observer(() => {
         <GameSearchInfo>
           <SearchGameButtonComp
             disabled={queue.selectedModeBanned}
-            className={cx("search", AuthService.me?.banStatus.isBanned && "banned")}
+            className={cx(
+              "search",
+              AuthService.me?.banStatus.isBanned && "banned",
+              queue.gameInfo?.serverURL && "ingame"
+            )}
             onClick={() => {
               if (!isQueuePage) {
                 router.push("/queue", "/queue").finally();
