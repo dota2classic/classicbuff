@@ -78,6 +78,32 @@ export const UserBanSetup = ({ steamId }: Props) => {
               Разбанить
             </Button>
             <span style={{ marginLeft: 20 }} />
+
+            <Button
+              className="small"
+              onClick={() => {
+                const d = new Date(endTime.getTime());
+                d.setDate(d.getDate() + 1);
+                setEndTime(d);
+                return commitChanges(d);
+              }}
+            >
+              +Сутки
+            </Button>
+            <span style={{ marginLeft: 20 }} />
+
+            <Button
+              className="small"
+              onClick={() => {
+                const d = new Date(endTime.getTime());
+                d.setDate(d.getDate() + 7);
+                setEndTime(d);
+                return commitChanges(d);
+              }}
+            >
+              +Неделя
+            </Button>
+            <span style={{ marginLeft: 20 }} />
             <Button
               className="small"
               onClick={() => {
