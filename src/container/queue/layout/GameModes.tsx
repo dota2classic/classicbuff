@@ -6,6 +6,7 @@ import cx from "classnames";
 import { pendingAnimation } from "../steam-info";
 import formatGameMode, { MatchmakingMode } from "../../../utils/format/formatGameMode";
 import { useStores } from "../../../stores";
+import { isNightTime } from "../../../utils/isNightTime";
 
 const Options = styled.div`
   display: flex;
@@ -132,6 +133,8 @@ const MatchmakingOption = observer((props: MProps) => {
 export const GameModes = observer(() => {
   const { auth, queue } = useStores();
 
+  const isNight = isNightTime();
+
   const setSelectedMode = (m: MatchmakingMode) => (queue.selectedMode = m);
 
   return (
@@ -160,11 +163,13 @@ export const GameModes = observer(() => {
         selected={queue.selectedMode === MatchmakingMode.BOTS}
         mode={MatchmakingMode.BOTS}
       />
-      {/*<MatchmakingOption*/}
-      {/*  onSelect={setSelectedMode}*/}
-      {/*  selected={queue.selectedMode === MatchmakingMode.SOLOMID}*/}
-      {/*  mode={MatchmakingMode.SOLOMID}*/}
-      {/*/>*/}
+      {isNight && (
+        <MatchmakingOption
+          onSelect={setSelectedMode}
+          selected={queue.selectedMode === MatchmakingMode.SOLOMID}
+          mode={MatchmakingMode.SOLOMID}
+        />
+      )}
       {/*<MatchmakingOption mode={MatchmakingMode.DIRETIDE} />*/}
       {/*<MatchmakingOption mode={MatchmakingMode.GREEVILING} />*/}
     </Options>
