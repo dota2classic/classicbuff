@@ -317,7 +317,7 @@ export class QueueService extends GameCoordinatorListener {
   private canQueue() {
     if (!this.ready) throw new Error("Not ready");
 
-    if (this.selectedMode === MatchmakingMode.RANKED) {
+    if (this.selectedMode === MatchmakingMode.RANKED && this.party!!.players.length > 1) {
       return this.canPartyRanked;
     }
 
