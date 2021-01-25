@@ -160,11 +160,11 @@ export const GameModes = observer(() => {
         selected={queue.selectedMode === MatchmakingMode.BOTS}
         mode={MatchmakingMode.BOTS}
       />
-      <MatchmakingOption
-        onSelect={setSelectedMode}
-        selected={queue.selectedMode === MatchmakingMode.SOLOMID}
-        mode={MatchmakingMode.SOLOMID}
-      />
+      {/*<MatchmakingOption*/}
+      {/*  onSelect={setSelectedMode}*/}
+      {/*  selected={queue.selectedMode === MatchmakingMode.SOLOMID}*/}
+      {/*  mode={MatchmakingMode.SOLOMID}*/}
+      {/*/>*/}
       {/*<MatchmakingOption mode={MatchmakingMode.DIRETIDE} />*/}
       {/*<MatchmakingOption mode={MatchmakingMode.GREEVILING} />*/}
     </Options>
