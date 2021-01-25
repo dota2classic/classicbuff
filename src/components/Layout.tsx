@@ -256,36 +256,6 @@ const DefaultHeader = () => {
   );
 };
 
-const TournamentHeader = () => {
-  return (
-    <>
-      <HeaderWrapper>
-        <Link passHref href={"/"}>
-          <SiteLink>
-            <span style={{ textTransform: "uppercase" }}>dota2classic</span>
-          </SiteLink>
-        </Link>
-
-        <Link passHref href={"/teams"}>
-          <SiteLink>Команды</SiteLink>
-        </Link>
-
-        {/*<Link passHref href={"/tournament"}>*/}
-        {/*  <SiteLink>Турниры</SiteLink>*/}
-        {/*</Link>*/}
-
-        {AuthService.authorized ? (
-          <Link passHref href={"/me"}>
-            <SiteLink>Профиль</SiteLink>
-          </Link>
-        ) : (
-          <SiteLink href={`${appApi.apiParams.basePath}/v1/auth/steam`}>Войти через steam</SiteLink>
-        )}
-      </HeaderWrapper>
-    </>
-  );
-};
-
 export const TournamentLayout = (p: PropsWithChildren<{ landing?: boolean; title?: ReactNode }>) => {
   useWillMount(() => {
     AuthService.fetchMe();
@@ -294,8 +264,6 @@ export const TournamentLayout = (p: PropsWithChildren<{ landing?: boolean; title
 
   return (
     <LayoutContainer>
-      <TournamentHeader />
-
       <Content className={(p.landing && "landing") || undefined}>
         <Title>
           <MenuIcon

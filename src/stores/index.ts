@@ -5,11 +5,11 @@ import { QueueService } from "./queue/queue.service";
 import { NotificationService } from "./notification/notification.service";
 
 const auth = AuthService;
-const game = new Game(auth, appApi);
-const queue = new QueueService(game, auth);
 
 const notify = new NotificationService();
 
+const game = new Game(auth, appApi);
+const queue = new QueueService(game, auth, notify);
 export const stores = {
   auth,
   game,

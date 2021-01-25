@@ -1,4 +1,4 @@
-import { action, computed, observable, observe } from "mobx";
+import { action, observable, observe } from "mobx";
 import io from "socket.io-client";
 import {
   GameFound,
@@ -10,9 +10,7 @@ import {
   UpdateQueue
 } from "./messages";
 import { AuthServiceService } from "../service/AuthServiceService";
-import { mutate } from "swr";
 import { AppApi } from "../api/hooks";
-import { Sound } from "./sound";
 import { MatchmakingMode } from "../utils/format/formatGameMode";
 import { GameCoordinatorListener } from "./queue/game-coordinator.listener";
 
@@ -24,11 +22,6 @@ interface PendingGameInfo {
   total: number;
   roomID: string;
   iAccepted: boolean;
-}
-
-export interface GameSocketEvent<T extends any = unknown> {
-  message: Messages;
-  body: T;
 }
 
 export class Game {
@@ -53,31 +46,6 @@ export class Game {
     this.listeners.push(listener);
   }
 
-  @computed
-  public get isServerSearch() {
-    if (!this.pendingGame) return false;
-    return this.pendingGame.accepted === this.pendingGame.total && !this.serverURL;
-  }
-
-  @observable
-  public pendingGame: PendingGameInfo | undefined = undefined;
-
-  @observable
-  public serverURL?: string;
-
-  @observable inQueue: {
-    [key in MatchmakingMode]: number;
-  } = {
-    [MatchmakingMode.ABILITY_DRAFT]: 0,
-    [MatchmakingMode.RANKED]: 0,
-    [MatchmakingMode.UNRANKED]: 0,
-    [MatchmakingMode.SOLOMID]: 0,
-    [MatchmakingMode.DIRETIDE]: 0,
-    [MatchmakingMode.GREEVILING]: 0,
-    [MatchmakingMode.BOTS]: 0,
-    [MatchmakingMode.HIGHROOM]: 0
-  };
-
   @observable
   public connected: boolean = false;
 
@@ -86,104 +54,53 @@ export class Game {
 
   private socket!: SocketIOClient.Socket;
 
-  constructor(private readonly authService: AuthServiceService, private readonly api: AppApi) {
-    console.log("WTF?");
-  }
-
-  private blinkTab = () => {
-    let i = 0;
-    const baseTabName = "Поиск игры - dota2classic.ru";
-    const blinkingName = "Игра найдена!";
-    const interval = setInterval(() => {
-      if (i >= 10) {
-        clearInterval(interval);
-        document.title = blinkingName;
-        return;
-      }
-      if (i % 2 === 0) {
-        document.title = blinkingName;
-      } else {
-        document.title = baseTabName;
-      }
-      i++;
-    }, 1000);
-  };
+  constructor(private readonly authService: AuthServiceService, private readonly api: AppApi) {}
 
   private matchState = (url?: string) => {
-    this.serverURL = url;
+    this.listeners.forEach(t => t.onMatchState(url));
   };
 
-  private matchFinished = ({ roomId }: any) => {
-    this.serverURL = undefined;
-    this.pendingGame = undefined;
+  private matchFinished = () => {
+    this.listeners.forEach(t => t.onMatchFinished());
   };
 
   private onAuthResponse = ({ success }: any) => {
     if (success) {
-      console.log(this.listeners.length);
       this.listeners.forEach(t => t.onAuthorized());
     }
   };
 
   @action
   private queueState = (mode?: MatchmakingMode) => {
-    this.searchingMode = mode === null ? undefined : mode;
-    this.activeMode = mode === null || mode === undefined ? this.activeMode : mode;
+    this.listeners.forEach(t => t.onQueueState(mode));
   };
 
-  private roomNotReady = ({ roomID }: any) => {
-    // shit.
-    if (roomID === this.pendingGame?.roomID) this.pendingGame = undefined;
+  private roomNotReady = () => {
+    this.listeners.forEach(t => t.onRoomNotReady());
   };
 
   private roomState = (data?: RoomState) => {
-    if (!data) {
-      this.pendingGame = undefined;
-    } else {
-      this.searchingMode = undefined;
-      this.pendingGame = {
-        mode: data.mode,
-        accepted: data.accepted,
-        total: data.total,
-        roomID: data.roomId,
-        iAccepted: data.iAccepted
-      };
-    }
+    this.listeners.forEach(t => t.onRoomState(data));
   };
 
-  private joinGame = (data: LauncherServerStarted) => {
-    if (this.pendingGame) {
-      this.serverURL = data.url;
-
-      new Audio(Sound.NOTIFY_GAME).play();
-    }
+  private onServerReady = (data: LauncherServerStarted) => {
+    this.listeners.forEach(t => t.onServerReady(data));
   };
 
-  // early event, server is alive, but match results are ready. no need to show "join game" now
+  // delete?
   private matchResults = (data: { url: string }) => {
-    if (this.serverURL === data.url) {
-      this.serverURL = undefined;
-    }
+    // if (this.serverURL === data.url) {
+    //   this.serverURL = undefined;
+    // }
   };
 
   @action
-  private gameFound = ({ mode, total, roomID, accepted }: GameFound) => {
-    this.pendingGame = {
-      mode,
-      accepted,
-      total,
-      roomID,
-      iAccepted: false
-    };
-    this.blinkTab();
-    new Audio(Sound.MATCH_GAME).play();
+  private gameFound = (gf: GameFound) => {
+    this.listeners.forEach(t => t.onGameFound(gf));
   };
 
   private updateReadyCheck = (data: ReadyCheckUpdate) => {
-    if (this.pendingGame?.roomID === data.roomID) {
-      this.pendingGame.accepted = data.accepted;
-      this.pendingGame.total = data.total;
-    }
+    this.listeners.forEach(t => t.onReadyCheckUpdate(data));
   };
 
   private onQueueUpdate = (data: UpdateQueue) => {
@@ -207,59 +124,47 @@ export class Game {
     });
   }
 
-  public acceptPendingGame = () => {
+  public acceptPendingGame = (roomId: string) => {
     this.socket.emit(Messages.SET_READY_CHECK, {
-      roomID: this.pendingGame?.roomID,
+      roomID: roomId,
       accept: true
     });
-    if (this.pendingGame) this.pendingGame.iAccepted = true;
   };
 
-  public declinePendingGame = () => {
+  public declinePendingGame = (roomId: string) => {
     this.socket.emit(Messages.SET_READY_CHECK, {
-      roomID: this.pendingGame?.roomID,
+      roomID: roomId,
       accept: false
     });
-    this.searchingMode = undefined;
-    this.pendingGame = undefined;
   };
 
-  inviteToParty = async (id: string) => {
+  public inviteToParty = (id: string) => {
     this.socket.emit(Messages.INVITE_TO_PARTY, {
       id
     });
   };
 
-  private partyInviteReceived = async (t: PartyInviteReceivedMessage) => {
-    // ok here we need to display yes/no shit
-    this.pendingPartyInvite = t;
-    console.log("HEY?", this.pendingPartyInvite);
+  private partyInviteReceived = (z: PartyInviteReceivedMessage) => {
+    this.listeners.forEach(t => t.onPartyInviteReceived(z));
   };
 
-  private partyInviteExpired = async (t: string) => {
-    // ok here we need to display yes/no shit
-    if (this.pendingPartyInvite?.inviteId === t) {
-      this.pendingPartyInvite = undefined;
-    }
+  private partyInviteExpired = async (id: string) => {
+    this.listeners.forEach(t => t.onPartyInviteExpired(id));
   };
 
-  public submitPartyInvite = async (accept: boolean) => {
-    if (this.pendingPartyInvite) {
-      this.socket.emit(Messages.ACCEPT_PARTY_INVITE, {
-        accept,
-        id: this.pendingPartyInvite.inviteId
-      });
-      this.pendingPartyInvite = undefined;
-    }
+  public submitPartyInvite = (id: string, accept: boolean) => {
+    this.socket.emit(Messages.ACCEPT_PARTY_INVITE, {
+      accept,
+      id
+    });
   };
 
-  leaveParty = () => {
+  public leaveParty = () => {
     this.socket.emit(Messages.LEAVE_PARTY);
   };
 
-  partyUpdated = () => {
+  private partyUpdated = () => {
     this.listeners.forEach(t => t.onPartyUpdated());
-    // await mutate(JSON.stringify(this.api.playerApi.playerControllerMyPartyContext()), undefined, true);
   };
 
   public connect() {
@@ -297,7 +202,7 @@ export class Game {
     this.socket.on(Messages.AUTH, this.onAuthResponse);
     this.socket.on(Messages.GAME_FOUND, this.gameFound);
     this.socket.on(Messages.READY_CHECK_UPDATE, this.updateReadyCheck);
-    this.socket.on(Messages.SERVER_STARTED, this.joinGame);
+    this.socket.on(Messages.SERVER_STARTED, this.onServerReady);
     this.socket.on(Messages.ROOM_STATE, this.roomState);
     this.socket.on(Messages.ROOM_NOT_READY, this.roomNotReady);
     this.socket.on(Messages.QUEUE_STATE, this.queueState);

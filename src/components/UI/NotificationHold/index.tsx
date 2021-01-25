@@ -2,15 +2,20 @@ import styled from "styled-components";
 import { observer } from "mobx-react";
 import React from "react";
 import { useStores } from "../../../stores";
-import { NotificationDto } from "../../../stores/notification/notification.service";
 import { colors } from "../../../shared";
 
 const NotificationContainer = styled.div`
   position: fixed;
 
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
   left: 50px;
   bottom: 50px;
-  display: flex;
+
+  & div + div {
+    margin-top: 10px;
+  }
 `;
 const Notification = styled.div`
   color: ${colors.primaryText};
@@ -21,11 +26,12 @@ const Notification = styled.div`
 export const NotificationHold = observer(() => {
   const { notify } = useStores();
 
-  if (!notify.currentPendingNotification) return null;
+  if (!notify.currentPendingNotification && notify.permanentQueue.length === 0) return null;
 
   return (
     <NotificationContainer>
-      <Notification>{notify.currentPendingNotification.text}</Notification>
+      {notify.permanentQueue.map(t => t.text)}
+      {notify.currentPendingNotification && <Notification>{notify.currentPendingNotification.text}</Notification>}
     </NotificationContainer>
   );
 });

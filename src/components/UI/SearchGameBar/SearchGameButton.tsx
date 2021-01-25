@@ -9,6 +9,8 @@ import { ColoredRole } from "../ColoredRole";
 import { observer } from "mobx-react";
 import { useRouter } from "next/router";
 import formatGameMode from "../../../utils/format/formatGameMode";
+import { SelectedGameMode } from "../../../container/queue/layout/SelectedGameMode";
+import { AcceptGameModal } from "../../../container/queue/AcceptGameModal";
 
 export const pendingAnimation = keyframes`
   0% {
@@ -95,6 +97,7 @@ export const SearchGameButton = observer(() => {
         Начать поиск рейтинговой игры в группе может только игрок с подпиской
         <ColoredRole className="old">Древний</ColoredRole> или <ColoredRole className="human">Человек</ColoredRole>
       </OldRequiredModal>
+      <AcceptGameModal />
       {(queue.searchingMode !== undefined && (
         <EmbedCancelSearch>
           <SearchGameButtonComp className="cancel" onClick={() => queue.cancelSearch()}>

@@ -69,9 +69,9 @@ const AcceptDots = styled.div`
   margin-top: 40px;
 `;
 const IAcceptGameModal = () => {
-  const { game } = useStores();
+  const { queue } = useStores();
 
-  if (game.isServerSearch)
+  if (queue.isSearchingServer)
     return (
       <ModalWrapper>
         <Modal>
@@ -80,35 +80,35 @@ const IAcceptGameModal = () => {
       </ModalWrapper>
     );
 
-  if (game.serverURL)
+  if (queue.gameInfo?.serverURL)
     return (
       <ModalWrapper>
         <Modal>
           <GameReady>Игра готова!</GameReady>
           <Buttons>
-            <LinkButton target={"__blank"} href={`steam://connect/${game.serverURL}`}>
+            <LinkButton target={"__blank"} href={`steam://connect/${queue.gameInfo?.serverURL}`}>
               Подключиться к игре
             </LinkButton>
           </Buttons>
           <div style={{ marginTop: 5 }} />
 
-          <CopyToClipboard text={`connect ${game.serverURL}`}>
-            <Input style={{ width: "100%" }} readOnly className="iso" value={`connect ${game.serverURL}`} />
+          <CopyToClipboard text={`connect ${queue.gameInfo?.serverURL}`}>
+            <Input style={{ width: "100%" }} readOnly className="iso" value={`connect ${queue.gameInfo?.serverURL}`} />
           </CopyToClipboard>
         </Modal>
       </ModalWrapper>
     );
 
-  if (!game.pendingGame) return <span />;
+  if (!queue.gameInfo) return null;
 
-  if (!game.pendingGame.iAccepted)
+  if (!queue.gameInfo.iAccepted)
     return (
       <ModalWrapper>
         <Modal>
           <GameReady>Игра найдена!</GameReady>
           <Buttons>
-            <Button onClick={game.acceptPendingGame}>Принять</Button>
-            <Button onClick={game.declinePendingGame}>Отклонить</Button>
+            <Button onClick={queue.acceptGame}>Принять</Button>
+            <Button onClick={queue.declineGame}>Отклонить</Button>
           </Buttons>
         </Modal>
       </ModalWrapper>
@@ -118,12 +118,12 @@ const IAcceptGameModal = () => {
     <ModalWrapper>
       <Modal>
         <GameReady>
-          Ожидаем игроков <br /> {game.pendingGame!!.accepted === undefined ? 0 : game.pendingGame!!.accepted} из{" "}
-          {game.pendingGame.total}...
+          Ожидаем игроков <br /> {queue.gameInfo!!.accepted === undefined ? 0 : queue.gameInfo!!.accepted} из{" "}
+          {queue.gameInfo.total}...
         </GameReady>
         <AcceptDots>
-          {new Array(game.pendingGame.total).fill(null).map((_, t) => (
-            <AcceptDot key={t} className={t < game.pendingGame!!.accepted ? "accepted" : undefined} />
+          {new Array(queue.gameInfo.total).fill(null).map((_, t) => (
+            <AcceptDot key={t} className={t < queue.gameInfo!!.accepted ? "accepted" : undefined} />
           ))}
         </AcceptDots>
       </Modal>

@@ -7,7 +7,7 @@ import { SelectedGameMode } from "./SelectedGameMode";
 import { colors } from "../../../shared";
 import { useStores } from "../../../stores";
 import { AcceptGameModal } from "../AcceptGameModal";
-import { AcceptPartyModal } from "../AcceptPartyModal";
+import { PendingPartyInvite } from "../PendingPartyInvite";
 import { LeadButton } from "../../../pages";
 import { appApi } from "../../../api/hooks";
 
@@ -36,8 +36,6 @@ export const Layout = observer(({ children }: PropsWithChildren<{}>) => {
         <Content>
           <SteamInfo />
           <SelectedGameMode />
-          <AcceptGameModal />
-          <AcceptPartyModal />
         </Content>
       </AppLayout>
     );

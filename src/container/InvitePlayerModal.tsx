@@ -4,6 +4,7 @@ import { useApi } from "../api/hooks";
 import Input from "../components/UI/Input";
 import { useStores } from "../stores";
 import useOutsideClick from "../utils/useOutsideClick";
+import { NotificationDto } from "../stores/notification/notification.service";
 
 const Modal = styled.div`
   z-index: 100;
@@ -74,13 +75,13 @@ interface Props {
   open: boolean;
 }
 
-const InvitePlayerModalInner = () => {
+const InvitePlayerModalInner = ({ open, close }: Props) => {
   const [search, setSearch] = useState("");
 
   const { data } = useApi().playerApi.usePlayerControllerSearch(search);
 
   const comp = useRef(null);
-  const { game } = useStores();
+  const { game, queue, notify } = useStores();
   useOutsideClick(close, comp);
 
   return (
@@ -94,7 +95,8 @@ const InvitePlayerModalInner = () => {
             <PlayerPreview
               key={t.id}
               onClick={async () => {
-                await game.inviteToParty(t.id);
+                queue.inviteToParty(t.id);
+                notify.enqueueNotification(new NotificationDto(`Приглашение в группу отправлено ${t.name}`));
                 close();
               }}
             >
@@ -109,7 +111,7 @@ const InvitePlayerModalInner = () => {
 };
 
 export const InvitePlayerModal = ({ open, close }: Props) => {
-  if (open) return <InvitePlayerModalInner />;
+  if (open) return <InvitePlayerModalInner open={open} close={close} />;
 
   return null;
 };

@@ -2,11 +2,10 @@ import { observer } from "mobx-react";
 import styled from "styled-components";
 import React from "react";
 import { useStores } from "../../stores";
+import { colors } from "../../shared";
+import { pendingAnimation } from "../../components/UI/SearchGameBar/SearchGameButton";
 
 const ModalWrap = styled.div`
-  position: fixed;
-  right: 100px;
-  top: 100px;
   width: 250px;
   height: 100px;
   background: #1d1f22;
@@ -16,12 +15,13 @@ const ModalWrap = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  animation: ${pendingAnimation} 2s linear infinite;
 `;
 
 const Buttons = styled.div`
   display: flex;
   justify-content: space-evenly;
-  widows: 100%;
+  width: 100%;
   flex-direction: row;
 `;
 
@@ -34,7 +34,7 @@ const Button = styled.button`
   border-radius: 4px;
   transition: 0.3s ease;
   font-family: "Trajan Pro 3", sans-serif;
-  color: white;
+  color: ${colors.primaryText};
 
   width: fit-content;
   &:disabled {
@@ -51,18 +51,20 @@ const Button = styled.button`
 const Title = styled.div`
   font-size: 12px;
   text-align: center;
+  color: ${colors.primaryText};
 `;
-export const AcceptPartyModal = observer(() => {
-  const { game } = useStores();
-
-  if (!game.pendingPartyInvite) return null;
-
+export interface Props {
+  leader: string;
+  onAccept: () => void;
+  onDecline: () => void;
+}
+export const PendingPartyInvite = observer((p: Props) => {
   return (
     <ModalWrap>
-      <Title>{game.pendingPartyInvite.leader} приглашает в группу</Title>
+      <Title>{p.leader} приглашает в группу</Title>
       <Buttons>
-        <Button onClick={() => game.submitPartyInvite(true)}>Принять</Button>
-        <Button onClick={() => game.submitPartyInvite(false)}>Отклонить</Button>
+        <Button onClick={p.onAccept}>Принять</Button>
+        <Button onClick={p.onDecline}>Отклонить</Button>
       </Buttons>
     </ModalWrap>
   );
