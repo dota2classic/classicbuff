@@ -13,7 +13,7 @@ const Hero = styled.div<{ x: number; y: number }>`
   width: 30px;
   height: 30px;
   position: absolute;
-  transition: 2s ease-in-out;
+  transition: 5s linear;
   left: ${p => p.x * 100}%;
   bottom: ${p => p.y * 100}%;
 
