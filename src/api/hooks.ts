@@ -1,4 +1,4 @@
-import { AdminApi, LiveApi, MatchApi, PlayerApi, StatsApi } from "./back/apis";
+import { AdminApi, LiveApi, MatchApi, MetaApi, PlayerApi, StatsApi } from "./back/apis";
 import { Configuration, ConfigurationParameters } from "./back";
 import { local } from "../config";
 import AuthService from "../service/AuthServiceService";
@@ -24,6 +24,7 @@ export class AppApi {
   readonly playerApi = new PlayerApi(this.apiConfig);
   readonly adminApi = new AdminApi(this.apiConfig);
   readonly statsApi = new StatsApi(this.apiConfig);
+  readonly metaApi = new MetaApi(this.apiConfig);
 }
 
 export const appApi = new AppApi();

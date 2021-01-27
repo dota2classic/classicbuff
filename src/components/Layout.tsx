@@ -167,7 +167,7 @@ const DefaultHeader = () => {
 
   const asPath = router.asPath;
 
-  const { data } = useApi().statsApi.useStatsControllerMe();
+  const { data } = useApi().statsApi.useStatsControllerOnline();
 
   const { data: liveData } = useApi().liveApi.useLiveMatchControllerListMatches({
     refreshInterval: 30_000

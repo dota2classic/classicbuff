@@ -23,9 +23,9 @@ import { CurrentOnlineDto, CurrentOnlineDtoFromJSON, CurrentOnlineDtoToJSON } fr
 export class StatsApi extends runtime.BaseAPI {
   /**
    */
-  private async statsControllerMeRaw(): Promise<runtime.ApiResponse<CurrentOnlineDto>> {
-    this.statsControllerMeValidation();
-    const context = this.statsControllerMeContext();
+  private async statsControllerOnlineRaw(): Promise<runtime.ApiResponse<CurrentOnlineDto>> {
+    this.statsControllerOnlineValidation();
+    const context = this.statsControllerOnlineContext();
     const response = await this.request(context);
 
     return new runtime.JSONApiResponse(response, jsonValue => CurrentOnlineDtoFromJSON(jsonValue));
@@ -33,11 +33,11 @@ export class StatsApi extends runtime.BaseAPI {
 
   /**
    */
-  private statsControllerMeValidation() {}
+  private statsControllerOnlineValidation() {}
 
   /**
    */
-  statsControllerMeContext(): runtime.RequestOpts {
+  statsControllerOnlineContext(): runtime.RequestOpts {
     const queryParameters: any = {};
 
     const headerParameters: runtime.HTTPHeaders = {};
@@ -60,15 +60,15 @@ export class StatsApi extends runtime.BaseAPI {
 
   /**
    */
-  statsControllerMe = async (): Promise<CurrentOnlineDto> => {
-    const response = await this.statsControllerMeRaw();
+  statsControllerOnline = async (): Promise<CurrentOnlineDto> => {
+    const response = await this.statsControllerOnlineRaw();
     return await response.value();
   };
 
-  useStatsControllerMe(config?: ConfigInterface<CurrentOnlineDto, Error>) {
+  useStatsControllerOnline(config?: ConfigInterface<CurrentOnlineDto, Error>) {
     let valid = true;
 
-    const context = this.statsControllerMeContext();
-    return useSWR(JSON.stringify(context), valid ? () => this.statsControllerMe() : undefined, config);
+    const context = this.statsControllerOnlineContext();
+    return useSWR(JSON.stringify(context), valid ? () => this.statsControllerOnline() : undefined, config);
   }
 }

@@ -14,7 +14,7 @@ export interface HeroSummaryPresentation {
 
 export default (p: HeroSummaryPresentation) => {
   return (
-    <Tr onClick={() => Router.push("/heroes/[id]", `/heroes/${p.hero}`)} className={cx("link")}>
+    <Tr onClick={() => Router.push("/meta/heroes/[id]", `/meta/heroes/${p.hero}`)} className={cx("link")}>
       <td>
         <HeroIcon hero={p.hero} />
       </td>

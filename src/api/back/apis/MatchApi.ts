@@ -24,6 +24,12 @@ import {
   MatchPageDtoToJSON
 } from "../models";
 
+export interface MatchControllerHeroMatchesRequest {
+  page: number;
+  hero: string;
+  perPage?: number;
+}
+
 export interface MatchControllerMatchRequest {
   id: number;
 }
@@ -46,6 +52,93 @@ export interface MatchControllerPlayerMatchesRequest {
  *
  */
 export class MatchApi extends runtime.BaseAPI {
+  /**
+   */
+  private async matchControllerHeroMatchesRaw(
+    requestParameters: MatchControllerHeroMatchesRequest
+  ): Promise<runtime.ApiResponse<MatchPageDto>> {
+    this.matchControllerHeroMatchesValidation(requestParameters);
+    const context = this.matchControllerHeroMatchesContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.JSONApiResponse(response, jsonValue => MatchPageDtoFromJSON(jsonValue));
+  }
+
+  /**
+   */
+  private matchControllerHeroMatchesValidation(requestParameters: MatchControllerHeroMatchesRequest) {
+    if (requestParameters.page === null || requestParameters.page === undefined) {
+      throw new runtime.RequiredError(
+        "page",
+        "Required parameter requestParameters.page was null or undefined when calling matchControllerHeroMatches."
+      );
+    }
+    if (requestParameters.hero === null || requestParameters.hero === undefined) {
+      throw new runtime.RequiredError(
+        "hero",
+        "Required parameter requestParameters.hero was null or undefined when calling matchControllerHeroMatches."
+      );
+    }
+  }
+
+  /**
+   */
+  matchControllerHeroMatchesContext(requestParameters: MatchControllerHeroMatchesRequest): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    if (requestParameters.page !== undefined) {
+      queryParameters["page"] = requestParameters.page;
+    }
+
+    if (requestParameters.perPage !== undefined) {
+      queryParameters["per_page"] = requestParameters.perPage;
+    }
+
+    if (requestParameters.hero !== undefined) {
+      queryParameters["hero"] = requestParameters.hero;
+    }
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    return {
+      path: `/v1/match/by_hero`,
+      method: "GET",
+      headers: headerParameters,
+      query: queryParameters
+    };
+  }
+
+  /**
+   */
+  matchControllerHeroMatches = async (page: number, hero: string, perPage?: number): Promise<MatchPageDto> => {
+    const response = await this.matchControllerHeroMatchesRaw({ page: page, hero: hero, perPage: perPage });
+    return await response.value();
+  };
+
+  useMatchControllerHeroMatches(
+    page: number,
+    hero: string,
+    perPage?: number,
+    config?: ConfigInterface<MatchPageDto, Error>
+  ) {
+    let valid = true;
+
+    if (page === null || page === undefined || Number.isNaN(page)) {
+      valid = false;
+    }
+
+    if (hero === null || hero === undefined || Number.isNaN(hero)) {
+      valid = false;
+    }
+
+    const context = this.matchControllerHeroMatchesContext({ page: page!, hero: hero!, perPage: perPage! });
+    return useSWR(
+      JSON.stringify(context),
+      valid ? () => this.matchControllerHeroMatches(page!, hero!, perPage!) : undefined,
+      config
+    );
+  }
+
   /**
    */
   private async matchControllerMatchRaw(

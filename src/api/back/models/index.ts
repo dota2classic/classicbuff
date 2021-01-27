@@ -6,6 +6,7 @@ export * from "./EventAdminDto";
 export * from "./GameServerDto";
 export * from "./GameSessionDto";
 export * from "./HeroStatsDto";
+export * from "./HeroSummaryDto";
 export * from "./LeaderboardEntryDto";
 export * from "./LiveMatchDto";
 export * from "./LiveMatchSseDto";
