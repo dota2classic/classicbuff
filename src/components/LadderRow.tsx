@@ -57,7 +57,7 @@ export const Role = styled.div`
   }
 `;
 
-const NameContainer = styled.div`
+const NameContainer = styled.a`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -77,7 +77,7 @@ export default (props: LeaderboardEntryDto) => {
         </Link>
       </td>
       <td>
-        <Link href={playerUrl}>
+        <Link href={playerUrl} passHref>
           <NameContainer>
             {highestRole !== "PLAYER" && (
               <Role className={highestRole}>

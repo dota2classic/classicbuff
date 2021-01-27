@@ -8,8 +8,8 @@ export class AppApi {
     basePath: local ? "http://localhost:6001" : "https://dota2classic.ru/api",
     accessToken: () => AuthService.token!!,
     fetchApi: (input, init) => {
-      return window.fetch(input, init).then(t => {
-        if (t.status === 401 && AuthService.authorized) {
+      return fetch(input, init).then(t => {
+        if (t.status === 401 && AuthService.authorized && typeof window !== "undefined") {
           AuthService.logout();
           window.location.reload();
         }

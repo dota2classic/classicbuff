@@ -10,6 +10,8 @@ import { steamIdToNum } from "../../utils/numSteamId";
 import { AdBanner } from "../ads/ads";
 import { MinimapHero } from "./MinimapHero";
 import AuthService from "../../service/AuthServiceService";
+import { OldRequiredModal } from "../modal/OldRequiredModal";
+import { PlayerHover } from "../UI/PlayerHover";
 
 const Map = styled.div`
   margin-left: 20px;
@@ -25,7 +27,7 @@ const Map = styled.div`
 const TeamInfo = styled.div`
   display: flex;
   flex-direction: column;
-  width: 240px;
+  width: 300px;
 `;
 
 const Wrapper = styled.div`
@@ -118,9 +120,11 @@ const TeamInfoBlock = ({ heroes, team }: Props) => {
             {hero.bot ? (
               <span className="player-name">{"Бот"}</span>
             ) : (
-              <Link href={`/player/${steamIdToNum(hero.steamId)}`}>
-                <a className="player-name">{hero.name}</a>
-              </Link>
+              <PlayerHover className="player-name" steam_id={hero.steamId}>
+                <Link href={`/player/${steamIdToNum(hero.steamId)}`}>
+                  <a className="player-name">{hero.name}</a>
+                </Link>
+              </PlayerHover>
             )}
             <KDAItems>
               <KDA>{hero.kills}/</KDA>
@@ -179,6 +183,7 @@ export const LiveMatch = (liveMatch: LiveMatchDto) => {
   return (
     <MatchInfo>
       <AdBanner />
+      <OldRequiredModal open={oldRequiredOpen} close={() => setOldRequiredOpen(false)} />
       <MatchOverview>
         <div>{formatGameMode(liveMatch.type)}</div>
         <div>{formatDuration(liveMatch.duration)}</div>

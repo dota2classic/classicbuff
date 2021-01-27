@@ -112,7 +112,6 @@ const Page = () => {
   const mid = Number(id);
   const { data: match, error } = useApi().matchApi.useMatchControllerMatch(mid);
 
-  console.log(error, "MATCH ERROR");
   const liveMatch = useEventSource<LiveMatchDto>(
     useApi().liveApi.liveMatchControllerLiveMatchContext({ id: mid }),
     LiveMatchDtoFromJSON.bind(null)
