@@ -39,7 +39,10 @@ import {
   PlayerPreviewDtoToJSON,
   PlayerSummaryDto,
   PlayerSummaryDtoFromJSON,
-  PlayerSummaryDtoToJSON
+  PlayerSummaryDtoToJSON,
+  ReportDto,
+  ReportDtoFromJSON,
+  ReportDtoToJSON
 } from "../models";
 
 export interface PlayerControllerGeneralSummaryRequest {
@@ -56,6 +59,10 @@ export interface PlayerControllerLeaderboardRequest {
 
 export interface PlayerControllerPlayerSummaryRequest {
   id: string;
+}
+
+export interface PlayerControllerReportPlayerRequest {
+  reportDto: ReportDto;
 }
 
 export interface PlayerControllerSearchRequest {
@@ -439,6 +446,62 @@ export class PlayerApi extends runtime.BaseAPI {
     const context = this.playerControllerPlayerSummaryContext({ id: id! });
     return useSWR(JSON.stringify(context), valid ? () => this.playerControllerPlayerSummary(id!) : undefined, config);
   }
+
+  /**
+   */
+  private async playerControllerReportPlayerRaw(
+    requestParameters: PlayerControllerReportPlayerRequest
+  ): Promise<runtime.ApiResponse<boolean>> {
+    this.playerControllerReportPlayerValidation(requestParameters);
+    const context = this.playerControllerReportPlayerContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.TextApiResponse(response) as any;
+  }
+
+  /**
+   */
+  private playerControllerReportPlayerValidation(requestParameters: PlayerControllerReportPlayerRequest) {
+    if (requestParameters.reportDto === null || requestParameters.reportDto === undefined) {
+      throw new runtime.RequiredError(
+        "reportDto",
+        "Required parameter requestParameters.reportDto was null or undefined when calling playerControllerReportPlayer."
+      );
+    }
+  }
+
+  /**
+   */
+  playerControllerReportPlayerContext(requestParameters: PlayerControllerReportPlayerRequest): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    headerParameters["Content-Type"] = "application/json";
+
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    return {
+      path: `/v1/player/report`,
+      method: "POST",
+      headers: headerParameters,
+      query: queryParameters,
+      body: ReportDtoToJSON(requestParameters.reportDto)
+    };
+  }
+
+  /**
+   */
+  playerControllerReportPlayer = async (reportDto: ReportDto): Promise<boolean> => {
+    const response = await this.playerControllerReportPlayerRaw({ reportDto: reportDto });
+    return await response.value();
+  };
 
   /**
    */

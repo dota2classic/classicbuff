@@ -7,7 +7,8 @@ import { colors } from "../../../shared";
 const Preview = styled.div`
   position: relative;
 
-  overflow: visible !important;
+  overflow: visible;
+  display: flex;
 `;
 
 const QuickScope = styled.div`

@@ -22,6 +22,7 @@ export * from "./PlayerInPartyDto";
 export * from "./PlayerInfo";
 export * from "./PlayerPreviewDto";
 export * from "./PlayerSummaryDto";
+export * from "./ReportDto";
 export * from "./RoleSubscriptionEntryDto";
 export * from "./StopServerDto";
 export * from "./UpdateRolesDto";

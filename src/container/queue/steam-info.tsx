@@ -146,7 +146,7 @@ export default observer(() => {
   const { queue } = useStores();
   const { data } = useApi().playerApi.usePlayerControllerMyParty();
 
-  const { data: onlineData } = useApi().statsApi.useStatsControllerMe();
+  const { data: onlineData } = useApi().statsApi.useStatsControllerOnline();
 
   const { data: party } = useApi().playerApi.usePlayerControllerMyParty();
 

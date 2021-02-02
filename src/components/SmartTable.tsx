@@ -77,9 +77,7 @@ export default observer(function<T>(props: Props<T>) {
                           key,
                           order: SortState.DESC
                         });
-                        console.log("Set desc");
                       } else if (sortKey.key === key) {
-                        console.log("Switching to asc or undefined");
                         // switch to next
                         if (sortKey.order === SortState.DESC) {
                           setSortKey({

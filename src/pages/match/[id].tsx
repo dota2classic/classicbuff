@@ -140,13 +140,13 @@ const Page = () => {
         <Showcase>
           <TeamShowcase>
             <Team className={"green"}>Radiant</Team>
-            <TeamTable players={match.radiant} />
+            <TeamTable matchId={match.id} reportable={match.reportable} players={match.radiant} />
           </TeamShowcase>
 
           <TeamShowcase>
             <Team className={"red"}>Dire</Team>
 
-            <TeamTable players={match.dire} />
+            <TeamTable matchId={match.id} reportable={match.reportable} players={match.dire} />
           </TeamShowcase>
         </Showcase>
       </Layout>

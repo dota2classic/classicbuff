@@ -44,7 +44,7 @@ export const Table = styled.table`
   &.compact {
     & td,
     th {
-      padding: 4px;
+      padding: 2px;
       font-size: 14px;
       text-align: center;
     }

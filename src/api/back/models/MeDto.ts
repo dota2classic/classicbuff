@@ -69,6 +69,12 @@ export interface MeDto {
    * @memberof MeDto
    */
   banStatus: BanStatusDto;
+  /**
+   *
+   * @type {number}
+   * @memberof MeDto
+   */
+  reportsAvailable: number;
 }
 
 export function MeDtoFromJSON(json: any): MeDto {
@@ -87,7 +93,8 @@ export function MeDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): MeD
     roles: json["roles"],
     rank: json["rank"],
     unrankedGamesLeft: json["unrankedGamesLeft"],
-    banStatus: BanStatusDtoFromJSON(json["banStatus"])
+    banStatus: BanStatusDtoFromJSON(json["banStatus"]),
+    reportsAvailable: json["reportsAvailable"]
   };
 }
 
@@ -106,7 +113,8 @@ export function MeDtoToJSON(value?: MeDto | null): any {
     roles: value.roles,
     rank: value.rank,
     unrankedGamesLeft: value.unrankedGamesLeft,
-    banStatus: BanStatusDtoToJSON(value.banStatus)
+    banStatus: BanStatusDtoToJSON(value.banStatus),
+    reportsAvailable: value.reportsAvailable
   };
 }
 

@@ -38,6 +38,7 @@ const Wrapper = styled.div`
 const PlayerRow = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 1;
 
   & + & {
     margin-top: 20px;
@@ -47,6 +48,11 @@ const PlayerRow = styled.div`
 const PlayerHeroRow = styled.div`
   display: flex;
   flex-direction: row;
+
+  & .player-wrap {
+    flex: 1;
+    max-width: 175px;
+  }
 
   & .player-name {
     white-space: nowrap;
@@ -114,13 +120,13 @@ const TeamInfoBlock = ({ heroes, team }: Props) => {
     <TeamInfo>
       <TeamScore className={team === 2 ? "green" : "red"}>{heroes.reduce((a, b) => a + b.kills, 0)}</TeamScore>
       {heroes.map(hero => (
-        <PlayerRow>
+        <PlayerRow key="hero">
           <PlayerHeroRow>
             <img src={`https://dota2classic.ru/api/static/heroes/${hero.hero}.jpg.webp`} alt="" />
             {hero.bot ? (
               <span className="player-name">{"Бот"}</span>
             ) : (
-              <PlayerHover className="player-name" steam_id={hero.steamId}>
+              <PlayerHover className="player-wrap" steam_id={hero.steamId}>
                 <Link href={`/player/${steamIdToNum(hero.steamId)}`}>
                   <a className="player-name">{hero.name}</a>
                 </Link>

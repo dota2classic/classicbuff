@@ -180,7 +180,7 @@ export class Game {
       if (steamId) {
         await this.authorize();
       } else {
-        console.log(`No steam id, no auth yet`);
+        // console.log(`No steam id, no auth yet`);
       }
     });
 

@@ -19,7 +19,8 @@ const EndTime = styled.div``;
 const reasons: any = {
   [0]: <Reason>Вы слишком часто отклоняли найденную игру</Reason>,
   [1]: <Reason>Вы не загружаетесь в игры</Reason>,
-  [2]: <Reason>Причина не указана</Reason>
+  [2]: <Reason>Решение администрации</Reason>,
+  [3]: <Reason>Жалобы от игроков</Reason>
 };
 export const BanStatusInfo = ({ ban }: Props) => {
   return (
