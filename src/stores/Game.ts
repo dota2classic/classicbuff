@@ -164,6 +164,10 @@ export class Game {
     this.listeners.forEach(t => t.onPartyUpdated());
   };
 
+  private badAuth = () => {
+    this.authService.logout();
+  };
+
   public connect() {
     if (typeof window === "undefined") return;
 
@@ -209,6 +213,7 @@ export class Game {
     this.socket.on(Messages.PARTY_INVITE_RECEIVED, this.partyInviteReceived);
     this.socket.on(Messages.PARTY_INVITE_EXPIRED, this.partyInviteExpired);
     this.socket.on(Messages.PARTY_UPDATED, this.partyUpdated);
+    this.socket.on(Messages.BAD_AUTH, this.badAuth);
   }
 
   disconnect() {

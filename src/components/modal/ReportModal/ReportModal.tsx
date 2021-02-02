@@ -95,6 +95,7 @@ export const ReportModal = ({ open, close, reported, matchId, children }: PropsW
         />
         <Buttons>
           <Button
+            disabled={!auth.me?.reportsAvailable}
             onClick={async () => {
               try {
                 const res = await api.playerControllerReportPlayer({
