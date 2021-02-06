@@ -4,12 +4,20 @@ import Layout from "../../../components/Layout";
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../../../shared";
-import { formatTournamentType } from "../../../utils/format/formatTournamentType";
+import { formatTournamentStatus, formatTournamentType } from "../../../utils/format/formatTournamentType";
 import { Tab, Tabs } from "../../../components/UI/Tabs";
 import cx from "classnames";
 import { useTab } from "../../../utils/useTab";
-import { TournamentDtoStatusEnum } from "../../../api/back/models";
-import TeamCard, { CompactTeamCard } from "components/UI/TeamCard";
+import {
+  FullTournamentDtoEntryTypeEnum,
+  FullTournamentDtoStatusEnum,
+  TournamentDtoEntryTypeEnum,
+  TournamentDtoStatusEnum,
+  TournamentParticipantDto
+} from "../../../api/back/models";
+import { CompactTeamCard } from "components/UI/TeamCard";
+import { TeamMemberPreview } from "../../../components/UI/TeamMemberPreview";
+import { formatDateStr } from "../../../utils/format/formateDateStr";
 
 const Card = styled.a`
   display: flex;
@@ -45,11 +53,34 @@ export default () => {
   const router = useRouter();
   const id = router.query.id as string;
 
-  const { data } = useApi().tournament.useTournamentControllerGetTournament(Number(id));
-
-  const { data: teamsData } = useApi().tournament.useTournamentControllerTournamentTeams(Number(id));
+  const api = useApi().tournament;
+  const { data, revalidate } = api.useTournamentControllerGetTournament(Number(id));
 
   const [tab, setTab] = useTab("tab", 0);
+
+  const unregister = async () => {
+    if (!data) return;
+
+    if (data.isLocked) return;
+
+    if (data.entryType === FullTournamentDtoEntryTypeEnum.PLAYER) {
+      await api.tournamentControllerLeaveTournamentAsPlayer(data.id);
+      await revalidate();
+    }
+  };
+
+  const register = async () => {
+    if (!data) return;
+
+    if (data.isLocked) return;
+
+    if (data.entryType === FullTournamentDtoEntryTypeEnum.PLAYER) {
+      await api.tournamentControllerJoinTournamentAsPlayer(data.id);
+      await revalidate();
+    } else {
+      throw "TODO";
+    }
+  };
 
   if (!data) return <Layout />;
   return (
@@ -57,14 +88,24 @@ export default () => {
       <TournamentImage src={data.imageUrl} />
       <TournamentName>{data.name}</TournamentName>
       <TournamentType>Турнир {formatTournamentType(data.entryType)}</TournamentType>
+      <TournamentType>
+        {formatTournamentStatus(data.status)},
+        {data.status === FullTournamentDtoStatusEnum.NEW && " начало " + formatDateStr(data.startDate)}
+      </TournamentType>
 
       <Tabs>
         <Tab className={cx(tab === 0 && "active")} onClick={() => setTab(0)}>
-          Команды
+          {data.entryType === TournamentDtoEntryTypeEnum.PLAYER ? "Игроки" : "Команды"}
         </Tab>
         <Tab className={cx(tab === 1 && "active")} onClick={() => setTab(1)}>
           Матчи
         </Tab>
+        {!data.isLocked &&
+          (data.isParticipating ? (
+            <Tab onClick={() => unregister()}>Покинуть турнир</Tab>
+          ) : (
+            <Tab onClick={() => register()}>Участвовать</Tab>
+          ))}
         {(data.status === TournamentDtoStatusEnum.ONGOING || data.status === TournamentDtoStatusEnum.FINISHED) && (
           <Tab onClick={() => router.push(`/tournament/${data.id}/bracket`)}>Сетка</Tab>
         )}
@@ -73,9 +114,13 @@ export default () => {
       <TabWrapper>
         {tab === 0 && (
           <>
-            {teamsData?.map(team => (
-              <CompactTeamCard team={team} />
-            ))}
+            {data.participants.map((p: TournamentParticipantDto) =>
+              data.entryType === FullTournamentDtoEntryTypeEnum.PLAYER ? (
+                <TeamMemberPreview profile={p.profile!!} />
+              ) : (
+                <CompactTeamCard team={p.team!!} />
+              )
+            )}
           </>
         )}
       </TabWrapper>

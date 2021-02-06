@@ -19,19 +19,93 @@ import {
   CreateTournamentDto,
   CreateTournamentDtoFromJSON,
   CreateTournamentDtoToJSON,
+  StartTournamentDto,
+  StartTournamentDtoFromJSON,
+  StartTournamentDtoToJSON,
   TournamentDto,
   TournamentDtoFromJSON,
   TournamentDtoToJSON
 } from "../models";
 
+export interface AdminTournamentControllerCancelTournamentRequest {
+  startTournamentDto: StartTournamentDto;
+}
+
 export interface AdminTournamentControllerCreateTournamentRequest {
   createTournamentDto: CreateTournamentDto;
+}
+
+export interface AdminTournamentControllerGetTournamentRequest {
+  id: number;
+}
+
+export interface AdminTournamentControllerStartTournamentRequest {
+  startTournamentDto: StartTournamentDto;
 }
 
 /**
  *
  */
 export class AdminTournamentApi extends runtime.BaseAPI {
+  /**
+   */
+  private async adminTournamentControllerCancelTournamentRaw(
+    requestParameters: AdminTournamentControllerCancelTournamentRequest
+  ): Promise<runtime.ApiResponse<void>> {
+    this.adminTournamentControllerCancelTournamentValidation(requestParameters);
+    const context = this.adminTournamentControllerCancelTournamentContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.VoidApiResponse(response);
+  }
+
+  /**
+   */
+  private adminTournamentControllerCancelTournamentValidation(
+    requestParameters: AdminTournamentControllerCancelTournamentRequest
+  ) {
+    if (requestParameters.startTournamentDto === null || requestParameters.startTournamentDto === undefined) {
+      throw new runtime.RequiredError(
+        "startTournamentDto",
+        "Required parameter requestParameters.startTournamentDto was null or undefined when calling adminTournamentControllerCancelTournament."
+      );
+    }
+  }
+
+  /**
+   */
+  adminTournamentControllerCancelTournamentContext(
+    requestParameters: AdminTournamentControllerCancelTournamentRequest
+  ): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    headerParameters["Content-Type"] = "application/json";
+
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    return {
+      path: `/v1/admin/tournament/cancel_tournament`,
+      method: "POST",
+      headers: headerParameters,
+      query: queryParameters,
+      body: StartTournamentDtoToJSON(requestParameters.startTournamentDto)
+    };
+  }
+
+  /**
+   */
+  adminTournamentControllerCancelTournament = async (startTournamentDto: StartTournamentDto): Promise<void> => {
+    await this.adminTournamentControllerCancelTournamentRaw({ startTournamentDto: startTournamentDto });
+  };
+
   /**
    */
   private async adminTournamentControllerCreateTournamentRaw(
@@ -68,6 +142,14 @@ export class AdminTournamentApi extends runtime.BaseAPI {
 
     headerParameters["Content-Type"] = "application/json";
 
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
     return {
       path: `/v1/admin/tournament/create_tournament`,
       method: "POST",
@@ -86,5 +168,191 @@ export class AdminTournamentApi extends runtime.BaseAPI {
       createTournamentDto: createTournamentDto
     });
     return await response.value();
+  };
+
+  /**
+   */
+  private async adminTournamentControllerGetTournamentRaw(
+    requestParameters: AdminTournamentControllerGetTournamentRequest
+  ): Promise<runtime.ApiResponse<TournamentDto>> {
+    this.adminTournamentControllerGetTournamentValidation(requestParameters);
+    const context = this.adminTournamentControllerGetTournamentContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.JSONApiResponse(response, jsonValue => TournamentDtoFromJSON(jsonValue));
+  }
+
+  /**
+   */
+  private adminTournamentControllerGetTournamentValidation(
+    requestParameters: AdminTournamentControllerGetTournamentRequest
+  ) {
+    if (requestParameters.id === null || requestParameters.id === undefined) {
+      throw new runtime.RequiredError(
+        "id",
+        "Required parameter requestParameters.id was null or undefined when calling adminTournamentControllerGetTournament."
+      );
+    }
+  }
+
+  /**
+   */
+  adminTournamentControllerGetTournamentContext(
+    requestParameters: AdminTournamentControllerGetTournamentRequest
+  ): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    return {
+      path: `/v1/admin/tournament/get/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+      method: "GET",
+      headers: headerParameters,
+      query: queryParameters
+    };
+  }
+
+  /**
+   */
+  adminTournamentControllerGetTournament = async (id: number): Promise<TournamentDto> => {
+    const response = await this.adminTournamentControllerGetTournamentRaw({ id: id });
+    return await response.value();
+  };
+
+  useAdminTournamentControllerGetTournament(id: number, config?: ConfigInterface<TournamentDto, Error>) {
+    let valid = true;
+
+    if (id === null || id === undefined || Number.isNaN(id)) {
+      valid = false;
+    }
+
+    const context = this.adminTournamentControllerGetTournamentContext({ id: id! });
+    return useSWR(
+      JSON.stringify(context),
+      valid ? () => this.adminTournamentControllerGetTournament(id!) : undefined,
+      config
+    );
+  }
+
+  /**
+   */
+  private async adminTournamentControllerListTournamentsRaw(): Promise<runtime.ApiResponse<Array<TournamentDto>>> {
+    this.adminTournamentControllerListTournamentsValidation();
+    const context = this.adminTournamentControllerListTournamentsContext();
+    const response = await this.request(context);
+
+    return new runtime.JSONApiResponse(response, jsonValue => jsonValue.map(TournamentDtoFromJSON));
+  }
+
+  /**
+   */
+  private adminTournamentControllerListTournamentsValidation() {}
+
+  /**
+   */
+  adminTournamentControllerListTournamentsContext(): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    return {
+      path: `/v1/admin/tournament/list`,
+      method: "GET",
+      headers: headerParameters,
+      query: queryParameters
+    };
+  }
+
+  /**
+   */
+  adminTournamentControllerListTournaments = async (): Promise<Array<TournamentDto>> => {
+    const response = await this.adminTournamentControllerListTournamentsRaw();
+    return await response.value();
+  };
+
+  useAdminTournamentControllerListTournaments(config?: ConfigInterface<Array<TournamentDto>, Error>) {
+    let valid = true;
+
+    const context = this.adminTournamentControllerListTournamentsContext();
+    return useSWR(
+      JSON.stringify(context),
+      valid ? () => this.adminTournamentControllerListTournaments() : undefined,
+      config
+    );
+  }
+
+  /**
+   */
+  private async adminTournamentControllerStartTournamentRaw(
+    requestParameters: AdminTournamentControllerStartTournamentRequest
+  ): Promise<runtime.ApiResponse<void>> {
+    this.adminTournamentControllerStartTournamentValidation(requestParameters);
+    const context = this.adminTournamentControllerStartTournamentContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.VoidApiResponse(response);
+  }
+
+  /**
+   */
+  private adminTournamentControllerStartTournamentValidation(
+    requestParameters: AdminTournamentControllerStartTournamentRequest
+  ) {
+    if (requestParameters.startTournamentDto === null || requestParameters.startTournamentDto === undefined) {
+      throw new runtime.RequiredError(
+        "startTournamentDto",
+        "Required parameter requestParameters.startTournamentDto was null or undefined when calling adminTournamentControllerStartTournament."
+      );
+    }
+  }
+
+  /**
+   */
+  adminTournamentControllerStartTournamentContext(
+    requestParameters: AdminTournamentControllerStartTournamentRequest
+  ): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    headerParameters["Content-Type"] = "application/json";
+
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    return {
+      path: `/v1/admin/tournament/start_tournament`,
+      method: "POST",
+      headers: headerParameters,
+      query: queryParameters,
+      body: StartTournamentDtoToJSON(requestParameters.startTournamentDto)
+    };
+  }
+
+  /**
+   */
+  adminTournamentControllerStartTournament = async (startTournamentDto: StartTournamentDto): Promise<void> => {
+    await this.adminTournamentControllerStartTournamentRaw({ startTournamentDto: startTournamentDto });
   };
 }

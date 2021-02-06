@@ -22,6 +22,9 @@ import {
   CompactTeamDto,
   CompactTeamDtoFromJSON,
   CompactTeamDtoToJSON,
+  FullTournamentDto,
+  FullTournamentDtoFromJSON,
+  FullTournamentDtoToJSON,
   TournamentDto,
   TournamentDtoFromJSON,
   TournamentDtoToJSON
@@ -32,6 +35,14 @@ export interface TournamentControllerGetBracketRequest {
 }
 
 export interface TournamentControllerGetTournamentRequest {
+  id: number;
+}
+
+export interface TournamentControllerJoinTournamentAsPlayerRequest {
+  id: number;
+}
+
+export interface TournamentControllerLeaveTournamentAsPlayerRequest {
   id: number;
 }
 
@@ -103,12 +114,12 @@ export class TournamentApi extends runtime.BaseAPI {
    */
   private async tournamentControllerGetTournamentRaw(
     requestParameters: TournamentControllerGetTournamentRequest
-  ): Promise<runtime.ApiResponse<TournamentDto>> {
+  ): Promise<runtime.ApiResponse<FullTournamentDto>> {
     this.tournamentControllerGetTournamentValidation(requestParameters);
     const context = this.tournamentControllerGetTournamentContext(requestParameters);
     const response = await this.request(context);
 
-    return new runtime.JSONApiResponse(response, jsonValue => TournamentDtoFromJSON(jsonValue));
+    return new runtime.JSONApiResponse(response, jsonValue => FullTournamentDtoFromJSON(jsonValue));
   }
 
   /**
@@ -131,6 +142,14 @@ export class TournamentApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
     return {
       path: `/v1/tournament/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
       method: "GET",
@@ -141,12 +160,12 @@ export class TournamentApi extends runtime.BaseAPI {
 
   /**
    */
-  tournamentControllerGetTournament = async (id: number): Promise<TournamentDto> => {
+  tournamentControllerGetTournament = async (id: number): Promise<FullTournamentDto> => {
     const response = await this.tournamentControllerGetTournamentRaw({ id: id });
     return await response.value();
   };
 
-  useTournamentControllerGetTournament(id: number, config?: ConfigInterface<TournamentDto, Error>) {
+  useTournamentControllerGetTournament(id: number, config?: ConfigInterface<FullTournamentDto, Error>) {
     let valid = true;
 
     if (id === null || id === undefined || Number.isNaN(id)) {
@@ -160,6 +179,121 @@ export class TournamentApi extends runtime.BaseAPI {
       config
     );
   }
+
+  /**
+   */
+  private async tournamentControllerJoinTournamentAsPlayerRaw(
+    requestParameters: TournamentControllerJoinTournamentAsPlayerRequest
+  ): Promise<runtime.ApiResponse<void>> {
+    this.tournamentControllerJoinTournamentAsPlayerValidation(requestParameters);
+    const context = this.tournamentControllerJoinTournamentAsPlayerContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.VoidApiResponse(response);
+  }
+
+  /**
+   */
+  private tournamentControllerJoinTournamentAsPlayerValidation(
+    requestParameters: TournamentControllerJoinTournamentAsPlayerRequest
+  ) {
+    if (requestParameters.id === null || requestParameters.id === undefined) {
+      throw new runtime.RequiredError(
+        "id",
+        "Required parameter requestParameters.id was null or undefined when calling tournamentControllerJoinTournamentAsPlayer."
+      );
+    }
+  }
+
+  /**
+   */
+  tournamentControllerJoinTournamentAsPlayerContext(
+    requestParameters: TournamentControllerJoinTournamentAsPlayerRequest
+  ): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    return {
+      path: `/v1/tournament/join_as_player/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+      method: "POST",
+      headers: headerParameters,
+      query: queryParameters
+    };
+  }
+
+  /**
+   */
+  tournamentControllerJoinTournamentAsPlayer = async (id: number): Promise<void> => {
+    await this.tournamentControllerJoinTournamentAsPlayerRaw({ id: id });
+  };
+
+  /**
+   */
+  private async tournamentControllerLeaveTournamentAsPlayerRaw(
+    requestParameters: TournamentControllerLeaveTournamentAsPlayerRequest
+  ): Promise<runtime.ApiResponse<void>> {
+    this.tournamentControllerLeaveTournamentAsPlayerValidation(requestParameters);
+    const context = this.tournamentControllerLeaveTournamentAsPlayerContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.VoidApiResponse(response);
+  }
+
+  /**
+   */
+  private tournamentControllerLeaveTournamentAsPlayerValidation(
+    requestParameters: TournamentControllerLeaveTournamentAsPlayerRequest
+  ) {
+    if (requestParameters.id === null || requestParameters.id === undefined) {
+      throw new runtime.RequiredError(
+        "id",
+        "Required parameter requestParameters.id was null or undefined when calling tournamentControllerLeaveTournamentAsPlayer."
+      );
+    }
+  }
+
+  /**
+   */
+  tournamentControllerLeaveTournamentAsPlayerContext(
+    requestParameters: TournamentControllerLeaveTournamentAsPlayerRequest
+  ): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    return {
+      path: `/v1/tournament/leave_as_player/{id}`.replace(
+        `{${"id"}}`,
+        encodeURIComponent(String(requestParameters.id))
+      ),
+      method: "POST",
+      headers: headerParameters,
+      query: queryParameters
+    };
+  }
+
+  /**
+   */
+  tournamentControllerLeaveTournamentAsPlayer = async (id: number): Promise<void> => {
+    await this.tournamentControllerLeaveTournamentAsPlayerRaw({ id: id });
+  };
 
   /**
    */

@@ -21,10 +21,10 @@ export class AppApi {
     accessToken: () => AuthService.token!!,
     fetchApi: (input, init) => {
       return fetch(input, init).then(t => {
-        if (t.status === 401 && AuthService.authorized && typeof window !== "undefined") {
-          AuthService.logout();
-          window.location.reload();
-        }
+        // if (t.status === 401 && AuthService.authorized && typeof window !== "undefined") {
+        //   AuthService.logout();
+        //   window.location.reload();
+        // }
         return t;
       });
     }

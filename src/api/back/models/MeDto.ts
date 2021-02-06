@@ -13,7 +13,16 @@
  */
 
 import { exists, mapValues } from "../runtime";
-import { BanStatusDto, BanStatusDtoFromJSON, BanStatusDtoFromJSONTyped, BanStatusDtoToJSON } from "./";
+import {
+  BanStatusDto,
+  BanStatusDtoFromJSON,
+  BanStatusDtoFromJSONTyped,
+  BanStatusDtoToJSON,
+  TeamDto,
+  TeamDtoFromJSON,
+  TeamDtoFromJSONTyped,
+  TeamDtoToJSON
+} from "./";
 
 /**
  *
@@ -75,6 +84,12 @@ export interface MeDto {
    * @memberof MeDto
    */
   reportsAvailable: number;
+  /**
+   *
+   * @type {TeamDto}
+   * @memberof MeDto
+   */
+  team?: TeamDto;
 }
 
 export function MeDtoFromJSON(json: any): MeDto {
@@ -94,7 +109,8 @@ export function MeDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): MeD
     rank: json["rank"],
     unrankedGamesLeft: json["unrankedGamesLeft"],
     banStatus: BanStatusDtoFromJSON(json["banStatus"]),
-    reportsAvailable: json["reportsAvailable"]
+    reportsAvailable: json["reportsAvailable"],
+    team: !exists(json, "team") ? undefined : TeamDtoFromJSON(json["team"])
   };
 }
 
@@ -114,7 +130,8 @@ export function MeDtoToJSON(value?: MeDto | null): any {
     rank: value.rank,
     unrankedGamesLeft: value.unrankedGamesLeft,
     banStatus: BanStatusDtoToJSON(value.banStatus),
-    reportsAvailable: value.reportsAvailable
+    reportsAvailable: value.reportsAvailable,
+    team: TeamDtoToJSON(value.team)
   };
 }
 

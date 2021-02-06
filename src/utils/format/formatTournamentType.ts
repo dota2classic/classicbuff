@@ -12,12 +12,12 @@ export const formatTournamentType = (t: TournamentDtoEntryTypeEnum): string => {
 export const formatTournamentStatus = (t: TournamentDtoStatusEnum): string => {
   switch (t) {
     case TournamentDtoStatusEnum.NEW:
-      return "Новый";
+      return "Открыта регистрация";
     case TournamentDtoStatusEnum.ONGOING:
-      return "В процессе";
+      return "Турнир в процессе";
     case TournamentDtoStatusEnum.FINISHED:
-      return "Завершен";
+      return "Турнир завершен";
     case TournamentDtoStatusEnum.CANCELLED:
-      return "Отменен";
+      return "Турнир отменен";
   }
 };
