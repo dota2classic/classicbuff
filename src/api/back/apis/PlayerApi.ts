@@ -562,4 +562,48 @@ export class PlayerApi extends runtime.BaseAPI {
     const context = this.playerControllerSearchContext({ name: name! });
     return useSWR(JSON.stringify(context), valid ? () => this.playerControllerSearch(name!) : undefined, config);
   }
+
+  /**
+   */
+  private async playerControllerUploadImageRaw(): Promise<runtime.ApiResponse<object>> {
+    this.playerControllerUploadImageValidation();
+    const context = this.playerControllerUploadImageContext();
+    const response = await this.request(context);
+
+    return new runtime.JSONApiResponse<any>(response);
+  }
+
+  /**
+   */
+  private playerControllerUploadImageValidation() {}
+
+  /**
+   */
+  playerControllerUploadImageContext(): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    return {
+      path: `/v1/player/upload`,
+      method: "POST",
+      headers: headerParameters,
+      query: queryParameters
+    };
+  }
+
+  /**
+   */
+  playerControllerUploadImage = async (): Promise<object> => {
+    const response = await this.playerControllerUploadImageRaw();
+    return await response.value();
+  };
 }

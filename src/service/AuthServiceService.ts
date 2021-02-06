@@ -1,6 +1,6 @@
 import { action, computed, observable } from "mobx";
 import cookies from "browser-cookies";
-import { appApi } from "../api/hooks";
+import { apiInner, appApi } from "../api/hooks";
 import {
   MeDto,
   MeDtoRolesEnum,
@@ -122,12 +122,14 @@ export class AuthServiceService {
   public setToken(token: string) {
     this.token = token;
     appApi.apiParams.accessToken = token;
+    apiInner.setHeader(`Authorization`, `Bearer ${token}`);
     localStorage.setItem("token", token);
   }
 
   @action.bound
   public logout() {
     this.token = undefined;
+    apiInner.deleteHeader(`Authorization`);
     appApi.apiParams.accessToken = undefined;
     localStorage.removeItem("token");
     cookies.erase("dota2classic_auth_token");

@@ -3,7 +3,7 @@ import React, { PropsWithChildren, useEffect, useState } from "react";
 import { useApi } from "../../../api/hooks";
 import { PlayerSummaryDto } from "../../../api/back/models";
 import { colors } from "../../../shared";
-
+import cx from "classnames";
 const Preview = styled.div`
   position: relative;
 
@@ -15,6 +15,11 @@ const QuickScope = styled.div`
   position: absolute;
   right: -10px;
 
+  &.compact {
+    padding: 5px;
+  }
+
+  color: ${colors.primaryText};
   background: ${colors.evenDarkerBg};
 
   display: flex;
@@ -26,6 +31,7 @@ const QuickScope = styled.div`
 
 export interface Props {
   steam_id: string | number;
+  compact?: boolean;
   className?: string;
 }
 export const PlayerHover = (p: PropsWithChildren<Props>) => {
@@ -47,7 +53,7 @@ export const PlayerHover = (p: PropsWithChildren<Props>) => {
     >
       {p.children}
       {previewVisible && data && (
-        <QuickScope>
+        <QuickScope className={cx(p.compact && "compact")}>
           <span>{data.rank} ранг</span>
           <span>{data.mmr} mmr</span>
         </QuickScope>

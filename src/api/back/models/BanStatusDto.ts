@@ -75,5 +75,6 @@ export function BanStatusDtoToJSON(value?: BanStatusDto | null): any {
 export enum BanStatusDtoStatusEnum {
   GAMEDECLINE = "GAME_DECLINE",
   LOADFAILURE = "LOAD_FAILURE",
-  INFINITEBAN = "INFINITE_BAN"
+  INFINITEBAN = "INFINITE_BAN",
+  REPORTS = "REPORTS"
 }
