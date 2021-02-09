@@ -13,7 +13,16 @@
  */
 
 import { exists, mapValues } from "../runtime";
-import { TeamDto, TeamDtoFromJSON, TeamDtoFromJSONTyped, TeamDtoToJSON } from "./";
+import {
+  PlayerPreviewDto,
+  PlayerPreviewDtoFromJSON,
+  PlayerPreviewDtoFromJSONTyped,
+  PlayerPreviewDtoToJSON,
+  TeamDto,
+  TeamDtoFromJSON,
+  TeamDtoFromJSONTyped,
+  TeamDtoToJSON
+} from "./";
 
 /**
  *
@@ -23,22 +32,22 @@ import { TeamDto, TeamDtoFromJSON, TeamDtoFromJSONTyped, TeamDtoToJSON } from ".
 export interface SeedItemDto {
   /**
    *
-   * @type {string}
+   * @type {PlayerPreviewDto}
    * @memberof SeedItemDto
    */
-  steamId?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof SeedItemDto
-   */
-  playerName?: string;
+  profile?: PlayerPreviewDto;
   /**
    *
    * @type {TeamDto}
    * @memberof SeedItemDto
    */
   team?: TeamDto;
+  /**
+   *
+   * @type {boolean}
+   * @memberof SeedItemDto
+   */
+  isTeam: boolean;
   /**
    *
    * @type {string}
@@ -62,9 +71,9 @@ export function SeedItemDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return json;
   }
   return {
-    steamId: !exists(json, "steam_id") ? undefined : json["steam_id"],
-    playerName: !exists(json, "playerName") ? undefined : json["playerName"],
+    profile: !exists(json, "profile") ? undefined : PlayerPreviewDtoFromJSON(json["profile"]),
     team: !exists(json, "team") ? undefined : TeamDtoFromJSON(json["team"]),
+    isTeam: json["isTeam"],
     result: !exists(json, "result") ? undefined : json["result"],
     tbd: !exists(json, "tbd") ? undefined : json["tbd"]
   };
@@ -78,9 +87,9 @@ export function SeedItemDtoToJSON(value?: SeedItemDto | null): any {
     return null;
   }
   return {
-    steam_id: value.steamId,
-    playerName: value.playerName,
+    profile: PlayerPreviewDtoToJSON(value.profile),
     team: TeamDtoToJSON(value.team),
+    isTeam: value.isTeam,
     result: value.result,
     tbd: value.tbd
   };

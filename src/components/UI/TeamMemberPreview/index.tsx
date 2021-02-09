@@ -1,4 +1,4 @@
-import { numToSteamId } from "../../../utils/numSteamId";
+import { numToSteamId, steamIdToNum } from "../../../utils/numSteamId";
 import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
@@ -7,6 +7,7 @@ import { PlayerPreviewDto } from "../../../api/back/models";
 
 const PlayerPreview = styled.a`
   display: flex;
+  margin-top: 10px;
   flex-direction: row;
   color: ${colors.primaryText};
   text-decoration: none;
@@ -35,7 +36,7 @@ interface Props {
 
 export const TeamMemberPreview = ({ profile }: Props) => {
   return (
-    <Link href={`/player/${numToSteamId(profile.id)}`} passHref>
+    <Link href={`/player/${steamIdToNum(profile.id)}`} passHref>
       <PlayerPreview>
         <img src={profile.avatar} alt="" />
         <span>{profile.name}</span>

@@ -3,7 +3,7 @@ import { AdminLayout } from "../../../components/admin/AdminLayout";
 import { useApi } from "../../../api/hooks";
 import { useRouter } from "next/router";
 import { AdminTournamentCard } from "../../../components/admin-new/AdminTournamentCard";
-import BracketViewer from "components/UI/BracketViewer";
+import BracketViewer, { AdminBracketViewer } from "components/UI/BracketViewer";
 import { formatTournamentStatus } from "../../../utils/format/formatTournamentType";
 import { Table, Tr } from "../../../components/UI/Table";
 import { TournamentDtoStatusEnum } from "../../../api/back/models";
@@ -70,8 +70,8 @@ export default () => {
 
       {(bracketData && (
         <>
-          <BracketViewer rounds={bracketData.winning} />
-          <BracketViewer rounds={bracketData.losing} />
+          <AdminBracketViewer rounds={bracketData.winning} />
+          <AdminBracketViewer rounds={bracketData.losing} />
         </>
       )) || <Hint>{data?.status === TournamentDtoStatusEnum.NEW && "Турнир еще не начат"}</Hint>}
     </AdminLayout>

@@ -95,18 +95,19 @@ export default () => {
 
       <Tabs>
         <Tab className={cx(tab === 0 && "active")} onClick={() => setTab(0)}>
-          {data.entryType === TournamentDtoEntryTypeEnum.PLAYER ? "Игроки" : "Команды"}
+          {data.entryType === FullTournamentDtoEntryTypeEnum.PLAYER ? "Игроки" : "Команды"}
         </Tab>
-        <Tab className={cx(tab === 1 && "active")} onClick={() => setTab(1)}>
-          Матчи
-        </Tab>
+        {/*<Tab className={cx(tab === 1 && "active")} onClick={() => setTab(1)}>*/}
+        {/*  Матчи*/}
+        {/*</Tab>*/}
         {!data.isLocked &&
           (data.isParticipating ? (
             <Tab onClick={() => unregister()}>Покинуть турнир</Tab>
           ) : (
             <Tab onClick={() => register()}>Участвовать</Tab>
           ))}
-        {(data.status === TournamentDtoStatusEnum.ONGOING || data.status === TournamentDtoStatusEnum.FINISHED) && (
+        {(data.status === FullTournamentDtoStatusEnum.ONGOING ||
+          data.status === FullTournamentDtoStatusEnum.FINISHED) && (
           <Tab onClick={() => router.push(`/tournament/${data.id}/bracket`)}>Сетка</Tab>
         )}
       </Tabs>

@@ -13,6 +13,7 @@ export default () => {
       <Link href={`/admin/tournament/create`} passHref>
         <LinkButton>Создать турнир</LinkButton>
       </Link>
+      <br />
       {data?.map(tournament => (
         <AdminTournamentCard tournament={tournament} />
       ))}

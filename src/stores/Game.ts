@@ -14,7 +14,7 @@ import { AppApi } from "../api/hooks";
 import { MatchmakingMode } from "../utils/format/formatGameMode";
 import { GameCoordinatorListener } from "./queue/game-coordinator.listener";
 
-const isDev = process.env.DEV === "true";
+export const isDev = process.env.DEV === "true";
 
 interface PendingGameInfo {
   mode: MatchmakingMode;

@@ -15,8 +15,9 @@ const Card = styled.a`
   flex-direction: row;
   color: ${colors.primaryText};
   text-decoration: none;
-  flex: 1;
   width: 100%;
+  padding: 20px;
+  border: 1px solid ${colors.transparentTint3};
 
   & + & {
     margin-top: 20px;
