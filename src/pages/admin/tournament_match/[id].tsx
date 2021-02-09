@@ -13,7 +13,7 @@ import { OpponentPreview } from "../../../components/UI/OpponentPreview";
 import { formatMatchState } from "../../../utils/formatMatchStatus";
 import { SeedItemDto, TournamentMatchDto, TournamentMatchDtoStatusEnum } from "../../../api/back/models";
 
-registerLocale("ru", ru);
+// registerLocale("ru", ru);
 
 export default () => {
   const mId = Number(useRouter().query.id as string);
@@ -113,9 +113,9 @@ export default () => {
               <td>Запланированная дата</td>
               <td>
                 <DatePicker
-                  locale="ru"
                   showTimeSelect
                   customInputRef={""}
+                  timeIntervals={1}
                   dateFormat={"dd MMMM yyyy HH:mm"}
                   customInput={<Input className={"iso"} />}
                   selected={new Date(data.scheduledDate)}
