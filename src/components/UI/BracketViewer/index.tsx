@@ -110,19 +110,12 @@ const CustomSeed = (seed: SeedDto, breakpoint: number, roundIndex: number) => {
   return (
     <Seed mobileBreakpoint={breakpoint} className="bracket__arrow-holder">
       <SeedItem className="bracket__seed-item">
-        {(seed.matchId && (
-          <Link passHref href={`/match/${seed.matchId}`}>
-            <SeedsWrapper>
-              <RenderSeed seed={seed.teams[0]} />
-              <RenderSeed seed={seed.teams[1]} />
-            </SeedsWrapper>
-          </Link>
-        )) || (
+        <Link passHref href={`/tournament/match/${seed.id}`}>
           <SeedsWrapper>
             <RenderSeed seed={seed.teams[0]} />
             <RenderSeed seed={seed.teams[1]} />
           </SeedsWrapper>
-        )}
+        </Link>
       </SeedItem>
     </Seed>
   );

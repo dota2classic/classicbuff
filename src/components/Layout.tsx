@@ -37,8 +37,9 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: fit-content;
   min-width: 600px;
+  width: fit-content;
+  //width: 60%;
 
   &.landing {
     margin-top: 0px;
@@ -176,7 +177,7 @@ const DefaultHeader = () => {
   return (
     <>
       <HeaderWrapper>
-        <Tabs>
+        <Tabs className="heading">
           <Link passHref href={"/"}>
             <Tab className={cx(asPath === "/" && "active")}>
               <span style={{ textTransform: "uppercase" }}>dota2classic</span>
@@ -194,16 +195,21 @@ const DefaultHeader = () => {
           <Link passHref href={"/leaderboard"}>
             <Tab className={cx(asPath === "/leaderboard" && "active")}>Таблица лидеров</Tab>
           </Link>
+
+          <Link passHref href={"/tournament"}>
+            <Tab className={cx(asPath.startsWith("/tournament") && "active")}>Турниры</Tab>
+          </Link>
+
           <Link passHref href={"/history"}>
             <Tab className={cx(asPath.startsWith("/history") && "active")}>Матчи</Tab>
           </Link>
-
           <Link passHref href={"/live"}>
             <Tab className={cx(asPath.startsWith("/live") && "active")}>
               Live
               {liveData && <span className="badge">{liveData?.length}</span>}
             </Tab>
           </Link>
+
           {/*<Tab className={cx(asPath === "/heroes" && "active")}>*/}
           {/*  <Link passHref href={"/heroes"}>*/}
           {/*    <a>Таблица лидеров</a>*/}

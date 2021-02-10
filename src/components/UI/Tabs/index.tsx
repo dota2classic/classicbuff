@@ -1,12 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../../shared";
 
-export const Tabs = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin: 10px;
-`;
-
 export const Tab = styled.a`
   position: relative;
   font-size: 16px;
@@ -80,5 +74,22 @@ export const Tab = styled.a`
       opacity: 1;
       right: 0;
     }
+  }
+`;
+
+export const Tabs = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+
+  &.heading ${Tab} {
+    & .badge {
+      width: 10px;
+      height: 10px;
+      right: -2px;
+    }
+
+    padding: 8px;
+    font-size: 14px;
   }
 `;

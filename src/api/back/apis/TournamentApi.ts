@@ -27,7 +27,10 @@ import {
   FullTournamentDtoToJSON,
   TournamentDto,
   TournamentDtoFromJSON,
-  TournamentDtoToJSON
+  TournamentDtoToJSON,
+  TournamentMatchDto,
+  TournamentMatchDtoFromJSON,
+  TournamentMatchDtoToJSON
 } from "../models";
 
 export interface TournamentControllerGetBracketRequest {
@@ -43,6 +46,10 @@ export interface TournamentControllerJoinTournamentAsPlayerRequest {
 }
 
 export interface TournamentControllerLeaveTournamentAsPlayerRequest {
+  id: number;
+}
+
+export interface TournamentControllerTournamentMatchRequest {
   id: number;
 }
 
@@ -338,6 +345,79 @@ export class TournamentApi extends runtime.BaseAPI {
     return useSWR(
       JSON.stringify(context),
       valid ? () => this.tournamentControllerListTournaments() : undefined,
+      config
+    );
+  }
+
+  /**
+   */
+  private async tournamentControllerTournamentMatchRaw(
+    requestParameters: TournamentControllerTournamentMatchRequest
+  ): Promise<runtime.ApiResponse<TournamentMatchDto>> {
+    this.tournamentControllerTournamentMatchValidation(requestParameters);
+    const context = this.tournamentControllerTournamentMatchContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.JSONApiResponse(response, jsonValue => TournamentMatchDtoFromJSON(jsonValue));
+  }
+
+  /**
+   */
+  private tournamentControllerTournamentMatchValidation(requestParameters: TournamentControllerTournamentMatchRequest) {
+    if (requestParameters.id === null || requestParameters.id === undefined) {
+      throw new runtime.RequiredError(
+        "id",
+        "Required parameter requestParameters.id was null or undefined when calling tournamentControllerTournamentMatch."
+      );
+    }
+  }
+
+  /**
+   */
+  tournamentControllerTournamentMatchContext(
+    requestParameters: TournamentControllerTournamentMatchRequest
+  ): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    return {
+      path: `/v1/tournament/tournament_match/{id}`.replace(
+        `{${"id"}}`,
+        encodeURIComponent(String(requestParameters.id))
+      ),
+      method: "GET",
+      headers: headerParameters,
+      query: queryParameters
+    };
+  }
+
+  /**
+   */
+  tournamentControllerTournamentMatch = async (id: number): Promise<TournamentMatchDto> => {
+    const response = await this.tournamentControllerTournamentMatchRaw({ id: id });
+    return await response.value();
+  };
+
+  useTournamentControllerTournamentMatch(id: number, config?: ConfigInterface<TournamentMatchDto, Error>) {
+    let valid = true;
+
+    if (id === null || id === undefined || Number.isNaN(id)) {
+      valid = false;
+    }
+
+    const context = this.tournamentControllerTournamentMatchContext({ id: id! });
+    return useSWR(
+      JSON.stringify(context),
+      valid ? () => this.tournamentControllerTournamentMatch(id!) : undefined,
       config
     );
   }

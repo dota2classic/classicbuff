@@ -18,6 +18,7 @@ import {
 import { CompactTeamCard } from "components/UI/TeamCard";
 import { TeamMemberPreview } from "../../../components/UI/TeamMemberPreview";
 import { formatDateStr } from "../../../utils/format/formateDateStr";
+import Head from "next/head";
 
 const Card = styled.a`
   display: flex;
@@ -85,11 +86,19 @@ export default () => {
   if (!data) return <Layout />;
   return (
     <Layout>
+      <Head>
+        <title>Турнир {data?.name}</title>
+        <meta
+          name="description"
+          content="dota2classic.ru - discord сервер для игры в классическую доту 6.81 2014 года"
+        />
+      </Head>
+
       <TournamentImage src={data.imageUrl} />
       <TournamentName>{data.name}</TournamentName>
       <TournamentType>Турнир {formatTournamentType(data.entryType)}</TournamentType>
       <TournamentType>
-        {formatTournamentStatus(data.status)},
+        {formatTournamentStatus(data.status)}
         {data.status === FullTournamentDtoStatusEnum.NEW && " начало " + formatDateStr(data.startDate)}
       </TournamentType>
 

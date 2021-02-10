@@ -14,8 +14,12 @@ const Card = styled.a`
   display: flex;
   flex-direction: row;
   color: ${colors.primaryText};
+  background: ${colors.evenDarkerBg};
+  border-radius: 4px;
   text-decoration: none;
   width: 100%;
+
+  box-shadow: 0px 0px 14px 1px rgba(255, 255, 255, 0.1);
 
   padding: 20px;
   border: 1px solid ${colors.transparentTint3};
@@ -33,6 +37,8 @@ const TournamentType = styled.div``;
 
 const TournamentImage = styled.img`
   height: 100px;
+  width: 100px;
+  object-fit: cover;
 `;
 
 const InfoContainer = styled.div`

@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import BracketViewer from "components/UI/BracketViewer";
 import { colors } from "../../../shared";
 import styled from "styled-components";
+import Head from "next/head";
 
 const Title = styled.div`
   font-size: 26px;
@@ -22,7 +23,15 @@ export default () => {
   if (!data) return <Layout landing />;
   return (
     <Layout landing>
-      <Title>Сетка {tData?.name}</Title>
+      <Head>
+        <title>Сетка турнира {tData?.name}</title>
+        <meta
+          name="description"
+          content="dota2classic.ru - discord сервер для игры в классическую доту 6.81 2014 года"
+        />
+      </Head>
+
+      <Title>Сетка турнира {tData?.name}</Title>
 
       <BracketViewer rounds={data.winning} />
       <BracketViewer rounds={data.losing} />
