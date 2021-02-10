@@ -6,6 +6,7 @@ import cx from "classnames";
 import { PlayerHover } from "../PlayerHover";
 import { BracketRoundDto, BracketRoundDtoRTypeEnum, SeedDto, SeedItemDto } from "../../../api/back/models";
 import Link from "next/link";
+import { AppRouter } from "../../../utils/route";
 
 export const RoundTitle = styled.div`
   color: ${colors.primaryTextHighlight};
@@ -110,7 +111,7 @@ const CustomSeed = (seed: SeedDto, breakpoint: number, roundIndex: number) => {
   return (
     <Seed mobileBreakpoint={breakpoint} className="bracket__arrow-holder">
       <SeedItem className="bracket__seed-item">
-        <Link passHref href={`/tournament/match/${seed.id}`}>
+        <Link passHref {...AppRouter.tournamentMatch.match(seed.id).link}>
           <SeedsWrapper>
             <RenderSeed seed={seed.teams[0]} />
             <RenderSeed seed={seed.teams[1]} />

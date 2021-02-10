@@ -16,7 +16,13 @@ const PlayerPreview = styled.a`
     height: 40px;
     border-radius: 5px;
   }
+  transition: 0.3s ease;
+  padding: 4px;
+  border-radius: 4px;
 
+  &:hover {
+    box-shadow: 0px 0px 8px 1px rgba(255, 255, 255, 0.1);
+  }
   & span {
     display: flex;
     justify-content: center;

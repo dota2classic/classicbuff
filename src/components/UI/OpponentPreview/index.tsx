@@ -37,6 +37,7 @@ const TournamentImage = styled.img`
   height: 100px;
   border-radius: 4px;
   width: 100px;
+  margin-bottom: 20px;
 
   object-fit: cover;
 

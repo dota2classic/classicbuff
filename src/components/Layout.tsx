@@ -13,6 +13,7 @@ import { steamIdToNum } from "../utils/numSteamId";
 import { SearchGameBar } from "./UI/SearchGameBar/SearchGameBar";
 import { useGameConnection } from "./util/useGameConnection";
 import { NotificationHold } from "./UI/NotificationHold";
+import { AppRouter } from "../utils/route";
 
 const LayoutContainer = styled.div`
   min-height: 100vh;
@@ -178,32 +179,32 @@ const DefaultHeader = () => {
     <>
       <HeaderWrapper>
         <Tabs className="heading">
-          <Link passHref href={"/"}>
+          <Link passHref {...AppRouter.index.link}>
             <Tab className={cx(asPath === "/" && "active")}>
               <span style={{ textTransform: "uppercase" }}>dota2classic</span>
             </Tab>
           </Link>
-          <Link passHref href={"/download"}>
+          <Link passHref {...AppRouter.download.link}>
             <Tab className={cx(asPath === "/download" && "active")}>Скачать</Tab>
           </Link>
-          <Link passHref href={"/queue"}>
+          <Link passHref {...AppRouter.queue.link}>
             <Tab className={cx(asPath === "/queue" && "active")}>Играть</Tab>
           </Link>
-          <Link passHref href={"/donate"}>
+          <Link passHref {...AppRouter.donate.link}>
             <Tab className={cx(asPath === "/donate" && "active")}>Пожертвовать</Tab>
           </Link>
-          <Link passHref href={"/leaderboard"}>
+          <Link passHref {...AppRouter.leaderboard.link}>
             <Tab className={cx(asPath === "/leaderboard" && "active")}>Таблица лидеров</Tab>
           </Link>
 
-          <Link passHref href={"/tournament"}>
+          <Link passHref {...AppRouter.tournament.index.link}>
             <Tab className={cx(asPath.startsWith("/tournament") && "active")}>Турниры</Tab>
           </Link>
 
-          <Link passHref href={"/history"}>
+          <Link passHref {...AppRouter.history.index.link}>
             <Tab className={cx(asPath.startsWith("/history") && "active")}>Матчи</Tab>
           </Link>
-          <Link passHref href={"/live"}>
+          <Link passHref {...AppRouter.live.link}>
             <Tab className={cx(asPath.startsWith("/live") && "active")}>
               Live
               {liveData && <span className="badge">{liveData?.length}</span>}
@@ -223,7 +224,7 @@ const DefaultHeader = () => {
           )}
 
           {AuthService.authorized ? (
-            <Link passHref href={`/player/${steamIdToNum(AuthService.steamID || "")}`}>
+            <Link passHref {...AppRouter.player(AuthService.steamID || "").link}>
               <Tab className={cx(asPath === `/player/${steamIdToNum(AuthService.steamID || "")}` && "active")}>
                 Профиль
               </Tab>

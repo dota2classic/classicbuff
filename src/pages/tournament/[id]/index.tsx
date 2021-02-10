@@ -19,6 +19,8 @@ import { CompactTeamCard } from "components/UI/TeamCard";
 import { TeamMemberPreview } from "../../../components/UI/TeamMemberPreview";
 import { formatDateStr } from "../../../utils/format/formateDateStr";
 import Head from "next/head";
+import { AppRouter } from "../../../utils/route";
+import Link from "next/link";
 
 const Card = styled.a`
   display: flex;
@@ -51,8 +53,8 @@ const TabWrapper = styled.div`
 `;
 
 export default () => {
-  const router = useRouter();
-  const id = router.query.id as string;
+  const r = useRouter();
+  const id = r.query.id as string;
 
   const api = useApi().tournament;
   const { data, revalidate } = api.useTournamentControllerGetTournament(Number(id));
@@ -117,7 +119,9 @@ export default () => {
           ))}
         {(data.status === FullTournamentDtoStatusEnum.ONGOING ||
           data.status === FullTournamentDtoStatusEnum.FINISHED) && (
-          <Tab onClick={() => router.push(`/tournament/${data.id}/bracket`)}>Сетка</Tab>
+          <Link passHref {...AppRouter.tournament.bracket(data.id).link}>
+            <Tab>Сетка</Tab>
+          </Link>
         )}
       </Tabs>
 
