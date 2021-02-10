@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useApi } from "../../../api/hooks";
+import { appApi, useApi } from "../../../api/hooks";
 import Layout from "../../../components/Layout";
 import React from "react";
 import styled from "styled-components";
@@ -9,10 +9,9 @@ import { Tab, Tabs } from "../../../components/UI/Tabs";
 import cx from "classnames";
 import { useTab } from "../../../utils/useTab";
 import {
+  FullTournamentDto,
   FullTournamentDtoEntryTypeEnum,
   FullTournamentDtoStatusEnum,
-  TournamentDtoEntryTypeEnum,
-  TournamentDtoStatusEnum,
   TournamentParticipantDto
 } from "../../../api/back/models";
 import { CompactTeamCard } from "components/UI/TeamCard";
@@ -21,6 +20,9 @@ import { formatDateStr } from "../../../utils/format/formateDateStr";
 import Head from "next/head";
 import { AppRouter } from "../../../utils/route";
 import Link from "next/link";
+import { NextPageContext } from "next";
+import { SsrProps } from "../../../utils/SsrProps";
+import { EmbedProps } from "../../../components/util/EmbedProps";
 
 const Card = styled.a`
   display: flex;
@@ -52,12 +54,18 @@ const TabWrapper = styled.div`
   width: 100%;
 `;
 
-export default () => {
+interface InitialProps {
+  tournament?: FullTournamentDto;
+}
+
+export default (p: InitialProps) => {
   const r = useRouter();
   const id = r.query.id as string;
 
   const api = useApi().tournament;
-  const { data, revalidate } = api.useTournamentControllerGetTournament(Number(id));
+  const { data, revalidate } = api.useTournamentControllerGetTournament(Number(id), {
+    initialData: p.tournament
+  });
 
   const [tab, setTab] = useTab("tab", 0);
 
@@ -95,6 +103,14 @@ export default () => {
           content="dota2classic.ru - discord сервер для игры в классическую доту 6.81 2014 года"
         />
       </Head>
+
+      <EmbedProps
+        title={`Турнир ${data?.name}`}
+        description={`${data?.entryType && formatTournamentType(data.entryType)} турнир по классической dota 2. ${
+          data?.participants.length
+        } участников`}
+        image={data?.imageUrl}
+      />
 
       <TournamentImage src={data.imageUrl} />
       <TournamentName>{data.name}</TournamentName>
@@ -141,3 +157,12 @@ export default () => {
     </Layout>
   );
 };
+
+export async function getServerSideProps(ctx: NextPageContext): Promise<SsrProps<InitialProps>> {
+  const res = await appApi.tournament.tournamentControllerGetTournament(Number(ctx.query.id));
+  return {
+    props: {
+      tournament: JSON.parse(JSON.stringify(res))
+    } // will be passed to the page component as props
+  };
+}

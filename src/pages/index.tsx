@@ -3,6 +3,7 @@ import Layout from "../components/Layout";
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import { EmbedProps } from "../components/util/EmbedProps";
 
 const CardPicture = styled.picture`
   cursor: pointer;
@@ -150,6 +151,11 @@ export const CardRow = styled.div`
 export default () => {
   return (
     <Layout landing>
+      <EmbedProps
+        title="Классическая Dota 2"
+        description="dota2classic.ru - сайт для игры в классическую Dota 2 6.81 2014 года"
+        image="https://dota2classic.ru/api/static/landing/2.png.webp"
+      />
       <Head>
         <title>Классическая Dota 2</title>
         <meta
