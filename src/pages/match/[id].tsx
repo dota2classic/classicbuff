@@ -5,12 +5,14 @@ import Layout from "../../components/Layout";
 import Head from "next/head";
 import TeamTable from "../../components/TeamTable";
 import formatGameMode from "../../utils/format/formatGameMode";
-import { useApi } from "../../api/hooks";
-import { LiveMatchDto, LiveMatchDtoFromJSON, PlayerInMatchDto } from "../../api/back/models";
+import { appApi, useApi } from "../../api/hooks";
+import { LiveMatchDto, LiveMatchDtoFromJSON, MatchDto, PlayerInMatchDto } from "../../api/back/models";
 import { AdBanner } from "../../components/ads/ads";
 import { useEventSource } from "../../utils/useEventSource";
 import { LiveMatch } from "../../components/live/LiveMatch";
 import { colors } from "../../shared";
+import { NextPageContext } from "next";
+import { SsrProps } from "../../utils/SsrProps";
 
 export const ItemsContainer = styled.div`
   display: flex;
@@ -107,10 +109,16 @@ const sumKills = (players: PlayerInMatchDto[]) => {
   return sum;
 };
 
-const Page = () => {
+interface InitialProps {
+  match?: MatchDto;
+}
+
+const Page = (p: InitialProps) => {
   const { id } = useRouter().query;
   const mid = Number(id);
-  const { data: match, error } = useApi().matchApi.useMatchControllerMatch(mid);
+  const { data: match, error } = useApi().matchApi.useMatchControllerMatch(mid, {
+    initialData: p.match
+  });
 
   const liveMatch = useEventSource<LiveMatchDto>(
     useApi().liveApi.liveMatchControllerLiveMatchContext({ id: mid }),
@@ -174,5 +182,14 @@ const Page = () => {
   }
   return null;
 };
+
+export async function getServerSideProps(ctx: NextPageContext): Promise<SsrProps<InitialProps>> {
+  const res = await appApi.matchApi.matchControllerMatch(Number(ctx.query.id));
+  return {
+    props: {
+      match: JSON.parse(JSON.stringify(res))
+    } // will be passed to the page component as props
+  };
+}
 
 export default Page;
