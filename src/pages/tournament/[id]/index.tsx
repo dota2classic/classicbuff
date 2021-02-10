@@ -12,7 +12,8 @@ import {
   FullTournamentDto,
   FullTournamentDtoEntryTypeEnum,
   FullTournamentDtoStatusEnum,
-  TournamentParticipantDto
+  TournamentParticipantDto,
+  TournamentStandingDto
 } from "../../../api/back/models";
 import { CompactTeamCard } from "components/UI/TeamCard";
 import { TeamMemberPreview } from "../../../components/UI/TeamMemberPreview";
@@ -23,6 +24,7 @@ import Link from "next/link";
 import { NextPageContext } from "next";
 import { SsrProps } from "../../../utils/SsrProps";
 import { EmbedProps } from "../../../components/util/EmbedProps";
+import { PlayerLeaderboardPreview } from "../../../components/UI/tournament/player-leaderboard-preview";
 
 const Card = styled.a`
   display: flex;
@@ -127,6 +129,13 @@ export default (p: InitialProps) => {
         {/*<Tab className={cx(tab === 1 && "active")} onClick={() => setTab(1)}>*/}
         {/*  Матчи*/}
         {/*</Tab>*/}
+
+        {data.status === FullTournamentDtoStatusEnum.FINISHED && (
+          <Tab className={cx(tab === 1 && "active")} onClick={() => setTab(1)}>
+            Результаты
+          </Tab>
+        )}
+
         {!data.isLocked &&
           (data.isParticipating ? (
             <Tab onClick={() => unregister()}>Покинуть турнир</Tab>
@@ -151,6 +160,20 @@ export default (p: InitialProps) => {
                 <CompactTeamCard team={p.team!!} />
               )
             )}
+          </>
+        )}
+
+        {tab === 1 && (
+          <>
+            {data.standings
+              ?.sort((a, b) => a.position - b.position)
+              .map((p: TournamentStandingDto) =>
+                data.entryType === FullTournamentDtoEntryTypeEnum.PLAYER ? (
+                  <PlayerLeaderboardPreview standing={p} />
+                ) : (
+                  <CompactTeamCard team={p.team!!} />
+                )
+              )}
           </>
         )}
       </TabWrapper>

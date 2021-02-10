@@ -28,6 +28,24 @@ export const colors = {
     red: "#c23c2a"
   },
 
+  position: {
+    background: {
+      gold: "#AF9500",
+      silver: "#D7D7D7",
+      bronze: "#6A3805",
+      shit: "#101213"
+    },
+    foreground: {
+      // gold: "rgb(238,238,238)",
+      gold: "#AF9500",
+      // silver: "rgb(238,238,238)",
+      silver: "#D7D7D7",
+      // bronze: "rgb(238,238,238)",
+      bronze: "#91500d",
+      shit: "rgb(83,82,82)"
+    }
+  },
+
   roles: {
     old: "#8d178d",
     human: "#cda71b",

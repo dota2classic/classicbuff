@@ -42,6 +42,7 @@ export * from "./TeamMemberDto";
 export * from "./TournamentDto";
 export * from "./TournamentMatchDto";
 export * from "./TournamentParticipantDto";
+export * from "./TournamentStandingDto";
 export * from "./UpdateRolesDto";
 export * from "./UserBanSummaryDto";
 export * from "./UserRoleSummaryDto";

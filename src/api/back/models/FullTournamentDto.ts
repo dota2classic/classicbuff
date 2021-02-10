@@ -17,7 +17,11 @@ import {
   TournamentParticipantDto,
   TournamentParticipantDtoFromJSON,
   TournamentParticipantDtoFromJSONTyped,
-  TournamentParticipantDtoToJSON
+  TournamentParticipantDtoToJSON,
+  TournamentStandingDto,
+  TournamentStandingDtoFromJSON,
+  TournamentStandingDtoFromJSONTyped,
+  TournamentStandingDtoToJSON
 } from "./";
 
 /**
@@ -80,6 +84,12 @@ export interface FullTournamentDto {
    * @memberof FullTournamentDto
    */
   participants: Array<TournamentParticipantDto>;
+  /**
+   *
+   * @type {Array<TournamentStandingDto>}
+   * @memberof FullTournamentDto
+   */
+  standings?: Array<TournamentStandingDto>;
 }
 
 export function FullTournamentDtoFromJSON(json: any): FullTournamentDto {
@@ -99,7 +109,10 @@ export function FullTournamentDtoFromJSONTyped(json: any, ignoreDiscriminator: b
     imageUrl: json["imageUrl"],
     isLocked: json["isLocked"],
     isParticipating: json["isParticipating"],
-    participants: (json["participants"] as Array<any>).map(TournamentParticipantDtoFromJSON)
+    participants: (json["participants"] as Array<any>).map(TournamentParticipantDtoFromJSON),
+    standings: !exists(json, "standings")
+      ? undefined
+      : (json["standings"] as Array<any>).map(TournamentStandingDtoFromJSON)
   };
 }
 
@@ -119,7 +132,9 @@ export function FullTournamentDtoToJSON(value?: FullTournamentDto | null): any {
     imageUrl: value.imageUrl,
     isLocked: value.isLocked,
     isParticipating: value.isParticipating,
-    participants: (value.participants as Array<any>).map(TournamentParticipantDtoToJSON)
+    participants: (value.participants as Array<any>).map(TournamentParticipantDtoToJSON),
+    standings:
+      value.standings === undefined ? undefined : (value.standings as Array<any>).map(TournamentStandingDtoToJSON)
   };
 }
 
