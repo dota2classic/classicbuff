@@ -184,12 +184,18 @@ const Page = (p: InitialProps) => {
 };
 
 export async function getServerSideProps(ctx: NextPageContext): Promise<SsrProps<InitialProps>> {
-  const res = await appApi.matchApi.matchControllerMatch(Number(ctx.query.id));
-  return {
-    props: {
-      match: JSON.parse(JSON.stringify(res))
-    } // will be passed to the page component as props
-  };
+  try {
+    const res = await appApi.matchApi.matchControllerMatch(Number(ctx.query.id));
+    return {
+      props: {
+        match: JSON.parse(JSON.stringify(res))
+      } // will be passed to the page component as props
+    };
+  } catch (e) {
+    return {
+      props: {}
+    };
+  }
 }
 
 export default Page;
