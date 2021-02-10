@@ -15,15 +15,21 @@ const Card = styled.a`
   display: flex;
   flex-direction: row;
   color: ${colors.primaryText};
-  background: ${colors.evenDarkerBg};
   border-radius: 4px;
   text-decoration: none;
   width: 100%;
-
-  box-shadow: 0px 0px 14px 1px rgba(255, 255, 255, 0.1);
+  background: ${colors.darkBg2};
 
   padding: 20px;
   border: 1px solid ${colors.transparentTint3};
+
+  transition: 0.3s ease;
+
+  &:hover {
+    background: ${colors.evenDarkerBg};
+
+    box-shadow: 0px 0px 14px 1px rgba(255, 255, 255, 0.1);
+  }
 
   & + & {
     margin-top: 20px;

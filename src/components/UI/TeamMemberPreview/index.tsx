@@ -9,6 +9,7 @@ const PlayerPreview = styled.a`
   display: flex;
   margin-top: 10px;
   flex-direction: row;
+  background: ${colors.darkBg2};
   color: ${colors.primaryText};
   text-decoration: none;
   & img {
@@ -21,6 +22,7 @@ const PlayerPreview = styled.a`
   border-radius: 4px;
 
   &:hover {
+    background: ${colors.evenDarkerBg};
     box-shadow: 0px 0px 8px 1px rgba(255, 255, 255, 0.1);
   }
   & span {

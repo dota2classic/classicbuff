@@ -10,6 +10,7 @@ export const BaseGQLConfig = {
 
 export const colors = {
   darkBg: "#15191d",
+  darkBg2: "#1c2024",
   evenDarkerBg: "#101213",
   almostBlack: "#0a0909",
   primaryText: "rgb(217,217,217)",
