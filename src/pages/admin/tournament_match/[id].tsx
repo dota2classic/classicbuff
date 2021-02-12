@@ -9,7 +9,12 @@ import Input from "../../../components/UI/Input";
 import Link from "next/link";
 import { Hint } from "../../../components/UI/Hint";
 import { OpponentPreview } from "../../../components/UI/OpponentPreview";
-import { SeedItemDto, TournamentMatchDto, TournamentMatchDtoStatusEnum } from "../../../api/back/models";
+import {
+  TournamentBracketMatchDto,
+  TournamentBracketMatchDtoStatusEnum,
+  TournamentBracketParticipantDto
+} from "../../../api/back/models";
+import { ParticipantResultDto } from "../../../api/back/models/ParticipantResultDto";
 
 // registerLocale("ru", ru);
 
@@ -32,9 +37,9 @@ export default () => {
     }
   };
 
-  const setWinner = async (gameId: number, opp: SeedItemDto) => {
+  const setWinner = async (gameId: number, opp: TournamentBracketParticipantDto) => {
     if (!data) return;
-    let m: TournamentMatchDto;
+    let m: TournamentBracketMatchDto;
     if (opp.team) {
       m = await api.adminTournamentControllerSetWinner(data.id, {
         winnerId: opp.team!!.id,
@@ -49,9 +54,9 @@ export default () => {
     await mutate(m);
   };
 
-  const forfeit = async (gameId: number, opp: SeedItemDto) => {
+  const forfeit = async (gameId: number, opp: TournamentBracketParticipantDto) => {
     if (!data) return;
-    let m: TournamentMatchDto;
+    let m: TournamentBracketMatchDto;
     if (opp.team) {
       m = await api.adminTournamentControllerForfeit(data.id, {
         forfeitId: opp.team!!.id,
@@ -67,19 +72,23 @@ export default () => {
   };
 
   const hasResult =
-    data?.status === TournamentMatchDtoStatusEnum.Completed || data?.status === TournamentMatchDtoStatusEnum.Archived;
+    data?.status === TournamentBracketMatchDtoStatusEnum.Completed ||
+    data?.status === TournamentBracketMatchDtoStatusEnum.Archived;
 
-  const locked = data?.status === TournamentMatchDtoStatusEnum.Locked;
+  const locked = data?.status === TournamentBracketMatchDtoStatusEnum.Locked;
 
-  const hasOpponent1 = !!(data?.opponent1 && !data.opponent1.tbd);
-  const hasOpponent2 = !!(data?.opponent2 && !data.opponent2.tbd);
+  const hasOpponent1 = !!(data?.opponent1 && data.opponent1.participant);
+  const hasOpponent2 = !!(data?.opponent2 && data.opponent2.participant);
 
   if (!data) return <AdminLayout />;
   return (
     <AdminLayout>
       {data.games.map(game => {
         const radiantPlayer =
-          data && hasOpponent2 && hasOpponent1 && (game.teamOffset === 0 ? data.opponent1 : data.opponent2);
+          data &&
+          hasOpponent2 &&
+          hasOpponent1 &&
+          (game.teamOffset === 0 ? data.opponent1!!.participant!! : data.opponent2!!.participant!!);
         return (
           <Table>
             <thead>
@@ -96,9 +105,9 @@ export default () => {
               <Tr>
                 <td>Ссылка на матч</td>
                 <td>
-                  {(game.matchId && (
-                    <Link href={`/match/${game.matchId}`}>
-                      <LinkButton>{game.matchId}</LinkButton>
+                  {(game.externalMatchId && (
+                    <Link href={`/match/${game.externalMatchId}`}>
+                      <LinkButton>{game.externalMatchId}</LinkButton>
                     </Link>
                   )) || <Hint>Матч еще не прошел</Hint>}
                 </td>
@@ -106,13 +115,17 @@ export default () => {
               <Tr>
                 <td>Оппонент 1</td>
                 <td>
-                  {(hasOpponent1 && <OpponentPreview seed={data.opponent1!!} />) || <Hint>Еще не определен</Hint>}
+                  {(hasOpponent1 && <OpponentPreview seed={data.opponent1?.participant!!} />) || (
+                    <Hint>Еще не определен</Hint>
+                  )}
                 </td>
               </Tr>
               <Tr>
                 <td>Оппонент 2</td>
                 <td>
-                  {(hasOpponent2 && <OpponentPreview seed={data.opponent2!!} />) || <Hint>Еще не определен</Hint>}
+                  {(hasOpponent2 && <OpponentPreview seed={data.opponent2?.participant!!} />) || (
+                    <Hint>Еще не определен</Hint>
+                  )}
                 </td>
               </Tr>
 
@@ -130,7 +143,7 @@ export default () => {
                     dateFormat={"dd MMMM yyyy HH:mm"}
                     customInput={<Input className={"iso"} />}
                     selected={new Date(game.scheduledDate)}
-                    onChange={(date: Date) => scheduleMatch(game.gameId, date)}
+                    onChange={(date: Date) => scheduleMatch(game.id, date)}
                   />
                 </td>
               </Tr>
@@ -140,13 +153,13 @@ export default () => {
 
                 <td>
                   {hasOpponent1 && hasOpponent2 && !hasResult && !locked && (
-                    <Button onClick={() => forfeit(game.gameId, data.opponent1!!)} className="small">
+                    <Button onClick={() => forfeit(game.id, data.opponent1!!.participant!!)} className="small">
                       Техлуз оппоненту 1
                     </Button>
                   )}
                   <br />
                   {hasOpponent1 && hasOpponent2 && !hasResult && !locked && (
-                    <Button onClick={() => forfeit(game.gameId, data.opponent2!!)} className="small">
+                    <Button onClick={() => forfeit(game.id, data.opponent2!!.participant!!)} className="small">
                       Техлуз оппоненту 2
                     </Button>
                   )}
@@ -158,13 +171,13 @@ export default () => {
 
                 <td>
                   {hasOpponent1 && hasOpponent2 && !hasResult && (
-                    <Button onClick={() => setWinner(game.gameId, data.opponent1!!)} className="small">
+                    <Button onClick={() => setWinner(game.id, data.opponent1!!.participant!!)} className="small">
                       Победил оппонент 1
                     </Button>
                   )}
                   <br />
                   {hasOpponent1 && hasOpponent2 && !hasResult && (
-                    <Button onClick={() => setWinner(game.gameId, data.opponent2!!)} className="small">
+                    <Button onClick={() => setWinner(game.id, data.opponent2!!.participant!!)} className="small">
                       Победи оппонент 2
                     </Button>
                   )}

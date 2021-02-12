@@ -16,9 +16,6 @@ import * as runtime from "../runtime";
 import useSWR, { ConfigInterface } from "swr";
 
 import {
-  BracketDto,
-  BracketDtoFromJSON,
-  BracketDtoToJSON,
   CompactTeamDto,
   CompactTeamDtoFromJSON,
   CompactTeamDtoToJSON,
@@ -28,17 +25,13 @@ import {
   TournamentBracketInfoDto,
   TournamentBracketInfoDtoFromJSON,
   TournamentBracketInfoDtoToJSON,
+  TournamentBracketMatchDto,
+  TournamentBracketMatchDtoFromJSON,
+  TournamentBracketMatchDtoToJSON,
   TournamentDto,
   TournamentDtoFromJSON,
-  TournamentDtoToJSON,
-  TournamentMatchDto,
-  TournamentMatchDtoFromJSON,
-  TournamentMatchDtoToJSON
+  TournamentDtoToJSON
 } from "../models";
-
-export interface TournamentControllerGetBracketRequest {
-  id: number;
-}
 
 export interface TournamentControllerGetBracketNewRequest {
   id: number;
@@ -68,62 +61,6 @@ export interface TournamentControllerTournamentTeamsRequest {
  *
  */
 export class TournamentApi extends runtime.BaseAPI {
-  /**
-   */
-  private async tournamentControllerGetBracketRaw(
-    requestParameters: TournamentControllerGetBracketRequest
-  ): Promise<runtime.ApiResponse<BracketDto>> {
-    this.tournamentControllerGetBracketValidation(requestParameters);
-    const context = this.tournamentControllerGetBracketContext(requestParameters);
-    const response = await this.request(context);
-
-    return new runtime.JSONApiResponse(response, jsonValue => BracketDtoFromJSON(jsonValue));
-  }
-
-  /**
-   */
-  private tournamentControllerGetBracketValidation(requestParameters: TournamentControllerGetBracketRequest) {
-    if (requestParameters.id === null || requestParameters.id === undefined) {
-      throw new runtime.RequiredError(
-        "id",
-        "Required parameter requestParameters.id was null or undefined when calling tournamentControllerGetBracket."
-      );
-    }
-  }
-
-  /**
-   */
-  tournamentControllerGetBracketContext(requestParameters: TournamentControllerGetBracketRequest): runtime.RequestOpts {
-    const queryParameters: any = {};
-
-    const headerParameters: runtime.HTTPHeaders = {};
-
-    return {
-      path: `/v1/tournament/bracket/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
-      method: "GET",
-      headers: headerParameters,
-      query: queryParameters
-    };
-  }
-
-  /**
-   */
-  tournamentControllerGetBracket = async (id: number): Promise<BracketDto> => {
-    const response = await this.tournamentControllerGetBracketRaw({ id: id });
-    return await response.value();
-  };
-
-  useTournamentControllerGetBracket(id: number, config?: ConfigInterface<BracketDto, Error>) {
-    let valid = true;
-
-    if (id === null || id === undefined || Number.isNaN(id)) {
-      valid = false;
-    }
-
-    const context = this.tournamentControllerGetBracketContext({ id: id! });
-    return useSWR(JSON.stringify(context), valid ? () => this.tournamentControllerGetBracket(id!) : undefined, config);
-  }
-
   /**
    */
   private async tournamentControllerGetBracketNewRaw(
@@ -422,12 +359,12 @@ export class TournamentApi extends runtime.BaseAPI {
    */
   private async tournamentControllerTournamentMatchRaw(
     requestParameters: TournamentControllerTournamentMatchRequest
-  ): Promise<runtime.ApiResponse<TournamentMatchDto>> {
+  ): Promise<runtime.ApiResponse<TournamentBracketMatchDto>> {
     this.tournamentControllerTournamentMatchValidation(requestParameters);
     const context = this.tournamentControllerTournamentMatchContext(requestParameters);
     const response = await this.request(context);
 
-    return new runtime.JSONApiResponse(response, jsonValue => TournamentMatchDtoFromJSON(jsonValue));
+    return new runtime.JSONApiResponse(response, jsonValue => TournamentBracketMatchDtoFromJSON(jsonValue));
   }
 
   /**
@@ -471,12 +408,12 @@ export class TournamentApi extends runtime.BaseAPI {
 
   /**
    */
-  tournamentControllerTournamentMatch = async (id: number): Promise<TournamentMatchDto> => {
+  tournamentControllerTournamentMatch = async (id: number): Promise<TournamentBracketMatchDto> => {
     const response = await this.tournamentControllerTournamentMatchRaw({ id: id });
     return await response.value();
   };
 
-  useTournamentControllerTournamentMatch(id: number, config?: ConfigInterface<TournamentMatchDto, Error>) {
+  useTournamentControllerTournamentMatch(id: number, config?: ConfigInterface<TournamentBracketMatchDto, Error>) {
     let valid = true;
 
     if (id === null || id === undefined || Number.isNaN(id)) {

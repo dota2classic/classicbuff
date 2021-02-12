@@ -3,7 +3,7 @@ import { AdminLayout } from "../../../components/admin/AdminLayout";
 import { useApi } from "../../../api/hooks";
 import { useRouter } from "next/router";
 import { AdminTournamentCard } from "../../../components/admin-new/AdminTournamentCard";
-import BracketViewer, { AdminBracketViewer, AdminBracketViewerNew } from "components/UI/BracketViewer";
+import { AdminBracketViewerNew } from "components/UI/BracketViewer";
 import { formatTournamentStatus } from "../../../utils/format/formatTournamentType";
 import { Table, Tr } from "../../../components/UI/Table";
 import { TournamentDtoStatusEnum } from "../../../api/back/models";
@@ -15,14 +15,11 @@ export default () => {
   const api = useApi().adminTournament;
   const { data, revalidate } = api.useAdminTournamentControllerGetTournament(id);
 
-  // const { data: bracketData, revalidate: revalidateBracket } = useApi().tournament.useTournamentControllerGetBracket(
-  //   id
-  // );
   const { data: bracketData, revalidate: revalidateBracket } = useApi().tournament.useTournamentControllerGetBracketNew(
     id
   );
 
-  const cancelTournaemnt = async () => {
+  const cancelTournament = async () => {
     if (!data) return;
     await api.adminTournamentControllerCancelTournament({
       id: data.id
@@ -61,7 +58,7 @@ export default () => {
                       Начать турнир
                     </Button>
                   )}
-                  <Button className="small" onClick={cancelTournaemnt}>
+                  <Button className="small" onClick={cancelTournament}>
                     Отменить турнир
                   </Button>
                 </td>

@@ -39,16 +39,29 @@ const PlayerPreview = styled.a`
 `;
 
 interface Props {
-  profile: PlayerPreviewDto;
+  profile?: PlayerPreviewDto;
 }
 
 export const TeamMemberPreview = ({ profile }: Props) => {
+  if (profile)
+    return (
+      <Link href={`/player/${steamIdToNum(profile.id)}`} passHref>
+        <PlayerPreview>
+          <img src={profile.avatar} alt="" />
+          <span>{profile.name}</span>
+        </PlayerPreview>
+      </Link>
+    );
+
   return (
-    <Link href={`/player/${steamIdToNum(profile.id)}`} passHref>
-      <PlayerPreview>
-        <img src={profile.avatar} alt="" />
-        <span>{profile.name}</span>
-      </PlayerPreview>
-    </Link>
+    <PlayerPreview>
+      <img
+        src={
+          "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/b5/b5bd56c1aa4644a474a2e4972be27ef9e82e517e_full.jpg"
+        }
+        alt=""
+      />
+      <span>TBD</span>
+    </PlayerPreview>
   );
 };

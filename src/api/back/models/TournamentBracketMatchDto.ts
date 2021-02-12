@@ -17,7 +17,11 @@ import {
   ParticipantResultDto,
   ParticipantResultDtoFromJSON,
   ParticipantResultDtoFromJSONTyped,
-  ParticipantResultDtoToJSON
+  ParticipantResultDtoToJSON,
+  TournamentBracketMatchGameDto,
+  TournamentBracketMatchGameDtoFromJSON,
+  TournamentBracketMatchGameDtoFromJSONTyped,
+  TournamentBracketMatchGameDtoToJSON
 } from "./";
 
 /**
@@ -64,6 +68,12 @@ export interface TournamentBracketMatchDto {
   number: number;
   /**
    *
+   * @type {number}
+   * @memberof TournamentBracketMatchDto
+   */
+  startDate: number;
+  /**
+   *
    * @type {string}
    * @memberof TournamentBracketMatchDto
    */
@@ -82,10 +92,10 @@ export interface TournamentBracketMatchDto {
   opponent2?: ParticipantResultDto;
   /**
    *
-   * @type {Array<object>}
+   * @type {Array<TournamentBracketMatchGameDto>}
    * @memberof TournamentBracketMatchDto
    */
-  games: Array<object>;
+  games: Array<TournamentBracketMatchGameDto>;
 }
 
 export function TournamentBracketMatchDtoFromJSON(json: any): TournamentBracketMatchDto {
@@ -106,10 +116,11 @@ export function TournamentBracketMatchDtoFromJSONTyped(
     roundId: json["round_id"],
     childCount: json["child_count"],
     number: json["number"],
+    startDate: json["startDate"],
     status: json["status"],
     opponent1: !exists(json, "opponent1") ? undefined : ParticipantResultDtoFromJSON(json["opponent1"]),
     opponent2: !exists(json, "opponent2") ? undefined : ParticipantResultDtoFromJSON(json["opponent2"]),
-    games: json["games"]
+    games: (json["games"] as Array<any>).map(TournamentBracketMatchGameDtoFromJSON)
   };
 }
 
@@ -127,10 +138,11 @@ export function TournamentBracketMatchDtoToJSON(value?: TournamentBracketMatchDt
     round_id: value.roundId,
     child_count: value.childCount,
     number: value.number,
+    startDate: value.startDate,
     status: value.status,
     opponent1: ParticipantResultDtoToJSON(value.opponent1),
     opponent2: ParticipantResultDtoToJSON(value.opponent2),
-    games: value.games
+    games: (value.games as Array<any>).map(TournamentBracketMatchGameDtoToJSON)
   };
 }
 

@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from "../runtime";
+import {
+  TournamentBracketParticipantDto,
+  TournamentBracketParticipantDtoFromJSON,
+  TournamentBracketParticipantDtoFromJSONTyped,
+  TournamentBracketParticipantDtoToJSON
+} from "./";
+
 /**
  *
  * @export
@@ -49,6 +56,12 @@ export interface ParticipantResultDto {
    * @memberof ParticipantResultDto
    */
   result?: string;
+  /**
+   *
+   * @type {TournamentBracketParticipantDto}
+   * @memberof ParticipantResultDto
+   */
+  participant?: TournamentBracketParticipantDto;
 }
 
 export function ParticipantResultDtoFromJSON(json: any): ParticipantResultDto {
@@ -64,7 +77,8 @@ export function ParticipantResultDtoFromJSONTyped(json: any, ignoreDiscriminator
     position: !exists(json, "position") ? undefined : json["position"],
     forfeit: !exists(json, "forfeit") ? undefined : json["forfeit"],
     score: !exists(json, "score") ? undefined : json["score"],
-    result: !exists(json, "result") ? undefined : json["result"]
+    result: !exists(json, "result") ? undefined : json["result"],
+    participant: !exists(json, "participant") ? undefined : TournamentBracketParticipantDtoFromJSON(json["participant"])
   };
 }
 
@@ -80,6 +94,7 @@ export function ParticipantResultDtoToJSON(value?: ParticipantResultDto | null):
     position: value.position,
     forfeit: value.forfeit,
     score: value.score,
-    result: value.result
+    result: value.result,
+    participant: TournamentBracketParticipantDtoToJSON(value.participant)
   };
 }

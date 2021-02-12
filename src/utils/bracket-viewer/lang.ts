@@ -156,7 +156,7 @@ export function getGroupName(groupNumber: number): string {
  * @param roundCount Count of rounds.
  */
 export function getRoundName(roundNumber: number, roundCount: number): string {
-  return roundNumber === roundCount ? "Final Round" : `Round ${roundNumber}`;
+  return roundNumber === roundCount ? "Финал" : `Раунд ${roundNumber}`;
 }
 
 /**

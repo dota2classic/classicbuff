@@ -20,6 +20,7 @@ import {
   TournamentBracketParticipantDto
 } from "../../api/back/models";
 import { AppRouter } from "../route";
+import { formatDateStr } from "../format/formateDateStr";
 
 export class BracketsViewer {
   readonly teamRefsDOM: { [participantId: number]: HTMLElement[] } = {};
@@ -300,7 +301,8 @@ export class BracketsViewer {
     connectFinal?: boolean
   ): HTMLElement {
     const connection = dom.getBracketConnection(roundNumber, roundCount, matchLocation, connectFinal);
-    const matchLabel = lang.getMatchLabel(match.number, roundNumber, roundCount, matchLocation);
+    // const matchLabel = lang.getMatchLabel(match.number, roundNumber, roundCount, matchLocation);
+    const matchLabel = formatDateStr(match.startDate);
     const originHint = lang.getOriginHint(roundNumber, roundCount, this.skipFirstRound, matchLocation);
     return this.createMatch(match, matchLocation, connection, matchLabel, originHint, roundNumber);
   }
@@ -429,8 +431,7 @@ export class BracketsViewer {
       this.renderTeamOrigin(containers.name, participant, matchLocation, roundNumber);
     } else {
       this.renderHint(containers.name, participant, originHint, matchLocation);
-
-      console.log("Not found");
+      containers.name.innerText = "TBD";
     }
     containers.result.innerText = `${participant.score === undefined ? "-" : participant.score}`;
 

@@ -31,12 +31,12 @@ import {
   StartTournamentDto,
   StartTournamentDtoFromJSON,
   StartTournamentDtoToJSON,
+  TournamentBracketMatchDto,
+  TournamentBracketMatchDtoFromJSON,
+  TournamentBracketMatchDtoToJSON,
   TournamentDto,
   TournamentDtoFromJSON,
-  TournamentDtoToJSON,
-  TournamentMatchDto,
-  TournamentMatchDtoFromJSON,
-  TournamentMatchDtoToJSON
+  TournamentDtoToJSON
 } from "../models";
 
 export interface AdminTournamentControllerCancelTournamentRequest {
@@ -205,12 +205,12 @@ export class AdminTournamentApi extends runtime.BaseAPI {
    */
   private async adminTournamentControllerForfeitRaw(
     requestParameters: AdminTournamentControllerForfeitRequest
-  ): Promise<runtime.ApiResponse<TournamentMatchDto>> {
+  ): Promise<runtime.ApiResponse<TournamentBracketMatchDto>> {
     this.adminTournamentControllerForfeitValidation(requestParameters);
     const context = this.adminTournamentControllerForfeitContext(requestParameters);
     const response = await this.request(context);
 
-    return new runtime.JSONApiResponse(response, jsonValue => TournamentMatchDtoFromJSON(jsonValue));
+    return new runtime.JSONApiResponse(response, jsonValue => TournamentBracketMatchDtoFromJSON(jsonValue));
   }
 
   /**
@@ -255,7 +255,7 @@ export class AdminTournamentApi extends runtime.BaseAPI {
 
   /**
    */
-  adminTournamentControllerForfeit = async (id: number, forfeitDto: ForfeitDto): Promise<TournamentMatchDto> => {
+  adminTournamentControllerForfeit = async (id: number, forfeitDto: ForfeitDto): Promise<TournamentBracketMatchDto> => {
     const response = await this.adminTournamentControllerForfeitRaw({ id: id, forfeitDto: forfeitDto });
     return await response.value();
   };
@@ -391,12 +391,12 @@ export class AdminTournamentApi extends runtime.BaseAPI {
    */
   private async adminTournamentControllerScheduleTournamentMatchRaw(
     requestParameters: AdminTournamentControllerScheduleTournamentMatchRequest
-  ): Promise<runtime.ApiResponse<TournamentMatchDto>> {
+  ): Promise<runtime.ApiResponse<TournamentBracketMatchDto>> {
     this.adminTournamentControllerScheduleTournamentMatchValidation(requestParameters);
     const context = this.adminTournamentControllerScheduleTournamentMatchContext(requestParameters);
     const response = await this.request(context);
 
-    return new runtime.JSONApiResponse(response, jsonValue => TournamentMatchDtoFromJSON(jsonValue));
+    return new runtime.JSONApiResponse(response, jsonValue => TournamentBracketMatchDtoFromJSON(jsonValue));
   }
 
   /**
@@ -449,7 +449,7 @@ export class AdminTournamentApi extends runtime.BaseAPI {
   adminTournamentControllerScheduleTournamentMatch = async (
     id: number,
     scheduleTournamentMatchDto: ScheduleTournamentMatchDto
-  ): Promise<TournamentMatchDto> => {
+  ): Promise<TournamentBracketMatchDto> => {
     const response = await this.adminTournamentControllerScheduleTournamentMatchRaw({
       id: id,
       scheduleTournamentMatchDto: scheduleTournamentMatchDto
@@ -461,12 +461,12 @@ export class AdminTournamentApi extends runtime.BaseAPI {
    */
   private async adminTournamentControllerSetWinnerRaw(
     requestParameters: AdminTournamentControllerSetWinnerRequest
-  ): Promise<runtime.ApiResponse<TournamentMatchDto>> {
+  ): Promise<runtime.ApiResponse<TournamentBracketMatchDto>> {
     this.adminTournamentControllerSetWinnerValidation(requestParameters);
     const context = this.adminTournamentControllerSetWinnerContext(requestParameters);
     const response = await this.request(context);
 
-    return new runtime.JSONApiResponse(response, jsonValue => TournamentMatchDtoFromJSON(jsonValue));
+    return new runtime.JSONApiResponse(response, jsonValue => TournamentBracketMatchDtoFromJSON(jsonValue));
   }
 
   /**
@@ -511,7 +511,10 @@ export class AdminTournamentApi extends runtime.BaseAPI {
 
   /**
    */
-  adminTournamentControllerSetWinner = async (id: number, setWinnerDto: SetWinnerDto): Promise<TournamentMatchDto> => {
+  adminTournamentControllerSetWinner = async (
+    id: number,
+    setWinnerDto: SetWinnerDto
+  ): Promise<TournamentBracketMatchDto> => {
     const response = await this.adminTournamentControllerSetWinnerRaw({ id: id, setWinnerDto: setWinnerDto });
     return await response.value();
   };
@@ -579,12 +582,12 @@ export class AdminTournamentApi extends runtime.BaseAPI {
    */
   private async adminTournamentControllerTournamentMatchRaw(
     requestParameters: AdminTournamentControllerTournamentMatchRequest
-  ): Promise<runtime.ApiResponse<TournamentMatchDto>> {
+  ): Promise<runtime.ApiResponse<TournamentBracketMatchDto>> {
     this.adminTournamentControllerTournamentMatchValidation(requestParameters);
     const context = this.adminTournamentControllerTournamentMatchContext(requestParameters);
     const response = await this.request(context);
 
-    return new runtime.JSONApiResponse(response, jsonValue => TournamentMatchDtoFromJSON(jsonValue));
+    return new runtime.JSONApiResponse(response, jsonValue => TournamentBracketMatchDtoFromJSON(jsonValue));
   }
 
   /**
@@ -630,12 +633,12 @@ export class AdminTournamentApi extends runtime.BaseAPI {
 
   /**
    */
-  adminTournamentControllerTournamentMatch = async (id: number): Promise<TournamentMatchDto> => {
+  adminTournamentControllerTournamentMatch = async (id: number): Promise<TournamentBracketMatchDto> => {
     const response = await this.adminTournamentControllerTournamentMatchRaw({ id: id });
     return await response.value();
   };
 
-  useAdminTournamentControllerTournamentMatch(id: number, config?: ConfigInterface<TournamentMatchDto, Error>) {
+  useAdminTournamentControllerTournamentMatch(id: number, config?: ConfigInterface<TournamentBracketMatchDto, Error>) {
     let valid = true;
 
     if (id === null || id === undefined || Number.isNaN(id)) {

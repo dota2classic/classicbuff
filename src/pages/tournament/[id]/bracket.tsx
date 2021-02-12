@@ -2,7 +2,7 @@ import Layout from "../../../components/Layout";
 import React from "react";
 import { useApi } from "../../../api/hooks";
 import { useRouter } from "next/router";
-import BracketViewer, { AdminBracketViewerNew } from "components/UI/BracketViewer";
+import { AdminBracketViewerNew } from "components/UI/BracketViewer";
 import { colors } from "../../../shared";
 import styled from "styled-components";
 import Head from "next/head";

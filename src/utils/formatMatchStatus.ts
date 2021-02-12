@@ -1,18 +1,18 @@
-import { TournamentMatchDtoStatusEnum } from "../api/back/models";
+import { TournamentBracketMatchDtoStatusEnum } from "../api/back/models";
 
-export const formatMatchState = (ts: TournamentMatchDtoStatusEnum) => {
+export const formatMatchState = (ts: TournamentBracketMatchDtoStatusEnum) => {
   switch (ts) {
-    case TournamentMatchDtoStatusEnum.Locked:
+    case TournamentBracketMatchDtoStatusEnum.Locked:
       return "Ожидание матчей";
-    case TournamentMatchDtoStatusEnum.Waiting:
+    case TournamentBracketMatchDtoStatusEnum.Waiting:
       return "Ожидание соперника";
-    case TournamentMatchDtoStatusEnum.Ready:
+    case TournamentBracketMatchDtoStatusEnum.Ready:
       return "Готов к запуску";
-    case TournamentMatchDtoStatusEnum.Running:
+    case TournamentBracketMatchDtoStatusEnum.Running:
       return "В процессе";
-    case TournamentMatchDtoStatusEnum.Completed:
+    case TournamentBracketMatchDtoStatusEnum.Completed:
       return "Завершен";
-    case TournamentMatchDtoStatusEnum.Archived:
+    case TournamentBracketMatchDtoStatusEnum.Archived:
       return "Архивирован";
   }
 };

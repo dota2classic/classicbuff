@@ -11,7 +11,7 @@ export function renderParticipantLabel(name: HTMLElement, p: TournamentBracketPa
     name.appendChild(span);
   } else {
     const span = document.createElement("span");
-    span.innerText = "???";
+    span.innerText = "TBD";
     name.appendChild(span);
   }
 }
