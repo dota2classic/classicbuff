@@ -7,9 +7,12 @@ import ImageUploader from "components/UI/ImageUploader";
 import { resolveImage } from "../../../utils/resolveImage";
 import { useRouter } from "next/router";
 import Button from "../../../components/UI/Button";
-import Input from "../../../components/UI/Input";
+import Input, { NumberInput } from "../../../components/UI/Input";
 import DatePicker from "react-datepicker";
 import { Hint } from "../../../components/UI/Hint";
+import { colors } from "../../../shared";
+import Select from "react-select";
+import { bestOfOptions } from "../../../utils/bestOfOptions";
 
 const TournamentImage = styled.img`
   height: 150px;
@@ -17,8 +20,17 @@ const TournamentImage = styled.img`
 
 const FormBlock = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  background: ${colors.darkBg};
+  padding: 20px;
+
+  & + & {
+    margin-top: 10px;
+  }
+
+  & ${Hint} {
+    margin-bottom: 10px;
+  }
 `;
 export default () => {
   const router = useRouter();
@@ -26,13 +38,20 @@ export default () => {
   const [imageUrl, setImageUrl] = useState("https://dota2classic.ru/api/static/icons/jugger.png");
   const [startDate, setStartDate] = useState<number>(new Date().getTime() + 1000 * 60 * 60);
   const api = useApi().adminTournament;
+  const [bestOfRound, setBestOfRound] = useState(1);
+  const [bestOfFinal, setBestOfFinal] = useState(1);
+  const [bestOfGrandFinal, setBestOfGrandFinal] = useState(3);
+
   const create = async () => {
     const res = await api.adminTournamentControllerCreateTournament({
       name,
       entryType: CreateTournamentDtoEntryTypeEnum.PLAYER,
       startDate,
       strategy: CreateTournamentDtoStrategyEnum.SINGLEELIMINATION,
-      imageUrl
+      imageUrl,
+      bestOfGrandFinal,
+      bestOfRound,
+      bestOfFinal
     });
 
     await router.push(`/admin/tournament/${res.id}`);
@@ -45,6 +64,31 @@ export default () => {
       </ImageUploader>
 
       <Input value={name} onChange={e => setName(e.target.value)} placeholder={"Имя турнира"} />
+
+      <FormBlock>
+        <Hint>Обычный раунд best of</Hint>
+        <Select
+          value={bestOfOptions.find(t => t.value === bestOfRound)}
+          options={bestOfOptions}
+          onChange={e => setBestOfRound(e!!.value)}
+        />
+      </FormBlock>
+      <FormBlock>
+        <Hint>Финал группы best of</Hint>
+        <Select
+          value={bestOfOptions.find(t => t.value === bestOfFinal)}
+          options={bestOfOptions}
+          onChange={e => setBestOfFinal(e!!.value)}
+        />
+      </FormBlock>
+      <FormBlock>
+        <Hint>Гранд финал best of</Hint>
+        <Select
+          value={bestOfOptions.find(t => t.value === bestOfGrandFinal)}
+          options={bestOfOptions}
+          onChange={e => setBestOfGrandFinal(e!!.value)}
+        />
+      </FormBlock>
 
       <FormBlock>
         <Hint>Время начала турнира</Hint>

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../../shared";
+import React from "react";
 
 const Input = styled.input`
   padding: 12px;
@@ -65,3 +66,20 @@ export const Textarea = styled.textarea`
 `;
 
 export default Input;
+
+interface Props extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+  onChangeNumber(val: number): void;
+}
+export const NumberInput = (props: Props) => {
+  return (
+    <Input
+      {...(props as any)}
+      onChange={e => {
+        const val = Number(e.target.value);
+        if (!Number.isNaN(val)) {
+          props.onChangeNumber(val);
+        }
+      }}
+    />
+  );
+};

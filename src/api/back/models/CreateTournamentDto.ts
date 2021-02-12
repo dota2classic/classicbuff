@@ -49,6 +49,24 @@ export interface CreateTournamentDto {
    * @memberof CreateTournamentDto
    */
   strategy: CreateTournamentDtoStrategyEnum;
+  /**
+   *
+   * @type {number}
+   * @memberof CreateTournamentDto
+   */
+  bestOfRound: number;
+  /**
+   *
+   * @type {number}
+   * @memberof CreateTournamentDto
+   */
+  bestOfFinal: number;
+  /**
+   *
+   * @type {number}
+   * @memberof CreateTournamentDto
+   */
+  bestOfGrandFinal: number;
 }
 
 export function CreateTournamentDtoFromJSON(json: any): CreateTournamentDto {
@@ -64,7 +82,10 @@ export function CreateTournamentDtoFromJSONTyped(json: any, ignoreDiscriminator:
     entryType: json["entryType"],
     startDate: json["startDate"],
     imageUrl: json["imageUrl"],
-    strategy: json["strategy"]
+    strategy: json["strategy"],
+    bestOfRound: json["bestOfRound"],
+    bestOfFinal: json["bestOfFinal"],
+    bestOfGrandFinal: json["bestOfGrandFinal"]
   };
 }
 
@@ -80,7 +101,10 @@ export function CreateTournamentDtoToJSON(value?: CreateTournamentDto | null): a
     entryType: value.entryType,
     startDate: value.startDate,
     imageUrl: value.imageUrl,
-    strategy: value.strategy
+    strategy: value.strategy,
+    bestOfRound: value.bestOfRound,
+    bestOfFinal: value.bestOfFinal,
+    bestOfGrandFinal: value.bestOfGrandFinal
   };
 }
 
