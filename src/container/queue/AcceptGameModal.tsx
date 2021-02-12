@@ -16,7 +16,7 @@ export const Modal = styled.div`
   bottom: 0;
   margin: auto;
 
-  width: 300px;
+  width: fit-content;
   height: fit-content;
   background: #1d1f22;
 

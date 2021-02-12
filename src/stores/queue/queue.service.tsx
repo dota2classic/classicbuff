@@ -54,8 +54,8 @@ export class QueueService extends GameCoordinatorListener {
       }
       // setTimeout(() => {
       //   this.gameInfo = {
-      //     total: 0,
-      //     accepted: 0,
+      //     total: 10,
+      //     accepted: 5,
       //     mode: MatchmakingMode.BOTS,
       //     iAccepted: true,
       //     roomID: "fd",
