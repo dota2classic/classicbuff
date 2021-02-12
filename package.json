@@ -26,8 +26,10 @@
   "dependencies": {
     "@sentry/browser": "^5.27.6",
     "apisauce": "^1.1.2",
+    "brackets-viewer": "^1.3.1",
     "browser-cookies": "^1.2.0",
     "classnames": "^2.2.6",
+    "enchantinggg4__brackets-viewer": "^1.3.4",
     "graphql": "^15.5.0",
     "mobx": "^5.15.6",
     "mobx-react": "^6.3.0",
@@ -43,6 +45,7 @@
     "react-input-mask": "^3.0.0-alpha.2",
     "react-modal-hook": "^3.0.0",
     "react-recaptcha-v3": "^2.0.1",
+    "react-tournament-bracket": "^0.2.4",
     "react-window": "^1.8.6",
     "recaptcha-v3": "^1.8.0",
     "reflect-metadata": "^0.1.13",

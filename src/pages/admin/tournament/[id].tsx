@@ -3,7 +3,7 @@ import { AdminLayout } from "../../../components/admin/AdminLayout";
 import { useApi } from "../../../api/hooks";
 import { useRouter } from "next/router";
 import { AdminTournamentCard } from "../../../components/admin-new/AdminTournamentCard";
-import BracketViewer, { AdminBracketViewer } from "components/UI/BracketViewer";
+import BracketViewer, { AdminBracketViewer, AdminBracketViewerNew } from "components/UI/BracketViewer";
 import { formatTournamentStatus } from "../../../utils/format/formatTournamentType";
 import { Table, Tr } from "../../../components/UI/Table";
 import { TournamentDtoStatusEnum } from "../../../api/back/models";
@@ -15,7 +15,10 @@ export default () => {
   const api = useApi().adminTournament;
   const { data, revalidate } = api.useAdminTournamentControllerGetTournament(id);
 
-  const { data: bracketData, revalidate: revalidateBracket } = useApi().tournament.useTournamentControllerGetBracket(
+  // const { data: bracketData, revalidate: revalidateBracket } = useApi().tournament.useTournamentControllerGetBracket(
+  //   id
+  // );
+  const { data: bracketData, revalidate: revalidateBracket } = useApi().tournament.useTournamentControllerGetBracketNew(
     id
   );
 
@@ -70,8 +73,7 @@ export default () => {
 
       {(bracketData && (
         <>
-          <AdminBracketViewer rounds={bracketData.winning} />
-          <AdminBracketViewer rounds={bracketData.losing} />
+          <AdminBracketViewerNew id={`admin_bracket_${id}`} bracket={bracketData} />
         </>
       )) || <Hint>{data?.status === TournamentDtoStatusEnum.NEW && "Турнир еще не начат"}</Hint>}
     </AdminLayout>

@@ -13,7 +13,16 @@
  */
 
 import { exists, mapValues } from "../runtime";
-import { SeedItemDto, SeedItemDtoFromJSON, SeedItemDtoFromJSONTyped, SeedItemDtoToJSON } from "./";
+import {
+  SeedItemDto,
+  SeedItemDtoFromJSON,
+  SeedItemDtoFromJSONTyped,
+  SeedItemDtoToJSON,
+  TournamentMatchGameDto,
+  TournamentMatchGameDtoFromJSON,
+  TournamentMatchGameDtoFromJSONTyped,
+  TournamentMatchGameDtoToJSON
+} from "./";
 
 /**
  *
@@ -29,22 +38,16 @@ export interface SeedDto {
   teams: Array<SeedItemDto>;
   /**
    *
-   * @type {string}
-   * @memberof SeedDto
-   */
-  date: string;
-  /**
-   *
    * @type {number}
    * @memberof SeedDto
    */
   id: number;
   /**
    *
-   * @type {number}
+   * @type {Array<TournamentMatchGameDto>}
    * @memberof SeedDto
    */
-  matchId?: number;
+  games: Array<TournamentMatchGameDto>;
 }
 
 export function SeedDtoFromJSON(json: any): SeedDto {
@@ -57,9 +60,8 @@ export function SeedDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): S
   }
   return {
     teams: (json["teams"] as Array<any>).map(SeedItemDtoFromJSON),
-    date: json["date"],
     id: json["id"],
-    matchId: !exists(json, "matchId") ? undefined : json["matchId"]
+    games: (json["games"] as Array<any>).map(TournamentMatchGameDtoFromJSON)
   };
 }
 
@@ -72,8 +74,7 @@ export function SeedDtoToJSON(value?: SeedDto | null): any {
   }
   return {
     teams: (value.teams as Array<any>).map(SeedItemDtoToJSON),
-    date: value.date,
     id: value.id,
-    matchId: value.matchId
+    games: (value.games as Array<any>).map(TournamentMatchGameDtoToJSON)
   };
 }

@@ -79,6 +79,11 @@ export default class MyDocument extends Document {
           <link rel="stylesheet" href="https://dota2classic.ru/api/static/style.css" />
           <link rel="stylesheet" href="https://dota2classic.ru/api/static/minimap.css" />
           <script src="/static/build_info.js" />
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/brackets-viewer/dist/brackets-viewer.min.css" />
+          <script
+            type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/brackets-viewer/dist/brackets-viewer.min.js"
+          />
 
           <span dangerouslySetInnerHTML={{ __html: this.adSense() }} />
         </Head>

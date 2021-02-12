@@ -45,6 +45,11 @@ export const AppRouter = {
 
   player: (id: string | number) => page(`/player/[id]`, `/player/${typeof id === "string" ? steamIdToNum(id) : id}`),
 
+  admin: {
+    tournamentMatch: {
+      match: (id: number) => page(`/admin/tournament_match/[id]`, `/admin/tournament_match/${id}`)
+    }
+  },
   tournament: {
     index: page("/tournament"),
     tournament: (id: number) => page(`/tournament/[id]`, `/tournament/${id}`),

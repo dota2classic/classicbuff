@@ -21,6 +21,12 @@ import { exists, mapValues } from "../runtime";
 export interface SetWinnerDto {
   /**
    *
+   * @type {number}
+   * @memberof SetWinnerDto
+   */
+  gameId: number;
+  /**
+   *
    * @type {string}
    * @memberof SetWinnerDto
    */
@@ -36,6 +42,7 @@ export function SetWinnerDtoFromJSONTyped(json: any, ignoreDiscriminator: boolea
     return json;
   }
   return {
+    gameId: json["gameId"],
     winnerId: json["winnerId"]
   };
 }
@@ -48,6 +55,7 @@ export function SetWinnerDtoToJSON(value?: SetWinnerDto | null): any {
     return null;
   }
   return {
+    gameId: value.gameId,
     winnerId: value.winnerId
   };
 }

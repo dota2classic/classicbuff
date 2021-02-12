@@ -21,6 +21,12 @@ import { exists, mapValues } from "../runtime";
 export interface ForfeitDto {
   /**
    *
+   * @type {number}
+   * @memberof ForfeitDto
+   */
+  gameId: number;
+  /**
+   *
    * @type {string}
    * @memberof ForfeitDto
    */
@@ -36,6 +42,7 @@ export function ForfeitDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     return json;
   }
   return {
+    gameId: json["gameId"],
     forfeitId: json["forfeitId"]
   };
 }
@@ -48,6 +55,7 @@ export function ForfeitDtoToJSON(value?: ForfeitDto | null): any {
     return null;
   }
   return {
+    gameId: value.gameId,
     forfeitId: value.forfeitId
   };
 }

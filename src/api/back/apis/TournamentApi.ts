@@ -25,6 +25,9 @@ import {
   FullTournamentDto,
   FullTournamentDtoFromJSON,
   FullTournamentDtoToJSON,
+  TournamentBracketInfoDto,
+  TournamentBracketInfoDtoFromJSON,
+  TournamentBracketInfoDtoToJSON,
   TournamentDto,
   TournamentDtoFromJSON,
   TournamentDtoToJSON,
@@ -34,6 +37,10 @@ import {
 } from "../models";
 
 export interface TournamentControllerGetBracketRequest {
+  id: number;
+}
+
+export interface TournamentControllerGetBracketNewRequest {
   id: number;
 }
 
@@ -115,6 +122,68 @@ export class TournamentApi extends runtime.BaseAPI {
 
     const context = this.tournamentControllerGetBracketContext({ id: id! });
     return useSWR(JSON.stringify(context), valid ? () => this.tournamentControllerGetBracket(id!) : undefined, config);
+  }
+
+  /**
+   */
+  private async tournamentControllerGetBracketNewRaw(
+    requestParameters: TournamentControllerGetBracketNewRequest
+  ): Promise<runtime.ApiResponse<TournamentBracketInfoDto>> {
+    this.tournamentControllerGetBracketNewValidation(requestParameters);
+    const context = this.tournamentControllerGetBracketNewContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.JSONApiResponse(response, jsonValue => TournamentBracketInfoDtoFromJSON(jsonValue));
+  }
+
+  /**
+   */
+  private tournamentControllerGetBracketNewValidation(requestParameters: TournamentControllerGetBracketNewRequest) {
+    if (requestParameters.id === null || requestParameters.id === undefined) {
+      throw new runtime.RequiredError(
+        "id",
+        "Required parameter requestParameters.id was null or undefined when calling tournamentControllerGetBracketNew."
+      );
+    }
+  }
+
+  /**
+   */
+  tournamentControllerGetBracketNewContext(
+    requestParameters: TournamentControllerGetBracketNewRequest
+  ): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    return {
+      path: `/v1/tournament/bracket_new/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+      method: "GET",
+      headers: headerParameters,
+      query: queryParameters
+    };
+  }
+
+  /**
+   */
+  tournamentControllerGetBracketNew = async (id: number): Promise<TournamentBracketInfoDto> => {
+    const response = await this.tournamentControllerGetBracketNewRaw({ id: id });
+    return await response.value();
+  };
+
+  useTournamentControllerGetBracketNew(id: number, config?: ConfigInterface<TournamentBracketInfoDto, Error>) {
+    let valid = true;
+
+    if (id === null || id === undefined || Number.isNaN(id)) {
+      valid = false;
+    }
+
+    const context = this.tournamentControllerGetBracketNewContext({ id: id! });
+    return useSWR(
+      JSON.stringify(context),
+      valid ? () => this.tournamentControllerGetBracketNew(id!) : undefined,
+      config
+    );
   }
 
   /**

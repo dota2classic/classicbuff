@@ -58,13 +58,19 @@ export const OpponentPreview = ({ seed }: Props) => {
 };
 
 export const BigOpponentPreview = ({ seed }: Props) => {
+  if (seed.tbd)
+    return (
+      <Card>
+        <TournamentName>TBD</TournamentName>
+      </Card>
+    );
   if (seed.isTeam) {
     return (
       <Link passHref href={`/team/${seed.team!!.id}`}>
         <Card>
           <TournamentImage src={seed.team!!.imageUrl} />
           <TournamentName>{seed.team!!.name}</TournamentName>
-          {seed.result && <TournamentName className={seed.result}>{seed.result === "win" ? 1 : 0}</TournamentName>}
+          {seed.result && <TournamentName className={seed.result}>{seed.score}</TournamentName>}
         </Card>
       </Link>
     );
@@ -74,7 +80,7 @@ export const BigOpponentPreview = ({ seed }: Props) => {
         <Card>
           <TournamentImage src={seed.profile!!.avatar} />
           <TournamentName>{seed.profile!!.name}</TournamentName>
-          {seed.result && <TournamentName className={seed.result}>{seed.result === "win" ? 1 : 0}</TournamentName>}
+          {seed.result && <TournamentName className={seed.result}>{seed.score}</TournamentName>}
         </Card>
       </Link>
     );

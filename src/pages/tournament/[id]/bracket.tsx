@@ -2,7 +2,7 @@ import Layout from "../../../components/Layout";
 import React from "react";
 import { useApi } from "../../../api/hooks";
 import { useRouter } from "next/router";
-import BracketViewer from "components/UI/BracketViewer";
+import BracketViewer, { AdminBracketViewerNew } from "components/UI/BracketViewer";
 import { colors } from "../../../shared";
 import styled from "styled-components";
 import Head from "next/head";
@@ -16,7 +16,7 @@ const Title = styled.div`
 export default () => {
   const router = useRouter();
   const id = router.query.id as string;
-  const { data } = useApi().tournament.useTournamentControllerGetBracket(Number(id));
+  const { data } = useApi().tournament.useTournamentControllerGetBracketNew(Number(id));
 
   const { data: tData } = useApi().tournament.useTournamentControllerGetTournament(Number(id));
 
@@ -33,8 +33,7 @@ export default () => {
 
       <Title>Сетка турнира {tData?.name}</Title>
 
-      <BracketViewer rounds={data.winning} />
-      <BracketViewer rounds={data.losing} />
+      <AdminBracketViewerNew id={`bracket_${id}`} bracket={data} />
     </Layout>
   );
 };

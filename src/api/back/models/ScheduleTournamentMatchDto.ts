@@ -24,6 +24,12 @@ export interface ScheduleTournamentMatchDto {
    * @type {number}
    * @memberof ScheduleTournamentMatchDto
    */
+  gameId: number;
+  /**
+   *
+   * @type {number}
+   * @memberof ScheduleTournamentMatchDto
+   */
   scheduledDate: number;
 }
 
@@ -39,6 +45,7 @@ export function ScheduleTournamentMatchDtoFromJSONTyped(
     return json;
   }
   return {
+    gameId: json["gameId"],
     scheduledDate: json["scheduledDate"]
   };
 }
@@ -51,6 +58,7 @@ export function ScheduleTournamentMatchDtoToJSON(value?: ScheduleTournamentMatch
     return null;
   }
   return {
+    gameId: value.gameId,
     scheduledDate: value.scheduledDate
   };
 }

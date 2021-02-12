@@ -13,7 +13,16 @@
  */
 
 import { exists, mapValues } from "../runtime";
-import { SeedItemDto, SeedItemDtoFromJSON, SeedItemDtoFromJSONTyped, SeedItemDtoToJSON } from "./";
+import {
+  SeedItemDto,
+  SeedItemDtoFromJSON,
+  SeedItemDtoFromJSONTyped,
+  SeedItemDtoToJSON,
+  TournamentMatchGameDto,
+  TournamentMatchGameDtoFromJSON,
+  TournamentMatchGameDtoFromJSONTyped,
+  TournamentMatchGameDtoToJSON
+} from "./";
 
 /**
  *
@@ -35,22 +44,10 @@ export interface TournamentMatchDto {
   status: TournamentMatchDtoStatusEnum;
   /**
    *
-   * @type {number}
+   * @type {Array<TournamentMatchGameDto>}
    * @memberof TournamentMatchDto
    */
-  scheduledDate: number;
-  /**
-   *
-   * @type {number}
-   * @memberof TournamentMatchDto
-   */
-  externalMatchId: number;
-  /**
-   *
-   * @type {number}
-   * @memberof TournamentMatchDto
-   */
-  teamOffset: number;
+  games: Array<TournamentMatchGameDto>;
   /**
    *
    * @type {SeedItemDto}
@@ -76,9 +73,7 @@ export function TournamentMatchDtoFromJSONTyped(json: any, ignoreDiscriminator: 
   return {
     id: json["id"],
     status: json["status"],
-    scheduledDate: json["scheduledDate"],
-    externalMatchId: json["externalMatchId"],
-    teamOffset: json["teamOffset"],
+    games: (json["games"] as Array<any>).map(TournamentMatchGameDtoFromJSON),
     opponent1: !exists(json, "opponent1") ? undefined : SeedItemDtoFromJSON(json["opponent1"]),
     opponent2: !exists(json, "opponent2") ? undefined : SeedItemDtoFromJSON(json["opponent2"])
   };
@@ -94,9 +89,7 @@ export function TournamentMatchDtoToJSON(value?: TournamentMatchDto | null): any
   return {
     id: value.id,
     status: value.status,
-    scheduledDate: value.scheduledDate,
-    externalMatchId: value.externalMatchId,
-    teamOffset: value.teamOffset,
+    games: (value.games as Array<any>).map(TournamentMatchGameDtoToJSON),
     opponent1: SeedItemDtoToJSON(value.opponent1),
     opponent2: SeedItemDtoToJSON(value.opponent2)
   };

@@ -1,12 +1,19 @@
 import { Bracket, Seed, SeedItem, SeedTeam } from "react-brackets";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../../shared";
 import cx from "classnames";
 import { PlayerHover } from "../PlayerHover";
-import { BracketRoundDto, BracketRoundDtoRTypeEnum, SeedDto, SeedItemDto } from "../../../api/back/models";
+import {
+  BracketRoundDto,
+  BracketRoundDtoRTypeEnum,
+  SeedDto,
+  SeedItemDto,
+  TournamentBracketInfoDto
+} from "../../../api/back/models";
 import Link from "next/link";
 import { AppRouter } from "../../../utils/route";
+import { BracketsViewer } from "../../../utils/bracket-viewer/main";
 
 export const RoundTitle = styled.div`
   color: ${colors.primaryTextHighlight};
@@ -47,6 +54,8 @@ const BracketWrapper = styled.div`
   & .bracket__seed-item {
     background-color: ${colors.transparentTint3};
     color: ${colors.primaryText};
+    //display: flex;
+    //flex-direction: row;
   }
   & .bracket-block {
     & .bracket__arrow-holder::after,
@@ -92,7 +101,7 @@ const RenderSeed = (p: SeedProps) => {
       <SeedTeam className={cx("seed-team", p?.seed?.result)}>
         <SeedImage src={p.seed.profile.avatar} />
         <div className="seed-name">{p.seed.profile.name}</div>
-        {p.seed.result !== undefined && <span className="seed-score">{p.seed.result === "win" ? "1" : "0"}</span>}
+        {p.seed.result !== undefined && <span className="seed-score">{p.seed.score}</span>}
       </SeedTeam>
     );
 
@@ -176,4 +185,110 @@ export const AdminBracketViewer = ({ rounds }: Props) => {
       />
     </BracketWrapper>
   );
+};
+
+interface NewProps {
+  bracket: TournamentBracketInfoDto;
+  id: string;
+}
+
+const BracketViewerWrapper = styled.div`
+  &.bracket-viewer {
+    font-family: "Trajan Pro 3", sans-serif;
+    color: ${colors.primaryText};
+    background: transparent;
+
+    & h1 {
+      display: none;
+    }
+  }
+
+  & .round {
+    & h3 {
+      background: ${colors.transparentTint};
+      color: ${colors.primaryText};
+    }
+  }
+  & .connect-next::after,
+  & .connect-previous::before {
+    border-color: ${colors.transparentTint} !important;
+  }
+  & .match {
+    & .opponents {
+      border-color: ${colors.transparentTint3};
+
+      & > span:first-child {
+        background: ${colors.evenDarkerBg};
+        color: ${colors.primaryTextHighlight};
+      }
+
+      & > span:nth-child(2) {
+        &.best-of-x {
+          right: 10px;
+          left: auto;
+        }
+        background: ${colors.evenDarkerBg};
+        color: ${colors.primaryTextHighlight};
+      }
+    }
+
+    & .participant.hover {
+      background: ${colors.transparentTint} !important;
+    }
+    & .participant {
+      &.win .result {
+        color: ${colors.dota.green} !important;
+      }
+
+      &.loss .result {
+        color: ${colors.dota.red} !important;
+      }
+
+      & .participant-image {
+        width: 20px;
+        height: 20px;
+        margin-right: 4px;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+      & .name {
+        display: flex;
+        flex-direction: row;
+
+        & span {
+          color: ${colors.primaryTextHighlight} !important;
+          font-size: 12px;
+        }
+      }
+      background: ${colors.transparentTint3};
+      font-size: 14px;
+    }
+  }
+`;
+
+export const AdminBracketViewerNew = ({ bracket, id }: NewProps) => {
+  useEffect(() => {
+    const bracketViewer = new BracketsViewer();
+
+    const el = document.querySelector(`#` + id);
+    if (el) el.innerHTML = "";
+
+    bracketViewer.render(
+      {
+        stages: bracket.stage as any,
+        matches: bracket.match,
+        matchGames: [],
+        participants: bracket.participant as any
+      },
+      {
+        selector: "#" + id,
+        participantOriginPlacement: "before",
+        showSlotsOrigin: true,
+        showLowerBracketSlotsOrigin: true,
+        highlightParticipantOnHover: true
+      }
+    );
+  }, [id, bracket]);
+
+  return <BracketViewerWrapper className="bracket-viewer" id={id} />;
 };

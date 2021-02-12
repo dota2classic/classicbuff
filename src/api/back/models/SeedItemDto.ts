@@ -60,6 +60,12 @@ export interface SeedItemDto {
    * @memberof SeedItemDto
    */
   tbd?: boolean;
+  /**
+   *
+   * @type {number}
+   * @memberof SeedItemDto
+   */
+  score?: number;
 }
 
 export function SeedItemDtoFromJSON(json: any): SeedItemDto {
@@ -75,7 +81,8 @@ export function SeedItemDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean
     team: !exists(json, "team") ? undefined : TeamDtoFromJSON(json["team"]),
     isTeam: json["isTeam"],
     result: !exists(json, "result") ? undefined : json["result"],
-    tbd: !exists(json, "tbd") ? undefined : json["tbd"]
+    tbd: !exists(json, "tbd") ? undefined : json["tbd"],
+    score: !exists(json, "score") ? undefined : json["score"]
   };
 }
 
@@ -91,6 +98,7 @@ export function SeedItemDtoToJSON(value?: SeedItemDto | null): any {
     team: TeamDtoToJSON(value.team),
     isTeam: value.isTeam,
     result: value.result,
-    tbd: value.tbd
+    tbd: value.tbd,
+    score: value.score
   };
 }
