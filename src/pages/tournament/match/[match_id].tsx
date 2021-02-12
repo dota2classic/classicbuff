@@ -11,7 +11,11 @@ import Head from "next/head";
 import { MatchDto } from "../../../api/back/models";
 import { Hint } from "../../../components/UI/Hint";
 import { formatDateStr } from "../../../utils/format/formateDateStr";
-
+import { Tab, Tabs } from "../../../components/UI/Tabs";
+import { useTab } from "../../../utils/useTab";
+import cx from "classnames";
+import Link from "next/link";
+import { AppRouter } from "../../../utils/route";
 const Block = styled.div`
   padding: 10px;
   border-radius: 4px;
@@ -45,6 +49,7 @@ const TbdOpponent = styled.div`
   align-items: center;
   //justify-content: center;
   padding: 20px;
+  color: ${colors.primaryText};
 `;
 
 const BlockOpponent = styled.div`
@@ -65,15 +70,23 @@ export default () => {
   const { data } = useApi().tournament.useTournamentControllerTournamentMatch(matchId);
 
   const [matches, setMatches] = useState<MatchDto[]>([]);
+  const [tab, setTab] = useTab("game", undefined);
 
   useEffect(() => {
     if (!data) return;
+
+    if (data.games.length && tab === undefined) {
+      setTab(0);
+    }
     Promise.all(
       data.games
         .filter(t => !!t.externalMatchId)
         .map(async g => appApi.matchApi.matchControllerMatch(g.externalMatchId!!))
     ).then(setMatches);
   }, [data]);
+
+  const selectedGame = data && tab !== undefined && data.games[tab];
+
   if (!data) return <Layout />;
   return (
     <Layout>
@@ -113,6 +126,58 @@ export default () => {
           </tbody>
         </Table>
       </Block>
+
+      <Tabs>
+        {data.games.map((game, index) => (
+          <Tab className={cx(tab === index && "active")} onClick={() => setTab(index)}>
+            Игра {game.number}
+          </Tab>
+        ))}
+      </Tabs>
+
+      {selectedGame && (
+        <Table>
+          <thead>
+            <Tr>
+              <th>Поле</th>
+              <th>Значение </th>
+            </Tr>
+          </thead>
+          <tbody>
+            <Tr>
+              <td>Номер игры в серии</td>
+              <td>{selectedGame.number}</td>
+            </Tr>
+            <Tr>
+              <td>Игрок за свет</td>
+              <td>
+                {(data.opponent1?.participant &&
+                  data.opponent2?.participant &&
+                  (selectedGame.teamOffset === 0 ? (
+                    <OpponentPreview seed={data.opponent1.participant} />
+                  ) : (
+                    <OpponentPreview seed={data.opponent2.participant} />
+                  ))) ||
+                  "Еще не определен"}
+              </td>
+            </Tr>
+
+            <Tr>
+              <td>Матч</td>
+              <td>
+                {(selectedGame.externalMatchId && (
+                  <Link {...AppRouter.match(selectedGame.externalMatchId).link}>Ссылка на матч</Link>
+                )) ||
+                  "Еще не прошел"}
+              </td>
+            </Tr>
+          </tbody>
+        </Table>
+      )}
+
+      <br />
+      <br />
+      <br />
 
       {(matches.length && (
         <Table className="compact">

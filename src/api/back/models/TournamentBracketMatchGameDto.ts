@@ -39,6 +39,12 @@ export interface TournamentBracketMatchGameDto {
   number: number;
   /**
    *
+   * @type {boolean}
+   * @memberof TournamentBracketMatchGameDto
+   */
+  finished: boolean;
+  /**
+   *
    * @type {number}
    * @memberof TournamentBracketMatchGameDto
    */
@@ -72,6 +78,7 @@ export function TournamentBracketMatchGameDtoFromJSONTyped(
     id: json["id"],
     bmId: json["bm_id"],
     number: json["number"],
+    finished: json["finished"],
     externalMatchId: !exists(json, "externalMatchId") ? undefined : json["externalMatchId"],
     teamOffset: json["teamOffset"],
     scheduledDate: json["scheduledDate"]
@@ -89,6 +96,7 @@ export function TournamentBracketMatchGameDtoToJSON(value?: TournamentBracketMat
     id: value.id,
     bm_id: value.bmId,
     number: value.number,
+    finished: value.finished,
     externalMatchId: value.externalMatchId,
     teamOffset: value.teamOffset,
     scheduledDate: value.scheduledDate

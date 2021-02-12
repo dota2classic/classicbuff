@@ -1,5 +1,5 @@
 import { AdminLayout } from "../../../components/admin/AdminLayout";
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useApi } from "../../../api/hooks";
 import { Table, Tr } from "../../../components/UI/Table";
@@ -14,8 +14,9 @@ import {
   TournamentBracketMatchDtoStatusEnum,
   TournamentBracketParticipantDto
 } from "../../../api/back/models";
-import { ParticipantResultDto } from "../../../api/back/models/ParticipantResultDto";
-
+import { Tab, Tabs } from "../../../components/UI/Tabs";
+import { useTab } from "../../../utils/useTab";
+import cx from "classnames";
 // registerLocale("ru", ru);
 
 export default () => {
@@ -77,116 +78,148 @@ export default () => {
 
   const locked = data?.status === TournamentBracketMatchDtoStatusEnum.Locked;
 
-  const hasOpponent1 = !!(data?.opponent1 && data.opponent1.participant);
-  const hasOpponent2 = !!(data?.opponent2 && data.opponent2.participant);
+  const hasOpponent1 = !!(data?.opponent1 && data.opponent1.participant?.id);
+  const hasOpponent2 = !!(data?.opponent2 && data.opponent2.participant?.id);
+
+  const [tab, setTab] = useTab("tab");
+
+  useEffect(() => {
+    if (data && tab === undefined && data.games.length > 0) {
+      setTab(0);
+    }
+  }, [data]);
 
   if (!data) return <AdminLayout />;
+
+  const radiantPlayer =
+    data &&
+    tab !== undefined &&
+    hasOpponent2 &&
+    hasOpponent1 &&
+    (data.games[tab].teamOffset === 0 ? data.opponent1!!.participant!! : data.opponent2!!.participant!!);
+
   return (
     <AdminLayout>
-      {data.games.map(game => {
-        const radiantPlayer =
-          data &&
-          hasOpponent2 &&
-          hasOpponent1 &&
-          (game.teamOffset === 0 ? data.opponent1!!.participant!! : data.opponent2!!.participant!!);
-        return (
-          <Table>
-            <thead>
-              <Tr>
-                <th>Key</th>
-                <th>Value</th>
-              </Tr>
-            </thead>
-            <tbody>
-              <Tr>
-                <td>Номер матча</td>
-                <td>{game.number}</td>
-              </Tr>
-              <Tr>
-                <td>Ссылка на матч</td>
-                <td>
-                  {(game.externalMatchId && (
-                    <Link href={`/match/${game.externalMatchId}`}>
-                      <LinkButton>{game.externalMatchId}</LinkButton>
-                    </Link>
-                  )) || <Hint>Матч еще не прошел</Hint>}
-                </td>
-              </Tr>
-              <Tr>
-                <td>Оппонент 1</td>
-                <td>
-                  {(hasOpponent1 && <OpponentPreview seed={data.opponent1?.participant!!} />) || (
-                    <Hint>Еще не определен</Hint>
-                  )}
-                </td>
-              </Tr>
-              <Tr>
-                <td>Оппонент 2</td>
-                <td>
-                  {(hasOpponent2 && <OpponentPreview seed={data.opponent2?.participant!!} />) || (
-                    <Hint>Еще не определен</Hint>
-                  )}
-                </td>
-              </Tr>
+      {(data.games.length === 0 && <Hint>Матч завершен автоматически без игр</Hint>) || undefined}
+      <Tabs>
+        {data.games.map((game, i) => (
+          <Tab className={cx(tab == i && "active")} onClick={() => setTab(i)}>
+            Игра #{game.number}
+          </Tab>
+        ))}
+      </Tabs>
+      {tab !== undefined && data.games.length && data.games[tab] && (
+        <Table>
+          <thead>
+            <Tr>
+              <th>Key</th>
+              <th>Value</th>
+            </Tr>
+          </thead>
+          <tbody>
+            <Tr>
+              <td>Номер матча</td>
+              <td>{data.games[tab].number}</td>
+            </Tr>
+            <Tr>
+              <td>Ссылка на матч</td>
+              <td>
+                {(data.games[tab].externalMatchId && (
+                  <Link href={`/match/${data.games[tab].externalMatchId}`}>
+                    <LinkButton>{data.games[tab].externalMatchId}</LinkButton>
+                  </Link>
+                )) || <Hint>Матч еще не прошел</Hint>}
+              </td>
+            </Tr>
+            <Tr>
+              <td>ID игры</td>
+              <td>{data.games[tab].id}</td>
+            </Tr>
+            <Tr>
+              <td>Оппонент 1</td>
+              <td>
+                {(hasOpponent1 && <OpponentPreview seed={data.opponent1?.participant!!} />) || (
+                  <Hint>Еще не определен</Hint>
+                )}
+              </td>
+            </Tr>
+            <Tr>
+              <td>Оппонент 2</td>
+              <td>
+                {(hasOpponent2 && <OpponentPreview seed={data.opponent2?.participant!!} />) || (
+                  <Hint>Еще не определен</Hint>
+                )}
+              </td>
+            </Tr>
 
-              <Tr>
-                <td>За свет играет</td>
-                <td>{(radiantPlayer && <OpponentPreview seed={radiantPlayer} />) || <Hint>Еще не определено</Hint>}</td>
-              </Tr>
-              <Tr>
-                <td>Запланированная дата</td>
-                <td>
-                  <DatePicker
-                    showTimeSelect
-                    customInputRef={""}
-                    timeIntervals={1}
-                    dateFormat={"dd MMMM yyyy HH:mm"}
-                    customInput={<Input className={"iso"} />}
-                    selected={new Date(game.scheduledDate)}
-                    onChange={(date: Date) => scheduleMatch(game.id, date)}
-                  />
-                </td>
-              </Tr>
+            <Tr>
+              <td>За свет играет</td>
+              <td>{(radiantPlayer && <OpponentPreview seed={radiantPlayer} />) || <Hint>Еще не определено</Hint>}</td>
+            </Tr>
+            <Tr>
+              <td>Запланированная дата</td>
+              <td>
+                <DatePicker
+                  showTimeSelect
+                  customInputRef={""}
+                  timeIntervals={1}
+                  dateFormat={"dd MMMM yyyy HH:mm"}
+                  customInput={<Input className={"iso"} />}
+                  selected={new Date(data.games[tab].scheduledDate)}
+                  onChange={(date: Date) => scheduleMatch(data.games[tab].id, date)}
+                />
+              </td>
+            </Tr>
 
-              <Tr>
-                <td>Техлузы</td>
+            <Tr>
+              <td>Техлузы</td>
 
-                <td>
-                  {hasOpponent1 && hasOpponent2 && !hasResult && !locked && (
-                    <Button onClick={() => forfeit(game.id, data.opponent1!!.participant!!)} className="small">
-                      Техлуз оппоненту 1
-                    </Button>
-                  )}
-                  <br />
-                  {hasOpponent1 && hasOpponent2 && !hasResult && !locked && (
-                    <Button onClick={() => forfeit(game.id, data.opponent2!!.participant!!)} className="small">
-                      Техлуз оппоненту 2
-                    </Button>
-                  )}
-                </td>
-              </Tr>
+              <td>
+                {!data.games[tab].finished && hasOpponent1 && hasOpponent2 && !hasResult && !locked && (
+                  <Button onClick={() => forfeit(data.games[tab].id, data.opponent1!!.participant!!)} className="small">
+                    Техлуз оппоненту 1
+                  </Button>
+                )}
+                <br />
+                {!data.games[tab].finished && hasOpponent1 && hasOpponent2 && !hasResult && !locked && (
+                  <Button onClick={() => forfeit(data.games[tab].id, data.opponent2!!.participant!!)} className="small">
+                    Техлуз оппоненту 2
+                  </Button>
+                )}
+              </td>
+            </Tr>
 
-              <Tr>
-                <td>Победитель</td>
+            <Tr>
+              <td>Статус игры</td>
+              <td>{data.games[tab].finished ? "Игра завершена/отменена" : "Игра ожидает начала"}</td>
+            </Tr>
 
-                <td>
-                  {hasOpponent1 && hasOpponent2 && !hasResult && (
-                    <Button onClick={() => setWinner(game.id, data.opponent1!!.participant!!)} className="small">
-                      Победил оппонент 1
-                    </Button>
-                  )}
-                  <br />
-                  {hasOpponent1 && hasOpponent2 && !hasResult && (
-                    <Button onClick={() => setWinner(game.id, data.opponent2!!.participant!!)} className="small">
-                      Победи оппонент 2
-                    </Button>
-                  )}
-                </td>
-              </Tr>
-            </tbody>
-          </Table>
-        );
-      })}
+            <Tr>
+              <td>Победитель</td>
+
+              <td>
+                {!data.games[tab].finished && hasOpponent1 && hasOpponent2 && !hasResult && (
+                  <Button
+                    onClick={() => setWinner(data.games[tab].id, data.opponent1!!.participant!!)}
+                    className="small"
+                  >
+                    Победил оппонент 1
+                  </Button>
+                )}
+                <br />
+                {!data.games[tab].finished && hasOpponent1 && hasOpponent2 && !hasResult && (
+                  <Button
+                    onClick={() => setWinner(data.games[tab].id, data.opponent2!!.participant!!)}
+                    className="small"
+                  >
+                    Победи оппонент 2
+                  </Button>
+                )}
+              </td>
+            </Tr>
+          </tbody>
+        </Table>
+      )}
     </AdminLayout>
   );
 };

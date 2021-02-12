@@ -352,7 +352,7 @@ export class BracketsViewer {
       if (document.location.href.includes("admin")) {
         AppRouter.admin.tournamentMatch.match(match.id).open();
       } else {
-        AppRouter.tournamentMatch.match(match.id).open();
+        if (match.games.length > 0) AppRouter.tournamentMatch.match(match.id).open();
       }
     });
     const team1 = this.createTeam(match.opponent1 || null, originHint, matchLocation, roundNumber);
