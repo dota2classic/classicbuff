@@ -26,6 +26,7 @@ import { NextPageContext } from "next";
 import { SsrProps } from "../../../utils/SsrProps";
 import { EmbedProps } from "../../../components/util/EmbedProps";
 import { PlayerLeaderboardPreview } from "../../../components/UI/tournament/player-leaderboard-preview";
+import { useStores } from "../../../stores";
 
 const Card = styled.a`
   display: flex;
@@ -65,6 +66,7 @@ export default (p: InitialProps) => {
   const r = useRouter();
   const id = r.query.id as string;
 
+  const { auth } = useStores();
   const api = useApi().tournament;
   const { data, revalidate } = api.useTournamentControllerGetTournament(Number(id), {
     initialData: p.tournament
@@ -101,6 +103,8 @@ export default (p: InitialProps) => {
   };
 
   if (!data) return <Layout />;
+
+  const canRegister = data.entryType === FullTournamentDtoEntryTypeEnum.PLAYER || auth.me?.team?.members.length === 5;
   return (
     <Layout>
       <Head>
@@ -131,9 +135,6 @@ export default (p: InitialProps) => {
         <Tab className={cx(tab === 0 && "active")} onClick={() => setTab(0)}>
           {data.entryType === FullTournamentDtoEntryTypeEnum.PLAYER ? "Игроки" : "Команды"}
         </Tab>
-        {/*<Tab className={cx(tab === 1 && "active")} onClick={() => setTab(1)}>*/}
-        {/*  Матчи*/}
-        {/*</Tab>*/}
 
         {data.status === FullTournamentDtoStatusEnum.FINISHED && (
           <Tab className={cx(tab === 1 && "active")} onClick={() => setTab(1)}>
@@ -145,7 +146,9 @@ export default (p: InitialProps) => {
           (data.isParticipating ? (
             <Tab onClick={() => unregister()}>Покинуть турнир</Tab>
           ) : (
-            <Tab onClick={() => register()}>Участвовать</Tab>
+            <Tab className={cx(!canRegister && "disabled")} onClick={() => canRegister && register()}>
+              Участвовать
+            </Tab>
           ))}
         {(data.status === FullTournamentDtoStatusEnum.ONGOING ||
           data.status === FullTournamentDtoStatusEnum.FINISHED) && (

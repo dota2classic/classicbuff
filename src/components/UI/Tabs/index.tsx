@@ -75,6 +75,11 @@ export const Tab = styled.a`
       right: 0;
     }
   }
+
+  &.disabled {
+    color: ${colors.primaryTextDark};
+    cursor: not-allowed;
+  }
 `;
 
 export const Tabs = styled.div`

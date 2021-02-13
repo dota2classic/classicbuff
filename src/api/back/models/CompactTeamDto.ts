@@ -49,6 +49,12 @@ export interface CompactTeamDto {
    * @memberof CompactTeamDto
    */
   creator: string;
+  /**
+   *
+   * @type {boolean}
+   * @memberof CompactTeamDto
+   */
+  locked: boolean;
 }
 
 export function CompactTeamDtoFromJSON(json: any): CompactTeamDto {
@@ -64,7 +70,8 @@ export function CompactTeamDtoFromJSONTyped(json: any, ignoreDiscriminator: bool
     name: json["name"],
     imageUrl: json["imageUrl"],
     tag: json["tag"],
-    creator: json["creator"]
+    creator: json["creator"],
+    locked: json["locked"]
   };
 }
 
@@ -80,6 +87,7 @@ export function CompactTeamDtoToJSON(value?: CompactTeamDto | null): any {
     name: value.name,
     imageUrl: value.imageUrl,
     tag: value.tag,
-    creator: value.creator
+    creator: value.creator,
+    locked: value.locked
   };
 }

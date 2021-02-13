@@ -57,6 +57,12 @@ export interface TeamDto {
    * @memberof TeamDto
    */
   creator: string;
+  /**
+   *
+   * @type {boolean}
+   * @memberof TeamDto
+   */
+  locked: boolean;
 }
 
 export function TeamDtoFromJSON(json: any): TeamDto {
@@ -73,7 +79,8 @@ export function TeamDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): T
     imageUrl: json["imageUrl"],
     tag: json["tag"],
     members: (json["members"] as Array<any>).map(TeamMemberDtoFromJSON),
-    creator: json["creator"]
+    creator: json["creator"],
+    locked: json["locked"]
   };
 }
 
@@ -90,6 +97,7 @@ export function TeamDtoToJSON(value?: TeamDto | null): any {
     imageUrl: value.imageUrl,
     tag: value.tag,
     members: (value.members as Array<any>).map(TeamMemberDtoToJSON),
-    creator: value.creator
+    creator: value.creator,
+    locked: value.locked
   };
 }

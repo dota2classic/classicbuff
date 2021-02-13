@@ -104,6 +104,7 @@ export default () => {
   if (!data) return <Layout />;
 
   const isCreator = data.creator === auth.steamID;
+  const isLocked = data.locked;
   return (
     <Layout>
       <InviteToTeamModal open={open} close={() => setOpen(false)} />
@@ -127,13 +128,16 @@ export default () => {
             {data.members.map(t => (
               <TeamMemberPreview
                 onKick={
-                  (isCreator && (() => appApi.team.teamControllerKickFromTeam(t.steamId).then(revalidate))) || undefined
+                  (isCreator &&
+                    !isLocked &&
+                    (() => appApi.team.teamControllerKickFromTeam(t.steamId).then(revalidate))) ||
+                  undefined
                 }
                 profile={{ ...t, id: t.steamId }}
               />
             ))}
 
-            {isCreator && (
+            {isCreator && !isLocked && (
               <>
                 <br />
                 <Button onClick={() => setOpen(true)}>Пригласить игрока</Button>
