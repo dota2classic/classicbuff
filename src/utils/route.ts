@@ -55,6 +55,9 @@ export const AppRouter = {
     tournament: (id: number) => page(`/tournament/[id]`, `/tournament/${id}`),
     bracket: (id: number) => page(`/tournament/[id]/bracket`, `/tournament/${id}/bracket`)
   },
+  team: {
+    index: page("/team")
+  },
   tournamentMatch: {
     match: (id: number) => page(`/tournament/match/[match_id]`, `/tournament/match/${id}`)
   },

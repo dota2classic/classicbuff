@@ -7,6 +7,7 @@ import PlayerHeroesTab from "./PlayerHeroesTab";
 import cx from "classnames";
 import { DiscordBlock } from "../components/UI/DiscordBlock";
 import { useTab } from "../utils/useTab";
+import { PlayerTeamsTab } from "./PlayerTeamsTab";
 
 interface Props {
   steam_id: string;
@@ -33,6 +34,12 @@ export default (p: Props) => {
         )}
 
         {isMine && (
+          <Tab className={cx(tab == 3 && "active")} onClick={() => setTabAction(3)}>
+            Приглашения в команду
+          </Tab>
+        )}
+
+        {isMine && (
           <Tab
             onClick={() => {
               AuthService.logout();
@@ -49,6 +56,11 @@ export default (p: Props) => {
       {tab === 2 && (
         <>
           <DiscordBlock />
+        </>
+      )}
+      {tab === 3 && (
+        <>
+          <PlayerTeamsTab />
         </>
       )}
     </>

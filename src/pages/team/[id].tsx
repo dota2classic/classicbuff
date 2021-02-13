@@ -1,18 +1,17 @@
 import Layout from "../../components/Layout";
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useApi } from "../../api/hooks";
 import styled from "styled-components";
 import { colors } from "../../shared";
-import { PlayerHover } from "../../components/UI/PlayerHover";
-import { numToSteamId } from "../../utils/numSteamId";
-import Link from "next/link";
 import { Tab, Tabs } from "../../components/UI/Tabs";
 import { useTab } from "../../utils/useTab";
 import cx from "classnames";
 import TournamentCard from "components/UI/TournamentCard";
 import { useStores } from "../../stores";
 import Button from "../../components/UI/Button";
+import { TeamMemberPreview } from "../../components/UI/TeamMemberPreview";
+import { InviteToTeamModal } from "../../components/modal/InviteToTeamModal";
 
 const Roster = styled.div`
   display: flex;
@@ -61,12 +60,11 @@ const TournamentName = styled.div`
   color: ${colors.primaryText};
 `;
 
-const TournamentType = styled.div``;
-
 const TournamentImage = styled.img`
   height: 200px;
   width: 200px;
   object-fit: cover;
+  border-radius: 10px;
 `;
 
 const TabWrapper = styled.div`
@@ -97,9 +95,12 @@ export default () => {
   const { auth } = useStores();
   const [tab, setTab] = useTab("tab", 0);
 
+  const [open, setOpen] = useState(false);
+
   if (!data) return <Layout />;
   return (
     <Layout>
+      <InviteToTeamModal open={open} close={() => setOpen(false)} />
       <TournamentImage src={data.imageUrl} />
       <TournamentName>{data.name}</TournamentName>
       <Tabs>
@@ -114,22 +115,13 @@ export default () => {
         {tab === 0 && (
           <>
             {data.members.map(t => (
-              <PlayerHover compact steam_id={t.steamId}>
-                <Link href={`/player/${numToSteamId(t.steamId)}`} passHref>
-                  <PlayerPreview>
-                    <img src={t.avatar} alt="" />
-                    <span>
-                      <span className="team-tag">{data?.tag}</span>.{t.name}
-                    </span>
-                  </PlayerPreview>
-                </Link>
-              </PlayerHover>
+              <TeamMemberPreview profile={{ ...t, id: t.steamId }} />
             ))}
 
             {data.creator === auth?.steamID && (
               <>
                 <br />
-                <Button>Пригласить игрока</Button>
+                <Button onClick={() => setOpen(true)}>Пригласить игрока</Button>
               </>
             )}
           </>

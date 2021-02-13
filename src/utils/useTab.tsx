@@ -43,7 +43,7 @@ export const useTab = (
 
     const queryPart = Qs.stringify(pQuery);
 
-    Router.push(href + `?${queryPart}`, asPath + `?${queryPart}`, {
+    Router.replace(href + `?${queryPart}`, asPath + `?${queryPart}`, {
       shallow: true
     }).then(() => setTab(tab));
   };

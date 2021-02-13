@@ -68,7 +68,7 @@ const HeaderWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 40px 40px 20px;
+  padding: 40px 40px 0;
 
   &.compact {
     padding: 0px;
@@ -197,10 +197,6 @@ const DefaultHeader = () => {
             <Tab className={cx(asPath === "/leaderboard" && "active")}>Таблица лидеров</Tab>
           </Link>
 
-          <Link passHref {...AppRouter.tournament.index.link}>
-            <Tab className={cx(asPath.startsWith("/tournament") && "active")}>Турниры</Tab>
-          </Link>
-
           <Link passHref {...AppRouter.history.index.link}>
             <Tab className={cx(asPath.startsWith("/history") && "active")}>Матчи</Tab>
           </Link>
@@ -237,27 +233,33 @@ const DefaultHeader = () => {
         </Tabs>
       </HeaderWrapper>
       <HeaderWrapper className="compact">
-        <a href="https://discord.gg/VU5wjA8">
-          <LinkWrapper alt={"Discord logo"} src="https://dota2classic.ru/api/static/icons/dis2.png" />
-        </a>
-        <a href="https://vk.com/club191796288">
-          <LinkWrapper alt={"Vk logo"} src="https://dota2classic.ru/api/static/icons/vk1.png" />
-        </a>
+        <Tabs className="heading">
+          <Tab target="__blank" href="https://discord.gg/VU5wjA8">
+            Discord
+          </Tab>
+          <Tab target="__blank" href="https://vk.com/club191796288">
+            {" "}
+            VK
+          </Tab>
+          <Tab target="__blank" href="https://www.youtube.com/user/facts2dota">
+            Youtube
+          </Tab>
 
-        <a href="https://www.youtube.com/user/facts2dota">
-          <LinkWrapper
-            className={"small"}
-            alt={"Vk logo"}
-            src="https://cdn.discordapp.com/attachments/724018264283414618/791790363237023814/yt3.png"
-          />
-        </a>
+          <Link passHref {...AppRouter.tournament.index.link}>
+            <Tab className={cx(asPath.startsWith("/tournament") && "active")}>Турниры</Tab>
+          </Link>
 
-        {data && (
-          <InfoTab>
-            <span>{data.inGame} онлайн</span>
-            <span>{data.sessions} игр</span>
-          </InfoTab>
-        )}
+          <Link passHref {...AppRouter.team.index.link}>
+            <Tab className={cx(asPath.startsWith("/team") && "active")}>Команды</Tab>
+          </Link>
+        </Tabs>
+
+        {/*{data && (*/}
+        {/*  <InfoTab>*/}
+        {/*    <span>{data.inGame} онлайн</span>*/}
+        {/*    <span>{data.sessions} игр</span>*/}
+        {/*  </InfoTab>*/}
+        {/*)}*/}
       </HeaderWrapper>
     </>
   );

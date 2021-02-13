@@ -16,38 +16,31 @@ import { exists, mapValues } from "../runtime";
 /**
  *
  * @export
- * @interface ForfeitDto
+ * @interface SubmitInviteDto
  */
-export interface ForfeitDto {
+export interface SubmitInviteDto {
   /**
    *
-   * @type {number}
-   * @memberof ForfeitDto
+   * @type {boolean}
+   * @memberof SubmitInviteDto
    */
-  gameId: number;
-  /**
-   *
-   * @type {string}
-   * @memberof ForfeitDto
-   */
-  forfeitId: string;
+  accept: boolean;
 }
 
-export function ForfeitDtoFromJSON(json: any): ForfeitDto {
-  return ForfeitDtoFromJSONTyped(json, false);
+export function SubmitInviteDtoFromJSON(json: any): SubmitInviteDto {
+  return SubmitInviteDtoFromJSONTyped(json, false);
 }
 
-export function ForfeitDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): ForfeitDto {
+export function SubmitInviteDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): SubmitInviteDto {
   if (json === undefined || json === null) {
     return json;
   }
   return {
-    gameId: json["gameId"],
-    forfeitId: json["forfeitId"]
+    accept: json["accept"]
   };
 }
 
-export function ForfeitDtoToJSON(value?: ForfeitDto | null): any {
+export function SubmitInviteDtoToJSON(value?: SubmitInviteDto | null): any {
   if (value === undefined) {
     return undefined;
   }
@@ -55,7 +48,6 @@ export function ForfeitDtoToJSON(value?: ForfeitDto | null): any {
     return null;
   }
   return {
-    gameId: value.gameId,
-    forfeitId: value.forfeitId
+    accept: value.accept
   };
 }

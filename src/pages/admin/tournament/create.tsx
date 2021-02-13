@@ -41,13 +41,15 @@ export default () => {
   const [bestOfRound, setBestOfRound] = useState(1);
   const [bestOfFinal, setBestOfFinal] = useState(1);
   const [bestOfGrandFinal, setBestOfGrandFinal] = useState(3);
+  const [strategy, setStrategy] = useState(CreateTournamentDtoStrategyEnum.SINGLEELIMINATION);
+  const [entryType, setEntryType] = useState(CreateTournamentDtoEntryTypeEnum.PLAYER);
 
   const create = async () => {
     const res = await api.adminTournamentControllerCreateTournament({
       name,
-      entryType: CreateTournamentDtoEntryTypeEnum.PLAYER,
+      entryType,
       startDate,
-      strategy: CreateTournamentDtoStrategyEnum.SINGLEELIMINATION,
+      strategy,
       imageUrl,
       bestOfGrandFinal,
       bestOfRound,
@@ -57,13 +59,55 @@ export default () => {
     await router.push(`/admin/tournament/${res.id}`);
   };
 
+  const strategyOptions = [
+    {
+      value: CreateTournamentDtoStrategyEnum.SINGLEELIMINATION,
+      label: "Single elimination"
+    },
+    {
+      value: CreateTournamentDtoStrategyEnum.DOUBLEELIMINATION,
+      label: "Double elimination"
+    }
+  ];
+  const entryOptions = [
+    {
+      value: CreateTournamentDtoEntryTypeEnum.PLAYER,
+      label: "Соло 1х1"
+    },
+    {
+      value: CreateTournamentDtoEntryTypeEnum.TEAM,
+      label: "Команды 5х5"
+    }
+  ];
+
   return (
     <AdminLayout>
       <ImageUploader onChange={e => setImageUrl(resolveImage(e))}>
         <TournamentImage src={imageUrl} />
       </ImageUploader>
 
-      <Input value={name} onChange={e => setName(e.target.value)} placeholder={"Имя турнира"} />
+      <FormBlock>
+        <Hint>Название турнира</Hint>
+        <Input value={name} onChange={e => setName(e.target.value)} placeholder={"Имя турнира"} />
+      </FormBlock>
+
+      <FormBlock>
+        <Hint>Тип турнира</Hint>
+        <Select
+          value={entryOptions.find(t => t.value === entryType)}
+          options={entryOptions}
+          onChange={e => setEntryType(e!!.value)}
+        />
+      </FormBlock>
+
+      <FormBlock>
+        <Hint>Вид сетки</Hint>
+        <Select
+          value={strategyOptions.find(t => t.value === strategy)}
+          options={strategyOptions}
+          onChange={e => setStrategy(e!!.value)}
+        />
+      </FormBlock>
 
       <FormBlock>
         <Hint>Обычный раунд best of</Hint>

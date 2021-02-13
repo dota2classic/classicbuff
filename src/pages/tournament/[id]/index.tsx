@@ -15,7 +15,8 @@ import {
   TournamentParticipantDto,
   TournamentStandingDto
 } from "../../../api/back/models";
-import { CompactTeamCard } from "components/UI/TeamCard";
+import TeamCard, { TeamLeaderboardCard } from "components/UI/TeamCard";
+
 import { TeamMemberPreview } from "../../../components/UI/TeamMemberPreview";
 import { formatDateStr } from "../../../utils/format/formateDateStr";
 import Head from "next/head";
@@ -79,6 +80,9 @@ export default (p: InitialProps) => {
     if (data.entryType === FullTournamentDtoEntryTypeEnum.PLAYER) {
       await api.tournamentControllerLeaveTournamentAsPlayer(data.id);
       await revalidate();
+    } else {
+      await api.tournamentControllerLeaveTournamentAsTeam(data.id);
+      await revalidate();
     }
   };
 
@@ -91,7 +95,8 @@ export default (p: InitialProps) => {
       await api.tournamentControllerJoinTournamentAsPlayer(data.id);
       await revalidate();
     } else {
-      throw "TODO";
+      await api.tournamentControllerJoinTournamentAsTeam(data.id);
+      await revalidate();
     }
   };
 
@@ -157,7 +162,7 @@ export default (p: InitialProps) => {
               data.entryType === FullTournamentDtoEntryTypeEnum.PLAYER ? (
                 <TeamMemberPreview profile={p.profile!!} />
               ) : (
-                <CompactTeamCard team={p.team!!} />
+                <TeamCard team={p.team!!} />
               )
             )}
           </>
@@ -171,7 +176,7 @@ export default (p: InitialProps) => {
                 data.entryType === FullTournamentDtoEntryTypeEnum.PLAYER ? (
                   <PlayerLeaderboardPreview standing={p} />
                 ) : (
-                  <CompactTeamCard team={p.team!!} />
+                  <TeamLeaderboardCard standing={p} />
                 )
               )}
           </>
@@ -182,10 +187,16 @@ export default (p: InitialProps) => {
 };
 
 export async function getServerSideProps(ctx: NextPageContext): Promise<SsrProps<InitialProps>> {
-  const res = await appApi.tournament.tournamentControllerGetTournament(Number(ctx.query.id));
-  return {
-    props: {
-      tournament: JSON.parse(JSON.stringify(res))
-    } // will be passed to the page component as props
-  };
+  try {
+    const res = await appApi.tournament.tournamentControllerGetTournament(Number(ctx.query.id));
+    return {
+      props: {
+        tournament: JSON.parse(JSON.stringify(res))
+      } // will be passed to the page component as props
+    };
+  } catch (e) {
+    return {
+      props: {}
+    };
+  }
 }

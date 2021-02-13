@@ -56,6 +56,13 @@ const BracketViewerWrapper = styled.div`
         color: ${colors.dota.red} !important;
       }
 
+      & .result {
+        width: 10px !important;
+        margin-left: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
       & .participant-image {
         width: 20px;
         height: 20px;

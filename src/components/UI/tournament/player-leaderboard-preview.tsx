@@ -28,7 +28,7 @@ const PlayerPreview = styled.a`
   }
 
   & span.result {
-    padding: 6px;
+    padding: 6px 10px;
 
     border-radius: 50%;
     width: 14px;

@@ -19,9 +19,6 @@ import {
   CreateTournamentDto,
   CreateTournamentDtoFromJSON,
   CreateTournamentDtoToJSON,
-  ForfeitDto,
-  ForfeitDtoFromJSON,
-  ForfeitDtoToJSON,
   ScheduleTournamentMatchDto,
   ScheduleTournamentMatchDtoFromJSON,
   ScheduleTournamentMatchDtoToJSON,
@@ -45,11 +42,6 @@ export interface AdminTournamentControllerCancelTournamentRequest {
 
 export interface AdminTournamentControllerCreateTournamentRequest {
   createTournamentDto: CreateTournamentDto;
-}
-
-export interface AdminTournamentControllerForfeitRequest {
-  id: number;
-  forfeitDto: ForfeitDto;
 }
 
 export interface AdminTournamentControllerGetTournamentRequest {
@@ -198,65 +190,6 @@ export class AdminTournamentApi extends runtime.BaseAPI {
     const response = await this.adminTournamentControllerCreateTournamentRaw({
       createTournamentDto: createTournamentDto
     });
-    return await response.value();
-  };
-
-  /**
-   */
-  private async adminTournamentControllerForfeitRaw(
-    requestParameters: AdminTournamentControllerForfeitRequest
-  ): Promise<runtime.ApiResponse<TournamentBracketMatchDto>> {
-    this.adminTournamentControllerForfeitValidation(requestParameters);
-    const context = this.adminTournamentControllerForfeitContext(requestParameters);
-    const response = await this.request(context);
-
-    return new runtime.JSONApiResponse(response, jsonValue => TournamentBracketMatchDtoFromJSON(jsonValue));
-  }
-
-  /**
-   */
-  private adminTournamentControllerForfeitValidation(requestParameters: AdminTournamentControllerForfeitRequest) {
-    if (requestParameters.id === null || requestParameters.id === undefined) {
-      throw new runtime.RequiredError(
-        "id",
-        "Required parameter requestParameters.id was null or undefined when calling adminTournamentControllerForfeit."
-      );
-    }
-    if (requestParameters.forfeitDto === null || requestParameters.forfeitDto === undefined) {
-      throw new runtime.RequiredError(
-        "forfeitDto",
-        "Required parameter requestParameters.forfeitDto was null or undefined when calling adminTournamentControllerForfeit."
-      );
-    }
-  }
-
-  /**
-   */
-  adminTournamentControllerForfeitContext(
-    requestParameters: AdminTournamentControllerForfeitRequest
-  ): runtime.RequestOpts {
-    const queryParameters: any = {};
-
-    const headerParameters: runtime.HTTPHeaders = {};
-
-    headerParameters["Content-Type"] = "application/json";
-
-    return {
-      path: `/v1/admin/tournament/tournament_match/{id}/forfeit`.replace(
-        `{${"id"}}`,
-        encodeURIComponent(String(requestParameters.id))
-      ),
-      method: "POST",
-      headers: headerParameters,
-      query: queryParameters,
-      body: ForfeitDtoToJSON(requestParameters.forfeitDto)
-    };
-  }
-
-  /**
-   */
-  adminTournamentControllerForfeit = async (id: number, forfeitDto: ForfeitDto): Promise<TournamentBracketMatchDto> => {
-    const response = await this.adminTournamentControllerForfeitRaw({ id: id, forfeitDto: forfeitDto });
     return await response.value();
   };
 

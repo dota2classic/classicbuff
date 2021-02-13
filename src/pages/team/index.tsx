@@ -1,7 +1,7 @@
 import { useApi } from "../../api/hooks";
 import Layout from "../../components/Layout";
 import React, { useState } from "react";
-import TeamCard, { CompactTeamCard } from "components/UI/TeamCard";
+import TeamCard from "components/UI/TeamCard";
 import styled from "styled-components";
 import Button from "../../components/UI/Button";
 import { Hint } from "../../components/UI/Hint";

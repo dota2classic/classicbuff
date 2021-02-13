@@ -55,23 +55,6 @@ export default () => {
     await mutate(m);
   };
 
-  const forfeit = async (gameId: number, opp: TournamentBracketParticipantDto) => {
-    if (!data) return;
-    let m: TournamentBracketMatchDto;
-    if (opp.team) {
-      m = await api.adminTournamentControllerForfeit(data.id, {
-        forfeitId: opp.team!!.id,
-        gameId
-      });
-    } else {
-      m = await api.adminTournamentControllerForfeit(data.id, {
-        forfeitId: opp.profile!!.id,
-        gameId
-      });
-    }
-    await mutate(m);
-  };
-
   const hasResult =
     data?.status === TournamentBracketMatchDtoStatusEnum.Completed ||
     data?.status === TournamentBracketMatchDtoStatusEnum.Archived;
@@ -172,24 +155,6 @@ export default () => {
             </Tr>
 
             <Tr>
-              <td>Техлузы</td>
-
-              <td>
-                {!data.games[tab].finished && hasOpponent1 && hasOpponent2 && !hasResult && !locked && (
-                  <Button onClick={() => forfeit(data.games[tab].id, data.opponent1!!.participant!!)} className="small">
-                    Техлуз оппоненту 1
-                  </Button>
-                )}
-                <br />
-                {!data.games[tab].finished && hasOpponent1 && hasOpponent2 && !hasResult && !locked && (
-                  <Button onClick={() => forfeit(data.games[tab].id, data.opponent2!!.participant!!)} className="small">
-                    Техлуз оппоненту 2
-                  </Button>
-                )}
-              </td>
-            </Tr>
-
-            <Tr>
               <td>Статус игры</td>
               <td>{data.games[tab].finished ? "Игра завершена/отменена" : "Игра ожидает начала"}</td>
             </Tr>
@@ -212,7 +177,7 @@ export default () => {
                     onClick={() => setWinner(data.games[tab].id, data.opponent2!!.participant!!)}
                     className="small"
                   >
-                    Победи оппонент 2
+                    Победил оппонент 2
                   </Button>
                 )}
               </td>

@@ -19,9 +19,15 @@ import {
   CreateTeamDto,
   CreateTeamDtoFromJSON,
   CreateTeamDtoToJSON,
+  SubmitInviteDto,
+  SubmitInviteDtoFromJSON,
+  SubmitInviteDtoToJSON,
   TeamDto,
   TeamDtoFromJSON,
   TeamDtoToJSON,
+  TeamInvitationDto,
+  TeamInvitationDtoFromJSON,
+  TeamInvitationDtoToJSON,
   TournamentDto,
   TournamentDtoFromJSON,
   TournamentDtoToJSON
@@ -37,6 +43,15 @@ export interface TeamControllerGetTeamRequest {
 
 export interface TeamControllerGetTeamTournamentsRequest {
   id: string;
+}
+
+export interface TeamControllerInviteToTeamRequest {
+  steamId: string;
+}
+
+export interface TeamControllerSubmitInviteRequest {
+  id: number;
+  submitInviteDto: SubmitInviteDto;
 }
 
 /**
@@ -98,6 +113,57 @@ export class TeamApi extends runtime.BaseAPI {
     const response = await this.teamControllerCreateTeamRaw({ createTeamDto: createTeamDto });
     return await response.value();
   };
+
+  /**
+   */
+  private async teamControllerGetInvitesRaw(): Promise<runtime.ApiResponse<Array<TeamInvitationDto>>> {
+    this.teamControllerGetInvitesValidation();
+    const context = this.teamControllerGetInvitesContext();
+    const response = await this.request(context);
+
+    return new runtime.JSONApiResponse(response, jsonValue => jsonValue.map(TeamInvitationDtoFromJSON));
+  }
+
+  /**
+   */
+  private teamControllerGetInvitesValidation() {}
+
+  /**
+   */
+  teamControllerGetInvitesContext(): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    return {
+      path: `/v1/team/view_invites`,
+      method: "GET",
+      headers: headerParameters,
+      query: queryParameters
+    };
+  }
+
+  /**
+   */
+  teamControllerGetInvites = async (): Promise<Array<TeamInvitationDto>> => {
+    const response = await this.teamControllerGetInvitesRaw();
+    return await response.value();
+  };
+
+  useTeamControllerGetInvites(config?: ConfigInterface<Array<TeamInvitationDto>, Error>) {
+    let valid = true;
+
+    const context = this.teamControllerGetInvitesContext();
+    return useSWR(JSON.stringify(context), valid ? () => this.teamControllerGetInvites() : undefined, config);
+  }
 
   /**
    */
@@ -219,6 +285,61 @@ export class TeamApi extends runtime.BaseAPI {
 
   /**
    */
+  private async teamControllerInviteToTeamRaw(
+    requestParameters: TeamControllerInviteToTeamRequest
+  ): Promise<runtime.ApiResponse<void>> {
+    this.teamControllerInviteToTeamValidation(requestParameters);
+    const context = this.teamControllerInviteToTeamContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.VoidApiResponse(response);
+  }
+
+  /**
+   */
+  private teamControllerInviteToTeamValidation(requestParameters: TeamControllerInviteToTeamRequest) {
+    if (requestParameters.steamId === null || requestParameters.steamId === undefined) {
+      throw new runtime.RequiredError(
+        "steamId",
+        "Required parameter requestParameters.steamId was null or undefined when calling teamControllerInviteToTeam."
+      );
+    }
+  }
+
+  /**
+   */
+  teamControllerInviteToTeamContext(requestParameters: TeamControllerInviteToTeamRequest): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    return {
+      path: `/v1/team/invite_to_team/{steam_id}`.replace(
+        `{${"steam_id"}}`,
+        encodeURIComponent(String(requestParameters.steamId))
+      ),
+      method: "POST",
+      headers: headerParameters,
+      query: queryParameters
+    };
+  }
+
+  /**
+   */
+  teamControllerInviteToTeam = async (steamId: string): Promise<void> => {
+    await this.teamControllerInviteToTeamRaw({ steamId: steamId });
+  };
+
+  /**
+   */
   private async teamControllerListTeamsRaw(): Promise<runtime.ApiResponse<Array<TeamDto>>> {
     this.teamControllerListTeamsValidation();
     const context = this.teamControllerListTeamsContext();
@@ -259,4 +380,65 @@ export class TeamApi extends runtime.BaseAPI {
     const context = this.teamControllerListTeamsContext();
     return useSWR(JSON.stringify(context), valid ? () => this.teamControllerListTeams() : undefined, config);
   }
+
+  /**
+   */
+  private async teamControllerSubmitInviteRaw(
+    requestParameters: TeamControllerSubmitInviteRequest
+  ): Promise<runtime.ApiResponse<void>> {
+    this.teamControllerSubmitInviteValidation(requestParameters);
+    const context = this.teamControllerSubmitInviteContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.VoidApiResponse(response);
+  }
+
+  /**
+   */
+  private teamControllerSubmitInviteValidation(requestParameters: TeamControllerSubmitInviteRequest) {
+    if (requestParameters.id === null || requestParameters.id === undefined) {
+      throw new runtime.RequiredError(
+        "id",
+        "Required parameter requestParameters.id was null or undefined when calling teamControllerSubmitInvite."
+      );
+    }
+    if (requestParameters.submitInviteDto === null || requestParameters.submitInviteDto === undefined) {
+      throw new runtime.RequiredError(
+        "submitInviteDto",
+        "Required parameter requestParameters.submitInviteDto was null or undefined when calling teamControllerSubmitInvite."
+      );
+    }
+  }
+
+  /**
+   */
+  teamControllerSubmitInviteContext(requestParameters: TeamControllerSubmitInviteRequest): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    headerParameters["Content-Type"] = "application/json";
+
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    return {
+      path: `/v1/team/submit_invite/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+      method: "POST",
+      headers: headerParameters,
+      query: queryParameters,
+      body: SubmitInviteDtoToJSON(requestParameters.submitInviteDto)
+    };
+  }
+
+  /**
+   */
+  teamControllerSubmitInvite = async (id: number, submitInviteDto: SubmitInviteDto): Promise<void> => {
+    await this.teamControllerSubmitInviteRaw({ id: id, submitInviteDto: submitInviteDto });
+  };
 }

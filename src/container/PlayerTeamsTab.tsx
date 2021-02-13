@@ -1,9 +1,14 @@
-import { CompactTeamDto, TeamDto, TournamentStandingDto } from "../../../api/back/models";
-import styled from "styled-components";
-import { colors } from "../../../shared";
-import Link from "next/link";
+import { appApi, useApi } from "../api/hooks";
+import { TeamInvitationDto } from "../api/back/models";
 import React from "react";
-import cx from "classnames";
+import styled from "styled-components";
+import { colors } from "../shared";
+import Button from "../components/UI/Button";
+
+interface Props {
+  inv: TeamInvitationDto;
+  revalidate: () => void;
+}
 
 const Card = styled.a`
   display: flex;
@@ -20,9 +25,15 @@ const Card = styled.a`
   padding: 8px;
   align-items: center;
   border-radius: 4px;
+  
+  
+  & ${Button}{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 
   &:hover {
-    background: ${colors.evenDarkerBg};
+    background: ${colors.transparentTint3};
     box-shadow: 0px 0px 8px 1px rgba(255, 255, 255, 0.1);
   }
   
@@ -84,36 +95,34 @@ const TournamentImage = styled.img`
     height: 50px;
   }
 `;
-interface Props {
-  team: CompactTeamDto;
-}
 
-export default ({ team }: Props) => {
+const TeamInvitePreview = ({ inv, revalidate }: Props) => {
+  const submitResult = (accept: boolean) =>
+    appApi.team.teamControllerSubmitInvite(inv.inviteId, { accept }).then(revalidate);
+
   return (
-    <Link passHref href={`/team/${team.id}`}>
-      <Card>
-        <TournamentImage src={team.imageUrl} />
-        <TournamentName>{team.name}</TournamentName>
-      </Card>
-    </Link>
+    <Card>
+      <TournamentImage src={inv.team.imageUrl} />
+      <TournamentName>{inv.team.name}</TournamentName>
+
+      <Button className="small" onClick={() => submitResult(true)}>
+        Принять
+      </Button>
+      <Button className="small" onClick={() => submitResult(false)}>
+        Отклонить
+      </Button>
+    </Card>
   );
 };
 
-interface StandingProps {
-  standing: TournamentStandingDto;
-}
-export const TeamLeaderboardCard = ({ standing }: StandingProps) => {
+export const PlayerTeamsTab = () => {
+  const { data, revalidate } = useApi().team.useTeamControllerGetInvites();
+
   return (
-    <Link passHref href={`/team/${standing.team!!.id}`}>
-      <Card>
-        <span className={cx("result", `position_${standing.position}`)}>{standing.position}</span>
-        <TournamentImage src={standing.team!!.imageUrl} />
-        <TournamentName>{standing.team!!.name}</TournamentName>
-      </Card>
-    </Link>
+    <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+      {data?.map(inv => (
+        <TeamInvitePreview revalidate={revalidate} inv={inv} />
+      ))}
+    </div>
   );
 };
-
-interface CompactProps {
-  team: CompactTeamDto;
-}

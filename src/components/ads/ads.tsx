@@ -12,7 +12,7 @@ export const InlineAdBanner = () => {
       // @ts-ignore
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   }, []);
 
@@ -32,7 +32,7 @@ export const AdBanner = () => {
       // @ts-ignore
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   }, []);
 
