@@ -1,7 +1,7 @@
 import Layout from "../../components/Layout";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { useApi } from "../../api/hooks";
+import { appApi, useApi } from "../../api/hooks";
 import styled from "styled-components";
 import { colors } from "../../shared";
 import { Tab, Tabs } from "../../components/UI/Tabs";
@@ -89,20 +89,30 @@ const TeamTournaments = ({ id }: TeamTournamentProps) => {
   );
 };
 
+const TeamMemberWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 export default () => {
   const id = useRouter().query.id as string;
-  const { data } = useApi().team.useTeamControllerGetTeam(id);
+  const { data, revalidate } = useApi().team.useTeamControllerGetTeam(id);
   const { auth } = useStores();
   const [tab, setTab] = useTab("tab", 0);
 
   const [open, setOpen] = useState(false);
 
   if (!data) return <Layout />;
+
+  const isCreator = data.creator === auth.steamID;
   return (
     <Layout>
       <InviteToTeamModal open={open} close={() => setOpen(false)} />
       <TournamentImage src={data.imageUrl} />
       <TournamentName>{data.name}</TournamentName>
+
+      {data.members.find(t => t.steamId === auth.steamID) && (
+        <Button onClick={() => appApi.team.teamControllerLeaveTeam().then(revalidate)}>Покинуть команду</Button>
+      )}
       <Tabs>
         <Tab className={cx(tab === 0 && "active")} onClick={() => setTab(0)}>
           Состав
@@ -115,10 +125,15 @@ export default () => {
         {tab === 0 && (
           <>
             {data.members.map(t => (
-              <TeamMemberPreview profile={{ ...t, id: t.steamId }} />
+              <TeamMemberPreview
+                onKick={
+                  (isCreator && (() => appApi.team.teamControllerKickFromTeam(t.steamId).then(revalidate))) || undefined
+                }
+                profile={{ ...t, id: t.steamId }}
+              />
             ))}
 
-            {data.creator === auth?.steamID && (
+            {isCreator && (
               <>
                 <br />
                 <Button onClick={() => setOpen(true)}>Пригласить игрока</Button>

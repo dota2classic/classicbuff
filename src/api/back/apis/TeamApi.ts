@@ -49,6 +49,10 @@ export interface TeamControllerInviteToTeamRequest {
   steamId: string;
 }
 
+export interface TeamControllerKickFromTeamRequest {
+  steamId: string;
+}
+
 export interface TeamControllerSubmitInviteRequest {
   id: number;
   submitInviteDto: SubmitInviteDto;
@@ -336,6 +340,104 @@ export class TeamApi extends runtime.BaseAPI {
    */
   teamControllerInviteToTeam = async (steamId: string): Promise<void> => {
     await this.teamControllerInviteToTeamRaw({ steamId: steamId });
+  };
+
+  /**
+   */
+  private async teamControllerKickFromTeamRaw(
+    requestParameters: TeamControllerKickFromTeamRequest
+  ): Promise<runtime.ApiResponse<void>> {
+    this.teamControllerKickFromTeamValidation(requestParameters);
+    const context = this.teamControllerKickFromTeamContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.VoidApiResponse(response);
+  }
+
+  /**
+   */
+  private teamControllerKickFromTeamValidation(requestParameters: TeamControllerKickFromTeamRequest) {
+    if (requestParameters.steamId === null || requestParameters.steamId === undefined) {
+      throw new runtime.RequiredError(
+        "steamId",
+        "Required parameter requestParameters.steamId was null or undefined when calling teamControllerKickFromTeam."
+      );
+    }
+  }
+
+  /**
+   */
+  teamControllerKickFromTeamContext(requestParameters: TeamControllerKickFromTeamRequest): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    return {
+      path: `/v1/team/kick_from_team/{steam_id}`.replace(
+        `{${"steam_id"}}`,
+        encodeURIComponent(String(requestParameters.steamId))
+      ),
+      method: "POST",
+      headers: headerParameters,
+      query: queryParameters
+    };
+  }
+
+  /**
+   */
+  teamControllerKickFromTeam = async (steamId: string): Promise<void> => {
+    await this.teamControllerKickFromTeamRaw({ steamId: steamId });
+  };
+
+  /**
+   */
+  private async teamControllerLeaveTeamRaw(): Promise<runtime.ApiResponse<void>> {
+    this.teamControllerLeaveTeamValidation();
+    const context = this.teamControllerLeaveTeamContext();
+    const response = await this.request(context);
+
+    return new runtime.VoidApiResponse(response);
+  }
+
+  /**
+   */
+  private teamControllerLeaveTeamValidation() {}
+
+  /**
+   */
+  teamControllerLeaveTeamContext(): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    return {
+      path: `/v1/team/leave_team`,
+      method: "POST",
+      headers: headerParameters,
+      query: queryParameters
+    };
+  }
+
+  /**
+   */
+  teamControllerLeaveTeam = async (): Promise<void> => {
+    await this.teamControllerLeaveTeamRaw();
   };
 
   /**

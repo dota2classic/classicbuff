@@ -1,9 +1,10 @@
-import { numToSteamId, steamIdToNum } from "../../../utils/numSteamId";
+import { steamIdToNum } from "../../../utils/numSteamId";
 import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../../../shared";
 import { PlayerPreviewDto } from "../../../api/back/models";
+import Button from "../Button";
 
 const PlayerPreview = styled.a`
   display: flex;
@@ -27,10 +28,11 @@ const PlayerPreview = styled.a`
   }
   & span {
     display: flex;
-    justify-content: center;
     font-size: 16px;
     align-items: center;
     padding-left: 10px;
+    flex: 1;
+    text-align: left;
 
     & .team-tag {
       color: ${colors.primaryTextDark};
@@ -40,15 +42,27 @@ const PlayerPreview = styled.a`
 
 interface Props {
   profile?: PlayerPreviewDto;
+  onKick?: () => void;
 }
 
-export const TeamMemberPreview = ({ profile }: Props) => {
+export const TeamMemberPreview = ({ profile, onKick }: Props) => {
   if (profile)
     return (
       <Link href={`/player/${steamIdToNum(profile.id)}`} passHref>
         <PlayerPreview>
           <img src={profile.avatar} alt="" />
           <span>{profile.name}</span>
+          {onKick && (
+            <Button
+              onClick={e => {
+                e.preventDefault();
+                onKick();
+              }}
+              className="small"
+            >
+              Кикнуть
+            </Button>
+          )}
         </PlayerPreview>
       </Link>
     );
