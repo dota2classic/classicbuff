@@ -12,6 +12,7 @@ import { useStores } from "../../stores";
 import Button from "../../components/UI/Button";
 import { TeamMemberPreview } from "../../components/UI/TeamMemberPreview";
 import { InviteToTeamModal } from "../../components/modal/InviteToTeamModal";
+import Head from "next/head";
 
 const Roster = styled.div`
   display: flex;
@@ -107,13 +108,14 @@ export default () => {
   const isLocked = data.locked;
   return (
     <Layout>
+      <Head>
+        <title>Команда {data.name}</title>
+      </Head>
+
       <InviteToTeamModal open={open} close={() => setOpen(false)} />
       <TournamentImage src={data.imageUrl} />
       <TournamentName>{data.name}</TournamentName>
 
-      {data.members.find(t => t.steamId === auth.steamID) && (
-        <Button onClick={() => appApi.team.teamControllerLeaveTeam().then(revalidate)}>Покинуть команду</Button>
-      )}
       <Tabs>
         <Tab className={cx(tab === 0 && "active")} onClick={() => setTab(0)}>
           Состав
@@ -121,6 +123,10 @@ export default () => {
         <Tab className={cx(tab === 1 && "active")} onClick={() => setTab(1)}>
           Турниры
         </Tab>
+        {isCreator && !isLocked && <Tab onClick={() => setOpen(true)}>Пригласить игрока</Tab>}
+        {data.members.find(t => t.steamId === auth.steamID) && (
+          <Tab onClick={() => appApi.team.teamControllerLeaveTeam().then(revalidate)}>Покинуть команду</Tab>
+        )}
       </Tabs>
       <TabWrapper>
         {tab === 0 && (
@@ -136,13 +142,6 @@ export default () => {
                 profile={{ ...t, id: t.steamId }}
               />
             ))}
-
-            {isCreator && !isLocked && (
-              <>
-                <br />
-                <Button onClick={() => setOpen(true)}>Пригласить игрока</Button>
-              </>
-            )}
           </>
         )}
 

@@ -146,7 +146,14 @@ export default (p: InitialProps) => {
           (data.isParticipating ? (
             <Tab onClick={() => unregister()}>Покинуть турнир</Tab>
           ) : (
-            <Tab className={cx(!canRegister && "disabled")} onClick={() => canRegister && register()}>
+            <Tab
+              className={cx(!canRegister && "disabled")}
+              onClick={() => {
+                if (canRegister) {
+                  register();
+                }
+              }}
+            >
               Участвовать
             </Tab>
           ))}
