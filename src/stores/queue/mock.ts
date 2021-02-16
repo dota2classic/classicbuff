@@ -10,5 +10,6 @@ export const DefaultQueueHolder: QueueHolder = {
   [MatchmakingMode.GREEVILING]: 0,
   [MatchmakingMode.BOTS]: 0,
   [MatchmakingMode.TOURNAMENT_SOLOMID]: 0,
+  [MatchmakingMode.TOURNAMENT]: 0,
   [MatchmakingMode.HIGHROOM]: 0
 };

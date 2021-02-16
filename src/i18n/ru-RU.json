@@ -1,0 +1,99 @@
+[
+  {
+    "id": "enterclass.catalog_page.description",
+    "defaultMessage": "Description",
+    "message": "Описание"
+  },
+  {
+    "id": "enterclass.course_review_page.description",
+    "defaultMessage": "Description",
+    "message": "Описание"
+  },
+  {
+    "id": "enterclass.email_confirmed_page.description",
+    "defaultMessage": "Description",
+    "message": "Описание"
+  },
+  {
+    "id": "enterclass.email_needed_page.description",
+    "defaultMessage": "Description",
+    "message": "Описание"
+  },
+  {
+    "id": "enterclass.expert_dialog_page.description",
+    "defaultMessage": "Description",
+    "message": "Описание"
+  },
+  {
+    "id": "enterclass.expert_dialog_page.attribute_speciality",
+    "defaultMessage": "Speciality",
+    "message": "Специализация"
+  },
+  {
+    "id": "enterclass.expert_dialog_page.attribute_direction",
+    "defaultMessage": "Direction",
+    "message": "Направление"
+  },
+  {
+    "id": "enterclass.expert_dialog_page.attribute_materials",
+    "defaultMessage": "Materials",
+    "message": "Материалы"
+  },
+  {
+    "id": "enterclass.expert_dialog_page.attribute_education",
+    "defaultMessage": "Education",
+    "message": "Образование"
+  },
+  {
+    "id": "enterclass.expert_dialog_page.attribute_experience",
+    "defaultMessage": "Experience",
+    "message": "Опыт"
+  },
+  {
+    "id": "enterclass.payment_failure_page.description",
+    "defaultMessage": "Description",
+    "message": "Описание"
+  },
+  {
+    "id": "enterclass.payment_processing_page.description",
+    "defaultMessage": "Description",
+    "message": "Описание"
+  },
+  {
+    "id": "enterclass.payment_success_page.description",
+    "defaultMessage": "Description",
+    "message": "Описание"
+  },
+  {
+    "id": "enterclass.backend_errors.user_locked",
+    "defaultMessage": "USER LOCKED",
+    "message": "Пользователь заблокирован"
+  },
+  {
+    "id": "enterclass.backend_errors.need_email",
+    "defaultMessage": "NEED EMAIL",
+    "message": "Нужен email"
+  },
+  {
+    "id": "enterclass.remove_cart_item_modal.generated_1588693603398__0",
+    "defaultMessage": "Вы действительно хотите удалить",
+    "message": "Вы действительно хотите удалить"
+  },
+  {
+    "id": "enterclass.remove_cart_item_modal.generated_1588693603398__1",
+    "defaultMessage": "из корзины?",
+    "message": "из корзины?"
+  },
+  {
+    "id": "dota2classic.shared-dota.dire",
+    "defaultMessage": "Тьма",
+    "message": "",
+    "filepath": "./src/shared-i18n/dota.i18n.ts"
+  },
+  {
+    "id": "dota2classic.shared-dota.radiant",
+    "defaultMessage": "Свет",
+    "message": "",
+    "filepath": "./src/shared-i18n/dota.i18n.ts"
+  }
+]

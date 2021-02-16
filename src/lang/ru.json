@@ -1,0 +1,21 @@
+{
+  "enterclass.catalog_page.description": "Описание",
+  "enterclass.course_review_page.description": "Описание",
+  "enterclass.email_confirmed_page.description": "Описание",
+  "enterclass.email_needed_page.description": "Описание",
+  "enterclass.expert_dialog_page.description": "Описание",
+  "enterclass.expert_dialog_page.attribute_speciality": "Специализация",
+  "enterclass.expert_dialog_page.attribute_direction": "Направление",
+  "enterclass.expert_dialog_page.attribute_materials": "Материалы",
+  "enterclass.expert_dialog_page.attribute_education": "Образование",
+  "enterclass.expert_dialog_page.attribute_experience": "Опыт",
+  "enterclass.payment_failure_page.description": "Описание",
+  "enterclass.payment_processing_page.description": "Описание",
+  "enterclass.payment_success_page.description": "Описание",
+  "enterclass.backend_errors.user_locked": "Пользователь заблокирован",
+  "enterclass.backend_errors.need_email": "Нужен email",
+  "enterclass.remove_cart_item_modal.generated_1588693603398__0": "Вы действительно хотите удалить",
+  "enterclass.remove_cart_item_modal.generated_1588693603398__1": "из корзины?",
+  "dota2classic.shared-dota.dire": "",
+  "dota2classic.shared-dota.radiant": ""
+}

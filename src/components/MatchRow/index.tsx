@@ -1,13 +1,13 @@
+import { MatchDto } from "../../api/back/models";
+import { Tr } from "../UI/Table";
 import cx from "classnames";
 import Router from "next/router";
-import { formatDateStr } from "../utils/format/formateDateStr";
-import formatGameMode from "../utils/format/formatGameMode";
-import { formatDuration } from "../pages/match/[id]";
-import { HeroIcon } from "./UI/HeroIcon";
+import { Heroes, MatchIdCol } from "../../pages/history";
+import { formatDateStr } from "../../utils/format/formateDateStr";
+import formatGameMode from "../../utils/format/formatGameMode";
+import { formatDuration } from "../../pages/match/[id]";
+import { HeroIcon } from "../UI/HeroIcon";
 import React from "react";
-import { Heroes, MatchIdCol } from "../pages/history";
-import { MatchDto, MatchDtoModeEnum } from "../api/back/models";
-import { Tr } from "./UI/Table";
 
 export default (it: MatchDto) => {
   const radiant = it.radiant;

@@ -46,6 +46,7 @@ const texts: { [key in MatchmakingMode]: ReactNode } = {
       </Link>
     </span>
   ),
+  [MatchmakingMode.TOURNAMENT]: <span></span>,
   [MatchmakingMode.UNRANKED]: (
     <span>
       Обычная игра 5х5 без рейтинга. Этот режим менее популярен, чем <b>{formatGameMode(MatchmakingMode.RANKED)}</b>

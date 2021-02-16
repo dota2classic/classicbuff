@@ -1,0 +1,3354 @@
+[
+  {
+    "id": "enterclass.EmailModal.EmailModal__0",
+    "defaultMessage": "Введи ваш email",
+    "message": "Enter your email"
+  },
+  {
+    "id": "enterclass.EmailSent.EmailSent__0",
+    "defaultMessage": "Подвердите email",
+    "message": "Confirm your email"
+  },
+  {
+    "id": "enterclass.EmailSent.EmailSent__1",
+    "defaultMessage": "Мы отправили письмо с подтверждением на адрес",
+    "message": "We've sent a confirmation e-mail to the address"
+  },
+  {
+    "id": "enterclass.EmailSent.EmailSent__2",
+    "defaultMessage": ". Перейдите по ссылке из письма для завершения регистрации.",
+    "message": ". Follow the link in the email to complete registration."
+  },
+  {
+    "id": "enterclass.EmailSent.EmailSent__3",
+    "defaultMessage": "Восстановление пароля",
+    "message": "Password reset"
+  },
+  {
+    "id": "enterclass.EmailSent.EmailSent__4",
+    "defaultMessage": "Мы отправили письмо на адрес",
+    "message": "We've just sent the letter to your email"
+  },
+  {
+    "id": "enterclass.EmailSent.EmailSent__5",
+    "defaultMessage": ". Перейдите по ссылке из письма для установления нового пароля.",
+    "message": ". Follow the link in it to set a new password."
+  },
+  {
+    "id": "enterclass.LoginModal.LoginModal__0",
+    "defaultMessage": "Вход в аккаунт",
+    "message": "Sign in"
+  },
+  {
+    "id": "enterclass.LoginModal.LoginModal__3",
+    "defaultMessage": "Забыли пароль?",
+    "message": "Forgot your password?"
+  },
+  {
+    "id": "enterclass.LoginModal.LoginModal__4",
+    "defaultMessage": "Быстрый вход через соц. сети",
+    "message": "Sign in with social"
+  },
+  {
+    "id": "enterclass.PasswordChangedModal.PasswordChangedModal__0",
+    "defaultMessage": "Отлично!",
+    "message": "Excellent!"
+  },
+  {
+    "id": "enterclass.PasswordChangedModal.PasswordChangedModal__1",
+    "defaultMessage": "Новый пароль установлен.",
+    "message": "The new password is set."
+  },
+  {
+    "id": "enterclass.RecoveryFinalizeModal.RecoveryFinalizeModal__0",
+    "defaultMessage": "Придумайте новый пароль",
+    "message": "Create new password"
+  },
+  {
+    "id": "enterclass.RecoveryModal.RecoveryModal__0",
+    "defaultMessage": "Забыли пароль?",
+    "message": "Forgot your password?"
+  },
+  {
+    "id": "enterclass.RegistrationFinishedModal.RegistrationFinishedModal__0",
+    "defaultMessage": "Спасибо!",
+    "message": "Thanks!"
+  },
+  {
+    "id": "enterclass.RegistrationFinishedModal.RegistrationFinishedModal__1",
+    "defaultMessage": "Регистрация завершена.",
+    "message": "Check in is completed."
+  },
+  {
+    "id": "enterclass.backend_errors.user_not_found",
+    "defaultMessage": "Пользователь с таким email не существует",
+    "message": "User with this email isn't found"
+  },
+  {
+    "id": "enterclass.backend_errors.recovery_code_not_found",
+    "defaultMessage": "Неверный код восстановления пароля",
+    "message": "Invalid password recovery code"
+  },
+  {
+    "id": "enterclass.backend_errors.user_not_activated",
+    "defaultMessage": "Email не подтвержден",
+    "message": "Email is not confirmed"
+  },
+  {
+    "id": "enterclass.backend_errors.wrong_password",
+    "defaultMessage": "Неверный пароль",
+    "message": "Wrong password"
+  },
+  {
+    "id": "enterclass.backend_errors.recovery_not_found",
+    "defaultMessage": "RECOVERY NOT FOUND",
+    "message": "RECOVERY NOT FOUND"
+  },
+  {
+    "id": "enterclass.backend_errors.email_in_use",
+    "defaultMessage": "Этот Email уже существует. Попробуйте войти в аккаунт",
+    "message": "Email this already exists. Try to sign up"
+  },
+  {
+    "id": "enterclass.time_format.hours_and_minutes",
+    "defaultMessage": "{hours}ч {minutes}м",
+    "message": "{hours}h {minutes}m"
+  },
+  {
+    "id": "enterclass.time_format.minutes_and_seconds",
+    "defaultMessage": "{minutes}:{seconds}",
+    "message": "{minutes}:{seconds}"
+  },
+  {
+    "id": "enterclass.sex.male",
+    "defaultMessage": "Мужчина",
+    "message": "Male"
+  },
+  {
+    "id": "enterclass.sex.female",
+    "defaultMessage": "Женщина",
+    "message": "Female"
+  },
+  {
+    "id": "enterclass.sex.undef",
+    "defaultMessage": "Скрыть",
+    "message": "Hide"
+  },
+  {
+    "id": "enterclass.rates.marathon_standard",
+    "defaultMessage": "Стандарт",
+    "message": "Standard"
+  },
+  {
+    "id": "enterclass.rates.marathon_maximum",
+    "defaultMessage": "Максимум",
+    "message": "Maximum"
+  },
+  {
+    "id": "enterclass.rates.course_listener",
+    "defaultMessage": "Слушатель",
+    "message": "Listener"
+  },
+  {
+    "id": "enterclass.rates.course_student",
+    "defaultMessage": "Студент",
+    "message": "Student"
+  },
+  {
+    "id": "enterclass.rates.marathon_standard_prolong_7",
+    "defaultMessage": "Неделя продления",
+    "message": "Week extension"
+  },
+  {
+    "id": "enterclass.rates.marathon_standard_prolong_unlimited",
+    "defaultMessage": "Переход на тариф Максимум",
+    "message": "Transition to Maximum"
+  },
+  {
+    "id": "enterclass.AdminSidebar.AdminSidebar__0",
+    "defaultMessage": "Главная",
+    "message": "Home"
+  },
+  {
+    "id": "enterclass.AdminSidebar.AdminSidebar__1",
+    "defaultMessage": "Категории",
+    "message": "Categories"
+  },
+  {
+    "id": "enterclass.AdminSidebar.AdminSidebar__2",
+    "defaultMessage": "Жанры",
+    "message": "Genres"
+  },
+  {
+    "id": "enterclass.AdminSidebar.AdminSidebar__3",
+    "defaultMessage": "Типы",
+    "message": "Types"
+  },
+  {
+    "id": "enterclass.AdminSidebar.AdminSidebar__4",
+    "defaultMessage": "Курсы",
+    "message": "Courses"
+  },
+  {
+    "id": "enterclass.AdminSidebar.AdminSidebar__5",
+    "defaultMessage": "Промокоды",
+    "message": "Promo codes"
+  },
+  {
+    "id": "enterclass.AdminSidebar.AdminSidebar__6",
+    "defaultMessage": "Покупки",
+    "message": "Payments"
+  },
+  {
+    "id": "enterclass.AdminSidebar.AdminSidebar__7",
+    "defaultMessage": "Пользователи",
+    "message": "Users"
+  },
+  {
+    "id": "enterclass.AdminSidebar.AdminSidebar__8",
+    "defaultMessage": "Эксперты",
+    "message": "Experts"
+  },
+  {
+    "id": "enterclass.AdminSidebar.AdminSidebar__9",
+    "defaultMessage": "Отзывы",
+    "message": "Feedback"
+  },
+  {
+    "id": "enterclass.LoginForm.LoginForm__0",
+    "defaultMessage": "Логин",
+    "message": "Login"
+  },
+  {
+    "id": "enterclass.LoginForm.LoginForm__1",
+    "defaultMessage": "Войти",
+    "message": "Sign in"
+  },
+  {
+    "id": "enterclass.PromoCodeForm.PromoCodeForm__0",
+    "defaultMessage": "Название",
+    "message": "Title"
+  },
+  {
+    "id": "enterclass.PromoCodeForm.PromoCodeForm__1",
+    "defaultMessage": "Код",
+    "message": "Code"
+  },
+  {
+    "id": "enterclass.PromoCodeForm.PromoCodeForm__2",
+    "defaultMessage": "Значение",
+    "message": "Value"
+  },
+  {
+    "id": "enterclass.PromoCodeForm.PromoCodeForm__3",
+    "defaultMessage": "Тип",
+    "message": "Type"
+  },
+  {
+    "id": "enterclass.PromoCodeForm.PromoCodeForm__4",
+    "defaultMessage": "Активен",
+    "message": "Active"
+  },
+  {
+    "id": "enterclass.PromoCodeForm.PromoCodeForm__5",
+    "defaultMessage": "Тип",
+    "message": "Type"
+  },
+  {
+    "id": "enterclass.PromoCodeForm.PromoCodeForm__6",
+    "defaultMessage": "Фикс",
+    "message": "Fix"
+  },
+  {
+    "id": "enterclass.PromoCodeForm.PromoCodeForm__7",
+    "defaultMessage": "Процент",
+    "message": "Percent"
+  },
+  {
+    "id": "enterclass.CategoryForm.CategoryForm__0",
+    "defaultMessage": "Алиас",
+    "message": "alias"
+  },
+  {
+    "id": "enterclass.CategoryForm.CategoryForm__1",
+    "defaultMessage": "Алиас",
+    "message": "alias"
+  },
+  {
+    "id": "enterclass.CategoryForm.CategoryForm__2",
+    "defaultMessage": "Видима",
+    "message": "Vidima"
+  },
+  {
+    "id": "enterclass.CategoryForm.CategoryForm__3",
+    "defaultMessage": "Типы",
+    "message": "Types"
+  },
+  {
+    "id": "enterclass.CategoryForm.CategoryForm__4",
+    "defaultMessage": "Жанры",
+    "message": "Genres"
+  },
+  {
+    "id": "enterclass.CourseCreateForm.CourseCreateForm__0",
+    "defaultMessage": "Создать",
+    "message": "Create"
+  },
+  {
+    "id": "enterclass.CourseCreateForm.CourseCreateForm__1",
+    "defaultMessage": "Типы",
+    "message": "Types"
+  },
+  {
+    "id": "enterclass.CourseCreateForm.CourseCreateForm__2",
+    "defaultMessage": "Жанры",
+    "message": "Genres"
+  },
+  {
+    "id": "enterclass.CourseEditForm.CourseEditForm__0",
+    "defaultMessage": "Сохранить",
+    "message": "Save"
+  },
+  {
+    "id": "enterclass.CourseEditForm.CourseEditForm__1",
+    "defaultMessage": "Типы",
+    "message": "Types"
+  },
+  {
+    "id": "enterclass.CourseEditForm.CourseEditForm__2",
+    "defaultMessage": "Жанры",
+    "message": "Genres"
+  },
+  {
+    "id": "enterclass.CourseEditForm.CourseEditForm__3",
+    "defaultMessage": "Активен",
+    "message": "Active"
+  },
+  {
+    "id": "enterclass.LessonMainForm.LessonMainForm__0",
+    "defaultMessage": "Номер",
+    "message": "Number"
+  },
+  {
+    "id": "enterclass.LessonMainForm.LessonMainForm__1",
+    "defaultMessage": "Название",
+    "message": "Title"
+  },
+  {
+    "id": "enterclass.LessonMainForm.LessonMainForm__2",
+    "defaultMessage": "Название",
+    "message": "Title"
+  },
+  {
+    "id": "enterclass.LessonMainForm.LessonMainForm__3",
+    "defaultMessage": "Название",
+    "message": "Title"
+  },
+  {
+    "id": "enterclass.LessonMainForm.LessonMainForm__4",
+    "defaultMessage": "Название",
+    "message": "Title"
+  },
+  {
+    "id": "enterclass.About.About__0",
+    "defaultMessage": "О курсе",
+    "message": "About course"
+  },
+  {
+    "id": "enterclass.About.About__1",
+    "defaultMessage": "Результат эксперта",
+    "message": "Expert's result"
+  },
+  {
+    "id": "enterclass.About.About__2",
+    "defaultMessage": "Материалы для курса",
+    "message": "Course materials"
+  },
+  {
+    "id": "enterclass.About.About__3",
+    "defaultMessage": "Ответы на вопросы",
+    "message": "Answers on questions"
+  },
+  {
+    "id": "enterclass.About.About__4",
+    "defaultMessage": "Бумага",
+    "message": "Paper"
+  },
+  {
+    "id": "enterclass.Playlist.Playlist__0",
+    "defaultMessage": "Ознакомительное видео",
+    "message": "Demo video"
+  },
+  {
+    "id": "enterclass.Reviews.Reviews__0",
+    "defaultMessage": "Понравился курс?",
+    "message": "Like this course?"
+  },
+  {
+    "id": "enterclass.Reviews.Reviews__1",
+    "defaultMessage": "Расскажите о ваших впечатлениях и помогите другим ученикам",
+    "message": "Tell us about your experience and help other students"
+  },
+  {
+    "id": "enterclass.Reviews.Reviews__2",
+    "defaultMessage": "Оставить отзыв",
+    "message": "Add feedback"
+  },
+  {
+    "id": "enterclass.HeaderContainer.HeaderContainer__0",
+    "defaultMessage": "Войти",
+    "message": "Sign in"
+  },
+  {
+    "id": "enterclass.HeaderContainer.HeaderContainer__1",
+    "defaultMessage": "Мой профиль",
+    "message": "My profile"
+  },
+  {
+    "id": "enterclass.HeaderContainer.HeaderContainer__2",
+    "defaultMessage": "Корзина",
+    "message": "Cart"
+  },
+  {
+    "id": "enterclass.HeaderContainer.HeaderContainer__3",
+    "defaultMessage": "Войти",
+    "message": "Sign in"
+  },
+  {
+    "id": "enterclass.HeaderContainer.HeaderContainer__4",
+    "defaultMessage": "Зарегистрироваться",
+    "message": "Sign up"
+  },
+  {
+    "id": "enterclass.HeaderContainer.HeaderContainer__5",
+    "defaultMessage": "Мои курсы",
+    "message": "My courses"
+  },
+  {
+    "id": "enterclass.HeaderContainer.HeaderContainer__6",
+    "defaultMessage": "Профиль",
+    "message": "Profile"
+  },
+  {
+    "id": "enterclass.HeaderContainer.HeaderContainer__7",
+    "defaultMessage": "Выйти",
+    "message": "Sign out"
+  },
+  {
+    "id": "enterclass.CategoryList.CategoryList__0",
+    "defaultMessage": "Посмотреть все",
+    "message": "View all"
+  },
+  {
+    "id": "enterclass.OrderForm.OrderForm__0",
+    "defaultMessage": "Оплатить",
+    "message": "Pay"
+  },
+  {
+    "id": "enterclass.OrderForm.OrderForm__1",
+    "defaultMessage": "Способ оплаты",
+    "message": "Payment method"
+  },
+  {
+    "id": "enterclass.ProfileForm.ProfileForm__0",
+    "defaultMessage": "Имя",
+    "message": "Name"
+  },
+  {
+    "id": "enterclass.ProfileForm.ProfileForm__1",
+    "defaultMessage": "Дата рождения",
+    "message": "Birthdate"
+  },
+  {
+    "id": "enterclass.ProfileForm.ProfileForm__2",
+    "defaultMessage": "Сохранить",
+    "message": "Save"
+  },
+  {
+    "id": "enterclass.ProfileForm.ProfileForm__3",
+    "defaultMessage": "Страна",
+    "message": "Country"
+  },
+  {
+    "id": "enterclass.ProfileForm.ProfileForm__4",
+    "defaultMessage": "Телефон",
+    "message": "Phone"
+  },
+  {
+    "id": "enterclass.ProfileForm.ProfileForm__5",
+    "defaultMessage": "Город",
+    "message": "City"
+  },
+  {
+    "id": "enterclass.ProfileForm.ProfileForm__6",
+    "defaultMessage": "Пол",
+    "message": "Gender"
+  },
+  {
+    "id": "enterclass.SocialButtonsContainer.SocialButtonsContainer__0",
+    "defaultMessage": "ВКонтакте",
+    "message": "VK"
+  },
+  {
+    "id": "enterclass.SocialButtonsContainer.SocialButtonsContainer__1",
+    "defaultMessage": "Google",
+    "message": "Google"
+  },
+  {
+    "id": "enterclass.OrderForm.order_form_2",
+    "defaultMessage": "Введите ваш email чтобы перейти к оплате",
+    "message": "Enter your email address and go to the payment"
+  },
+  {
+    "id": "enterclass.OrderForm.attach_cart_text",
+    "defaultMessage": "Продолжить",
+    "message": "Continue"
+  },
+  {
+    "id": "enterclass.backend_errors.cart_items_duplicate",
+    "defaultMessage": "Некоторые курсы в корзине уже куплены у пользователя с этим email",
+    "message": "Some items in the cart are already bought by user with this email. Remove duplicated and proceed"
+  },
+  {
+    "id": "enterclass.difficulty_level.advanced",
+    "defaultMessage": "профессионалам",
+    "message": "ADVANCED"
+  },
+  {
+    "id": "enterclass.difficulty_level.middle",
+    "defaultMessage": "опытным ученикам",
+    "message": "experienced students"
+  },
+  {
+    "id": "enterclass.difficulty_level.easy",
+    "defaultMessage": "новичкам",
+    "message": "beginners"
+  },
+  {
+    "id": "enterclass.LoginModal.LoginModal__noAccount",
+    "defaultMessage": "Ещё нет аккаунта? Тогда <register>зарегистрируйтесь</register>",
+    "message": "Don't have an account yet? <register> Sign up now </register>"
+  },
+  {
+    "id": "enterclass.LoginModal.LoginModal__5",
+    "defaultMessage": "Войти",
+    "message": "Sign in"
+  },
+  {
+    "id": "enterclass.RecoveryModal.RecoveryModal__1",
+    "defaultMessage": "Введите email на который вы регистрировали аккаунт, мы отправим вам ссылку для восстановления пароля",
+    "message": "Enter your email address which you registered your account, we will send you a link to reset your password"
+  },
+  {
+    "id": "enterclass.RecoveryModal.RecoveryModal__2",
+    "defaultMessage": "Отправить",
+    "message": "Send"
+  },
+  {
+    "id": "enterclass.NavbarPopup.courses",
+    "defaultMessage": "Курсы",
+    "message": "Courses"
+  },
+  {
+    "id": "enterclass.NavbarPopup.popularExperts",
+    "defaultMessage": "Популярные эксперты",
+    "message": "Popular experts"
+  },
+  {
+    "id": "enterclass.NavbarPopup.allExperts",
+    "defaultMessage": "Все эксперты",
+    "message": "All experts"
+  },
+  {
+    "id": "enterclass.HeaderContainer.HeaderContainer__8",
+    "defaultMessage": "Все",
+    "message": "All"
+  },
+  {
+    "id": "enterclass.validation.email",
+    "defaultMessage": "Невалидный email",
+    "message": "Invalid email"
+  },
+  {
+    "id": "enterclass.validation.required",
+    "defaultMessage": "Это поле обязательное",
+    "message": "This field is required"
+  },
+  {
+    "id": "enterclass.validation.date",
+    "defaultMessage": "Формат времени ДД.ММ.ГГГГ",
+    "message": "Invalid date"
+  },
+  {
+    "id": "enterclass.Main.Comment.text",
+    "defaultMessage": "Очень классные сюжеты и исполнение! Я, как увидела, сразу приобрела этот курс 😃 И уже начала делать подготовительные упражнения 😃",
+    "message": "A great opportunity to study at home with excellent trainers, teachers. High-quality video, fast tech. support. Recomend for everybody😃"
+  },
+  {
+    "id": "enterclass.Main.Comment.commentSource",
+    "defaultMessage": "Отзыв на Facebook",
+    "message": "Feedback on Facebook"
+  },
+  {
+    "id": "enterclass.Main.Join.text",
+    "defaultMessage": "Уже 45,000+ учеников выбрали нас, чтобы научиться рисованию!",
+    "message": "Already 45,000+ students have chosen us to learn how to draw!"
+  },
+  {
+    "id": "enterclass.Main.Join.myCourses",
+    "defaultMessage": "Мои курсы",
+    "message": "My courses"
+  },
+  {
+    "id": "enterclass.Main.Join.signUp",
+    "defaultMessage": "Присоединиться",
+    "message": "Join"
+  },
+  {
+    "id": "enterclass.Main.Promo.text",
+    "defaultMessage": "172 урока уже ждут вас, начни творить сегодня!",
+    "message": "172 lessons are already waiting for you, start creating today!"
+  },
+  {
+    "id": "enterclass.Main.Promo.myCourses",
+    "defaultMessage": "Мои курсы",
+    "message": "My courses"
+  },
+  {
+    "id": "enterclass.Main.Promo.signUp",
+    "defaultMessage": "Присоединиться",
+    "message": "Join"
+  },
+  {
+    "id": "enterclass.components.Main.Title.value",
+    "defaultMessage": "Обучающие курсы, видеоуроки и мастер-классы, чтобы всё стало ясно!",
+    "message": "Training courses, video tutorials and master classes so that everything becomes clear!"
+  },
+  {
+    "id": "enterclass.containers.Main.AnnouncementCoursesContainer.title",
+    "defaultMessage": "Новинки и анонсы",
+    "message": "News and promos"
+  },
+  {
+    "id": "enterclass.containers.Main.PopularCoursesContainer.title",
+    "defaultMessage": "Популярные курсы",
+    "message": "Popular courses"
+  },
+  {
+    "id": "enterclass.Main.ExpertCard.expertCourses",
+    "defaultMessage": "Курсы эксперта",
+    "message": "Expert courses"
+  },
+  {
+    "id": "enterclass.sign_up.title",
+    "defaultMessage": "Регистрация",
+    "message": "Check in"
+  },
+  {
+    "id": "enterclass.sign_up.has_already",
+    "defaultMessage": "Уже есть аккаунт? Тогда <a>войдите</a>",
+    "message": "You have an account? <a> Sign in </a>"
+  },
+  {
+    "id": "enterclass.sign_up.agreement",
+    "defaultMessage": "Регистрируясь, вы принимаете условия <offer>Договора публичной оферты</offer> и соглашаетесь на <processing>обработку ваших персональных данных</processing>",
+    "message": "I have read and agree to the <offer>public offer of the Treaty</offer> and  <processing>processing of your personal data</processing>"
+  },
+  {
+    "id": "enterclass.sign_up.submit",
+    "defaultMessage": "Зарегистрироваться",
+    "message": "Sign up"
+  },
+  {
+    "id": "enterclass.sign_up.social",
+    "defaultMessage": "Быстрая регистрация через соцсети",
+    "message": "Sign up with social"
+  },
+  {
+    "id": "enterclass.sign_up.name",
+    "defaultMessage": "Ваше имя",
+    "message": "Your name"
+  },
+  {
+    "id": "enterclass.Footer.subscribe",
+    "defaultMessage": "Подписаться",
+    "message": "Subscribe"
+  },
+  {
+    "id": "enterclass.Footer.slogan",
+    "defaultMessage": "Обучающие курсы, видеоуроки и мастер-классы, чтобы всё стало ясно!",
+    "message": "Training courses, video tutorials and workshops, it became clear to all!"
+  },
+  {
+    "id": "enterclass.Footer.accept",
+    "defaultMessage": "Принимаем к оплате",
+    "message": "Accept"
+  },
+  {
+    "id": "enterclass.Footer.courses",
+    "defaultMessage": "Курсы",
+    "message": "Courses"
+  },
+  {
+    "id": "enterclass.Footer.all",
+    "defaultMessage": "Все",
+    "message": "All"
+  },
+  {
+    "id": "enterclass.Footer.questions",
+    "defaultMessage": "Вопросы",
+    "message": "Questions"
+  },
+  {
+    "id": "enterclass.Footer.coursePayment",
+    "defaultMessage": "Оплата курсов",
+    "message": "Payment rates"
+  },
+  {
+    "id": "enterclass.Footer.others",
+    "defaultMessage": "Общие",
+    "message": "General"
+  },
+  {
+    "id": "enterclass.Footer.technical",
+    "defaultMessage": "Технические",
+    "message": "Technical"
+  },
+  {
+    "id": "enterclass.Footer.cooperation",
+    "defaultMessage": "Сотрудничество",
+    "message": "Cooperation"
+  },
+  {
+    "id": "enterclass.Footer.additional",
+    "defaultMessage": "Дополнительно",
+    "message": "Additionally"
+  },
+  {
+    "id": "enterclass.Footer.paymentRules",
+    "defaultMessage": "Правила оплаты",
+    "message": "Payment rules"
+  },
+  {
+    "id": "enterclass.Footer.offer",
+    "defaultMessage": "Публичная оферта",
+    "message": "Public offer"
+  },
+  {
+    "id": "enterclass.Footer.newsletter",
+    "defaultMessage": "Рассылка",
+    "message": "Follow"
+  },
+  {
+    "id": "enterclass.Footer.newsletterDescription",
+    "defaultMessage": "Пишем не часто, но по делу! Сообщаем о марафонах, акциях, розыгрышах призов.",
+    "message": "Do not write often, but in the case! We announce marathons, promotions, sweepstakes prizes."
+  },
+  {
+    "id": "enterclass.Footer.support",
+    "defaultMessage": "Поддержка",
+    "message": "Support"
+  },
+  {
+    "id": "enterclass.Main.Slider.subtitle",
+    "defaultMessage": "Бесплатно",
+    "message": "Free"
+  },
+  {
+    "id": "enterclass.Main.Slider.title",
+    "defaultMessage": "Что такое хорошая фотография?",
+    "message": "What is a great photo?"
+  },
+  {
+    "id": "enterclass.Main.Slider.accept",
+    "defaultMessage": "На курсе вы разберёте принципы хорошей фотографии, обсудите, как выбирать или строить сюжет, узнаете законы хорошего цвета и композиции",
+    "message": "You will analyze the principles of good photography, discuss how to choose or build a plot, learn the laws of good color and composition in the course"
+  },
+  {
+    "id": "enterclass.Main.Slider.courseSignUp",
+    "defaultMessage": "Записаться на курс",
+    "message": "Join the course"
+  },
+  {
+    "id": "enterclass.Main.Slider.sliderCounter",
+    "defaultMessage": "из",
+    "message": "of"
+  },
+  {
+    "id": "enterclass.Course.CategoryList.value",
+    "defaultMessage": "Все",
+    "message": "All"
+  },
+  {
+    "id": "enterclass.Course.ExpertFilter.title",
+    "defaultMessage": "Эксперты",
+    "message": "Experts"
+  },
+  {
+    "id": "enterclass.Course.ExpertFilter.search",
+    "defaultMessage": "Найти эксперта",
+    "message": "Find an expert"
+  },
+  {
+    "id": "enterclass.Course.ExpertFilter.popular",
+    "defaultMessage": "Популярные",
+    "message": "Popular"
+  },
+  {
+    "id": "enterclass.Course.ExpertFilter.allExperts",
+    "defaultMessage": "Все эксперты",
+    "message": "All experts"
+  },
+  {
+    "id": "enterclass.Course.ExpertFilter.hide",
+    "defaultMessage": "Скрыть",
+    "message": "Hide"
+  },
+  {
+    "id": "enterclass.Course.ExpertFilter.showMore",
+    "defaultMessage": "Показать еще",
+    "message": "View more"
+  },
+  {
+    "id": "enterclass.Course.LevelFilter.title",
+    "defaultMessage": "Уровень",
+    "message": "Skills level"
+  },
+  {
+    "id": "enterclass.Course.Title.value",
+    "defaultMessage": "Курсы",
+    "message": "Courses"
+  },
+  {
+    "id": "enterclass.Course.TypeFilter.title",
+    "defaultMessage": "Тип курса",
+    "message": "Type of course"
+  },
+  {
+    "id": "enterclass.Course.TypeFilter.free",
+    "defaultMessage": "Бесплатно",
+    "message": "Free"
+  },
+  {
+    "id": "enterclass.Course.TypeFilter.discount",
+    "defaultMessage": "Со скидкой",
+    "message": "Discounts"
+  },
+  {
+    "id": "enterclass.Course.KindFilter.title",
+    "defaultMessage": "Жанр",
+    "message": "Genre"
+  },
+  {
+    "id": "enterclass.Course.PriceFilter.title",
+    "defaultMessage": "Цена",
+    "message": "Price"
+  },
+  {
+    "id": "enterclass.Course.PriceRangeInput.from",
+    "defaultMessage": "от",
+    "message": "from"
+  },
+  {
+    "id": "enterclass.Course.PriceRangeInput.to",
+    "defaultMessage": "до",
+    "message": "-"
+  },
+  {
+    "id": "enterclass.Course.EmptyResult.title",
+    "defaultMessage": "Ничего не найдено",
+    "message": "Nothing found"
+  },
+  {
+    "id": "enterclass.Course.EmptyResult.description",
+    "defaultMessage": "Попробуйте выбрать больший диапазон цены или убрать ограничения",
+    "message": "Try to choose a larger price range or remove restrictions"
+  },
+  {
+    "id": "enterclass.Course.EmptyResult.reset",
+    "defaultMessage": "Сбросить фильтр",
+    "message": "Clear filter"
+  },
+  {
+    "id": "enterclass.Course.Result.sorterNewest",
+    "defaultMessage": "Новинки",
+    "message": "New"
+  },
+  {
+    "id": "enterclass.Course.Result.sorterCheaper",
+    "defaultMessage": "Дешевые",
+    "message": "Price min"
+  },
+  {
+    "id": "enterclass.Course.Result.sorterExpensive",
+    "defaultMessage": "Дорогие",
+    "message": "Price max"
+  },
+  {
+    "id": "enterclass.Course.Result.sorterPopular",
+    "defaultMessage": "Популярные",
+    "message": "Popular"
+  },
+  {
+    "id": "enterclass.Course.Result.courseCounter",
+    "defaultMessage": "{item} {item, plural, one {курс} few {курса} many {курсов}}",
+    "message": "{item} {item, plural, one {course} other {courses}}"
+  },
+  {
+    "id": "enterclass.Course.PriceRangeInput.text",
+    "defaultMessage": "Показать еще",
+    "message": "View more"
+  },
+  {
+    "id": "enterclass.Pagination.back",
+    "defaultMessage": "Назад",
+    "message": "Back"
+  },
+  {
+    "id": "enterclass.Pagination.next",
+    "defaultMessage": "Вперёд",
+    "message": "Next"
+  },
+  {
+    "id": "enterclass.Pagination.info",
+    "defaultMessage": "Вы посмотрели уже {seen} из {total} курсов",
+    "message": "You view {seen} of {total} courses"
+  },
+  {
+    "id": "enterclass.CourseCard.free",
+    "defaultMessage": "Бесплатно",
+    "message": "Free"
+  },
+  {
+    "id": "enterclass.CourseCard.badgeDiscountTill",
+    "defaultMessage": "Скидка до {discountDate}",
+    "message": "Discount to {discountDate}"
+  },
+  {
+    "id": "enterclass.CourseCard.badgePopular",
+    "defaultMessage": "Популярный",
+    "message": "Popular"
+  },
+  {
+    "id": "enterclass.CourseCard.badgeMarathon",
+    "defaultMessage": "Марафон",
+    "message": "Marathon"
+  },
+  {
+    "id": "enterclass.CourseCard.badgeMarathonStart",
+    "defaultMessage": "Старт {start}",
+    "message": "Start {start}"
+  },
+  {
+    "id": "enterclass.CourseCard.badgeLessonCount",
+    "defaultMessage": "{count} {count, plural, one {урок} few {урока} many {уроков}}",
+    "message": "{count} {count, plural, one {lesson} other {lessons}}"
+  },
+  {
+    "id": "enterclass.CourseCard.badgeNew",
+    "defaultMessage": "Новый",
+    "message": "New"
+  },
+  {
+    "id": "enterclass.CourseCard.bought",
+    "defaultMessage": "Курс куплен",
+    "message": "Course purchased"
+  },
+  {
+    "id": "enterclass.levels.easy",
+    "defaultMessage": "Легкий",
+    "message": "Beginner"
+  },
+  {
+    "id": "enterclass.levels.middle",
+    "defaultMessage": "Средний",
+    "message": "Intermediate"
+  },
+  {
+    "id": "enterclass.levels.advanced",
+    "defaultMessage": "Эксперт",
+    "message": "Advanced"
+  },
+  {
+    "id": "enterclass.Cart.ProdutTable.image",
+    "defaultMessage": "Изображение",
+    "message": "Picture"
+  },
+  {
+    "id": "enterclass.Cart.ProdutTable.name",
+    "defaultMessage": "Курс",
+    "message": "Course"
+  },
+  {
+    "id": "enterclass.Cart.ProdutTable.expert",
+    "defaultMessage": "Эксперт",
+    "message": "Expert"
+  },
+  {
+    "id": "enterclass.Cart.ProdutTable.cost",
+    "defaultMessage": "Стоимость",
+    "message": "Price"
+  },
+  {
+    "id": "enterclass.Cart.ProdutTable.duration",
+    "defaultMessage": "Длительность",
+    "message": "Duration"
+  },
+  {
+    "id": "enterclass.Cart.ProdutTable.role",
+    "defaultMessage": "Роль",
+    "message": "Role"
+  },
+  {
+    "id": "enterclass.Cart.ProdutTable.total",
+    "defaultMessage": "Итого",
+    "message": "In total"
+  },
+  {
+    "id": "enterclass.Cart.EmptyState.title",
+    "defaultMessage": "Корзина пуста",
+    "message": "Cart is empty"
+  },
+  {
+    "id": "enterclass.Cart.EmptyState.catalog",
+    "defaultMessage": "Каталог",
+    "message": "Catalog"
+  },
+  {
+    "id": "enterclass.Course.Expectation.title",
+    "defaultMessage": "Ожидание от курса",
+    "message": "Waiting on the course"
+  },
+  {
+    "id": "enterclass.Course.Expectation.more",
+    "defaultMessage": "Получил больше, чем ожидалось",
+    "message": "I received more than expected"
+  },
+  {
+    "id": "enterclass.Course.Expectation.normal",
+    "defaultMessage": "Получил то, что ожидал",
+    "message": "I got what I expected"
+  },
+  {
+    "id": "enterclass.Course.Expectation.justify",
+    "defaultMessage": "Оправдалось в некотором роде",
+    "message": "Justified in some way"
+  },
+  {
+    "id": "enterclass.Course.Expectation.bad",
+    "defaultMessage": "Совсем не оправдалось",
+    "message": "Is not justified"
+  },
+  {
+    "id": "enterclass.Course.TotalRating.title",
+    "defaultMessage": "Общая оценка курса",
+    "message": "Course rating"
+  },
+  {
+    "id": "enterclass.Course.TotalRating.description",
+    "defaultMessage": "На основе оценок {count} {count, plural, one {ученика} few {учеников} many {учеников}}",
+    "message": "On the basis of rates {count} {count, plural, one {student} other {students}}"
+  },
+  {
+    "id": "enterclass.Review.rate",
+    "defaultMessage": "Оценивает на",
+    "message": "Course rating"
+  },
+  {
+    "id": "enterclass.Review.recommend",
+    "defaultMessage": "Рекомендует курс",
+    "message": "Recommends a course"
+  },
+  {
+    "id": "enterclass.Review.advanced",
+    "defaultMessage": "профессионалам",
+    "message": "for advanced"
+  },
+  {
+    "id": "enterclass.Review.middle",
+    "defaultMessage": "опытным ученикам",
+    "message": "for intermediate"
+  },
+  {
+    "id": "enterclass.Review.easy",
+    "defaultMessage": "новичкам",
+    "message": "for beginner"
+  },
+  {
+    "id": "enterclass.RecommendedCourses.title",
+    "defaultMessage": "Похожие курсы",
+    "message": "Similar courses"
+  },
+  {
+    "id": "enterclass.difficulty_level.ADVANCED",
+    "defaultMessage": "профессионалам",
+    "message": "for advanced"
+  },
+  {
+    "id": "enterclass.difficulty_level.MIDDLE",
+    "defaultMessage": "опытным ученикам",
+    "message": "for intermediate"
+  },
+  {
+    "id": "enterclass.difficulty_level.EASY",
+    "defaultMessage": "новичкам",
+    "message": "for beginner"
+  },
+  {
+    "id": "enterclass.Course.Attributes.level",
+    "defaultMessage": "Уровень сложности",
+    "message": "Skills level"
+  },
+  {
+    "id": "enterclass.Course.Attributes.duration",
+    "defaultMessage": "Длительность уроков",
+    "message": "Duration"
+  },
+  {
+    "id": "enterclass.Course.Attributes.start",
+    "defaultMessage": "Старт марафона",
+    "message": "Start marathon"
+  },
+  {
+    "id": "enterclass.Course.Attributes.students",
+    "defaultMessage": "{count, plural, one {ученик} few {ученика} many {учеников}}",
+    "message": "{count, plural, one {student} other {students}}"
+  },
+  {
+    "id": "enterclass.Course.ExpertFilter.we_found",
+    "defaultMessage": "Мы нашли",
+    "message": "We found"
+  },
+  {
+    "id": "enterclass.ChatWindow.ChatWindow__0",
+    "defaultMessage": "Доступен новый урок",
+    "message": "New lesson is available"
+  },
+  {
+    "id": "enterclass.MessageInput.MessageInput__0",
+    "defaultMessage": "Написать сообщение...",
+    "message": "To write a message..."
+  },
+  {
+    "id": "enterclass.DownloadButton.DownloadButton__0",
+    "defaultMessage": "Скачать",
+    "message": "Download"
+  },
+  {
+    "id": "enterclass.lesson_playlist.lessons_count",
+    "defaultMessage": "{count} {count, plural, one {урок} few {урока} many {уроков}}",
+    "message": "{count} {count, plural, one {lesson} other {lessons}}"
+  },
+  {
+    "id": "enterclass.lesson_playlist.course_content",
+    "defaultMessage": "Содержание курса",
+    "message": "Lesson Plan"
+  },
+  {
+    "id": "enterclass.LogoutButton.LogoutButton__0",
+    "defaultMessage": "Выйти",
+    "message": "Sign out"
+  },
+  {
+    "id": "enterclass.Experts.Experts__0",
+    "defaultMessage": "Наши эксперты",
+    "message": "Our experts"
+  },
+  {
+    "id": "enterclass.EmailSent.check_spam",
+    "defaultMessage": "Проверьте папку \"спам\" на наличие письма. Если Вы уверены, что письма точно нет, введите email заново и мы отправим письмо снова.",
+    "message": "Check your \"spam\" on the existence of the letter. If you believe that the letters definitely not, re-enter your email and we will send an e-mail again."
+  },
+  {
+    "id": "enterclass.EmailSent.no_email",
+    "defaultMessage": "Не пришло письмо на почту",
+    "message": "The letter did not come to my email"
+  },
+  {
+    "id": "enterclass.EmailSent.submit",
+    "defaultMessage": "Отправить",
+    "message": "Send"
+  },
+  {
+    "id": "enterclass.EmailSent.didnt_receive_email",
+    "defaultMessage": "Письмо не пришло на почту",
+    "message": "The letter did not come to my email"
+  },
+  {
+    "id": "enterclass.HomeworkChatModal.HomeworkChatModal__0",
+    "defaultMessage": "Чат и задания",
+    "message": "Chat and assignments"
+  },
+  {
+    "id": "enterclass.ItemSelectedModal.ItemSelectedModal__0",
+    "defaultMessage": "Продолжить выбирать",
+    "message": "Continue to choose"
+  },
+  {
+    "id": "enterclass.ItemSelectedModal.ItemSelectedModal__1",
+    "defaultMessage": "Перейти в корзину",
+    "message": "Go to cart"
+  },
+  {
+    "id": "enterclass.MobileMenu.MobileMenu__0",
+    "defaultMessage": "Курсы",
+    "message": "Courses"
+  },
+  {
+    "id": "enterclass.MobileMenu.MobileMenu__1",
+    "defaultMessage": "Эксперты",
+    "message": "Experts"
+  },
+  {
+    "id": "enterclass.MobileMenu.eng",
+    "defaultMessage": "Eng",
+    "message": "Eng"
+  },
+  {
+    "id": "enterclass.MobileMenu.rus",
+    "defaultMessage": "Rus",
+    "message": "Rus"
+  },
+  {
+    "id": "enterclass.MobileMenu.courses",
+    "defaultMessage": "Курсы",
+    "message": "Courses"
+  },
+  {
+    "id": "enterclass.MobileMenu.experts",
+    "defaultMessage": "Эксперты",
+    "message": "Experts"
+  },
+  {
+    "id": "enterclass.ProductModal.participate_marathon",
+    "defaultMessage": "Участвовать в марафоне",
+    "message": "Join the marathon"
+  },
+  {
+    "id": "enterclass.ProductModal.participate_course",
+    "defaultMessage": "Участвовать в курсе",
+    "message": "Join the course"
+  },
+  {
+    "id": "enterclass.ProductModal.enter_promocode",
+    "defaultMessage": "Введите промокод",
+    "message": "Enter promo code"
+  },
+  {
+    "id": "enterclass.ProductModal.promocode_applied",
+    "defaultMessage": "Промокод применён",
+    "message": "Promo code applied"
+  },
+  {
+    "id": "enterclass.RecoveryFinalizeModal.set_new_password",
+    "defaultMessage": "Задать новый пароль",
+    "message": "Set new password"
+  },
+  {
+    "id": "enterclass.ReviewSentModal.ReviewSentModal__0",
+    "defaultMessage": "Спасибо за отзыв!",
+    "message": "Thanks for feedback!"
+  },
+  {
+    "id": "enterclass.ReviewSentModal.ReviewSentModal__1",
+    "defaultMessage": "Продолжить",
+    "message": "Continue"
+  },
+  {
+    "id": "enterclass.shared.email_field_placeholder",
+    "defaultMessage": "Ваш e-mail",
+    "message": "Your email"
+  },
+  {
+    "id": "enterclass.shared.password_field_placeholder",
+    "defaultMessage": "Пароль",
+    "message": "Password"
+  },
+  {
+    "id": "enterclass.StandardProductCard.StandardProductCard__0",
+    "defaultMessage": "Стандарт",
+    "message": "Standard"
+  },
+  {
+    "id": "enterclass.StandardProductCard.StandardProductCard__1",
+    "defaultMessage": "Без вебинаров с экспертом",
+    "message": "Without an expert webinars"
+  },
+  {
+    "id": "enterclass.StandardProductCard.StandardProductCard__2",
+    "defaultMessage": "Выбрать Стандарт",
+    "message": "Select Standard"
+  },
+  {
+    "id": "enterclass.StandardProductCard.StandardProductCard__3",
+    "defaultMessage": "Можно продлить после окончания",
+    "message": "Can be extended after the end of course"
+  },
+  {
+    "id": "enterclass.StandardProductCard.StandardProductCard__4",
+    "defaultMessage": "Марафон",
+    "message": "Marathon"
+  },
+  {
+    "id": "enterclass.StandardProductCard.StandardProductCard__5",
+    "defaultMessage": "Вебинар с экспертом",
+    "message": "Webinar with expert"
+  },
+  {
+    "id": "enterclass.StandardProductCard.StandardProductCard__6",
+    "defaultMessage": "навсегда",
+    "message": "forever"
+  },
+  {
+    "id": "enterclass.StandardProductCard.StandardProductCard__7",
+    "defaultMessage": "Выбрать Максимум",
+    "message": "Select Maximum"
+  },
+  {
+    "id": "enterclass.StandardProductCard.StandardProductCard__8",
+    "defaultMessage": "Студент",
+    "message": "Student"
+  },
+  {
+    "id": "enterclass.StandardProductCard.StandardProductCard__9",
+    "defaultMessage": "Доступ к урокам навсегда",
+    "message": "Access to all lessons"
+  },
+  {
+    "id": "enterclass.StandardProductCard.StandardProductCard__10",
+    "defaultMessage": "Обратная связь с экспертом",
+    "message": "Feedback from expert"
+  },
+  {
+    "id": "enterclass.StandardProductCard.StandardProductCard__11",
+    "defaultMessage": "Домашние задания",
+    "message": "Homework"
+  },
+  {
+    "id": "enterclass.StandardProductCard.StandardProductCard__12",
+    "defaultMessage": "Выбрать Студент",
+    "message": "Select Student"
+  },
+  {
+    "id": "enterclass.StandardProductCard.StandardProductCard__13",
+    "defaultMessage": "Слушатель",
+    "message": "Listener"
+  },
+  {
+    "id": "enterclass.StandardProductCard.StandardProductCard__14",
+    "defaultMessage": "Доступ к урокам навсегда",
+    "message": "Access all lessons"
+  },
+  {
+    "id": "enterclass.StandardProductCard.StandardProductCard__15",
+    "defaultMessage": "Все уроки доступны сразу",
+    "message": "All lessons are available immediately"
+  },
+  {
+    "id": "enterclass.StandardProductCard.StandardProductCard__16",
+    "defaultMessage": "Что-то еще",
+    "message": "Something else"
+  },
+  {
+    "id": "enterclass.StandardProductCard.StandardProductCard__17",
+    "defaultMessage": "Выбрать Слушатель",
+    "message": "Select Listener"
+  },
+  {
+    "id": "enterclass.ChangePasswordForm.ChangePasswordForm__0",
+    "defaultMessage": "Старый пароль",
+    "message": "Old password"
+  },
+  {
+    "id": "enterclass.ChangePasswordForm.ChangePasswordForm__1",
+    "defaultMessage": "Новый пароль",
+    "message": "New password"
+  },
+  {
+    "id": "enterclass.ChangePasswordForm.ChangePasswordForm__2",
+    "defaultMessage": "Сменить пароль",
+    "message": "Change password"
+  },
+  {
+    "id": "enterclass.ChangePasswordForm.ChangePasswordForm__3",
+    "defaultMessage": "Смена пароля",
+    "message": "Сhange password"
+  },
+  {
+    "id": "enterclass.About.course_features",
+    "defaultMessage": "На курсе вы:",
+    "message": "What you’ll learn:"
+  },
+  {
+    "id": "enterclass.Breadcrumbs.Breadcrumbs__0",
+    "defaultMessage": "Главная",
+    "message": "Home"
+  },
+  {
+    "id": "enterclass.Breadcrumbs.Breadcrumbs__1",
+    "defaultMessage": "Курсы",
+    "message": "Courses"
+  },
+  {
+    "id": "enterclass.BuySection.BuySection__0",
+    "defaultMessage": "Добавить в мои курсы",
+    "message": "Add to my courses"
+  },
+  {
+    "id": "enterclass.BuySection.BuySection__1",
+    "defaultMessage": "Авторизоваться и добавить",
+    "message": "Sign in and add"
+  },
+  {
+    "id": "enterclass.BuySection.BuySection__2",
+    "defaultMessage": "Уже в корзине",
+    "message": "In cart"
+  },
+  {
+    "id": "enterclass.BuySection.BuySection__3",
+    "defaultMessage": "Купить курс",
+    "message": "Buy course"
+  },
+  {
+    "id": "enterclass.BuySection.BuySection__4",
+    "defaultMessage": "Цена курса",
+    "message": "Price"
+  },
+  {
+    "id": "enterclass.Content.Content__0",
+    "defaultMessage": "Посмотреть содержание курса",
+    "message": "View the course content"
+  },
+  {
+    "id": "enterclass.Content.Content__1",
+    "defaultMessage": "О курсе",
+    "message": "Owerview"
+  },
+  {
+    "id": "enterclass.Content.Content__2",
+    "defaultMessage": "Домашнее задание",
+    "message": "Homework"
+  },
+  {
+    "id": "enterclass.Homework.open_chat",
+    "defaultMessage": "Открыть чат и задания",
+    "message": "Open chat and assignments"
+  },
+  {
+    "id": "enterclass.Reviews.empty_reviews",
+    "defaultMessage": "У курса пока нет отзывов",
+    "message": "The course hasn't feedback yet"
+  },
+  {
+    "id": "enterclass.Dialogs.Dialogs__0",
+    "defaultMessage": "У вас пока нет диалогов",
+    "message": "You don't have any dialogs yet"
+  },
+  {
+    "id": "enterclass.HeaderContainer.eng",
+    "defaultMessage": "Eng",
+    "message": "Eng"
+  },
+  {
+    "id": "enterclass.HeaderContainer.rus",
+    "defaultMessage": "Rus",
+    "message": "Rus"
+  },
+  {
+    "id": "enterclass.SideBar.SideBar__0",
+    "defaultMessage": "Главная",
+    "message": "Home"
+  },
+  {
+    "id": "enterclass.SideBar.SideBar__1",
+    "defaultMessage": "Категории",
+    "message": "Categories"
+  },
+  {
+    "id": "enterclass.SideBar.SideBar__2",
+    "defaultMessage": "Курсы",
+    "message": "Courses"
+  },
+  {
+    "id": "enterclass.SideBar.SideBar__3",
+    "defaultMessage": "Уроки",
+    "message": "Lessons"
+  },
+  {
+    "id": "enterclass.SideBar.SideBar__4",
+    "defaultMessage": "Скидки",
+    "message": "Discounts"
+  },
+  {
+    "id": "enterclass.SideBar.SideBar__5",
+    "defaultMessage": "Промокоды",
+    "message": "Promo codes"
+  },
+  {
+    "id": "enterclass.SideBar.SideBar__6",
+    "defaultMessage": "Платежи",
+    "message": "Payments"
+  },
+  {
+    "id": "enterclass.SideBar.SideBar__7",
+    "defaultMessage": "Пользователи",
+    "message": "Users"
+  },
+  {
+    "id": "enterclass.SideBar.SideBar__8",
+    "defaultMessage": "Балансы",
+    "message": "Balances"
+  },
+  {
+    "id": "enterclass.cart_page.title",
+    "defaultMessage": "Корзина",
+    "message": "Cart"
+  },
+  {
+    "id": "enterclass.cart_page.description",
+    "defaultMessage": "Корзина пользователя",
+    "message": "User cart"
+  },
+  {
+    "id": "enterclass.catalog_page.title",
+    "defaultMessage": "Каталог курсов",
+    "message": "Catalog"
+  },
+  {
+    "id": "enterclass.catalog_page.description",
+    "defaultMessage": "Description",
+    "message": "Description"
+  },
+  {
+    "id": "enterclass.catalog_page.filter",
+    "defaultMessage": "Фильтр",
+    "message": "Filter"
+  },
+  {
+    "id": "enterclass.catalog_page.filter_selection",
+    "defaultMessage": "{count} {count, plural, one {выбран} few {выбрано} many {выбрано}}",
+    "message": "{count} {count, plural, one {selected} other { selected}}"
+  },
+  {
+    "id": "enterclass.course_review_page.title",
+    "defaultMessage": "Отзыв о курсе",
+    "message": "Course feedback"
+  },
+  {
+    "id": "enterclass.course_review_page.description",
+    "defaultMessage": "Description",
+    "message": "Description"
+  },
+  {
+    "id": "enterclass.course_review_page.beginners",
+    "defaultMessage": "Новичкам",
+    "message": "Begginer"
+  },
+  {
+    "id": "enterclass.course_review_page.experienced",
+    "defaultMessage": "Опытным",
+    "message": "Indermediate"
+  },
+  {
+    "id": "enterclass.course_review_page.professionals",
+    "defaultMessage": "Профессионалам",
+    "message": "Advanced"
+  },
+  {
+    "id": "enterclass.course_review_page.expectation_over",
+    "defaultMessage": "Даже больше, чем ожидалось",
+    "message": "Even more than expected"
+  },
+  {
+    "id": "enterclass.course_review_page.expectation_as_expected",
+    "defaultMessage": "Да, как и ожидалось",
+    "message": "It lived up to expectations."
+  },
+  {
+    "id": "enterclass.course_review_page.expectation_partly",
+    "defaultMessage": "В некотором роде",
+    "message": "Partially"
+  },
+  {
+    "id": "enterclass.course_review_page.expectation_not",
+    "defaultMessage": "Совсем не оправдал",
+    "message": "Expectations are disappointed."
+  },
+  {
+    "id": "enterclass.course_review_page.review_header",
+    "defaultMessage": "Отзыв о курсе",
+    "message": "Feedback"
+  },
+  {
+    "id": "enterclass.course_review_page.overview_rating",
+    "defaultMessage": "Общая оценка курса",
+    "message": "Rating Course"
+  },
+  {
+    "id": "enterclass.course_review_page.expectation_title",
+    "defaultMessage": "Курс оправдал ваши ожидания?",
+    "message": "The course lived up to your expectations?"
+  },
+  {
+    "id": "enterclass.course_review_page.target_title",
+    "defaultMessage": "Кому подойдет данный курс?",
+    "message": "Who can use this course?"
+  },
+  {
+    "id": "enterclass.course_review_page.share_title",
+    "defaultMessage": "Поделитесь впечатлением о курсе",
+    "message": "Your impressions about course"
+  },
+  {
+    "id": "enterclass.course_review_page.not_required",
+    "defaultMessage": "по желанию",
+    "message": "optional"
+  },
+  {
+    "id": "enterclass.course_review_page.submit",
+    "defaultMessage": "Отправить отзыв",
+    "message": "Send feedback"
+  },
+  {
+    "id": "enterclass.course_page.title",
+    "defaultMessage": "Курс {name}",
+    "message": "Course {name}"
+  },
+  {
+    "id": "enterclass.course_page.description",
+    "defaultMessage": "Страница курса",
+    "message": "Course page"
+  },
+  {
+    "id": "enterclass.course_page.students_results",
+    "defaultMessage": "Работы учеников",
+    "message": "Student gallery"
+  },
+  {
+    "id": "enterclass.email_confirmed_page.title",
+    "defaultMessage": "Email подтвержден",
+    "message": "Email confirmed"
+  },
+  {
+    "id": "enterclass.email_confirmed_page.description",
+    "defaultMessage": "Description",
+    "message": "Description"
+  },
+  {
+    "id": "enterclass.email_confirmed_page.continue",
+    "defaultMessage": "Продолжить",
+    "message": "Continue"
+  },
+  {
+    "id": "enterclass.email_confirmed_page.info_title",
+    "defaultMessage": "Email подтвержден",
+    "message": "Email confirmed"
+  },
+  {
+    "id": "enterclass.email_needed_page.title",
+    "defaultMessage": "Завершение регистрации",
+    "message": "Completion of registration"
+  },
+  {
+    "id": "enterclass.email_needed_page.description",
+    "defaultMessage": "Description",
+    "message": "Description"
+  },
+  {
+    "id": "enterclass.email_needed_page.last_step",
+    "defaultMessage": "Остался последний шаг!",
+    "message": "Last step!"
+  },
+  {
+    "id": "enterclass.email_needed_page.action_description",
+    "defaultMessage": "Введите, пожалуйста, свой email, он необходим для завершения регистрации.",
+    "message": "Please enter your email, it is necessary to complete the registration."
+  },
+  {
+    "id": "enterclass.email_needed_page.submit_text",
+    "defaultMessage": "Сохранить",
+    "message": "Save"
+  },
+  {
+    "id": "enterclass.expert_dialog_page.title",
+    "defaultMessage": "Эксперт {name}",
+    "message": "Expert {name}"
+  },
+  {
+    "id": "enterclass.expert_dialog_page.description",
+    "defaultMessage": "Description",
+    "message": "Description"
+  },
+  {
+    "id": "enterclass.expert_dialog_page.give_access",
+    "defaultMessage": "Допустить к следующему уроку",
+    "message": "Allow for the next lesson"
+  },
+  {
+    "id": "enterclass.expert_dialog_page.attribute_speciality",
+    "defaultMessage": "Speciality",
+    "message": "Speciality"
+  },
+  {
+    "id": "enterclass.expert_dialog_page.attribute_direction",
+    "defaultMessage": "Direction",
+    "message": "Direction"
+  },
+  {
+    "id": "enterclass.expert_dialog_page.attribute_materials",
+    "defaultMessage": "Materials",
+    "message": "Materials"
+  },
+  {
+    "id": "enterclass.expert_dialog_page.attribute_education",
+    "defaultMessage": "Education",
+    "message": "Education"
+  },
+  {
+    "id": "enterclass.expert_dialog_page.attribute_experience",
+    "defaultMessage": "Experience",
+    "message": "Experience"
+  },
+  {
+    "id": "enterclass.expert_dialog_page.courses",
+    "defaultMessage": "Мои курсы",
+    "message": "My courses"
+  },
+  {
+    "id": "enterclass.main_page.title",
+    "defaultMessage": "Онлайн курсы с экспертами - enterclass.com",
+    "message": "Enterclass"
+  },
+  {
+    "id": "enterclass.main_page.description",
+    "defaultMessage": "Description",
+    "message": "Description"
+  },
+  {
+    "id": "enterclass.payment_failure_page.title",
+    "defaultMessage": "Title",
+    "message": "Title"
+  },
+  {
+    "id": "enterclass.payment_failure_page.description",
+    "defaultMessage": "Description",
+    "message": "Description"
+  },
+  {
+    "id": "enterclass.payment_failure_page.whoops",
+    "defaultMessage": "Упс!",
+    "message": "Oops!"
+  },
+  {
+    "id": "enterclass.payment_failure_page.excuse_text",
+    "defaultMessage": "Что-то пошло не так. Обратитесь в службу поддержки",
+    "message": "Something went wrong. Contact Support"
+  },
+  {
+    "id": "enterclass.payment_failure_page.additional_info",
+    "defaultMessage": "Сообщите им этот идентификатор: \"{id}\"",
+    "message": "Let them know this ID: \"{id}\""
+  },
+  {
+    "id": "enterclass.payment_processing_page.title",
+    "defaultMessage": "Обрабатываем платеж...",
+    "message": "Process payments ..."
+  },
+  {
+    "id": "enterclass.payment_processing_page.description",
+    "defaultMessage": "Description",
+    "message": "Description"
+  },
+  {
+    "id": "enterclass.payment_processing_page.wait_please",
+    "defaultMessage": "Подождите...",
+    "message": "Wait..."
+  },
+  {
+    "id": "enterclass.payment_processing_page.payment_processing",
+    "defaultMessage": "Мы обрабабываем платеж!",
+    "message": "We process payment!"
+  },
+  {
+    "id": "enterclass.payment_success_page.title",
+    "defaultMessage": "Платеж прошел успешно",
+    "message": "Payment was successful"
+  },
+  {
+    "id": "enterclass.payment_success_page.description",
+    "defaultMessage": "Description",
+    "message": "Description"
+  },
+  {
+    "id": "enterclass.payment_success_page.success",
+    "defaultMessage": "Успех!",
+    "message": "Success!"
+  },
+  {
+    "id": "enterclass.payment_success_page.confirm_success_text",
+    "defaultMessage": "Платеж успешно обработан.",
+    "message": "The payment was successful."
+  },
+  {
+    "id": "enterclass.payment_success_page.go_to_courses",
+    "defaultMessage": "Перейти к моим курсам",
+    "message": "Go to My courses"
+  },
+  {
+    "id": "enterclass.payment_success_page.go_to_auth",
+    "defaultMessage": "Перейти к авторизации",
+    "message": "Go to Sign in"
+  },
+  {
+    "id": "enterclass.profile_page.title",
+    "defaultMessage": "Профиль {name}",
+    "message": "{Name}"
+  },
+  {
+    "id": "enterclass.profile_page.description",
+    "defaultMessage": "Страница провиля",
+    "message": "Page proville"
+  },
+  {
+    "id": "enterclass.profile_page.empty_course_state",
+    "defaultMessage": "У вас еще нет купленных курсов.",
+    "message": "You have not yet purchased courses."
+  },
+  {
+    "id": "enterclass.profile_page.tab_profile",
+    "defaultMessage": "Мой профиль",
+    "message": "My profile"
+  },
+  {
+    "id": "enterclass.profile_page.tab_courses",
+    "defaultMessage": "Мои курсы",
+    "message": "My courses"
+  },
+  {
+    "id": "enterclass.profile_page.tab_dialogs",
+    "defaultMessage": "Мои диалоги",
+    "message": "My dialogues"
+  },
+  {
+    "id": "enterclass.profile_page.tab_password_change",
+    "defaultMessage": "Смена пароля",
+    "message": "Сhange the password"
+  },
+  {
+    "id": "enterclass.profile_page.tab_exit",
+    "defaultMessage": "Выход",
+    "message": "Sign out"
+  },
+  {
+    "id": "enterclass.backend_errors.activation_code_not_found",
+    "defaultMessage": "ACTIVATION CODE NOT FOUND",
+    "message": "ACTIVATION CODE NOT FOUND"
+  },
+  {
+    "id": "enterclass.backend_errors.user_locked",
+    "defaultMessage": "USER LOCKED",
+    "message": "User locked"
+  },
+  {
+    "id": "enterclass.backend_errors.email_incorrect_format",
+    "defaultMessage": "Невалидный email",
+    "message": "EMAIL INCORRECT FORMAT"
+  },
+  {
+    "id": "enterclass.backend_errors.bad_oauth",
+    "defaultMessage": "BAD OAUTH",
+    "message": "BAD OAUTH"
+  },
+  {
+    "id": "enterclass.backend_errors.need_email",
+    "defaultMessage": "NEED EMAIL",
+    "message": "Need email"
+  },
+  {
+    "id": "enterclass.backend_errors.unknown",
+    "defaultMessage": "UNKNOWN",
+    "message": "UNKNOWN"
+  },
+  {
+    "id": "enterclass.backend_errors.NOT_COMPLETELY_FILL",
+    "defaultMessage": "NOT_COMPLETELY_FILL",
+    "message": "NOT_COMPLETELY_FILL"
+  },
+  {
+    "id": "enterclass.backend_errors.SAME_LANG_TWICE",
+    "defaultMessage": "SAME_LANG_TWICE",
+    "message": "SAME_LANG_TWICE"
+  },
+  {
+    "id": "enterclass.backend_errors.INSUFFICIENT_FUNDS",
+    "defaultMessage": "INSUFFICIENT_FUNDS",
+    "message": "INSUFFICIENT_FUNDS"
+  },
+  {
+    "id": "enterclass.backend_errors.EMPTY_INVOICE",
+    "defaultMessage": "EMPTY_INVOICE",
+    "message": "EMPTY_INVOICE"
+  },
+  {
+    "id": "enterclass.backend_errors.USER_EMAIL_NOT_RECOGNIZED",
+    "defaultMessage": "USER_EMAIL_NOT_RECOGNIZED",
+    "message": "USER_EMAIL_NOT_RECOGNIZED"
+  },
+  {
+    "id": "enterclass.backend_errors.NOT_FOUND_IMAGE",
+    "defaultMessage": "NOT_FOUND_IMAGE",
+    "message": "NOT_FOUND_IMAGE"
+  },
+  {
+    "id": "enterclass.backend_errors.NOT_FOUND_PROMOCODE",
+    "defaultMessage": "NOT_FOUND_PROMOCODE",
+    "message": "NOT_FOUND_PROMOCODE"
+  },
+  {
+    "id": "enterclass.backend_errors.NOT_FOUND_PAYMENT",
+    "defaultMessage": "NOT_FOUND_PAYMENT",
+    "message": "NOT_FOUND_PAYMENT"
+  },
+  {
+    "id": "enterclass.backend_errors.NOT_FOUND_HW",
+    "defaultMessage": "NOT_FOUND_HW",
+    "message": "NOT_FOUND_HW"
+  },
+  {
+    "id": "enterclass.backend_errors.NOT_FOUND_CATEGORY",
+    "defaultMessage": "NOT_FOUND_CATEGORY",
+    "message": "NOT_FOUND_CATEGORY"
+  },
+  {
+    "id": "enterclass.backend_errors.NOT_FOUND_USER",
+    "defaultMessage": "NOT_FOUND_USER",
+    "message": "NOT_FOUND_USER"
+  },
+  {
+    "id": "enterclass.backend_errors.NOT_FOUND_SUBSCRIPTION",
+    "defaultMessage": "NOT_FOUND_SUBSCRIPTION",
+    "message": "NOT_FOUND_SUBSCRIPTION"
+  },
+  {
+    "id": "enterclass.backend_errors.NOT_FOUND_GENRES",
+    "defaultMessage": "NOT_FOUND_GENRES",
+    "message": "NOT_FOUND_GENRES"
+  },
+  {
+    "id": "enterclass.backend_errors.NOT_FOUND_KINDS",
+    "defaultMessage": "NOT_FOUND_KINDS",
+    "message": "NOT_FOUND_KINDS"
+  },
+  {
+    "id": "enterclass.backend_errors.NOT_FOUND_COURSE",
+    "defaultMessage": "NOT_FOUND_COURSE",
+    "message": "NOT_FOUND_COURSE"
+  },
+  {
+    "id": "enterclass.backend_errors.NOT_FOUND_PRODUCT",
+    "defaultMessage": "NOT_FOUND_PRODUCT",
+    "message": "NOT_FOUND_PRODUCT"
+  },
+  {
+    "id": "enterclass.backend_errors.NOT_FOUND_CART",
+    "defaultMessage": "NOT_FOUND_CART",
+    "message": "NOT_FOUND_CART"
+  },
+  {
+    "id": "enterclass.backend_errors.NOT_ACCEPTING_NEWBIES",
+    "defaultMessage": "NOT_ACCEPTING_NEWBIES",
+    "message": "NOT_ACCEPTING_NEWBIES"
+  },
+  {
+    "id": "enterclass.backend_errors.ALREADY_EXIST_LESSON",
+    "defaultMessage": "ALREADY_EXIST_LESSON",
+    "message": "ALREADY_EXIST_LESSON"
+  },
+  {
+    "id": "enterclass.backend_errors.ILLEGAL_STATE_USER_NOT_ACTIVATED",
+    "defaultMessage": "ILLEGAL_STATE_USER_NOT_ACTIVATED",
+    "message": "ILLEGAL_STATE_USER_NOT_ACTIVATED"
+  },
+  {
+    "id": "enterclass.backend_errors.ILLEGAL_STATE_NO_RIGHTS",
+    "defaultMessage": "ILLEGAL_STATE_NO_RIGHTS",
+    "message": "ILLEGAL_STATE_NO_RIGHTS"
+  },
+  {
+    "id": "enterclass.backend_errors.ILLEGAL_CART_STATE",
+    "defaultMessage": "ILLEGAL_CART_STATE",
+    "message": "ILLEGAL_CART_STATE"
+  },
+  {
+    "id": "enterclass.backend_errors.CART_ALREADY_ATTACHED",
+    "defaultMessage": "CART_ALREADY_ATTACHED",
+    "message": "CART_ALREADY_ATTACHED"
+  },
+  {
+    "id": "enterclass.backend_errors.CART_NOT_ATTACHED",
+    "defaultMessage": "CART_NOT_ATTACHED",
+    "message": "CART_NOT_ATTACHED"
+  },
+  {
+    "id": "enterclass.backend_errors.CART_ZERO_TOTAL",
+    "defaultMessage": "CART_ZERO_TOTAL",
+    "message": "CART_ZERO_TOTAL"
+  },
+  {
+    "id": "enterclass.backend_errors.ALREADY_SUBSCRIBED",
+    "defaultMessage": "Этот email уже подписан на новости",
+    "message": "ALREADY_SUBSCRIBED"
+  },
+  {
+    "id": "enterclass.backend_errors.BAD_REQUEST_EXPERT_FEE",
+    "defaultMessage": "BAD_REQUEST_EXPERT_FEE",
+    "message": "BAD_REQUEST_EXPERT_FEE"
+  },
+  {
+    "id": "enterclass.backend_errors.BAD_REQUEST_WRONG_RATE",
+    "defaultMessage": "BAD_REQUEST_WRONG_RATE",
+    "message": "BAD_REQUEST_WRONG_RATE"
+  },
+  {
+    "id": "enterclass.backend_errors.BAD_REQUEST_NOT_ASSISTANT",
+    "defaultMessage": "BAD_REQUEST_NOT_ASSISTANT",
+    "message": "BAD_REQUEST_NOT_ASSISTANT"
+  },
+  {
+    "id": "enterclass.backend_errors.PAYKEEPER_NOT_PAID",
+    "defaultMessage": "PAYKEEPER_NOT_PAID",
+    "message": "PAYKEEPER_NOT_PAID"
+  },
+  {
+    "id": "enterclass.backend_errors.REVIEW_ONLY_FOR_STUDENTS",
+    "defaultMessage": "REVIEW_ONLY_FOR_STUDENTS",
+    "message": "REVIEW_ONLY_FOR_STUDENTS"
+  },
+  {
+    "id": "enterclass.backend_errors.EXPERT_RESULTS_MUST_BE_THREE",
+    "defaultMessage": "EXPERT_RESULTS_MUST_BE_THREE",
+    "message": "EXPERT_RESULTS_MUST_BE_THREE"
+  },
+  {
+    "id": "enterclass.backend_errors.EXPERT_RESULTS_IMAGES_NOT_FOUND",
+    "defaultMessage": "EXPERT_RESULTS_IMAGES_NOT_FOUND",
+    "message": "EXPERT_RESULTS_IMAGES_NOT_FOUND"
+  },
+  {
+    "id": "enterclass.backend_errors.STUDENT_RESULT_IMAGE_NOT_FOUND",
+    "defaultMessage": "STUDENT_RESULT_IMAGE_NOT_FOUND",
+    "message": "STUDENT_RESULT_IMAGE_NOT_FOUND"
+  },
+  {
+    "id": "enterclass.backend_errors.NOT_FOUND_STUDY_STEP",
+    "defaultMessage": "NOT_FOUND_STUDY_STEP",
+    "message": "NOT_FOUND_STUDY_STEP"
+  },
+  {
+    "id": "enterclass.backend_errors.COURSE_NOT_MARATHON",
+    "defaultMessage": "COURSE_NOT_MARATHON",
+    "message": "COURSE_NOT_MARATHON"
+  },
+  {
+    "id": "enterclass.backend_errors.STUDY_NOT_FOUND",
+    "defaultMessage": "STUDY_NOT_FOUND",
+    "message": "STUDY_NOT_FOUND"
+  },
+  {
+    "id": "enterclass.backend_errors.MARATHON_NOT_STANDARD",
+    "defaultMessage": "MARATHON_NOT_STANDARD",
+    "message": "MARATHON_NOT_STANDARD"
+  },
+  {
+    "id": "enterclass.backend_errors.MARATHON_END_DATE",
+    "defaultMessage": "MARATHON_END_DATE",
+    "message": "MARATHON_END_DATE"
+  },
+  {
+    "id": "enterclass.backend_errors.PROLONG_NOT_PAID",
+    "defaultMessage": "PROLONG_NOT_PAID",
+    "message": "PROLONG_NOT_PAID"
+  },
+  {
+    "id": "enterclass.backend_errors.DISABLED_COURSE",
+    "defaultMessage": "DISABLED_COURSE",
+    "message": "DISABLED_COURSE"
+  },
+  {
+    "id": "enterclass.backend_errors.\"DISABLED_PRODUCT\"",
+    "defaultMessage": "DISABLED_PRODUCT",
+    "message": "DISABLED_PRODUCT"
+  },
+  {
+    "id": "enterclass.backend_errors._ignore_this_message",
+    "defaultMessage": "..",
+    "message": ".."
+  },
+  {
+    "id": "enterclass.CreateMaterialModal.CreateMaterialModal__0",
+    "defaultMessage": "Добавить аттрибут",
+    "message": "Add attribute"
+  },
+  {
+    "id": "enterclass.CreateMaterialModal.CreateMaterialModal__1",
+    "defaultMessage": "Добавить материал",
+    "message": "Add material"
+  },
+  {
+    "id": "enterclass.CreateMaterialModal.CreateMaterialModal__2",
+    "defaultMessage": "Аттрибут",
+    "message": "Attribute"
+  },
+  {
+    "id": "enterclass.CategoryTable.CategoryTable__0",
+    "defaultMessage": "Жанры",
+    "message": "Genres"
+  },
+  {
+    "id": "enterclass.CategoryTable.CategoryTable__1",
+    "defaultMessage": "Типы",
+    "message": "Types"
+  },
+  {
+    "id": "enterclass.CategoryTable.CategoryTable__2",
+    "defaultMessage": "Имя",
+    "message": "Name"
+  },
+  {
+    "id": "enterclass.CategoryTable.CategoryTable__3",
+    "defaultMessage": "Жанры",
+    "message": "Genres"
+  },
+  {
+    "id": "enterclass.CategoryTable.CategoryTable__4",
+    "defaultMessage": "Типы",
+    "message": "Types"
+  },
+  {
+    "id": "enterclass.CategoryTable.CategoryTable__5",
+    "defaultMessage": "Статус видимости",
+    "message": "Visibility Status"
+  },
+  {
+    "id": "enterclass.CourseTable.CourseTable__0",
+    "defaultMessage": "Имя",
+    "message": "Name"
+  },
+  {
+    "id": "enterclass.CourseTable.CourseTable__1",
+    "defaultMessage": "Категория",
+    "message": "Category"
+  },
+  {
+    "id": "enterclass.CourseTable.CourseTable__2",
+    "defaultMessage": "Тип",
+    "message": "A type"
+  },
+  {
+    "id": "enterclass.CourseTable.CourseTable__3",
+    "defaultMessage": "Эксперт",
+    "message": "Expert"
+  },
+  {
+    "id": "enterclass.CourseTable.CourseTable__4",
+    "defaultMessage": "Активен",
+    "message": "Most active"
+  },
+  {
+    "id": "enterclass.CourseTable.static",
+    "defaultMessage": "Курс",
+    "message": "Course"
+  },
+  {
+    "id": "enterclass.CourseTable.marathon",
+    "defaultMessage": "Марафон",
+    "message": "Marathon"
+  },
+  {
+    "id": "enterclass.EntityListHeader.EntityListHeader__0",
+    "defaultMessage": "Добавить",
+    "message": "Add"
+  },
+  {
+    "id": "enterclass.ExpertTable.ExpertTable__0",
+    "defaultMessage": "Имя",
+    "message": "Name"
+  },
+  {
+    "id": "enterclass.ExpertTable.ExpertTable__1",
+    "defaultMessage": "Баланс",
+    "message": "Balance"
+  },
+  {
+    "id": "enterclass.ExpertTable.ExpertTable__2",
+    "defaultMessage": "Принес денег",
+    "message": "He brought the money"
+  },
+  {
+    "id": "enterclass.ExpertTable.ExpertTable__3",
+    "defaultMessage": "Заработал",
+    "message": "Earned"
+  },
+  {
+    "id": "enterclass.LessonTable.LessonTable__0",
+    "defaultMessage": "Редактировать",
+    "message": "Edit"
+  },
+  {
+    "id": "enterclass.LessonTable.LessonTable__1",
+    "defaultMessage": "Имя",
+    "message": "Name"
+  },
+  {
+    "id": "enterclass.LessonTable.LessonTable__2",
+    "defaultMessage": "Действия",
+    "message": "Actions"
+  },
+  {
+    "id": "enterclass.PaymentTable.PaymentTable__0",
+    "defaultMessage": "Сумма",
+    "message": "Sum"
+  },
+  {
+    "id": "enterclass.PaymentTable.PaymentTable__1",
+    "defaultMessage": "Количество предметов",
+    "message": "Number of items"
+  },
+  {
+    "id": "enterclass.PaymentTable.PaymentTable__2",
+    "defaultMessage": "Дата создания",
+    "message": "Creation date"
+  },
+  {
+    "id": "enterclass.PaymentTable.PaymentTable__3",
+    "defaultMessage": "Пользователь",
+    "message": "User"
+  },
+  {
+    "id": "enterclass.PaymentTable.PaymentTable__4",
+    "defaultMessage": "Cтатус",
+    "message": "Status"
+  },
+  {
+    "id": "enterclass.PaymentTable.PaymentTable__5",
+    "defaultMessage": "Платежка",
+    "message": "Payment system"
+  },
+  {
+    "id": "enterclass.PaymentTable.PaymentTable__6",
+    "defaultMessage": "Комиссия",
+    "message": "Commission"
+  },
+  {
+    "id": "enterclass.PaymentTable.PaymentTable__7",
+    "defaultMessage": "Дата оплаты",
+    "message": "Payment date"
+  },
+  {
+    "id": "enterclass.PaymentTable.PaymentTable__8",
+    "defaultMessage": "Сумма",
+    "message": "Sum"
+  },
+  {
+    "id": "enterclass.PaymentTable.PaymentTable__9",
+    "defaultMessage": "Количество предметов",
+    "message": "Number of items"
+  },
+  {
+    "id": "enterclass.PaymentTable.PaymentTable__10",
+    "defaultMessage": "Дата создания",
+    "message": "Date of creation"
+  },
+  {
+    "id": "enterclass.PaymentTable.PaymentTable__11",
+    "defaultMessage": "Пользователь",
+    "message": "User"
+  },
+  {
+    "id": "enterclass.PaymentTable.PaymentTable__12",
+    "defaultMessage": "Cтатус",
+    "message": "Status"
+  },
+  {
+    "id": "enterclass.PaymentTable.PaymentTable__13",
+    "defaultMessage": "Платежка",
+    "message": "Payment system"
+  },
+  {
+    "id": "enterclass.PaymentTable.PaymentTable__14",
+    "defaultMessage": "Комиссия",
+    "message": "Commission"
+  },
+  {
+    "id": "enterclass.PaymentTable.PaymentTable__15",
+    "defaultMessage": "Дата оплаты",
+    "message": "Payment date"
+  },
+  {
+    "id": "enterclass.ProductForm.ProductForm__0",
+    "defaultMessage": "Цена",
+    "message": "Price"
+  },
+  {
+    "id": "enterclass.ProductForm.ProductForm__1",
+    "defaultMessage": "Цена со скидкой",
+    "message": "Discount price"
+  },
+  {
+    "id": "enterclass.ProductForm.ProductForm__2",
+    "defaultMessage": "Сегодня",
+    "message": "Today"
+  },
+  {
+    "id": "enterclass.ProductForm.ProductForm__3",
+    "defaultMessage": "Промокоды",
+    "message": "Promo codes"
+  },
+  {
+    "id": "enterclass.ProductForm.ProductForm__4",
+    "defaultMessage": "Сохранить",
+    "message": "Save"
+  },
+  {
+    "id": "enterclass.ProductForm.ProductForm__5",
+    "defaultMessage": "Активен",
+    "message": "Active"
+  },
+  {
+    "id": "enterclass.PromoCodeTable.PromoCodeTable__0",
+    "defaultMessage": "Имя",
+    "message": "Name"
+  },
+  {
+    "id": "enterclass.PromoCodeTable.PromoCodeTable__1",
+    "defaultMessage": "Код",
+    "message": "Code"
+  },
+  {
+    "id": "enterclass.PromoCodeTable.PromoCodeTable__2",
+    "defaultMessage": "Значение",
+    "message": "Value"
+  },
+  {
+    "id": "enterclass.PromoCodeTable.PromoCodeTable__3",
+    "defaultMessage": "Статус",
+    "message": "Status"
+  },
+  {
+    "id": "enterclass.SellHistoryTable.SellHistoryTable__0",
+    "defaultMessage": "Курс",
+    "message": "Course"
+  },
+  {
+    "id": "enterclass.SellHistoryTable.SellHistoryTable__1",
+    "defaultMessage": "Сумма",
+    "message": "Sum"
+  },
+  {
+    "id": "enterclass.SellHistoryTable.SellHistoryTable__2",
+    "defaultMessage": "Дата",
+    "message": "Date"
+  },
+  {
+    "id": "enterclass.Table.Table__0",
+    "defaultMessage": "Условия поиска",
+    "message": "Search Terms"
+  },
+  {
+    "id": "enterclass.WithdrawForm.WithdrawForm__0",
+    "defaultMessage": "Выплатить",
+    "message": "Pay"
+  },
+  {
+    "id": "enterclass.WithdrawForm.WithdrawForm__1",
+    "defaultMessage": "Cумма",
+    "message": "Sum"
+  },
+  {
+    "id": "enterclass.WithdrawHistoryTable.WithdrawHistoryTable__0",
+    "defaultMessage": "Дата выплат",
+    "message": "Date of payment"
+  },
+  {
+    "id": "enterclass.WithdrawHistoryTable.WithdrawHistoryTable__1",
+    "defaultMessage": "Сумма",
+    "message": "Sum"
+  },
+  {
+    "id": "enterclass.WithdrawHistoryTable.WithdrawHistoryTable__2",
+    "defaultMessage": "Комментарий",
+    "message": "Comment"
+  },
+  {
+    "id": "enterclass.OrderForm.paykeeper",
+    "defaultMessage": "Банковские карты",
+    "message": "Bank cards"
+  },
+  {
+    "id": "enterclass.OrderForm.paypal",
+    "defaultMessage": "Paypal",
+    "message": "Paypal"
+  },
+  {
+    "id": "enterclass.backend_errors.bad_lesson_number",
+    "defaultMessage": "BAD LESSON NUMBER",
+    "message": "BAD LESSON NUMBER"
+  },
+  {
+    "id": "enterclass.backend_errors.marathon_start_date_not_set",
+    "defaultMessage": "MARATHON START DATE NOT SET",
+    "message": "MARATHON START DATE NOT SET"
+  },
+  {
+    "id": "enterclass.backend_errors.marathon_finish_date_not_set",
+    "defaultMessage": "MARATHON FINISH DATE NOT SET",
+    "message": "MARATHON FINISH DATE NOT SET"
+  },
+  {
+    "id": "enterclass.backend_errors.already_exist_promocode",
+    "defaultMessage": "ALREADY EXIST PROMOCODE",
+    "message": "ALREADY EXIST PROMOCODE"
+  },
+  {
+    "id": "enterclass.validation.positive",
+    "defaultMessage": "Должно быть положительно",
+    "message": "Must be positive"
+  },
+  {
+    "id": "enterclass.SelectProductModal.SelectProductModal__0",
+    "defaultMessage": "Поиск курса",
+    "message": "Search courses"
+  },
+  {
+    "id": "enterclass.SelectProductModal.SelectProductModal__1",
+    "defaultMessage": "Курс",
+    "message": "Course"
+  },
+  {
+    "id": "enterclass.SelectProductModal.SelectProductModal__2",
+    "defaultMessage": "Продукт",
+    "message": "Product"
+  },
+  {
+    "id": "enterclass.AdminSidebar.AdminSidebar__10",
+    "defaultMessage": "QA",
+    "message": "QA"
+  },
+  {
+    "id": "enterclass.Playlist.video_number",
+    "defaultMessage": "Видео {count}",
+    "message": "Video {count}"
+  },
+  {
+    "id": "enterclass.Footer.created_by",
+    "defaultMessage": "Created by",
+    "message": "Created by"
+  },
+  {
+    "id": "enterclass.admin_index.today",
+    "defaultMessage": "За сегодня",
+    "message": "today"
+  },
+  {
+    "id": "enterclass.admin_index.yesterday",
+    "defaultMessage": "За вчера",
+    "message": "yesterday"
+  },
+  {
+    "id": "enterclass.admin_index.current_week",
+    "defaultMessage": "За текущую неделю",
+    "message": "For the current week"
+  },
+  {
+    "id": "enterclass.admin_index.last_week",
+    "defaultMessage": "За прошлую неделю",
+    "message": "Over the past week"
+  },
+  {
+    "id": "enterclass.admin_index.current_month",
+    "defaultMessage": "За этот месяц",
+    "message": "This month"
+  },
+  {
+    "id": "enterclass.admin_index.last_month",
+    "defaultMessage": "За прошлый месяц",
+    "message": "Over the past month"
+  },
+  {
+    "id": "enterclass.admin_reviews.expectation_over",
+    "defaultMessage": "Даже больше, чем ожидалось",
+    "message": "Even more than expected"
+  },
+  {
+    "id": "enterclass.admin_reviews.expectation_as_expected",
+    "defaultMessage": "Как и ожидалось",
+    "message": "As expected"
+  },
+  {
+    "id": "enterclass.admin_reviews.expectation_partly",
+    "defaultMessage": "В некотором роде",
+    "message": "Somewhat"
+  },
+  {
+    "id": "enterclass.admin_reviews.expectation_not",
+    "defaultMessage": "Совсем не оправдал",
+    "message": "Is not justified"
+  },
+  {
+    "id": "enterclass.admin_reviews.middle",
+    "defaultMessage": "Средний",
+    "message": "Middle"
+  },
+  {
+    "id": "enterclass.admin_reviews.beginner",
+    "defaultMessage": "Новичкам",
+    "message": "newcomers"
+  },
+  {
+    "id": "enterclass.admin_reviews.advanced",
+    "defaultMessage": "Профессионалам",
+    "message": "professionals"
+  },
+  {
+    "id": "enterclass.course-payment_faq.title",
+    "defaultMessage": "Оплата курсов",
+    "message": "Payment rates"
+  },
+  {
+    "id": "enterclass.course-payment_faq.description",
+    "defaultMessage": "оплата курсов",
+    "message": "payment exchange"
+  },
+  {
+    "id": "enterclass.backend_errors.user_not_found_register",
+    "defaultMessage": "Такого пользователя нет: пройдите регистрацию заново с этим email",
+    "message": "No such user: go Registration again with this email"
+  },
+  {
+    "id": "enterclass.backend_errors.email_in_use_confirm",
+    "defaultMessage": "На этот email уже отправлено письмо с подтверждением",
+    "message": "This email already sent a confirmation email"
+  },
+  {
+    "id": "enterclass.validation.digits",
+    "defaultMessage": "Невалидный телефон",
+    "message": "Invalid phone"
+  },
+  {
+    "id": "enterclass.Course.ExpertFilter.not_found",
+    "defaultMessage": "Ой, мы никого не нашли",
+    "message": "Oh, we did not find anyone"
+  },
+  {
+    "id": "enterclass.study_mode.standart",
+    "defaultMessage": "Стандарт",
+    "message": "Standard"
+  },
+  {
+    "id": "enterclass.study_mode.maximum",
+    "defaultMessage": "Максимум",
+    "message": "Maximum"
+  },
+  {
+    "id": "enterclass.study_mode.student",
+    "defaultMessage": "Студент",
+    "message": "Student"
+  },
+  {
+    "id": "enterclass.study_mode.listener",
+    "defaultMessage": "Слушатель",
+    "message": "Listener"
+  },
+  {
+    "id": "enterclass.remove_cart_item_modal.generated_1588693603398__0",
+    "defaultMessage": "Вы действительно хотите удалить",
+    "message": "Are you sure you want to delete"
+  },
+  {
+    "id": "enterclass.remove_cart_item_modal.generated_1588693603398__1",
+    "defaultMessage": "из корзины?",
+    "message": "from cart?"
+  },
+  {
+    "id": "enterclass.remove_cart_item_modal.generated_1588693603398__2",
+    "defaultMessage": "Да, удалить из корзины",
+    "message": "Yes, delete it from cart"
+  },
+  {
+    "id": "enterclass.remove_cart_item_modal.generated_1588693603398__3",
+    "defaultMessage": "Отменить",
+    "message": "Cancel"
+  },
+  {
+    "id": "enterclass.NavbarPopup.free_courses",
+    "defaultMessage": "Бесплатные курсы",
+    "message": "Free courses"
+  },
+  {
+    "id": "enterclass.NavbarPopup.testing_new",
+    "defaultMessage": "Тестируем новый сайт. Шлите комментарии на support@enterclass.com",
+    "message": "We test the new site. Please send comments on support@enterclass.com"
+  },
+  {
+    "id": "enterclass.OrderForm.test",
+    "defaultMessage": "На время тестирования сайта оплата отключена",
+    "message": "On payment site testing time off"
+  },
+  {
+    "id": "enterclass.course-payment_faq.coursePayment__0",
+    "defaultMessage": "Как можно оплатить курс?",
+    "message": "How can I pay for the course?"
+  },
+  {
+    "id": "enterclass.course-payment_faq.coursePayment__1",
+    "defaultMessage": "Предусмотрена ли оплата в рассрочку?",
+    "message": "Can I pay in installments?"
+  },
+  {
+    "id": "enterclass.course-payment_faq.coursePayment__2",
+    "defaultMessage": "Как использовать промокод?",
+    "message": "How to use a promotional code?"
+  },
+  {
+    "id": "enterclass.course-payment_faq.coursePayment__3",
+    "defaultMessage": "Есть ли возможность получить скидку по оплате?",
+    "message": "Is it possible to get a discount on payment?"
+  },
+  {
+    "id": "enterclass.course-payment_faq.coursePayment__4",
+    "defaultMessage": "Насколько безопасно расплачиваться картой на Вашем сайте?",
+    "message": "Is it safe to pay with the card on your site?"
+  },
+  {
+    "id": "enterclass.course-payment_faq.coursePayment__5",
+    "defaultMessage": "Как можно оплатить курс или марафон в подарок?",
+    "message": "How can I pay for the course or marathon as a gift?"
+  },
+  {
+    "id": "enterclass.course-payment_faq.coursePayment__6",
+    "defaultMessage": "Как пользоваться корзиной?",
+    "message": "How to use the basket?"
+  },
+  {
+    "id": "enterclass.course-payment_faq.coursePayment__7",
+    "defaultMessage": "оплачиваете",
+    "message": "pay"
+  },
+  {
+    "id": "enterclass.course-payment_faq.coursePayment__8",
+    "defaultMessage": "в закрытых группах для уже учащихся студентов",
+    "message": "in closed groups for students have students"
+  },
+  {
+    "id": "enterclass.course-payment_faq.coursePayment__9",
+    "defaultMessage": "Обычно акции распространяются на обучение без обратной связи.",
+    "message": "Typically, the action applies to training without feedback."
+  },
+  {
+    "id": "enterclass.course-payment_faq.coursePayment__10",
+    "defaultMessage": "ошибочно указаны какие-нибудь данные карты и пр.",
+    "message": "mistakenly indicated some data cards, etc.."
+  },
+  {
+    "id": "enterclass.course-payment_faq.coursePayment__11",
+    "defaultMessage": "ВАЖНО! Обращайте внимание на сроки действия курсов и мастер-классов",
+    "message": "IMPORTANT! Pay attention to the timing of courses of action and master classes"
+  },
+  {
+    "id": "enterclass.course-payment_faq.coursePayment__12",
+    "defaultMessage": "оплата не прошла",
+    "message": "payment failed"
+  },
+  {
+    "id": "enterclass.course-payment_faq.coursePayment__13",
+    "defaultMessage": "Добавляете его в корзину",
+    "message": "Add it to your cart"
+  },
+  {
+    "id": "enterclass.course-payment_faq.payment_easy",
+    "defaultMessage": "Оплатить курс на сайте довольно просто:",
+    "message": "Pay course online is quite simple:"
+  },
+  {
+    "id": "enterclass.course-payment_faq.step_1",
+    "defaultMessage": "нажимаете на оранжевую кнопку \"записаться\" на странице нужного мк или онлайн курса",
+    "message": "click on the orange \"Burn\" button on the page of the desired micron or online course"
+  },
+  {
+    "id": "enterclass.course-payment_faq.step_2",
+    "defaultMessage": "в появившееся окошко вводите промокод, если в данный момент идет акция на курс (не забудьте это сделать, чтобы получить цену со скидкой!)",
+    "message": "In the resulting window enter the promotional code, if at the moment is the action on the course (do not forget to do it, to get the discount price!)"
+  },
+  {
+    "id": "enterclass.course-payment_faq.step_3",
+    "defaultMessage": "нажимаете кнопку \"выбрать\" и переходите непосредственно на страницу оплаты курса",
+    "message": "press the \"Select\" button and go directly to the course of the payment page"
+  },
+  {
+    "id": "enterclass.course-payment_faq.step_4",
+    "defaultMessage": "вводите электронный адрес своего личного кабинета или кабинета на который хотите присоединить курс (например, в подарок кому-то).",
+    "message": "enter the email address of his personal office or office to which you want to attach a course (for example, as a gift to someone)."
+  },
+  {
+    "id": "enterclass.course-payment_faq.step_5",
+    "defaultMessage": "выбираете как вы хотите оплатить курс ( банковские карты, электронные деньги или PayPal)",
+    "message": "choose how you want to pay for the course (credit cards, electronic money, or PayPal)"
+  },
+  {
+    "id": "enterclass.course-payment_faq.important",
+    "defaultMessage": "ВАЖНО! Если вы не были зарегистрированы, то личный кабинет создастся при оплате автоматически на тот адрес, который вы указали в корзине. После оплаты на почту отправится письмо со ссылкой активации аккаунта ( там вы сможете создать пароль для своего кабинета и проверить покупку)!",
+    "message": "IMPORTANT! If you have not been registered, the personal account is created automatically when you pay at the address that you specified in the basket. After payment to the post office to send a letter quoting your account is activated (there you can create a password to his office to check the purchase)!"
+  },
+  {
+    "id": "enterclass.course-payment_faq.what_if",
+    "defaultMessage": "Что делать, если не получается оплатить картой?",
+    "message": "What should I do if I can not pay the card?"
+  },
+  {
+    "id": "enterclass.course-payment_faq.try_1",
+    "defaultMessage": "Можете попробовать выбрать при оплате курса и мастер-класса раздел не банковские карты, а электронные деньги. Там прямо на первой вкладке тоже есть оплата банковскими картами, но через другой платёжный агрегатор.",
+    "message": "You can try to choose in purchasing and master-class section is not credit cards and electronic money. There right on the first tab also has credit card payments, but through another of payments aggregator."
+  },
+  {
+    "id": "enterclass.course-payment_faq.try_2",
+    "defaultMessage": "Если все же оплатить курс не получается пишите на support@enterclass.com (с указанием имени и телефона, чтобы можно было созвониться и быстро решить проблему).",
+    "message": "If, however, pay for the course it is impossible to write on support@enterclass.com (with the name and the phone so you can call and quickly solve the problem)."
+  },
+  {
+    "id": "enterclass.course-payment_faq.p",
+    "defaultMessage": "В некоторых случаях действительно у человека может не быть возможности оплатить онлайн-курс одним траншем или с одной карты. В такой ситуации лучше всего написать на support@enterclass.com . Если в теле письма, кроме вопроса, указать своё имя и телефон для связи, то вопрос решится еще быстрее.",
+    "message": "In some cases, indeed, a person may not be able to pay online course in one tranche or on one card. In such a situation it is best to leave a support@enterclass.com. If the body of the letter, in addition to the question, include your name and phone number, then the issue will be resolved more quickly."
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__1",
+    "defaultMessage": "При нажатии на оранжевую кнопку «записаться» на курс или мастер-класс появляется окошко, в которое вносится      промокод (ряд цифр или букв). После этого оплата соответственно снижается. Стоит помнить, что промокоды на      мастер классы и видеокурсы действуют строго ограниченное время.",
+    "message": "By clicking on the orange button \"enroll\" for a course or workshop window appears in which the promotional code is entered (a series of numbers or letters). After this charge is reduced accordingly. It is worth remembering that the promotional offers on the master classes and video courses are strictly limited time."
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__2",
+    "defaultMessage": "Оплата стандартна, но периодически бывают различные акции или скидки в результате которых цена может      снижаться. Они не постоянны и чаще всего появляются:",
+    "message": "Payment is standard, but occasionally there are various promotions or discounts as a result of which the price can be reduced. They are not constant and often appear:"
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__4",
+    "defaultMessage": "при запуске новых курсов или мастер-классов,",
+    "message": "at start of new courses or workshops,"
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__5",
+    "defaultMessage": "Любые вопросы по оплате можно быстро решить через support@enterclass.com",
+    "message": "Any questions regarding payment can be solved quickly through support@enterclass.com"
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__6",
+    "defaultMessage": "Если обучение оплачивает юридическое лицо, как получить закрывающие документы?",
+    "message": "If the training pays for the legal entity as to obtain closing documents?"
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__7",
+    "defaultMessage": "Напишите запрос на support@enterclass.com , чтобы получить необходимые документы.",
+    "message": "Write request support@enterclass.com, to obtain the necessary documents."
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__8",
+    "defaultMessage": "Не будет ли проблем с оплатой, если плательщик проживает за границей, ведь его банковская карта в евро или долларах, а оплата в рублях?",
+    "message": "Will not be any problems with payment, if the payer resides abroad, because his bank card in euros or dollars, but pay in rubles?"
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__9",
+    "defaultMessage": "У нас участся студенты из разных стран: России, стран СНГ, Израиля, Польши, Германии, США и др. Как правило      проблем с оплатой не возникает.",
+    "message": "We have the participation of students from different countries: Russia, the CIS countries, Israel, Poland, Germany, USA, etc. As a rule payment problems do not arise.."
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__10",
+    "defaultMessage": "В любой непонятной ситуации лучше всего написать на support@enterclass.com .",
+    "message": "In any unclear situation, it is best to leave a support@enterclass.com."
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__11",
+    "defaultMessage": "Оплата производится не совсем на нашем сайте. К enterclass.com подключено несколько платёжных систем, которые      обладают сертификатом и осуществляют расчёты в Интернете. Мы пользуемся ими, как сервисом. За все время работы      образовательного портала к данным платежным системам нареканий не возникало.",
+    "message": "Payment is not quite on our website. By enterclass.com connected to several payment systems that have the certificate and performed calculations on the Internet. We use them as a service. For all the time the educational portal data payment systems complaints arose."
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__12",
+    "defaultMessage": "Пытаюсь оплатить, но  оплата не проходит - появляется надпись \"отказ банка эмитета карты\". Как приобрести видео курсы и мастер-классы в такой ситуации?",
+    "message": "I am trying to pay, but the payment does not pass - there is an inscription \"refusal emiteta bank card.\" How to buy video courses and master classes in such a situation?"
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__13",
+    "defaultMessage": "Отказ банка эмитента карты означает, что оплата не проходит из-за банка, выпустившего вашу карту. Это может      быть связано с разными причинами:",
+    "message": "The refusal of the issuing bank cards means that the payment does not pass because the bank that issued your card. This may be due to different reasons:"
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__15",
+    "defaultMessage": "недостаточно средств на карте,",
+    "message": "not enough money on the card,"
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__16",
+    "defaultMessage": "запрет на операции в Интернете для вашей карты,",
+    "message": "a ban on transactions online for your card,"
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__17",
+    "defaultMessage": "Можете попробовать выбрать при оплате курса и мастер-класса раздел не банковские карты, а электронные деньги.      Там прямо на первой вкладке тоже есть оплата банковскими картами, но через другой платёжный агрегатор. Если      все же оплатить курс не получается пишите на support@enterclass.com ( с указанием имени и телефона, чтобы      можно было созвониться и быстро решить проблему).",
+    "message": "You can try to choose in purchasing and master-class section is not credit cards and electronic money. There right on the first tab also has credit card payments, but through another of payments aggregator. If, however, pay for the course it is impossible to write on support@enterclass.com (with the name and the phone so you can call and quickly solve the problem)."
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__18",
+    "defaultMessage": "Отдельной кнопки \"оплатить в подарок\" нет, поскольку мастер-класс или видеокурс никому на руки не высылается и      работать с ним можно только онлайн. Чтобы сделать подарок есть два варианта:",
+    "message": "A separate button \"to pay a gift\" is not, as a workshop or video course to anyone on your hands is not sent, and to work with him, you can only online. To make a gift, there are two options:"
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__19",
+    "defaultMessage": "Его можно просто оплатить и дать доступ к кабинету тому, кому вы хотите его подарить ( тогда, конечно не          используется свой личный кабинет, а создается новый на нужного человека с ненужным вам электронным          адресом)",
+    "message": "It can simply pay and give access to the office to whom you want to give it (then, of course do not use your personal account, and create a new one on the right person with the email address you do not need)"
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__20",
+    "defaultMessage": "Выбрать и при оплате в корзине указать номер электронной почты того, кому вы делаете подарок. Личный          кабинет создастся на этот адрес автоматически и туда сразу присоединится покупка-подарок (Главное в этот          момент, чтобы вы вышли из своего кабинета, иначе курс будет присоединен вам, а не тому кому дарите).",
+    "message": "Select and pay in the basket, add email number is the one to whom you give a gift. Personal account will be created for this address automatically and immediately to join the buying-gift (The main thing in this moment, that you came out of his office, otherwise the course will be attached to you, and not to give to someone)."
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__21",
+    "defaultMessage": "Оплатить, как обычно и написать в техподдержку support@enterclass.com , что курс или мастер-класс оплачен          в подарок для такого-то адреса и указать срок, когда нужно присоединить к профилю того, кому подарок. В          этом случае важно. чтобы, чтобы у того кому Вы дарите на сайте был свой личный кабинет.",
+    "message": "Pay as usual and write tech support support@enterclass.com, that the course or workshop paid for as a gift for such a location and specify the date when you want to attach to the profile of the person to whom a gift. In this case, it is important. that, in addition to whom you give the site was his private office."
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__22",
+    "defaultMessage": "Как можно узнать поступили ли вам деньги и зарегистрирована ли я на курсе. О регистрации я ничего не вижу. Оплатила с вашего сайта.",
+    "message": "How can you tell whether you received the money, and I registered on the course. About registration I did not see anything. Pay with your site."
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__23",
+    "defaultMessage": "После удачной оплаты вам должно прийти в почтовый ящик письмо с подтверждением того, что курс доступен и он      сразу появляется в вашем личном кабинете. Если этого не произошло, значит:",
+    "message": "After successful payment you must come to the mailbox email confirming that the program is available, and it immediately appears in your personal account. If not, then:"
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__24",
+    "defaultMessage": "вы вошли на сайт https://enterclass.com по другому профилю ( иногда у пользователей в базе вход из разных        соцсетей бывает с указанием разных своих электронных адресов).",
+    "message": "you are logged on https://enterclass.com site another profile (sometimes people are the basis of input from different social networks is different, indicating their email addresses)."
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__25",
+    "defaultMessage": "Если все оплатилось, но присоединилось к другому вашему профилю, то напишите в техподдержку на      support@enterclass.com и курс переместят в ваш обычный кабинет.",
+    "message": "If all payment, but joined the other to your profile, then email to tech support on support@enterclass.com and the course will move in your usual office."
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__26",
+    "defaultMessage": "Если вы уверены, что оплата прошла (проверили и деньги списаны в карты или счета), а в кабинете все равно      курса нет: пишите о проблеме в техподдержку и прикладываете информацию об оплате ( в платежке или чеке всегда      есть информация: дата и время. фио, название банка или системы (вебмани и пр.). И к поискам приступает наша      бухгалтерия.",
+    "message": "If you are sure that the payment has passed (checked and money written off in the card or account), and in the office is still course not: write about a problem to tech support and apply the payment information (in the payment or receipt always have the information: the date and time name. , the name of the bank or the system (webMoney, etc.). and to our accounting department will now begin the search."
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__28",
+    "defaultMessage": "Выбираете необходимый курс или мастер-класс с помощью оранжевой кнопки «Записаться»",
+    "message": "You select the desired course or workshop using the orange button \"Enroll\""
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__29",
+    "defaultMessage": "При необходимости нажимаете на кнопку «продолжить выбор» и таким образом складываете в корзину все нужные        видеокурсы",
+    "message": "If necessary, press the button \"continue selection\" and thus add up to cart all the desired video courses"
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__30",
+    "defaultMessage": "По завершении выбора, входите в корзину (через кнопку «перейти в корзину» или значок в правом верхнем углу        экрана) и видите информацию о выбранных образовательных программах: стоимость и срок обучения. В этот момент        можно убрать ненужные - достаточно просто нажать на знак закрытия справа рядом с курсом или мастер-классом        (на крестик).",
+    "message": "When you are finished, enter the cart (over the button \"go to shopping cart\" or the icon in the upper right corner of the screen) and you can see information about the selected educational programs: the cost and duration of study. At this point, you can remove unnecessary - just click on the sign of closing the right of the course or workshop (on the cross)."
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__31",
+    "defaultMessage": "Если вы вошли в свой профиль на сайте, то можно сразу переходить к оплате.",
+    "message": "If you are logged in to your profile on the website, you can immediately proceed to the payment."
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__32",
+    "defaultMessage": "Если вы не вошли в свой профиль на сайте или он у вас еще не создан, то необходимо внести свой действующий        электронный адрес прежде, чем оплачивать покупки. На этот электронный адрес автоматически будет заведен        профиль на сайте и именно к нему будут присоединены приобретённые видеокурсы или мастер-классы.",
+    "message": "If you're not logged in to your profile on the site, or you have it has not been created, it is necessary to make a valid email address before pay for purchases. This e-mail address will be automatically wound up a profile on the site and that it will be attached to the purchased video courses or workshops."
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__33",
+    "defaultMessage": "При оплате можно выбрать:",
+    "message": "When you pay, you can choose:"
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__34",
+    "defaultMessage": "Банковские карты (через банк «Авангард»)",
+    "message": "Credit cards (through \"Avangard\" Bank)"
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__35",
+    "defaultMessage": "PayPal",
+    "message": "PayPal"
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__36",
+    "defaultMessage": "Электронные деньги (Монета.ру, ЯндексДеньги, Webmoney, qiwi, различные платежные терминалы, салоны связи        «Связной» и др.)",
+    "message": "Electronic money (on Moneta.ru, YandexMoney, Webmoney, qiwi, various POS terminals, communication salons \"The Messenger\" and others.)"
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__37",
+    "defaultMessage": "Также в разделе электронные деньги есть оплата банковскими картами VISA, MasterCard, МИP через другой        платежный агрегатор (СбербанкОнлайн, Промсвязьбанк, Альфабанк и др.",
+    "message": "Also in electronic money is payment by bank cards VISA, MasterCard, Peace on through another billing aggregator (SberbankOnlayn, Promsvyazbank, Alfa-Bank, and others."
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__38",
+    "defaultMessage": "Я оплатил(а) курс или мастер-класс, но не смогу пройти его из-за непредвиденных обстоятельств. Можно вернуть деньги?",
+    "message": "I paid for (a) a course or a workshop, but could not get it due to unforeseen circumstances. You can get a refund?"
+  },
+  {
+    "id": "enterclass.course-payment_faq.haha__39",
+    "defaultMessage": "Мы можем вернуть вам деньги за оплаченный мастер-класс или курс, но сумма возврата будет на 10% меньше      изначальной стоимости. Если вы хотите оформить возврат, напишите нам на support@enterclass.com.",
+    "message": "We can give you back the money paid for a workshop or course, but the refund amount will be 10% less than the original cost. If you want to issue a refund, please contact us at support@enterclass.com."
+  },
+  {
+    "id": "enterclass.generated_1588692375135.generated_1588692375135__0",
+    "defaultMessage": "Согласие на обработку персональных данных",
+    "message": "Consent to the processing of personal data"
+  },
+  {
+    "id": "enterclass.generated_1588692375135.generated_1588692375135__1",
+    "defaultMessage": "Настоящим в соответствии с Федеральным законом № 152-ФЗ «О персональных данных» от 27.07.2006 года свободно,    своей волей и в своем интересе выражаю свое безусловное согласие на обработку моих персональных данных ООО    \"Энтеркласс\", зарегистрированным в соответствии с законодательством РФ по адресу: 121170, г. Москва, ул. 1812    года, д. 4/45, кор. 2, помещение III, комн. 6. Персональные данные - любая информация, относящаяся к    определенному или определяемому на основании такой информации физическому лицу. Настоящее Согласие выдано мною    на обработку следующих персональных данных, вводимых мной при оплате товаров и услуг на сайте    https://enterclass.com или создании учётной записи на этом же сайте: имени, фамилии и отчества, адреса    электронной почты, мобильного телефона, места жительства, описания",
+    "message": "Hereby, in accordance with the Federal Law № 152-FZ \"On Personal Data\" from 27.07.2006, the freely their will and in their interest to express its unconditional consent to the processing of personal data Ltd. \"Enterklass\" registered in accordance with Russian legislation at : 121170, Moscow, ul. 1812, d. 4/45, Kor. 2, the room III, BR. 6. Personal Data - any information relating to an identified or identifiable on the basis of such information to an individual. This consent is given by me to the processing of these personal data entered me when paying for online goods and services https://enterclass.com or creating an account on the same site: name, last name and middle name, email address, mobile phone, place of residence descriptions"
+  },
+  {
+    "id": "enterclass.generated_1588692375135.generated_1588692375135__2",
+    "defaultMessage": "Согласие дано ООО \"Энтеркласс\" для совершения следующих действий с моими персональными данными с использованием    средств автоматизации и/или без использования таких средств: сбор, систематизация, накопление, хранение,    уточнение (обновление, изменение), использование, обезличивание, а также осуществление любых иных действий,    предусмотренных действующим законодательством РФ как неавтоматизированными, так и автоматизированными способами.",
+    "message": "Consent is given Ltd. \"Enterklass\" to perform the following actions with my personal data using automated means and / or without the use of such means: collection, systematization, accumulation, storage, clarification (update, change), use, depersonalization, and the implementation of any other actions provided for by the legislation of the Russian Federation as a non-automated and automated methods."
+  },
+  {
+    "id": "enterclass.generated_1588692375135.generated_1588692375135__3",
+    "defaultMessage": "Настоящее согласие действует до момента его отзыва путем направления соответствующего уведомления на электронный    адрес support@enterclass.com. В случае отзыва мною согласия на обработку персональных данных ООО \"Энтеркласс\"    вправе продолжить обработку персональных данных без моего согласия при наличии оснований, указанных в пунктах 2    – 11 части 1 статьи 6, части 2 статьи 10 и части 2 статьи 11 Федерального закона №152-ФЗ «О персональных данных»    от 26.06.2006 г.",
+    "message": "This consent is valid until its withdrawal by notification to the email address support@enterclass.com. In case of withdrawal of my consent to the processing of personal data Ltd. \"Enterklass\" has the right to continue the processing of personal data without my consent on the grounds set out in paragraphs 2 - 11 Part 1 of Article 6, paragraph 2 of Article 10 and paragraph 2 of Article 11 of the Federal Law №152- FZ \"on Personal data\" from 26.06.2006"
+  },
+  {
+    "id": "enterclass.mocked_main_slider.open_free_course",
+    "defaultMessage": "Открыть бесплатный курс",
+    "message": "Open a free course"
+  },
+  {
+    "id": "enterclass.mocked_main_slider.golden_apple",
+    "defaultMessage": "Золотое яблоко акварелью",
+    "message": "Golden apple watercolor"
+  },
+  {
+    "id": "enterclass.mocked_main_slider.elizaveta",
+    "defaultMessage": "Елизавета Залегина",
+    "message": "Elizabeth Zalegina"
+  },
+  {
+    "id": "enterclass.mocked_main_slider.gapple_description",
+    "defaultMessage": "Нарисуем натюрморт в многослойной технике по сухому и по влажному листу. Уделим внимание фактурам и фону.",
+    "message": "Draw still life in a multilayer technique and dry the wet sheet. Paying attention to the texture and background."
+  },
+  {
+    "id": "enterclass.mocked_main_slider.nadya",
+    "defaultMessage": "Надя Лойтлофф",
+    "message": "Nadia Loytloff"
+  },
+  {
+    "id": "enterclass.mocked_main_slider.nadya_title",
+    "defaultMessage": "Акварельные упражнения и подсказки",
+    "message": "Watercolor exercises and tips"
+  },
+  {
+    "id": "enterclass.mocked_main_slider.nadya_desc",
+    "defaultMessage": "Учимся создавать ровные красивые заливки из одного или нескольких цветов, осваиваем градиент.",
+    "message": "Learn to create beautiful smooth filling of one or more colors, mastering gradient."
+  },
+  {
+    "id": "enterclass.mocked_main_slider.tanya",
+    "defaultMessage": "Татьяна Ширбидова",
+    "message": "Tatiana Shirbidova"
+  },
+  {
+    "id": "enterclass.mocked_main_slider.tanya_title",
+    "defaultMessage": "Орхидея. Ботаническая иллюстрация",
+    "message": "Orchid. botanical illustration"
+  },
+  {
+    "id": "enterclass.mocked_main_slider.tanya_desc",
+    "defaultMessage": "Подробно и аккуратно создадим цветок орхидеи — часть ботанической иллюстрации.",
+    "message": "Detail and carefully create orchid flower - part of botanical illustration."
+  },
+  {
+    "id": "enterclass.mocked_main_slider.sanya",
+    "defaultMessage": "Александр Воцмуш",
+    "message": "Alexander Votsmush"
+  },
+  {
+    "id": "enterclass.mocked_main_slider.sanya_desc",
+    "defaultMessage": "Воображаем, придумываем, фантазируем: соединяем, казалось бы совершенно несоединимые предметы.",
+    "message": "We imagine, invent, fantasize: connect seemingly totally irreconcilable things."
+  },
+  {
+    "id": "enterclass.mocked_main_slider.sanya_ttile",
+    "defaultMessage": "Эдиндыгомба. Игровой мастер-класс",
+    "message": "Edindygomba. Game Master Class"
+  },
+  {
+    "id": "enterclass.mocked_main_slider.drus",
+    "defaultMessage": "Андрей Аринушкин",
+    "message": "Andrew Arinushkina"
+  },
+  {
+    "id": "enterclass.mocked_main_slider.drus_desc",
+    "defaultMessage": "Как очеловечивать кота и изображать разные эмоции. Сделаем несколько открыток с котами.",
+    "message": "How to humanize cat and portray different emotions. We make a few cards with cats."
+  },
+  {
+    "id": "enterclass.mocked_main_slider.drus_title",
+    "defaultMessage": "Коты на открытках",
+    "message": "Cats postcards"
+  },
+  {
+    "id": "enterclass.Content.content_3",
+    "defaultMessage": "Отзывы",
+    "message": "Feedback"
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__0",
+    "defaultMessage": "Публичная оферта",
+    "message": "Public offer"
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__1",
+    "defaultMessage": "ИП Донченко Максим Алексеевич (далее ПРОДАВЕЦ), публикует настоящий договор, являющийся публичным    договором-офертой в адрес как физических, так и юридических лиц (далее ПОКУПАТЕЛЕЙ) о нижеследующем:",
+    "message": "SP Donchenko Maxim A. (hereinafter SELLER), publishes this contract is a public contract-offer to address both physical and legal persons (the Purchaser) on the following:"
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__2",
+    "defaultMessage": "1. Предмет Договора-оферты",
+    "message": "1. Subject of the contract-offer"
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__3",
+    "defaultMessage": "1.1. ПРОДАВЕЦ обязуется на платной основе предоставить УСЛУГИ онлайн-доступа к обучающим видеокурсам (далее    КУРСАМ) на сайте https://enterclass.com (далее САЙТЕ) ПОКУПАТЕЛЮ, а ПОКУПАТЕЛЬ обязуется оплатить УСЛУГИ с    использованием реквизитов банковских карт (или других платёжных методов) и использовать КУРСЫ, заказанные на    САЙТЕ в рамках условий и сроков описанных индивидуально для каждого отдельного КУРСА на САЙТЕ.",
+    "message": "1.1. SELLER undertakes for a fee to provide the service on-line access to training video (the courses) on https://enterclass.com site (the Site) and the Buyer agrees to pay for the service using a bank card details (or other payment method) and use COURSES ordered online under the terms and conditions described individually for each separate course on the site."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__4",
+    "defaultMessage": "2. Момент заключения договора и оплаты услуг с использованием реквизитов банковских карт (или других платёжных    методов)",
+    "message": "2. The time of conclusion of the contract and payment by bank card details (or other payment method)"
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__5",
+    "defaultMessage": "2.1. Текст данного Договора является публичной офертой (в соответствии со статьей 435 и частью 2 статьи 437      Гражданского кодекса РФ).",
+    "message": "2.1. The text of the Agreement is a public offer (in accordance with Article 435 and Part 2 of Article 437 of the Civil Code)."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__6",
+    "defaultMessage": "2.2. Факт оформления заказа КУРСА у ПРОДАВЦА, как самостоятельно, так и через оператора, является      безоговорочным принятием данного Договора, и ПОКУПАТЕЛЬ рассматривается как лицо, вступившее ПРОДАВЦОМ в      договорные отношения.",
+    "message": "2.2. Fact Ordering COURSE from the seller, both independently and through the operator is unconditional acceptance of this Agreement, and the Buyer is considered as a person who has entered into a contractual relationship SELLER."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__7",
+    "defaultMessage": "2.3. Оплата по настоящему договору может производиться на САЙТЕ с использованием реквизитов банковских карт в      системе электронных платежей ПАО АКБ «Авангард», который прошёл сертификацию в платежных системах Visa Inc. и      MasterCard Worldwide на совершение операций с аутентификацией 3-D Secure. Представленные данные полностью      защищены в рамках стандарта безопасности данных индустрии платежных карт (Payment Card Industry Data Security      Standard) и никто, включая ПРОДАВЦА, не может их получить.",
+    "message": "2.3. Payments under this Agreement may be carried out on site with a credit card for electronic payments system PJSC Bank \"Avangard\", which took place in the certification of payment systems Visa Inc. MasterCard Worldwide and for operations authenticated 3-D Secure. The presented data are fully protected under the Data Security Standard Payment Card Industry (Payment Card Industry Data Security Standard) and no one, including the SELLER can not get them."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__8",
+    "defaultMessage": "2.4. Оплата по настоящему договору может производиться на САЙТЕ с использованием электронных платежей через      платёжные сервисы PayAnyWay (payanyway.ru) или PayPal (paypal.com).",
+    "message": "2.4. Payments under this Agreement may be carried out on site with the use of electronic payments through payment services PayAnyWay (payanyway.ru) or PayPal (paypal.com)."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__9",
+    "defaultMessage": "3. Цена КУРСА",
+    "message": "3. Price COURSE"
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__10",
+    "defaultMessage": "3.1. Цены на САЙТЕ указаны в валюте страны ПОКУПАТЕЛЯ.",
+    "message": "3.1. Prices on our website are quoted in the currency of the Purchaser's country."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__11",
+    "defaultMessage": "3.2. Общая сумма ЗАКАЗА указывается в разделе «Корзина» в строке «Итого».",
+    "message": "3.2. The total amount of the order is listed under \"Basket\" in the row \"Total\"."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__12",
+    "defaultMessage": "4. Оплата ТОВАРА с использованием реквизитов банковских карт",
+    "message": "4. Pay for goods by using the bank card details"
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__13",
+    "defaultMessage": "4.1. При оплате КУРСОВ на САЙТЕ с использованием реквизитов банковских карт обязанность ПОКУПАТЕЛЯ по уплате      цены КУРСА считается исполненной с момента успешного завершения операции по карте и получения им уведомления      об успешном списании денежных средств на странице в ЛИЧНОМ КАБИНЕТЕ и/или на адрес электронной почты,      указанной при заказе, в размере 100% (ста процентов) предоплаты ПОКУПАТЕЛЯ.",
+    "message": "4.1. When paying Courses on the site using a credit card for charges are the buyer to pay COURSE price shall be deemed fulfilled upon successful completion of the transaction on the card and the receipt of the notification of the successful write-off of money resources on the page in the Members Area and / or the email address specified when ordering in the amount of 100% (one hundred percent) CUSTOMER prepayment."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__14",
+    "defaultMessage": "4.2. В случае неполучения ПОКУПАТЕЛЕМ уведомления о совершённой оплате, отправленного на указанный при      регистрации адрес электронной почты ПОКУПАТЕЛЯ, ПОКУПАТЕЛЬ должен связаться с ПРОДАВЦОМ для получения      подтверждения об оплате услуги в течение 1 (одних) суток с момента оплаты.",
+    "message": "4.2. In the case of non-receipt of the notification to the Buyer committed payment sent to the specified e-mail address registration buyer, the buyer must contact the seller to get the confirmation on payment services in the period of 1 (one) day from the date of payment."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__15",
+    "defaultMessage": "4.3. При безналичной форме оплаты просрочка уплаты ПОКУПАТЕЛЕМ цены КУРСА на срок свыше 5 (пяти) дней является      существенным нарушением настоящего договора. В этом случае ПРОДАВЕЦ вправе в одностороннем порядке отказаться      от исполнения настоящего договора, уведомив об этом ПОКУПАТЕЛЯ по электронной почте, указанной ПОКУПАТЕЛЕМ при      формированиии ЗАКАЗА.",
+    "message": "4.3. When non-cash payment overdue payment bid price rate at the period of more than five (5) days is a material breach of this agreement. In this case, the seller has the right to unilaterally withdraw from the execution of this contract notice to the buyer through email by the buyer when placing an order."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__16",
+    "defaultMessage": "4.4 КУРСЫ предоставляются ПОКУПАТЕЛЮ по ценам, наименованию, в количестве, соответствующем счёту, оплаченному      ПОКУПАТЕЛЕМ.",
+    "message": "4.4 The course provides the buyer at the price, the name, in an amount corresponding to the invoice paid by the buyer."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__17",
+    "defaultMessage": "5. Условия возврата платежей",
+    "message": "5. Refund Terms"
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__18",
+    "defaultMessage": "5.1. Оплаченные за КУРС деньги могут быть возвращены по требованию ПОКУПАТЕЛЯ в полном размере, если срок      онлайн-обучения для этого КУРСА, указанный на САЙТЕ, ещё не наступил.",
+    "message": "5.1. Paid for the course money can be refunded at the request of the BUYER the full amount if online learning period for the course of the service, has not yet come."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__19",
+    "defaultMessage": "5.2. Когда срок обучения уже наступил, деньги могут быть возвращены по требованию ПОКУПАТЕЛЯ в полном размере      только в том случае, если в сроки обучения, указанные на САЙТЕ, оплаченный ПОКУПАТЕЛЕМ КУРС не доступен по      вине ПРОДАВЦА.",
+    "message": "5.2. When the training period has already come, the money can be returned at the request of the BUYER in full only if the training periods, listed on the site, paid by the buyer courses are not available on the seller's fault."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__20",
+    "defaultMessage": "5.3. Денежные средства будут возвращены на карту или тот платежный инструмент, с которой производилась оплата.",
+    "message": "5.3. The money will be refunded to the card or the payment instrument with which the payment was made."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__21",
+    "defaultMessage": "5.4. Заявка на отказ/отмену ЗАКАЗА осуществляется ПОКУПАТЕЛЕМ путём отправки письменного запроса в свободной      форме с обязательным указанием предмета ЗАКАЗА (то есть названия КУРСА и дат его проведения) на электронный      адрес support@enterclass.com.",
+    "message": "5.4. The application for refusal / cancel an order made by the Buyer by sending a written request in a free form with the obligatory indication of the subject of the order (ie, course title and date of the meeting) to the email address support@enterclass.com."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__22",
+    "defaultMessage": "5.5. В случае корректно оформленной процедуры отказа/отмены платежа денежные средства возвращаются на карту, с      которой проводилась оплата. Возврат средств, оплаченных картами, иными способами не производится.",
+    "message": "5.5. If properly executed procedure of refusal / cancellation of payment money back on the card with which payment was performed. Refunds paid cards, otherwise not possible."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__23",
+    "defaultMessage": "5.6. Неявка (не участие в обучении) ПОКУПАТЕЛЯ или не совершение иных необходимых действий для обучения на      КУРСЕ могут рассматриваться ПРОДАВЦОМ как отказ ПОКУПАТЕЛЯ от исполнения ДОГОВОРА. В этом случае деньги      ПОКУПАТЕЛЮ не возвращаются.",
+    "message": "5.6. Failure to appear (do not participate in the training) BUYER or committing other actions required for the courses can be regarded as a BUYER SELLER failure to perform the contract. In this case, the buyer's money is not returned."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__24",
+    "defaultMessage": "5.7. Во всех прочих случаях деньги, оплаченные за КУРС, не могут быть возвращены ПОКУПАТЕЛЮ.",
+    "message": "5.7. In all other cases, the money paid for the course, can not be returned to the buyer."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__25",
+    "defaultMessage": "6. Права и обязанности ПРОДАВЦА И ПОКУПАЛЯ (далее СТОРОН)",
+    "message": "6. The rights and obligations of the seller and POKUPALYA (the Parties)"
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__26",
+    "defaultMessage": "6.1. ПРОДАВЕЦ обязуется:",
+    "message": "6.1. SELLER is obliged to:"
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__27",
+    "defaultMessage": "6.1.1. До заключения договора предоставить ПОКУПАТЕЛЮ исчерпывающую информацию об основных свойствах          КУРСА, об адресе (месте нахождения) ПРОДАВЦА, о полном фирменном наименовании ПРОДАВЦА, о цене и об          условиях приобретения КУРСА, о его трансляции, сроках обучения, о порядке оплаты КУРСОВ, а также о сроке,          в течение которого действует ДОГОВОР.",
+    "message": "6.1.1. Before signing the contract to provide the BUYER with comprehensive information about the basic properties of the course, the address (location) of the seller, the full corporate name of the seller, the price and conditions of purchase of the course, its translation, periods of instruction, about the course of the payment procedure, and of the time during which the contract."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__28",
+    "defaultMessage": "6.1.2. Не разглашать любую частную информацию ПОКУПАТЕЛЯ и не предоставлять доступ к этой информации          третьим лицам, за исключением случаев, предусмотренных Российским законодательством.",
+    "message": "6.1.2. Do not disclose any personal information of buyers and not provide access to this information to third parties, except for cases stipulated by the Russian legislation."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__29",
+    "defaultMessage": "6.1.3. Предоставить ПОКУПАТЕЛЮ возможность получения бесплатных консультаций по электронному адресу          support@enterclass.com. Объём и суть консультаций ограничивается конкретными вопросами, связанными с          выполнениями ЗАКАЗА.",
+    "message": "6.1.3. Provide the buyer with the opportunity to receive free consultations by email support@enterclass.com. The volume and nature of consultations is limited to the specific issues related to the execution of orders."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__30",
+    "defaultMessage": "6.1.4. Предоставить ПОКУПАТЕЛЮ доступ в ЛИЧНЫЙ КАБИНЕТ на САЙТЕ для просмотра оплаченных видеоуроков и          закрытого общения с экспертами и другими участниками КУРСА, составляющего предмет ЗАКАЗА.",
+    "message": "6.1.4. Provide buyers access to the personal account on the site to view the paid video tutorials and private communication with experts and other participants of the course, is the subject of the order."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__31",
+    "defaultMessage": "6.1.5. ПРОДАВЕЦ оставляет за собой право изменять настоящий ДОГОВОР в одностороннем порядке до момента его          заключения.",
+    "message": "6.1.5. Seller reserves the right to change this agreement unilaterally until its conclusion."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__32",
+    "defaultMessage": "6.2. ПОКУПАТЕЛЬ обязуется:",
+    "message": "6.2. BUYER shall:"
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__33",
+    "defaultMessage": "6.2.1. До момента заключения ДОГОВОРА ознакомиться с содержанием договора-оферты, условиями оплаты и          получения доступа к КУРСУ на САЙТЕ.",
+    "message": "6.2.1. Until the time of the contract familiarize themselves with the content of the offer, the contract, the terms of payment and gain access to a course on the site."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__34",
+    "defaultMessage": "6.2.2. Предоставлять достоверную информацию о себе: имя, контактный телефон, адрес электронной почты.",
+    "message": "6.2.2. Provide accurate information about yourself: name, phone number, email."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__35",
+    "defaultMessage": "6.2.3. Оплатить КУРС в сроки, указанные в настоящем ДОГОВОРЕ.",
+    "message": "6.2.3. Payment Exchange within the time specified in this Agreement."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__36",
+    "defaultMessage": "7. Ответственность СТОРОН и разрешение споров",
+    "message": "7. Liability and Dispute Resolution"
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__37",
+    "defaultMessage": "7.1. Стороны несут ответственность за неисполнение или ненадлежащее исполнение настоящего ДОГОВОРА в порядке,      предусмотренном настоящим ДОГОВОРОМ и действующим законодательством РФ.",
+    "message": "7.1. Parties shall be liable for any failure to perform this Agreement in the manner contemplated by this Agreement and applicable laws of the Russian Federation."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__38",
+    "defaultMessage": "7.2. ПРОДАВЕЦ не несет ответственности за получение доступа ПОКУПАТЕЛЯ к КУРСУ, если ПОКУПАТЕЛЕМ неправильно      указан адрес электронной почты для отправки ему ссответствующих ссылок.",
+    "message": "7.2. Seller is not responsible for obtaining access to the BUYER the course, if the buyer the wrong email address to send him ssotvetstvuyuschih links."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__39",
+    "defaultMessage": "7.3. ПРОДАВЕЦ не несет ответственности, если ожидания ПОКУПАТЕЛЯ о потребительских свойствах ТОВАРА оказались      не оправданы.",
+    "message": "7.3. Seller is not responsible if the customer expectations about the quality of goods were not justified."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__40",
+    "defaultMessage": "7.4. ПРОДАВЕЦ не несет ответственности за частичное или полное неисполнение обязательств по предоставлению      онлайн-доступа к КУРСУ, если они являются следствием форс-мажорных обстоятельств.",
+    "message": "7.4. Seller is not responsible for partial or full default of obligations to provide online access to the course, if they are the result of force majeure."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__41",
+    "defaultMessage": "7.5. ПОКУПАТЕЛЬ, оформляя ЗАКАЗ, несет ответственность за достоверность предоставляемой информации о себе, а      также подтверждает, что с условиями настоящего ДОГОВОРА ознакомлен и согласен.",
+    "message": "7.5. BUYER, the checkout process is responsible for the accuracy of the information provided about yourself, and also confirms that the terms of this Agreement have read and agree."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__42",
+    "defaultMessage": "7.6. ПРОДАВЕЦ имеет право изменить дату, время оказания услуги и другие условия ЗАКАЗА, уведомив об этом      покупателя услуг не менее чем за 1 (Один) день до оказания услуг, получив подтверждение о согласии ПОКУПАТЕЛЯ      с изменениями. ПОКУПАТЕЛЬ имеет право отказаться от внесения изменений в данные заказанной услуги, на      основании чего услуги будут считаться отмененными с последующим возвратом денежных средств на банковскую карту      или тот платёжный инструмент, с помощью которого производилась оплата.",
+    "message": "7.6. Seller has the right to change the date, time of service and other conditions of the order, with notice to the purchaser of not less than one (1) day prior to the rendering of services, received confirmation of the agreement of the BUYER with the changes. BUYER has the right to refuse to make changes in the data requested service on the basis of which the services will be deemed canceled with the subsequent return of cash to the bank card or the payment instrument with which to make payment."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__43",
+    "defaultMessage": "7.7. По вопросам качества, своевременности получения услуг, оплаты ЗАКАЗОВ с использованием банковских карт и      других платёжных методов ПОКУПАТЕЛЬ может обратиться к ПРОДАВЦУ по телефону +7 (916) 023 0453 либо по      электронному адресу support@enterclass.com",
+    "message": "7.7. On the quality, timeliness of service, payment orders with the use of bank cards and other payment methods buyer can contact your seller by phone +7 (916) 023 0453 or by e-mail support@enterclass.com"
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__44",
+    "defaultMessage": "7.8. Все споры и разногласия, возникающие при исполнении СТОРОНАМИ обязательств по настоящему Договору,      решаются путем переговоров. В случае невозможности их устранения, СТОРОНЫ имеют право обратиться за судебной      защитой своих интересов.",
+    "message": "7.8. All disputes arising in the performance of the obligations under this Agreement shall be resolved through negotiations. If you can not eliminate them, the parties have the right to seek judicial protection of his interests."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__45",
+    "defaultMessage": "8. Форс-мажорные обстоятельства",
+    "message": "8. Force Majeure"
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__46",
+    "defaultMessage": "8.1. Стороны освобождаются от ответственности за неисполнение или ненадлежащее исполнение обязательств по      Договору на время действия непреодолимой силы. Под непреодолимой силой понимаются чрезвычайные и непреодолимые      при данных условиях обстоятельства, препятствующие исполнению своих обязательств СТОРОНАМИ по настоящему      Договору. К ним относятся стихийные явления (землетрясения, наводнения и т. п.), обстоятельства общественной      жизни (военные действия, чрезвычайные положения, крупнейшие забастовки, эпидемии и т. п.), запретительные меры      государственных органов (запрещение перевозок, валютные ограничения, международные санкции запрета на торговлю      и т. п.). В течение этого времени СТОРОНЫ не имеют взаимных претензий, и каждая из СТОРОН принимает на себя      свой риск последствия форс-мажорных обстоятельств.",
+    "message": "8.1. Parties are not responsible for any failure to perform obligations under the Agreement for the duration of the force majeure. Force majeure refers to extraordinary and insurmountable under the given conditions that prevent execution of the obligations of the parties under this Agreement. These include natural disasters (earthquakes, floods, and so on. P.), Social life circumstances (war, states of emergency, major strikes, epidemics, and so on. P.), Prohibitive measures of public authorities (prohibition of transportation, foreign exchange restrictions, international sanctions ban on trade, and so on. n.). During this time, the parties have no mutual claims, and each party shall assume its own risk the consequences of force majeure."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__47",
+    "defaultMessage": "9. Срок действия договора",
+    "message": "9. Validity of the contract"
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__48",
+    "defaultMessage": "9.1. Настоящий ДОГОВОР вступает в силу с момента обращения оформления и опалты ЗАКАЗА на САЙТЕ и заканчивается      при полном исполнении обязательств СТОРОНАМИ.",
+    "message": "9.1. This Agreement shall come into force from the date of registration and circulation opalty order on the website and ends with complete discharge of obligations."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__49",
+    "defaultMessage": "10. Персональные данные",
+    "message": "10. Personal data"
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__50",
+    "defaultMessage": "10.1. ПРОДАВЕЦ собирает и обрабатывает персональные данные ПОКУПАТЕЛЕЙ (а именно: фамилия, имя, отчество, день      рождения, пол, электронный адрес, контактный телефон) в целях",
+    "message": "10.1. SELLER collects and processes personal data of the customer (ie: name, surname, patronymic, date of birth, gender, email address, telephone number) in order to"
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__51",
+    "defaultMessage": "выполнения условий настоящего ДОГОВОРА",
+    "message": "the conditions of the CONTRACT"
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__52",
+    "defaultMessage": "предоставления ПОКУПАТЕЛЮ онлайн-доступа к КУРСУ",
+    "message": "Providing customers with online access to courses"
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__53",
+    "defaultMessage": "информирования ПОКУПАТЕЛЕЙ о появлении новых КУРСОВ на САЙТЕ",
+    "message": "inform the buyer of the appearance of new courses on SITE"
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__54",
+    "defaultMessage": "10.2. Осуществляя ЗАКАЗ КУРСА на САЙТЕ ПОКУПАТЕЛЬ даёт согласие на сбор и обработку персональных данных о себе      в целях получения онлайн-доступа к КУРСУ и исполнения условий настоящего ДОГОВОРА.",
+    "message": "10.2. Carrying ORDER Courses on the site BUYER gives consent to the collection and processing of personal information about themselves in order to obtain online access to course and fulfillment of the terms of this AGREEMENT."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__55",
+    "defaultMessage": "10.3. При сборе и обработке персональных данных ПОКУПАТЕЛЕЙ, ПРОДАВЕЦ не преследует иных целей, кроме      установленных в п.10.1 настоящего ДОГОВОРА.",
+    "message": "10.3. The collection and processing of personal data buyer, seller does not pursue a purpose other than those stated in this AGREEMENT p.10.1."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__56",
+    "defaultMessage": "10.4. Доступ к персональным данным ПОКУПАТЕЛЕЙ имеют только лица, имеющие непосредственное отношение к      исполнению ЗАКАЗОВ.",
+    "message": "10.4. Access to personal data of buyers have only those directly related to the execution of the order."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__57",
+    "defaultMessage": "11. Контактные данные и реквизиты ПРОДАВЦА",
+    "message": "11. Personal data and address MERCHANT"
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__58",
+    "defaultMessage": "ИП Донченко Максим Алексеевич",
+    "message": "SP Donchenko Maxim A."
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__59",
+    "defaultMessage": "Св-во о государственной регистрации",
+    "message": "Sv-in on state registration"
+  },
+  {
+    "id": "enterclass.offer.generated_1588864344595__60",
+    "defaultMessage": "Филиал № 7701 Банка ВТБ (ПАО) г. Москва",
+    "message": "Branch № 7701 of VTB Bank (PJSC) Moscow"
+  },
+  {
+    "id": "enterclass.ItemSelectedModal.course",
+    "defaultMessage": "Курс",
+    "message": "Course"
+  },
+  {
+    "id": "enterclass.ItemSelectedModal.marathon",
+    "defaultMessage": "Марафон",
+    "message": "Marathon"
+  },
+  {
+    "id": "enterclass.ItemSelectedModal.added",
+    "defaultMessage": "добавлен в корзину",
+    "message": "added to the cart"
+  },
+  {
+    "id": "enterclass.OrderForm.email_info",
+    "defaultMessage": "Чтобы оформить заказ, введите ниже свой e-mail. Если вы еще не зарегистрированы на сайте, вам автоматически будет создан аккаунт для этого e-mail’а. Пожалуйста, сразу активируйте ссылку, которая придёт на почту, после чего вы получите пароль для входа.",
+    "message": "To place an order, enter your email address below. If you are not yet registered on the site, you will automatically be created an account for this e-mail. Please immediately activate the link that will be sent to your email, and then you will receive a password to log in."
+  },
+  {
+    "id": "enterclass.expert_dialog_page.hide",
+    "defaultMessage": "Свернуть описание",
+    "message": "Show full description"
+  },
+  {
+    "id": "enterclass.expert_dialog_page.expand",
+    "defaultMessage": "Развернуть описание",
+    "message": "Hide full description"
+  },
+  {
+    "id": "dota2classic.shared-dota.dire",
+    "defaultMessage": "Тьма",
+    "message": "",
+    "filepath": "./src/shared-i18n/dota.i18n.ts"
+  },
+  {
+    "id": "dota2classic.shared-dota.radiant",
+    "defaultMessage": "Свет",
+    "message": "",
+    "filepath": "./src/shared-i18n/dota.i18n.ts"
+  }
+]
