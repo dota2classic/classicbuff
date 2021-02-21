@@ -8,7 +8,7 @@ import cx from "classnames";
 import { DiscordBlock } from "../components/UI/DiscordBlock";
 import { useTab } from "../utils/useTab";
 import { PlayerTeamsTab } from "./PlayerTeamsTab";
-
+import i18n from "pages-i18n/profile/profile.i18n";
 interface Props {
   steam_id: string;
 }
@@ -21,10 +21,10 @@ export default (p: Props) => {
     <>
       <Tabs>
         <Tab className={(tab == 0 && "active") || undefined} onClick={() => setTabAction(0)}>
-          История матчей
+          {i18n.history}
         </Tab>
         <Tab className={(tab == 1 && "active") || undefined} onClick={() => setTabAction(1)}>
-          Общая статистика
+          {i18n.generalStats}
         </Tab>
 
         {isMine && (
@@ -35,7 +35,7 @@ export default (p: Props) => {
 
         {isMine && (
           <Tab className={cx(tab == 3 && "active")} onClick={() => setTabAction(3)}>
-            Приглашения в команду
+            {i18n.teamInvites}
           </Tab>
         )}
 
@@ -46,7 +46,7 @@ export default (p: Props) => {
               return Router.push("/");
             }}
           >
-            Выйти
+            {i18n.logout}
           </Tab>
         )}
       </Tabs>

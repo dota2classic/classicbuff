@@ -1,9 +1,10 @@
-import React, { PropsWithChildren, useRef } from "react";
+import React, { PropsWithChildren, ReactNode, useRef } from "react";
 import styled from "styled-components";
 import useOutsideClick from "../../../utils/useOutsideClick";
 import { ColoredRole } from "../../UI/ColoredRole";
 import Button, { LinkButton } from "../../UI/Button";
 import Link from "next/link";
+import i18n from "./old-required.i18n";
 
 const Modal = styled.div`
   z-index: 100;
@@ -65,18 +66,18 @@ export const OldRequiredModal = ({ open, close, children }: PropsWithChildren<Pr
     <ModalWrapper>
       <Modal ref={comp}>
         <Title>
-          Эта функция доступна только игрокам с ролью <ColoredRole className="old">Древний</ColoredRole> и выше!
+          {i18n.withValues.oldRequired({
+            old: (...chunks: ReactNode[]) => <ColoredRole className="old">Древний</ColoredRole>
+          })}
         </Title>
 
-        {(children && <MainText>{children}</MainText>) || (
-          <MainText>Поддержи проект и получи доступ к эксклюзивным возможностям!</MainText>
-        )}
+        {(children && <MainText>{children}</MainText>) || <MainText>{i18n.supportProject}</MainText>}
         <Buttons>
           <Link href="/donate" passHref>
-            <LinkButton>Узнать больше</LinkButton>
+            <LinkButton>{i18n.learnMore}</LinkButton>
           </Link>
           <span style={{ marginLeft: 20 }} />
-          <Button onClick={close}>Закрыть</Button>
+          <Button onClick={close}>{i18n.close}</Button>
         </Buttons>
       </Modal>
     </ModalWrapper>

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useApi } from "../api/hooks";
 import { AdBanner } from "../components/ads/ads";
 import { Table, Tr } from "../components/UI/Table";
-
+import i18n from "pages-i18n/profile/profile.i18n";
 interface Props {
   steam_id: string;
 }
@@ -18,12 +18,12 @@ export default (props: Props) => {
       <Table className={"compact"}>
         <thead>
           <Tr>
-            <th>ID</th>
-            <th>Режим</th>
-            <th style={{ width: 20, textOverflow: "ellipsis" }}>Длительность</th>
-            <th>Герой</th>
-            <th className={"omit"}>Предметы</th>
-            <th>Результат</th>
+            <th>{i18n.id}</th>
+            <th>{i18n.mode}</th>
+            <th style={{ width: 20, textOverflow: "ellipsis" }}>{i18n.duration}</th>
+            <th>{i18n.hero}</th>
+            <th className={"omit"}>{i18n.items}</th>
+            <th>{i18n.result}</th>
             <th style={{ width: 40 }}>K</th>
             <th style={{ width: 40 }}>D</th>
             <th style={{ width: 40 }}>A</th>

@@ -11,7 +11,7 @@ import AuthService from "../../../service/AuthServiceService";
 import { LinkButton } from "../../../components/UI/Button";
 import Link from "next/link";
 import { observer } from "mobx-react";
-
+import i18n from "pages-i18n/profile/profile.i18n";
 const Page = () => {
   const { id } = useRouter().query;
 
@@ -31,9 +31,7 @@ const Page = () => {
           </Role>
           {player?.name}
         </h3>
-        <h4 style={{ textAlign: "center" }}>
-          {player?.rank} Ранг, {player?.mmr} MMR
-        </h4>
+        <h4 style={{ textAlign: "center" }}>{i18n.withValues.infoRow({ mmr: player?.mmr, rank: player?.rank })}</h4>
       </div>
       {AuthService.isModerator && (
         <Link href={"/admin/player/[id]"} as={`/admin/player/${id}`}>

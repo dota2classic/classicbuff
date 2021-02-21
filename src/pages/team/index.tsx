@@ -1,6 +1,6 @@
 import { useApi } from "../../api/hooks";
 import Layout from "../../components/Layout";
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import TeamCard from "components/UI/TeamCard";
 import styled from "styled-components";
 import Button from "../../components/UI/Button";
@@ -9,6 +9,7 @@ import { OldRequiredModal } from "components/modal/OldRequiredModal";
 import { useStores } from "../../stores";
 import { useRouter } from "next/router";
 import { ColoredRole } from "../../components/UI/ColoredRole";
+import i18n from "pages-i18n/team.i18n";
 
 const TeamsContainer = styled.div`
   display: flex;
@@ -22,10 +23,12 @@ export default () => {
   const [oldRequiredOpen, setOldRequiredOpen] = useState(false);
   const { auth } = useStores();
   return (
-    <Layout title="Команды">
+    <Layout title={i18n.teams}>
       <OldRequiredModal open={oldRequiredOpen} close={() => setOldRequiredOpen(false)}>
-        Создать команду может только игрок с подпиской
-        <ColoredRole className="old">Древний</ColoredRole> или <ColoredRole className="human">Человек</ColoredRole>
+        {i18n.withValues.oldRequired({
+          old: (...chunks: ReactNode[]) => <ColoredRole className="old">{chunks}</ColoredRole>,
+          human: (...chunks: ReactNode[]) => <ColoredRole className="human">{chunks}</ColoredRole>
+        })}
       </OldRequiredModal>
       <Button
         onClick={() => {
@@ -39,7 +42,7 @@ export default () => {
         Создать команду
       </Button>
       <TeamsContainer>
-        {data?.length === 0 && <Hint>Еще нет ни одной команды!</Hint>}
+        {data?.length === 0 && <Hint>{i18n.noTeams}</Hint>}
         {data?.map(t => (
           <TeamCard team={t} />
         ))}

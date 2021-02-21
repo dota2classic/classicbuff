@@ -8,7 +8,8 @@ import { HeroIcon } from "./UI/HeroIcon";
 import formatGameMode from "../utils/format/formatGameMode";
 import { MatchDto } from "../api/back/models";
 import { Tr } from "./UI/Table";
-
+import i18n from "pages-i18n/profile/profile.i18n";
+import { stores } from "../stores";
 export interface PlayerMatchInfo {
   player: string;
   match: MatchDto;
@@ -27,7 +28,9 @@ export default ({ match, player, index }: PlayerMatchInfo) => {
     >
       <td className={"green"}>
         {match.id} <br />
-        <span style={{ fontSize: 12, marginTop: 2, color: "#c2c2c2" }}>{formatDateStr(match.timestamp)}</span>
+        <span style={{ fontSize: 12, marginTop: 2, color: "#c2c2c2" }}>
+          {formatDateStr(match.timestamp, stores.lang.locale)}
+        </span>
       </td>
       <td>{formatGameMode(match.mode)}</td>
       <td>{formatDuration(match.duration)}</td>
@@ -42,7 +45,7 @@ export default ({ match, player, index }: PlayerMatchInfo) => {
         </ItemsContainer>
       </td>
       <td className={isWin ? "green" : "red"}>
-        <span>{!isWin ? "Поражение" : "Победа"}</span>
+        <span>{!isWin ? i18n.loss : i18n.win}</span>
       </td>
       <td>{pim.kills}</td>
       <td>{pim.deaths}</td>

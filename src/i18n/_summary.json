@@ -1,5 +1,152 @@
 [
   {
+    "id": "dota2classic.donate-page.additional_discord_features",
+    "defaultMessage": "Дополнительные привилегии на нашем сервере в <a>Discord</a>",
+    "description": "",
+    "en-US": "Additional privileges in <a>Discord</a>",
+    "ru-RU": "Дополнительные привилегии на нашем сервере в <a>Discord</a>"
+  },
+  {
+    "id": "dota2classic.donate-page.all_old_features",
+    "defaultMessage": "Все бонусы роли <role>древний</role>",
+    "description": "",
+    "en-US": "All bonuses of <role>Ancient</role> role",
+    "ru-RU": "Все бонусы роли <role>древний</role>"
+  },
+  {
+    "id": "dota2classic.donate-page.card",
+    "defaultMessage": "Карта (Сбербанк): 4276 3801 5277 6873",
+    "description": "",
+    "en-US": "Card (Sberbank): 4276 3801 5277 6873",
+    "ru-RU": "Карта (Сбербанк): 4276 3801 5277 6873"
+  },
+  {
+    "id": "dota2classic.donate-page.create_teams",
+    "defaultMessage": "Возможность создавать команды",
+    "description": "",
+    "en-US": "You can create teams",
+    "ru-RU": "Возможность создавать команды"
+  },
+  {
+    "id": "dota2classic.donate-page.dodge_list",
+    "defaultMessage": "Доджлист до 3 игроков",
+    "description": "",
+    "en-US": "Dodge list up to 3 players",
+    "ru-RU": "Доджлист до 3 игроков"
+  },
+  {
+    "id": "dota2classic.donate-page.double_down",
+    "defaultMessage": "Double-down рейтинга",
+    "description": "",
+    "en-US": "Rating double-down",
+    "ru-RU": "Double-down рейтинга"
+  },
+  {
+    "id": "dota2classic.donate-page.human",
+    "defaultMessage": "Человек",
+    "description": "",
+    "en-US": "Human",
+    "ru-RU": "Человек"
+  },
+  {
+    "id": "dota2classic.donate-page.human_price_actual",
+    "defaultMessage": "300₽ / месяц",
+    "description": "",
+    "en-US": "$3 / month",
+    "ru-RU": "300₽ / месяц"
+  },
+  {
+    "id": "dota2classic.donate-page.human_price_old",
+    "defaultMessage": "600₽",
+    "description": "",
+    "en-US": "$40",
+    "ru-RU": "600₽"
+  },
+  {
+    "id": "dota2classic.donate-page.levels",
+    "defaultMessage": "Уровни подписки",
+    "description": "",
+    "en-US": "Subscription tiers",
+    "ru-RU": "Уровни подписки"
+  },
+  {
+    "id": "dota2classic.donate-page.mir",
+    "defaultMessage": "МИР: 2202 2011 2865 1052",
+    "description": "",
+    "en-US": "MIR: 2202 2011 2865 1052",
+    "ru-RU": "МИР: 2202 2011 2865 1052"
+  },
+  {
+    "id": "dota2classic.donate-page.nickname_discord",
+    "defaultMessage": "Возможность менять никнейм на нашем сервере в <a>Discord</a>",
+    "description": "",
+    "en-US": "You can change your nickname in <a>Discord</a>",
+    "ru-RU": "Возможность менять никнейм на нашем сервере в <a>Discord</a>"
+  },
+  {
+    "id": "dota2classic.donate-page.not_to_add_link",
+    "defaultMessage": "Внимание! В описаниях к платежу указывайте ссылку на свой профиль на нашем сайте. Пример ссылки на профиль: <a>https://dota2classic.ru/player/280443916</a>",
+    "description": "",
+    "en-US": "Attention! In description to a payment please include link to your profile on our site. Example link: <a>https://dota2classic.ru/player/280443916</a>",
+    "ru-RU": "Внимание! В описаниях к платежу указывайте ссылку на свой профиль на нашем сайте. Пример ссылки на профиль: <a>https://dota2classic.ru/player/280443916</a>"
+  },
+  {
+    "id": "dota2classic.donate-page.old",
+    "defaultMessage": "Древний",
+    "description": "",
+    "en-US": "Древний",
+    "ru-RU": "Древний"
+  },
+  {
+    "id": "dota2classic.donate-page.old_price",
+    "defaultMessage": "81₽ / месяц",
+    "description": "",
+    "en-US": "$3 / month",
+    "ru-RU": "81₽ / месяц"
+  },
+  {
+    "id": "dota2classic.donate-page.ranked_party_games",
+    "defaultMessage": "Возможность искать рейтинговые игры в группе",
+    "description": "",
+    "en-US": "You can queue ranked games in party",
+    "ru-RU": "Возможность искать рейтинговые игры в группе"
+  },
+  {
+    "id": "dota2classic.donate-page.real_help_thank_you",
+    "defaultMessage": "Участники с этой ролью попадают в список людей, оказавших значительную поддержку серверу.",
+    "description": "",
+    "en-US": "Members with this tier are in top supporters list, who helped us a lot",
+    "ru-RU": "Участники с этой ролью попадают в список людей, оказавших значительную поддержку серверу."
+  },
+  {
+    "id": "dota2classic.donate-page.watch_games",
+    "defaultMessage": "Возможность смотреть игры",
+    "description": "",
+    "en-US": "You can watch live games",
+    "ru-RU": "Возможность смотреть игры"
+  },
+  {
+    "id": "dota2classic.donate-page.ways_to_support",
+    "defaultMessage": "Способы поддержки",
+    "description": "",
+    "en-US": "Ways to support",
+    "ru-RU": "Способы поддержки"
+  },
+  {
+    "id": "dota2classic.donate-page.welcome_text",
+    "defaultMessage": "Вы можете поспособствовать развитию сервера и совершить добровольное пожертвование на его продвижение",
+    "description": "",
+    "en-US": "You can contribute to the development of the server and make a voluntary donation to promote it",
+    "ru-RU": "Вы можете поспособствовать развитию сервера и совершить добровольное пожертвование на его продвижение"
+  },
+  {
+    "id": "dota2classic.donate-page.yandex_money",
+    "defaultMessage": "Яндекс.Деньги: 410011001103695",
+    "description": "",
+    "en-US": "Yandex.Money: 410011001103695",
+    "ru-RU": "Яндекс.Деньги: 410011001103695"
+  },
+  {
     "id": "dota2classic.download-page.attention_queue",
     "defaultMessage": "Внимание: Поиск игры происходит через <a>сайт</a>",
     "description": "",
@@ -343,6 +490,97 @@
     "ru-RU": "Таблица лидеров"
   },
   {
+    "id": "dota2classic.profile.duration",
+    "defaultMessage": "Длительность",
+    "description": "",
+    "en-US": "Duration",
+    "ru-RU": "Длительность"
+  },
+  {
+    "id": "dota2classic.profile.general_stats",
+    "defaultMessage": "Общая статистика",
+    "description": "",
+    "en-US": "General stats",
+    "ru-RU": "Общая статистика"
+  },
+  {
+    "id": "dota2classic.profile.hero",
+    "defaultMessage": "Герой",
+    "description": "",
+    "en-US": "Hero",
+    "ru-RU": "Герой"
+  },
+  {
+    "id": "dota2classic.profile.history",
+    "defaultMessage": "История матчей",
+    "description": "",
+    "en-US": "Match history",
+    "ru-RU": "История матчей"
+  },
+  {
+    "id": "dota2classic.profile.id",
+    "defaultMessage": "ID",
+    "description": "",
+    "en-US": "ID",
+    "ru-RU": "ID"
+  },
+  {
+    "id": "dota2classic.profile.info_row",
+    "defaultMessage": "{rank} Ранг, {mmr} MMR",
+    "description": "",
+    "en-US": "{rank} Rank, {mmr} MMR",
+    "ru-RU": "{rank} Ранг, {mmr} MMR"
+  },
+  {
+    "id": "dota2classic.profile.items",
+    "defaultMessage": "Предметы",
+    "description": "",
+    "en-US": "Items",
+    "ru-RU": "Предметы"
+  },
+  {
+    "id": "dota2classic.profile.logout",
+    "defaultMessage": "Выйти",
+    "description": "",
+    "en-US": "Log out",
+    "ru-RU": "Выйти"
+  },
+  {
+    "id": "dota2classic.profile.loss",
+    "defaultMessage": "Поражение",
+    "description": "",
+    "en-US": "Loss",
+    "ru-RU": "Поражение"
+  },
+  {
+    "id": "dota2classic.profile.mode",
+    "defaultMessage": "Режим",
+    "description": "",
+    "en-US": "Mode",
+    "ru-RU": "Режим"
+  },
+  {
+    "id": "dota2classic.profile.result",
+    "defaultMessage": "Результат",
+    "description": "",
+    "en-US": "Result",
+    "ru-RU": "Результат"
+  },
+  {
+    "id": "dota2classic.profile.team_invites",
+    "defaultMessage": "Приглашения в команду",
+    "description": "",
+    "en-US": "Team invites",
+    "ru-RU": "Приглашения в команду"
+  },
+  {
+    "id": "dota2classic.profile.win",
+    "defaultMessage": "Победа",
+    "description": "",
+    "en-US": "Win",
+    "ru-RU": "Победа"
+  },
+  {
     "id": "dota2classic.queue-game-modes.game_search",
     "defaultMessage": "Поиск игры",
     "description": "",
@@ -355,6 +593,55 @@
     "description": "",
     "en-US": "You need to login with your steam account to search for a game",
     "ru-RU": "Для поиска игры нужно войти в свой Steam аккаунт"
+  },
+  {
+    "id": "dota2classic.queue-selected-game-mode.ability_draft",
+    "defaultMessage": "Старый добрый Ability Draft. Создай своего героя сам из старых способностей и без талантов!",
+    "description": "",
+    "en-US": "Good old Ability Draft. Create your own hero with old abilities and without talents!",
+    "ru-RU": "Старый добрый Ability Draft. Создай своего героя сам из старых способностей и без талантов!"
+  },
+  {
+    "id": "dota2classic.queue-selected-game-mode.bots",
+    "defaultMessage": "Пустые слоты заполняются ботами. Если есть хотя бы 2 игрока в поиске, то игра найдется. Проверка происходит каждые 10 минут.",
+    "description": "",
+    "en-US": "Empty slots are filled with bots. If there is at least 2 players in queue, game will found in some time. The check happens every 10 minutes",
+    "ru-RU": "Пустые слоты заполняются ботами. Если есть хотя бы 2 игрока в поиске, то игра найдется. Проверка происходит каждые 10 минут."
+  },
+  {
+    "id": "dota2classic.queue-selected-game-mode.diretide",
+    "defaultMessage": "Знаменитый Diretide, который все так давно просят.",
+    "description": "",
+    "en-US": "The famous Diretide that everyone has been asking for for so long.",
+    "ru-RU": "Знаменитый Diretide, который все так давно просят."
+  },
+  {
+    "id": "dota2classic.queue-selected-game-mode.most_popular_mode",
+    "defaultMessage": "Самый популярный режим на сервере. Первые 10 игр в сезоне - калибровочные, после калибровки рейтинг меняется на ±25 очков.",
+    "description": "",
+    "en-US": "The most popular mode on the server. The first 10 games of the season are calibration, after calibration the rating changes by ± 25 points.",
+    "ru-RU": "Самый популярный режим на сервере. Первые 10 игр в сезоне - калибровочные, после калибровки рейтинг меняется на ±25 очков."
+  },
+  {
+    "id": "dota2classic.queue-selected-game-mode.solomid",
+    "defaultMessage": "Отличный способ вспомнить способности героя или быстро сыграть с другом. Или потренироваться для турнира 1х1 ;)",
+    "description": "",
+    "en-US": "A great way to remember a hero's abilities or quickly play with a friend. Or practice for a 1x1 tournament;)",
+    "ru-RU": "Отличный способ вспомнить способности героя или быстро сыграть с другом. Или потренироваться для турнира 1х1 ;)"
+  },
+  {
+    "id": "dota2classic.queue-selected-game-mode.unranked",
+    "defaultMessage": "Обычная игра 5х5 без рейтинга. Этот режим менее популярен, чем рейтинг",
+    "description": "",
+    "en-US": "A regular 5x5 game with no rating. This mode is less popular than the rating",
+    "ru-RU": "Обычная игра 5х5 без рейтинга. Этот режим менее популярен, чем рейтинг"
+  },
+  {
+    "id": "dota2classic.queue-selected-game-mode.view_leaderboard",
+    "defaultMessage": "Посмотреть таблицу лидеров",
+    "description": "",
+    "en-US": "View Leaderboard",
+    "ru-RU": "Посмотреть таблицу лидеров"
   },
   {
     "id": "dota2classic.shared-dota.dire",
@@ -371,200 +658,81 @@
     "ru-RU": "Свет"
   },
   {
-    "id": "dota2classic.donate-page.additional_discord_features",
-    "defaultMessage": "Дополнительные привилегии на нашем сервере в <a>Discord</a>",
+    "id": "dota2classic.steam-info.authorization",
+    "defaultMessage": "Происходит авторизация...",
     "description": "",
-    "en-US": "Additional privileges in <a>Discord</a>",
-    "ru-RU": "Дополнительные привилегии на нашем сервере в <a>Discord</a>"
+    "en-US": "Authorizing...",
+    "ru-RU": "Происходит авторизация..."
   },
   {
-    "id": "dota2classic.donate-page.all_old_features",
-    "defaultMessage": "Все бонусы роли <role>древний</role>",
+    "id": "dota2classic.steam-info.current_games",
+    "defaultMessage": "Игр идет: {games}",
     "description": "",
-    "en-US": "All bonuses of <role>Ancient</role> role",
-    "ru-RU": "Все бонусы роли <role>древний</role>"
+    "en-US": "Current games: {games}",
+    "ru-RU": "Игр идет: {games}"
   },
   {
-    "id": "dota2classic.donate-page.card",
-    "defaultMessage": "Карта (Сбербанк): 4276 3801 5277 6873",
+    "id": "dota2classic.steam-info.free_servers",
+    "defaultMessage": "{free} свободных серверов",
     "description": "",
-    "en-US": "Card (Sberbank): 4276 3801 5277 6873",
-    "ru-RU": "Карта (Сбербанк): 4276 3801 5277 6873"
+    "en-US": "{free} free servers",
+    "ru-RU": "{free} свободных серверов"
   },
   {
-    "id": "dota2classic.donate-page.create_teams",
-    "defaultMessage": "Возможность создавать команды",
+    "id": "dota2classic.steam-info.leave_group",
+    "defaultMessage": "Покинуть группу",
     "description": "",
-    "en-US": "You can create teams",
-    "ru-RU": "Возможность создавать команды"
+    "en-US": "Leave party",
+    "ru-RU": "Покинуть группу"
   },
   {
-    "id": "dota2classic.donate-page.dodge_list",
-    "defaultMessage": "Доджлист до 3 игроков",
+    "id": "dota2classic.steam-info.online",
+    "defaultMessage": "{online} онлайн",
     "description": "",
-    "en-US": "Dodge list up to 3 players",
-    "ru-RU": "Доджлист до 3 игроков"
+    "en-US": "{online} in game",
+    "ru-RU": "{online} онлайн"
   },
   {
-    "id": "dota2classic.donate-page.double_down",
-    "defaultMessage": "Double-down рейтинга",
+    "id": "dota2classic.steam-info.players_in_queue",
+    "defaultMessage": "игроков: {piq}",
     "description": "",
-    "en-US": "Rating double-down ",
-    "ru-RU": "Double-down рейтинга"
+    "en-US": "players: {piq}",
+    "ru-RU": "игроков: {piq}"
   },
   {
-    "id": "dota2classic.donate-page.human",
-    "defaultMessage": "Человек",
+    "id": "dota2classic.steam-info.search",
+    "defaultMessage": "Поиск {s}",
     "description": "",
-    "en-US": "Human",
-    "ru-RU": "Человек"
+    "en-US": "Search {s}",
+    "ru-RU": "Поиск {s}"
   },
   {
-    "id": "dota2classic.donate-page.human_price_actual",
-    "defaultMessage": "300₽ / месяц",
+    "id": "dota2classic.steam-info.searching_game_coordinator",
+    "defaultMessage": "Идет подключение к игровому координатору...",
     "description": "",
-    "en-US": "$3 / month",
-    "ru-RU": "300₽ / месяц"
+    "en-US": "Connecting to the game coordinator...",
+    "ru-RU": "Идет подключение к игровому координатору..."
   },
   {
-    "id": "dota2classic.donate-page.human_price_old",
-    "defaultMessage": "600₽",
+    "id": "dota2classic.teams.no_teams",
+    "defaultMessage": "Еще нет ни одной команды!",
     "description": "",
-    "en-US": "$40",
-    "ru-RU": "600₽"
+    "en-US": "There are no teams yet!",
+    "ru-RU": "Еще нет ни одной команды!"
   },
   {
-    "id": "dota2classic.donate-page.levels",
-    "defaultMessage": "Уровни подписки",
+    "id": "dota2classic.teams.old_required",
+    "defaultMessage": "Создать команду может только игрок с подпиской <old>Древний</old> или <human>Человек</human>",
     "description": "",
-    "en-US": "Subscription tiers",
-    "ru-RU": "Уровни подписки"
+    "en-US": "You can create team if you have <old>Ancient</old> or <human>Human</human> subscription",
+    "ru-RU": "Создать команду может только игрок с подпиской <old>Древний</old> или <human>Человек</human>"
   },
   {
-    "id": "dota2classic.donate-page.mir",
-    "defaultMessage": "МИР: 2202 2011 2865 1052",
+    "id": "dota2classic.teams.teams",
+    "defaultMessage": "Команды",
     "description": "",
-    "en-US": "MIR: 2202 2011 2865 1052",
-    "ru-RU": "МИР: 2202 2011 2865 1052"
-  },
-  {
-    "id": "dota2classic.donate-page.nickname_discord",
-    "defaultMessage": "Возможность менять никнейм на нашем сервере в <a>Discord</a>",
-    "description": "",
-    "en-US": "You can change your nickname in <a>Discord</a>",
-    "ru-RU": "Возможность менять никнейм на нашем сервере в <a>Discord</a>"
-  },
-  {
-    "id": "dota2classic.donate-page.not_to_add_link",
-    "defaultMessage": "Внимание! В описаниях к платежу указывайте ссылку на свой профиль на нашем сайте. Пример ссылки на профиль: <a>https://dota2classic.ru/player/280443916</a>",
-    "description": "",
-    "en-US": "Attention! In description to a payment please include link to your profile on our site. Example link: <a>https://dota2classic.ru/player/280443916</a>",
-    "ru-RU": "Внимание! В описаниях к платежу указывайте ссылку на свой профиль на нашем сайте. Пример ссылки на профиль: <a>https://dota2classic.ru/player/280443916</a>"
-  },
-  {
-    "id": "dota2classic.donate-page.old",
-    "defaultMessage": "Древний",
-    "description": "",
-    "en-US": "Древний",
-    "ru-RU": "Древний"
-  },
-  {
-    "id": "dota2classic.donate-page.old_price",
-    "defaultMessage": "81₽ / месяц",
-    "description": "",
-    "en-US": "$3 / month",
-    "ru-RU": "81₽ / месяц"
-  },
-  {
-    "id": "dota2classic.donate-page.ranked_party_games",
-    "defaultMessage": "Возможность искать рейтинговые игры в группе",
-    "description": "",
-    "en-US": "You can queue ranked games in party",
-    "ru-RU": "Возможность искать рейтинговые игры в группе"
-  },
-  {
-    "id": "dota2classic.donate-page.real_help_thank_you",
-    "defaultMessage": "Участники с этой ролью попадают в список людей, оказавших значительную поддержку серверу.",
-    "description": "",
-    "en-US": "Members with this tier are in top supporters list, who helped us a lot",
-    "ru-RU": "Участники с этой ролью попадают в список людей, оказавших значительную поддержку серверу."
-  },
-  {
-    "id": "dota2classic.donate-page.watch_games",
-    "defaultMessage": "Возможность смотреть игры",
-    "description": "",
-    "en-US": "You can watch live games",
-    "ru-RU": "Возможность смотреть игры"
-  },
-  {
-    "id": "dota2classic.donate-page.ways_to_support",
-    "defaultMessage": "Способы поддержки",
-    "description": "",
-    "en-US": "Ways to support",
-    "ru-RU": "Способы поддержки"
-  },
-  {
-    "id": "dota2classic.donate-page.welcome_text",
-    "defaultMessage": "Вы можете поспособствовать развитию сервера и совершить добровольное пожертвование на его продвижение",
-    "description": "",
-    "en-US": "You can contribute to the development of the server and make a voluntary donation to promote it",
-    "ru-RU": "Вы можете поспособствовать развитию сервера и совершить добровольное пожертвование на его продвижение"
-  },
-  {
-    "id": "dota2classic.donate-page.yandex_money",
-    "defaultMessage": "Яндекс.Деньги: 410011001103695",
-    "description": "",
-    "en-US": "Yandex.Money: 410011001103695",
-    "ru-RU": "Яндекс.Деньги: 410011001103695"
-  },
-  {
-    "id": "dota2classic.queue-selected-game-mode.ability_draft",
-    "defaultMessage": "Старый добрый Ability Draft. Создай своего героя сам из старых способностей и без талантов!",
-    "description": "",
-    "en-US": "Good old Ability Draft. Create your own hero with old abilities and without talents! ",
-    "ru-RU": "Старый добрый Ability Draft. Создай своего героя сам из старых способностей и без талантов!"
-  },
-  {
-    "id": "dota2classic.queue-selected-game-mode.bots",
-    "defaultMessage": "Пустые слоты заполняются ботами. Если есть хотя бы 2 игрока в поиске, то игра найдется. Проверка происходит каждые 10 минут.",
-    "description": "",
-    "en-US": "Empty slots are filled with bots. If there is at least 2 players in queue, game will found in some time. The check happens every 10 minutes",
-    "ru-RU": "Пустые слоты заполняются ботами. Если есть хотя бы 2 игрока в поиске, то игра найдется. Проверка происходит каждые 10 минут."
-  },
-  {
-    "id": "dota2classic.queue-selected-game-mode.diretide",
-    "defaultMessage": "Знаменитый Diretide, который все так давно просят.",
-    "description": "",
-    "en-US": "Знаменитый Diretide, который все так давно просят.",
-    "ru-RU": "Знаменитый Diretide, который все так давно просят."
-  },
-  {
-    "id": "dota2classic.queue-selected-game-mode.most_popular_mode",
-    "defaultMessage": "Самый популярный режим на сервере. Первые 10 игр в сезоне - калибровочные, после калибровки рейтинг меняется на ±25 очков.",
-    "description": "",
-    "en-US": "The most popular mode on the server. The first 10 games of the season are calibration, after calibration the rating changes by ± 25 points.",
-    "ru-RU": "Самый популярный режим на сервере. Первые 10 игр в сезоне - калибровочные, после калибровки рейтинг меняется на ±25 очков."
-  },
-  {
-    "id": "dota2classic.queue-selected-game-mode.solomid",
-    "defaultMessage": "Отличный способ вспомнить способности героя или быстро сыграть с другом. Или потренироваться для турнира 1х1 ;)",
-    "description": "",
-    "en-US": "Отличный способ вспомнить способности героя или быстро сыграть с другом. Или потренироваться для турнира 1х1 ;)",
-    "ru-RU": "Отличный способ вспомнить способности героя или быстро сыграть с другом. Или потренироваться для турнира 1х1 ;)"
-  },
-  {
-    "id": "dota2classic.queue-selected-game-mode.unranked",
-    "defaultMessage": "Обычная игра 5х5 без рейтинга. Этот режим менее популярен, чем рейтинг",
-    "description": "",
-    "en-US": "A regular 5x5 game with no rating. This mode is less popular than the rating",
-    "ru-RU": "Обычная игра 5х5 без рейтинга. Этот режим менее популярен, чем рейтинг"
-  },
-  {
-    "id": "dota2classic.queue-selected-game-mode.view_leaderboard",
-    "defaultMessage": "Посмотреть таблицу лидеров",
-    "description": "",
-    "en-US": "View Leaderboard",
-    "ru-RU": "Посмотреть таблицу лидеров"
+    "en-US": "Teams",
+    "ru-RU": "Команды"
   },
   {
     "id": "dota2classic.tournament-match.best_of",
@@ -719,5 +887,33 @@
     "description": "",
     "en-US": "Tournament",
     "ru-RU": "Турнир"
+  },
+  {
+    "id": "dota2classic.old-required-modal.close",
+    "defaultMessage": "Закрыть",
+    "description": "",
+    "en-US": "Close",
+    "ru-RU": "Закрыть"
+  },
+  {
+    "id": "dota2classic.old-required-modal.learn_more",
+    "defaultMessage": "Узнать больше",
+    "description": "",
+    "en-US": "Learn more",
+    "ru-RU": "Узнать больше"
+  },
+  {
+    "id": "dota2classic.old-required-modal.old_required",
+    "defaultMessage": "Эта функция доступна только игрокам с ролью <old>Древний</old> и выше!",
+    "description": "",
+    "en-US": "This action is available only for players with <old>Ancient</old> subscriptions or higher!",
+    "ru-RU": "Эта функция доступна только игрокам с ролью <old>Древний</old> и выше!"
+  },
+  {
+    "id": "dota2classic.old-required-modal.support_project",
+    "defaultMessage": "Поддержи проект и получи доступ к эксклюзивным возможностям!",
+    "description": "",
+    "en-US": "Support the project and get access to exclusive opportunities!",
+    "ru-RU": "Поддержи проект и получи доступ к эксклюзивным возможностям!"
   }
 ]

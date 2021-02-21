@@ -7,7 +7,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import { mockLiveMatch } from "../../utils/mockLiveMatch";
 import { LiveMatchPreview } from "../../components/live/LiveMatchPreview";
-
+import i18n from "pages-i18n/live";
 const NoGamesInfo = styled.div`
   color: #c2c2c2;
   font-size: 20px;
@@ -39,9 +39,9 @@ export default () => {
 
       {data?.length === 0 && (
         <NoGamesInfo>
-          <span>Сейчас не идет ни одной игры.</span>
+          <span>{i18n.noGames}</span>
           <Link href={`/queue`}>
-            <a> Отличный повод запустить поиск ;)</a>
+            <a>{i18n.goodReasonToQueue}</a>
           </Link>
         </NoGamesInfo>
       )}

@@ -3734,13 +3734,13 @@
   {
     "id": "dota2classic.queue-selected-game-mode.solomid",
     "defaultMessage": "Отличный способ вспомнить способности героя или быстро сыграть с другом. Или потренироваться для турнира 1х1 ;)",
-    "message": "Отличный способ вспомнить способности героя или быстро сыграть с другом. Или потренироваться для турнира 1х1 ;)",
+    "message": "A great way to remember a hero's abilities or quickly play with a friend. Or practice for a 1x1 tournament;)",
     "filepath": "./src/container/queue/layout/selected-game-mode.i18n.ts"
   },
   {
     "id": "dota2classic.queue-selected-game-mode.diretide",
     "defaultMessage": "Знаменитый Diretide, который все так давно просят.",
-    "message": "Знаменитый Diretide, который все так давно просят.",
+    "message": "The famous Diretide that everyone has been asking for for so long.",
     "filepath": "./src/container/queue/layout/selected-game-mode.i18n.ts"
   },
   {
@@ -4006,5 +4006,173 @@
     "defaultMessage": "Сетка турнира {title}",
     "message": "Tournament bracket {title}",
     "filepath": "./src/pages-i18n/tournament/tournament.i18n.ts"
+  },
+  {
+    "id": "dota2classic.steam-info.searching_game_coordinator",
+    "defaultMessage": "Идет подключение к игровому координатору...",
+    "message": "Connecting to the game coordinator...",
+    "filepath": "./src/container/queue/steam-info.i18n.ts"
+  },
+  {
+    "id": "dota2classic.steam-info.authorization",
+    "defaultMessage": "Происходит авторизация...",
+    "message": "Authorizing...",
+    "filepath": "./src/container/queue/steam-info.i18n.ts"
+  },
+  {
+    "id": "dota2classic.steam-info.leave_group",
+    "defaultMessage": "Покинуть группу",
+    "message": "Leave party",
+    "filepath": "./src/container/queue/steam-info.i18n.ts"
+  },
+  {
+    "id": "dota2classic.steam-info.players_in_queue",
+    "defaultMessage": "игроков: {piq}",
+    "message": "players: {piq}",
+    "filepath": "./src/container/queue/steam-info.i18n.ts"
+  },
+  {
+    "id": "dota2classic.steam-info.online",
+    "defaultMessage": "{online} онлайн",
+    "message": "{online} in game",
+    "filepath": "./src/container/queue/steam-info.i18n.ts"
+  },
+  {
+    "id": "dota2classic.steam-info.free_servers",
+    "defaultMessage": "{free} свободных серверов",
+    "message": "{free} free servers",
+    "filepath": "./src/container/queue/steam-info.i18n.ts"
+  },
+  {
+    "id": "dota2classic.steam-info.search",
+    "defaultMessage": "Поиск {s}",
+    "message": "Search {s}",
+    "filepath": "./src/container/queue/steam-info.i18n.ts"
+  },
+  {
+    "id": "dota2classic.steam-info.current_games",
+    "defaultMessage": "Игр идет: {games}",
+    "message": "Current games: {games}",
+    "filepath": "./src/container/queue/steam-info.i18n.ts"
+  },
+  {
+    "id": "dota2classic.profile.info_row",
+    "defaultMessage": "{rank} Ранг, {mmr} MMR",
+    "message": "{rank} Rank, {mmr} MMR",
+    "filepath": "./src/pages-i18n/profile/profile.i18n.ts"
+  },
+  {
+    "id": "dota2classic.profile.history",
+    "defaultMessage": "История матчей",
+    "message": "Match history",
+    "filepath": "./src/pages-i18n/profile/profile.i18n.ts"
+  },
+  {
+    "id": "dota2classic.profile.general_stats",
+    "defaultMessage": "Общая статистика",
+    "message": "General stats",
+    "filepath": "./src/pages-i18n/profile/profile.i18n.ts"
+  },
+  {
+    "id": "dota2classic.profile.team_invites",
+    "defaultMessage": "Приглашения в команду",
+    "message": "Team invites",
+    "filepath": "./src/pages-i18n/profile/profile.i18n.ts"
+  },
+  {
+    "id": "dota2classic.profile.logout",
+    "defaultMessage": "Выйти",
+    "message": "Log out",
+    "filepath": "./src/pages-i18n/profile/profile.i18n.ts"
+  },
+  {
+    "id": "dota2classic.profile.id",
+    "defaultMessage": "ID",
+    "message": "ID",
+    "filepath": "./src/pages-i18n/profile/profile.i18n.ts"
+  },
+  {
+    "id": "dota2classic.profile.mode",
+    "defaultMessage": "Режим",
+    "message": "Mode",
+    "filepath": "./src/pages-i18n/profile/profile.i18n.ts"
+  },
+  {
+    "id": "dota2classic.profile.duration",
+    "defaultMessage": "Длительность",
+    "message": "Duration",
+    "filepath": "./src/pages-i18n/profile/profile.i18n.ts"
+  },
+  {
+    "id": "dota2classic.profile.hero",
+    "defaultMessage": "Герой",
+    "message": "Hero",
+    "filepath": "./src/pages-i18n/profile/profile.i18n.ts"
+  },
+  {
+    "id": "dota2classic.profile.items",
+    "defaultMessage": "Предметы",
+    "message": "Items",
+    "filepath": "./src/pages-i18n/profile/profile.i18n.ts"
+  },
+  {
+    "id": "dota2classic.profile.result",
+    "defaultMessage": "Результат",
+    "message": "Result",
+    "filepath": "./src/pages-i18n/profile/profile.i18n.ts"
+  },
+  {
+    "id": "dota2classic.profile.win",
+    "defaultMessage": "Победа",
+    "message": "Win",
+    "filepath": "./src/pages-i18n/profile/profile.i18n.ts"
+  },
+  {
+    "id": "dota2classic.profile.loss",
+    "defaultMessage": "Поражение",
+    "message": "Loss",
+    "filepath": "./src/pages-i18n/profile/profile.i18n.ts"
+  },
+  {
+    "id": "dota2classic.teams.teams",
+    "defaultMessage": "Команды",
+    "message": "Teams",
+    "filepath": "./src/pages-i18n/team.i18n.ts"
+  },
+  {
+    "id": "dota2classic.teams.no_teams",
+    "defaultMessage": "Еще нет ни одной команды!",
+    "message": "There are no teams yet!",
+    "filepath": "./src/pages-i18n/team.i18n.ts"
+  },
+  {
+    "id": "dota2classic.teams.old_required",
+    "defaultMessage": "Создать команду может только игрок с подпиской <old>Древний</old> или <human>Человек</human>",
+    "message": "You can create team if you have <old>Ancient</old> or <human>Human</human> subscription",
+    "filepath": "./src/pages-i18n/team.i18n.ts"
+  },
+  {
+    "id": "dota2classic.old-required-modal.support_project",
+    "defaultMessage": "Поддержи проект и получи доступ к эксклюзивным возможностям!",
+    "message": "Support the project and get access to exclusive opportunities!",
+    "filepath": "./src/components/modal/OldRequiredModal/old-required.i18n.ts"
+  },
+  {
+    "id": "dota2classic.old-required-modal.learn_more",
+    "defaultMessage": "Узнать больше",
+    "message": "Learn more",
+    "filepath": "./src/components/modal/OldRequiredModal/old-required.i18n.ts"
+  },
+  {
+    "id": "dota2classic.old-required-modal.close",
+    "defaultMessage": "Закрыть",
+    "message": "Close",
+    "filepath": "./src/components/modal/OldRequiredModal/old-required.i18n.ts"
+  },
+  {
+    "id": "dota2classic.old-required-modal.old_required",
+    "defaultMessage": "Эта функция доступна только игрокам с ролью <old>Древний</old> и выше!",
+    "message": "This action is available only for players with <old>Ancient</old> subscriptions or higher!",
+    "filepath": "./src/components/modal/OldRequiredModal/old-required.i18n.ts"
   }
 ]

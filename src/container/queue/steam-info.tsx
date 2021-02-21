@@ -7,10 +7,8 @@ import formatGameMode from "../../utils/format/formatGameMode";
 import { useApi } from "../../api/hooks";
 import cx from "classnames";
 import { InvitePlayerModal } from "../InvitePlayerModal";
-import { OldRequiredModal } from "../../components/modal/OldRequiredModal";
-import { ColoredRole } from "../../components/UI/ColoredRole";
 import { GameCoordinatorState } from "../../stores/queue/game-coordinator.state";
-import { SearchGameButton } from "../../components/UI/SearchGameBar/SearchGameButton";
+import i18n from "./steam-info.i18n";
 
 const InfoRow = styled.div`
   display: flex;
@@ -135,9 +133,9 @@ const GameCoordinatorConnection = () => {
   return (
     <InfoRow>
       {queue.readyState === GameCoordinatorState.DISCONNECTED ? (
-        <SearchGameBar>Идет подключение к игровому координатору...</SearchGameBar>
+        <SearchGameBar>{i18n.searchingGameCoordinator}</SearchGameBar>
       ) : (
-        <SearchGameBar>Происходит авторизация...</SearchGameBar>
+        <SearchGameBar>{i18n.authorization}</SearchGameBar>
       )}
     </InfoRow>
   );
@@ -173,23 +171,23 @@ export default observer(() => {
       </PartyContents>
 
       {party && party.players.length > 1 && (
-        <CancelFindGameButton onClick={() => queue.leaveParty()}>Покинуть группу</CancelFindGameButton>
+        <CancelFindGameButton onClick={() => queue.leaveParty()}>{i18n.leaveGroup}</CancelFindGameButton>
       )}
 
       {/*<SearchGameButton />*/}
 
       {queue.searchingMode !== undefined && (
         <SearchGameBar>
-          <span>Поиск {formatGameMode(queue.searchingMode)}</span>
-          <span className={"info"}>игроков: {queue.inQueue[queue.searchingMode]}</span>
+          <span>{i18n.withValues.search({ s: formatGameMode(queue.searchingMode) })}</span>
+          <span className={"info"}>{i18n.withValues.playersInQueue({ piq: queue.inQueue[queue.searchingMode] })}</span>
         </SearchGameBar>
       )}
 
       {onlineData && (
         <InfoTab>
-          <span>{onlineData.inGame} онлайн</span>
-          <span>{onlineData.servers - onlineData.sessions} свободных серверов</span>
-          <span>Игр идет: {onlineData.sessions}</span>
+          <span>{i18n.withValues.online({ online: onlineData.inGame })}</span>
+          <span>{i18n.withValues.freeServers({ free: onlineData.servers - onlineData.sessions })}</span>
+          <span>{i18n.withValues.currentGames({ games: onlineData.sessions })}</span>
         </InfoTab>
       )}
     </InfoRow>
