@@ -62,10 +62,23 @@ export const Tab = styled.a`
     font-size: inherit;
   }
 
+  &.accent {
+    & ::before {
+      content: "";
+      background: ${colors.blueHighlight2};
+      height: 2px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+
+      opacity: 1;
+      right: 0;
+    }
+  }
   &.active {
     ::before {
       content: "";
-      background: ${colors.blueHighlight};
+      background: ${colors.blueHighlight} !important;
       height: 2px;
       position: absolute;
       bottom: 0;

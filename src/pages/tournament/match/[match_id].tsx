@@ -16,6 +16,9 @@ import { useTab } from "../../../utils/useTab";
 import cx from "classnames";
 import Link from "next/link";
 import { AppRouter } from "../../../utils/route";
+import i18n from "pages-i18n/tournament/tournament-match.i18n";
+
+import hi18n from "pages-i18n/history.i18n";
 const Block = styled.div`
   padding: 10px;
   border-radius: 4px;
@@ -34,15 +37,6 @@ const Block = styled.div`
   }
 `;
 
-const Versus = styled.div`
-  color: ${colors.position.foreground.gold};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-  font-size: 16px;
-  margin-right: 5px;
-`;
 const TbdOpponent = styled.div`
   display: flex;
   flex-direction: row;
@@ -57,11 +51,8 @@ const BlockOpponent = styled.div`
 `;
 const Title = styled.div`
   color: ${colors.primaryText};
-`;
-
-const InfoRow = styled.div`
-  color: ${colors.primaryText};
-  font-size: 14px;
+  margin-bottom: 5px;
+  margin-top: 5px;
 `;
 
 export default () => {
@@ -112,15 +103,15 @@ export default () => {
       </Block>
 
       <Block>
-        <Title>Информация о матче</Title>
+        <Title>{i18n.info}</Title>
         <Table>
           <tbody>
             <Tr>
-              <td>Формат</td>
-              <td>Best of {data.games.length}</td>
+              <td>{i18n.mode}</td>
+              <td>{i18n.withValues.bestOf({ bestOf: data.games.length })}</td>
             </Tr>
             <Tr>
-              <td>Время начала матча</td>
+              <td>{i18n.timeStart}</td>
               <td>{formatDateStr(data.startDate)}</td>
             </Tr>
           </tbody>
@@ -130,49 +121,46 @@ export default () => {
       <Tabs>
         {data.games.map((game, index) => (
           <Tab className={cx(tab === index && "active")} onClick={() => setTab(index)}>
-            Игра {game.number}
+            {i18n.withValues.gameNumber({ gn: game.number })}
           </Tab>
         ))}
       </Tabs>
 
       {selectedGame && (
-        <Table>
-          <thead>
-            <Tr>
-              <th>Поле</th>
-              <th>Значение </th>
-            </Tr>
-          </thead>
-          <tbody>
-            <Tr>
-              <td>Номер игры в серии</td>
-              <td>{selectedGame.number}</td>
-            </Tr>
-            <Tr>
-              <td>Игрок за свет</td>
-              <td>
-                {(data.opponent1?.participant &&
-                  data.opponent2?.participant &&
-                  (selectedGame.teamOffset === 0 ? (
-                    <OpponentPreview seed={data.opponent1.participant} />
-                  ) : (
-                    <OpponentPreview seed={data.opponent2.participant} />
-                  ))) ||
-                  "Еще не определен"}
-              </td>
-            </Tr>
+        <Block>
+          <Title>{i18n.details}</Title>
+          <Table>
+            <tbody>
+              <Tr>
+                <td>{i18n.gameNumberInSeries}</td>
+                <td>{selectedGame.number}</td>
+              </Tr>
+              <Tr>
+                <td>{i18n.radiantPlayer}</td>
+                <td>
+                  {(data.opponent1?.participant &&
+                    data.opponent2?.participant &&
+                    (selectedGame.teamOffset === 0 ? (
+                      <OpponentPreview seed={data.opponent1.participant} />
+                    ) : (
+                      <OpponentPreview seed={data.opponent2.participant} />
+                    ))) ||
+                    i18n.notDecided}
+                </td>
+              </Tr>
 
-            <Tr>
-              <td>Матч</td>
-              <td>
-                {(selectedGame.externalMatchId && (
-                  <Link {...AppRouter.match(selectedGame.externalMatchId).link}>Ссылка на матч</Link>
-                )) ||
-                  "Еще не прошел"}
-              </td>
-            </Tr>
-          </tbody>
-        </Table>
+              <Tr>
+                <td>{i18n.match}</td>
+                <td>
+                  {(selectedGame.externalMatchId && (
+                    <Link {...AppRouter.match(selectedGame.externalMatchId).link}>Ссылка на матч</Link>
+                  )) ||
+                    i18n.matchNotFinished}
+                </td>
+              </Tr>
+            </tbody>
+          </Table>
+        </Block>
       )}
 
       <br />
@@ -183,12 +171,12 @@ export default () => {
         <Table className="compact">
           <thead>
             <Tr>
-              <th>ID матча</th>
-              <th>Режим</th>
-              <th>Победитель</th>
-              <th>Длительность</th>
-              <th className="green omit">Силы Света</th>
-              <th className="red omit">Силы Тьмы</th>
+              <th>{hi18n.tableMatchId}</th>
+              <th>{hi18n.tableMode}</th>
+              <th>{hi18n.tableWinner}</th>
+              <th>{hi18n.tableDuration}</th>
+              <th className="green omit">{hi18n.tableRadiant}</th>
+              <th className="red omit">{hi18n.tableDire}</th>
             </Tr>
           </thead>
           <tbody>
@@ -197,7 +185,7 @@ export default () => {
             ))}
           </tbody>
         </Table>
-      )) || <Hint>Еще не сыграно ни одного матча в серии</Hint>}
+      )) || <Hint>{i18n.noMatchesPlayed}</Hint>}
     </Layout>
   );
 };

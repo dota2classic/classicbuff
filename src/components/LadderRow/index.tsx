@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import React from "react";
+import { colors } from "../../shared";
+import { LeaderboardEntryDto } from "../../api/back/models";
+import { RoleNames, RoleValue } from "../../utils/format/roles";
+import { Tr } from "../UI/Table";
 import Link from "next/link";
-import { LeaderboardEntryDto } from "../api/back/models";
-import { RoleNames, RoleValue } from "../utils/format/roles";
-import { colors } from "../shared";
-import { Tr } from "./UI/Table";
-
+import React from "react";
+import i18n from "./ladder-row.i18n";
 export const Role = styled.div`
   width: 10px;
   height: 10px;
@@ -95,8 +95,8 @@ export default (props: LeaderboardEntryDto) => {
 
 export const LadderHeader = () => (
   <Tr>
-    <th>Место</th>
-    <th>Игрок</th>
-    <th style={{ textAlign: "center" }}>MMR</th>
+    <th>{i18n.rank}</th>
+    <th>{i18n.player}</th>
+    <th style={{ textAlign: "center" }}>{i18n.mmr}</th>
   </Tr>
 );

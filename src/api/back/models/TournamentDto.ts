@@ -55,6 +55,12 @@ export interface TournamentDto {
    * @memberof TournamentDto
    */
   imageUrl: string;
+  /**
+   *
+   * @type {string}
+   * @memberof TournamentDto
+   */
+  description: string;
 }
 
 export function TournamentDtoFromJSON(json: any): TournamentDto {
@@ -71,7 +77,8 @@ export function TournamentDtoFromJSONTyped(json: any, ignoreDiscriminator: boole
     id: json["id"],
     status: json["status"],
     startDate: json["startDate"],
-    imageUrl: json["imageUrl"]
+    imageUrl: json["imageUrl"],
+    description: json["description"]
   };
 }
 
@@ -88,7 +95,8 @@ export function TournamentDtoToJSON(value?: TournamentDto | null): any {
     id: value.id,
     status: value.status,
     startDate: value.startDate,
-    imageUrl: value.imageUrl
+    imageUrl: value.imageUrl,
+    description: value.description
   };
 }
 

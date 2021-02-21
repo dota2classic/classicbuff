@@ -17,11 +17,12 @@ const InfoRow = styled.div`
   flex-direction: row;
   align-items: center;
   padding: 10px;
+
+  min-height: 65px;
   width: 100%;
   border-bottom: 1px solid #242424;
   border-top: 1px solid #242424;
   height: 65px;
-  max-height: 45px;
 `;
 
 const CancelFindGameButton = styled.div`

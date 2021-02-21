@@ -1,10 +1,10 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import Layout from "../components/Layout";
 import { CardBlock, CardRow, LeadButton, LeadButtons } from "./index";
 import Head from "next/head";
 import styled from "styled-components";
 import Link from "next/link";
-
+import i18n from "pages-i18n/download.i18n";
 const InfoText = styled.div`
   font-size: 18px;
   color: #d9d9d9;
@@ -23,32 +23,37 @@ export default () => {
 
       <LeadButtons>
         <InfoText>
-          Внимание: Поиск игры происходит через{" "}
-          <Link passHref href={`/queue`}>
-            <a style={{ color: `#d9d9d9` }}>сайт</a>
-          </Link>{" "}
-          или{" "}
-          <a style={{ color: `#d9d9d9` }} href="https://discord.gg/VU5wjA8">
-            Discord сервер
-          </a>
+          {i18n.withValues.attentionQueue({
+            a: (...chunks: ReactNode[]) => {
+              return (
+                <Link passHref href={`/queue`}>
+                  <a style={{ color: `#d9d9d9` }}>{chunks}</a>
+                </Link>
+              );
+            }
+          })}
         </InfoText>
         <InfoText>
-          Нажимать на поиск игры в самом клиенте <span style={{ textDecoration: "underline" }}>НЕ НУЖНО</span>
+          {i18n.withValues.dontQueueInGame({
+            span: (...chunks: ReactNode[]) => {
+              return <span style={{ textDecoration: "underline" }}>{chunks}</span>;
+            }
+          })}
         </InfoText>
         {/*<CardBlock*/}
         {/*  img={"https://sun9-43.userapi.com/c855620/v855620490/1f045d/97zKHlEnSyM.jpg"}*/}
         {/*  text={"Нужно только распаковать архив с клиентом. Все просто!"}*/}
         {/*/>*/}
         <LeadButton target="__blank" href={"https://drive.google.com/file/d/1JXpkBlcOkNXkVDIFM9RxZD1dZpEOuX3y/view"}>
-          Скачать через Google Диск
+          {i18n.googleDisk}
         </LeadButton>
 
         <LeadButton target="__blank" href={"https://yadi.sk/d/C1P5uvQvfhwUZA"}>
-          Скачать через Яндекс.Диск
+          {i18n.yandexDisk}
         </LeadButton>
 
         <LeadButton download href={"https://dota2classic.ru/api/static/Dota_2_Classic_6.81b.torrent"}>
-          Скачать Torrent
+          {i18n.torrent}
         </LeadButton>
       </LeadButtons>
       <br />

@@ -1,9 +1,10 @@
 import Layout from "../components/Layout";
-import React from "react";
+import React, { ReactNode } from "react";
 import styled from "styled-components";
 import { CardBlock, CardRow } from "./index";
 import Link from "next/link";
 import Head from "next/head";
+import i18n from "pages-i18n/donate.i18n";
 
 const WelcomeText = styled.div`
   text-align: center;
@@ -95,9 +96,7 @@ export default () => {
         />
       </Head>
 
-      <WelcomeText>
-        Вы можете поспособствовать развитию сервера и совершить добровольное пожертвование на его продвижение
-      </WelcomeText>
+      <WelcomeText>{i18n.welcomeText}</WelcomeText>
 
       <CardRow className={"inline"}>
         <CardBlock
@@ -109,54 +108,66 @@ export default () => {
       <br />
       <br />
 
-      <WelcomeText>Уровни подписки</WelcomeText>
+      <WelcomeText>{i18n.levels}</WelcomeText>
       <br />
 
-      <Role className="old">Древний</Role>
-      <Price>81₽ / месяц</Price>
+      <Role className="old">{i18n.old}</Role>
+      <Price>{i18n.oldPrice}</Price>
       <List>
         <li>
-          Возможность менять никнейм на нашем сервере в <a href="https://discord.gg/VU5wjA8">Discord</a>
+          {i18n.withValues.nicknameDiscord({
+            a: (...chunks: ReactNode[]) => <a href="https://discord.gg/VU5wjA8">{chunks}</a>
+          })}
         </li>
-        <li>Возможность смотреть игры</li>
-        <li>Возможность искать игры в группе</li>
+        <li>{i18n.watchGames}</li>
+        <li>{i18n.rankedPartyGames}</li>
+        <li>{i18n.createTeams}</li>
       </List>
 
       <br />
 
-      <Role className="human">Человек</Role>
+      <Role className="human">{i18n.human}</Role>
       <Price>
-        <span style={{ textDecoration: "line-through", color: "#5b5b5b" }}>600₽</span> 300₽ / месяц
+        <span style={{ textDecoration: "line-through", color: "#5b5b5b" }}>{i18n.humanPriceOld}</span>
+        {i18n.humanPriceActual}
       </Price>
       <List>
         <li>
-          Все бонусы роли{" "}
-          <Role className="old" style={{ display: "inline-block" }}>
-            древний
-          </Role>
+          {i18n.withValues.allOldFeatures({
+            role: (...chunks: ReactNode[]) => (
+              <Role className="old" style={{ display: "inline-block" }}>
+                {chunks}
+              </Role>
+            )
+          })}
         </li>
         <li>
-          Дополнительные привилегии на нашем сервере в <a href="https://discord.gg/VU5wjA8">Discord</a>
+          {i18n.withValues.additionalDiscordFeatures({
+            a: (...chunks: ReactNode[]) => <a href="https://discord.gg/VU5wjA8">{chunks}</a>
+          })}
         </li>
-        <li>Участники с этой ролью попадают в список людей, оказавших значительную поддержку серверу.</li>
+        <li>{i18n.realHelpThankYou}</li>
         {/*<li className="new">Возможность перекалибровки</li>*/}
-        <li className="new">Доджлист до 3 игроков</li>
-        <li className="new">Double-down рейтинга</li>
+        <li className="new">{i18n.dodgeList}</li>
+        <li className="new">{i18n.doubleDown}</li>
       </List>
 
       <br />
       <br />
 
-      <WelcomeText>Способы поддержки</WelcomeText>
+      <WelcomeText>{i18n.waysToSupport}</WelcomeText>
       <br />
 
       <NormalizedContainer>
         <Note>
-          Внимание! В описаниях к платежу указывайте ссылку на свой профиль на нашем сайте. <br />
-          Пример ссылки на профиль:{" "}
-          <Link passHref href={`https://dota2classic.ru/player/280443916/`}>
-            <a style={{ color: "#d9d9d9", textDecoration: "none" }}>https://dota2classic.ru/player/280443916</a>
-          </Link>
+          {i18n.withValues.notToAddLink({
+            a: (...chunks: ReactNode[]) => (
+              <Link passHref href={`https://dota2classic.ru/player/280443916/`}>
+                <a style={{ color: "#d9d9d9", textDecoration: "none" }}>{chunks}</a>
+              </Link>
+            ),
+            break: () => <br />
+          })}
         </Note>
 
         <Way2Pay>
@@ -167,9 +178,12 @@ export default () => {
           <a href="https://qiwi.com/n/ARKEE769">QIWI</a>
         </Way2Pay>
 
-        <Way2Pay>Карта (Сбербанк): 4276 3801 5277 6873</Way2Pay>
-        <Way2Pay>МИР: 2202 2011 2865 1052</Way2Pay>
-        <Way2Pay>Яндекс.Деньги: 410011001103695</Way2Pay>
+        <Way2Pay>{i18n.card}</Way2Pay>
+        <Way2Pay>{i18n.mir}</Way2Pay>
+        <Way2Pay>{i18n.yandexMoney}</Way2Pay>
+        <Way2Pay>
+          <a href="https://patreon.com/dota2classic">Patreon</a>
+        </Way2Pay>
 
         <br />
         <br />

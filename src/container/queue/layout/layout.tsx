@@ -6,10 +6,9 @@ import SteamInfo from "../steam-info";
 import { SelectedGameMode } from "./SelectedGameMode";
 import { colors } from "../../../shared";
 import { useStores } from "../../../stores";
-import { AcceptGameModal } from "../AcceptGameModal";
-import { PendingPartyInvite } from "../PendingPartyInvite";
 import { LeadButton } from "../../../pages";
 import { appApi } from "../../../api/hooks";
+import i18n from "./layout.i18n";
 
 const AppLayout = styled.div`
   width: 100vw;
@@ -39,10 +38,5 @@ export const Layout = observer(({ children }: PropsWithChildren<{}>) => {
         </Content>
       </AppLayout>
     );
-  else
-    return (
-      <LeadButton href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
-        Для поиска игры нужно войти в свой Steam аккаунт
-      </LeadButton>
-    );
+  else return <LeadButton href={`${appApi.apiParams.basePath}/v1/auth/steam`}>{i18n.steamLoginRequired}</LeadButton>;
 });

@@ -1,9 +1,11 @@
 import Head from "next/head";
 import Layout from "../components/Layout";
-import React from "react";
+import React, { ReactNode } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { EmbedProps } from "../components/util/EmbedProps";
+import i18n from "pages-i18n/index.i18n";
+import { stores } from "../stores";
 
 const CardPicture = styled.picture`
   cursor: pointer;
@@ -118,7 +120,7 @@ export const List = styled.ul`
 `;
 interface Props {
   img: string;
-  text: string;
+  text: ReactNode;
 }
 
 export const CardBlock = ({ img, text }: Props) => {
@@ -165,53 +167,52 @@ export default () => {
       </Head>
 
       <WelcomeText>
-        Добро пожаловать на сайт проекта <b>Dota 2 Classic</b> - русскоязычного сообщества, где вместе с другими людьми
-        можно поиграть в старую версию легендарной игры.
+        {i18n.withValues.welcomeText({
+          b: (...chunks: ReactNode[]) => {
+            return <b>{chunks}</b>;
+          }
+        })}
       </WelcomeText>
 
-      <CardRow>
-        <iframe
-          style={{ width: 940 }}
-          height={450}
-          // width={1792}
-          // height={840}
-          src="https://www.youtube.com/embed/MkqRP6Ia1Pc"
-          frameBorder={0}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
-      </CardRow>
+      {stores.lang.language === "ru" && (
+        <CardRow>
+          <iframe
+            style={{ width: 940 }}
+            height={450}
+            // width={1792}
+            // height={840}
+            src="https://www.youtube.com/embed/MkqRP6Ia1Pc"
+            frameBorder={0}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </CardRow>
+      )}
 
       <CardRow>
-        <CardBlock
-          text={"Версия The International 2014"}
-          img={"https://dota2classic.ru/api/static/landing/1.png.webp"}
-        />
+        <CardBlock text={i18n.ti4version} img={"https://dota2classic.ru/api/static/landing/1.png.webp"} />
 
-        <CardBlock
-          text={"Клиент игры до обновления Reborn"}
-          img={"https://dota2classic.ru/api/static/landing/2.png.webp"}
-        />
+        <CardBlock text={i18n.beforeReborn} img={"https://dota2classic.ru/api/static/landing/2.png.webp"} />
 
-        <CardBlock text={"Работает через Steam"} img={"https://dota2classic.ru/api/static/landing/3.png.webp"} />
+        <CardBlock text={i18n.worksWithSteam} img={"https://dota2classic.ru/api/static/landing/3.png.webp"} />
       </CardRow>
 
       <List>
-        <li>Версия The International 2014</li>
-        <li>Клиент игры до обновления Reborn (Новая жизнь)</li>
-        <li>Работает через Steam</li>
+        <li>{i18n.ti4version}</li>
+        <li>{i18n.beforeReborn}</li>
+        <li>{i18n.worksWithSteam}</li>
       </List>
 
       <CardRow>
-        <CardBlock text={"Движок Source 1"} img={"https://dota2classic.ru/api/static/landing/4.png.webp"} />
-        <CardBlock text={"Классический баланс"} img={"https://dota2classic.ru/api/static/landing/5.png.webp"} />
-        <CardBlock text={"Оригинальный ландшафт"} img={"https://dota2classic.ru/api/static/landing/6.png.webp"} />
+        <CardBlock text={i18n.source1} img={"https://dota2classic.ru/api/static/landing/4.png.webp"} />
+        <CardBlock text={i18n.classicBalance} img={"https://dota2classic.ru/api/static/landing/5.png.webp"} />
+        <CardBlock text={i18n.originalLandscape} img={"https://dota2classic.ru/api/static/landing/6.png.webp"} />
       </CardRow>
 
       <List>
-        <li>Движок Source 1</li>
-        <li>Классический баланс</li>
-        <li>Оригинальный ландшафт</li>
+        <li>{i18n.source1}</li>
+        <li>{i18n.classicBalance}</li>
+        <li>{i18n.originalLandscape}</li>
       </List>
       <CardRow>
         <CardBlock text={"Удаленные предметы"} img={"https://dota2classic.ru/api/static/landing/7.png.webp"} />
@@ -220,16 +221,16 @@ export default () => {
         <CardBlock img={"https://dota2classic.ru/api/static/landing/9.png.webp"} text={"Techies еще не добавили!"} />
       </CardRow>
       <List>
-        <li>Старые способности героев и удалённые предметы</li>
-        <li>Diretide 2012 года</li>
-        <li>Отсутствует Techies</li>
+        <li>{i18n.oldItems}</li>
+        <li>{i18n.diretide}</li>
+        <li>{i18n.noTechies}</li>
       </List>
       <LeadButtons>
         <Link href={"/download"}>
-          <LeadButton>СКАЧАТЬ</LeadButton>
+          <LeadButton>{i18n.download}</LeadButton>
         </Link>
         <LeadButton href={"https://discord.gg/VU5wjA8"} target={"__blank"}>
-          ИГРАТЬ ЧЕРЕЗ DISCORD
+          {i18n.joinDiscord}
         </LeadButton>
       </LeadButtons>
     </Layout>

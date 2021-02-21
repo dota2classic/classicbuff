@@ -27,13 +27,7 @@ import { SsrProps } from "../../../utils/SsrProps";
 import { EmbedProps } from "../../../components/util/EmbedProps";
 import { PlayerLeaderboardPreview } from "../../../components/UI/tournament/player-leaderboard-preview";
 import { useStores } from "../../../stores";
-
-const Card = styled.a`
-  display: flex;
-  flex-direction: row;
-  color: ${colors.primaryText};
-  text-decoration: none;
-`;
+import i18n from "pages-i18n/tournament/tournament.i18n";
 
 const TournamentName = styled.div`
   font-size: 30px;
@@ -58,6 +52,15 @@ const TabWrapper = styled.div`
   width: 100%;
 `;
 
+const TournamentDescription = styled.div`
+  width: 40%;
+  display: flex;
+  margin: auto;
+  white-space: pre;
+  min-width: 400px;
+  line-height: 24px;
+  color: ${colors.primaryText};
+`;
 interface InitialProps {
   tournament?: FullTournamentDto;
 }
@@ -72,7 +75,7 @@ export default (p: InitialProps) => {
     initialData: p.tournament
   });
 
-  const [tab, setTab] = useTab("tab", 0);
+  const [tab, setTab] = useTab("tab", 2);
 
   const unregister = async () => {
     if (!data) return;
@@ -125,26 +128,33 @@ export default (p: InitialProps) => {
 
       <TournamentImage src={data.imageUrl} />
       <TournamentName>{data.name}</TournamentName>
-      <TournamentType>Турнир {formatTournamentType(data.entryType)}</TournamentType>
+      <TournamentType>
+        {i18n.tournament} {formatTournamentType(data.entryType)}
+      </TournamentType>
       <TournamentType>
         {formatTournamentStatus(data.status)}
-        {data.status === FullTournamentDtoStatusEnum.NEW && " начало " + formatDateStr(data.startDate)}
+        <br />
+        {data.status === FullTournamentDtoStatusEnum.NEW &&
+          i18n.withValues.beginning({ beginning: formatDateStr(data.startDate) })}
       </TournamentType>
 
       <Tabs>
+        <Tab className={cx(tab === 2 && "active")} onClick={() => setTab(2)}>
+          {i18n.info}
+        </Tab>
         <Tab className={cx(tab === 0 && "active")} onClick={() => setTab(0)}>
-          {data.entryType === FullTournamentDtoEntryTypeEnum.PLAYER ? "Игроки" : "Команды"}
+          {data.entryType === FullTournamentDtoEntryTypeEnum.PLAYER ? i18n.players : i18n.teams}
         </Tab>
 
         {data.status === FullTournamentDtoStatusEnum.FINISHED && (
           <Tab className={cx(tab === 1 && "active")} onClick={() => setTab(1)}>
-            Результаты
+            {i18n.results}
           </Tab>
         )}
 
         {!data.isLocked &&
           (data.isParticipating ? (
-            <Tab onClick={() => unregister()}>Покинуть турнир</Tab>
+            <Tab onClick={() => unregister()}>{i18n.leaveTournament}</Tab>
           ) : (
             <Tab
               className={cx(!canRegister && "disabled")}
@@ -154,13 +164,13 @@ export default (p: InitialProps) => {
                 }
               }}
             >
-              Участвовать
+              {i18n.participate}
             </Tab>
           ))}
         {(data.status === FullTournamentDtoStatusEnum.ONGOING ||
           data.status === FullTournamentDtoStatusEnum.FINISHED) && (
           <Link passHref {...AppRouter.tournament.bracket(data.id).link}>
-            <Tab>Сетка</Tab>
+            <Tab>{i18n.bracket}</Tab>
           </Link>
         )}
       </Tabs>
@@ -191,6 +201,8 @@ export default (p: InitialProps) => {
               )}
           </>
         )}
+
+        {tab === 2 && <TournamentDescription>{data.description}</TournamentDescription>}
       </TabWrapper>
     </Layout>
   );

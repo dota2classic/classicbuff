@@ -1,3 +1,5 @@
+import gmi18n from "./game-mode.i18n";
+
 export enum MatchmakingMode {
   RANKED = 0,
   UNRANKED = 1,
@@ -11,25 +13,5 @@ export enum MatchmakingMode {
   TOURNAMENT_SOLOMID = 9
 }
 export default (mode: any) => {
-  if (mode === MatchmakingMode.SOLOMID) {
-    return "1x1 Мид";
-  } else if (mode === MatchmakingMode.DIRETIDE) {
-    return "Diretide";
-  } else if (mode === MatchmakingMode.RANKED) {
-    return "Рейтинг";
-  } else if (mode === MatchmakingMode.UNRANKED) {
-    return "Обычная";
-  } else if (mode === MatchmakingMode.GREEVILING) {
-    return "Гряволы";
-  } else if (mode === MatchmakingMode.ABILITY_DRAFT) {
-    return "Ability Draft";
-  } else if (mode === MatchmakingMode.BOTS) {
-    return "Обычная (новички)";
-  } else if (mode === MatchmakingMode.HIGHROOM) {
-    return "High room";
-  } else if (mode === MatchmakingMode.TOURNAMENT_SOLOMID) {
-    return "Турнир 1х1";
-  } else if (mode === MatchmakingMode.TOURNAMENT) {
-    return "Турнир 5x5";
-  }
+  return gmi18n[mode as MatchmakingMode] as any;
 };

@@ -6,7 +6,7 @@ import { AdminBracketViewerNew } from "components/UI/BracketViewer";
 import { colors } from "../../../shared";
 import styled from "styled-components";
 import Head from "next/head";
-
+import i18n from "pages-i18n/tournament/tournament.i18n";
 const Title = styled.div`
   font-size: 26px;
   margin-top: 20px;
@@ -31,7 +31,7 @@ export default () => {
         />
       </Head>
 
-      <Title>Сетка турнира {tData?.name}</Title>
+      <Title>{i18n.withValues.bracketTitle({ title: tData?.name })}</Title>
 
       <AdminBracketViewerNew id={`bracket_${id}`} bracket={data} />
     </Layout>

@@ -8,7 +8,8 @@ import formatGameMode from "../../utils/format/formatGameMode";
 import { formatDuration } from "../../pages/match/[id]";
 import { HeroIcon } from "../UI/HeroIcon";
 import React from "react";
-
+import dotai18n from "shared-i18n/dota.i18n";
+import { stores } from "../../stores";
 export default (it: MatchDto) => {
   const radiant = it.radiant;
 
@@ -19,11 +20,13 @@ export default (it: MatchDto) => {
       <td className={"green tiny"}>
         <MatchIdCol>
           <span>{it.id}</span>
-          <span style={{ fontSize: 14, marginTop: 2, color: "#c2c2c2" }}>{formatDateStr(it.timestamp)}</span>
+          <span style={{ fontSize: 14, marginTop: 2, color: "#c2c2c2" }}>
+            {formatDateStr(it.timestamp, stores.lang.locale)}
+          </span>
         </MatchIdCol>
       </td>
       <td className={"tiny"}>{formatGameMode(it.mode)}</td>
-      <td className={it.winner === 2 ? "green" : "red"}>{it.winner === 2 ? "Свет" : "Тьма"}</td>
+      <td className={it.winner === 2 ? "green" : "red"}>{it.winner === 2 ? dotai18n.radiant : dotai18n.dire}</td>
       <td>{formatDuration(it.duration)}</td>
       <td className={cx(it.winner === 2 ? "green" : "red", "omit")}>
         <Heroes>

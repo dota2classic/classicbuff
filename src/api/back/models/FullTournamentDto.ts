@@ -90,6 +90,12 @@ export interface FullTournamentDto {
    * @memberof FullTournamentDto
    */
   standings?: Array<TournamentStandingDto>;
+  /**
+   *
+   * @type {string}
+   * @memberof FullTournamentDto
+   */
+  description: string;
 }
 
 export function FullTournamentDtoFromJSON(json: any): FullTournamentDto {
@@ -112,7 +118,8 @@ export function FullTournamentDtoFromJSONTyped(json: any, ignoreDiscriminator: b
     participants: (json["participants"] as Array<any>).map(TournamentParticipantDtoFromJSON),
     standings: !exists(json, "standings")
       ? undefined
-      : (json["standings"] as Array<any>).map(TournamentStandingDtoFromJSON)
+      : (json["standings"] as Array<any>).map(TournamentStandingDtoFromJSON),
+    description: json["description"]
   };
 }
 
@@ -134,7 +141,8 @@ export function FullTournamentDtoToJSON(value?: FullTournamentDto | null): any {
     isParticipating: value.isParticipating,
     participants: (value.participants as Array<any>).map(TournamentParticipantDtoToJSON),
     standings:
-      value.standings === undefined ? undefined : (value.standings as Array<any>).map(TournamentStandingDtoToJSON)
+      value.standings === undefined ? undefined : (value.standings as Array<any>).map(TournamentStandingDtoToJSON),
+    description: value.description
   };
 }
 

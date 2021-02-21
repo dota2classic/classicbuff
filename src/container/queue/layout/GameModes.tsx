@@ -7,7 +7,7 @@ import { pendingAnimation } from "../steam-info";
 import formatGameMode, { MatchmakingMode } from "../../../utils/format/formatGameMode";
 import { useStores } from "../../../stores";
 import { isNightTime } from "../../../utils/isNightTime";
-
+import i18n from "./game-mode.i18n";
 const Options = styled.div`
   display: flex;
   flex-direction: column;
@@ -87,7 +87,8 @@ const UserInfo = styled.div`
   border-bottom: 1px solid #242424;
   border-top: 1px solid #242424;
   height: 65px;
-  max-height: 25px;
+  max-height: 65px;
+  min-height: 65px;
   align-items: center;
 `;
 
@@ -133,8 +134,6 @@ const MatchmakingOption = observer((props: MProps) => {
 export const GameModes = observer(() => {
   const { auth, queue } = useStores();
 
-  const isNight = isNightTime();
-
   const setSelectedMode = (m: MatchmakingMode) => (queue.selectedMode = m);
 
   return (
@@ -144,7 +143,7 @@ export const GameModes = observer(() => {
         <SteamLogo src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/600px-Steam_icon_logo.svg.png" />
       </UserInfo>
 
-      <MOption className={"header"}>Поиск игры</MOption>
+      <MOption className={"header"}>{i18n.gameSearch}</MOption>
       {/*{auth.me && auth.me.rank <= 75 && <MatchmakingOption mode={MatchmakingMode.HIGHROOM} />}*/}
       <MatchmakingOption
         onSelect={setSelectedMode}

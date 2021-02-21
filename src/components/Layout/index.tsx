@@ -1,20 +1,21 @@
 import styled from "styled-components";
-import React, { PropsWithChildren, ReactNode } from "react";
-import Link from "next/link";
-import AuthService from "../service/AuthServiceService";
+import { colors } from "../../shared";
 import Router, { useRouter } from "next/router";
-import { Tab, Tabs } from "./UI/Tabs";
+import { appApi, useApi } from "../../api/hooks";
+import { Tab, Tabs } from "../UI/Tabs";
+import Link from "next/link";
+import { AppRouter } from "../../utils/route";
 import cx from "classnames";
-import { appApi, useApi } from "../api/hooks";
-import useWillMount from "../utils/useWillMount";
+import AuthService from "../../service/AuthServiceService";
+import { steamIdToNum } from "../../utils/numSteamId";
+import React, { PropsWithChildren, ReactNode } from "react";
+import useWillMount from "../../utils/useWillMount";
 import { observer } from "mobx-react";
-import { colors } from "../shared";
-import { steamIdToNum } from "../utils/numSteamId";
-import { SearchGameBar } from "./UI/SearchGameBar/SearchGameBar";
-import { useGameConnection } from "./util/useGameConnection";
-import { NotificationHold } from "./UI/NotificationHold";
-import { AppRouter } from "../utils/route";
-
+import { useGameConnection } from "../util/useGameConnection";
+import { NotificationHold } from "../UI/NotificationHold";
+import { SearchGameBar } from "../UI/SearchGameBar/SearchGameBar";
+import layoutI18n from "./layout.i18n";
+import { stores } from "../../stores";
 const LayoutContainer = styled.div`
   min-height: 100vh;
   width: 100vw;
@@ -150,26 +151,10 @@ export const CloseIcon = styled.img`
   position: relative;
 `;
 
-const InfoTab = styled.div`
-  position: relative;
-  font-size: 14px;
-  padding: 12px;
-  text-decoration: none;
-  cursor: pointer;
-
-  display: flex;
-  flex-direction: column;
-
-  transition: 0.3s ease;
-
-  color: ${colors.primaryText};
-`;
-const DefaultHeader = () => {
+const DefaultHeader = observer(() => {
   const router = useRouter();
 
   const asPath = router.asPath;
-
-  const { data } = useApi().statsApi.useStatsControllerOnline();
 
   const { data: liveData } = useApi().liveApi.useLiveMatchControllerListMatches({
     refreshInterval: 30_000
@@ -185,33 +170,27 @@ const DefaultHeader = () => {
             </Tab>
           </Link>
           <Link passHref {...AppRouter.download.link}>
-            <Tab className={cx(asPath === "/download" && "active")}>Скачать</Tab>
+            <Tab className={cx(asPath === "/download" && "active")}>{layoutI18n.download}</Tab>
           </Link>
           <Link passHref {...AppRouter.queue.link}>
-            <Tab className={cx(asPath === "/queue" && "active")}>Играть</Tab>
+            <Tab className={cx(asPath === "/queue" && "active")}>{layoutI18n.play}</Tab>
           </Link>
           <Link passHref {...AppRouter.donate.link}>
-            <Tab className={cx(asPath === "/donate" && "active")}>Пожертвовать</Tab>
+            <Tab className={cx(asPath === "/donate" && "active")}>{layoutI18n.donate}</Tab>
           </Link>
           <Link passHref {...AppRouter.leaderboard.link}>
-            <Tab className={cx(asPath === "/leaderboard" && "active")}>Таблица лидеров</Tab>
+            <Tab className={cx(asPath === "/leaderboard" && "active")}>{layoutI18n.leaderboard}</Tab>
           </Link>
 
           <Link passHref {...AppRouter.history.index.link}>
-            <Tab className={cx(asPath.startsWith("/history") && "active")}>Матчи</Tab>
+            <Tab className={cx(asPath.startsWith("/history") && "active")}>{layoutI18n.matches}</Tab>
           </Link>
           <Link passHref {...AppRouter.live.link}>
             <Tab className={cx(asPath.startsWith("/live") && "active")}>
-              Live
+              {layoutI18n.live}
               {liveData && <span className="badge">{liveData?.length}</span>}
             </Tab>
           </Link>
-
-          {/*<Tab className={cx(asPath === "/heroes" && "active")}>*/}
-          {/*  <Link passHref href={"/heroes"}>*/}
-          {/*    <a>Таблица лидеров</a>*/}
-          {/*  </Link>*/}
-          {/*</Tab>*/}
 
           {AuthService.isModerator && (
             <Link passHref href={"/admin/servers"}>
@@ -222,12 +201,12 @@ const DefaultHeader = () => {
           {AuthService.authorized ? (
             <Link passHref {...AppRouter.player(AuthService.steamID || "").link}>
               <Tab className={cx(asPath === `/player/${steamIdToNum(AuthService.steamID || "")}` && "active")}>
-                Профиль
+                {layoutI18n.profile}
               </Tab>
             </Link>
           ) : (
             <Tab className={cx(asPath === "/me" && "active")}>
-              <a href={`${appApi.apiParams.basePath}/v1/auth/steam`}>Войти через steam</a>
+              <a href={`${appApi.apiParams.basePath}/v1/auth/steam`}>{layoutI18n.loginViaSteam}</a>
             </Tab>
           )}
         </Tabs>
@@ -238,7 +217,6 @@ const DefaultHeader = () => {
             Discord
           </Tab>
           <Tab target="__blank" href="https://vk.com/club191796288">
-            {" "}
             VK
           </Tab>
           <Tab target="__blank" href="https://www.youtube.com/user/facts2dota">
@@ -246,24 +224,21 @@ const DefaultHeader = () => {
           </Tab>
 
           <Link passHref {...AppRouter.tournament.index.link}>
-            <Tab className={cx(asPath.startsWith("/tournament") && "active")}>Турниры</Tab>
+            <Tab className={cx(asPath.startsWith("/tournament") && "active")}>{layoutI18n.tournaments}</Tab>
           </Link>
 
           <Link passHref {...AppRouter.team.index.link}>
-            <Tab className={cx(asPath.startsWith("/team") && "active")}>Команды</Tab>
+            <Tab className={cx(asPath.startsWith("/team") && "active")}>{layoutI18n.teams}</Tab>
           </Link>
-        </Tabs>
 
-        {/*{data && (*/}
-        {/*  <InfoTab>*/}
-        {/*    <span>{data.inGame} онлайн</span>*/}
-        {/*    <span>{data.sessions} игр</span>*/}
-        {/*  </InfoTab>*/}
-        {/*)}*/}
+          <Tab className="accent" onClick={() => stores.lang.toggle()}>
+            {stores.lang.language === "ru" ? "In english" : "По русски"}
+          </Tab>
+        </Tabs>
       </HeaderWrapper>
     </>
   );
-};
+});
 
 export const TournamentLayout = (p: PropsWithChildren<{ landing?: boolean; title?: ReactNode }>) => {
   useWillMount(() => {

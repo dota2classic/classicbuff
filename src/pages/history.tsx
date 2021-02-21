@@ -5,7 +5,7 @@ import Head from "next/head";
 import formatGameMode, { MatchmakingMode } from "../utils/format/formatGameMode";
 import MatchRow from "../components/MatchRow";
 import { Tab, Tabs } from "../components/UI/Tabs";
-
+import historyI18n from "pages-i18n/history.i18n";
 import { observer } from "mobx-react";
 import Pagination from "../components/Pagination";
 import { useApi } from "../api/hooks";
@@ -56,7 +56,7 @@ const Page = observer(() => {
   const { data } = useApi().matchApi.useMatchControllerMatches(page!!, undefined, mode);
 
   return (
-    <Layout title={"История матчей"}>
+    <Layout title={historyI18n.title}>
       <Head>
         <title>История матчей - dota2classic.ru</title>
       </Head>
@@ -92,18 +92,18 @@ const Page = observer(() => {
         {/*  {formatGameMode(MatchmakingMode.BOTS)}*/}
         {/*</Tab>*/}
         <Tab onClick={() => setTabAction(undefined)} className={(mode === undefined && "active") || undefined}>
-          Все
+          {historyI18n.allModes}
         </Tab>
       </Tabs>
       <Table className="compact">
         <thead>
           <Tr>
-            <th>ID матча</th>
-            <th>Режим</th>
-            <th>Победитель</th>
-            <th>Длительность</th>
-            <th className="green omit">Силы Света</th>
-            <th className="red omit">Силы Тьмы</th>
+            <th>{historyI18n.tableMatchId}</th>
+            <th>{historyI18n.tableMode}</th>
+            <th>{historyI18n.tableWinner}</th>
+            <th>{historyI18n.tableDuration}</th>
+            <th className="green omit">{historyI18n.tableRadiant}</th>
+            <th className="red omit">{historyI18n.tableDire}</th>
           </Tr>
         </thead>
         <tbody>

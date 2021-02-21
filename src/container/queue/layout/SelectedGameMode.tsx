@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useStores } from "../../../stores";
 import { AdBanner } from "../../../components/ads/ads";
 import { BanStatusInfo } from "../../../components/UI/BanStatusInfo";
-
+import i18n from "./selected-game-mode.i18n";
 const Container = styled.div`
   flex: 1;
   flex-direction: column;
@@ -35,44 +35,25 @@ const ShortInfo = styled.div`
   }
 `;
 
-const texts: { [key in MatchmakingMode]: ReactNode } = {
-  [MatchmakingMode.RANKED]: (
+const texts: { [key in MatchmakingMode]: () => ReactNode } = {
+  [MatchmakingMode.RANKED]: () => (
     <span>
-      Самый популярный режим на сервере. Первые 10 игр в сезоне - калибровочные, после калибровки рейтинг меняется на
-      ±25 очков. <br />
+      {i18n.mostPopularMode} <br />
       <br />
       <Link href={"/leaderboard"}>
-        <a>Посмотреть таблицу лидеров</a>
+        <a>{i18n.viewLeaderboard}</a>
       </Link>
     </span>
   ),
-  [MatchmakingMode.TOURNAMENT]: <span></span>,
-  [MatchmakingMode.UNRANKED]: (
-    <span>
-      Обычная игра 5х5 без рейтинга. Этот режим менее популярен, чем <b>{formatGameMode(MatchmakingMode.RANKED)}</b>
-    </span>
-  ),
-  [MatchmakingMode.BOTS]: (
-    <span>
-      Пустые слоты заполняются ботами. Если есть хотя бы 2 игрока в поиске, то игра найдется. Проверка происходит каждые
-      10 минут.
-    </span>
-  ),
-  [MatchmakingMode.SOLOMID]: (
-    <span>
-      Отличный способ вспомнить способности героя или быстро сыграть с другом. Или потренироваться для возможного
-      турнира 1х1 ;)
-    </span>
-  ),
-  [MatchmakingMode.DIRETIDE]: (
-    <span>Знаменитый {formatGameMode(MatchmakingMode.DIRETIDE)}, который все так давно просят.</span>
-  ),
-  [MatchmakingMode.GREEVILING]: <span>Один из самых старых ивентов, проводимых Valve</span>,
-  [MatchmakingMode.ABILITY_DRAFT]: (
-    <span>Старый добрый Ability Draft. Создай своего героя сам из старых способностей и без талантов!</span>
-  ),
-  [MatchmakingMode.HIGHROOM]: <span>Режим для поиска игр с высоким рейтингом</span>,
-  [MatchmakingMode.TOURNAMENT_SOLOMID]: <span>...</span>
+  [MatchmakingMode.TOURNAMENT]: () => <span></span>,
+  [MatchmakingMode.UNRANKED]: () => <span>{i18n.unranked}</span>,
+  [MatchmakingMode.BOTS]: () => <span>{i18n.bots}</span>,
+  [MatchmakingMode.SOLOMID]: () => <span>{i18n.solomid}</span>,
+  [MatchmakingMode.DIRETIDE]: () => <span>{i18n.diretide}</span>,
+  [MatchmakingMode.GREEVILING]: () => <span>Один из самых старых ивентов, проводимых Valve</span>,
+  [MatchmakingMode.ABILITY_DRAFT]: () => <span>{i18n.abilityDraft}</span>,
+  [MatchmakingMode.HIGHROOM]: () => <span>Режим для поиска игр с высоким рейтингом</span>,
+  [MatchmakingMode.TOURNAMENT_SOLOMID]: () => <span></span>
 };
 
 export const SelectedGameMode = observer(() => {
@@ -83,7 +64,7 @@ export const SelectedGameMode = observer(() => {
       <ShortInfo>
         <div className={"game-mode"}>{formatGameMode(queue.selectedMode)}</div>
 
-        {(queue.selectedModeBanned && <BanStatusInfo ban={auth.me!!.banStatus} />) || texts[queue.selectedMode]}
+        {(queue.selectedModeBanned && <BanStatusInfo ban={auth.me!!.banStatus} />) || texts[queue.selectedMode]()}
 
         <br />
         <br />

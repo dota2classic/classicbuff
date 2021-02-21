@@ -1,5 +1,7 @@
-export const formatDateStr = (value: string | number): string => {
-  return new Date(value).toLocaleString("ru-RU", {
+import { stores } from "../../stores";
+
+export const formatDateStr = (value: string | number, locale?: string): string => {
+  return new Date(value).toLocaleString(locale || "ru-RU", {
     month: "short",
     day: "numeric",
     hour: "2-digit",

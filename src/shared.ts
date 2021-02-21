@@ -4,10 +4,6 @@ export interface Page<T> {
   pages: number;
 }
 
-export const BaseGQLConfig = {
-  pollInterval: 5000
-};
-
 export const colors = {
   darkBg: "#15191d",
   darkBg2: "#1c2024",
@@ -21,6 +17,7 @@ export const colors = {
   transparentTint2: "rgba(65,168,252,0.01)",
   transparentTint3: "rgba(65,168,252,0.05)",
   blueHighlight: "rgb(77,169,243)",
+  blueHighlight2: "rgb(77,169,243, 0.5)",
   error: "rgb(198,38,38)",
 
   dota: {

@@ -3,6 +3,7 @@ import AuthService from "../service/AuthServiceService";
 import { appApi } from "../api/hooks";
 import { QueueService } from "./queue/queue.service";
 import { NotificationService } from "./notification/notification.service";
+import { Lang } from "./lang";
 
 const auth = AuthService;
 
@@ -14,7 +15,8 @@ export const stores = {
   auth,
   game,
   queue,
-  notify
+  notify,
+  lang: new Lang()
 };
 
 export const useStores = () => stores;
