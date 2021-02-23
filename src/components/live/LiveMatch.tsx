@@ -13,7 +13,7 @@ import AuthService from "../../service/AuthServiceService";
 import { OldRequiredModal } from "../modal/OldRequiredModal";
 import { PlayerHover } from "../UI/PlayerHover";
 import { useStores } from "../../stores";
-
+import i18n from "./live-match.i18n";
 const Map = styled.div`
   margin-left: 20px;
   margin-right: 20px;
@@ -209,10 +209,10 @@ export const LiveMatch = (liveMatch: LiveMatchDto) => {
       <MatchOverview>
         {auth.hasOld ? (
           <LinkButton target={"__blank"} href={watchUrl}>
-            Смотреть игру в клиенте
+            {i18n.watchGame}
           </LinkButton>
         ) : (
-          <span onClick={() => setOldRequiredOpen(true)}>Смотреть игру в клиенте</span>
+          <span onClick={() => setOldRequiredOpen(true)}>{i18n.watchGame}</span>
         )}
       </MatchOverview>
     </MatchInfo>

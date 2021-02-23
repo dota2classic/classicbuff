@@ -5,7 +5,7 @@ import { useStores } from "../../stores";
 import Button, { LinkButton } from "../../components/UI/Button";
 import Input from "../../components/UI/Input";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import AuthServiceService from "../../service/AuthServiceService";
+import i18n from "./accept-game-modal.i18n";
 
 export const Modal = styled.div`
   z-index: 100;
@@ -55,6 +55,10 @@ const Buttons = styled.div`
   flex-direction: row;
   margin-top: 40px;
 
+  & ${Button} + ${Button} {
+    margin-left: 10px;
+  }
+
   justify-content: space-between;
 `;
 
@@ -83,7 +87,7 @@ const IAcceptGameModal = () => {
     return (
       <ModalWrapper>
         <Modal>
-          <GameReady>Идет поиск игрового сервера...</GameReady>
+          <GameReady>{i18n.serverSearch}</GameReady>
         </Modal>
       </ModalWrapper>
     );
@@ -91,10 +95,10 @@ const IAcceptGameModal = () => {
   if (queue.gameInfo?.serverURL)
     return (
       <Modal className="inline">
-        <GameReady>Игра готова!</GameReady>
+        <GameReady>{i18n.gameReady}</GameReady>
         <Buttons>
           <LinkButton target={"__blank"} href={`steam://connect/${queue.gameInfo?.serverURL}`}>
-            Подключиться к игре
+            {i18n.connectToGame}
           </LinkButton>
         </Buttons>
         <div style={{ marginTop: 5 }} />
@@ -111,10 +115,10 @@ const IAcceptGameModal = () => {
     return (
       <ModalWrapper>
         <Modal>
-          <GameReady>Игра найдена!</GameReady>
+          <GameReady>{i18n.gameFound}</GameReady>
           <Buttons>
-            <Button onClick={queue.acceptGame}>Принять</Button>
-            <Button onClick={queue.declineGame}>Отклонить</Button>
+            <Button onClick={queue.acceptGame}>{i18n.acceptGame}</Button>
+            <Button onClick={queue.declineGame}>{i18n.declineGame}</Button>
           </Buttons>
         </Modal>
       </ModalWrapper>
@@ -124,7 +128,7 @@ const IAcceptGameModal = () => {
     <ModalWrapper>
       <Modal>
         <GameReady>
-          Ожидаем игроков <br /> {queue.gameInfo!!.accepted === undefined ? 0 : queue.gameInfo!!.accepted} из{" "}
+          {i18n.waitingForPlayers} <br /> {queue.gameInfo!!.accepted === undefined ? 0 : queue.gameInfo!!.accepted} из{" "}
           {queue.gameInfo.total}...
         </GameReady>
         <AcceptDots>

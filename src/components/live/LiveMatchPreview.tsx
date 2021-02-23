@@ -8,7 +8,7 @@ import { MinimapHero } from "./MinimapHero";
 import { OldRequiredModal } from "../modal/OldRequiredModal";
 import AuthService from "../../service/AuthServiceService";
 import { useStores } from "../../stores";
-
+import i18n from "./live-match.i18n";
 const Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -81,15 +81,15 @@ export const LiveMatchPreview = (match: LiveMatchDto) => {
       </Link>
       <GameInfo>
         <InfoRow>
-          <div>Режим</div>
+          <div>{i18n.mode}</div>
           <div>{formatGameMode(match.type)}</div>
         </InfoRow>
         <InfoRow>
-          <div>Время в игре</div>
+          <div>{i18n.inGameTime}</div>
           <div>{formatDuration(match.duration)}</div>
         </InfoRow>
         <InfoRow>
-          <div>Счет</div>
+          <div>{i18n.score}</div>
           <div>
             <span className={"green"}>{rScore}</span>
             {" : "}
@@ -100,10 +100,10 @@ export const LiveMatchPreview = (match: LiveMatchDto) => {
         <InfoRow>
           {auth.hasOld ? (
             <a target={"__blank"} href={watchUrl}>
-              Смотреть игру в клиенте
+              {i18n.watchGame}
             </a>
           ) : (
-            <span onClick={() => setOldRequiredOpen(true)}>Смотреть игру в клиенте</span>
+            <span onClick={() => setOldRequiredOpen(true)}>{i18n.watchGame}</span>
           )}
         </InfoRow>
       </GameInfo>

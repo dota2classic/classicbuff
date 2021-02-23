@@ -653,5 +653,140 @@
     "id": "dota2classic.old-required-modal.old_required",
     "defaultMessage": "Эта функция доступна только игрокам с ролью <old>Древний</old> и выше!",
     "filepath": "./src/components/modal/OldRequiredModal/old-required.i18n.ts"
+  },
+  {
+    "id": "dota2classic.live_match.mode",
+    "defaultMessage": "Режим",
+    "filepath": "./src/components/live/live-match.i18n.ts"
+  },
+  {
+    "id": "dota2classic.live_match.in_game_time",
+    "defaultMessage": "Время в игре",
+    "filepath": "./src/components/live/live-match.i18n.ts"
+  },
+  {
+    "id": "dota2classic.live_match.score",
+    "defaultMessage": "Счет",
+    "filepath": "./src/components/live/live-match.i18n.ts"
+  },
+  {
+    "id": "dota2classic.live_match.watch_game",
+    "defaultMessage": "Смотреть игру в клиенте",
+    "filepath": "./src/components/live/live-match.i18n.ts"
+  },
+  {
+    "id": "dota2classic.team_table.level",
+    "defaultMessage": "Уровень",
+    "filepath": "./src/components/team-table.i18n.ts"
+  },
+  {
+    "id": "dota2classic.team_table.hero",
+    "defaultMessage": "Герой",
+    "filepath": "./src/components/team-table.i18n.ts"
+  },
+  {
+    "id": "dota2classic.team_table.player",
+    "defaultMessage": "Игрок",
+    "filepath": "./src/components/team-table.i18n.ts"
+  },
+  {
+    "id": "dota2classic.team_table.items",
+    "defaultMessage": "Предметы",
+    "filepath": "./src/components/team-table.i18n.ts"
+  },
+  {
+    "id": "dota2classic.search-game-button.old_required",
+    "defaultMessage": "Начать поиск рейтинговой игры в группе может только игрок с подпиской <old>Древний</old> или <human>Человек</human>",
+    "filepath": "./src/components/UI/SearchGameBar/search-game-button.i18n.ts"
+  },
+  {
+    "id": "dota2classic.search-game-button.search_game",
+    "defaultMessage": "Искать игру",
+    "filepath": "./src/components/UI/SearchGameBar/search-game-button.i18n.ts"
+  },
+  {
+    "id": "dota2classic.search-game-button.search",
+    "defaultMessage": "{s} в поиске",
+    "filepath": "./src/components/UI/SearchGameBar/search-game-button.i18n.ts"
+  },
+  {
+    "id": "dota2classic.search-game-button.cancel_search",
+    "defaultMessage": "Отменить поиск",
+    "filepath": "./src/components/UI/SearchGameBar/search-game-button.i18n.ts"
+  },
+  {
+    "id": "dota2classic.accept-game-modal.game_ready",
+    "defaultMessage": "Игра готова!",
+    "filepath": "./src/container/queue/accept-game-modal.i18n.ts"
+  },
+  {
+    "id": "dota2classic.accept-game-modal.server_search",
+    "defaultMessage": "Идет поиск игрового сервера...",
+    "filepath": "./src/container/queue/accept-game-modal.i18n.ts"
+  },
+  {
+    "id": "dota2classic.accept-game-modal.connect_to_game",
+    "defaultMessage": "Подключиться к игре",
+    "filepath": "./src/container/queue/accept-game-modal.i18n.ts"
+  },
+  {
+    "id": "dota2classic.accept-game-modal.game_found",
+    "defaultMessage": "Игра найдена!",
+    "filepath": "./src/container/queue/accept-game-modal.i18n.ts"
+  },
+  {
+    "id": "dota2classic.accept-game-modal.accept_game",
+    "defaultMessage": "Принять",
+    "filepath": "./src/container/queue/accept-game-modal.i18n.ts"
+  },
+  {
+    "id": "dota2classic.accept-game-modal.decline_game",
+    "defaultMessage": "Отклонить",
+    "filepath": "./src/container/queue/accept-game-modal.i18n.ts"
+  },
+  {
+    "id": "dota2classic.accept-game-modal.waiting_for_players",
+    "defaultMessage": "Ожидаем игроков",
+    "filepath": "./src/container/queue/accept-game-modal.i18n.ts"
+  },
+  {
+    "id": "dota2classic.report-modal.multiple_reports",
+    "defaultMessage": "Несколько жалоб от одного игрока за один период рассмотра жалоб не суммируются.",
+    "filepath": "./src/components/modal/ReportModal/report-modal.i18n.ts"
+  },
+  {
+    "id": "dota2classic.report-modal.once_an_hour",
+    "defaultMessage": "Жалобы рассматриваются раз в час автоматически и валидируются модераторами.",
+    "filepath": "./src/components/modal/ReportModal/report-modal.i18n.ts"
+  },
+  {
+    "id": "dota2classic.report-modal.reports_available",
+    "defaultMessage": "Жалоб доступно: {reports}",
+    "filepath": "./src/components/modal/ReportModal/report-modal.i18n.ts"
+  },
+  {
+    "id": "dota2classic.report-modal.report_sent",
+    "defaultMessage": "Жалоба отправлена",
+    "filepath": "./src/components/modal/ReportModal/report-modal.i18n.ts"
+  },
+  {
+    "id": "dota2classic.report-modal.report_error",
+    "defaultMessage": "Произошла ошибка при отправке жалобы",
+    "filepath": "./src/components/modal/ReportModal/report-modal.i18n.ts"
+  },
+  {
+    "id": "dota2classic.invite-player-modal.invite_sent",
+    "defaultMessage": "Приглашение в группу отправлено {name}",
+    "filepath": "./src/container/invite-player-modal.i18n.ts"
+  },
+  {
+    "id": "dota2classic.notification.invite_send",
+    "defaultMessage": "Приглашение в команду отправлено {name}",
+    "filepath": "./src/stores/notification/notification.i18n.ts"
+  },
+  {
+    "id": "dota2classic.invite-player-modal.title",
+    "defaultMessage": "Искать",
+    "filepath": "./src/container/invite-player-modal.i18n.ts"
   }
 ]

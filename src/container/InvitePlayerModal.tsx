@@ -5,7 +5,7 @@ import Input from "../components/UI/Input";
 import { useStores } from "../stores";
 import useOutsideClick from "../utils/useOutsideClick";
 import { NotificationDto } from "../stores/notification/notification.service";
-
+import i18n from "./invite-player-modal.i18n";
 const Modal = styled.div`
   z-index: 100;
   position: absolute;
@@ -87,7 +87,7 @@ const InvitePlayerModalInner = ({ open, close }: Props) => {
   return (
     <ModalWrapper>
       <Modal ref={comp}>
-        <Title>Искать</Title>
+        <Title>{i18n.title}</Title>
         <Input placeholder={"Никнейм игрока"} value={search} onChange={e => setSearch(e.target.value)} />
 
         <PlayerList>
@@ -96,7 +96,7 @@ const InvitePlayerModalInner = ({ open, close }: Props) => {
               key={t.id}
               onClick={async () => {
                 queue.inviteToParty(t.id);
-                notify.enqueueNotification(new NotificationDto(`Приглашение в группу отправлено ${t.name}`));
+                notify.enqueueNotification(new NotificationDto(i18n.withValues.inviteSent({ name: t.name })));
                 close();
               }}
             >

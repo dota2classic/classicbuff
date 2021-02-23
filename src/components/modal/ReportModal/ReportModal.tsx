@@ -8,7 +8,7 @@ import { colors } from "../../../shared";
 import { useStores } from "../../../stores";
 import { useApi } from "../../../api/hooks";
 import { NotificationDto } from "../../../stores/notification/notification.service";
-
+import i18n from "./report-modal.i18n";
 const Modal = styled.div`
   z-index: 100;
   position: absolute;
@@ -80,13 +80,13 @@ export const ReportModal = ({ open, close, reported, matchId, children }: PropsW
         <Title>Жалоба на игрока {reported.name}</Title>
 
         <MainText>
-          Несколько жалоб от одного игрока за один период рассмотра жалоб не суммируются.
+          {i18n.multipleReports}
           <br />
           <br />
-          Жалобы рассматриваются раз в час автоматически и валидируются модераторами.
+          {i18n.onceAnHour}
           <br />
           <br />
-          Жалоб доступно: {auth.me?.reportsAvailable}
+          {i18n.withValues.reportsAvailable({ reports: auth.me?.reportsAvailable })}
         </MainText>
         <Textarea
           placeholder="Коротко опишите проблемное поведение"
@@ -103,9 +103,9 @@ export const ReportModal = ({ open, close, reported, matchId, children }: PropsW
                   matchId: matchId,
                   text: text
                 });
-                notify.enqueueNotification(new NotificationDto("Жалоба отправлена"));
+                notify.enqueueNotification(new NotificationDto(i18n.reportSent));
               } catch (e) {
-                notify.enqueueNotification(new NotificationDto("Произошла ошибка при отправке жалобы"));
+                notify.enqueueNotification(new NotificationDto(i18n.reportError));
               } finally {
                 close();
               }

@@ -1,5 +1,5 @@
 import cx from "classnames";
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { colors } from "../../../shared";
 import { useStores } from "../../../stores";
@@ -9,7 +9,7 @@ import { observer } from "mobx-react";
 import { useRouter } from "next/router";
 import formatGameMode from "../../../utils/format/formatGameMode";
 import { AcceptGameModal } from "../../../container/queue/AcceptGameModal";
-
+import i18n from "./search-game-button.i18n";
 export const pendingAnimation = keyframes`
   0% {
     box-shadow: 0 0 5px 1px rgba(255,255,255,0.6);
@@ -96,8 +96,10 @@ export const SearchGameButton = observer(() => {
   return (
     <FullSearchInfo>
       <OldRequiredModal open={oldRequiredOpen} close={() => setOldRequiredOpen(false)}>
-        Начать поиск рейтинговой игры в группе может только игрок с подпиской
-        <ColoredRole className="old">Древний</ColoredRole> или <ColoredRole className="human">Человек</ColoredRole>
+        {i18n.withValues.oldRequired({
+          old: (...chunks: ReactNode[]) => <ColoredRole className="old">{chunks}</ColoredRole>,
+          human: (...chunks: ReactNode[]) => <ColoredRole className="human">{chunks}</ColoredRole>
+        })}
       </OldRequiredModal>
       <AcceptGameModal />
       {(queue.searchingMode !== undefined && (
@@ -106,11 +108,11 @@ export const SearchGameButton = observer(() => {
             className={cx("cancel", queue.gameInfo?.serverURL && "ingame")}
             onClick={() => queue.cancelSearch()}
           >
-            Отменить поиск
+            {i18n.cancelSearch}
           </SearchGameButtonComp>
           {!isQueuePage && (
             <GameSearchInfo>
-              {formatGameMode(queue.searchingMode)}, {queue.inQueue[queue.searchingMode]} в поиске
+              {formatGameMode(queue.searchingMode)}, {i18n.withValues.search({ s: queue.inQueue[queue.searchingMode] })}
             </GameSearchInfo>
           )}
         </EmbedCancelSearch>
@@ -130,7 +132,7 @@ export const SearchGameButton = observer(() => {
               }
             }}
           >
-            Искать игру
+            {i18n.searchGame}
           </SearchGameButtonComp>
         </GameSearchInfo>
       )}

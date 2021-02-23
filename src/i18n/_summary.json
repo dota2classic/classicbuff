@@ -1,5 +1,54 @@
 [
   {
+    "id": "dota2classic.accept-game-modal.accept_game",
+    "defaultMessage": "Принять",
+    "description": "",
+    "en-US": "Accept",
+    "ru-RU": "Принять"
+  },
+  {
+    "id": "dota2classic.accept-game-modal.connect_to_game",
+    "defaultMessage": "Подключиться к игре",
+    "description": "",
+    "en-US": "Connect to game",
+    "ru-RU": "Подключиться к игре"
+  },
+  {
+    "id": "dota2classic.accept-game-modal.decline_game",
+    "defaultMessage": "Отклонить",
+    "description": "",
+    "en-US": "Decline",
+    "ru-RU": "Отклонить"
+  },
+  {
+    "id": "dota2classic.accept-game-modal.game_found",
+    "defaultMessage": "Игра найдена!",
+    "description": "",
+    "en-US": "Game found!",
+    "ru-RU": "Игра найдена!"
+  },
+  {
+    "id": "dota2classic.accept-game-modal.game_ready",
+    "defaultMessage": "Игра готова!",
+    "description": "",
+    "en-US": "Game ready!",
+    "ru-RU": "Игра готова!"
+  },
+  {
+    "id": "dota2classic.accept-game-modal.server_search",
+    "defaultMessage": "Идет поиск игрового сервера...",
+    "description": "",
+    "en-US": "Searching for a server...",
+    "ru-RU": "Идет поиск игрового сервера..."
+  },
+  {
+    "id": "dota2classic.accept-game-modal.waiting_for_players",
+    "defaultMessage": "Ожидаем игроков",
+    "description": "",
+    "en-US": "Waiting for players to accept",
+    "ru-RU": "Ожидаем игроков"
+  },
+  {
     "id": "dota2classic.donate-page.additional_discord_features",
     "defaultMessage": "Дополнительные привилегии на нашем сервере в <a>Discord</a>",
     "description": "",
@@ -52,14 +101,14 @@
     "id": "dota2classic.donate-page.human_price_actual",
     "defaultMessage": "300₽ / месяц",
     "description": "",
-    "en-US": "$3 / month",
+    "en-US": "$10 / month",
     "ru-RU": "300₽ / месяц"
   },
   {
     "id": "dota2classic.donate-page.human_price_old",
     "defaultMessage": "600₽",
     "description": "",
-    "en-US": "$40",
+    "en-US": "$15",
     "ru-RU": "600₽"
   },
   {
@@ -392,6 +441,20 @@
     "ru-RU": "Работает через Steam"
   },
   {
+    "id": "dota2classic.invite-player-modal.invite_sent",
+    "defaultMessage": "Приглашение в группу отправлено {name}",
+    "description": "",
+    "en-US": "Party invite sent to {name}",
+    "ru-RU": "Приглашение в группу отправлено {name}"
+  },
+  {
+    "id": "dota2classic.invite-player-modal.title",
+    "defaultMessage": "Искать",
+    "description": "",
+    "en-US": "Search player",
+    "ru-RU": "Искать"
+  },
+  {
     "id": "dota2classic.ladder-row.mmr",
     "defaultMessage": "MMR",
     "description": "",
@@ -488,6 +551,69 @@
     "description": "",
     "en-US": "Leaderboard",
     "ru-RU": "Таблица лидеров"
+  },
+  {
+    "id": "dota2classic.live_match.in_game_time",
+    "defaultMessage": "Время в игре",
+    "description": "",
+    "en-US": "Time in game",
+    "ru-RU": "Время в игре"
+  },
+  {
+    "id": "dota2classic.live_match.mode",
+    "defaultMessage": "Режим",
+    "description": "",
+    "en-US": "Mode",
+    "ru-RU": "Режим"
+  },
+  {
+    "id": "dota2classic.live_match.score",
+    "defaultMessage": "Счет",
+    "description": "",
+    "en-US": "Score",
+    "ru-RU": "Счет"
+  },
+  {
+    "id": "dota2classic.live_match.watch_game",
+    "defaultMessage": "Смотреть игру в клиенте",
+    "description": "",
+    "en-US": "Watch game in dota",
+    "ru-RU": "Смотреть игру в клиенте"
+  },
+  {
+    "id": "dota2classic.notification.invite_send",
+    "defaultMessage": "Приглашение в команду отправлено {name}",
+    "description": "",
+    "en-US": "Team invite sent to {name}",
+    "ru-RU": "Приглашение в команду отправлено {name}"
+  },
+  {
+    "id": "dota2classic.old-required-modal.close",
+    "defaultMessage": "Закрыть",
+    "description": "",
+    "en-US": "Close",
+    "ru-RU": "Закрыть"
+  },
+  {
+    "id": "dota2classic.old-required-modal.learn_more",
+    "defaultMessage": "Узнать больше",
+    "description": "",
+    "en-US": "Learn more",
+    "ru-RU": "Узнать больше"
+  },
+  {
+    "id": "dota2classic.old-required-modal.old_required",
+    "defaultMessage": "Эта функция доступна только игрокам с ролью <old>Древний</old> и выше!",
+    "description": "",
+    "en-US": "This action is available only for players with <old>Ancient</old> subscriptions or higher!",
+    "ru-RU": "Эта функция доступна только игрокам с ролью <old>Древний</old> и выше!"
+  },
+  {
+    "id": "dota2classic.old-required-modal.support_project",
+    "defaultMessage": "Поддержи проект и получи доступ к эксклюзивным возможностям!",
+    "description": "",
+    "en-US": "Support the project and get access to exclusive opportunities!",
+    "ru-RU": "Поддержи проект и получи доступ к эксклюзивным возможностям!"
   },
   {
     "id": "dota2classic.profile.duration",
@@ -644,6 +770,69 @@
     "ru-RU": "Посмотреть таблицу лидеров"
   },
   {
+    "id": "dota2classic.report-modal.multiple_reports",
+    "defaultMessage": "Несколько жалоб от одного игрока за один период рассмотра жалоб не суммируются.",
+    "description": "",
+    "en-US": "Multiple reports from same player in one report period do not sum",
+    "ru-RU": "Несколько жалоб от одного игрока за один период рассмотра жалоб не суммируются."
+  },
+  {
+    "id": "dota2classic.report-modal.once_an_hour",
+    "defaultMessage": "Жалобы рассматриваются раз в час автоматически и валидируются модераторами.",
+    "description": "",
+    "en-US": "Reports are handled every hour automatically and are validated by moderators",
+    "ru-RU": "Жалобы рассматриваются раз в час автоматически и валидируются модераторами."
+  },
+  {
+    "id": "dota2classic.report-modal.report_error",
+    "defaultMessage": "Произошла ошибка при отправке жалобы",
+    "description": "",
+    "en-US": "There was an issue sending a report :(",
+    "ru-RU": "Произошла ошибка при отправке жалобы"
+  },
+  {
+    "id": "dota2classic.report-modal.report_sent",
+    "defaultMessage": "Жалоба отправлена",
+    "description": "",
+    "en-US": "Report sent",
+    "ru-RU": "Жалоба отправлена"
+  },
+  {
+    "id": "dota2classic.report-modal.reports_available",
+    "defaultMessage": "Жалоб доступно: {reports}",
+    "description": "",
+    "en-US": "Reports available: {reports}",
+    "ru-RU": "Жалоб доступно: {reports}"
+  },
+  {
+    "id": "dota2classic.search-game-button.cancel_search",
+    "defaultMessage": "Отменить поиск",
+    "description": "",
+    "en-US": "Cancel search",
+    "ru-RU": "Отменить поиск"
+  },
+  {
+    "id": "dota2classic.search-game-button.old_required",
+    "defaultMessage": "Начать поиск рейтинговой игры в группе может только игрок с подпиской <old>Древний</old> или <human>Человек</human>",
+    "description": "",
+    "en-US": "You can queue ranked games if you have <old>Ancient</old> or <human>Human</human> subscription",
+    "ru-RU": "Начать поиск рейтинговой игры в группе может только игрок с подпиской <old>Древний</old> или <human>Человек</human>"
+  },
+  {
+    "id": "dota2classic.search-game-button.search",
+    "defaultMessage": "{s} в поиске",
+    "description": "",
+    "en-US": "{s} in queue",
+    "ru-RU": "{s} в поиске"
+  },
+  {
+    "id": "dota2classic.search-game-button.search_game",
+    "defaultMessage": "Искать игру",
+    "description": "",
+    "en-US": "Search game",
+    "ru-RU": "Искать игру"
+  },
+  {
     "id": "dota2classic.shared-dota.dire",
     "defaultMessage": "Тьма",
     "description": "",
@@ -712,6 +901,34 @@
     "description": "",
     "en-US": "Connecting to the game coordinator...",
     "ru-RU": "Идет подключение к игровому координатору..."
+  },
+  {
+    "id": "dota2classic.team_table.hero",
+    "defaultMessage": "Герой",
+    "description": "",
+    "en-US": "Hero",
+    "ru-RU": "Герой"
+  },
+  {
+    "id": "dota2classic.team_table.items",
+    "defaultMessage": "Предметы",
+    "description": "",
+    "en-US": "Items",
+    "ru-RU": "Предметы"
+  },
+  {
+    "id": "dota2classic.team_table.level",
+    "defaultMessage": "Уровень",
+    "description": "",
+    "en-US": "Level",
+    "ru-RU": "Уровень"
+  },
+  {
+    "id": "dota2classic.team_table.player",
+    "defaultMessage": "Игрок",
+    "description": "",
+    "en-US": "Player",
+    "ru-RU": "Игрок"
   },
   {
     "id": "dota2classic.teams.no_teams",
@@ -887,33 +1104,5 @@
     "description": "",
     "en-US": "Tournament",
     "ru-RU": "Турнир"
-  },
-  {
-    "id": "dota2classic.old-required-modal.close",
-    "defaultMessage": "Закрыть",
-    "description": "",
-    "en-US": "Close",
-    "ru-RU": "Закрыть"
-  },
-  {
-    "id": "dota2classic.old-required-modal.learn_more",
-    "defaultMessage": "Узнать больше",
-    "description": "",
-    "en-US": "Learn more",
-    "ru-RU": "Узнать больше"
-  },
-  {
-    "id": "dota2classic.old-required-modal.old_required",
-    "defaultMessage": "Эта функция доступна только игрокам с ролью <old>Древний</old> и выше!",
-    "description": "",
-    "en-US": "This action is available only for players with <old>Ancient</old> subscriptions or higher!",
-    "ru-RU": "Эта функция доступна только игрокам с ролью <old>Древний</old> и выше!"
-  },
-  {
-    "id": "dota2classic.old-required-modal.support_project",
-    "defaultMessage": "Поддержи проект и получи доступ к эксклюзивным возможностям!",
-    "description": "",
-    "en-US": "Support the project and get access to exclusive opportunities!",
-    "ru-RU": "Поддержи проект и получи доступ к эксклюзивным возможностям!"
   }
 ]

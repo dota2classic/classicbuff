@@ -6,7 +6,7 @@ import useOutsideClick from "../../../utils/useOutsideClick";
 import Input from "../../UI/Input";
 import { NotificationDto } from "../../../stores/notification/notification.service";
 import { colors } from "../../../shared";
-
+import i18n from "stores/notification/notification.i18n";
 const Modal = styled.div`
   z-index: 100;
   position: absolute;
@@ -98,7 +98,7 @@ const InvitePlayerModalInner = ({ open, close }: Props) => {
               key={t.id}
               onClick={async () => {
                 await appApi.team.teamControllerInviteToTeam(t.id);
-                notify.enqueueNotification(new NotificationDto(`Приглашение в команду отправлено ${t.name}`));
+                notify.enqueueNotification(new NotificationDto(i18n.withValues.inviteSend({ name: t.name })));
                 close();
               }}
             >

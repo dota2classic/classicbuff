@@ -57,9 +57,9 @@ export class QueueService extends GameCoordinatorListener {
       //     total: 10,
       //     accepted: 5,
       //     mode: MatchmakingMode.BOTS,
-      //     iAccepted: true,
+      //     iAccepted: false,
       //     roomID: "fd",
-      //     serverURL: "adsfasf"
+      //     serverURL: undefined
       //
       //   }
       // }, 1000)
