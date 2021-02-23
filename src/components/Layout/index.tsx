@@ -6,7 +6,6 @@ import { Tab, Tabs } from "../UI/Tabs";
 import Link from "next/link";
 import { AppRouter } from "../../utils/route";
 import cx from "classnames";
-import AuthService from "../../service/AuthServiceService";
 import { steamIdToNum } from "../../utils/numSteamId";
 import React, { PropsWithChildren, ReactNode } from "react";
 import useWillMount from "../../utils/useWillMount";
@@ -15,7 +14,7 @@ import { useGameConnection } from "../util/useGameConnection";
 import { NotificationHold } from "../UI/NotificationHold";
 import { SearchGameBar } from "../UI/SearchGameBar/SearchGameBar";
 import layoutI18n from "./layout.i18n";
-import { stores } from "../../stores";
+import { useStores } from "../../stores";
 const LayoutContainer = styled.div`
   min-height: 100vh;
   width: 100vw;
@@ -156,6 +155,8 @@ const DefaultHeader = observer(() => {
 
   const asPath = router.asPath;
 
+  const { lang, auth } = useStores();
+
   const { data: liveData } = useApi().liveApi.useLiveMatchControllerListMatches({
     refreshInterval: 30_000
   });
@@ -192,15 +193,15 @@ const DefaultHeader = observer(() => {
             </Tab>
           </Link>
 
-          {AuthService.isModerator && (
+          {auth.isModerator && (
             <Link passHref href={"/admin/servers"}>
               <Tab className={cx(asPath.startsWith("/admin/servers") && "active")}>Админка</Tab>
             </Link>
           )}
 
-          {AuthService.authorized ? (
-            <Link passHref {...AppRouter.player(AuthService.steamID || "").link}>
-              <Tab className={cx(asPath === `/player/${steamIdToNum(AuthService.steamID || "")}` && "active")}>
+          {auth.authorized ? (
+            <Link passHref {...AppRouter.player(auth.steamID || "").link}>
+              <Tab className={cx(asPath === `/player/${steamIdToNum(auth.steamID || "")}` && "active")}>
                 {layoutI18n.profile}
               </Tab>
             </Link>
@@ -231,8 +232,8 @@ const DefaultHeader = observer(() => {
             <Tab className={cx(asPath.startsWith("/team") && "active")}>{layoutI18n.teams}</Tab>
           </Link>
 
-          <Tab className="accent" onClick={() => stores.lang.toggle()}>
-            {stores.lang.language === "ru" ? "In english" : "По русски"}
+          <Tab className="accent" onClick={() => lang.toggle()}>
+            {lang.language === "ru" ? "In english" : "По русски"}
           </Tab>
         </Tabs>
       </HeaderWrapper>
@@ -240,31 +241,10 @@ const DefaultHeader = observer(() => {
   );
 });
 
-export const TournamentLayout = (p: PropsWithChildren<{ landing?: boolean; title?: ReactNode }>) => {
-  useWillMount(() => {
-    AuthService.fetchMe();
-  });
-  const router = useRouter();
-
-  return (
-    <LayoutContainer>
-      <Content className={(p.landing && "landing") || undefined}>
-        <Title>
-          <MenuIcon
-            onClick={() => Router.push(`${router.pathname}?menu`, `${router.asPath}?menu`)}
-            src={"https://dota2classic.ru/api/static/menu.svg"}
-          />
-          {p.title && <span>{p.title}</span>}
-        </Title>
-        {p.children}
-      </Content>
-    </LayoutContainer>
-  );
-};
-
 export default observer((p: PropsWithChildren<{ landing?: boolean; noScroll?: boolean; title?: ReactNode }>) => {
+  const { auth } = useStores();
   useWillMount(() => {
-    AuthService.fetchMe();
+    auth.fetchMe();
   });
   const router = useRouter();
 

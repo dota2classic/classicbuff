@@ -34,7 +34,7 @@ const MOption = styled.div`
 
   &.header {
     cursor: unset;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 18px;
     &:hover {
       background: unset;

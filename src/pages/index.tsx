@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import { EmbedProps } from "../components/util/EmbedProps";
 import i18n from "pages-i18n/index.i18n";
-import { stores } from "../stores";
+import { useStores } from "../stores";
 
 const CardPicture = styled.picture`
   cursor: pointer;
@@ -151,6 +151,8 @@ export const CardRow = styled.div`
 `;
 
 export default () => {
+  const stores = useStores();
+
   return (
     <Layout landing>
       <EmbedProps

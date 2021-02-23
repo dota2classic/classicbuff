@@ -3,7 +3,7 @@ import React from "react";
 import Link from "next/link";
 import { TournamentDto, TournamentDtoStatusEnum } from "../../api/back/models";
 import { colors } from "../../shared";
-import { formatDateStr } from "../../utils/format/formateDateStr";
+import { DateFormatter, formatDateStr } from "../../utils/format/formateDateStr";
 import { formatTournamentType } from "../../utils/format/formatTournamentType";
 
 interface Props {
@@ -48,7 +48,9 @@ export const AdminTournamentCard = ({ tournament }: Props) => {
         <InfoContainer>
           <TournamentName>{tournament.name}</TournamentName>
           {tournament.status === TournamentDtoStatusEnum.NEW && (
-            <TournamentType>Начало {formatDateStr(tournament.startDate)}</TournamentType>
+            <TournamentType>
+              Начало <DateFormatter date={tournament.startDate} />
+            </TournamentType>
           )}
           {tournament.status === TournamentDtoStatusEnum.ONGOING && <TournamentType>В процессе</TournamentType>}
           {tournament.status === TournamentDtoStatusEnum.FINISHED && <TournamentType>Завершен</TournamentType>}

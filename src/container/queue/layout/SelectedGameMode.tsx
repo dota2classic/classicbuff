@@ -22,7 +22,7 @@ const ShortInfo = styled.div`
 
   & .game-mode {
     font-size: 20px;
-    font-weight: bold;
+    font-weight: normal;
     margin-bottom: 20px;
   }
   & a {

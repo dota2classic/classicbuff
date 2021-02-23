@@ -17,6 +17,9 @@ const WelcomeText = styled.div`
     width: 80%;
     font-size: 20px;
   }
+
+  margin-top: 20px;
+  margin-bottom: 20px;
 `;
 
 const Way2Pay = styled.div`
@@ -51,7 +54,7 @@ const List = styled.ul`
   color: #d9d9d9;
   font-size: 18px;
   align-self: flex-start;
-  font-weight: 300;
+  font-weight: 400;
   margin-left: 120px;
   @media (max-width: 600px) {
     margin-top: 20px;
@@ -83,8 +86,12 @@ const Price = styled.div`
 
 const Note = styled.div`
   color: #ca3d3d;
-  font-size: 16px;
+
+  margin-top: 20px;
+  font-size: 20px;
+  margin-bottom: 20px;
 `;
+
 export default () => {
   return (
     <Layout landing>

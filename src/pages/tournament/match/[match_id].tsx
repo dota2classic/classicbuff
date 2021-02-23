@@ -10,7 +10,7 @@ import MatchRow from "../../../components/MatchRow";
 import Head from "next/head";
 import { MatchDto } from "../../../api/back/models";
 import { Hint } from "../../../components/UI/Hint";
-import { formatDateStr } from "../../../utils/format/formateDateStr";
+import { DateFormatter, formatDateStr } from "../../../utils/format/formateDateStr";
 import { Tab, Tabs } from "../../../components/UI/Tabs";
 import { useTab } from "../../../utils/useTab";
 import cx from "classnames";
@@ -112,7 +112,9 @@ export default () => {
             </Tr>
             <Tr>
               <td>{i18n.timeStart}</td>
-              <td>{formatDateStr(data.startDate)}</td>
+              <td>
+                <DateFormatter date={data.startDate} />
+              </td>
             </Tr>
           </tbody>
         </Table>

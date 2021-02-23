@@ -4,7 +4,7 @@ import React from "react";
 import { formatTournamentType } from "../../../utils/format/formatTournamentType";
 import { colors } from "../../../shared";
 import Link from "next/link";
-import { formatDateStr } from "../../../utils/format/formateDateStr";
+import { DateFormatter } from "../../../utils/format/formateDateStr";
 import { AppRouter } from "../../../utils/route";
 
 interface Props {
@@ -28,7 +28,7 @@ const Card = styled.a`
   &:hover {
     background: ${colors.evenDarkerBg};
 
-    box-shadow: 0px 0px 14px 1px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 14px 1px rgba(255, 255, 255, 0.1);
   }
 
   & + & {
@@ -62,7 +62,9 @@ export default ({ tournament }: Props) => {
         <InfoContainer>
           <TournamentName>{tournament.name}</TournamentName>
           {tournament.status === TournamentDtoStatusEnum.NEW && (
-            <TournamentType>Начало {formatDateStr(tournament.startDate)}</TournamentType>
+            <TournamentType>
+              Начало <DateFormatter date={tournament.startDate} />{" "}
+            </TournamentType>
           )}
           {tournament.status === TournamentDtoStatusEnum.ONGOING && <TournamentType>В процессе</TournamentType>}
           {tournament.status === TournamentDtoStatusEnum.FINISHED && <TournamentType>Завершен</TournamentType>}

@@ -8,11 +8,16 @@ import {
   FormattedNumber,
   FormattedPlural,
   FormattedRelativeTime,
-  FormattedTime
+  FormattedTime,
+  IntlContext
 } from "react-intl";
 import { FormattedMessage } from "./FormattedMessage";
+import { isServer } from "../ssr";
 
 export { defineMessages } from "react-intl";
+const SSRFormatted = (props: any) => {
+  return <IntlContext.Consumer>{val => <span>{val.messages[props.id]}</span>}</IntlContext.Consumer>;
+};
 
 const types: any = {
   html: (props: { id: string }) => <FormattedHTMLMessage tagName="span" {...props} />,
@@ -23,7 +28,7 @@ const types: any = {
   plural: FormattedPlural
 };
 
-const getFormatted = (type: any) => (type && types[type]) || FormattedMessage;
+const getFormatted = (type: any) => ((type && types[type]) || isServer ? SSRFormatted : FormattedMessage);
 
 export interface MessageDescriptor {
   id: string;

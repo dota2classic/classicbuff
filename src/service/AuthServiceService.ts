@@ -1,20 +1,17 @@
 import { action, computed, observable } from "mobx";
 import cookies from "browser-cookies";
 import { apiInner, appApi } from "../api/hooks";
-import {
-  MeDto,
-  MeDtoRolesEnum,
-  PlayerSummaryDto,
-  PlayerSummaryDtoRolesEnum,
-  RoleSubscriptionEntryDtoRoleEnum
-} from "../api/back/models";
-
+import { MeDto, MeDtoRolesEnum, RoleSubscriptionEntryDtoRoleEnum } from "../api/back/models";
+import { isBrowser } from "../utils/ssr";
+import atob from "atob";
 export class AuthServiceService {
   @observable
   public token?: string;
 
   @observable
   public me?: MeDto;
+
+  public static cookieTokenKey: string = "dota2classic_auth_token";
 
   @computed
   public get authorized(): boolean {
@@ -88,7 +85,7 @@ export class AuthServiceService {
     const jsonPayload = decodeURIComponent(
       atob(base64)
         .split("")
-        .map(function(c) {
+        .map(function(c: any) {
           return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
         })
         .join("")
@@ -98,7 +95,7 @@ export class AuthServiceService {
   }
 
   private static cookieToken(): string | undefined {
-    if (typeof window !== "undefined") return cookies.get("dota2classic_auth_token") || undefined;
+    if (typeof window !== "undefined") return cookies.get(AuthServiceService.cookieTokenKey) || undefined;
   }
 
   public constructor() {
@@ -115,7 +112,11 @@ export class AuthServiceService {
 
   @action.bound
   public async fetchMe() {
-    this.me = await appApi.playerApi.playerControllerMe();
+    try {
+      this.me = await appApi.playerApi.playerControllerMe();
+    } catch (e) {
+      this.me = undefined;
+    }
   }
 
   @action.bound
@@ -123,7 +124,10 @@ export class AuthServiceService {
     this.token = token;
     appApi.apiParams.accessToken = token;
     apiInner.setHeader(`Authorization`, `Bearer ${token}`);
-    localStorage.setItem("token", token);
+    if (isBrowser) {
+      cookies.set(AuthServiceService.cookieTokenKey, token);
+      localStorage.setItem("token", token);
+    }
   }
 
   @action.bound
@@ -132,8 +136,8 @@ export class AuthServiceService {
     apiInner.deleteHeader(`Authorization`);
     appApi.apiParams.accessToken = undefined;
     localStorage.removeItem("token");
-    cookies.erase("dota2classic_auth_token");
+    cookies.erase(AuthServiceService.cookieTokenKey);
   }
 }
 
-export default new AuthServiceService();
+export default AuthServiceService;

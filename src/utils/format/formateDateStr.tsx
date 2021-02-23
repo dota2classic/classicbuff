@@ -1,4 +1,14 @@
-import { stores } from "../../stores";
+import { observer } from "mobx-react";
+import React from "react";
+import { useStores } from "../../stores";
+
+interface Props {
+  date: string | number;
+}
+export const DateFormatter = observer((props: Props) => {
+  const locale = useStores().lang.locale;
+  return <span>{formatDateStr(props.date, locale)}</span>;
+});
 
 export const formatDateStr = (value: string | number, locale?: string): string => {
   return new Date(value).toLocaleString(locale || "ru-RU", {

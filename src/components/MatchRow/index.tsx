@@ -3,15 +3,17 @@ import { Tr } from "../UI/Table";
 import cx from "classnames";
 import Router from "next/router";
 import { Heroes, MatchIdCol } from "../../pages/history";
-import { formatDateStr } from "../../utils/format/formateDateStr";
+import { DateFormatter, formatDateStr } from "../../utils/format/formateDateStr";
 import formatGameMode from "../../utils/format/formatGameMode";
 import { formatDuration } from "../../pages/match/[id]";
 import { HeroIcon } from "../UI/HeroIcon";
 import React from "react";
 import dotai18n from "shared-i18n/dota.i18n";
-import { stores } from "../../stores";
+import { useStores } from "../../stores";
 export default (it: MatchDto) => {
   const radiant = it.radiant;
+
+  const stores = useStores();
 
   const dire = it.dire;
 
@@ -21,7 +23,7 @@ export default (it: MatchDto) => {
         <MatchIdCol>
           <span>{it.id}</span>
           <span style={{ fontSize: 14, marginTop: 2, color: "#c2c2c2" }}>
-            {formatDateStr(it.timestamp, stores.lang.locale)}
+            <DateFormatter date={it.timestamp} />
           </span>
         </MatchIdCol>
       </td>

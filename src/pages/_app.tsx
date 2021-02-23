@@ -1,13 +1,15 @@
 import React from "react";
 import App, { AppContext } from "next/app";
-import { Provider } from "mobx-react";
 import { TokenSniffer } from "../utils/sniffToken";
 import { ModalProvider } from "react-modal-hook";
-import { stores } from "../stores";
 import "react-datepicker/dist/react-datepicker.css";
 import { SWRConfig } from "swr";
 import { createIntl, createIntlCache, RawIntlProvider } from "react-intl";
 import { NextPageContext } from "next";
+import Cookies from "cookies";
+import { AuthServiceService } from "../service/AuthServiceService";
+import { RootStoreProvider } from "../stores/StoreProvider";
+import { initializeStore } from "../stores";
 
 const cache = createIntlCache();
 
@@ -16,21 +18,9 @@ const getMessages = (locale: string) => {
 };
 
 export const getLang = (ctx: NextPageContext) => {
-  // todo cookie lang
-  const urlLang = ctx.req?.headers;
+  const cookies = new Cookies(ctx.req!!, ctx.res!!);
 
-  const cookies: any = (urlLang?.cookie || "").split(";").reduce((res, c) => {
-    const [key, val] = c
-      .trim()
-      .split("=")
-      .map(decodeURIComponent);
-    try {
-      return Object.assign(res, { [key]: JSON.parse(val) });
-    } catch (e) {
-      return Object.assign(res, { [key]: val });
-    }
-  }, {});
-  const locale = cookies["d2c-lang"] || "ru";
+  const locale = cookies.get("d2c-lang") || "ru";
 
   if (ctx.req?.url?.startsWith("/admin"))
     return {
@@ -48,11 +38,17 @@ const getLangProps = (ctx: NextPageContext): { locale: string; messages: any } =
   // Get the `locale` and `messages` from the request object on the server.
   // In the browser, use the same values that the server serialized.
   const { req } = ctx;
-  const { locale, messages } = req
-    ? getLang(ctx)
-    : { locale: stores.lang.language, messages: getMessages(stores.lang.language) };
 
-  return { locale, messages };
+  if (req) {
+    const { locale, messages } = getLang(ctx);
+
+    return { locale, messages };
+  } else {
+    const stores = initializeStore();
+    const locale = stores.lang.locale;
+
+    return { locale, messages: getMessages(locale) };
+  }
 };
 
 export default class MyApp extends App<any> {
@@ -65,16 +61,33 @@ export default class MyApp extends App<any> {
     const langProps = getLangProps(appContext.ctx);
     const appProps = await App.getInitialProps(appContext);
 
-    // await Services.site.profileStore.fetchSilent();
+    if (!appContext.ctx.req || !appContext.ctx.res) return { ...appProps, ...langProps };
 
-    return { ...appProps, ...langProps };
+    const cookies = new Cookies(appContext.ctx.req, appContext.ctx.res);
+    const cookieToken = cookies.get(AuthServiceService.cookieTokenKey);
+
+    return { ...appProps, ...langProps, token: cookieToken };
   }
 
   render() {
-    const { Component, pageProps, locale, messages } = this.props;
+    const { Component, pageProps, locale, messages, token, router } = this.props;
 
-    const intl = createIntl({ locale, messages, defaultLocale: "ru" }, cache);
+    let loc: string = locale;
+    if (router.query.lang !== undefined) {
+      if (router.query.lang === "en") {
+        loc = "en";
+      } else {
+        loc = "ru";
+      }
+    }
 
+    const intl = createIntl({ locale: loc, messages: getMessages(loc), defaultLocale: "ru" }, cache);
+
+    const defaultHydration = {
+      lang: {
+        language: loc
+      }
+    };
     return (
       <ModalProvider>
         <SWRConfig
@@ -83,10 +96,16 @@ export default class MyApp extends App<any> {
           }}
         >
           <RawIntlProvider value={intl}>
-            <Provider {...stores}>
+            <RootStoreProvider
+              token={token}
+              hydrationData={{
+                ...defaultHydration,
+                ...(this.props.pageProps.hydrationData || {})
+              }}
+            >
               <TokenSniffer />
               <Component {...pageProps} />
-            </Provider>
+            </RootStoreProvider>
           </RawIntlProvider>
         </SWRConfig>
       </ModalProvider>

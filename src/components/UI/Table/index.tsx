@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { colors } from "../../../shared";
 
 export const Table = styled.table`
+  border-spacing: 0;
   & thead > tr {
     background-color: ${colors.almostBlack} !important;
   }

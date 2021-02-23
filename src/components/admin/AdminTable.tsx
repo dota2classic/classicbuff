@@ -19,7 +19,7 @@ export const AdminTable = styled.table`
     padding: 12px;
     font-size: 14px;
     text-align: left;
-    font-weight: bold;
+    font-weight: normal;
   }
 
   border-top-width: 2px;

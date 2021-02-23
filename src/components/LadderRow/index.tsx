@@ -6,6 +6,7 @@ import { Tr } from "../UI/Table";
 import Link from "next/link";
 import React from "react";
 import i18n from "./ladder-row.i18n";
+import { AppRouter } from "../../utils/route";
 export const Role = styled.div`
   width: 10px;
   height: 10px;
@@ -65,26 +66,25 @@ const NameContainer = styled.a`
 `;
 
 export default (props: LeaderboardEntryDto) => {
-  const playerUrl = `/player/${props.id}`;
-
   const highestRole = props.roles.sort((a, b) => RoleValue[b] - RoleValue[a])[0] || "PLAYER";
 
+  const numId = Number(props.id);
   return (
     <Tr>
       <td>
-        <Link href={playerUrl}>
+        <Link passHref {...AppRouter.player(numId).link}>
           <a>{props.rank + 1}</a>
         </Link>
       </td>
       <td>
-        <Link href={playerUrl} passHref>
+        <Link {...AppRouter.player(numId).link} passHref>
           <NameContainer>
             {highestRole !== "PLAYER" && (
               <Role className={highestRole}>
                 <div>{RoleNames[highestRole]}</div>
               </Role>
             )}
-            <a style={{ fontWeight: "bold" }}>{props.name}</a>
+            <span>{props.name}</span>
           </NameContainer>
         </Link>
       </td>

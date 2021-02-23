@@ -34,7 +34,7 @@ const Card = styled.a`
     max-width: 14px;
     
     align-self: center;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 20px;
     height: 14px;
     max-height: 14px;

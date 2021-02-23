@@ -75,6 +75,12 @@ export default class MyDocument extends Document {
         <Head>
           <meta charSet="utf-8" />
           <link rel="canonical" href="https://dota2classic.ru" />
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+            integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+            crossOrigin="anonymous"
+          />
           <link rel="icon" type="image/png" href="https://dota2classic.ru/api/static/favicon.png" />
           <link rel="stylesheet" href="https://dota2classic.ru/api/static/style.css" />
           <link rel="stylesheet" href="https://dota2classic.ru/api/static/minimap.css" />

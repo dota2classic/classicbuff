@@ -1,7 +1,6 @@
 import React from "react";
 import { FormattedMessage as FormattedMessageOriginal } from "react-intl";
 import { observer } from "mobx-react";
-import { stores } from "../../stores";
 
 export interface IFormattedMessageProps {
   id: string;
@@ -18,11 +17,7 @@ export const FormattedMessage = observer((props: IFormattedMessageProps) => {
 
   return (
     <React.Fragment>
-      {stores.lang.debugShowIds ? (
-        props.id
-      ) : (
-        <FormattedMessageOriginal {...restProps}>{children}</FormattedMessageOriginal>
-      )}
+      <FormattedMessageOriginal {...restProps}>{children}</FormattedMessageOriginal>
     </React.Fragment>
   );
 });

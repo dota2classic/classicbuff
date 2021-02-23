@@ -46,7 +46,7 @@ export const ModalWrapper = styled.div`
 const GameReady = styled.div`
   text-align: center;
   font-size: 24px;
-  font-weight: bold;
+  font-weight: normal;
   color: #dcddde;
 `;
 

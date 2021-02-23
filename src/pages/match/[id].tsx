@@ -13,6 +13,7 @@ import { LiveMatch } from "../../components/live/LiveMatch";
 import { colors } from "../../shared";
 import { NextPageContext } from "next";
 import { SsrProps } from "../../utils/SsrProps";
+import { initializeStore } from "../../stores";
 
 export const ItemsContainer = styled.div`
   display: flex;
@@ -185,6 +186,8 @@ const Page = (p: InitialProps) => {
 
 export async function getServerSideProps(ctx: NextPageContext): Promise<SsrProps<InitialProps>> {
   try {
+    // @ts-ignore
+    console.log(`NOTICE ME SEMAPI`, appApi.apiParams?.accessToken(), appApi.apiParams?.accessToken);
     const res = await appApi.matchApi.matchControllerMatch(Number(ctx.query.id));
     return {
       props: {

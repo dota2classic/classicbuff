@@ -107,8 +107,8 @@ const Page = observer(() => {
           </Tr>
         </thead>
         <tbody>
-          {data?.data.map((it, index) => (
-            <MatchRow {...it} />
+          {data?.data.map(it => (
+            <MatchRow key={it.id} {...it} />
           ))}
         </tbody>
       </Table>

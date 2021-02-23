@@ -2,23 +2,24 @@ import Router from "next/router";
 import React from "react";
 import { formatDuration, ItemsContainer } from "../pages/match/[id]";
 import { ItemIcon } from "./UI/ItemIcon";
-import { formatDateStr } from "../utils/format/formateDateStr";
+import { DateFormatter, formatDateStr } from "../utils/format/formateDateStr";
 import cx from "classnames";
 import { HeroIcon } from "./UI/HeroIcon";
 import formatGameMode from "../utils/format/formatGameMode";
 import { MatchDto } from "../api/back/models";
 import { Tr } from "./UI/Table";
 import i18n from "pages-i18n/profile/profile.i18n";
-import { stores } from "../stores";
+import { useStores } from "../stores";
 export interface PlayerMatchInfo {
   player: string;
   match: MatchDto;
   index: number;
 }
 
-export default ({ match, player, index }: PlayerMatchInfo) => {
+const PlayerMatch = ({ match, player, index }: PlayerMatchInfo) => {
   const pim = [...match.radiant].concat(match.dire).find(it => it.steamId === player)!!;
 
+  const { lang } = useStores();
   const isWin = match.winner === pim.team;
   const items = pim.items.map(it => it.substr(5));
   return (
@@ -29,7 +30,7 @@ export default ({ match, player, index }: PlayerMatchInfo) => {
       <td className={"green"}>
         {match.id} <br />
         <span style={{ fontSize: 12, marginTop: 2, color: "#c2c2c2" }}>
-          {formatDateStr(match.timestamp, stores.lang.locale)}
+          <DateFormatter date={match.timestamp} />
         </span>
       </td>
       <td>{formatGameMode(match.mode)}</td>
@@ -59,3 +60,5 @@ export default ({ match, player, index }: PlayerMatchInfo) => {
     </Tr>
   );
 };
+
+export default PlayerMatch;
