@@ -3,6 +3,7 @@ import { observer } from "mobx-react";
 import React from "react";
 import { useStores } from "../../../stores";
 import { colors } from "../../../shared";
+import { NotificationDto } from "../../../stores/notification/notification.service";
 
 const NotificationContainer = styled.div`
   position: fixed;
@@ -30,7 +31,7 @@ export const NotificationHold = observer(() => {
 
   return (
     <NotificationContainer>
-      {notify.permanentQueue.map(t => t.text)}
+      {notify.permanentQueue.map((t: NotificationDto) => t.text)}
       {notify.currentPendingNotification && <Notification>{notify.currentPendingNotification.text}</Notification>}
     </NotificationContainer>
   );

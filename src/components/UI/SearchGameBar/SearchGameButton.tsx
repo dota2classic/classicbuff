@@ -1,4 +1,3 @@
-import AuthService from "../../../service/AuthServiceService";
 import cx from "classnames";
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
@@ -9,20 +8,19 @@ import { ColoredRole } from "../ColoredRole";
 import { observer } from "mobx-react";
 import { useRouter } from "next/router";
 import formatGameMode from "../../../utils/format/formatGameMode";
-import { SelectedGameMode } from "../../../container/queue/layout/SelectedGameMode";
 import { AcceptGameModal } from "../../../container/queue/AcceptGameModal";
 
 export const pendingAnimation = keyframes`
   0% {
-    box-shadow: 0px 0px 5px 1px rgba(255,255,255,0.6);
+    box-shadow: 0 0 5px 1px rgba(255,255,255,0.6);
   }
 
   50% {
-      box-shadow: 0px 0px 5px 1px rgba(255,255,255,0.2);
+      box-shadow: 0 0 5px 1px rgba(255,255,255,0.2);
   }
 
   100% {
-    box-shadow: 0px 0px 5px 1px rgba(255,255,255,0.6);
+    box-shadow: 0 0 5px 1px rgba(255,255,255,0.6);
   }
 `;
 
@@ -88,7 +86,7 @@ const GameSearchInfo = styled.div`
 export const SearchGameButton = observer(() => {
   const { queue } = useStores();
   const [oldRequiredOpen, setOldRequiredOpen] = useState(false);
-
+  const { auth } = useStores();
   const router = useRouter();
 
   const isQueuePage = router.pathname === "/queue";
@@ -120,11 +118,7 @@ export const SearchGameButton = observer(() => {
         <GameSearchInfo>
           <SearchGameButtonComp
             disabled={queue.selectedModeBanned}
-            className={cx(
-              "search",
-              AuthService.me?.banStatus.isBanned && "banned",
-              queue.gameInfo?.serverURL && "ingame"
-            )}
+            className={cx("search", auth.me?.banStatus.isBanned && "banned", queue.gameInfo?.serverURL && "ingame")}
             onClick={() => {
               if (!isQueuePage) {
                 router.push("/queue", "/queue").finally();

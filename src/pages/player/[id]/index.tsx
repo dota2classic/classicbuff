@@ -12,9 +12,10 @@ import { LinkButton } from "../../../components/UI/Button";
 import Link from "next/link";
 import { observer } from "mobx-react";
 import i18n from "pages-i18n/profile/profile.i18n";
+import { useStores } from "../../../stores";
 const Page = () => {
   const { id } = useRouter().query;
-
+  const { auth } = useStores();
   const { data: player } = useApi().playerApi.usePlayerControllerPlayerSummary(numToSteamId(Number(id)));
 
   const highestRole = player?.roles.sort((a, b) => RoleValue[b] - RoleValue[a])[0] || "PLAYER";
@@ -33,7 +34,7 @@ const Page = () => {
         </h3>
         <h4 style={{ textAlign: "center" }}>{i18n.withValues.infoRow({ mmr: player?.mmr, rank: player?.rank })}</h4>
       </div>
-      {AuthService.isModerator && (
+      {auth.isModerator && (
         <Link href={"/admin/player/[id]"} as={`/admin/player/${id}`}>
           <LinkButton>В админке</LinkButton>
         </Link>

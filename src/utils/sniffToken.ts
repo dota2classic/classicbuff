@@ -1,14 +1,16 @@
 import useWillMount from "./useWillMount";
 import { useRouter } from "next/router";
-import AuthService from "../service/AuthServiceService";
 import { useEffect } from "react";
+import { useStores } from "../stores";
 
 const sniffToken = () => {
   const router = useRouter();
+  const { auth } = useStores();
+
   useEffect(() => {
     const token = router.query.token as string;
     if (token) {
-      AuthService.setToken(token);
+      auth.setToken(token);
       router.replace("/", "/", { shallow: true });
     }
   }, [router.query]);

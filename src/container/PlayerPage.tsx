@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Tab, Tabs } from "../components/UI/Tabs";
-import Router, { useRouter } from "next/router";
+import Router from "next/router";
 import AuthService from "../service/AuthServiceService";
 import PlayerHistoryTab from "./PlayerHistoryTab";
 import PlayerHeroesTab from "./PlayerHeroesTab";
@@ -9,13 +9,15 @@ import { DiscordBlock } from "../components/UI/DiscordBlock";
 import { useTab } from "../utils/useTab";
 import { PlayerTeamsTab } from "./PlayerTeamsTab";
 import i18n from "pages-i18n/profile/profile.i18n";
+import { useStores } from "../stores";
+
 interface Props {
   steam_id: string;
 }
 export default (p: Props) => {
   const [tab, setTabAction] = useTab("tab", 0);
-
-  const isMine = AuthService.me?.steamId === p.steam_id;
+  const { auth } = useStores();
+  const isMine = auth.me?.steamId === p.steam_id;
 
   return (
     <>
@@ -42,7 +44,7 @@ export default (p: Props) => {
         {isMine && (
           <Tab
             onClick={() => {
-              AuthService.logout();
+              auth.logout();
               return Router.push("/");
             }}
           >

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { MinimapHero } from "./MinimapHero";
 import { OldRequiredModal } from "../modal/OldRequiredModal";
 import AuthService from "../../service/AuthServiceService";
+import { useStores } from "../../stores";
 
 const Container = styled.div`
   display: flex;
@@ -66,6 +67,8 @@ export const LiveMatchPreview = (match: LiveMatchDto) => {
   const port = parseInt(match.server.split(":")[1]);
   const watchUrl = `steam://connect/${host}:${port + 5}`;
 
+  const { auth } = useStores();
+
   return (
     <Container>
       <OldRequiredModal open={oldRequiredOpen} close={() => setOldRequiredOpen(false)} />
@@ -95,7 +98,7 @@ export const LiveMatchPreview = (match: LiveMatchDto) => {
         </InfoRow>
 
         <InfoRow>
-          {AuthService.hasOld ? (
+          {auth.hasOld ? (
             <a target={"__blank"} href={watchUrl}>
               Смотреть игру в клиенте
             </a>

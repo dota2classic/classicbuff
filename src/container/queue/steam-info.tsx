@@ -9,6 +9,7 @@ import cx from "classnames";
 import { InvitePlayerModal } from "../InvitePlayerModal";
 import { GameCoordinatorState } from "../../stores/queue/game-coordinator.state";
 import i18n from "./steam-info.i18n";
+import { PlayerInPartyDto } from "../../api/back/models";
 
 const InfoRow = styled.div`
   display: flex;
@@ -159,7 +160,7 @@ export default observer(() => {
       <InvitePlayerModal open={inviteOpen} close={() => setInviteOpen(false)} />
 
       <PartyContents>
-        {queue.party!!.players.map(t => (
+        {queue.party!!.players.map((t: PlayerInPartyDto) => (
           <PartyItem className={cx(t.steamId === data?.leader.steamId && "leader")}>
             <img src={t.avatar} alt="" />
           </PartyItem>

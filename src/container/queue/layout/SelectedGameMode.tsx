@@ -35,7 +35,7 @@ const ShortInfo = styled.div`
   }
 `;
 
-const texts: { [key in MatchmakingMode]: () => ReactNode } = {
+const texts: any = {
   [MatchmakingMode.RANKED]: () => (
     <span>
       {i18n.mostPopularMode} <br />
@@ -64,7 +64,8 @@ export const SelectedGameMode = observer(() => {
       <ShortInfo>
         <div className={"game-mode"}>{formatGameMode(queue.selectedMode)}</div>
 
-        {(queue.selectedModeBanned && <BanStatusInfo ban={auth.me!!.banStatus} />) || texts[queue.selectedMode]()}
+        {(queue.selectedModeBanned && <BanStatusInfo ban={auth.me!!.banStatus} />) ||
+          texts[queue.selectedMode as any]()}
 
         <br />
         <br />

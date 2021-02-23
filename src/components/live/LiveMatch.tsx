@@ -12,6 +12,7 @@ import { MinimapHero } from "./MinimapHero";
 import AuthService from "../../service/AuthServiceService";
 import { OldRequiredModal } from "../modal/OldRequiredModal";
 import { PlayerHover } from "../UI/PlayerHover";
+import { useStores } from "../../stores";
 
 const Map = styled.div`
   margin-left: 20px;
@@ -186,6 +187,8 @@ export const LiveMatch = (liveMatch: LiveMatchDto) => {
   const port = parseInt(liveMatch.server.split(":")[1]);
   const watchUrl = `steam://connect/${host}:${port + 5}`;
 
+  const { auth } = useStores();
+
   return (
     <MatchInfo>
       <AdBanner />
@@ -204,7 +207,7 @@ export const LiveMatch = (liveMatch: LiveMatchDto) => {
         <TeamInfoBlock team={3} heroes={d} />
       </Wrapper>
       <MatchOverview>
-        {AuthService.hasOld ? (
+        {auth.hasOld ? (
           <LinkButton target={"__blank"} href={watchUrl}>
             Смотреть игру в клиенте
           </LinkButton>
