@@ -110,7 +110,7 @@ const MatchmakingOption = observer((props: MProps) => {
     <MOption
       className={cx(
         queue.searchingMode === props.mode && "active",
-        props.selected && "current",
+        (props.selected && "current") || undefined,
         queue.searchingMode !== undefined && queue.searchingMode !== props.mode && "disabled",
         lockedCuzNewbie && "disabled"
       )}
@@ -156,6 +156,11 @@ export const GameModes = observer(() => {
         selected={queue.selectedMode === MatchmakingMode.UNRANKED}
         unrankedGamesLeft={auth.me?.unrankedGamesLeft}
         mode={MatchmakingMode.UNRANKED}
+      />
+      <MatchmakingOption
+        onSelect={setSelectedMode}
+        selected={queue.selectedMode === MatchmakingMode.CAPTAINS_MODE}
+        mode={MatchmakingMode.CAPTAINS_MODE}
       />
       <MatchmakingOption
         onSelect={setSelectedMode}

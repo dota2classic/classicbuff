@@ -53,7 +53,8 @@ const texts: any = {
   [MatchmakingMode.GREEVILING]: () => <span>Один из самых старых ивентов, проводимых Valve</span>,
   [MatchmakingMode.ABILITY_DRAFT]: () => <span>{i18n.abilityDraft}</span>,
   [MatchmakingMode.HIGHROOM]: () => <span>Режим для поиска игр с высоким рейтингом</span>,
-  [MatchmakingMode.TOURNAMENT_SOLOMID]: () => <span></span>
+  [MatchmakingMode.TOURNAMENT_SOLOMID]: () => <span></span>,
+  [MatchmakingMode.CAPTAINS_MODE]: () => <span></span>
 };
 
 export const SelectedGameMode = observer(() => {

@@ -10,7 +10,8 @@ export enum MatchmakingMode {
   TOURNAMENT = 6,
   BOTS = 7,
   HIGHROOM = 8,
-  TOURNAMENT_SOLOMID = 9
+  TOURNAMENT_SOLOMID = 9,
+  CAPTAINS_MODE = 10
 }
 export default (mode: any) => {
   return gmi18n[mode as MatchmakingMode] as any;

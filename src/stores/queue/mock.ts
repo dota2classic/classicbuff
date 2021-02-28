@@ -11,5 +11,6 @@ export const DefaultQueueHolder: QueueHolder = {
   [MatchmakingMode.BOTS]: 0,
   [MatchmakingMode.TOURNAMENT_SOLOMID]: 0,
   [MatchmakingMode.TOURNAMENT]: 0,
-  [MatchmakingMode.HIGHROOM]: 0
+  [MatchmakingMode.HIGHROOM]: 0,
+  [MatchmakingMode.CAPTAINS_MODE]: 0
 };

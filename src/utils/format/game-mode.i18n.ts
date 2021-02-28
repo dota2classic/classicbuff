@@ -53,6 +53,11 @@ const messages = defineMessages({
   [4]: {
     id: `${INTL_KEY}._matchmaking_mode_greeviling`,
     defaultMessage: "Гряволы"
+  },
+  // MatchmakingMode.CAPTAINS_MODE
+  [10]: {
+    id: `${INTL_KEY}._matchmaking_mode_captains_mode`,
+    defaultMessage: "Captains Mode"
   }
 });
 

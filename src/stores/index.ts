@@ -72,9 +72,8 @@ export function initializeStore(initialData?: Partial<RootStore>): RootStore {
   // Create the stores once in the client
   if (!stores) stores = _store;
 
+  if (typeof window !== "undefined") (window as any).stores = _store;
   return _store;
 }
 // todo
 export const useStores = () => useContext(MobXProviderContext);
-
-if (typeof window !== "undefined") (window as any).stores = initializeStore();
