@@ -31,8 +31,8 @@ const PlayerPreview = styled.a`
     padding: 6px 10px;
 
     border-radius: 50%;
-    width: 14px;
-    max-width: 14px;
+    width: 20px;
+    max-width: 20px;
     
     align-self: center;
     font-weight: normal;

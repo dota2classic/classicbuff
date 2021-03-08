@@ -1,32 +1,32 @@
 import { useRouter } from "next/router";
-import { appApi, useApi } from "../../../api/hooks";
-import Layout from "../../../components/Layout";
+import { appApi, useApi } from "api/hooks";
+import Layout from "components/Layout";
 import React from "react";
 import styled from "styled-components";
-import { colors } from "../../../shared";
-import { formatTournamentStatus, formatTournamentType } from "../../../utils/format/formatTournamentType";
-import { Tab, Tabs } from "../../../components/UI/Tabs";
+import { colors } from "shared";
+import { formatTournamentStatus, formatTournamentType } from "utils/format/formatTournamentType";
+import { Tab, Tabs } from "components/UI/Tabs";
 import cx from "classnames";
-import { useTab } from "../../../utils/useTab";
+import { useTab } from "utils/useTab";
 import {
   FullTournamentDto,
   FullTournamentDtoEntryTypeEnum,
   FullTournamentDtoStatusEnum,
   TournamentParticipantDto,
   TournamentStandingDto
-} from "../../../api/back/models";
+} from "api/back/models";
 import TeamCard, { TeamLeaderboardCard } from "components/UI/TeamCard";
 
-import { TeamMemberPreview } from "../../../components/UI/TeamMemberPreview";
-import { formatDateStr } from "../../../utils/format/formateDateStr";
+import { TeamMemberPreview } from "components/UI/TeamMemberPreview";
+import { formatDateStr } from "utils/format/formateDateStr";
 import Head from "next/head";
-import { AppRouter } from "../../../utils/route";
+import { AppRouter } from "utils/route";
 import Link from "next/link";
 import { NextPageContext } from "next";
-import { SsrProps } from "../../../utils/SsrProps";
-import { EmbedProps } from "../../../components/util/EmbedProps";
-import { PlayerLeaderboardPreview } from "../../../components/UI/tournament/player-leaderboard-preview";
-import { useStores } from "../../../stores";
+import { SsrProps } from "utils/SsrProps";
+import { EmbedProps } from "components/util/EmbedProps";
+import { PlayerLeaderboardPreview } from "components/UI/tournament/player-leaderboard-preview";
+import { useStores } from "stores";
 import i18n from "pages-i18n/tournament/tournament.i18n";
 
 const TournamentName = styled.div`

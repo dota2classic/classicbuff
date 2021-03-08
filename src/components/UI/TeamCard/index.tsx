@@ -27,11 +27,12 @@ const Card = styled.a`
   }
   
    & span.result {
+    
     padding: 6px 10px;
 
     border-radius: 50%;
-    width: 14px;
-    max-width: 14px;
+    width: 50px;
+    max-width: 50px;
     
     align-self: center;
     font-weight: normal;
@@ -45,6 +46,11 @@ const Card = styled.a`
     align-items: center;
     
     margin-right: 5px;
+    
+    &.outsider {
+     font-size: 12px;
+     color: ${colors.primaryText};
+    }
 
     color: ${colors.position.foreground.shit};
     //background-color: ${colors.position.background.shit};
@@ -106,7 +112,15 @@ export const TeamLeaderboardCard = ({ standing }: StandingProps) => {
   return (
     <Link passHref href={`/team/${standing.team!!.id}`}>
       <Card>
-        <span className={cx("result", `position_${standing.position}`)}>{standing.position}</span>
+        <span
+          className={cx(
+            "result",
+            `position_${standing.position}`,
+            Number.isNaN(Number(standing.position)) && "outsider"
+          )}
+        >
+          {standing.position}
+        </span>
         <TournamentImage src={standing.team!!.imageUrl} />
         <TournamentName>{standing.team!!.name}</TournamentName>
       </Card>
