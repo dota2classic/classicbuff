@@ -15,6 +15,10 @@ const BracketViewerWrapper = styled.div`
     }
   }
 
+  & .opponents {
+    background-color: ${colors.darkBg2};
+  }
+
   & .round {
     & h3 {
       background: ${colors.transparentTint};

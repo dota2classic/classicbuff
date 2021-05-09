@@ -11,8 +11,9 @@ import {
 } from "./messages";
 import { AuthServiceService } from "../service/AuthServiceService";
 import { AppApi } from "../api/hooks";
-import { MatchmakingMode } from "../utils/format/formatGameMode";
+import { Dota2Version, MatchmakingMode } from "../utils/format/formatGameMode";
 import { GameCoordinatorListener } from "./queue/game-coordinator.listener";
+import { QueueState } from "stores/queue/queue.service";
 
 export const isDev = process.env.DEV === "true";
 
@@ -25,12 +26,6 @@ interface PendingGameInfo {
 }
 
 export class Game {
-  @observable
-  public searchingMode?: MatchmakingMode;
-
-  @observable
-  public activeMode: MatchmakingMode = MatchmakingMode.BOTS;
-
   @observable
   public pendingPartyInvite?: PartyInviteReceivedMessage = undefined;
 
@@ -115,9 +110,10 @@ export class Game {
     this.socket.emit(Messages.LEAVE_ALL_QUEUES);
   }
 
-  public startSearch(mode: MatchmakingMode) {
+  public startSearch({ mode, version }: QueueState) {
     this.socket.emit(Messages.ENTER_QUEUE, {
-      mode
+      mode,
+      version
     });
   }
 

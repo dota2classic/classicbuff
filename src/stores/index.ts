@@ -76,4 +76,4 @@ export function initializeStore(initialData?: Partial<RootStore>): RootStore {
   return _store;
 }
 // todo
-export const useStores = () => useContext(MobXProviderContext);
+export const useStores = (): RootStore => useContext(MobXProviderContext) as any;

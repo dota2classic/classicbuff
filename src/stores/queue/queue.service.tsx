@@ -1,5 +1,5 @@
 import { action, computed, observable, observe } from "mobx";
-import { MatchmakingMode } from "../../utils/format/formatGameMode";
+import { Dota2Version, MatchmakingMode } from "../../utils/format/formatGameMode";
 import { Game } from "../Game";
 import { GameCoordinatorListener } from "./game-coordinator.listener";
 import { GameCoordinatorState } from "./game-coordinator.state";
@@ -27,6 +27,10 @@ export interface GameInfo {
   serverURL?: string;
 }
 
+export class QueueState {
+  constructor(public readonly mode: MatchmakingMode, public readonly version: Dota2Version) {}
+}
+
 export class QueueService extends GameCoordinatorListener {
   private matchSound!: HTMLAudioElement;
   private roomReadySound!: HTMLAudioElement;
@@ -45,12 +49,16 @@ export class QueueService extends GameCoordinatorListener {
       this.roomReadySound = new Audio(Sound.NOTIFY_GAME);
       observe(this, "selectedMode", e => {
         if (typeof window !== "undefined") {
-          localStorage.setItem("d2c_mode", e.newValue.toString());
+          localStorage.setItem("d2c_mode", JSON.stringify(e.newValue));
         }
       });
       const mode = localStorage.getItem("d2c_mode");
       if (mode !== null) {
-        this.selectedMode = Number(mode);
+        try {
+          this.selectedMode = JSON.parse(mode);
+        } catch (e) {
+          this.selectedMode = new QueueState(MatchmakingMode.BOTS, Dota2Version.Dota_681);
+        }
       }
       // setTimeout(() => {
       //   this.gameInfo = {
@@ -67,10 +75,10 @@ export class QueueService extends GameCoordinatorListener {
   }
 
   @observable
-  public searchingMode?: MatchmakingMode;
+  public searchingMode?: QueueState;
 
   @observable
-  public selectedMode: MatchmakingMode = MatchmakingMode.BOTS;
+  public selectedMode: QueueState = new QueueState(MatchmakingMode.BOTS, Dota2Version.Dota_681);
 
   @observable
   public readyState: GameCoordinatorState = GameCoordinatorState.DISCONNECTED;
@@ -104,7 +112,7 @@ export class QueueService extends GameCoordinatorListener {
 
   @computed
   public get selectedModeBanned(): boolean {
-    if (this.selectedMode === MatchmakingMode.BOTS) return false;
+    if (this.selectedMode.mode === MatchmakingMode.BOTS) return false;
     return !!this.auth.me?.banStatus.isBanned;
   }
 
@@ -220,9 +228,14 @@ export class QueueService extends GameCoordinatorListener {
   }
 
   @action
-  public onQueueState(mode?: MatchmakingMode) {
-    this.searchingMode = mode === null ? undefined : mode;
-    this.selectedMode = mode === null || mode === undefined ? this.selectedMode : mode;
+  public onQueueState({ mode, version }: { mode?: MatchmakingMode; version?: Dota2Version }) {
+    if (mode != null && version != null) {
+      const qs = new QueueState(mode, version);
+      this.searchingMode = qs;
+      this.selectedMode = qs;
+    } else {
+      this.searchingMode = undefined;
+    }
   }
 
   @action
@@ -317,7 +330,7 @@ export class QueueService extends GameCoordinatorListener {
   private canQueue() {
     if (!this.ready) throw new Error("Not ready");
 
-    if (this.selectedMode === MatchmakingMode.RANKED && this.party!!.players.length > 1) {
+    if (this.selectedMode.mode === MatchmakingMode.RANKED && this.party!!.players.length > 1) {
       return this.canPartyRanked;
     }
 
@@ -325,7 +338,7 @@ export class QueueService extends GameCoordinatorListener {
   }
 
   @action
-  private startSearch = (mode: MatchmakingMode) => {
+  private startSearch = (mode: QueueState) => {
     this.game.startSearch(mode);
     this.searchingMode = mode;
   };

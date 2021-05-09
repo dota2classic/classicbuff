@@ -13,6 +13,12 @@ export enum MatchmakingMode {
   TOURNAMENT_SOLOMID = 9,
   CAPTAINS_MODE = 10
 }
+
+export enum Dota2Version {
+  Dota_681 = "Dota_681",
+  Dota_684 = "Dota_684"
+}
+
 export default (mode: any) => {
   return gmi18n[mode as MatchmakingMode] as any;
 };

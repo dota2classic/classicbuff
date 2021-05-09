@@ -11,7 +11,7 @@ import Pagination from "../components/Pagination";
 import { useApi } from "../api/hooks";
 import { formatDuration } from "./match/[id]";
 import Link from "next/link";
-import { AdBanner, InlineAdBanner } from "../components/ads/ads";
+import { AdBanner } from "../components/ads/ads";
 import { useTab } from "../utils/useTab";
 import { Table, Tr } from "components/UI/Table";
 

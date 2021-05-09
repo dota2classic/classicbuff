@@ -1,5 +1,6 @@
 import { defineMessages } from "react-intl";
 import { createI18n } from "utils/i18n";
+import { Dota2Version } from "utils/format/formatGameMode";
 
 const INTL_KEY = "dota2classic.queue-selected-game-mode";
 

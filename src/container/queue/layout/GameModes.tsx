@@ -4,18 +4,26 @@ import React from "react";
 // @ts-ignore
 import cx from "classnames";
 import { pendingAnimation } from "../steam-info";
-import formatGameMode, { MatchmakingMode } from "../../../utils/format/formatGameMode";
+import formatGameMode, { Dota2Version, MatchmakingMode } from "../../../utils/format/formatGameMode";
 import { useStores } from "../../../stores";
-import { isNightTime } from "../../../utils/isNightTime";
-import i18n from "./game-mode.i18n";
+import { QueueState } from "stores/queue/queue.service";
+import { colors } from "shared";
+
+const i18n = {
+  [Dota2Version.Dota_681]: "Dota 6.81",
+
+  [Dota2Version.Dota_684]: "Dota 6.84"
+};
 const Options = styled.div`
   display: flex;
   flex-direction: column;
   border-right: 1px solid #242424;
   width: 300px;
 `;
+
 const MOption = styled.div`
   display: flex;
+
   flex-direction: column;
   padding: 10px 20px;
   cursor: pointer;
@@ -36,6 +44,8 @@ const MOption = styled.div`
     cursor: unset;
     font-weight: normal;
     font-size: 18px;
+    color: ${colors.position.foreground.bronze};
+
     &:hover {
       background: unset;
     }
@@ -57,9 +67,9 @@ const MOption = styled.div`
 `;
 interface MProps {
   mode: MatchmakingMode;
-  selected: boolean;
   unrankedGamesLeft?: number;
-  onSelect: (mode: MatchmakingMode) => void;
+  version: Dota2Version;
+  onSelect: (mode: MatchmakingMode, version: Dota2Version) => void;
 }
 
 const SteamLogo = styled.img`
@@ -106,18 +116,21 @@ const MatchmakingOption = observer((props: MProps) => {
   const lockedCuzNewbie =
     props.unrankedGamesLeft !== undefined && props.unrankedGamesLeft > 0 && props.mode !== MatchmakingMode.BOTS;
 
+  const localSelected = queue.selectedMode?.mode === props.mode && queue.selectedMode?.version === props.version;
+  const isSelected = queue.searchingMode?.mode === props.mode && queue.searchingMode?.version === props.version;
+
   return (
     <MOption
       className={cx(
-        queue.searchingMode === props.mode && "active",
-        (props.selected && "current") || undefined,
-        queue.searchingMode !== undefined && queue.searchingMode !== props.mode && "disabled",
+        isSelected && "active",
+        (localSelected && "current") || undefined,
+        queue.searchingMode !== undefined && !isSelected && "disabled",
         lockedCuzNewbie && "disabled"
       )}
       onClick={() => {
         if (lockedCuzNewbie) return;
-        if (!(queue.searchingMode !== undefined && queue.searchingMode !== props.mode)) {
-          props.onSelect(props.mode);
+        if (!(queue.searchingMode !== undefined && !isSelected)) {
+          props.onSelect(props.mode, props.version);
         }
       }}
     >
@@ -131,10 +144,29 @@ const MatchmakingOption = observer((props: MProps) => {
   );
 });
 
-export const GameModes = observer(() => {
+const SharedModes = observer(({ version }: { version: Dota2Version }) => {
   const { auth, queue } = useStores();
 
-  const setSelectedMode = (m: MatchmakingMode) => (queue.selectedMode = m);
+  const setSelectedMode = (m: MatchmakingMode, version: Dota2Version) =>
+    (queue.selectedMode = new QueueState(m, version));
+
+  return (
+    <>
+      <MOption className={"header"}>{i18n[version]}</MOption>
+      <MatchmakingOption
+        version={version}
+        onSelect={setSelectedMode}
+        unrankedGamesLeft={auth.me?.unrankedGamesLeft}
+        mode={MatchmakingMode.RANKED}
+      />
+      <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.CAPTAINS_MODE} />
+      <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.BOTS} />
+      <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.SOLOMID} />
+    </>
+  );
+});
+export const GameModes = observer(() => {
+  const { auth, queue } = useStores();
 
   return (
     <Options>
@@ -143,37 +175,8 @@ export const GameModes = observer(() => {
         <SteamLogo src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/600px-Steam_icon_logo.svg.png" />
       </UserInfo>
 
-      <MOption className={"header"}>{i18n.gameSearch}</MOption>
-      {/*{auth.me && auth.me.rank <= 75 && <MatchmakingOption mode={MatchmakingMode.HIGHROOM} />}*/}
-      <MatchmakingOption
-        onSelect={setSelectedMode}
-        selected={queue.selectedMode === MatchmakingMode.RANKED}
-        unrankedGamesLeft={auth.me?.unrankedGamesLeft}
-        mode={MatchmakingMode.RANKED}
-      />
-      <MatchmakingOption
-        onSelect={setSelectedMode}
-        selected={queue.selectedMode === MatchmakingMode.UNRANKED}
-        unrankedGamesLeft={auth.me?.unrankedGamesLeft}
-        mode={MatchmakingMode.UNRANKED}
-      />
-      <MatchmakingOption
-        onSelect={setSelectedMode}
-        selected={queue.selectedMode === MatchmakingMode.CAPTAINS_MODE}
-        mode={MatchmakingMode.CAPTAINS_MODE}
-      />
-      <MatchmakingOption
-        onSelect={setSelectedMode}
-        selected={queue.selectedMode === MatchmakingMode.BOTS}
-        mode={MatchmakingMode.BOTS}
-      />
-      <MatchmakingOption
-        onSelect={setSelectedMode}
-        selected={queue.selectedMode === MatchmakingMode.SOLOMID}
-        mode={MatchmakingMode.SOLOMID}
-      />
-      {/*<MatchmakingOption mode={MatchmakingMode.DIRETIDE} />*/}
-      {/*<MatchmakingOption mode={MatchmakingMode.GREEVILING} />*/}
+      <SharedModes version={Dota2Version.Dota_681} />
+      <SharedModes version={Dota2Version.Dota_684} />
     </Options>
   );
 });

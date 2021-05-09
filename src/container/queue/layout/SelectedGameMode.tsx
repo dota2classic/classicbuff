@@ -66,7 +66,7 @@ export const SelectedGameMode = observer(() => {
         <div className={"game-mode"}>{formatGameMode(queue.selectedMode)}</div>
 
         {(queue.selectedModeBanned && <BanStatusInfo ban={auth.me!!.banStatus} />) ||
-          texts[queue.selectedMode as any]()}
+          texts[queue.selectedMode.mode as any]()}
 
         <br />
         <br />

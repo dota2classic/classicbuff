@@ -1,4 +1,4 @@
-import { MatchmakingMode } from "../../utils/format/formatGameMode";
+import { Dota2Version, MatchmakingMode } from "../../utils/format/formatGameMode";
 import { GameFound, LauncherServerStarted, PartyInviteReceivedMessage, ReadyCheckUpdate, RoomState } from "../messages";
 
 export abstract class GameCoordinatorListener {
@@ -12,7 +12,7 @@ export abstract class GameCoordinatorListener {
   onGameFound(gf: GameFound) {}
   onMatchFinished() {}
   onMatchState(url?: string) {}
-  onQueueState(mode?: MatchmakingMode) {}
+  onQueueState({ mode, version }: { mode?: MatchmakingMode; version?: Dota2Version }) {}
   onRoomNotReady() {}
   onRoomState(state?: RoomState) {}
 
