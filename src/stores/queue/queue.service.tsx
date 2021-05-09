@@ -15,7 +15,7 @@ import { PendingPartyInvite } from "../../container/queue/PendingPartyInvite";
 import React from "react";
 
 export type QueueHolder = {
-  [key in MatchmakingMode]: number;
+  [key: string]: number;
 };
 
 export interface GameInfo {
@@ -181,8 +181,8 @@ export class QueueService extends GameCoordinatorListener {
   }
 
   @action
-  public onQueueUpdate(mode: MatchmakingMode, inQueue: number) {
-    this.inQueue[mode] = inQueue;
+  public onQueueUpdate(mode: MatchmakingMode, version: Dota2Version, inQueue: number) {
+    this.inQueue[JSON.stringify(new QueueState(mode, version))] = inQueue;
   }
 
   @action

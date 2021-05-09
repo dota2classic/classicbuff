@@ -112,7 +112,8 @@ export const SearchGameButton = observer(() => {
           </SearchGameButtonComp>
           {!isQueuePage && (
             <GameSearchInfo>
-              {formatGameMode(queue.searchingMode)}, {i18n.withValues.search({ s: queue.inQueue[queue.searchingMode] })}
+              {formatGameMode(queue.searchingMode)},{" "}
+              {i18n.withValues.search({ s: queue.inQueue[JSON.stringify(queue.searchingMode)] })}
             </GameSearchInfo>
           )}
         </EmbedCancelSearch>

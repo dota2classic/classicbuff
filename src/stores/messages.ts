@@ -1,4 +1,4 @@
-import { MatchmakingMode } from "../utils/format/formatGameMode";
+import { Dota2Version, MatchmakingMode } from "../utils/format/formatGameMode";
 import { MatchInfoDto } from "../api/back/models";
 
 export class RoomState {
@@ -50,6 +50,7 @@ export interface ReadyCheckUpdate {
 
 export interface UpdateQueue {
   mode: MatchmakingMode;
+  version: Dota2Version;
   inQueue: number;
 }
 

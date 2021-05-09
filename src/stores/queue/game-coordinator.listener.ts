@@ -6,7 +6,7 @@ export abstract class GameCoordinatorListener {
   onAuthorized() {}
   onDisconnected() {}
 
-  onQueueUpdate(mode: MatchmakingMode, inQueue: number) {}
+  onQueueUpdate(mode: MatchmakingMode, version: Dota2Version, inQueue: number) {}
 
   onPartyUpdated() {}
   onGameFound(gf: GameFound) {}

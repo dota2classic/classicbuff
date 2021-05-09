@@ -138,7 +138,9 @@ const MatchmakingOption = observer((props: MProps) => {
       {props.unrankedGamesLeft && props.unrankedGamesLeft > 0 ? (
         <span className={"info"}>{props.unrankedGamesLeft} игр до разблокировки режима</span>
       ) : (
-        <span className={"info"}>{queue.inQueue[props.mode]} в поиске</span>
+        <span className={"info"}>
+          {queue.inQueue[JSON.stringify({ mode: props.mode, version: props.version })]} в поиске
+        </span>
       )}
     </MOption>
   );

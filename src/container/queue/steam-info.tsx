@@ -180,7 +180,9 @@ export default observer(() => {
       {queue.searchingMode !== undefined && (
         <SearchGameBar>
           <span>{i18n.withValues.search({ s: formatGameMode(queue.searchingMode) })}</span>
-          <span className={"info"}>{i18n.withValues.playersInQueue({ piq: queue.inQueue[queue.searchingMode] })}</span>
+          <span className={"info"}>
+            {i18n.withValues.playersInQueue({ piq: queue.inQueue[JSON.stringify(queue.searchingMode)] })}
+          </span>
         </SearchGameBar>
       )}
 

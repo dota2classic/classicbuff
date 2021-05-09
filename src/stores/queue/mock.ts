@@ -1,16 +1,21 @@
 import { QueueHolder } from "./queue.service";
-import { MatchmakingMode } from "../../utils/format/formatGameMode";
+import { Dota2Version, MatchmakingMode } from "../../utils/format/formatGameMode";
 
-export const DefaultQueueHolder: QueueHolder = {
-  [MatchmakingMode.ABILITY_DRAFT]: 0,
-  [MatchmakingMode.RANKED]: 0,
-  [MatchmakingMode.UNRANKED]: 0,
-  [MatchmakingMode.SOLOMID]: 0,
-  [MatchmakingMode.DIRETIDE]: 0,
-  [MatchmakingMode.GREEVILING]: 0,
-  [MatchmakingMode.BOTS]: 0,
-  [MatchmakingMode.TOURNAMENT_SOLOMID]: 0,
-  [MatchmakingMode.TOURNAMENT]: 0,
-  [MatchmakingMode.HIGHROOM]: 0,
-  [MatchmakingMode.CAPTAINS_MODE]: 0
-};
+export const DefaultQueueHolder: QueueHolder = {};
+
+export const MatchmakingModes = [
+  MatchmakingMode.SOLOMID,
+  MatchmakingMode.RANKED,
+  MatchmakingMode.UNRANKED,
+  MatchmakingMode.DIRETIDE,
+  MatchmakingMode.ABILITY_DRAFT,
+  MatchmakingMode.GREEVILING,
+  MatchmakingMode.BOTS,
+  MatchmakingMode.HIGHROOM,
+  MatchmakingMode.CAPTAINS_MODE
+];
+
+MatchmakingModes.forEach(mode => {
+  DefaultQueueHolder[JSON.stringify({ mode, version: Dota2Version.Dota_681 })] = 0;
+  DefaultQueueHolder[JSON.stringify({ mode, version: Dota2Version.Dota_684 })] = 0;
+});

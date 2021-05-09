@@ -66,8 +66,8 @@ export class Game {
   };
 
   @action
-  private queueState = (mode?: MatchmakingMode) => {
-    this.listeners.forEach(t => t.onQueueState(mode));
+  private queueState = (state: { mode?: MatchmakingMode; version?: Dota2Version }) => {
+    this.listeners.forEach(t => t.onQueueState(state));
   };
 
   private roomNotReady = () => {
@@ -96,7 +96,7 @@ export class Game {
   };
 
   private onQueueUpdate = (data: UpdateQueue) => {
-    this.listeners.forEach(t => t.onQueueUpdate(data.mode, data.inQueue));
+    this.listeners.forEach(t => t.onQueueUpdate(data.mode, data.version, data.inQueue));
   };
 
   private authorize() {

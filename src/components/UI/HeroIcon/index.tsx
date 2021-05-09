@@ -19,4 +19,6 @@ export const DotaIcon = styled.img`
 interface Props {
   hero: string;
 }
-export const HeroIcon = (p: Props) => <DotaIcon src={`https://dota2classic.ru/api/static/heroes/${p.hero}.jpg.webp`} />;
+export const HeroIcon = (p: Props) => (
+  <DotaIcon src={`https://dota2classic.ru/api/static/heroes/${p.hero.replace("npc_dota_hero_", "")}.webp`} />
+);
