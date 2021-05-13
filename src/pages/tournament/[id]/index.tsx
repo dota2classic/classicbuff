@@ -28,6 +28,7 @@ import { EmbedProps } from "components/util/EmbedProps";
 import { PlayerLeaderboardPreview } from "components/UI/tournament/player-leaderboard-preview";
 import { useStores } from "stores";
 import i18n from "pages-i18n/tournament/tournament.i18n";
+import { patchI18n } from "container/queue/layout/GameModes";
 
 const TournamentName = styled.div`
   font-size: 30px;
@@ -37,6 +38,7 @@ const TournamentName = styled.div`
 
 const TournamentType = styled.div`
   color: ${colors.primaryText};
+  margin-top: 8px;
 `;
 
 const TournamentImage = styled.img`
@@ -128,6 +130,9 @@ export default (p: InitialProps) => {
 
       <TournamentImage src={data.imageUrl} />
       <TournamentName>{data.name}</TournamentName>
+
+      <TournamentType>{patchI18n[data.version]}</TournamentType>
+
       <TournamentType>
         {i18n.tournament} {formatTournamentType(data.entryType)}
       </TournamentType>

@@ -1,7 +1,11 @@
 import { useApi } from "../../../api/hooks";
 import { AdminLayout } from "../../../components/admin/AdminLayout";
 import React, { useState } from "react";
-import { CreateTournamentDtoEntryTypeEnum, CreateTournamentDtoStrategyEnum } from "../../../api/back/models";
+import {
+  CreateTournamentDtoEntryTypeEnum,
+  CreateTournamentDtoStrategyEnum,
+  CreateTournamentDtoVersionEnum
+} from "../../../api/back/models";
 import styled from "styled-components";
 import ImageUploader from "components/UI/ImageUploader";
 import { resolveImage } from "../../../utils/resolveImage";
@@ -43,6 +47,7 @@ export default () => {
   const [bestOfGrandFinal, setBestOfGrandFinal] = useState(3);
   const [strategy, setStrategy] = useState(CreateTournamentDtoStrategyEnum.SINGLEELIMINATION);
   const [entryType, setEntryType] = useState(CreateTournamentDtoEntryTypeEnum.PLAYER);
+  const [version, setVersion] = useState<CreateTournamentDtoVersionEnum>(CreateTournamentDtoVersionEnum._681);
 
   const create = async () => {
     const res = await api.adminTournamentControllerCreateTournament({
@@ -51,6 +56,7 @@ export default () => {
       startDate,
       strategy,
       imageUrl,
+      version,
       bestOfGrandFinal,
       bestOfRound,
       bestOfFinal
@@ -80,6 +86,17 @@ export default () => {
     }
   ];
 
+  const versionOptions = [
+    {
+      value: CreateTournamentDtoVersionEnum._681,
+      label: "6.81"
+    },
+    {
+      value: CreateTournamentDtoVersionEnum._684,
+      label: "6.84"
+    }
+  ];
+
   return (
     <AdminLayout>
       <ImageUploader onChange={e => setImageUrl(resolveImage(e))}>
@@ -89,6 +106,15 @@ export default () => {
       <FormBlock>
         <Hint>Название турнира</Hint>
         <Input value={name} onChange={e => setName(e.target.value)} placeholder={"Имя турнира"} />
+      </FormBlock>
+
+      <FormBlock>
+        <Hint>Версия игры</Hint>
+        <Select
+          value={versionOptions.find(t => t.value === version)}
+          options={versionOptions}
+          onChange={e => setVersion(e!!.value)}
+        />
       </FormBlock>
 
       <FormBlock>

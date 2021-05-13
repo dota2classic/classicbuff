@@ -105,12 +105,15 @@ export enum MatchInfoDtoModeEnum {
   ABILITYDRAFT = "ABILITY_DRAFT",
   TOURNAMENT = "TOURNAMENT",
   BOTS = "BOTS",
-  HIGHROOM = "HIGHROOM"
+  HIGHROOM = "HIGHROOM",
+  TOURNAMENTSOLOMID = "TOURNAMENT_SOLOMID",
+  CAPTAINSMODE = "CAPTAINS_MODE"
 }
 /**
  * @export
  * @enum {string}
  */
 export enum MatchInfoDtoVersionEnum {
-  Dota681 = "Dota_681"
+  _681 = "Dota_681",
+  _684 = "Dota_684"
 }

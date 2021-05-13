@@ -61,6 +61,12 @@ export interface TournamentDto {
    * @memberof TournamentDto
    */
   description: string;
+  /**
+   *
+   * @type {string}
+   * @memberof TournamentDto
+   */
+  version: TournamentDtoVersionEnum;
 }
 
 export function TournamentDtoFromJSON(json: any): TournamentDto {
@@ -78,7 +84,8 @@ export function TournamentDtoFromJSONTyped(json: any, ignoreDiscriminator: boole
     status: json["status"],
     startDate: json["startDate"],
     imageUrl: json["imageUrl"],
-    description: json["description"]
+    description: json["description"],
+    version: json["version"]
   };
 }
 
@@ -96,7 +103,8 @@ export function TournamentDtoToJSON(value?: TournamentDto | null): any {
     status: value.status,
     startDate: value.startDate,
     imageUrl: value.imageUrl,
-    description: value.description
+    description: value.description,
+    version: value.version
   };
 }
 
@@ -117,4 +125,12 @@ export enum TournamentDtoStatusEnum {
   ONGOING = "ONGOING",
   FINISHED = "FINISHED",
   CANCELLED = "CANCELLED"
+}
+/**
+ * @export
+ * @enum {string}
+ */
+export enum TournamentDtoVersionEnum {
+  _681 = "Dota_681",
+  _684 = "Dota_684"
 }

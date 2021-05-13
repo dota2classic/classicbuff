@@ -5,11 +5,11 @@ import React from "react";
 import cx from "classnames";
 import { pendingAnimation } from "../steam-info";
 import formatGameMode, { Dota2Version, MatchmakingMode } from "../../../utils/format/formatGameMode";
-import { useStores } from "../../../stores";
+import { useStores } from "stores";
 import { QueueState } from "stores/queue/queue.service";
 import { colors } from "shared";
 
-const i18n = {
+export const patchI18n = {
   [Dota2Version.Dota_681]: "Dota 6.81",
 
   [Dota2Version.Dota_684]: "Dota 6.84"
@@ -152,21 +152,39 @@ const SharedModes = observer(({ version }: { version: Dota2Version }) => {
   const setSelectedMode = (m: MatchmakingMode, version: Dota2Version) =>
     (queue.selectedMode = new QueueState(m, version));
 
-  return (
-    <>
-      <MOption className={"header"}>{i18n[version]}</MOption>
-      <MatchmakingOption
-        version={version}
-        onSelect={setSelectedMode}
-        unrankedGamesLeft={auth.me?.unrankedGamesLeft}
-        mode={MatchmakingMode.RANKED}
-      />
-      <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.CAPTAINS_MODE} />
-      <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.BOTS} />
-      <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.SOLOMID} />
-    </>
-  );
+  if (version == Dota2Version.Dota_681) {
+    return (
+      <>
+        <MOption className={"header"}>{patchI18n[version]}</MOption>
+        <MatchmakingOption
+          version={version}
+          onSelect={setSelectedMode}
+          unrankedGamesLeft={auth.me?.unrankedGamesLeft}
+          mode={MatchmakingMode.RANKED}
+        />
+        <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.CAPTAINS_MODE} />
+        <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.BOTS} />
+        <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.SOLOMID} />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <MOption className={"header"}>{patchI18n[version]}</MOption>
+        <MatchmakingOption
+          version={version}
+          onSelect={setSelectedMode}
+          unrankedGamesLeft={auth.me?.unrankedGamesLeft}
+          mode={MatchmakingMode.RANKED}
+        />
+        <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.CAPTAINS_MODE} />
+        <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.BOTS} />
+        <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.SOLOMID} />
+      </>
+    );
+  }
 });
+
 export const GameModes = observer(() => {
   const { auth, queue } = useStores();
 

@@ -55,7 +55,10 @@ export class QueueService extends GameCoordinatorListener {
       const mode = localStorage.getItem("d2c_mode");
       if (mode !== null) {
         try {
-          this.selectedMode = JSON.parse(mode);
+          const parsed = JSON.parse(mode);
+          if (typeof parsed == "object") {
+            this.selectedMode = parsed;
+          } else throw "";
         } catch (e) {
           this.selectedMode = new QueueState(MatchmakingMode.BOTS, Dota2Version.Dota_681);
         }

@@ -5,6 +5,7 @@ import { TournamentDto, TournamentDtoStatusEnum } from "../../api/back/models";
 import { colors } from "../../shared";
 import { DateFormatter, formatDateStr } from "../../utils/format/formateDateStr";
 import { formatTournamentType } from "../../utils/format/formatTournamentType";
+import { patchI18n } from "container/queue/layout/GameModes";
 
 interface Props {
   tournament: TournamentDto;
@@ -57,6 +58,7 @@ export const AdminTournamentCard = ({ tournament }: Props) => {
           {tournament.status === TournamentDtoStatusEnum.CANCELLED && <TournamentType>Отменен</TournamentType>}
 
           <TournamentType>Формат {formatTournamentType(tournament.entryType)}</TournamentType>
+          <TournamentType>Версия {patchI18n[tournament.version]}</TournamentType>
         </InfoContainer>
       </Card>
     </Link>

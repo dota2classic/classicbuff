@@ -67,6 +67,12 @@ export interface CreateTournamentDto {
    * @memberof CreateTournamentDto
    */
   bestOfGrandFinal: number;
+  /**
+   *
+   * @type {string}
+   * @memberof CreateTournamentDto
+   */
+  version: CreateTournamentDtoVersionEnum;
 }
 
 export function CreateTournamentDtoFromJSON(json: any): CreateTournamentDto {
@@ -85,7 +91,8 @@ export function CreateTournamentDtoFromJSONTyped(json: any, ignoreDiscriminator:
     strategy: json["strategy"],
     bestOfRound: json["bestOfRound"],
     bestOfFinal: json["bestOfFinal"],
-    bestOfGrandFinal: json["bestOfGrandFinal"]
+    bestOfGrandFinal: json["bestOfGrandFinal"],
+    version: json["version"]
   };
 }
 
@@ -104,7 +111,8 @@ export function CreateTournamentDtoToJSON(value?: CreateTournamentDto | null): a
     strategy: value.strategy,
     bestOfRound: value.bestOfRound,
     bestOfFinal: value.bestOfFinal,
-    bestOfGrandFinal: value.bestOfGrandFinal
+    bestOfGrandFinal: value.bestOfGrandFinal,
+    version: value.version
   };
 }
 
@@ -123,4 +131,12 @@ export enum CreateTournamentDtoEntryTypeEnum {
 export enum CreateTournamentDtoStrategyEnum {
   SINGLEELIMINATION = "SINGLE_ELIMINATION",
   DOUBLEELIMINATION = "DOUBLE_ELIMINATION"
+}
+/**
+ * @export
+ * @enum {string}
+ */
+export enum CreateTournamentDtoVersionEnum {
+  _681 = "Dota_681",
+  _684 = "Dota_684"
 }

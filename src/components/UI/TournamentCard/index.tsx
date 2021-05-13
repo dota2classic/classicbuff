@@ -6,6 +6,7 @@ import { colors } from "../../../shared";
 import Link from "next/link";
 import { DateFormatter } from "../../../utils/format/formateDateStr";
 import { AppRouter } from "../../../utils/route";
+import { patchI18n } from "container/queue/layout/GameModes";
 
 interface Props {
   tournament: TournamentDto;
@@ -71,6 +72,7 @@ export default ({ tournament }: Props) => {
           {tournament.status === TournamentDtoStatusEnum.CANCELLED && <TournamentType>Отменен</TournamentType>}
 
           <TournamentType>Формат {formatTournamentType(tournament.entryType)}</TournamentType>
+          <TournamentType>Версия {patchI18n[tournament.version]}</TournamentType>
         </InfoContainer>
       </Card>
     </Link>

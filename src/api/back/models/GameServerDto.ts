@@ -65,5 +65,6 @@ export function GameServerDtoToJSON(value?: GameServerDto | null): any {
  * @enum {string}
  */
 export enum GameServerDtoVersionEnum {
-  Dota681 = "Dota_681"
+  _681 = "Dota_681",
+  _684 = "Dota_684"
 }

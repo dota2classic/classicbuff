@@ -80,6 +80,12 @@ export interface FullTournamentDto {
   isParticipating: boolean;
   /**
    *
+   * @type {string}
+   * @memberof FullTournamentDto
+   */
+  version: FullTournamentDtoVersionEnum;
+  /**
+   *
    * @type {Array<TournamentParticipantDto>}
    * @memberof FullTournamentDto
    */
@@ -115,6 +121,7 @@ export function FullTournamentDtoFromJSONTyped(json: any, ignoreDiscriminator: b
     imageUrl: json["imageUrl"],
     isLocked: json["isLocked"],
     isParticipating: json["isParticipating"],
+    version: json["version"],
     participants: (json["participants"] as Array<any>).map(TournamentParticipantDtoFromJSON),
     standings: !exists(json, "standings")
       ? undefined
@@ -139,6 +146,7 @@ export function FullTournamentDtoToJSON(value?: FullTournamentDto | null): any {
     imageUrl: value.imageUrl,
     isLocked: value.isLocked,
     isParticipating: value.isParticipating,
+    version: value.version,
     participants: (value.participants as Array<any>).map(TournamentParticipantDtoToJSON),
     standings:
       value.standings === undefined ? undefined : (value.standings as Array<any>).map(TournamentStandingDtoToJSON),
@@ -163,4 +171,12 @@ export enum FullTournamentDtoStatusEnum {
   ONGOING = "ONGOING",
   FINISHED = "FINISHED",
   CANCELLED = "CANCELLED"
+}
+/**
+ * @export
+ * @enum {string}
+ */
+export enum FullTournamentDtoVersionEnum {
+  _681 = "Dota_681",
+  _684 = "Dota_684"
 }
