@@ -16,13 +16,22 @@ import { SearchGameBar } from "../UI/SearchGameBar/SearchGameBar";
 import layoutI18n from "./layout.i18n";
 import { useStores } from "../../stores";
 const LayoutContainer = styled.div`
-  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  overflow-y: auto;
+  flex-direction: column;
+
   width: 100vw;
   background: ${colors.darkBg};
   padding-bottom: 200px;
 
   @media (max-width: 600px) {
     padding-bottom: 0;
+  }
+
+  @media (max-height: 701px) {
+    padding-bottom: 50px;
   }
 
   &.no-scroll {
@@ -33,6 +42,8 @@ const LayoutContainer = styled.div`
 `;
 
 const Content = styled.div`
+  //flex: 1;
+
   position: relative;
   z-index: 2;
   display: flex;
@@ -76,37 +87,6 @@ const HeaderWrapper = styled.div`
 
   @media (max-width: 600px) {
     display: none;
-  }
-`;
-
-export const LinkWrapper = styled.img`
-  height: 40px;
-  width: auto;
-  margin: 10px;
-  cursor: pointer;
-
-  &.small {
-    height: 35px;
-  }
-`;
-
-const SiteLink = styled.a`
-  font-size: 16px;
-
-  transition: 0.3s ease;
-  display: flex;
-  align-items: center;
-  text-decoration: underline;
-  text-underline-position: under;
-
-  &:hover {
-    color: ${colors.primaryTextHighlight};
-  }
-  cursor: pointer;
-  color: ${colors.primaryText};
-  margin-left: 40px;
-  @media (max-width: 600px) {
-    margin-left: 0;
   }
 `;
 

@@ -18,7 +18,24 @@ const Options = styled.div`
   display: flex;
   flex-direction: column;
   border-right: 1px solid #242424;
+  overflow-y: auto;
   width: 300px;
+`;
+
+const OptionGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #242424;
+  overflow-y: auto;
+
+  &.shaded {
+    transition: 0.3s ease;
+    &:hover {
+      opacity: 1;
+    }
+
+    opacity: 0.4;
+  }
 `;
 
 const MOption = styled.div`
@@ -154,7 +171,7 @@ const SharedModes = observer(({ version }: { version: Dota2Version }) => {
 
   if (version == Dota2Version.Dota_681) {
     return (
-      <>
+      <OptionGroup className="shaded">
         <MOption className={"header"}>{patchI18n[version]}</MOption>
         <MatchmakingOption
           version={version}
@@ -165,11 +182,11 @@ const SharedModes = observer(({ version }: { version: Dota2Version }) => {
         <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.CAPTAINS_MODE} />
         <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.BOTS} />
         <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.SOLOMID} />
-      </>
+      </OptionGroup>
     );
   } else {
     return (
-      <>
+      <OptionGroup>
         <MOption className={"header"}>{patchI18n[version]}</MOption>
         <MatchmakingOption
           version={version}
@@ -180,7 +197,7 @@ const SharedModes = observer(({ version }: { version: Dota2Version }) => {
         <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.CAPTAINS_MODE} />
         <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.BOTS} />
         <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.SOLOMID} />
-      </>
+      </OptionGroup>
     );
   }
 });
@@ -195,8 +212,8 @@ export const GameModes = observer(() => {
         <SteamLogo src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/600px-Steam_icon_logo.svg.png" />
       </UserInfo>
 
-      <SharedModes version={Dota2Version.Dota_681} />
       <SharedModes version={Dota2Version.Dota_684} />
+      <SharedModes version={Dota2Version.Dota_681} />
     </Options>
   );
 });
