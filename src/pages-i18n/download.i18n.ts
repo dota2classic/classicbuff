@@ -24,6 +24,18 @@ const messages = defineMessages({
   torrent: {
     id: `${INTL_KEY}.torrent`,
     defaultMessage: "Скачать Torrent"
+  },
+  loginViaSteam: {
+    id: `${INTL_KEY}.login_via_steam`,
+    defaultMessage: "Войди через"
+  },
+  enterQueue: {
+    id: `${INTL_KEY}.enter_queue`,
+    defaultMessage: "Начни поиск игры на сайте"
+  },
+  download: {
+    id: `${INTL_KEY}.download`,
+    defaultMessage: "Скачай клиент"
   }
 });
 

@@ -718,6 +718,11 @@
   "dota2classic.download-page.google_disk": "Dowload via Google drive",
   "dota2classic.download-page.yandex_disk": "Download via Yandex drive",
   "dota2classic.download-page.torrent": "Download torrent",
+
+  "dota2classic.download-page.login_via_steam": "Login via",
+  "dota2classic.download-page.enter_queue": "Enter queue on site",
+  "dota2classic.download-page.download": "Download game client",
+
   "dota2classic.index_page.welcome_text": "Welcome to the  <b>Dota 2 Classic</b> - a community where together with other people you can play the old version of the legendary game.",
   "dota2classic.index_page.ti_4_version": "The International 2014 patch",
   "dota2classic.index_page.before_reborn": "Before Reborn update",
@@ -808,6 +813,10 @@
   "dota2classic.old-required-modal.learn_more": "Learn more",
   "dota2classic.old-required-modal.close": "Close",
   "dota2classic.old-required-modal.old_required": "This action is available only for players with <old>Ancient</old> subscriptions or higher!",
+
+  "dota2classic.live.no_games": "There are no live games right now",
+  "dota2classic.live.good_reason_to_queue": "Maybe it's time to queue?",
+
   "dota2classic.live_match.mode": "Mode",
   "dota2classic.live_match.in_game_time": "Time in game",
   "dota2classic.live_match.score": "Score",

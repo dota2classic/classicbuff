@@ -67,6 +67,10 @@
   "dota2classic.download-page.google_disk": "Скачать через Google Диск",
   "dota2classic.download-page.yandex_disk": "Скачать через Яндекс.Диск",
   "dota2classic.download-page.torrent": "Скачать Torrent",
+  "dota2classic.download-page.login_via_steam": "Войди через",
+  "dota2classic.download-page.enter_queue": "Начни поиск игры на сайте",
+  "dota2classic.download-page.download": "Скачай клиент",
+
   "dota2classic.index_page.welcome_text": "Добро пожаловать на сайт проекта <b>Dota 2 Classic</b> - русскоязычного сообщества, где вместе с другими людьми\n        можно поиграть в старую версию легендарной игры.",
   "dota2classic.index_page.ti_4_version": "Версия The International 2014",
   "dota2classic.index_page.before_reborn": "Клиент игры до обновления Reborn",
@@ -157,6 +161,10 @@
   "dota2classic.old-required-modal.learn_more": "Узнать больше",
   "dota2classic.old-required-modal.close": "Закрыть",
   "dota2classic.old-required-modal.old_required": "Эта функция доступна только игрокам с ролью <old>Древний</old> и выше!",
+
+  "dota2classic.live.no_games": "Сейчас не идет ни одной игры",
+  "dota2classic.live.good_reason_to_queue": "Отличный повод запустить поиск!",
+
   "dota2classic.live_match.mode": "Режим",
   "dota2classic.live_match.in_game_time": "Время в игре",
   "dota2classic.live_match.score": "Счет",

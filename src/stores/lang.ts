@@ -6,24 +6,24 @@ export class Lang {
   public language: string = "ru";
 
   constructor() {
-    // if (typeof window !== "undefined") {
-    //   const lsLang = localStorage.getItem("d2c-lang");
-    //   const cookieLang = cookies.get("d2c-lang");
-    //
-    //   if (lsLang) this.language = lsLang;
-    //   else if (cookieLang) this.language = cookieLang;
-    // }
+    if (typeof window !== "undefined") {
+      const lsLang = localStorage.getItem("d2c-lang");
+      const cookieLang = cookies.get("d2c-lang");
+
+      if (lsLang) this.language = lsLang;
+      else if (cookieLang) this.language = cookieLang;
+    }
   }
 
   @computed
   public get locale() {
-    // if (this.language === "ru") {
-    //   return "ru-RU";
-    // } else {
-    //   return "en-EN";
-    // }
+    if (this.language === "ru") {
+      return "ru-RU";
+    } else {
+      return "en-EN";
+    }
 
-    return "ru-RU";
+    // return "ru-RU";
   }
 
   @observable

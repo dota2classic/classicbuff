@@ -118,13 +118,13 @@ export default () => {
               }
             })}
           </InfoText>
-          <InfoText>1) Скачай клиент</InfoText>
+          <InfoText>1) {i18n.download}</InfoText>
           <InfoText href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
-            2) Войди через <span className="steam">Steam</span>
+            2) {i18n.loginViaSteam} <span className="steam">Steam</span>
           </InfoText>
 
           <Link {...AppRouter.queue.link}>
-            <InfoText>3) Начни поиск игры на сайте</InfoText>
+            <InfoText>3) {i18n.enterQueue}</InfoText>
           </Link>
 
           <VersionWrapper className={(d684 && "unfold") || undefined}>
