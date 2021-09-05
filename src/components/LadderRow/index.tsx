@@ -72,18 +72,13 @@ export default (props: LeaderboardEntryDto) => {
   return (
     <Tr>
       <td>
-        <Link passHref {...AppRouter.player(numId).link}>
+        <Link {...AppRouter.player(numId).link}>
           <a>{props.rank + 1}</a>
         </Link>
       </td>
       <td>
         <Link {...AppRouter.player(numId).link} passHref>
           <NameContainer>
-            {highestRole !== "PLAYER" && (
-              <Role className={highestRole}>
-                <div>{RoleNames[highestRole]}</div>
-              </Role>
-            )}
             <span>{props.name}</span>
           </NameContainer>
         </Link>

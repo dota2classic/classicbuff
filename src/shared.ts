@@ -5,7 +5,7 @@ export interface Page<T> {
 }
 
 export const colors = {
-  darkBg: "#070707",
+  darkBg: "#0c0c0c",
   darkBg2: "#1c2024",
   evenDarkerBg: "#101213",
   almostBlack: "#0a0909",

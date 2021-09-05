@@ -79,11 +79,17 @@ const Content = styled.div`
 `;
 
 const HeaderWrapper = styled.div`
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 10;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   padding: 4px 40px 0;
+
+  background: ${colors.evenDarkerBg};
 
   &.compact {
     padding: 0px;

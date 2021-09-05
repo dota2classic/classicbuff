@@ -14,6 +14,7 @@ import { colors } from "../../shared";
 import { NextPageContext } from "next";
 import { SsrProps } from "../../utils/SsrProps";
 import { initializeStore } from "../../stores";
+import { DateFormatter } from "utils/format/formateDateStr";
 
 export const ItemsContainer = styled.div`
   display: flex;
@@ -134,6 +135,9 @@ const Page = (p: InitialProps) => {
         </Head>
         <AdBanner />
         <h2 style={{ color: colors.primaryText }}>
+          <DateFormatter date={match.timestamp} />
+          <br />
+          <br />
           {formatGameMode(match.mode)}, Матч #{id}
         </h2>
         <MatchResult className={match?.winner === 2 ? "green" : "red"}>

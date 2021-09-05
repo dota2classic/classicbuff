@@ -5,10 +5,7 @@ import TeamCard from "components/UI/TeamCard";
 import styled from "styled-components";
 import Button from "../../components/UI/Button";
 import { Hint } from "../../components/UI/Hint";
-import { OldRequiredModal } from "components/modal/OldRequiredModal";
-import { useStores } from "../../stores";
 import { useRouter } from "next/router";
-import { ColoredRole } from "../../components/UI/ColoredRole";
 import i18n from "pages-i18n/team.i18n";
 
 const TeamsContainer = styled.div`

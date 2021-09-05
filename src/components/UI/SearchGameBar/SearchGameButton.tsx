@@ -3,8 +3,6 @@ import React, { ReactNode, useState } from "react";
 import styled, { css, keyframes } from "styled-components";
 import { colors } from "../../../shared";
 import { useStores } from "../../../stores";
-import { OldRequiredModal } from "../../modal/OldRequiredModal";
-import { ColoredRole } from "../ColoredRole";
 import { observer } from "mobx-react";
 import { useRouter } from "next/router";
 import formatGameMode from "../../../utils/format/formatGameMode";

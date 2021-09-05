@@ -9,8 +9,6 @@ import Link from "next/link";
 import { steamIdToNum } from "../../utils/numSteamId";
 import { AdBanner } from "../ads/ads";
 import { MinimapHero } from "./MinimapHero";
-import AuthService from "../../service/AuthServiceService";
-import { OldRequiredModal } from "../modal/OldRequiredModal";
 import { PlayerHover } from "../UI/PlayerHover";
 import { useStores } from "../../stores";
 import i18n from "./live-match.i18n";
@@ -181,7 +179,6 @@ const MatchOverview = styled.div`
 export const LiveMatch = (liveMatch: LiveMatchDto) => {
   const r = liveMatch.heroes.filter(t => t.team === 2);
   const d = liveMatch.heroes.filter(t => t.team === 3);
-  const [oldRequiredOpen, setOldRequiredOpen] = useState(false);
 
   const host = liveMatch.server.split(":")[0];
   const port = parseInt(liveMatch.server.split(":")[1]);
@@ -192,7 +189,6 @@ export const LiveMatch = (liveMatch: LiveMatchDto) => {
   return (
     <MatchInfo>
       <AdBanner />
-      <OldRequiredModal open={oldRequiredOpen} close={() => setOldRequiredOpen(false)} />
       <MatchOverview>
         <div>{formatGameMode(liveMatch.type)}</div>
         <div>{formatDuration(liveMatch.duration)}</div>
@@ -207,13 +203,9 @@ export const LiveMatch = (liveMatch: LiveMatchDto) => {
         <TeamInfoBlock team={3} heroes={d} />
       </Wrapper>
       <MatchOverview>
-        {auth.hasOld ? (
-          <LinkButton target={"__blank"} href={watchUrl}>
-            {i18n.watchGame}
-          </LinkButton>
-        ) : (
-          <span onClick={() => setOldRequiredOpen(true)}>{i18n.watchGame}</span>
-        )}
+        <LinkButton target={"__blank"} href={watchUrl}>
+          {i18n.watchGame}
+        </LinkButton>
       </MatchOverview>
     </MatchInfo>
   );

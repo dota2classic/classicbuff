@@ -10,10 +10,12 @@ import { LiveMatchPreview } from "../../components/live/LiveMatchPreview";
 import i18n from "pages-i18n/live";
 const NoGamesInfo = styled.div`
   color: #c2c2c2;
-  font-size: 20px;
+  font-size: 35px;
+  line-height: 45px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 200px;
   justify-content: center;
 
   & a {

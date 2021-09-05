@@ -10,6 +10,7 @@ import { InvitePlayerModal } from "../InvitePlayerModal";
 import { GameCoordinatorState } from "../../stores/queue/game-coordinator.state";
 import i18n from "./steam-info.i18n";
 import { PlayerInPartyDto } from "../../api/back/models";
+import { PlayerHover } from "components/UI/PlayerHover";
 
 const InfoRow = styled.div`
   display: flex;
@@ -86,6 +87,8 @@ const SearchGameBar = styled.div`
 
 const PartyContents = styled.div`
   display: flex;
+
+  position: relative;
   flex-direction: row;
 
   width: 400px;
