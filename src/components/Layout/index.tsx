@@ -15,6 +15,7 @@ import { NotificationHold } from "../UI/NotificationHold";
 import { SearchGameBar } from "../UI/SearchGameBar/SearchGameBar";
 import layoutI18n from "./layout.i18n";
 import { useStores } from "../../stores";
+import { PlayButton } from "pages";
 const LayoutContainer = styled.div`
   height: 100vh;
   max-height: 100vh;
@@ -34,6 +35,9 @@ const LayoutContainer = styled.div`
     padding-bottom: 50px;
   }
 
+  &.landing {
+    padding-bottom: 0;
+  }
   &.no-scroll {
     max-height: 100vh;
     overflow-y: hidden;
@@ -49,13 +53,13 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 600px;
   width: fit-content;
-  //width: 60%;
+  min-width: 60%;
 
   &.landing {
     margin-top: 0px;
     width: 60%;
+
     @media (max-width: 600px) {
       width: 100vw;
       max-width: 100vw;
@@ -77,12 +81,13 @@ const Content = styled.div`
 const HeaderWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  padding: 40px 40px 0;
+  padding: 4px 40px 0;
 
   &.compact {
     padding: 0px;
+    margin-left: 40px;
   }
 
   @media (max-width: 600px) {
@@ -144,33 +149,17 @@ const DefaultHeader = observer(() => {
   return (
     <>
       <HeaderWrapper>
-        <Tabs className="heading">
-          <Link passHref {...AppRouter.index.link}>
-            <Tab className={cx(asPath === "/" && "active")}>
+        <Tabs className="heading wide">
+          <Link {...AppRouter.index.link}>
+            <Tab className={cx(asPath === "/" && "active", "primary")}>
               <span style={{ textTransform: "uppercase" }}>dota2classic</span>
             </Tab>
           </Link>
-          <Link passHref {...AppRouter.download.link}>
+          <Link {...AppRouter.download.link}>
             <Tab className={cx(asPath === "/download" && "active")}>{layoutI18n.download}</Tab>
           </Link>
-          <Link passHref {...AppRouter.queue.link}>
+          <Link {...AppRouter.queue.link}>
             <Tab className={cx(asPath === "/queue" && "active")}>{layoutI18n.play}</Tab>
-          </Link>
-          <Link passHref {...AppRouter.donate.link}>
-            <Tab className={cx(asPath === "/donate" && "active")}>{layoutI18n.donate}</Tab>
-          </Link>
-          <Link passHref {...AppRouter.leaderboard.link}>
-            <Tab className={cx(asPath === "/leaderboard" && "active")}>{layoutI18n.leaderboard}</Tab>
-          </Link>
-
-          <Link passHref {...AppRouter.history.index.link}>
-            <Tab className={cx(asPath.startsWith("/history") && "active")}>{layoutI18n.matches}</Tab>
-          </Link>
-          <Link passHref {...AppRouter.live.link}>
-            <Tab className={cx(asPath.startsWith("/live") && "active")}>
-              {layoutI18n.live}
-              {liveData && <span className="badge">{liveData?.length}</span>}
-            </Tab>
           </Link>
 
           {auth.isModerator && (
@@ -179,44 +168,74 @@ const DefaultHeader = observer(() => {
             </Link>
           )}
 
-          {auth.authorized ? (
-            <Link passHref {...AppRouter.player(auth.steamID || "").link}>
-              <Tab className={cx(asPath === `/player/${steamIdToNum(auth.steamID || "")}` && "active")}>
-                {layoutI18n.profile}
-              </Tab>
-            </Link>
-          ) : (
-            <Tab className={cx(asPath === "/me" && "active")}>
-              <a href={`${appApi.apiParams.basePath}/v1/auth/steam`}>{layoutI18n.loginViaSteam}</a>
-            </Tab>
-          )}
-        </Tabs>
-      </HeaderWrapper>
-      <HeaderWrapper className="compact">
-        <Tabs className="heading">
-          <Tab target="__blank" href="https://discord.gg/VU5wjA8">
-            Discord
-          </Tab>
-          <Tab target="__blank" href="https://vk.com/club191796288">
-            VK
-          </Tab>
-          <Tab target="__blank" href="https://www.youtube.com/user/facts2dota">
-            Youtube
-          </Tab>
+          <Link {...AppRouter.leaderboard.link}>
+            <Tab className={cx(asPath === "/leaderboard" && "active")}>{layoutI18n.leaderboard}</Tab>
+          </Link>
 
-          <Link passHref {...AppRouter.tournament.index.link}>
+          <Link {...AppRouter.history.index.link}>
+            <Tab className={cx(asPath.startsWith("/history") && "active")}>{layoutI18n.matches}</Tab>
+          </Link>
+          <Link {...AppRouter.tournament.index.link}>
             <Tab className={cx(asPath.startsWith("/tournament") && "active")}>{layoutI18n.tournaments}</Tab>
           </Link>
 
-          <Link passHref {...AppRouter.team.index.link}>
+          <Link {...AppRouter.team.index.link}>
             <Tab className={cx(asPath.startsWith("/team") && "active")}>{layoutI18n.teams}</Tab>
           </Link>
 
-          <Tab className="accent" onClick={() => lang.toggle()}>
-            {lang.language === "ru" ? "In english" : "По русски"}
-          </Tab>
+          <Link {...AppRouter.live.link}>
+            <Tab className={cx(asPath.startsWith("/live") && "active")}>
+              {layoutI18n.live}
+              {liveData && <span className="badge">{liveData?.length}</span>}
+            </Tab>
+          </Link>
+
+          <div style={{ flex: 1 }} />
+          {auth.authorized ? (
+            <Link {...AppRouter.player(auth.steamID || "").link}>
+              <PlayButton className="inline" href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
+                {layoutI18n.profile}
+              </PlayButton>
+              {/*<Tab className={cx(asPath === `/player/${steamIdToNum(auth.steamID || "")}` && "active", "primary")}>*/}
+              {/*  {layoutI18n.profile}*/}
+              {/*</Tab>*/}
+            </Link>
+          ) : (
+            <PlayButton className="inline" href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
+              {layoutI18n.loginViaSteam}
+            </PlayButton>
+          )}
         </Tabs>
       </HeaderWrapper>
+      {/*<HeaderWrapper className="compact">*/}
+      {/*  <Tabs className="heading">*/}
+      {/*    <Link {...AppRouter.leaderboard.link}>*/}
+      {/*      <Tab className={cx(asPath === "/leaderboard" && "active")}>{layoutI18n.leaderboard}</Tab>*/}
+      {/*    </Link>*/}
+
+      {/*    <Link {...AppRouter.history.index.link}>*/}
+      {/*      <Tab className={cx(asPath.startsWith("/history") && "active")}>{layoutI18n.matches}</Tab>*/}
+      {/*    </Link>*/}
+      {/*    <Link {...AppRouter.tournament.index.link}>*/}
+      {/*      <Tab className={cx(asPath.startsWith("/tournament") && "active")}>{layoutI18n.tournaments}</Tab>*/}
+      {/*    </Link>*/}
+
+      {/*    <Link {...AppRouter.team.index.link}>*/}
+      {/*      <Tab className={cx(asPath.startsWith("/team") && "active")}>{layoutI18n.teams}</Tab>*/}
+      {/*    </Link>*/}
+
+      {/*    <Link {...AppRouter.live.link}>*/}
+      {/*      <Tab className={cx(asPath.startsWith("/live") && "active")}>*/}
+      {/*        {layoutI18n.live}*/}
+      {/*        {liveData && <span className="badge">{liveData?.length}</span>}*/}
+      {/*      </Tab>*/}
+      {/*    </Link>*/}
+
+      {/*    /!*<Tab className="accent" onClick={() => lang.toggle()}>*!/*/}
+      {/*    /!*  {lang.language === "ru" ? "In english" : "По русски"}*!/*/}
+      {/*    /!*</Tab>*!/*/}
+      {/*  </Tabs>*/}
+      {/*</HeaderWrapper>*/}
     </>
   );
 });
@@ -231,7 +250,7 @@ export default observer((p: PropsWithChildren<{ landing?: boolean; noScroll?: bo
   useGameConnection();
 
   return (
-    <LayoutContainer className={cx(p.noScroll && "no-scroll")}>
+    <LayoutContainer className={cx(p.noScroll && "no-scroll", p.landing && "landing")}>
       <DefaultHeader />
       <NotificationHold />
       <Content className={cx(p.landing && "landing")}>

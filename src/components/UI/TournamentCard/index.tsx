@@ -19,7 +19,7 @@ const Card = styled.a`
   border-radius: 4px;
   text-decoration: none;
   width: 100%;
-  background: ${colors.darkBg2};
+  background: ${colors.evenDarkerBg};
 
   padding: 20px;
   border: 1px solid ${colors.transparentTint3};

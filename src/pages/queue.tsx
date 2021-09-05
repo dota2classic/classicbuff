@@ -2,7 +2,6 @@ import Head from "next/head";
 import { Layout as QueueLayout } from "../container/queue/layout/layout";
 import React, { useEffect } from "react";
 import Layout from "../components/Layout";
-import { useStores } from "../stores";
 
 const Queue = () => {
   return (

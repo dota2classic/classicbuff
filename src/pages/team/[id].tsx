@@ -13,6 +13,8 @@ import Button from "../../components/UI/Button";
 import { TeamMemberPreview } from "../../components/UI/TeamMemberPreview";
 import { InviteToTeamModal } from "../../components/modal/InviteToTeamModal";
 import Head from "next/head";
+import Link from "next/link";
+import { AppRouter } from "utils/route";
 
 const Roster = styled.div`
   display: flex;
@@ -59,6 +61,7 @@ const Card = styled.a`
 const TournamentName = styled.div`
   font-size: 30px;
   color: ${colors.primaryText};
+  margin-top: 20px;
 `;
 
 const TournamentImage = styled.img`
@@ -124,6 +127,11 @@ export default () => {
           Турниры
         </Tab>
         {isCreator && !isLocked && <Tab onClick={() => setOpen(true)}>Пригласить игрока</Tab>}
+        {isCreator && !isLocked && (
+          <Link {...AppRouter.team.edit(data.id).link}>
+            <Tab>Редактировать команду</Tab>
+          </Link>
+        )}
         {data.members.find(t => t.steamId === auth.steamID) && (
           <Tab onClick={() => appApi.team.teamControllerLeaveTeam().then(revalidate)}>Покинуть команду</Tab>
         )}

@@ -44,10 +44,10 @@ export interface TournamentStandingDto {
   team?: TeamDto;
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof TournamentStandingDto
    */
-  position: number;
+  position: string;
 }
 
 export function TournamentStandingDtoFromJSON(json: any): TournamentStandingDto {

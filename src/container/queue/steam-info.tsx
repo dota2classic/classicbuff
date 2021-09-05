@@ -15,13 +15,14 @@ const InfoRow = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 10px;
+  padding: 5px 10px;
 
-  min-height: 65px;
+  height: 80px;
+  min-height: 80px;
+  max-height: 80px;
   width: 100%;
   border-bottom: 1px solid #242424;
   border-top: 1px solid #242424;
-  height: 65px;
 `;
 
 const CancelFindGameButton = styled.div`

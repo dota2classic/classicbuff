@@ -12,7 +12,7 @@ const Card = styled.a`
   text-decoration: none;
   flex: 1;
 
-  background: ${colors.darkBg2};
+  background: ${colors.evenDarkerBg};
   color: ${colors.primaryText};
   margin-top: 10px;
 

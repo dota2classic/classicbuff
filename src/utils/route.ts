@@ -2,7 +2,7 @@ import Router from "next/router";
 import { steamIdToNum } from "./numSteamId";
 
 export interface IRouterPage {
-  link: { href: string; as?: string; shallow?: boolean };
+  link: { href: string; as?: string; shallow?: boolean; passHref: boolean };
   open: (hard?: boolean) => void;
 }
 
@@ -11,7 +11,7 @@ export interface IRouterPageablePage extends IRouterPage {
 }
 
 export const page = (href: string, as?: string, shallow?: boolean): IRouterPage => ({
-  link: { href, as, shallow },
+  link: { href, as, shallow, passHref: true },
   open: (hard?: boolean) => {
     if (hard) {
       window.open(as);
@@ -57,7 +57,8 @@ export const AppRouter = {
   },
   team: {
     index: page("/team"),
-    team: (id: string) => page(`/team/[id]`, `/team/${id}`)
+    team: (id: string) => page(`/team/[id]`, `/team/${id}`),
+    edit: (id: string) => page(`/team/edit/[id]`, `/team/edit/${id}`)
   },
   tournamentMatch: {
     match: (id: number) => page(`/tournament/match/[match_id]`, `/tournament/match/${id}`)

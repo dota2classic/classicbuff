@@ -834,5 +834,6 @@
   "dota2classic.report-modal.report_error": "There was an issue sending a report :(",
   "dota2classic.invite-player-modal.invite_sent": "Party invite sent to {name}",
   "dota2classic.notification.invite_send": "Team invite sent to {name}",
-  "dota2classic.invite-player-modal.title": "Search player"
+  "dota2classic.invite-player-modal.title": "Search player",
+  "dota2classic.game-mode._matchmaking_mode_captains_mode": ""
 }

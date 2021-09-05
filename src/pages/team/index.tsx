@@ -20,23 +20,11 @@ const TeamsContainer = styled.div`
 export default () => {
   const { data } = useApi().team.useTeamControllerListTeams();
   const router = useRouter();
-  const [oldRequiredOpen, setOldRequiredOpen] = useState(false);
-  const { auth } = useStores();
   return (
     <Layout title={i18n.teams}>
-      <OldRequiredModal open={oldRequiredOpen} close={() => setOldRequiredOpen(false)}>
-        {i18n.withValues.oldRequired({
-          old: (...chunks: ReactNode[]) => <ColoredRole className="old">{chunks}</ColoredRole>,
-          human: (...chunks: ReactNode[]) => <ColoredRole className="human">{chunks}</ColoredRole>
-        })}
-      </OldRequiredModal>
       <Button
         onClick={() => {
-          if (!auth.hasOld) {
-            setOldRequiredOpen(true);
-          } else {
-            return router.push(`/team/create`);
-          }
+          return router.push(`/team/create`);
         }}
       >
         Создать команду

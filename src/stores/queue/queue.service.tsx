@@ -96,6 +96,11 @@ export class QueueService extends GameCoordinatorListener {
   public party?: PartyDto;
 
   @computed
+  public get needAuth(): boolean {
+    return !this.auth.authorized;
+  }
+
+  @computed
   public get ready(): boolean {
     return (
       this.readyState === GameCoordinatorState.AUTHORIZED && this.party !== undefined && this.auth.me !== undefined
@@ -332,10 +337,14 @@ export class QueueService extends GameCoordinatorListener {
 
   private canQueue() {
     if (!this.ready) throw new Error("Not ready");
-
-    if (this.selectedMode.mode === MatchmakingMode.RANKED && this.party!!.players.length > 1) {
-      return this.canPartyRanked;
+    if (this.selectedMode.mode === MatchmakingMode.CAPTAINS_MODE && this.party!!.players.length !== 5) {
+      return false;
     }
+
+    // if (this.selectedMode.mode === MatchmakingMode.RANKED && this.party!!.players.length > 1) {
+    //   // dont allow parties in ranked
+    //   return false;
+    // }
 
     return true;
   }

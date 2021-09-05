@@ -5,15 +5,17 @@ import { colors } from "shared";
 const AdBlock = styled.a`
   height: 80px;
   width: 100%;
+  max-width: 1080px;
   display: flex;
   position: relative;
   text-decoration: none;
   overflow: hidden;
 
+  margin-bottom: 20px;
   &:hover {
     &::before {
-      opacity: 0.5;
-      transform: scale(1.05);
+      opacity: 0.9;
+      transform: scale(1.01);
     }
   }
 
@@ -21,16 +23,13 @@ const AdBlock = styled.a`
     content: "";
     transition: 0.3s ease-in-out;
     position: absolute;
-    z-index: -1;
+    z-index: 2;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
-    background: url("https://i.imgur.com/2jCoN9A.jpg");
-    background-position-y: 300px;
-    background-size: cover;
-    opacity: 0.25;
-    transform: scale(1.1);
+    background: url("https://dota2classic.ru/api/static/classic_banner.png");
+    opacity: 1;
   }
 `;
 
@@ -96,18 +95,6 @@ const Pros = styled.div`
 `;
 
 export const AdBanner = () => {
-  return (
-    <AdBlock href="https://discord.gg/w5rDPcCq57" target="__blank">
-      <Title>Kingdom RP</Title>
-      <KillerPhrase>Присоединяйся!</KillerPhrase>
-      <Pros>
-        <span>RPG minecraft сервер</span>
-        <span>Свобода и ролеплей</span>
-        <span>
-          От создателя dota2classic.ru
-          <Itachi />
-        </span>
-      </Pros>
-    </AdBlock>
-  );
+  // return <AdBlock href="https://wpdrop.net/m/dotaclassik" target="__blank" />;
+  return null;
 };

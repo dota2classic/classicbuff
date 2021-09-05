@@ -1,6 +1,6 @@
 import cx from "classnames";
 import React, { ReactNode, useState } from "react";
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { colors } from "../../../shared";
 import { useStores } from "../../../stores";
 import { OldRequiredModal } from "../../modal/OldRequiredModal";
@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import formatGameMode from "../../../utils/format/formatGameMode";
 import { AcceptGameModal } from "../../../container/queue/AcceptGameModal";
 import i18n from "./search-game-button.i18n";
+import { appApi } from "api/hooks";
 export const pendingAnimation = keyframes`
   0% {
     box-shadow: 0 0 5px 1px rgba(255,255,255,0.6);
@@ -24,7 +25,7 @@ export const pendingAnimation = keyframes`
   }
 `;
 
-const SearchGameButtonComp = styled.button`
+const SearchGameButtonBase = css`
   outline: none;
   padding: 10px;
   color: ${colors.primaryText};
@@ -64,6 +65,15 @@ const SearchGameButtonComp = styled.button`
   }
 `;
 
+const SearchGameButtonComp = styled.button`
+  ${SearchGameButtonBase}
+`;
+
+const SearchGameButtonLink = styled.a`
+  ${SearchGameButtonBase};
+  text-decoration: none;
+`;
+
 const FullSearchInfo = styled.div`
   display: flex;
   flex-direction: row;
@@ -78,29 +88,25 @@ const EmbedCancelSearch = styled.div`
 `;
 
 const GameSearchInfo = styled.div`
-  padding: 10px;
   font-size: 14px;
   color: ${colors.primaryText};
 `;
 
 export const SearchGameButton = observer(() => {
   const { queue } = useStores();
-  const [oldRequiredOpen, setOldRequiredOpen] = useState(false);
   const { auth } = useStores();
   const router = useRouter();
 
   const isQueuePage = router.pathname === "/queue";
 
+  if (queue.needAuth)
+    return (
+      <SearchGameButtonLink href={`${appApi.apiParams.basePath}/v1/auth/steam`}>Войти через Steam</SearchGameButtonLink>
+    );
   if (!queue.ready) return <SearchGameButtonComp>Подключение...</SearchGameButtonComp>;
 
   return (
     <FullSearchInfo>
-      <OldRequiredModal open={oldRequiredOpen} close={() => setOldRequiredOpen(false)}>
-        {i18n.withValues.oldRequired({
-          old: (...chunks: ReactNode[]) => <ColoredRole className="old">{chunks}</ColoredRole>,
-          human: (...chunks: ReactNode[]) => <ColoredRole className="human">{chunks}</ColoredRole>
-        })}
-      </OldRequiredModal>
       <AcceptGameModal />
       {(queue.searchingMode !== undefined && (
         <EmbedCancelSearch>
@@ -128,9 +134,7 @@ export const SearchGameButton = observer(() => {
                 return;
               }
 
-              if (!queue.enterQueue()) {
-                setOldRequiredOpen(true);
-              }
+              queue.enterQueue();
             }}
           >
             {i18n.searchGame}

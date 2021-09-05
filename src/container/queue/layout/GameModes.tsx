@@ -12,20 +12,20 @@ import { colors } from "shared";
 export const patchI18n = {
   [Dota2Version.Dota_681]: "Dota 6.81",
 
-  [Dota2Version.Dota_684]: "Dota 6.84"
+  [Dota2Version.Dota_684]: "Dota 6.84",
+  [Dota2Version.Dota_678]: "Dota 6.78"
 };
 const Options = styled.div`
   display: flex;
   flex-direction: column;
   border-right: 1px solid #242424;
   overflow-y: auto;
-  width: 300px;
+  width: 400px;
 `;
 
 const OptionGroup = styled.div`
   display: flex;
   flex-direction: column;
-  border-right: 1px solid #242424;
   overflow-y: auto;
 
   &.shaded {
@@ -42,7 +42,7 @@ const MOption = styled.div`
   display: flex;
 
   flex-direction: column;
-  padding: 10px 20px;
+  padding: 20px 20px;
   cursor: pointer;
   transition: 0.3s ease;
 
@@ -110,13 +110,19 @@ const UserInfo = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 5px;
-  padding: 20px;
+  padding: 5px 20px;
+  height: 80px;
+  max-height: 80px;
+  min-height: 80px;
   border-bottom: 1px solid #242424;
   border-top: 1px solid #242424;
-  height: 65px;
-  max-height: 65px;
-  min-height: 65px;
   align-items: center;
+  & .avatar {
+    width: 40px;
+    height: 40px;
+    border-width: 4px;
+    margin-right: 10px;
+  }
 `;
 
 const Username = styled.div`
@@ -173,14 +179,9 @@ const SharedModes = observer(({ version }: { version: Dota2Version }) => {
     return (
       <OptionGroup className="shaded">
         <MOption className={"header"}>{patchI18n[version]}</MOption>
-        <MatchmakingOption
-          version={version}
-          onSelect={setSelectedMode}
-          unrankedGamesLeft={auth.me?.unrankedGamesLeft}
-          mode={MatchmakingMode.RANKED}
-        />
-        <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.CAPTAINS_MODE} />
-        <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.BOTS} />
+        <MatchmakingOption version={version} onSelect={setSelectedMode} mode={MatchmakingMode.RANKED} />
+        {/*<MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.CAPTAINS_MODE} />*/}
+        {/*<MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.BOTS} />*/}
         <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.SOLOMID} />
       </OptionGroup>
     );
@@ -188,14 +189,9 @@ const SharedModes = observer(({ version }: { version: Dota2Version }) => {
     return (
       <OptionGroup>
         <MOption className={"header"}>{patchI18n[version]}</MOption>
-        <MatchmakingOption
-          version={version}
-          onSelect={setSelectedMode}
-          unrankedGamesLeft={auth.me?.unrankedGamesLeft}
-          mode={MatchmakingMode.RANKED}
-        />
-        <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.CAPTAINS_MODE} />
-        <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.BOTS} />
+        <MatchmakingOption version={version} onSelect={setSelectedMode} mode={MatchmakingMode.RANKED} />
+        {/*<MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.CAPTAINS_MODE} />*/}
+        {/*<MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.BOTS} />*/}
         <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.SOLOMID} />
       </OptionGroup>
     );
@@ -208,12 +204,13 @@ export const GameModes = observer(() => {
   return (
     <Options>
       <UserInfo>
+        <img className="avatar" src={auth.me?.avatar} alt="" />
         <Username>{auth.name}</Username>
         <SteamLogo src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/600px-Steam_icon_logo.svg.png" />
       </UserInfo>
 
       <SharedModes version={Dota2Version.Dota_684} />
-      <SharedModes version={Dota2Version.Dota_681} />
+      {/*<SharedModes version={Dota2Version.Dota_681} />*/}
     </Options>
   );
 });

@@ -183,5 +183,6 @@
   "dota2classic.report-modal.report_error": "Произошла ошибка при отправке жалобы",
   "dota2classic.invite-player-modal.invite_sent": "Приглашение в группу отправлено {name}",
   "dota2classic.notification.invite_send": "Приглашение в команду отправлено {name}",
-  "dota2classic.invite-player-modal.title": "Искать"
+  "dota2classic.invite-player-modal.title": "Искать",
+  "dota2classic.game-mode._matchmaking_mode_captains_mode": ""
 }

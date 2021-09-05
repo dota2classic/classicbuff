@@ -5,11 +5,12 @@ export interface Page<T> {
 }
 
 export const colors = {
-  darkBg: "#15191d",
+  darkBg: "#070707",
   darkBg2: "#1c2024",
   evenDarkerBg: "#101213",
   almostBlack: "#0a0909",
   primaryText: "rgb(217,217,217)",
+  primaryTextTint: "rgb(207,207,207)",
   primaryTextHighlight: "rgb(238,238,238)",
   primaryTextDark: "rgb(131,130,130)",
   primaryTextDark2: "rgb(83,82,82)",

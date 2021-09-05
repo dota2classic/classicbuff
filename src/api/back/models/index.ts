@@ -5,6 +5,7 @@ export * from "./ConnectionDto";
 export * from "./CreateTeamDto";
 export * from "./CreateTournamentDto";
 export * from "./CurrentOnlineDto";
+export * from "./EditTeamDto";
 export * from "./EventAdminDto";
 export * from "./FullTournamentDto";
 export * from "./GameServerDto";

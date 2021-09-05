@@ -4336,5 +4336,11 @@
     "defaultMessage": "Искать",
     "message": "Search player",
     "filepath": "./src/container/invite-player-modal.i18n.ts"
+  },
+  {
+    "id": "dota2classic.game-mode._matchmaking_mode_captains_mode",
+    "defaultMessage": "Captains Mode",
+    "message": "",
+    "filepath": "./src/utils/format/game-mode.i18n.ts"
   }
 ]

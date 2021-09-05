@@ -8,7 +8,7 @@ export default () => {
   const { data } = useApi().tournament.useTournamentControllerListTournaments();
 
   return (
-    <Layout>
+    <Layout title="Турниры">
       <Head>
         <title>Турниры dota2classic</title>
         <meta

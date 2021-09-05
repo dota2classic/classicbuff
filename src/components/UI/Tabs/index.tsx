@@ -11,9 +11,20 @@ export const Tab = styled.a`
   display: flex;
   flex-direction: row;
 
+  align-items: center;
+  justify-content: center;
+
   transition: 0.3s ease;
 
   color: ${colors.primaryText};
+
+  &.primary {
+    font-size: 22px !important;
+  }
+
+  &.secondary {
+    font-size: 20px !important;
+  }
 
   & .badge {
     border-radius: 50%;
@@ -99,6 +110,14 @@ export const Tabs = styled.div`
   display: flex;
   flex-direction: row;
   margin: 10px;
+
+  &.wide {
+    width: 100%;
+    flex: 1;
+    & ${Tab} + ${Tab} {
+      margin-left: 10px;
+    }
+  }
 
   &.heading ${Tab} {
     & .badge {

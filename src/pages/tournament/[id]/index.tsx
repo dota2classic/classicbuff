@@ -196,7 +196,7 @@ export default (p: InitialProps) => {
         {tab === 1 && (
           <>
             {data.standings
-              ?.sort((a, b) => a.position - b.position)
+              ?.sort()
               .map((p: TournamentStandingDto) =>
                 data.entryType === FullTournamentDtoEntryTypeEnum.PLAYER ? (
                   <PlayerLeaderboardPreview standing={p} />

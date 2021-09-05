@@ -1,11 +1,21 @@
 import Head from "next/head";
 import Layout from "../components/Layout";
 import React, { ReactNode } from "react";
-import styled from "styled-components";
-import Link from "next/link";
+import styled, { keyframes } from "styled-components";
 import { EmbedProps } from "../components/util/EmbedProps";
-import i18n from "pages-i18n/index.i18n";
 import { useStores } from "../stores";
+import { colors } from "shared";
+import Link from "next/link";
+
+export const slideAnimation = keyframes`
+  0% {
+    transform: translateX(200);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+`;
 
 const CardPicture = styled.picture`
   cursor: pointer;
@@ -148,8 +158,180 @@ export const CardRow = styled.div`
     &.inline {
       margin-top: 20px;
     }
+    
+    & .wpdrop-ad {
+      text-decoration: none;
+      cursor: pointer;
+    }
 `;
 
+const PromoVideoWrapper = styled.div`
+  width: 100vw;
+  position: relative;
+  background: #000;
+  bottom: -1px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 3;
+  }
+`;
+const PromoVideo = styled.video`
+  width: 100vw;
+  height: auto;
+  background: #000;
+`;
+
+const LeadingText = styled.div`
+  position: absolute;
+  top: 20%;
+  white-space: pre;
+  left: 5%;
+  color: ${colors.primaryText};
+
+  font-size: 60px;
+  font-weight: bold;
+  z-index: 10;
+
+  &.secondary {
+    top: 34%;
+    font-size: 30px;
+  }
+`;
+
+const CenterText = styled.a`
+  text-decoration: none;
+  position: absolute;
+  text-align: center;
+  top: 20%;
+  white-space: pre;
+  left: 0;
+  right: 0;
+  z-index: 10;
+
+  width: fit-content;
+  display: inline;
+  margin: auto;
+
+  font-size: 60px;
+  font-weight: bold;
+  color: ${colors.primaryText};
+
+  & span.secondary {
+    color: ${colors.primaryTextTint};
+  }
+
+  & span.underline {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 15px;
+  }
+  & span.primary {
+    margin-top: 4px;
+  }
+`;
+
+const SecondaryText = styled.div`
+  position: absolute;
+  text-align: center;
+  line-height: 40px;
+  top: 45%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+
+  width: 45%;
+
+  display: inline;
+  margin: auto;
+
+  font-size: 26px;
+  font-weight: bold;
+  color: ${colors.primaryTextTint};
+
+  & .rofl {
+    color: ${colors.position.foreground.gold};
+  }
+`;
+
+export const PlayButton = styled.a`
+  &.inline {
+    font-size: 18px;
+    padding: 15px;
+    border: 1px solid ${colors.primaryTextDark};
+
+    position: relative;
+    display: block;
+    text-decoration: none;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    top: 0;
+    left: 0;
+  }
+  outline: none;
+  text-transform: uppercase;
+
+  z-index: 10;
+  position: absolute;
+  top: 40%;
+  white-space: pre;
+  left: 5%;
+
+  border: 2px solid ${colors.primaryText};
+  border-radius: 6px;
+
+  font-size: 28px;
+  @media (max-width: 600px) {
+    font-size: 20px;
+  }
+  letter-spacing: 2.5px;
+
+  text-decoration: underline;
+
+  font-weight: bold;
+
+  padding: 20px 20px 20px 20px;
+  color: #ed3b1c;
+  //text-decoration: underline;
+  //text-underline-position: under;
+  transition: 0.2s ease;
+  &:hover {
+    color: #ee2c0a;
+    border-color: ${colors.primaryTextHighlight};
+  }
+  cursor: pointer;
+  text-align: left;
+`;
+
+export const BackgroundImagePicture = styled.picture`
+  position: relative;
+  width: 100vw;
+  background: #000;
+  &.overflow {
+    //margin-top: -100px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 3;
+  }
+`;
+export const BackgroundImage = styled.img`
+  width: 100vw;
+  opacity: 1;
+`;
 export default () => {
   const stores = useStores();
 
@@ -158,7 +340,7 @@ export default () => {
       <EmbedProps
         title="Классическая Dota 2"
         description="dota2classic.ru - сайт для игры в классическую Dota 2 6.81 2014 года"
-        image="https://dota2classic.ru/api/static/landing/2.png.webp"
+        image="https://dota2classic.ru/api/static/landing/2.png"
       />
       <Head>
         <title>Классическая Dota 2</title>
@@ -168,73 +350,57 @@ export default () => {
         />
       </Head>
 
-      <WelcomeText>
-        {i18n.withValues.welcomeText({
-          b: (...chunks: ReactNode[]) => {
-            return <b>{chunks}</b>;
-          }
-        })}
-      </WelcomeText>
-
-      {stores.lang.language === "ru" && (
-        <CardRow>
-          <iframe
-            style={{ width: 940 }}
-            height={450}
-            // width={1792}
-            // height={840}
-            src="https://www.youtube.com/embed/MkqRP6Ia1Pc"
-            frameBorder={0}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        </CardRow>
-      )}
-
-      <CardRow>
-        <CardBlock text={i18n.ti4version} img={"https://dota2classic.ru/api/static/landing/1.png.webp"} />
-
-        <CardBlock text={i18n.beforeReborn} img={"https://dota2classic.ru/api/static/landing/2.png.webp"} />
-
-        <CardBlock text={i18n.worksWithSteam} img={"https://dota2classic.ru/api/static/landing/3.png.webp"} />
-      </CardRow>
-
-      <List>
-        <li>{i18n.ti4version}</li>
-        <li>{i18n.beforeReborn}</li>
-        <li>{i18n.worksWithSteam}</li>
-      </List>
-
-      <CardRow>
-        <CardBlock text={i18n.source1} img={"https://dota2classic.ru/api/static/landing/4.png.webp"} />
-        <CardBlock text={i18n.classicBalance} img={"https://dota2classic.ru/api/static/landing/5.png.webp"} />
-        <CardBlock text={i18n.originalLandscape} img={"https://dota2classic.ru/api/static/landing/6.png.webp"} />
-      </CardRow>
-
-      <List>
-        <li>{i18n.source1}</li>
-        <li>{i18n.classicBalance}</li>
-        <li>{i18n.originalLandscape}</li>
-      </List>
-      <CardRow>
-        <CardBlock text={"Удаленные предметы"} img={"https://dota2classic.ru/api/static/landing/7.png.webp"} />
-
-        <CardBlock img={"https://dota2classic.ru/api/static/landing/8.png.webp"} text={"Diretide 2012 года"} />
-        <CardBlock img={"https://dota2classic.ru/api/static/landing/9.png.webp"} text={"Techies еще не добавили!"} />
-      </CardRow>
-      <List>
-        <li>{i18n.oldItems}</li>
-        <li>{i18n.diretide}</li>
-        <li>{i18n.noTechies}</li>
-      </List>
-      <LeadButtons>
+      <PromoVideoWrapper>
+        <PromoVideo muted loop autoPlay controls={false} src="https://dota2classic.ru/api/static/video/d2video.mp4" />
+        <LeadingText>Волшебный мир старой Доты</LeadingText>
+        <LeadingText className="secondary">Уютный дом, в котором выросли миллионы</LeadingText>
         <Link href={"/download"}>
-          <LeadButton>{i18n.download}</LeadButton>
+          <PlayButton>Играть бесплатно</PlayButton>
         </Link>
-        <LeadButton href={"https://discord.gg/VU5wjA8"} target={"__blank"}>
-          {i18n.joinDiscord}
-        </LeadButton>
-      </LeadButtons>
+      </PromoVideoWrapper>
+
+      <BackgroundImagePicture className="overflow">
+        <BackgroundImage src="https://dota2classic.ru/api/static/landing/landing_2.jpeg" />
+        <Link href="/download" passHref>
+          <CenterText>
+            <span className="secondary">Начни играть в </span>
+            <br />
+            <span className="primary underline">Настоящую Доту</span>
+          </CenterText>
+        </Link>
+        <SecondaryText>
+          Вспомни или попробуй истоки современной Доты, то, с чего все начиналось. Source 1, мрачная, но приятная
+          атмосфера и совершенно другой геймплей.
+        </SecondaryText>
+      </BackgroundImagePicture>
+
+      <BackgroundImagePicture className="overflow">
+        <BackgroundImage src="https://dota2classic.ru/api/static/landing/landing_1.jpeg" />
+        <CenterText>
+          <span className="secondary">Старые способности</span>
+          <br />
+          <span className="primary">Новые ощущения</span>
+        </CenterText>
+
+        <SecondaryText>
+          Старая Дота ощущается совершенно иначе, чем современная. <br />
+          В первой же своей игре ты это поймешь.
+          <br />
+          Она сложная, жесткая, но в тоже время зачаровывающая.
+          <br />
+          Некоторых героев еще нет, как и предметов, <br />
+          но <span className="rofl">Пудж все еще денаится.</span>
+        </SecondaryText>
+      </BackgroundImagePicture>
+
+      <BackgroundImagePicture className="overflow">
+        <BackgroundImage src="https://dota2classic.ru/api/static/landing/landing_3.webp" />
+        <LeadingText>Готов окунуться в ностальгию?</LeadingText>
+        <LeadingText className="secondary">Нужен только клиент игры</LeadingText>
+        <Link href={"/download"}>
+          <PlayButton>Играть бесплатно</PlayButton>
+        </Link>
+      </BackgroundImagePicture>
     </Layout>
   );
 };

@@ -19,6 +19,9 @@ import {
   CreateTeamDto,
   CreateTeamDtoFromJSON,
   CreateTeamDtoToJSON,
+  EditTeamDto,
+  EditTeamDtoFromJSON,
+  EditTeamDtoToJSON,
   SubmitInviteDto,
   SubmitInviteDtoFromJSON,
   SubmitInviteDtoToJSON,
@@ -35,6 +38,10 @@ import {
 
 export interface TeamControllerCreateTeamRequest {
   createTeamDto: CreateTeamDto;
+}
+
+export interface TeamControllerEditTeamRequest {
+  editTeamDto: EditTeamDto;
 }
 
 export interface TeamControllerGetTeamRequest {
@@ -115,6 +122,62 @@ export class TeamApi extends runtime.BaseAPI {
    */
   teamControllerCreateTeam = async (createTeamDto: CreateTeamDto): Promise<TeamDto> => {
     const response = await this.teamControllerCreateTeamRaw({ createTeamDto: createTeamDto });
+    return await response.value();
+  };
+
+  /**
+   */
+  private async teamControllerEditTeamRaw(
+    requestParameters: TeamControllerEditTeamRequest
+  ): Promise<runtime.ApiResponse<TeamDto>> {
+    this.teamControllerEditTeamValidation(requestParameters);
+    const context = this.teamControllerEditTeamContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.JSONApiResponse(response, jsonValue => TeamDtoFromJSON(jsonValue));
+  }
+
+  /**
+   */
+  private teamControllerEditTeamValidation(requestParameters: TeamControllerEditTeamRequest) {
+    if (requestParameters.editTeamDto === null || requestParameters.editTeamDto === undefined) {
+      throw new runtime.RequiredError(
+        "editTeamDto",
+        "Required parameter requestParameters.editTeamDto was null or undefined when calling teamControllerEditTeam."
+      );
+    }
+  }
+
+  /**
+   */
+  teamControllerEditTeamContext(requestParameters: TeamControllerEditTeamRequest): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    headerParameters["Content-Type"] = "application/json";
+
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    return {
+      path: `/v1/team/edit_team`,
+      method: "POST",
+      headers: headerParameters,
+      query: queryParameters,
+      body: EditTeamDtoToJSON(requestParameters.editTeamDto)
+    };
+  }
+
+  /**
+   */
+  teamControllerEditTeam = async (editTeamDto: EditTeamDto): Promise<TeamDto> => {
+    const response = await this.teamControllerEditTeamRaw({ editTeamDto: editTeamDto });
     return await response.value();
   };
 
