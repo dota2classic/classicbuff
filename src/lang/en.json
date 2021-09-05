@@ -835,5 +835,22 @@
   "dota2classic.invite-player-modal.invite_sent": "Party invite sent to {name}",
   "dota2classic.notification.invite_send": "Team invite sent to {name}",
   "dota2classic.invite-player-modal.title": "Search player",
-  "dota2classic.game-mode._matchmaking_mode_captains_mode": ""
+  "dota2classic.game-mode._matchmaking_mode_captains_mode": "Captains Mode",
+
+  "dota2classic.index_page.magic_world": "Magic world of old Dota 2",
+  "dota2classic.index_page.cozy_home": "Cozy place where millions grew up",
+  "dota2classic.index_page.play_free": "Play free",
+  "dota2classic.index_page.start_playing": "Start playing",
+  "dota2classic.index_page.real_dota": "Real Dota 2",
+  "dota2classic.index_page.remember": "Come back or try beginning of modern Dota, game where it all began. Source 1, dark but pleasant feelings and completely different gameplay.",
+  "dota2classic.index_page.old_abilities": "Old abilities",
+  "dota2classic.index_page.new_feelings": "New inception",
+  "dota2classic.index_page.old_dota": "Old dota feels completely different compared to modern.",
+  "dota2classic.index_page.first_game": "You will face it in your first game.",
+  "dota2classic.index_page.hard": "It's hard and tough, but still charming.",
+  "dota2classic.index_page.items_missing": "Some heroes aren't present here yet, as well as some items",
+  "dota2classic.index_page.but": "but",
+  "dota2classic.index_page.pudge_deny": "Pudge still denies.",
+  "dota2classic.index_page.nostalgy": "Are you ready to feel nostalgic?",
+  "dota2classic.index_page.only_client": "You only need game client."
 }

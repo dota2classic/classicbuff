@@ -6,7 +6,7 @@ import { EmbedProps } from "../components/util/EmbedProps";
 import { useStores } from "../stores";
 import { colors } from "shared";
 import Link from "next/link";
-
+import i18n from "pages-i18n/index.i18n";
 export const slideAnimation = keyframes`
   0% {
     transform: translateX(200);
@@ -170,6 +170,7 @@ const PromoVideoWrapper = styled.div`
   position: relative;
   background: #000;
   bottom: -1px;
+  top: -2px;
 
   &::before {
     content: "";
@@ -403,10 +404,10 @@ export default () => {
 
       <PromoVideoWrapper>
         <PromoVideo muted loop autoPlay controls={false} src="https://dota2classic.ru/api/static/video/d2video.mp4" />
-        <LeadingText>Волшебный мир старой Доты</LeadingText>
-        <LeadingText className="secondary">Уютный дом, в котором выросли миллионы</LeadingText>
+        <LeadingText>{i18n.magicWorld}</LeadingText>
+        <LeadingText className="secondary">{i18n.cozyHome}</LeadingText>
         <Link href={"/download"}>
-          <PlayButton>Играть бесплатно</PlayButton>
+          <PlayButton>{i18n.playFree}</PlayButton>
         </Link>
       </PromoVideoWrapper>
 
@@ -414,42 +415,39 @@ export default () => {
         <BackgroundImage src="https://dota2classic.ru/api/static/landing/landing_2.jpeg" />
         <Link href="/download" passHref>
           <CenterText>
-            <span className="secondary">Начни играть в </span>
+            <span className="secondary">{i18n.startPlaying} </span>
             <br />
-            <span className="primary underline">Настоящую Доту</span>
+            <span className="primary underline">{i18n.realDota}</span>
           </CenterText>
         </Link>
-        <SecondaryText>
-          Вспомни или попробуй истоки современной Доты, то, с чего все начиналось. Source 1, мрачная, но приятная
-          атмосфера и совершенно другой геймплей.
-        </SecondaryText>
+        <SecondaryText>{i18n.remember}</SecondaryText>
       </BackgroundImagePicture>
 
       <BackgroundImagePicture className="overflow">
         <BackgroundImage src="https://dota2classic.ru/api/static/landing/landing_1.jpeg" />
         <CenterText>
-          <span className="secondary">Старые способности</span>
+          <span className="secondary">{i18n.oldAbilities}</span>
           <br />
-          <span className="primary">Новые ощущения</span>
+          <span className="primary">{i18n.newFeelings}</span>
         </CenterText>
 
         <SecondaryText>
-          Старая Дота ощущается совершенно иначе, чем современная. <br />
-          В первой же своей игре ты это поймешь.
+          {i18n.oldDota} <br />
+          {i18n.firstGame}
           <br />
-          Она сложная, жесткая, но в тоже время зачаровывающая.
+          {i18n.hard}
           <br />
-          Некоторых героев еще нет, как и предметов, <br />
-          но <span className="rofl">Пудж все еще денаится.</span>
+          {i18n.itemsMissing} <br />
+          {i18n.but} <span className="rofl">{i18n.pudgeDeny}</span>
         </SecondaryText>
       </BackgroundImagePicture>
 
       <BackgroundImagePicture className="overflow">
         <BackgroundImage src="https://dota2classic.ru/api/static/landing/landing_3.webp" />
-        <LeadingText>Готов окунуться в ностальгию?</LeadingText>
-        <LeadingText className="secondary">Нужен только клиент игры</LeadingText>
+        <LeadingText>{i18n.nostalgy}</LeadingText>
+        <LeadingText className="secondary">{i18n.onlyClient}</LeadingText>
         <Link href={"/download"}>
-          <PlayButton>Играть бесплатно</PlayButton>
+          <PlayButton>{i18n.playFree}</PlayButton>
         </Link>
       </BackgroundImagePicture>
     </Layout>

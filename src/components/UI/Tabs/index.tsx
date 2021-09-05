@@ -105,6 +105,12 @@ export const Tab = styled.a`
     }
   }
 
+  &.no-underline {
+    &::before {
+      content: none !important;
+    }
+  }
+
   &.disabled {
     color: ${colors.primaryTextDark};
     cursor: not-allowed;

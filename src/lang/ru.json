@@ -184,5 +184,21 @@
   "dota2classic.invite-player-modal.invite_sent": "Приглашение в группу отправлено {name}",
   "dota2classic.notification.invite_send": "Приглашение в команду отправлено {name}",
   "dota2classic.invite-player-modal.title": "Искать",
-  "dota2classic.game-mode._matchmaking_mode_captains_mode": ""
+  "dota2classic.game-mode._matchmaking_mode_captains_mode": "",
+  "dota2classic.index_page.magic_world": "Волшебный мир старой Доты",
+  "dota2classic.index_page.cozy_home": "Уютный дом, в котором выросли миллионы",
+  "dota2classic.index_page.play_free": "Играть бесплатно",
+  "dota2classic.index_page.start_playing": "Начни играть в",
+  "dota2classic.index_page.real_dota": "Настоящую Доту",
+  "dota2classic.index_page.remember": "Вспомни или попробуй истоки современной Доты, то, с чего все начиналось. Source 1, мрачная, но приятная атмосфера и совершенно другой геймплей.",
+  "dota2classic.index_page.old_abilities": "Старые способности",
+  "dota2classic.index_page.new_feelings": "Новые ощущения",
+  "dota2classic.index_page.old_dota": "Старая Дота ощущается совершенно иначе, чем современная.",
+  "dota2classic.index_page.first_game": "В первой же своей игре ты это поймешь.",
+  "dota2classic.index_page.hard": "Она сложная, жесткая, но в тоже время зачаровывающая.",
+  "dota2classic.index_page.items_missing": "Некоторых героев еще нет, как и предметов,",
+  "dota2classic.index_page.but": "но",
+  "dota2classic.index_page.pudge_deny": "Пудж все еще денаится.",
+  "dota2classic.index_page.nostalgy": "Готов окунуться в ностальгию?",
+  "dota2classic.index_page.only_client": "Нужен только клиент игры"
 }

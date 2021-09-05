@@ -92,6 +92,11 @@ const HeaderWrapper = styled.div`
 
   background: ${colors.evenDarkerBg};
 
+  & .flag {
+    height: 20px;
+    width: auto;
+  }
+
   &.compact {
     padding: 0px;
     margin-left: 40px;
@@ -200,15 +205,27 @@ const DefaultHeader = observer(() => {
             </Tab>
           </Link>
 
+          <Tab className="accent no-underline" onClick={() => lang.toggle()}>
+            {lang.language === "ru" ? (
+              <img
+                src="https://raw.githubusercontent.com/hampusborgos/country-flags/main/png100px/us.png"
+                alt=""
+                className="flag"
+              />
+            ) : (
+              <img
+                src="https://raw.githubusercontent.com/hampusborgos/country-flags/main/png100px/ru.png"
+                alt=""
+                className="flag"
+              />
+            )}
+          </Tab>
           <div style={{ flex: 1 }} />
           {auth.authorized ? (
             <Link {...AppRouter.player(auth.steamID || "").link}>
               <PlayButton className="inline" href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
                 {layoutI18n.profile}
               </PlayButton>
-              {/*<Tab className={cx(asPath === `/player/${steamIdToNum(auth.steamID || "")}` && "active", "primary")}>*/}
-              {/*  {layoutI18n.profile}*/}
-              {/*</Tab>*/}
             </Link>
           ) : (
             <PlayButton className="inline" href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
@@ -235,7 +252,7 @@ export default observer((p: PropsWithChildren<{ landing?: boolean; noScroll?: bo
       <DefaultHeader />
       <NotificationHold />
       <Content className={cx(p.landing && "landing")}>
-        <Title>{p.title && <span>{p.title}</span>}</Title>
+        {p.title && <Title>{p.title && <span>{p.title}</span>}</Title>}
         {p.children}
       </Content>
       <SearchGameBar />

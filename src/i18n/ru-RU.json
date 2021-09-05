@@ -900,25 +900,25 @@
     "id": "dota2classic.old-required-modal.support_project",
     "defaultMessage": "Поддержи проект и получи доступ к эксклюзивным возможностям!",
     "message": "Поддержи проект и получи доступ к эксклюзивным возможностям!",
-    "filepath": "./src/components/modal/OldRequiredModal/old-required.i18n.ts"
+    "prevFilepath": "./src/components/modal/OldRequiredModal/old-required.i18n.ts"
   },
   {
     "id": "dota2classic.old-required-modal.learn_more",
     "defaultMessage": "Узнать больше",
     "message": "Узнать больше",
-    "filepath": "./src/components/modal/OldRequiredModal/old-required.i18n.ts"
+    "prevFilepath": "./src/components/modal/OldRequiredModal/old-required.i18n.ts"
   },
   {
     "id": "dota2classic.old-required-modal.close",
     "defaultMessage": "Закрыть",
     "message": "Закрыть",
-    "filepath": "./src/components/modal/OldRequiredModal/old-required.i18n.ts"
+    "prevFilepath": "./src/components/modal/OldRequiredModal/old-required.i18n.ts"
   },
   {
     "id": "dota2classic.old-required-modal.old_required",
     "defaultMessage": "Эта функция доступна только игрокам с ролью <old>Древний</old> и выше!",
     "message": "Эта функция доступна только игрокам с ролью <old>Древний</old> и выше!",
-    "filepath": "./src/components/modal/OldRequiredModal/old-required.i18n.ts"
+    "prevFilepath": "./src/components/modal/OldRequiredModal/old-required.i18n.ts"
   },
   {
     "id": "dota2classic.live_match.mode",
@@ -1087,5 +1087,101 @@
     "defaultMessage": "Captains Mode",
     "message": "",
     "filepath": "./src/utils/format/game-mode.i18n.ts"
+  },
+  {
+    "id": "dota2classic.index_page.magic_world",
+    "defaultMessage": "Волшебный мир старой Доты",
+    "message": "",
+    "filepath": "./src/pages-i18n/index.i18n.ts"
+  },
+  {
+    "id": "dota2classic.index_page.cozy_home",
+    "defaultMessage": "Уютный дом, в котором выросли миллионы",
+    "message": "",
+    "filepath": "./src/pages-i18n/index.i18n.ts"
+  },
+  {
+    "id": "dota2classic.index_page.play_free",
+    "defaultMessage": "Играть бесплатно",
+    "message": "",
+    "filepath": "./src/pages-i18n/index.i18n.ts"
+  },
+  {
+    "id": "dota2classic.index_page.start_playing",
+    "defaultMessage": "Начни играть в",
+    "message": "",
+    "filepath": "./src/pages-i18n/index.i18n.ts"
+  },
+  {
+    "id": "dota2classic.index_page.real_dota",
+    "defaultMessage": "Настоящую Доту",
+    "message": "",
+    "filepath": "./src/pages-i18n/index.i18n.ts"
+  },
+  {
+    "id": "dota2classic.index_page.remember",
+    "defaultMessage": "Вспомни или попробуй истоки современной Доты, то, с чего все начиналось. Source 1, мрачная, но приятная атмосфера и совершенно другой геймплей.",
+    "message": "",
+    "filepath": "./src/pages-i18n/index.i18n.ts"
+  },
+  {
+    "id": "dota2classic.index_page.old_abilities",
+    "defaultMessage": "Старые способности",
+    "message": "",
+    "filepath": "./src/pages-i18n/index.i18n.ts"
+  },
+  {
+    "id": "dota2classic.index_page.new_feelings",
+    "defaultMessage": "Новые ощущения",
+    "message": "",
+    "filepath": "./src/pages-i18n/index.i18n.ts"
+  },
+  {
+    "id": "dota2classic.index_page.old_dota",
+    "defaultMessage": "Старая Дота ощущается совершенно иначе, чем современная.",
+    "message": "",
+    "filepath": "./src/pages-i18n/index.i18n.ts"
+  },
+  {
+    "id": "dota2classic.index_page.first_game",
+    "defaultMessage": "В первой же своей игре ты это поймешь.",
+    "message": "",
+    "filepath": "./src/pages-i18n/index.i18n.ts"
+  },
+  {
+    "id": "dota2classic.index_page.hard",
+    "defaultMessage": "Она сложная, жесткая, но в тоже время зачаровывающая.",
+    "message": "",
+    "filepath": "./src/pages-i18n/index.i18n.ts"
+  },
+  {
+    "id": "dota2classic.index_page.items_missing",
+    "defaultMessage": "Некоторых героев еще нет, как и предметов,",
+    "message": "",
+    "filepath": "./src/pages-i18n/index.i18n.ts"
+  },
+  {
+    "id": "dota2classic.index_page.but",
+    "defaultMessage": "но",
+    "message": "",
+    "filepath": "./src/pages-i18n/index.i18n.ts"
+  },
+  {
+    "id": "dota2classic.index_page.pudge_deny",
+    "defaultMessage": "Пудж все еще денаится.",
+    "message": "",
+    "filepath": "./src/pages-i18n/index.i18n.ts"
+  },
+  {
+    "id": "dota2classic.index_page.nostalgy",
+    "defaultMessage": "Готов окунуться в ностальгию?",
+    "message": "",
+    "filepath": "./src/pages-i18n/index.i18n.ts"
+  },
+  {
+    "id": "dota2classic.index_page.only_client",
+    "defaultMessage": "Нужен только клиент игры",
+    "message": "",
+    "filepath": "./src/pages-i18n/index.i18n.ts"
   }
 ]
