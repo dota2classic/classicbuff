@@ -13,7 +13,7 @@ export default () => {
         <title>Турниры dota2classic</title>
         <meta
           name="description"
-          content="dota2classic.ru - discord сервер для игры в классическую доту 6.81 2014 года"
+          content="dota2classic.ru - discord сервер для игры в классическую доту 6.84 2015 года"
         />
       </Head>
 

@@ -16,6 +16,7 @@ export const Tab = styled.a`
 
   transition: 0.3s ease;
 
+  user-select: none;
   color: ${colors.primaryText};
 
   &.primary {
@@ -24,6 +25,10 @@ export const Tab = styled.a`
 
   &.secondary {
     font-size: 20px !important;
+  }
+
+  @media (max-width: 1200px) {
+    padding: 3px !important;
   }
 
   & .badge {

@@ -106,6 +106,9 @@ const Title = styled.div`
   color: #d9d9d9;
   font-size: 20px;
   margin: auto auto 0px;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -214,35 +217,6 @@ const DefaultHeader = observer(() => {
           )}
         </Tabs>
       </HeaderWrapper>
-      {/*<HeaderWrapper className="compact">*/}
-      {/*  <Tabs className="heading">*/}
-      {/*    <Link {...AppRouter.leaderboard.link}>*/}
-      {/*      <Tab className={cx(asPath === "/leaderboard" && "active")}>{layoutI18n.leaderboard}</Tab>*/}
-      {/*    </Link>*/}
-
-      {/*    <Link {...AppRouter.history.index.link}>*/}
-      {/*      <Tab className={cx(asPath.startsWith("/history") && "active")}>{layoutI18n.matches}</Tab>*/}
-      {/*    </Link>*/}
-      {/*    <Link {...AppRouter.tournament.index.link}>*/}
-      {/*      <Tab className={cx(asPath.startsWith("/tournament") && "active")}>{layoutI18n.tournaments}</Tab>*/}
-      {/*    </Link>*/}
-
-      {/*    <Link {...AppRouter.team.index.link}>*/}
-      {/*      <Tab className={cx(asPath.startsWith("/team") && "active")}>{layoutI18n.teams}</Tab>*/}
-      {/*    </Link>*/}
-
-      {/*    <Link {...AppRouter.live.link}>*/}
-      {/*      <Tab className={cx(asPath.startsWith("/live") && "active")}>*/}
-      {/*        {layoutI18n.live}*/}
-      {/*        {liveData && <span className="badge">{liveData?.length}</span>}*/}
-      {/*      </Tab>*/}
-      {/*    </Link>*/}
-
-      {/*    /!*<Tab className="accent" onClick={() => lang.toggle()}>*!/*/}
-      {/*    /!*  {lang.language === "ru" ? "In english" : "По русски"}*!/*/}
-      {/*    /!*</Tab>*!/*/}
-      {/*  </Tabs>*/}
-      {/*</HeaderWrapper>*/}
     </>
   );
 });
@@ -261,13 +235,7 @@ export default observer((p: PropsWithChildren<{ landing?: boolean; noScroll?: bo
       <DefaultHeader />
       <NotificationHold />
       <Content className={cx(p.landing && "landing")}>
-        <Title>
-          <MenuIcon
-            onClick={() => Router.push(`${router.pathname}?menu`, `${router.asPath}?menu`)}
-            src={"https://dota2classic.ru/api/static/menu.svg"}
-          />
-          {p.title && <span>{p.title}</span>}
-        </Title>
+        <Title>{p.title && <span>{p.title}</span>}</Title>
         {p.children}
       </Content>
       <SearchGameBar />

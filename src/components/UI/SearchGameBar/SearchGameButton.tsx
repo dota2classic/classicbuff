@@ -39,6 +39,12 @@ const SearchGameButtonBase = css`
   transition: 0.3s ease;
   background-color: ${colors.evenDarkerBg};
 
+
+
+    @media (max-width: 500px) {
+     display: none;
+    }
+    
   &.banned {
     color: ${colors.primaryTextDark};
     border-color: ${colors.dota.red};

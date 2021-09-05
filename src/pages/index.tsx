@@ -199,7 +199,25 @@ const LeadingText = styled.div`
   font-weight: bold;
   z-index: 10;
 
+  @media (max-width: 1200px) {
+    font-size: 30px !important;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 16px !important;
+  }
+
   &.secondary {
+    @media (max-width: 1200px) {
+      font-size: 24px !important;
+      top: 30%;
+    }
+    @media (max-width: 500px) {
+      font-size: 14px !important;
+      top: 35%;
+      white-space: normal;
+    }
+
     top: 34%;
     font-size: 30px;
   }
@@ -222,6 +240,14 @@ const CenterText = styled.a`
   font-size: 60px;
   font-weight: bold;
   color: ${colors.primaryText};
+
+  @media (max-width: 1200px) {
+    font-size: 40px !important;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 10px !important;
+  }
 
   & span.secondary {
     color: ${colors.primaryTextTint};
@@ -246,7 +272,7 @@ const SecondaryText = styled.div`
   right: 0;
   z-index: 10;
 
-  width: 45%;
+  width: 85%;
 
   display: inline;
   margin: auto;
@@ -255,6 +281,16 @@ const SecondaryText = styled.div`
   font-weight: bold;
   color: ${colors.primaryTextTint};
 
+  @media (max-width: 1200px) {
+    font-size: 18px !important;
+    line-height: 30px;
+    //top: 30%;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 10px !important;
+    line-height: 12px;
+  }
   & .rofl {
     color: ${colors.position.foreground.gold};
   }
@@ -263,17 +299,38 @@ const SecondaryText = styled.div`
 export const PlayButton = styled.a`
   &.inline {
     font-size: 18px;
-    padding: 15px;
     border: 1px solid ${colors.primaryTextDark};
 
     position: relative;
     display: block;
     text-decoration: none;
-    padding-bottom: 10px;
-    padding-top: 10px;
+    padding: 10px 15px;
     top: 0;
     left: 0;
+    color: ${colors.position.foreground.silver};
+
+    &:hover {
+      color: ${colors.position.foreground.gold};
+    }
+
+    @media (max-width: 1200px) {
+      padding: 10px;
+      font-size: 16px !important;
+    }
   }
+
+  @media (max-width: 1200px) {
+    font-size: 20px !important;
+    padding: 10px;
+    border-width: 1px;
+    text-decoration: none;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 20px;
+    top: 60%;
+  }
+
   outline: none;
   text-transform: uppercase;
 
@@ -287,9 +344,6 @@ export const PlayButton = styled.a`
   border-radius: 6px;
 
   font-size: 28px;
-  @media (max-width: 600px) {
-    font-size: 20px;
-  }
   letter-spacing: 2.5px;
 
   text-decoration: underline;
@@ -339,15 +393,12 @@ export default () => {
     <Layout landing>
       <EmbedProps
         title="Классическая Dota 2"
-        description="dota2classic.ru - сайт для игры в классическую Dota 2 6.81 2014 года"
+        description="dota2classic.ru - сайт для игры в классическую Dota 2 6.84 2015 года"
         image="https://dota2classic.ru/api/static/landing/2.png"
       />
       <Head>
         <title>Классическая Dota 2</title>
-        <meta
-          name="description"
-          content="dota2classic.ru - discord сервер для игры в классическую доту 6.81 2014 года"
-        />
+        <meta name="description" content="dota2classic.ru - сайт для игры в классическую Dota 2 6.84 2015 года" />
       </Head>
 
       <PromoVideoWrapper>
