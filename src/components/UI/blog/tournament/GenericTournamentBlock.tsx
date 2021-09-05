@@ -119,7 +119,7 @@ export default (props: PropsWithChildren<Props>) => {
   return (
     <div>
       {(props.link && (
-        <Link passHref {...props.link.link}>
+        <Link {...props.link.link}>
           <Block img={props.img} className={cx(props.hover && "hoverable", props.small && "small")}>
             <div className="main-content">{props.children}</div>
             <div className="hover-content">{props.hover}</div>

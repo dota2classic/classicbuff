@@ -6,7 +6,6 @@ import { Tab, Tabs } from "../UI/Tabs";
 import Link from "next/link";
 import { AppRouter } from "../../utils/route";
 import cx from "classnames";
-import { steamIdToNum } from "../../utils/numSteamId";
 import React, { PropsWithChildren, ReactNode } from "react";
 import useWillMount from "../../utils/useWillMount";
 import { observer } from "mobx-react";
@@ -14,13 +13,14 @@ import { useGameConnection } from "../util/useGameConnection";
 import { NotificationHold } from "../UI/NotificationHold";
 import { SearchGameBar } from "../UI/SearchGameBar/SearchGameBar";
 import layoutI18n from "./layout.i18n";
-import { useStores } from "../../stores";
+import { useStores } from "stores";
 import { PlayButton } from "pages";
 const LayoutContainer = styled.div`
   height: 100vh;
   max-height: 100vh;
   display: flex;
   overflow-y: auto;
+  overflow-x: hidden;
   flex-direction: column;
 
   width: 100vw;

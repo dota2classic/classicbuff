@@ -174,7 +174,7 @@ export default (p: InitialProps) => {
           ))}
         {(data.status === FullTournamentDtoStatusEnum.ONGOING ||
           data.status === FullTournamentDtoStatusEnum.FINISHED) && (
-          <Link passHref {...AppRouter.tournament.bracket(data.id).link}>
+          <Link {...AppRouter.tournament.bracket(data.id).link}>
             <Tab>{i18n.bracket}</Tab>
           </Link>
         )}
