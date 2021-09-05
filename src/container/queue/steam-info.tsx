@@ -11,6 +11,8 @@ import { GameCoordinatorState } from "../../stores/queue/game-coordinator.state"
 import i18n from "./steam-info.i18n";
 import { PlayerInPartyDto } from "../../api/back/models";
 import { PlayerHover } from "components/UI/PlayerHover";
+import Link from "next/link";
+import { AppRouter } from "utils/route";
 
 const InfoRow = styled.div`
   display: flex;
@@ -94,7 +96,7 @@ const PartyContents = styled.div`
   width: 400px;
 `;
 
-const PartyItem = styled.div`
+const PartyItem = styled.a`
   border: 1px solid #5f5e5e;
   height: 50px;
   width: 50px;
@@ -165,9 +167,11 @@ export default observer(() => {
 
       <PartyContents>
         {queue.party!!.players.map((t: PlayerInPartyDto) => (
-          <PartyItem className={cx(t.steamId === data?.leader.steamId && "leader")}>
-            <img src={t.avatar} alt="" />
-          </PartyItem>
+          <Link {...AppRouter.player(t.steamId).link}>
+            <PartyItem className={cx(t.steamId === data?.leader.steamId && "leader")}>
+              <img src={t.avatar} alt="" />
+            </PartyItem>
+          </Link>
         ))}
 
         <PartyItem className={cx("invite")} onClick={() => setInviteOpen(true)}>
@@ -181,6 +185,14 @@ export default observer(() => {
 
       {/*<SearchGameButton />*/}
 
+      {onlineData && (
+        <InfoTab>
+          <span>{i18n.withValues.online({ online: onlineData.inGame })}</span>
+          <span>{i18n.withValues.freeServers({ free: onlineData.servers - onlineData.sessions })}</span>
+          <span>{i18n.withValues.currentGames({ games: onlineData.sessions })}</span>
+        </InfoTab>
+      )}
+
       {queue.searchingMode !== undefined && (
         <SearchGameBar>
           <span>{i18n.withValues.search({ s: formatGameMode(queue.searchingMode) })}</span>
@@ -188,14 +200,6 @@ export default observer(() => {
             {i18n.withValues.playersInQueue({ piq: queue.inQueue[JSON.stringify(queue.searchingMode)] })}
           </span>
         </SearchGameBar>
-      )}
-
-      {onlineData && (
-        <InfoTab>
-          <span>{i18n.withValues.online({ online: onlineData.inGame })}</span>
-          <span>{i18n.withValues.freeServers({ free: onlineData.servers - onlineData.sessions })}</span>
-          <span>{i18n.withValues.currentGames({ games: onlineData.sessions })}</span>
-        </InfoTab>
       )}
     </InfoRow>
   );

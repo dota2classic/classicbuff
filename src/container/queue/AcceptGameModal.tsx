@@ -6,6 +6,7 @@ import Button, { LinkButton } from "../../components/UI/Button";
 import Input from "../../components/UI/Input";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import i18n from "./accept-game-modal.i18n";
+import { colors } from "shared";
 
 export const Modal = styled.div`
   z-index: 100;
@@ -18,12 +19,12 @@ export const Modal = styled.div`
 
   width: fit-content;
   height: fit-content;
-  background: #1d1f22;
+  background: ${colors.evenDarkerBg};
 
   padding: 40px;
-  border-radius: 4px;
+  border-radius: 0px;
 
-  box-shadow: 0 0 30px 10px rgba(150, 150, 150, 0.25);
+  box-shadow: 0 0 15px 10px rgba(150, 150, 150, 0.25);
 
   &.inline {
     right: 50px !important;

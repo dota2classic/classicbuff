@@ -5,7 +5,7 @@ import Layout from "../components/Layout";
 
 const Queue = () => {
   return (
-    <Layout>
+    <Layout noScroll>
       <Head>
         <title>Поиск игры - dota2classic.ru</title>
         <meta name="description" content="dota2classic.ru - поиск игры" />

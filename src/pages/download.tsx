@@ -12,7 +12,8 @@ import { AppRouter } from "utils/route";
 const InfoText = styled.a`
   display: block;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 24px;
+
   color: ${colors.primaryText};
   margin-bottom: 20px;
 
@@ -96,7 +97,7 @@ export default () => {
   const [d681, setD681] = useState(false);
   const [d684, setD684] = useState(true);
   return (
-    <Layout landing>
+    <Layout>
       <Head>
         <title>Скачать старый клиент</title>
         <meta

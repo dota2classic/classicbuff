@@ -1,8 +1,8 @@
-import { appApi, useApi } from "../api/hooks";
-import { TeamInvitationDto } from "../api/back/models";
+import { appApi, useApi } from "api/hooks";
+import { TeamInvitationDto } from "api/back/models";
 import React from "react";
 import styled from "styled-components";
-import { colors } from "../shared";
+import { colors } from "shared";
 import Button from "../components/UI/Button";
 
 interface Props {

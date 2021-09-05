@@ -1,18 +1,17 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { numToSteamId } from "../../../utils/numSteamId";
+import { numToSteamId } from "utils/numSteamId";
 import Layout from "../../../components/Layout";
 import Head from "next/head";
 import PlayerPage from "../../../container/PlayerPage";
-import { useApi } from "../../../api/hooks";
-import { RoleNames, RoleValue } from "../../../utils/format/roles";
-import { Role } from "../../../components/LadderRow";
-import AuthService from "../../../service/AuthServiceService";
-import { LinkButton } from "../../../components/UI/Button";
+import { useApi } from "api/hooks";
+import { RoleNames, RoleValue } from "utils/format/roles";
+import { Role } from "components/LadderRow";
+import { LinkButton } from "components/UI/Button";
 import Link from "next/link";
 import { observer } from "mobx-react";
 import i18n from "pages-i18n/profile/profile.i18n";
-import { useStores } from "../../../stores";
+import { useStores } from "stores";
 const Page = () => {
   const { id } = useRouter().query;
   const { auth } = useStores();

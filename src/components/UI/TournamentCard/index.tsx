@@ -1,11 +1,11 @@
-import { TournamentDto, TournamentDtoStatusEnum } from "../../../api/back/models";
+import { TournamentDto, TournamentDtoStatusEnum } from "api/back/models";
 import styled from "styled-components";
 import React from "react";
-import { formatTournamentType } from "../../../utils/format/formatTournamentType";
-import { colors } from "../../../shared";
+import { formatTournamentType } from "utils/format/formatTournamentType";
+import { colors } from "shared";
 import Link from "next/link";
-import { DateFormatter } from "../../../utils/format/formateDateStr";
-import { AppRouter } from "../../../utils/route";
+import { DateFormatter } from "utils/format/formateDateStr";
+import { AppRouter } from "utils/route";
 import { patchI18n } from "container/queue/layout/GameModes";
 
 interface Props {
@@ -57,7 +57,7 @@ const InfoContainer = styled.div`
 
 export default ({ tournament }: Props) => {
   return (
-    <Link passHref {...AppRouter.tournament.tournament(tournament.id).link}>
+    <Link {...AppRouter.tournament.tournament(tournament.id).link}>
       <Card>
         <TournamentImage src={tournament.imageUrl} />
         <InfoContainer>
