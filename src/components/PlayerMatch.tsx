@@ -10,6 +10,7 @@ import { MatchDto } from "../api/back/models";
 import { Tr } from "./UI/Table";
 import i18n from "pages-i18n/profile/profile.i18n";
 import { useStores } from "../stores";
+import { AppRouter } from "utils/route";
 export interface PlayerMatchInfo {
   player: string;
   match: MatchDto;
@@ -23,10 +24,7 @@ const PlayerMatch = ({ match, player, index }: PlayerMatchInfo) => {
   const isWin = match.winner === pim.team;
   const items = pim.items.map(it => it.substr(5));
   return (
-    <Tr
-      className={cx("link", index % 2 === 0 ? "even" : "odd")}
-      onClick={() => Router.push("/match/[id]", `/match/${match.id}`)}
-    >
+    <Tr className={cx("link", index % 2 === 0 ? "even" : "odd")} onClick={() => AppRouter.match(match.id).open()}>
       <td className={"green"}>
         {match.id} <br />
         <span style={{ fontSize: 12, marginTop: 2, color: "#c2c2c2" }}>

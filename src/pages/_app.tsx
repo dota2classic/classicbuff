@@ -53,10 +53,10 @@ const getLangProps = (ctx: NextPageContext): { locale: string; messages: any } =
 };
 
 export default class MyApp extends App<any> {
-  componentDidCatch(error: Error, errorInfo: any) {
-    // captureComponentException(error, errorInfo);
-    super.componentDidCatch(error, errorInfo);
-  }
+  // componentDidCatch(error: Error, errorInfo: any) {
+  //   // captureComponentException(error, errorInfo);
+  //   // super.componentDidCatch(error, errorInfo);
+  // }
 
   static async getInitialProps(appContext: AppContext) {
     const langProps = getLangProps(appContext.ctx);
