@@ -1,10 +1,10 @@
-import { useApi } from "../../api/hooks";
-import Layout from "../../components/Layout";
+import { useApi } from "api/hooks";
+import Layout from "components/Layout";
 import React, { ReactNode, useState } from "react";
 import TeamCard from "components/UI/TeamCard";
 import styled from "styled-components";
-import Button from "../../components/UI/Button";
-import { Hint } from "../../components/UI/Hint";
+import Button from "components/UI/Button";
+import { Hint } from "components/UI/Hint";
 import { useRouter } from "next/router";
 import i18n from "pages-i18n/team.i18n";
 

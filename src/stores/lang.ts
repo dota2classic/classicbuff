@@ -1,6 +1,6 @@
 import { computed, observable } from "mobx";
 import cookies from "browser-cookies";
-import { Router } from "next/router";
+import { NextRouter, Router } from "next/router";
 
 export class Lang {
   @observable
@@ -30,7 +30,7 @@ export class Lang {
   @observable
   debugShowIds: boolean = false;
 
-  toggle = (router: Router) => {
+  toggle = (router: NextRouter) => {
     console.log(router.asPath, router.basePath);
     if (router.locale?.toLowerCase() === "ru-ru") {
       router.push(router.asPath, router.asPath, { locale: "en-us" });

@@ -42,8 +42,12 @@ export const AppRouter = {
   stats: spage("/stats/leaderboard"),
   queue: spage("/queue"),
   leaderboard: spage("/stats/leaderboard"),
-  live: spage("/live"),
+  live: spage("/stats/live"),
 
+  meta: {
+    index: spage("/stats/meta/heroes"),
+    hero: (hero: string) => page("/stats/meta/heroes/[id]", `/stats/meta/heroes/${hero}`)
+  },
   player: (id: string | number) => page(`/player/[id]`, `/player/${typeof id === "string" ? steamIdToNum(id) : id}`),
 
   admin: {
@@ -52,19 +56,19 @@ export const AppRouter = {
     }
   },
   tournament: {
-    index: page("/tournament"),
-    tournament: (id: number) => page(`/tournament/[id]`, `/tournament/${id}`),
-    bracket: (id: number) => page(`/tournament/[id]/bracket`, `/tournament/${id}/bracket`)
+    index: page("/stats/tournament"),
+    tournament: (id: number) => page(`/stats/tournament/[id]`, `/stats/tournament/${id}`),
+    bracket: (id: number) => page(`/stats/tournament/[id]/bracket`, `/stats/tournament/${id}/bracket`)
   },
   team: {
-    index: page("/team"),
-    team: (id: string) => page(`/team/[id]`, `/team/${id}`),
-    edit: (id: string) => page(`/team/edit/[id]`, `/team/edit/${id}`)
+    index: page("/stats/team"),
+    team: (id: string) => page(`/stats/team/[id]`, `/stats/team/${id}`),
+    edit: (id: string) => page(`/stats/team/edit/[id]`, `/stats/team/edit/${id}`)
   },
   tournamentMatch: {
-    match: (id: number) => page(`/tournament/match/[match_id]`, `/tournament/match/${id}`)
+    match: (id: number) => page(`/stats/tournament/match/[match_id]`, `/stats/tournament/match/${id}`)
   },
-  match: (id: number) => page(`/match/[id]`, `/match/${id}`),
+  match: (id: number) => page(`/stats/match/[id]`, `/stats/match/${id}`),
   history: {
     index: spage(`/stats/history`)
   }

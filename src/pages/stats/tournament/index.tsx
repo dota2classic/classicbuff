@@ -1,6 +1,6 @@
-import Layout from "../../components/Layout";
+import Layout from "components/Layout";
 import React from "react";
-import { useApi } from "../../api/hooks";
+import { useApi } from "api/hooks";
 import TournamentCard from "components/UI/TournamentCard";
 import Head from "next/head";
 

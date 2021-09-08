@@ -9,7 +9,7 @@ import historyI18n from "pages-i18n/history.i18n";
 import { observer } from "mobx-react";
 import Pagination from "components/Pagination";
 import { useApi } from "api/hooks";
-import { formatDuration } from "pages/match/[id]";
+import { formatDuration } from "pages/stats/match/[id]";
 import Link from "next/link";
 import { AdBanner } from "components/ads/ads";
 import { useTab } from "utils/useTab";

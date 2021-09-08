@@ -369,7 +369,8 @@ export const BackgroundImagePicture = styled.picture`
   width: 100vw;
   background: #000;
   &.overflow {
-    //margin-top: -100px;
+    margin-top: -6px;
+    z-index: 4;
   }
 
   &::before {
@@ -423,7 +424,7 @@ export default () => {
         <SecondaryText>{i18n.remember}</SecondaryText>
       </BackgroundImagePicture>
 
-      <BackgroundImagePicture className="overflow">
+      <BackgroundImagePicture>
         <BackgroundImage src="https://dota2classic.ru/api/static/landing/landing_1.jpeg" />
         <CenterText>
           <span className="secondary">{i18n.oldAbilities}</span>

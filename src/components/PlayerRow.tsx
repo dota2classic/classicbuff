@@ -3,7 +3,7 @@ import Link from "next/link";
 import { HeroIcon } from "./UI/HeroIcon";
 import { ItemIcon } from "./UI/ItemIcon";
 import React, { useState } from "react";
-import { ItemsContainer } from "../pages/match/[id]";
+import { ItemsContainer } from "../pages/stats/match/[id]";
 import { PlayerInMatchDto } from "../api/back/models";
 import { Tr } from "./UI/Table";
 import { isBot } from "../utils/isBot";

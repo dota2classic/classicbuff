@@ -1,13 +1,13 @@
-import Layout from "../../../components/Layout";
+import Layout from "components/Layout";
 import Head from "next/head";
-import heroName from "../../../utils/heroName";
+import heroName from "utils/heroName";
 import React from "react";
-import { Table, Tr } from "../../../components/UI/Table";
+import { Table, Tr } from "components/UI/Table";
 import { useRouter } from "next/router";
-import { useApi } from "../../../api/hooks";
-import { useTab } from "../../../utils/useTab";
-import Pagination from "../../../components/Pagination";
-import PlayerMatch from "../../../components/PlayerMatch";
+import { useApi } from "api/hooks";
+import { useTab } from "utils/useTab";
+import Pagination from "components/Pagination";
+import PlayerMatch from "components/PlayerMatch";
 
 export default () => {
   const { id } = useRouter().query;

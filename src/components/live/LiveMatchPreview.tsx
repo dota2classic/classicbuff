@@ -2,7 +2,7 @@ import { LiveMatchDto } from "api/back/models";
 import styled from "styled-components";
 import React, { useState } from "react";
 import formatGameMode from "../../utils/format/formatGameMode";
-import { formatDuration } from "pages/match/[id]";
+import { formatDuration } from "pages/stats/match/[id]";
 import Link from "next/link";
 import { MinimapHero } from "./MinimapHero";
 import { useStores } from "stores";

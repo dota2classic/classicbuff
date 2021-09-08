@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { ItemIcon } from "../UI/ItemIcon";
 import formatGameMode from "../../utils/format/formatGameMode";
 import { LiveMatchDto, PlayerInfo } from "api/back/models";
-import { formatDuration } from "pages/match/[id]";
+import { formatDuration } from "pages/stats/match/[id]";
 import { LinkButton } from "../UI/Button";
 import Link from "next/link";
 import { steamIdToNum } from "utils/numSteamId";

@@ -1,12 +1,12 @@
 import Head from "next/head";
-import Layout from "../../components/Layout";
+import Layout from "components/Layout";
 import React from "react";
-import { LiveMatch } from "../../components/live/LiveMatch";
-import { useApi } from "../../api/hooks";
+import { LiveMatch } from "components/live/LiveMatch";
+import { useApi } from "api/hooks";
 import styled from "styled-components";
 import Link from "next/link";
-import { mockLiveMatch } from "../../utils/mockLiveMatch";
-import { LiveMatchPreview } from "../../components/live/LiveMatchPreview";
+import { mockLiveMatch } from "utils/mockLiveMatch";
+import { LiveMatchPreview } from "components/live/LiveMatchPreview";
 import i18n from "pages-i18n/live";
 const NoGamesInfo = styled.div`
   color: #c2c2c2;

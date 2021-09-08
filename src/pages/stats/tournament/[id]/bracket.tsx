@@ -1,9 +1,9 @@
-import Layout from "../../../components/Layout";
+import Layout from "components/Layout";
 import React from "react";
-import { useApi } from "../../../api/hooks";
+import { useApi } from "api/hooks";
 import { useRouter } from "next/router";
 import { AdminBracketViewerNew } from "components/UI/BracketViewer";
-import { colors } from "../../../shared";
+import { colors } from "shared";
 import styled from "styled-components";
 import Head from "next/head";
 import i18n from "pages-i18n/tournament/tournament.i18n";

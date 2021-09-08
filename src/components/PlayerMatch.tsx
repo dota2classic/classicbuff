@@ -1,6 +1,6 @@
 import Router from "next/router";
 import React from "react";
-import { formatDuration, ItemsContainer } from "../pages/match/[id]";
+import { formatDuration, ItemsContainer } from "../pages/stats/match/[id]";
 import { ItemIcon } from "./UI/ItemIcon";
 import { DateFormatter, formatDateStr } from "../utils/format/formateDateStr";
 import cx from "classnames";

@@ -1,8 +1,8 @@
-import Layout from "../../../components/Layout";
+import Layout from "components/Layout";
 import Head from "next/head";
 import React from "react";
-import SmartTable from "../../../components/SmartTable";
-import { useApi } from "../../../api/hooks";
+import SmartTable from "components/SmartTable";
+import { useApi } from "api/hooks";
 import HeroSummaryRow from "components/UI/HeroSummaryRow";
 
 export default () => {

@@ -1,12 +1,12 @@
-import Layout from "../../components/Layout";
+import Layout from "components/Layout";
 import React, { useState } from "react";
 import styled from "styled-components";
 import ImageUploader from "components/UI/ImageUploader";
-import { resolveImage } from "../../utils/resolveImage";
-import Input from "../../components/UI/Input";
-import { appApi } from "../../api/hooks";
+import { resolveImage } from "utils/resolveImage";
+import Input from "components/UI/Input";
+import { appApi } from "api/hooks";
 import { useRouter } from "next/router";
-import Button from "../../components/UI/Button";
+import Button from "components/UI/Button";
 
 const TeamImage = styled.img`
   width: 128px;

@@ -4,6 +4,7 @@ import { colors } from "../../../shared";
 import Link from "next/link";
 import React from "react";
 import cx from "classnames";
+import { AppRouter } from "utils/route";
 
 const Card = styled.a`
   display: flex;
@@ -96,7 +97,7 @@ interface Props {
 
 export default ({ team }: Props) => {
   return (
-    <Link passHref href={`/team/${team.id}`}>
+    <Link {...AppRouter.team.team(team.id).link}>
       <Card>
         <TournamentImage src={team.imageUrl} />
         <TournamentName>{team.name}</TournamentName>

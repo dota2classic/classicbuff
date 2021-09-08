@@ -4,6 +4,7 @@ import Router from "next/router";
 import heroName from "../../../utils/heroName";
 import { HeroIcon } from "../HeroIcon";
 import { Tr } from "../Table";
+import { AppRouter } from "utils/route";
 
 export interface HeroSummaryPresentation {
   hero: string;
@@ -14,7 +15,7 @@ export interface HeroSummaryPresentation {
 
 export default (p: HeroSummaryPresentation) => {
   return (
-    <Tr onClick={() => Router.push("/meta/heroes/[id]", `/meta/heroes/${p.hero}`)} className={cx("link")}>
+    <Tr onClick={() => AppRouter.meta.hero(p.hero).open()} className={cx("link")}>
       <td>
         <HeroIcon hero={p.hero} />
       </td>

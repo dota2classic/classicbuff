@@ -172,7 +172,7 @@ const StatsHeader = observer(() => {
         </Link>
 
         <Link {...AppRouter.leaderboard.link}>
-          <Tab className={cx(asPath === "/leaderboard" && "active")}>{layoutI18n.leaderboard}</Tab>
+          <Tab className={cx(asPath.startsWith("/leaderboard") && "active")}>{layoutI18n.leaderboard}</Tab>
         </Link>
 
         <Link {...AppRouter.history.index.link}>
@@ -184,6 +184,10 @@ const StatsHeader = observer(() => {
 
         <Link {...AppRouter.team.index.link}>
           <Tab className={cx(asPath.startsWith("/team") && "active")}>{layoutI18n.teams}</Tab>
+        </Link>
+
+        <Link {...AppRouter.meta.index.link}>
+          <Tab className={cx(asPath.startsWith("/meta") && "active")}>{layoutI18n.meta}</Tab>
         </Link>
 
         <Link {...AppRouter.live.link}>
@@ -237,15 +241,15 @@ const DefaultHeader = observer(() => {
       <HeaderWrapper>
         <Tabs className="heading wide">
           <Link {...AppRouter.index.link}>
-            <Tab className={cx(asPath === "/" && "active", "primary")}>
+            <Tab className={cx(asPath.startsWith("/") && "active", "primary")}>
               <span style={{ textTransform: "uppercase" }}>dota2classic</span>
             </Tab>
           </Link>
           <Link {...AppRouter.download.link}>
-            <Tab className={cx(asPath === "/download" && "active")}>{layoutI18n.download}</Tab>
+            <Tab className={cx(asPath.startsWith("/download") && "active")}>{layoutI18n.download}</Tab>
           </Link>
           <Link {...AppRouter.queue.link}>
-            <Tab className={cx(asPath === "/queue" && "active")}>{layoutI18n.play}</Tab>
+            <Tab className={cx(asPath.startsWith("/queue") && "active")}>{layoutI18n.play}</Tab>
           </Link>
           <Link {...AppRouter.stats.link}>
             <Tab className={cx(asPath.startsWith("/stats") && "active")}>{layoutI18n.stats}</Tab>

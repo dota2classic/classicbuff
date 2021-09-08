@@ -5,11 +5,12 @@ import Router from "next/router";
 import { Heroes, MatchIdCol } from "pages/stats/history";
 import { DateFormatter, formatDateStr } from "../../utils/format/formateDateStr";
 import formatGameMode from "../../utils/format/formatGameMode";
-import { formatDuration } from "../../pages/match/[id]";
+import { formatDuration } from "../../pages/stats/match/[id]";
 import { HeroIcon } from "../UI/HeroIcon";
 import React from "react";
 import dotai18n from "shared-i18n/dota.i18n";
 import { useStores } from "../../stores";
+import { AppRouter } from "utils/route";
 export default (it: MatchDto) => {
   const radiant = it.radiant;
 
@@ -18,7 +19,7 @@ export default (it: MatchDto) => {
   const dire = it.dire;
 
   return (
-    <Tr className={cx("link")} onClick={() => Router.push("/match/[id]", `/match/${it.id}`)}>
+    <Tr className={cx("link")} onClick={() => AppRouter.match(it.id).open(false)}>
       <td className={"green tiny"}>
         <MatchIdCol>
           <span>{it.id}</span>

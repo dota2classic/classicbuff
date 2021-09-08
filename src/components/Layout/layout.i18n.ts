@@ -47,6 +47,10 @@ const messages = defineMessages({
   stats: {
     id: `${INTL_KEY}.stats`,
     defaultMessage: "Статистика"
+  },
+  meta: {
+    id: `${INTL_KEY}.meta`,
+    defaultMessage: "Meta"
   }
 });
 
