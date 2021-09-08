@@ -105,9 +105,9 @@ export const SearchGameButton = observer(() => {
 
   if (queue.needAuth)
     return (
-      <SearchGameButtonLink href={`${appApi.apiParams.basePath}/v1/auth/steam`}>Войти через Steam</SearchGameButtonLink>
+      <SearchGameButtonLink href={`${appApi.apiParams.basePath}/v1/auth/steam`}>{i18n.steamLogin}</SearchGameButtonLink>
     );
-  if (!queue.ready) return <SearchGameButtonComp>Подключение...</SearchGameButtonComp>;
+  if (!queue.ready) return <SearchGameButtonComp>{i18n.connecting}</SearchGameButtonComp>;
 
   return (
     <FullSearchInfo>

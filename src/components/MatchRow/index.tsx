@@ -2,7 +2,7 @@ import { MatchDto } from "../../api/back/models";
 import { Tr } from "../UI/Table";
 import cx from "classnames";
 import Router from "next/router";
-import { Heroes, MatchIdCol } from "../../pages/history";
+import { Heroes, MatchIdCol } from "pages/stats/history";
 import { DateFormatter, formatDateStr } from "../../utils/format/formateDateStr";
 import formatGameMode from "../../utils/format/formatGameMode";
 import { formatDuration } from "../../pages/match/[id]";

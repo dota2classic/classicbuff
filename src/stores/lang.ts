@@ -1,5 +1,6 @@
 import { computed, observable } from "mobx";
 import cookies from "browser-cookies";
+import { Router } from "next/router";
 
 export class Lang {
   @observable
@@ -7,11 +8,11 @@ export class Lang {
 
   constructor() {
     if (typeof window !== "undefined") {
-      const lsLang = localStorage.getItem("d2c-lang");
-      const cookieLang = cookies.get("d2c-lang");
+      const cookieLang = cookies.get("d2c_user_lang");
 
-      if (lsLang) this.language = lsLang;
-      else if (cookieLang) this.language = cookieLang;
+      console.log("Constructor: cookie lang is", cookieLang);
+
+      if (cookieLang) this.language = cookieLang;
     }
   }
 
@@ -29,18 +30,18 @@ export class Lang {
   @observable
   debugShowIds: boolean = false;
 
-  toggle = () => {
-    if (this.language === "ru") {
-      this.setLang("en");
+  toggle = (router: Router) => {
+    console.log(router.asPath, router.basePath);
+    if (router.locale?.toLowerCase() === "ru-ru") {
+      router.push(router.asPath, router.asPath, { locale: "en-us" });
     } else {
-      this.setLang("ru");
+      router.push(router.asPath, router.asPath, { locale: "ru-ru" });
     }
   };
 
   public setLang(lang: string) {
     if (typeof window !== "undefined") {
-      localStorage.setItem("d2c-lang", lang);
-      cookies.set("d2c-lang", lang);
+      cookies.set("d2c_user_lang", lang);
     }
 
     if (lang !== this.language) {

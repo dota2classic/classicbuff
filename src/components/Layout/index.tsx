@@ -95,6 +95,7 @@ const HeaderWrapper = styled.div`
   & .flag {
     height: 20px;
     width: auto;
+    margin-right: 10px;
   }
 
   &.compact {
@@ -150,16 +151,86 @@ export const CloseIcon = styled.img`
   position: relative;
 `;
 
-const DefaultHeader = observer(() => {
+const StatsHeader = observer(() => {
   const router = useRouter();
 
-  const asPath = router.asPath;
+  const asPath = router.asPath.replace("/stats", "");
 
   const { lang, auth } = useStores();
 
   const { data: liveData } = useApi().liveApi.useLiveMatchControllerListMatches({
     refreshInterval: 30_000
   });
+
+  return (
+    <HeaderWrapper>
+      <Tabs className="heading wide">
+        <Link {...AppRouter.index.link}>
+          <Tab className={cx(asPath === "/" && "active", "primary")}>
+            <span style={{ textTransform: "uppercase" }}>dota2classic</span>
+          </Tab>
+        </Link>
+
+        <Link {...AppRouter.leaderboard.link}>
+          <Tab className={cx(asPath === "/leaderboard" && "active")}>{layoutI18n.leaderboard}</Tab>
+        </Link>
+
+        <Link {...AppRouter.history.index.link}>
+          <Tab className={cx(asPath.startsWith("/history") && "active")}>{layoutI18n.matches}</Tab>
+        </Link>
+        <Link {...AppRouter.tournament.index.link}>
+          <Tab className={cx(asPath.startsWith("/tournament") && "active")}>{layoutI18n.tournaments}</Tab>
+        </Link>
+
+        <Link {...AppRouter.team.index.link}>
+          <Tab className={cx(asPath.startsWith("/team") && "active")}>{layoutI18n.teams}</Tab>
+        </Link>
+
+        <Link {...AppRouter.live.link}>
+          <Tab className={cx(asPath.startsWith("/live") && "active")}>
+            {layoutI18n.live}
+            {liveData && <span className="badge">{liveData?.length}</span>}
+          </Tab>
+        </Link>
+
+        <div style={{ flex: 1 }} />
+        <Tab className="accent no-underline" onClick={() => lang.toggle(router)}>
+          {lang.language === "ru" ? (
+            <img
+              src="https://raw.githubusercontent.com/hampusborgos/country-flags/main/png100px/us.png"
+              alt=""
+              className="flag"
+            />
+          ) : (
+            <img
+              src="https://raw.githubusercontent.com/hampusborgos/country-flags/main/png100px/ru.png"
+              alt=""
+              className="flag"
+            />
+          )}
+        </Tab>
+        {auth.authorized ? (
+          <Link {...AppRouter.player(auth.steamID || "").link}>
+            <PlayButton className="inline" href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
+              {layoutI18n.profile}
+            </PlayButton>
+          </Link>
+        ) : (
+          <PlayButton className="inline" href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
+            {layoutI18n.loginViaSteam}
+          </PlayButton>
+        )}
+      </Tabs>
+    </HeaderWrapper>
+  );
+});
+
+const DefaultHeader = observer(() => {
+  const router = useRouter();
+
+  const asPath = router.asPath;
+
+  const { lang, auth } = useStores();
 
   return (
     <>
@@ -176,6 +247,9 @@ const DefaultHeader = observer(() => {
           <Link {...AppRouter.queue.link}>
             <Tab className={cx(asPath === "/queue" && "active")}>{layoutI18n.play}</Tab>
           </Link>
+          <Link {...AppRouter.stats.link}>
+            <Tab className={cx(asPath.startsWith("/stats") && "active")}>{layoutI18n.stats}</Tab>
+          </Link>
 
           {auth.isModerator && (
             <Link passHref href={"/admin/servers"}>
@@ -183,29 +257,8 @@ const DefaultHeader = observer(() => {
             </Link>
           )}
 
-          <Link {...AppRouter.leaderboard.link}>
-            <Tab className={cx(asPath === "/leaderboard" && "active")}>{layoutI18n.leaderboard}</Tab>
-          </Link>
-
-          <Link {...AppRouter.history.index.link}>
-            <Tab className={cx(asPath.startsWith("/history") && "active")}>{layoutI18n.matches}</Tab>
-          </Link>
-          <Link {...AppRouter.tournament.index.link}>
-            <Tab className={cx(asPath.startsWith("/tournament") && "active")}>{layoutI18n.tournaments}</Tab>
-          </Link>
-
-          <Link {...AppRouter.team.index.link}>
-            <Tab className={cx(asPath.startsWith("/team") && "active")}>{layoutI18n.teams}</Tab>
-          </Link>
-
-          <Link {...AppRouter.live.link}>
-            <Tab className={cx(asPath.startsWith("/live") && "active")}>
-              {layoutI18n.live}
-              {liveData && <span className="badge">{liveData?.length}</span>}
-            </Tab>
-          </Link>
-
-          <Tab className="accent no-underline" onClick={() => lang.toggle()}>
+          <div style={{ flex: 1 }} />
+          <Tab className="accent no-underline" onClick={() => lang.toggle(router)}>
             {lang.language === "ru" ? (
               <img
                 src="https://raw.githubusercontent.com/hampusborgos/country-flags/main/png100px/us.png"
@@ -220,7 +273,6 @@ const DefaultHeader = observer(() => {
               />
             )}
           </Tab>
-          <div style={{ flex: 1 }} />
           {auth.authorized ? (
             <Link {...AppRouter.player(auth.steamID || "").link}>
               <PlayButton className="inline" href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
@@ -245,11 +297,12 @@ export default observer((p: PropsWithChildren<{ landing?: boolean; noScroll?: bo
   });
   const router = useRouter();
 
+  const asPath = router.asPath;
   useGameConnection();
 
   return (
     <LayoutContainer className={cx(p.noScroll && "no-scroll", p.landing && "landing")}>
-      <DefaultHeader />
+      {asPath.startsWith("/stats") ? <StatsHeader /> : <DefaultHeader />}
       <NotificationHold />
       <Content className={cx(p.landing && "landing")}>
         {p.title && <Title>{p.title && <span>{p.title}</span>}</Title>}

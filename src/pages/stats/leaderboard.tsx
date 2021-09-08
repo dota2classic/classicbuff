@@ -1,10 +1,10 @@
 import React from "react";
-import LadderRow, { LadderHeader } from "../components/LadderRow";
-import Layout from "../components/Layout";
+import LadderRow, { LadderHeader } from "components/LadderRow";
+import Layout from "components/Layout";
 import styled from "styled-components";
 import Head from "next/head";
-import { useApi } from "../api/hooks";
-import { Table } from "../components/UI/Table";
+import { useApi } from "api/hooks";
+import { Table } from "components/UI/Table";
 import i18n from "pages-i18n/leaderboard.i18n";
 const Thin = styled.div`
   max-width: 800px;

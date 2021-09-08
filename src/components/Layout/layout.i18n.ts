@@ -43,6 +43,10 @@ const messages = defineMessages({
   loginViaSteam: {
     id: `${INTL_KEY}.login_via_steam`,
     defaultMessage: "Войти через steam"
+  },
+  stats: {
+    id: `${INTL_KEY}.stats`,
+    defaultMessage: "Статистика"
   }
 });
 

@@ -20,6 +20,14 @@ const messages = defineMessages({
   cancelSearch: {
     id: `${INTL_KEY}.cancel_search`,
     defaultMessage: "Отменить поиск"
+  },
+  connecting: {
+    id: `${INTL_KEY}.connecting`,
+    defaultMessage: "Подключение..."
+  },
+  steamLogin: {
+    id: `${INTL_KEY}.steam_login`,
+    defaultMessage: "Войти через Steam"
   }
 });
 

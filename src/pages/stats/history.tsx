@@ -1,18 +1,18 @@
-import Layout from "../components/Layout";
+import Layout from "components/Layout";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Head from "next/head";
-import formatGameMode, { MatchmakingMode } from "../utils/format/formatGameMode";
-import MatchRow from "../components/MatchRow";
-import { Tab, Tabs } from "../components/UI/Tabs";
+import formatGameMode, { MatchmakingMode } from "utils/format/formatGameMode";
+import MatchRow from "components/MatchRow";
+import { Tab, Tabs } from "components/UI/Tabs";
 import historyI18n from "pages-i18n/history.i18n";
 import { observer } from "mobx-react";
-import Pagination from "../components/Pagination";
-import { useApi } from "../api/hooks";
-import { formatDuration } from "./match/[id]";
+import Pagination from "components/Pagination";
+import { useApi } from "api/hooks";
+import { formatDuration } from "pages/match/[id]";
 import Link from "next/link";
-import { AdBanner } from "../components/ads/ads";
-import { useTab } from "../utils/useTab";
+import { AdBanner } from "components/ads/ads";
+import { useTab } from "utils/useTab";
 import { Table, Tr } from "components/UI/Table";
 
 export const Heroes = styled.div`

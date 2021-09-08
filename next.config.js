@@ -4,6 +4,10 @@ const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
 module.exports = withBundleAnalyzer({
   target: "serverless",
 
+  i18n: {
+    locales: ["en-us", "ru-ru"],
+    defaultLocale: "ru-ru"
+  },
   env: {
     API_URL: process.env.API_URL || "https://leasingdev.iteampro.ru:6777/",
     DEV: process.env.DEV || "false"

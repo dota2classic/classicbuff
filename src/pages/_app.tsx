@@ -20,7 +20,8 @@ const getMessages = (locale: string) => {
 export const getLang = (ctx: NextPageContext) => {
   const cookies = new Cookies(ctx.req!!, ctx.res!!);
 
-  const locale = cookies.get("d2c-lang") || "ru";
+  // const locale = cookies.get("d2c_user_lang") || "ru";
+  const locale = "ru";
 
   if (ctx.req?.url?.startsWith("/admin"))
     return {
@@ -73,8 +74,8 @@ export default class MyApp extends App<any> {
     const { Component, pageProps, locale, messages, token, router } = this.props;
 
     let loc: string = locale;
-    if (router.query.lang !== undefined) {
-      if (router.query.lang === "en") {
+    if (router.locale) {
+      if (router.locale === "en-us") {
         loc = "en";
       } else {
         loc = "ru";

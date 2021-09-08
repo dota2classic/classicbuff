@@ -39,8 +39,9 @@ export const AppRouter = {
   index: spage("/"),
   donate: spage("/donate"),
   download: spage("/download"),
+  stats: spage("/stats/leaderboard"),
   queue: spage("/queue"),
-  leaderboard: spage("/leaderboard"),
+  leaderboard: spage("/stats/leaderboard"),
   live: spage("/live"),
 
   player: (id: string | number) => page(`/player/[id]`, `/player/${typeof id === "string" ? steamIdToNum(id) : id}`),
@@ -65,6 +66,6 @@ export const AppRouter = {
   },
   match: (id: number) => page(`/match/[id]`, `/match/${id}`),
   history: {
-    index: spage(`/history`)
+    index: spage(`/stats/history`)
   }
 };

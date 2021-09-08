@@ -1,12 +1,13 @@
 import { observer } from "mobx-react";
 import React from "react";
 import { useStores } from "../../stores";
+import { useRouter } from "next/router";
 
 interface Props {
   date: string | number;
 }
 export const DateFormatter = observer((props: Props) => {
-  const locale = useStores().lang.locale;
+  const locale = useRouter().locale;
   return <span>{formatDateStr(props.date, locale)}</span>;
 });
 
