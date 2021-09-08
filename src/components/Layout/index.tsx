@@ -251,6 +251,9 @@ const DefaultHeader = observer(() => {
           <Link {...AppRouter.queue.link}>
             <Tab className={cx(asPath.startsWith("/queue") && "active")}>{layoutI18n.play}</Tab>
           </Link>
+          <Link {...AppRouter.blog.link}>
+            <Tab className={cx(asPath.startsWith("/blog") && "active")}>{layoutI18n.news}</Tab>
+          </Link>
           <Link {...AppRouter.stats.link}>
             <Tab className={cx(asPath.startsWith("/stats") && "active")}>{layoutI18n.stats}</Tab>
           </Link>

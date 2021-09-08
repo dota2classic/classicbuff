@@ -1,15 +1,14 @@
-import Router from "next/router";
 import React from "react";
-import { formatDuration, ItemsContainer } from "../pages/stats/match/[id]";
+import { formatDuration, ItemsContainer } from "pages/stats/match/[id]";
 import { ItemIcon } from "./UI/ItemIcon";
-import { DateFormatter, formatDateStr } from "../utils/format/formateDateStr";
+import { DateFormatter } from "utils/format/formateDateStr";
 import cx from "classnames";
 import { HeroIcon } from "./UI/HeroIcon";
 import formatGameMode from "../utils/format/formatGameMode";
-import { MatchDto } from "../api/back/models";
+import { MatchDto } from "api/back/models";
 import { Tr } from "./UI/Table";
 import i18n from "pages-i18n/profile/profile.i18n";
-import { useStores } from "../stores";
+import { useStores } from "stores";
 import { AppRouter } from "utils/route";
 export interface PlayerMatchInfo {
   player: string;
@@ -20,7 +19,6 @@ export interface PlayerMatchInfo {
 const PlayerMatch = ({ match, player, index }: PlayerMatchInfo) => {
   const pim = [...match.radiant].concat(match.dire).find(it => it.steamId === player)!!;
 
-  const { lang } = useStores();
   const isWin = match.winner === pim.team;
   const items = pim.items.map(it => it.substr(5));
   return (

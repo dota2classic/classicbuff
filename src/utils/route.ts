@@ -40,6 +40,7 @@ export const AppRouter = {
   donate: spage("/donate"),
   download: spage("/download"),
   stats: spage("/stats/leaderboard"),
+  blog: spage("/blog"),
   queue: spage("/queue"),
   leaderboard: spage("/stats/leaderboard"),
   live: spage("/stats/live"),

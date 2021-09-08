@@ -51,6 +51,10 @@ const messages = defineMessages({
   meta: {
     id: `${INTL_KEY}.meta`,
     defaultMessage: "Meta"
+  },
+  news: {
+    id: `${INTL_KEY}.blog`,
+    defaultMessage: "News"
   }
 });
 
