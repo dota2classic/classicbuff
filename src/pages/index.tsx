@@ -88,6 +88,7 @@ export const LeadButton = styled.a`
   font-size: 28px;
   @media (max-width: 600px) {
     font-size: 20px;
+    text-decoration: none;
   }
   letter-spacing: 2.5px;
   padding: 10px 10px 10px 24px;

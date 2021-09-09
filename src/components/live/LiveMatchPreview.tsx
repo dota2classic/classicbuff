@@ -7,6 +7,7 @@ import Link from "next/link";
 import { MinimapHero } from "./MinimapHero";
 import { useStores } from "stores";
 import i18n from "./live-match.i18n";
+import { AppRouter } from "utils/route";
 const Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -64,11 +65,9 @@ export const LiveMatchPreview = (match: LiveMatchDto) => {
   const port = parseInt(match.server.split(":")[1]);
   const watchUrl = `steam://connect/${host}:${port + 5}`;
 
-  const { auth } = useStores();
-
   return (
     <Container>
-      <Link href={`/match/[id]`} as={`/match/${match.matchId}`} passHref>
+      <Link {...AppRouter.match(match.matchId).link}>
         <Map>
           {match.heroes.map(hero => (
             <MinimapHero key={hero.hero} x={hero.posX} y={hero.posY} hero={hero.hero} team={hero.team} small />

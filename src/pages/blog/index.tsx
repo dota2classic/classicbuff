@@ -6,6 +6,11 @@ import { colors } from "shared";
 
 const EmbeddedVideo = styled.iframe`
   margin-top: 20px;
+
+  @media (max-width: 600px) {
+    width: 100vw !important;
+    height: 200px;
+  }
 `;
 
 const VideoPostContainer = styled.div`

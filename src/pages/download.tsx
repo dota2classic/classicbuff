@@ -18,6 +18,10 @@ const InfoText = styled.a`
   color: ${colors.primaryText};
   margin-bottom: 20px;
 
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
+
   :after {
     content: "";
     width: 0px;
@@ -69,6 +73,12 @@ const Container = styled.div`
 const ContentContainer = styled.div`
   width: 60%;
   min-width: 600px;
+
+  @media (max-width: 600px) {
+    min-width: unset;
+    width: 100vw;
+    padding: 10px;
+  }
   display: flex;
   flex-direction: column;
   margin: auto;

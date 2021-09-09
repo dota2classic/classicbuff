@@ -18,6 +18,10 @@ const NoGamesInfo = styled.div`
   margin-top: 200px;
   justify-content: center;
 
+  @media (max-width: 600px) {
+    padding: 10px;
+    font-size: 16px;
+  }
   & a {
     text-decoration: none;
     color: #c2c2c2;
