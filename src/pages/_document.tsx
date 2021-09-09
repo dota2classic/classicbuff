@@ -47,9 +47,24 @@ export default class MyDocument extends Document {
 <!-- /Yandex.Metrika counter -->`;
   }
 
-  private adSense() {
+  private gTag2() {
     return `
-    <script data-ad-client="ca-pub-2522763197238996" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGFLGJM"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+`;
+  }
+
+  private gTag() {
+    return `
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PGFLGJM');</script>
+<!-- End Google Tag Manager -->
 `;
   }
 
@@ -94,9 +109,10 @@ export default class MyDocument extends Document {
             src="https://cdn.jsdelivr.net/npm/brackets-viewer/dist/brackets-viewer.min.js"
           />
 
-          <span dangerouslySetInnerHTML={{ __html: this.adSense() }} />
+          <span dangerouslySetInnerHTML={{ __html: this.gTag() }} />
         </Head>
         <body>
+          <span dangerouslySetInnerHTML={{ __html: this.gTag2() }} />
           <Main />
           <NextScript />
           <span dangerouslySetInnerHTML={{ __html: this.ga() }} />

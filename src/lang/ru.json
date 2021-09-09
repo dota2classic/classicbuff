@@ -67,6 +67,7 @@
   "dota2classic.queue-selected-game-mode._matchmaking_mode_highroom": "High room",
   "dota2classic.queue-selected-game-mode._matchmaking_mode_bots": "Обычная(новички)",
   "dota2classic.queue-selected-game-mode._matchmaking_mode_greeviling": "Гряволы",
+  "dota2classic.download-page.steam_and_launch": "Запусти Steam и запусти dota.exe из скаченного клиента",
   "dota2classic.download-page.google_disk": "Скачать через Google Диск",
   "dota2classic.download-page.yandex_disk": "Скачать через Яндекс.Диск",
   "dota2classic.download-page.torrent": "Скачать Torrent",

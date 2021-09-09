@@ -36,6 +36,10 @@ const messages = defineMessages({
   download: {
     id: `${INTL_KEY}.download`,
     defaultMessage: "Скачай клиент"
+  },
+  steamAndLaunch: {
+    id: `${INTL_KEY}.steam_and_launch`,
+    defaultMessage: "Запусти Steam и запусти dota.exe из скаченного клиента"
   }
 });
 

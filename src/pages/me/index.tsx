@@ -8,6 +8,7 @@ import Head from "next/head";
 import { appApi } from "../../api/hooks";
 import { Hint } from "../../components/UI/Hint";
 import { useStores } from "../../stores";
+import { loginEvent } from "utils/ga";
 
 const Page = observer(() => {
   const { auth } = useStores();
@@ -22,7 +23,9 @@ const Page = observer(() => {
         <title>Профиль - dota2classic.ru</title>
       </Head>
       {(auth.me?.steamId && <PlayerPage steam_id={auth.me?.steamId} />) || (
-        <Hint href={`${appApi.apiParams.basePath}/v1/auth/steam`}>Подключи стим, чтобы увидеть свою статистику</Hint>
+        <Hint onClick={loginEvent} href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
+          Подключи стим, чтобы увидеть свою статистику
+        </Hint>
       )}
     </Layout>
   );

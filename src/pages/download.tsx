@@ -8,6 +8,7 @@ import i18n from "pages-i18n/download.i18n";
 import { colors } from "shared";
 import { appApi } from "api/hooks";
 import { AppRouter } from "utils/route";
+import { downloadEvent, ga, loginEvent } from "utils/ga";
 
 const InfoText = styled.a`
   display: block;
@@ -97,7 +98,7 @@ export default () => {
   const [d681, setD681] = useState(false);
   const [d684, setD684] = useState(true);
   return (
-    <Layout>
+    <Layout landing>
       <Head>
         <title>Скачать старый клиент</title>
         <meta
@@ -119,26 +120,31 @@ export default () => {
             })}
           </InfoText>
           <InfoText>1) {i18n.download}</InfoText>
-          <InfoText href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
-            2) {i18n.loginViaSteam} <span className="steam">Steam</span>
+          <InfoText>2) {i18n.steamAndLaunch}</InfoText>
+          <InfoText onClick={loginEvent} href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
+            3) {i18n.loginViaSteam} <span className="steam">Steam</span>
           </InfoText>
 
           <Link {...AppRouter.queue.link}>
-            <InfoText>3) {i18n.enterQueue}</InfoText>
+            <InfoText>4) {i18n.enterQueue}</InfoText>
           </Link>
 
           <VersionWrapper className={(d684 && "unfold") || undefined}>
             <Version onClick={() => setD684(!d684)}>Dota 6.84</Version>
             <LeadButtons>
-              <LeadButton target="__blank" href={"https://drive.google.com/file/d/1o0jzefVwg2WZw2dZs3bCIZIxlxWyiVDt"}>
+              <LeadButton
+                onClick={downloadEvent}
+                target="__blank"
+                href={"https://drive.google.com/file/d/1o0jzefVwg2WZw2dZs3bCIZIxlxWyiVDt"}
+              >
                 {i18n.googleDisk}
               </LeadButton>
 
-              <LeadButton target="__blank" href={"https://disk.yandex.ru/d/iuEoQEvrhekqrw"}>
-                {i18n.yandexDisk}
-              </LeadButton>
+              {/*<LeadButton onClick={downloadEvent} target="__blank" href={"https://disk.yandex.ru/d/iuEoQEvrhekqrw"}>*/}
+              {/*  {i18n.yandexDisk}*/}
+              {/*</LeadButton>*/}
 
-              <LeadButton download href={"https://dota2classic.ru/api/static/684.torrent"}>
+              <LeadButton onClick={downloadEvent} download href={"https://dota2classic.ru/api/static/684.torrent"}>
                 {i18n.torrent}
               </LeadButton>
             </LeadButtons>

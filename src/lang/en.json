@@ -719,6 +719,7 @@
   "dota2classic.queue-selected-game-mode._matchmaking_mode_bots": "Unranked(newbies)",
   "dota2classic.queue-selected-game-mode._matchmaking_mode_greeviling": "Greeviling",
   "dota2classic.download-page.google_disk": "Dowload via Google drive",
+  "dota2classic.download-page.steam_and_launch": "Launch steam and launch dota.exe",
   "dota2classic.download-page.yandex_disk": "Download via Yandex drive",
   "dota2classic.download-page.torrent": "Download torrent",
 

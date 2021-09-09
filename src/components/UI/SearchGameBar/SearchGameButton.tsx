@@ -9,6 +9,7 @@ import formatGameMode from "../../../utils/format/formatGameMode";
 import { AcceptGameModal } from "../../../container/queue/AcceptGameModal";
 import i18n from "./search-game-button.i18n";
 import { appApi } from "api/hooks";
+import { loginEvent } from "utils/ga";
 export const pendingAnimation = keyframes`
   0% {
     box-shadow: 0 0 5px 1px rgba(255,255,255,0.6);
@@ -105,7 +106,9 @@ export const SearchGameButton = observer(() => {
 
   if (queue.needAuth)
     return (
-      <SearchGameButtonLink href={`${appApi.apiParams.basePath}/v1/auth/steam`}>{i18n.steamLogin}</SearchGameButtonLink>
+      <SearchGameButtonLink onClick={loginEvent} href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
+        {i18n.steamLogin}
+      </SearchGameButtonLink>
     );
   if (!queue.ready) return <SearchGameButtonComp>{i18n.connecting}</SearchGameButtonComp>;
 

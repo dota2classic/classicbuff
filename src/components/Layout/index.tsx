@@ -15,6 +15,7 @@ import { SearchGameBar } from "../UI/SearchGameBar/SearchGameBar";
 import layoutI18n from "./layout.i18n";
 import { useStores } from "stores";
 import { PlayButton } from "pages";
+import { loginEvent } from "utils/ga";
 const LayoutContainer = styled.div`
   height: 100vh;
   max-height: 100vh;
@@ -215,12 +216,10 @@ const StatsHeader = observer(() => {
         </Tab>
         {auth.authorized ? (
           <Link {...AppRouter.player(auth.steamID || "").link}>
-            <PlayButton className="inline" href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
-              {layoutI18n.profile}
-            </PlayButton>
+            <PlayButton className="inline">{layoutI18n.profile}</PlayButton>
           </Link>
         ) : (
-          <PlayButton className="inline" href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
+          <PlayButton onClick={loginEvent} className="inline" href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
             {layoutI18n.loginViaSteam}
           </PlayButton>
         )}
@@ -282,12 +281,10 @@ const DefaultHeader = observer(() => {
           </Tab>
           {auth.authorized ? (
             <Link {...AppRouter.player(auth.steamID || "").link}>
-              <PlayButton className="inline" href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
-                {layoutI18n.profile}
-              </PlayButton>
+              <PlayButton className="inline">{layoutI18n.profile}</PlayButton>
             </Link>
           ) : (
-            <PlayButton className="inline" href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
+            <PlayButton onClick={loginEvent} className="inline" href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
               {layoutI18n.loginViaSteam}
             </PlayButton>
           )}
