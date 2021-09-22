@@ -66,6 +66,10 @@ export default () => {
         Душевный видос от <span className="accent">yeljke</span>, где он рассказывает, как сильно поменялась Дота за
         последние лет 5-6.
       </VideoPost>
+
+      <VideoPost url="https://www.youtube.com/embed/1erMLm-79A8">
+        Активное использование дагона от <span className="accent">Ancient678</span>
+      </VideoPost>
     </Layout>
   );
 };

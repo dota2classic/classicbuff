@@ -16,6 +16,7 @@ import layoutI18n from "./layout.i18n";
 import { useStores } from "stores";
 import { PlayButton } from "pages";
 import { loginEvent } from "utils/ga";
+
 const LayoutContainer = styled.div`
   height: 100vh;
   max-height: 100vh;
@@ -422,6 +423,9 @@ const DefaultHeader = observer(() => {
 
   const { lang, auth } = useStores();
 
+  const { data: liveData } = useApi().liveApi.useLiveMatchControllerListMatches({
+    refreshInterval: 30_000
+  });
   return (
     <>
       <HeaderWrapper>
@@ -445,6 +449,15 @@ const DefaultHeader = observer(() => {
           <Link {...AppRouter.history.index.link}>
             <Tab className={cx(asPath.startsWith("/stats") && "active")}>{layoutI18n.stats}</Tab>
           </Link>
+
+          {liveData && (
+            <Link {...AppRouter.live.link}>
+              <Tab className={cx(asPath.startsWith("/live") && "active")}>
+                {layoutI18n.live}
+                <span className="badge">{liveData?.length}</span>
+              </Tab>
+            </Link>
+          )}
 
           {auth.isModerator && (
             <Link passHref href={"/admin/servers"}>

@@ -8,6 +8,7 @@ import formatGameMode, { Dota2Version, MatchmakingMode } from "../../../utils/fo
 import { useStores } from "stores";
 import { QueueState } from "stores/queue/queue.service";
 import { colors } from "shared";
+import { useApi } from "api/hooks";
 
 export const patchI18n = {
   [Dota2Version.Dota_681]: "Dota 6.81",
@@ -161,40 +162,43 @@ const MatchmakingOption = observer((props: MProps) => {
       {props.unrankedGamesLeft && props.unrankedGamesLeft > 0 ? (
         <span className={"info"}>{props.unrankedGamesLeft} игр до разблокировки режима</span>
       ) : (
-        <span className={"info"}>
-          {queue.inQueue[JSON.stringify({ mode: props.mode, version: props.version })]} в поиске
-        </span>
+        <span className={"info"}>{queue.inQueueCount(props.mode, props.version)} в поиске</span>
       )}
     </MOption>
   );
 });
 
 const SharedModes = observer(({ version }: { version: Dota2Version }) => {
-  const { auth, queue } = useStores();
+  const { queue } = useStores();
+
+  const { data } = useApi().statsApi.useStatsControllerGetMatchmakingInfo();
+
+  const modes = data?.filter(it => it.enabled) || [];
+
+  const d84 = modes.filter(it => it.version === "Dota_684").sort((a, b) => Number(a.mode) - Number(b.mode));
+  const d81 = modes.filter(it => it.version === "Dota_681").sort((a, b) => Number(a.mode) - Number(b.mode));
 
   const setSelectedMode = (m: MatchmakingMode, version: Dota2Version) =>
     (queue.selectedMode = new QueueState(m, version));
 
   if (version == Dota2Version.Dota_681) {
-    return (
+    return d81.length > 0 ? (
       <OptionGroup className="shaded">
         <MOption className={"header"}>{patchI18n[version]}</MOption>
-        <MatchmakingOption version={version} onSelect={setSelectedMode} mode={MatchmakingMode.RANKED} />
-        {/*<MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.CAPTAINS_MODE} />*/}
-        {/*<MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.BOTS} />*/}
-        <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.SOLOMID} />
+        {d81.map(info => (
+          <MatchmakingOption version={version} onSelect={setSelectedMode} mode={info.mode as any} />
+        ))}
       </OptionGroup>
-    );
+    ) : null;
   } else {
-    return (
+    return d84.length > 0 ? (
       <OptionGroup>
         <MOption className={"header"}>{patchI18n[version]}</MOption>
-        <MatchmakingOption version={version} onSelect={setSelectedMode} mode={MatchmakingMode.RANKED} />
-        {/*<MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.CAPTAINS_MODE} />*/}
-        {/*<MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.BOTS} />*/}
-        <MatchmakingOption onSelect={setSelectedMode} version={version} mode={MatchmakingMode.SOLOMID} />
+        {d84.map(info => (
+          <MatchmakingOption version={version} onSelect={setSelectedMode} mode={info.mode as any} />
+        ))}
       </OptionGroup>
-    );
+    ) : null;
   }
 });
 
@@ -210,7 +214,7 @@ export const GameModes = observer(() => {
       </UserInfo>
 
       <SharedModes version={Dota2Version.Dota_684} />
-      {/*<SharedModes version={Dota2Version.Dota_681} />*/}
+      <SharedModes version={Dota2Version.Dota_681} />
     </Options>
   );
 });

@@ -15,12 +15,62 @@
 import * as runtime from "../runtime";
 import useSWR, { ConfigInterface } from "swr";
 
-import { CurrentOnlineDto, CurrentOnlineDtoFromJSON, CurrentOnlineDtoToJSON } from "../models";
+import {
+  CurrentOnlineDto,
+  CurrentOnlineDtoFromJSON,
+  CurrentOnlineDtoToJSON,
+  MatchmakingInfo,
+  MatchmakingInfoFromJSON,
+  MatchmakingInfoToJSON
+} from "../models";
 
 /**
  *
  */
 export class StatsApi extends runtime.BaseAPI {
+  /**
+   */
+  private async statsControllerGetMatchmakingInfoRaw(): Promise<runtime.ApiResponse<Array<MatchmakingInfo>>> {
+    this.statsControllerGetMatchmakingInfoValidation();
+    const context = this.statsControllerGetMatchmakingInfoContext();
+    const response = await this.request(context);
+
+    return new runtime.JSONApiResponse(response, jsonValue => jsonValue.map(MatchmakingInfoFromJSON));
+  }
+
+  /**
+   */
+  private statsControllerGetMatchmakingInfoValidation() {}
+
+  /**
+   */
+  statsControllerGetMatchmakingInfoContext(): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    return {
+      path: `/v1/stats/matchmaking`,
+      method: "GET",
+      headers: headerParameters,
+      query: queryParameters
+    };
+  }
+
+  /**
+   */
+  statsControllerGetMatchmakingInfo = async (): Promise<Array<MatchmakingInfo>> => {
+    const response = await this.statsControllerGetMatchmakingInfoRaw();
+    return await response.value();
+  };
+
+  useStatsControllerGetMatchmakingInfo(config?: ConfigInterface<Array<MatchmakingInfo>, Error>) {
+    let valid = true;
+
+    const context = this.statsControllerGetMatchmakingInfoContext();
+    return useSWR(JSON.stringify(context), valid ? () => this.statsControllerGetMatchmakingInfo() : undefined, config);
+  }
+
   /**
    */
   private async statsControllerOnlineRaw(): Promise<runtime.ApiResponse<CurrentOnlineDto>> {

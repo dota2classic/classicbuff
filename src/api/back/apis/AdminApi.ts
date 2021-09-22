@@ -28,9 +28,15 @@ import {
   GameSessionDto,
   GameSessionDtoFromJSON,
   GameSessionDtoToJSON,
+  MatchmakingModeStatusEntity,
+  MatchmakingModeStatusEntityFromJSON,
+  MatchmakingModeStatusEntityToJSON,
   StopServerDto,
   StopServerDtoFromJSON,
   StopServerDtoToJSON,
+  UpdateModeDTO,
+  UpdateModeDTOFromJSON,
+  UpdateModeDTOToJSON,
   UpdateRolesDto,
   UpdateRolesDtoFromJSON,
   UpdateRolesDtoToJSON,
@@ -53,6 +59,10 @@ export interface AdminUserControllerBanOfRequest {
 
 export interface AdminUserControllerRoleOfRequest {
   id: string;
+}
+
+export interface AdminUserControllerUpdateGameModeRequest {
+  updateModeDTO: UpdateModeDTO;
 }
 
 export interface AdminUserControllerUpdateRoleRequest {
@@ -310,6 +320,66 @@ export class AdminApi extends runtime.BaseAPI {
     const context = this.adminUserControllerRoleOfContext({ id: id! });
     return useSWR(JSON.stringify(context), valid ? () => this.adminUserControllerRoleOf(id!) : undefined, config);
   }
+
+  /**
+   */
+  private async adminUserControllerUpdateGameModeRaw(
+    requestParameters: AdminUserControllerUpdateGameModeRequest
+  ): Promise<runtime.ApiResponse<Array<MatchmakingModeStatusEntity>>> {
+    this.adminUserControllerUpdateGameModeValidation(requestParameters);
+    const context = this.adminUserControllerUpdateGameModeContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.JSONApiResponse(response, jsonValue => jsonValue.map(MatchmakingModeStatusEntityFromJSON));
+  }
+
+  /**
+   */
+  private adminUserControllerUpdateGameModeValidation(requestParameters: AdminUserControllerUpdateGameModeRequest) {
+    if (requestParameters.updateModeDTO === null || requestParameters.updateModeDTO === undefined) {
+      throw new runtime.RequiredError(
+        "updateModeDTO",
+        "Required parameter requestParameters.updateModeDTO was null or undefined when calling adminUserControllerUpdateGameMode."
+      );
+    }
+  }
+
+  /**
+   */
+  adminUserControllerUpdateGameModeContext(
+    requestParameters: AdminUserControllerUpdateGameModeRequest
+  ): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    headerParameters["Content-Type"] = "application/json";
+
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = typeof token === "function" ? token("bearer", []) : token;
+
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    return {
+      path: `/v1/admin/users/updateGameMode`,
+      method: "POST",
+      headers: headerParameters,
+      query: queryParameters,
+      body: UpdateModeDTOToJSON(requestParameters.updateModeDTO)
+    };
+  }
+
+  /**
+   */
+  adminUserControllerUpdateGameMode = async (
+    updateModeDTO: UpdateModeDTO
+  ): Promise<Array<MatchmakingModeStatusEntity>> => {
+    const response = await this.adminUserControllerUpdateGameModeRaw({ updateModeDTO: updateModeDTO });
+    return await response.value();
+  };
 
   /**
    */

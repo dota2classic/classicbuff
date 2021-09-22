@@ -24,6 +24,12 @@ import {
   MatchPageDtoToJSON
 } from "../models";
 
+export interface MatchControllerRequest {
+  page: AnyType;
+  mode?: AnyType;
+  perPage?: AnyType;
+}
+
 export interface MatchControllerHeroMatchesRequest {
   page: number;
   hero: string;
@@ -32,12 +38,6 @@ export interface MatchControllerHeroMatchesRequest {
 
 export interface MatchControllerMatchRequest {
   id: number;
-}
-
-export interface MatchControllerMatchesRequest {
-  page: number;
-  perPage?: number;
-  mode?: number;
 }
 
 export interface MatchControllerPlayerMatchesRequest {
@@ -52,6 +52,75 @@ export interface MatchControllerPlayerMatchesRequest {
  *
  */
 export class MatchApi extends runtime.BaseAPI {
+  /**
+   */
+  private async matchControllerRaw(requestParameters: MatchControllerRequest): Promise<runtime.ApiResponse<void>> {
+    this.matchControllerValidation(requestParameters);
+    const context = this.matchControllerContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.VoidApiResponse(response);
+  }
+
+  /**
+   */
+  private matchControllerValidation(requestParameters: MatchControllerRequest) {
+    if (requestParameters.page === null || requestParameters.page === undefined) {
+      throw new runtime.RequiredError(
+        "page",
+        "Required parameter requestParameters.page was null or undefined when calling matchController."
+      );
+    }
+  }
+
+  /**
+   */
+  matchControllerContext(requestParameters: MatchControllerRequest): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    if (requestParameters.mode !== undefined) {
+      queryParameters["mode"] = requestParameters.mode;
+    }
+
+    if (requestParameters.perPage !== undefined) {
+      queryParameters["per_page"] = requestParameters.perPage;
+    }
+
+    if (requestParameters.page !== undefined) {
+      queryParameters["page"] = requestParameters.page;
+    }
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    return {
+      path: `/v1/match/all`,
+      method: "GET",
+      headers: headerParameters,
+      query: queryParameters
+    };
+  }
+
+  /**
+   */
+  matchController = async (page: AnyType, mode?: AnyType, perPage?: AnyType): Promise<void> => {
+    await this.matchControllerRaw({ page: page, mode: mode, perPage: perPage });
+  };
+
+  useMatchController(page: AnyType, mode?: AnyType, perPage?: AnyType, config?: ConfigInterface<void, Error>) {
+    let valid = true;
+
+    if (page === null || page === undefined || Number.isNaN(page)) {
+      valid = false;
+    }
+
+    const context = this.matchControllerContext({ page: page!, mode: mode!, perPage: perPage! });
+    return useSWR(
+      JSON.stringify(context),
+      valid ? () => this.matchController(page!, mode!, perPage!) : undefined,
+      config
+    );
+  }
+
   /**
    */
   private async matchControllerHeroMatchesRaw(
@@ -201,83 +270,6 @@ export class MatchApi extends runtime.BaseAPI {
 
     const context = this.matchControllerMatchContext({ id: id! });
     return useSWR(JSON.stringify(context), valid ? () => this.matchControllerMatch(id!) : undefined, config);
-  }
-
-  /**
-   */
-  private async matchControllerMatchesRaw(
-    requestParameters: MatchControllerMatchesRequest
-  ): Promise<runtime.ApiResponse<MatchPageDto>> {
-    this.matchControllerMatchesValidation(requestParameters);
-    const context = this.matchControllerMatchesContext(requestParameters);
-    const response = await this.request(context);
-
-    return new runtime.JSONApiResponse(response, jsonValue => MatchPageDtoFromJSON(jsonValue));
-  }
-
-  /**
-   */
-  private matchControllerMatchesValidation(requestParameters: MatchControllerMatchesRequest) {
-    if (requestParameters.page === null || requestParameters.page === undefined) {
-      throw new runtime.RequiredError(
-        "page",
-        "Required parameter requestParameters.page was null or undefined when calling matchControllerMatches."
-      );
-    }
-  }
-
-  /**
-   */
-  matchControllerMatchesContext(requestParameters: MatchControllerMatchesRequest): runtime.RequestOpts {
-    const queryParameters: any = {};
-
-    if (requestParameters.page !== undefined) {
-      queryParameters["page"] = requestParameters.page;
-    }
-
-    if (requestParameters.perPage !== undefined) {
-      queryParameters["per_page"] = requestParameters.perPage;
-    }
-
-    if (requestParameters.mode !== undefined) {
-      queryParameters["mode"] = requestParameters.mode;
-    }
-
-    const headerParameters: runtime.HTTPHeaders = {};
-
-    return {
-      path: `/v1/match/all`,
-      method: "GET",
-      headers: headerParameters,
-      query: queryParameters
-    };
-  }
-
-  /**
-   */
-  matchControllerMatches = async (page: number, perPage?: number, mode?: number): Promise<MatchPageDto> => {
-    const response = await this.matchControllerMatchesRaw({ page: page, perPage: perPage, mode: mode });
-    return await response.value();
-  };
-
-  useMatchControllerMatches(
-    page: number,
-    perPage?: number,
-    mode?: number,
-    config?: ConfigInterface<MatchPageDto, Error>
-  ) {
-    let valid = true;
-
-    if (page === null || page === undefined || Number.isNaN(page)) {
-      valid = false;
-    }
-
-    const context = this.matchControllerMatchesContext({ page: page!, perPage: perPage!, mode: mode! });
-    return useSWR(
-      JSON.stringify(context),
-      valid ? () => this.matchControllerMatches(page!, perPage!, mode!) : undefined,
-      config
-    );
   }
 
   /**

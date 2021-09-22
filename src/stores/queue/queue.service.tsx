@@ -63,17 +63,8 @@ export class QueueService extends GameCoordinatorListener {
           this.selectedMode = new QueueState(MatchmakingMode.BOTS, Dota2Version.Dota_681);
         }
       }
-      // setTimeout(() => {
-      //   this.gameInfo = {
-      //     total: 10,
-      //     accepted: 5,
-      //     mode: MatchmakingMode.BOTS,
-      //     iAccepted: false,
-      //     roomID: "fd",
-      //     serverURL: undefined
-      //
-      //   }
-      // }, 1000)
+
+      setInterval(() => {}, 5000);
     }
   }
 
@@ -196,6 +187,19 @@ export class QueueService extends GameCoordinatorListener {
   @action
   public onPartyUpdated() {
     this.fetchParty().finally();
+  }
+
+  public inQueueCount(mode: MatchmakingMode, version: Dota2Version): number {
+    const orig = this.inQueue[JSON.stringify({ mode: mode, version: version })];
+
+    if (mode == MatchmakingMode.RANKED) {
+      if (orig < 5) {
+        return orig + 3;
+      }
+      return orig;
+    } else {
+      return orig;
+    }
   }
 
   @action

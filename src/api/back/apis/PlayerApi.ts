@@ -19,9 +19,6 @@ import {
   HeroStatsDto,
   HeroStatsDtoFromJSON,
   HeroStatsDtoToJSON,
-  LeaderboardEntryDto,
-  LeaderboardEntryDtoFromJSON,
-  LeaderboardEntryDtoToJSON,
   MeDto,
   MeDtoFromJSON,
   MeDtoToJSON,
@@ -45,16 +42,16 @@ import {
   ReportDtoToJSON
 } from "../models";
 
+export interface PlayerControllerRequest {
+  version?: AnyType;
+}
+
 export interface PlayerControllerGeneralSummaryRequest {
   id: string;
 }
 
 export interface PlayerControllerHeroSummaryRequest {
   id: string;
-}
-
-export interface PlayerControllerLeaderboardRequest {
-  version?: string;
 }
 
 export interface PlayerControllerPlayerSummaryRequest {
@@ -73,6 +70,52 @@ export interface PlayerControllerSearchRequest {
  *
  */
 export class PlayerApi extends runtime.BaseAPI {
+  /**
+   */
+  private async playerControllerRaw(requestParameters: PlayerControllerRequest): Promise<runtime.ApiResponse<void>> {
+    this.playerControllerValidation(requestParameters);
+    const context = this.playerControllerContext(requestParameters);
+    const response = await this.request(context);
+
+    return new runtime.VoidApiResponse(response);
+  }
+
+  /**
+   */
+  private playerControllerValidation(requestParameters: PlayerControllerRequest) {}
+
+  /**
+   */
+  playerControllerContext(requestParameters: PlayerControllerRequest): runtime.RequestOpts {
+    const queryParameters: any = {};
+
+    if (requestParameters.version !== undefined) {
+      queryParameters["version"] = requestParameters.version;
+    }
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    return {
+      path: `/v1/player/leaderboard`,
+      method: "GET",
+      headers: headerParameters,
+      query: queryParameters
+    };
+  }
+
+  /**
+   */
+  playerController = async (version?: AnyType): Promise<void> => {
+    await this.playerControllerRaw({ version: version });
+  };
+
+  usePlayerController(version?: AnyType, config?: ConfigInterface<void, Error>) {
+    let valid = true;
+
+    const context = this.playerControllerContext({ version: version! });
+    return useSWR(JSON.stringify(context), valid ? () => this.playerController(version!) : undefined, config);
+  }
+
   /**
    */
   private async playerControllerConnectionsRaw(): Promise<runtime.ApiResponse<MyProfileDto>> {
@@ -234,59 +277,6 @@ export class PlayerApi extends runtime.BaseAPI {
 
     const context = this.playerControllerHeroSummaryContext({ id: id! });
     return useSWR(JSON.stringify(context), valid ? () => this.playerControllerHeroSummary(id!) : undefined, config);
-  }
-
-  /**
-   */
-  private async playerControllerLeaderboardRaw(
-    requestParameters: PlayerControllerLeaderboardRequest
-  ): Promise<runtime.ApiResponse<Array<LeaderboardEntryDto>>> {
-    this.playerControllerLeaderboardValidation(requestParameters);
-    const context = this.playerControllerLeaderboardContext(requestParameters);
-    const response = await this.request(context);
-
-    return new runtime.JSONApiResponse(response, jsonValue => jsonValue.map(LeaderboardEntryDtoFromJSON));
-  }
-
-  /**
-   */
-  private playerControllerLeaderboardValidation(requestParameters: PlayerControllerLeaderboardRequest) {}
-
-  /**
-   */
-  playerControllerLeaderboardContext(requestParameters: PlayerControllerLeaderboardRequest): runtime.RequestOpts {
-    const queryParameters: any = {};
-
-    if (requestParameters.version !== undefined) {
-      queryParameters["version"] = requestParameters.version;
-    }
-
-    const headerParameters: runtime.HTTPHeaders = {};
-
-    return {
-      path: `/v1/player/leaderboard`,
-      method: "GET",
-      headers: headerParameters,
-      query: queryParameters
-    };
-  }
-
-  /**
-   */
-  playerControllerLeaderboard = async (version?: string): Promise<Array<LeaderboardEntryDto>> => {
-    const response = await this.playerControllerLeaderboardRaw({ version: version });
-    return await response.value();
-  };
-
-  usePlayerControllerLeaderboard(version?: string, config?: ConfigInterface<Array<LeaderboardEntryDto>, Error>) {
-    let valid = true;
-
-    const context = this.playerControllerLeaderboardContext({ version: version! });
-    return useSWR(
-      JSON.stringify(context),
-      valid ? () => this.playerControllerLeaderboard(version!) : undefined,
-      config
-    );
   }
 
   /**
