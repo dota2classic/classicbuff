@@ -5,6 +5,7 @@ import { CardBlock, CardRow } from "./index";
 import Link from "next/link";
 import Head from "next/head";
 import i18n from "pages-i18n/donate.i18n";
+import { PROD_URL } from "config";
 
 const WelcomeText = styled.div`
   text-align: center;
@@ -123,7 +124,7 @@ export default () => {
       <List>
         <li>
           {i18n.withValues.nicknameDiscord({
-            a: (...chunks: ReactNode[]) => <a href="https://discord.gg/VU5wjA8">{chunks}</a>
+            a: (...chunks: ReactNode[]) => <a href="https://discord.gg/kGWH4ggBdZ">{chunks}</a>
           })}
         </li>
         <li>{i18n.watchGames}</li>
@@ -150,7 +151,7 @@ export default () => {
         </li>
         <li>
           {i18n.withValues.additionalDiscordFeatures({
-            a: (...chunks: ReactNode[]) => <a href="https://discord.gg/VU5wjA8">{chunks}</a>
+            a: (...chunks: ReactNode[]) => <a href="https://discord.gg/kGWH4ggBdZ">{chunks}</a>
           })}
         </li>
         <li>{i18n.realHelpThankYou}</li>
@@ -169,7 +170,7 @@ export default () => {
         <Note>
           {i18n.withValues.notToAddLink({
             a: (...chunks: ReactNode[]) => (
-              <Link passHref href={`https://dota2classic.ru/player/280443916/`}>
+              <Link passHref href={`${PROD_URL}/player/280443916/`}>
                 <a style={{ color: "#d9d9d9", textDecoration: "none" }}>{chunks}</a>
               </Link>
             ),

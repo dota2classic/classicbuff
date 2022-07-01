@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "shared";
+import { PROD_URL } from "config";
 
 const AdBlock = styled.a`
   height: 80px;
@@ -28,7 +29,7 @@ const AdBlock = styled.a`
     right: 0;
     top: 0;
     bottom: 0;
-    background: url("https://dota2classic.ru/api/static/classic_banner.png");
+    background: url("${PROD_URL}/api/static/classic_banner.png");
     opacity: 1;
   }
 `;

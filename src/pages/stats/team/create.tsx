@@ -7,6 +7,7 @@ import Input from "components/UI/Input";
 import { appApi } from "api/hooks";
 import { useRouter } from "next/router";
 import Button from "components/UI/Button";
+import { PROD_URL } from "config";
 
 const TeamImage = styled.img`
   width: 128px;
@@ -27,7 +28,7 @@ const CreateTeamForm = styled.div`
 `;
 
 export default () => {
-  const [image, setImage] = useState("https://dota2classic.ru/api/static/icons/jugger.png");
+  const [image, setImage] = useState(`${PROD_URL}/api/static/icons/jugger.png`);
   const [name, setName] = useState("");
   const [tag, setTag] = useState("");
   const router = useRouter();

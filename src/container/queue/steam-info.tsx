@@ -13,6 +13,7 @@ import { PlayerInPartyDto } from "../../api/back/models";
 import { PlayerHover } from "components/UI/PlayerHover";
 import Link from "next/link";
 import { AppRouter } from "utils/route";
+import { PROD_URL } from "config";
 
 const InfoRow = styled.div`
   display: flex;
@@ -175,7 +176,7 @@ export default observer(() => {
         ))}
 
         <PartyItem className={cx("invite")} onClick={() => setInviteOpen(true)}>
-          <img src={"https://dota2classic.ru/api/static/plus.png"} alt="" />
+          <img src={`${PROD_URL}/api/static/plus.png`} alt="" />
         </PartyItem>
       </PartyContents>
 
@@ -197,7 +198,9 @@ export default observer(() => {
         <SearchGameBar>
           <span>{i18n.withValues.search({ s: formatGameMode(queue.searchingMode) })}</span>
           <span className={"info"}>
-            {i18n.withValues.playersInQueue({ piq: queue.inQueue[JSON.stringify(queue.searchingMode)] })}
+            {i18n.withValues.playersInQueue({
+              piq: queue.inQueueCount(queue.searchingMode.mode, queue.searchingMode.version)
+            })}
           </span>
         </SearchGameBar>
       )}

@@ -26,7 +26,7 @@ export const DiscordBlock = () => {
         <DiscordContainer>
           <Hint>
             Бот не может найти Ваш аккаунт! А вы есть у нас в{" "}
-            <a className={"link"} target={"__blank"} href="https://discord.gg/VU5wjA8">
+            <a className={"link"} target={"__blank"} href="https://discord.gg/kGWH4ggBdZ">
               дискорде?
             </a>
           </Hint>

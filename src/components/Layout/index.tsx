@@ -16,6 +16,7 @@ import layoutI18n from "./layout.i18n";
 import { useStores } from "stores";
 import { PlayButton } from "pages";
 import { loginEvent } from "utils/ga";
+import { PROD_URL } from "config";
 
 const LayoutContainer = styled.div`
   height: 100vh;
@@ -240,11 +241,7 @@ const MobileMenu = observer(() => {
   return (
     <Sidebar>
       <div className="mobile-top-row">
-        <img
-          onClick={() => setMenuOpen(!menuOpen)}
-          src="https://dota2classic.ru/api/static/icon.png"
-          className="menu-icon"
-        />
+        <img onClick={() => setMenuOpen(!menuOpen)} src={`${PROD_URL}/api/static/icon.png`} className="menu-icon" />
       </div>
 
       <div className={cx("side-bar", menuOpen && "open")}>
@@ -449,6 +446,10 @@ const DefaultHeader = observer(() => {
           <Link {...AppRouter.history.index.link}>
             <Tab className={cx(asPath.startsWith("/stats") && "active")}>{layoutI18n.stats}</Tab>
           </Link>
+
+          <Tab href={"https://discord.gg/kGWH4ggBdZ"} target="__blank">
+            DISCORD
+          </Tab>
 
           {liveData && (
             <Link {...AppRouter.live.link}>

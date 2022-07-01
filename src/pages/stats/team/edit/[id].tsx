@@ -7,6 +7,7 @@ import { resolveImage } from "utils/resolveImage";
 import Input from "components/UI/Input";
 import Button from "components/UI/Button";
 import Layout from "components/Layout";
+import { PROD_URL } from "config";
 
 const TeamImage = styled.img`
   width: 128px;
@@ -29,7 +30,7 @@ const CreateTeamForm = styled.div`
 export default () => {
   const id = useRouter().query.id as string;
 
-  const [image, setImage] = useState("https://dota2classic.ru/api/static/icons/jugger.png");
+  const [image, setImage] = useState(`${PROD_URL}/api/static/icons/jugger.png`);
   const [name, setName] = useState("");
   const [tag, setTag] = useState("");
   const router = useRouter();

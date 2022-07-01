@@ -10,13 +10,13 @@ import {
   TournamentApi
 } from "./back/apis";
 import { Configuration, ConfigurationParameters } from "./back";
-import { local } from "../config";
+import { local, PROD_URL } from "../config";
 import { create } from "apisauce";
 import Qs from "qs";
 
 export class AppApi {
   apiParams: ConfigurationParameters = {
-    basePath: local ? "http://localhost:6001" : "https://dota2classic.ru/api",
+    basePath: local ? "http://localhost:6001" : `${PROD_URL}/api`,
     fetchApi: (input, init) => {
       return fetch(input, init)
         .then(t => {
@@ -50,6 +50,6 @@ export const appApi = new AppApi();
 export const useApi = () => appApi;
 
 export const apiInner = create({
-  baseURL: local ? "http://localhost:6001" : "https://dota2classic.ru/api",
+  baseURL: local ? "http://localhost:6001" : `${PROD_URL}/api`,
   paramsSerializer: params => Qs.stringify(params, { arrayFormat: "repeat" })
 });

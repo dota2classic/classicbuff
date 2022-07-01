@@ -191,15 +191,16 @@ export class QueueService extends GameCoordinatorListener {
 
   public inQueueCount(mode: MatchmakingMode, version: Dota2Version): number {
     const orig = this.inQueue[JSON.stringify({ mode: mode, version: version })];
-
-    if (mode == MatchmakingMode.RANKED) {
-      if (orig < 5) {
-        return orig + 3;
-      }
-      return orig;
-    } else {
-      return orig;
-    }
+    return orig;
+    //
+    // if (mode == MatchmakingMode.RANKED) {
+    //   if (orig < 5) {
+    //     return orig + 3;
+    //   }
+    //   return orig;
+    // } else {
+    //   return orig;
+    // }
   }
 
   @action

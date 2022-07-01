@@ -13,7 +13,6 @@ import { LiveMatch } from "components/live/LiveMatch";
 import { colors } from "shared";
 import { NextPageContext } from "next";
 import { SsrProps } from "utils/SsrProps";
-import { initializeStore } from "stores";
 import { DateFormatter } from "utils/format/formateDateStr";
 
 export const ItemsContainer = styled.div`

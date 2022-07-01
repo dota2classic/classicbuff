@@ -17,6 +17,7 @@ import { Hint } from "../../../components/UI/Hint";
 import { colors } from "../../../shared";
 import Select from "react-select";
 import { bestOfOptions } from "../../../utils/bestOfOptions";
+import { PROD_URL } from "config";
 
 const TournamentImage = styled.img`
   height: 150px;
@@ -39,7 +40,7 @@ const FormBlock = styled.div`
 export default () => {
   const router = useRouter();
   const [name, setName] = useState("");
-  const [imageUrl, setImageUrl] = useState("https://dota2classic.ru/api/static/icons/jugger.png");
+  const [imageUrl, setImageUrl] = useState(`${PROD_URL}/api/static/icons/jugger.png`);
   const [startDate, setStartDate] = useState<number>(new Date().getTime() + 1000 * 60 * 60);
   const api = useApi().adminTournament;
   const [bestOfRound, setBestOfRound] = useState(1);

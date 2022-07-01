@@ -44,7 +44,7 @@ const Page = () => {
                         version: t.version as any,
                         enabled: e.target.checked
                       })
-                      .then(result => mutate(result));
+                      .then(result => mutate(result as any));
                   }}
                   type="checkbox"
                   checked={t.enabled}

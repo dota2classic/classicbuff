@@ -94,6 +94,7 @@ const EmbedCancelSearch = styled.div`
 
 const GameSearchInfo = styled.div`
   font-size: 14px;
+  text-align: center;
   color: ${colors.primaryText};
 `;
 
@@ -125,8 +126,8 @@ export const SearchGameButton = observer(() => {
           </SearchGameButtonComp>
           {!isQueuePage && (
             <GameSearchInfo>
-              {formatGameMode(queue.searchingMode)},{" "}
-              {i18n.withValues.search({ s: queue.inQueue[JSON.stringify(queue.searchingMode)] })}
+              {formatGameMode(queue.searchingMode.mode)},{" "}
+              {i18n.withValues.search({ s: queue.inQueueCount(queue.searchingMode.mode, queue.searchingMode.version) })}
             </GameSearchInfo>
           )}
         </EmbedCancelSearch>

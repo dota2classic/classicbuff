@@ -1,6 +1,7 @@
 import React from "react";
 import Document, { DocumentContext, Head, Html, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
+import { PROD_URL } from "config";
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -89,16 +90,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <Html>
         <Head>
           <meta charSet="utf-8" />
-          <link rel="canonical" href="https://dota2classic.ru" />
+          <link rel="canonical" href={PROD_URL} />
           <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
             integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
             crossOrigin="anonymous"
           />
-          <link rel="icon" type="image/png" href="https://dota2classic.ru/api/static/favicon.png" />
-          <link rel="stylesheet" href="https://dota2classic.ru/api/static/style.css" />
-          <link rel="stylesheet" href="https://dota2classic.ru/api/static/minimap.css" />
+          <link rel="icon" type="image/png" href={`${PROD_URL}/api/static/favicon.png`} />
+          <link rel="stylesheet" href={`${PROD_URL}/api/static/style.css`} />
+          <link rel="stylesheet" href={`${PROD_URL}/api/static/minimap.css`} />
           <script src="/static/build_info.js" />
           <link
             rel="stylesheet"

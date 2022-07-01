@@ -66,8 +66,6 @@ const NameContainer = styled.a`
 `;
 
 export default (props: LeaderboardEntryDto) => {
-  const highestRole = props.roles.sort((a, b) => RoleValue[b] - RoleValue[a])[0] || "PLAYER";
-
   const numId = Number(props.id);
   return (
     <Tr>

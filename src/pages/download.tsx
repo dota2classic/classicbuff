@@ -9,6 +9,7 @@ import { colors } from "shared";
 import { appApi } from "api/hooks";
 import { AppRouter } from "utils/route";
 import { downloadEvent, ga, loginEvent } from "utils/ga";
+import { PROD_URL } from "config";
 
 const InfoText = styled.a`
   display: block;
@@ -57,7 +58,7 @@ const Container = styled.div`
   height: 100vh;
 
   &::before {
-    background-image: url("https://dota2classic.ru/api/static/landing/download.jpeg");
+    background-image: url("${PROD_URL}/api/static/landing/download.jpeg");
     content: "";
     position: absolute;
     background-size: cover;
@@ -154,7 +155,7 @@ export default () => {
               {/*  {i18n.yandexDisk}*/}
               {/*</LeadButton>*/}
 
-              <LeadButton onClick={downloadEvent} download href={"https://dota2classic.ru/api/static/684.torrent"}>
+              <LeadButton onClick={downloadEvent} download href={`${PROD_URL}/api/static/684.torrent`}>
                 {i18n.torrent}
               </LeadButton>
             </LeadButtons>
