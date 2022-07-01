@@ -332,7 +332,11 @@ export class QueueService extends GameCoordinatorListener {
    */
 
   private async fetchParty() {
-    this.party = await appApi.playerApi.playerControllerMyParty();
+    try {
+      this.party = await appApi.playerApi.playerControllerMyParty();
+    } catch (e) {
+      this.party = undefined;
+    }
   }
 
   private cleanUp() {
