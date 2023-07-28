@@ -133,12 +133,13 @@ export class AuthServiceService {
 
   @action.bound
   public logout() {
-    console.log("logout, bad auth!");
+    console.trace("Logout!");
+    console.log(document.cookie);
     this.token = undefined;
     apiInner.deleteHeader(`Authorization`);
     appApi.apiParams.accessToken = undefined;
-    // localStorage.removeItem("token");
-    // cookies.erase(AuthServiceService.cookieTokenKey);
+    localStorage.removeItem("token");
+    cookies.erase(AuthServiceService.cookieTokenKey);
   }
 }
 

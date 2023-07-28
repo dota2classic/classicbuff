@@ -170,9 +170,11 @@ export class Game {
 
     if (this.socket && this.socket.connected) return;
 
+    console.log(isDev, WSS_PROD_URL);
     this.socket = isDev
       ? io("ws://localhost:5010", { transports: ["websocket"] })
       : io(WSS_PROD_URL, {
+          path: "/launcher",
           transports: ["websocket"]
         });
 

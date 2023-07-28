@@ -1,4 +1,4 @@
-import { CompactTeamDto, TeamDto, TournamentStandingDto } from "../../../api/back/models";
+import { CompactTeamDto, TournamentStandingDto } from "../../../api/back/models";
 import styled from "styled-components";
 import { colors } from "../../../shared";
 import Link from "next/link";
@@ -99,7 +99,16 @@ export default ({ team }: Props) => {
   return (
     <Link {...AppRouter.team.team(team.id).link}>
       <Card>
-        <TournamentImage src={team.imageUrl} />
+        <TournamentImage
+          src={team.imageUrl}
+          alt={""}
+          onError={e => {
+            const t = e.target as HTMLImageElement;
+            if (t.src != "https://avatars.akamai.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_full.jpg") {
+              t.src = "https://avatars.akamai.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_full.jpg";
+            }
+          }}
+        />
         <TournamentName>{team.name}</TournamentName>
       </Card>
     </Link>

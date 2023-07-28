@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import React from "react";
-import { PROD_URL } from "config";
 
 export const DotaIcon = styled.img`
   height: 40px;
@@ -20,6 +19,4 @@ export const DotaIcon = styled.img`
 interface Props {
   hero: string;
 }
-export const HeroIcon = (p: Props) => (
-  <DotaIcon src={`${PROD_URL}/api/static/heroes/${p.hero.replace("npc_dota_hero_", "")}.webp`} />
-);
+export const HeroIcon = (p: Props) => <DotaIcon src={`/static/heroes/${p.hero.replace("npc_dota_hero_", "")}.webp`} />;

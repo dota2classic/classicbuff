@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../shared";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { appApi, useApi } from "../../api/hooks";
 import { Tab, Tabs } from "../UI/Tabs";
 import Link from "next/link";
@@ -241,7 +241,7 @@ const MobileMenu = observer(() => {
   return (
     <Sidebar>
       <div className="mobile-top-row">
-        <img onClick={() => setMenuOpen(!menuOpen)} src={`${PROD_URL}/api/static/icon.png`} className="menu-icon" />
+        <img onClick={() => setMenuOpen(!menuOpen)} src={`${PROD_URL}/static/menu.png`} className="menu-icon" />
       </div>
 
       <div className={cx("side-bar", menuOpen && "open")}>

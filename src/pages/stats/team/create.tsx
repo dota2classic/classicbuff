@@ -28,7 +28,7 @@ const CreateTeamForm = styled.div`
 `;
 
 export default () => {
-  const [image, setImage] = useState(`${PROD_URL}/api/static/icons/jugger.png`);
+  const [image, setImage] = useState(`${PROD_URL}/static/icons/jugger.png`);
   const [name, setName] = useState("");
   const [tag, setTag] = useState("");
   const router = useRouter();

@@ -7,7 +7,7 @@ import { useStores } from "../stores";
 import { colors } from "shared";
 import Link from "next/link";
 import i18n from "pages-i18n/index.i18n";
-import { PROD_URL } from "config";
+
 export const slideAnimation = keyframes`
   0% {
     transform: translateX(200);
@@ -398,7 +398,7 @@ export default () => {
       <EmbedProps
         title="Классическая Dota 2"
         description="dota2classic.ru - сайт для игры в классическую Dota 2 6.84 2015 года"
-        image={`${PROD_URL}/api/static/landing/2.png`}
+        image={`/static/landing/2.png`}
       />
       <Head>
         <title>Классическая Dota 2</title>
@@ -406,7 +406,7 @@ export default () => {
       </Head>
 
       <PromoVideoWrapper>
-        <PromoVideo muted loop autoPlay controls={false} src={`${PROD_URL}/api/static/video/d2video.mp4`} />
+        <PromoVideo muted loop autoPlay controls={false} src={`/static/landing/d2video.mp4`} />
         <LeadingText>{i18n.magicWorld}</LeadingText>
         <LeadingText className="secondary">{i18n.cozyHome}</LeadingText>
         <Link href={"/download"}>
@@ -415,7 +415,7 @@ export default () => {
       </PromoVideoWrapper>
 
       <BackgroundImagePicture className="overflow">
-        <BackgroundImage src={`${PROD_URL}/api/static/landing/landing_2.jpeg`} />
+        <BackgroundImage src={`/static/landing/landing_2.jpeg`} />
         <Link href="/download" passHref>
           <CenterText>
             <span className="secondary">{i18n.startPlaying} </span>
@@ -427,7 +427,7 @@ export default () => {
       </BackgroundImagePicture>
 
       <BackgroundImagePicture>
-        <BackgroundImage src={`${PROD_URL}/api/static/landing/landing_1.jpeg`} />
+        <BackgroundImage src={`/static/landing/landing_1.jpeg`} />
         <CenterText>
           <span className="secondary">{i18n.oldAbilities}</span>
           <br />
@@ -446,7 +446,7 @@ export default () => {
       </BackgroundImagePicture>
 
       <BackgroundImagePicture className="overflow">
-        <BackgroundImage src={`${PROD_URL}/api/static/landing/landing_3.webp`} />
+        <BackgroundImage src={`/static/landing/landing_3.webp`} />
         <LeadingText>{i18n.nostalgy}</LeadingText>
         <LeadingText className="secondary">{i18n.onlyClient}</LeadingText>
         <Link href={"/download"}>

@@ -9,7 +9,8 @@ module.exports = withBundleAnalyzer({
     defaultLocale: "ru-ru"
   },
   env: {
-    API_URL: process.env.API_URL || "https://leasingdev.iteampro.ru:6777/",
+    API_URL: process.env.API_URL || "http://localhost:3000",
+    WS_URL: process.env.WS_URL || "http://localhost:3000",
     DEV: process.env.DEV || "false"
   },
 

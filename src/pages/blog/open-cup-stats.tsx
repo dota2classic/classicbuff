@@ -301,7 +301,7 @@ export default () => {
         <GenericTournamentBlock
           small
           link={AppRouter.team.team("9b83f496-b65d-445d-abd3-311e8b3670f0")}
-          img={`${PROD_URL}/api/static/73998c6a2f49f2fc20117263a8968970.png`}
+          img={`${PROD_URL}/static/73998c6a2f49f2fc20117263a8968970.png`}
         >
           <span>NASOS</span>
           <br />
@@ -329,7 +329,7 @@ export default () => {
         <GenericTournamentBlock
           small
           link={AppRouter.team.team("e4ed3aa1-42a4-4dfe-ac7b-306c992bc163")}
-          img={`${PROD_URL}/api/static/daa7ccad1b82174abc683efdec5103081.png`}
+          img={`${PROD_URL}/static/daa7ccad1b82174abc683efdec5103081.png`}
         >
           <span>M and Ms</span>
           <br />

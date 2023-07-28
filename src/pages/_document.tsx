@@ -98,9 +98,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
             crossOrigin="anonymous"
           />
-          <link rel="icon" type="image/png" href={`${PROD_URL}/api/static/favicon.png`} />
-          <link rel="stylesheet" href={`${PROD_URL}/api/static/style.css`} />
-          <link rel="stylesheet" href={`${PROD_URL}/api/static/minimap.css`} />
+          <link rel="icon" type="image/png" href={`/static/favicon.png`} />
+          <link rel="stylesheet" href={`/static/style.css`} />
+          <link rel="stylesheet" href={`/static/minimap.css`} />
           <script src="/static/build_info.js" />
           <link
             rel="stylesheet"

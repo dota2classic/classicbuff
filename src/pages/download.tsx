@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import Layout from "../components/Layout";
-import { BackgroundImage, BackgroundImagePicture, LeadButton, LeadButtons } from "./index";
+import { LeadButton, LeadButtons } from "./index";
 import Head from "next/head";
 import styled from "styled-components";
 import Link from "next/link";
@@ -8,7 +8,7 @@ import i18n from "pages-i18n/download.i18n";
 import { colors } from "shared";
 import { appApi } from "api/hooks";
 import { AppRouter } from "utils/route";
-import { downloadEvent, ga, loginEvent } from "utils/ga";
+import { downloadEvent, loginEvent } from "utils/ga";
 import { PROD_URL } from "config";
 
 const InfoText = styled.a`
@@ -58,7 +58,7 @@ const Container = styled.div`
   height: 100vh;
 
   &::before {
-    background-image: url("${PROD_URL}/api/static/landing/download.jpeg");
+    background-image: url("${PROD_URL}/static/landing/download.jpeg");
     content: "";
     position: absolute;
     background-size: cover;
@@ -155,7 +155,7 @@ export default () => {
               {/*  {i18n.yandexDisk}*/}
               {/*</LeadButton>*/}
 
-              <LeadButton onClick={downloadEvent} download href={`${PROD_URL}/api/static/684.torrent`}>
+              <LeadButton onClick={downloadEvent} download href={`${PROD_URL}/static/684.torrent`}>
                 {i18n.torrent}
               </LeadButton>
             </LeadButtons>
@@ -175,7 +175,7 @@ export default () => {
           {/*      {i18n.yandexDisk}*/}
           {/*    </LeadButton>*/}
 
-          {/*    <LeadButton download href={"https://dota2classic.ru/api/static/Dota_2_Classic_6.81b.torrent"}>*/}
+          {/*    <LeadButton download href={"https://dota2classic.ru/static/Dota_2_Classic_6.81b.torrent"}>*/}
           {/*      {i18n.torrent}*/}
           {/*    </LeadButton>*/}
           {/*  </LeadButtons>*/}

@@ -10,7 +10,6 @@ import { InvitePlayerModal } from "../InvitePlayerModal";
 import { GameCoordinatorState } from "../../stores/queue/game-coordinator.state";
 import i18n from "./steam-info.i18n";
 import { PlayerInPartyDto } from "../../api/back/models";
-import { PlayerHover } from "components/UI/PlayerHover";
 import Link from "next/link";
 import { AppRouter } from "utils/route";
 import { PROD_URL } from "config";
@@ -176,7 +175,7 @@ export default observer(() => {
         ))}
 
         <PartyItem className={cx("invite")} onClick={() => setInviteOpen(true)}>
-          <img src={`${PROD_URL}/api/static/plus.png`} alt="" />
+          <img src={`${PROD_URL}/static/plus.png`} alt="" />
         </PartyItem>
       </PartyContents>
 

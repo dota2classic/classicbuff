@@ -29,7 +29,7 @@ const AdBlock = styled.a`
     right: 0;
     top: 0;
     bottom: 0;
-    background: url("${PROD_URL}/api/static/classic_banner.png");
+    background: url("${PROD_URL}/static/classic_banner.png");
     opacity: 1;
   }
 `;

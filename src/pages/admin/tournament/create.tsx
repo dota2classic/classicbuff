@@ -11,7 +11,7 @@ import ImageUploader from "components/UI/ImageUploader";
 import { resolveImage } from "../../../utils/resolveImage";
 import { useRouter } from "next/router";
 import Button from "../../../components/UI/Button";
-import Input, { NumberInput } from "../../../components/UI/Input";
+import Input from "../../../components/UI/Input";
 import DatePicker from "react-datepicker";
 import { Hint } from "../../../components/UI/Hint";
 import { colors } from "../../../shared";
@@ -40,7 +40,7 @@ const FormBlock = styled.div`
 export default () => {
   const router = useRouter();
   const [name, setName] = useState("");
-  const [imageUrl, setImageUrl] = useState(`${PROD_URL}/api/static/icons/jugger.png`);
+  const [imageUrl, setImageUrl] = useState(`${PROD_URL}/static/icons/jugger.png`);
   const [startDate, setStartDate] = useState<number>(new Date().getTime() + 1000 * 60 * 60);
   const api = useApi().adminTournament;
   const [bestOfRound, setBestOfRound] = useState(1);

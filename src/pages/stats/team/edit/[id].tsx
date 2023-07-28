@@ -30,7 +30,7 @@ const CreateTeamForm = styled.div`
 export default () => {
   const id = useRouter().query.id as string;
 
-  const [image, setImage] = useState(`${PROD_URL}/api/static/icons/jugger.png`);
+  const [image, setImage] = useState(`${PROD_URL}/static/icons/jugger.png`);
   const [name, setName] = useState("");
   const [tag, setTag] = useState("");
   const router = useRouter();
