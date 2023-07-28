@@ -15,9 +15,7 @@ ENV NODE_ENV=production
 WORKDIR /opt/app
 COPY . .
 COPY --from=deps /opt/app/node_modules ./node_modules
-#
-#ENV API_URL=http://5.101.51.116
-#ENV WS_URL=ws://5.101.51.116
+
 
 ARG BAPI_URL
 ENV API_URL=$BAPI_URL
