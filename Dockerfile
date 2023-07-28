@@ -23,7 +23,7 @@ ARG BAPI_URL
 ENV API_URL=$BAPI_URL
 
 ARG BWS_URL
-ENV WS_URL=$WS_URL
+ENV WS_URL=$BWS_URL
 RUN yarn build
 
 # Production image, copy all the files and run next
