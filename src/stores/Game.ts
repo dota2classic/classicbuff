@@ -173,7 +173,6 @@ export class Game {
     this.socket = isDev
       ? io("ws://localhost:5010", { transports: ["websocket"] })
       : io(WSS_PROD_URL, {
-          path: "/launcher",
           transports: ["websocket"]
         });
 

@@ -1,9 +1,10 @@
 import * as React from "react";
 import { useCallback, useEffect } from "react";
+
 export const eventIncludes = (element: any, e: any) => {
   try {
     return element && !e.composedPath().includes(element);
-  } catch (e) {
+  } catch (exc) {
     // safari fallback
     return element && !element.contains(e.target as Node);
   }

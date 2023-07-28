@@ -4,6 +4,7 @@ import { apiInner, appApi } from "../api/hooks";
 import { MeDto, MeDtoRolesEnum, RoleSubscriptionEntryDtoRoleEnum } from "../api/back/models";
 import { isBrowser } from "../utils/ssr";
 import atob from "atob";
+
 export class AuthServiceService {
   @observable
   public token?: string;
@@ -132,11 +133,12 @@ export class AuthServiceService {
 
   @action.bound
   public logout() {
+    console.log("logout, bad auth!");
     this.token = undefined;
     apiInner.deleteHeader(`Authorization`);
     appApi.apiParams.accessToken = undefined;
-    localStorage.removeItem("token");
-    cookies.erase(AuthServiceService.cookieTokenKey);
+    // localStorage.removeItem("token");
+    // cookies.erase(AuthServiceService.cookieTokenKey);
   }
 }
 
