@@ -16,7 +16,7 @@ import { isServer } from "../ssr";
 
 export { defineMessages } from "react-intl";
 const SSRFormatted = (props: any) => {
-  return <IntlContext.Consumer>{val => <span>{val.messages[props.id]}</span>}</IntlContext.Consumer>;
+  return <IntlContext.Consumer>{val => <span>{val.messages[props.id] as any}</span>}</IntlContext.Consumer>;
 };
 
 const types: any = {

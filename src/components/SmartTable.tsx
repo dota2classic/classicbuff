@@ -1,9 +1,10 @@
 import React, { ReactElement, ReactNode, useEffect, useState } from "react";
-import { observer, useLocalStore } from "mobx-react";
+import { observer } from "mobx-react";
 import { Table, Tr } from "./UI/Table";
+
 interface Props<T> {
   data: T[];
-  renderRow: (t: T) => ReactElement;
+  renderRow: (props: T) => ReactElement;
   head: Partial<{ [key in keyof T]: ReactNode }>[];
   sort: Partial<{ [key in keyof T]: (t: T) => any }>;
   defaultSort?: keyof T;
@@ -57,7 +58,8 @@ export default observer(function<T>(props: Props<T>) {
   useEffect(() => {
     doSortStuff();
   }, [props.data, sortKey]);
-  const Row: React.FunctionComponent<T> = props.renderRow;
+
+  const Row: React.FC<T & React.JSX.IntrinsicAttributes> = props.renderRow;
 
   return (
     <Table className="compact">
@@ -100,7 +102,7 @@ export default observer(function<T>(props: Props<T>) {
       </thead>
       <tbody>
         {sortedData.map(it => (
-          <Row {...it} />
+          <Row {...it} key={undefined} />
         ))}
       </tbody>
     </Table>

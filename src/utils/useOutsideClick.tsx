@@ -30,7 +30,7 @@ export default function useOutsideClick(onOuterClick: (e: any) => void, innerRef
 }
 
 export const useEscapePress = (callback: () => void) => {
-  const escFunction = useCallback(event => {
+  const escFunction = useCallback((event: any) => {
     if (event.keyCode === 27) {
       //Do whatever when esc is pressed
       callback();

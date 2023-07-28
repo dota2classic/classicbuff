@@ -21,7 +21,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "rootDir": "./src",
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "incremental": true
   },
   "include": ["src"],
   "exclude": ["build", "public", ".next"]
