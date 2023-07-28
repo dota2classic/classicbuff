@@ -1,5 +1,5 @@
 # Install dependencies only when needed
-FROM node:lts-alpine AS deps
+FROM node:16-alpine AS deps
 
 WORKDIR /opt/app
 COPY package.json yarn.lock ./
