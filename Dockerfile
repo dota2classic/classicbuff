@@ -18,10 +18,10 @@ COPY --from=deps /opt/app/node_modules ./node_modules
 
 
 ARG BAPI_URL
-ENV API_URL $BAPI_URL
+ENV NEXT_PUBLIC_API_URL $BAPI_URL
 
 ARG BWS_URL
-ENV WS_URL $BWS_URL
+ENV NEXT_PUBLIC_WS_URL $BWS_URL
 RUN yarn build
 
 # Production image, copy all the files and run next
