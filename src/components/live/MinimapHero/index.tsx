@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import React from "react";
 import cx from "classnames";
+
 interface Props {
   hero: string;
   x: number;
@@ -30,5 +31,6 @@ const Hero = styled.div<{ x: number; y: number }>`
 `;
 
 export const MinimapHero = ({ hero, x, y, team, small }: Props) => {
+  console.log(x, y);
   return <Hero x={x} y={y} className={cx("d2mh", hero, team === 2 ? "radiant" : "dire", small && "small")} />;
 };

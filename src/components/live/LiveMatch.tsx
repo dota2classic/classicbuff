@@ -12,7 +12,6 @@ import { MinimapHero } from "./MinimapHero";
 import { PlayerHover } from "../UI/PlayerHover";
 import { useStores } from "stores";
 import i18n from "./live-match.i18n";
-import { PROD_URL } from "config";
 
 const Map = styled.div`
   margin-left: 20px;
@@ -123,7 +122,7 @@ const TeamInfoBlock = ({ heroes, team }: Props) => {
       {heroes.map(hero => (
         <PlayerRow key="hero">
           <PlayerHeroRow>
-            <img src={`${PROD_URL}/static/heroes/${hero.hero}.jpg.webp`} alt="" />
+            <img src={`/static/heroes/${hero.hero}.jpg`} alt="" />
             {hero.bot ? (
               <span className="player-name">{"Бот"}</span>
             ) : (
