@@ -1,5 +1,5 @@
 import Layout from "components/Layout";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Head from "next/head";
 import formatGameMode, { MatchmakingMode } from "utils/format/formatGameMode";
@@ -9,8 +9,6 @@ import historyI18n from "pages-i18n/history.i18n";
 import { observer } from "mobx-react";
 import Pagination from "components/Pagination";
 import { useApi } from "api/hooks";
-import { formatDuration } from "pages/stats/match/[id]";
-import Link from "next/link";
 import { AdBanner } from "components/ads/ads";
 import { useTab } from "utils/useTab";
 import { Table, Tr } from "components/UI/Table";
@@ -20,9 +18,11 @@ export const Heroes = styled.div`
   flex-direction: row;
 `;
 
-export const MatchIdCol = styled.div`
+export const MatchIdCol = styled.a`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  padding-left: 12px;
 `;
 
 const LiveMatchEngage = styled.div`

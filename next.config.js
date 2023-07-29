@@ -8,6 +8,11 @@ module.exports = withBundleAnalyzer({
     locales: ["en-us", "ru-ru"],
     defaultLocale: "ru-ru"
   },
+  env: {
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || "apiurlnotset",
+    NEXT_PUBLIC_WS_URL: process.env.NEXT_PUBLIC_WS_URL || "wsurlnotset",
+    DEV: process.env.DEV || "false"
+  },
 
   webpack(config, options) {
     config.resolve = config.resolve || {};

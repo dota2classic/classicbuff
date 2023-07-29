@@ -250,9 +250,6 @@ const MobileMenu = observer(() => {
             DOTA2CLASSIC
           </MenuItem>
         </Link>
-        {/*<Link {...AppRouter.queue.link}>*/}
-        {/*  <MenuItem onClick={() => setMenuOpen(false)} className={cx(asPath.startsWith("/queue") && "active")}>{layoutI18n.play}</MenuItem>*/}
-        {/*</Link>*/}
 
         <Link {...AppRouter.download.link}>
           <MenuItem onClick={() => setMenuOpen(false)} className={cx(asPath.startsWith("/download") && "active")}>
@@ -264,35 +261,6 @@ const MobileMenu = observer(() => {
             {layoutI18n.news}
           </MenuItem>
         </Link>
-
-        {/*<Link {...AppRouter.leaderboard.link}>*/}
-        {/*  <MenuItem onClick={() => setMenuOpen(false)} className={cx(asPath.startsWith("/leaderboard") && "active")}>*/}
-        {/*    {layoutI18n.leaderboard}*/}
-        {/*  </MenuItem>*/}
-        {/*</Link>*/}
-
-        {/*<Link {...AppRouter.history.index.link}>*/}
-        {/*  <MenuItem onClick={() => setMenuOpen(false)} className={cx(asPath.startsWith("/history") && "active")}>*/}
-        {/*    {layoutI18n.matches}*/}
-        {/*  </MenuItem>*/}
-        {/*</Link>*/}
-        {/*<Link {...AppRouter.tournament.index.link}>*/}
-        {/*  <MenuItem onClick={() => setMenuOpen(false)} className={cx(asPath.startsWith("/tournament") && "active")}>*/}
-        {/*    {layoutI18n.tournaments}*/}
-        {/*  </MenuItem>*/}
-        {/*</Link>*/}
-
-        {/*<Link {...AppRouter.team.index.link}>*/}
-        {/*  <MenuItem onClick={() => setMenuOpen(false)} className={cx(asPath.startsWith("/team") && "active")}>*/}
-        {/*    {layoutI18n.teams}*/}
-        {/*  </MenuItem>*/}
-        {/*</Link>*/}
-
-        {/*<Link {...AppRouter.meta.index.link}>*/}
-        {/*  <MenuItem onClick={() => setMenuOpen(false)} className={cx(asPath.startsWith("/meta") && "active")}>*/}
-        {/*    {layoutI18n.meta}*/}
-        {/*  </MenuItem>*/}
-        {/*</Link>*/}
 
         <Link {...AppRouter.live.link}>
           <MenuItem onClick={() => setMenuOpen(false)} className={cx(asPath.startsWith("/live") && "active")}>
@@ -356,25 +324,6 @@ const StatsHeader = observer(() => {
         </Link>
 
         <div className="divider" />
-
-        <Link {...AppRouter.leaderboard.link}>
-          <Tab className={cx(asPath.startsWith("/leaderboard") && "active")}>{layoutI18n.leaderboard}</Tab>
-        </Link>
-
-        <Link {...AppRouter.history.index.link}>
-          <Tab className={cx(asPath.startsWith("/history") && "active")}>{layoutI18n.matches}</Tab>
-        </Link>
-        <Link {...AppRouter.tournament.index.link}>
-          <Tab className={cx(asPath.startsWith("/tournament") && "active")}>{layoutI18n.tournaments}</Tab>
-        </Link>
-
-        <Link {...AppRouter.team.index.link}>
-          <Tab className={cx(asPath.startsWith("/team") && "active")}>{layoutI18n.teams}</Tab>
-        </Link>
-
-        <Link {...AppRouter.meta.index.link}>
-          <Tab className={cx(asPath.startsWith("/meta") && "active")}>{layoutI18n.meta}</Tab>
-        </Link>
 
         <Link {...AppRouter.live.link}>
           <Tab className={cx(asPath.startsWith("/live") && "active")}>
@@ -440,16 +389,17 @@ const DefaultHeader = observer(() => {
           <Link {...AppRouter.download.link}>
             <Tab className={cx(asPath.startsWith("/download") && "active")}>{layoutI18n.download}</Tab>
           </Link>
-          <Link {...AppRouter.blog.link}>
-            <Tab className={cx(asPath.startsWith("/blog") && "active")}>{layoutI18n.news}</Tab>
-          </Link>
-          <Link {...AppRouter.history.index.link}>
-            <Tab className={cx(asPath.startsWith("/stats") && "active")}>{layoutI18n.stats}</Tab>
+          <Link {...AppRouter.leaderboard.link}>
+            <Tab className={cx(asPath.startsWith("/leaderboard") && "active")}>{layoutI18n.leaderboard}</Tab>
           </Link>
 
-          <Tab href={"https://discord.gg/kGWH4ggBdZ"} target="__blank">
-            DISCORD
-          </Tab>
+          <Link {...AppRouter.history.index.link}>
+            <Tab className={cx(asPath.startsWith("/history") && "active")}>{layoutI18n.matches}</Tab>
+          </Link>
+
+          <Link {...AppRouter.meta.index.link}>
+            <Tab className={cx(asPath.startsWith("/meta") && "active")}>{layoutI18n.meta}</Tab>
+          </Link>
 
           {liveData && (
             <Link {...AppRouter.live.link}>
@@ -509,7 +459,7 @@ export default observer((p: PropsWithChildren<{ landing?: boolean; noScroll?: bo
 
   return (
     <LayoutContainer className={cx(p.noScroll && "no-scroll", p.landing && "landing")}>
-      {asPath.startsWith("/stats") ? <StatsHeader /> : <DefaultHeader />}
+      <DefaultHeader />
       <MobileMenu />
       <NotificationHold />
       <Content className={cx(p.landing && "landing")}>

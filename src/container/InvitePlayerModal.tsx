@@ -6,6 +6,8 @@ import { useStores } from "../stores";
 import useOutsideClick from "../utils/useOutsideClick";
 import { NotificationDto } from "../stores/notification/notification.service";
 import i18n from "./invite-player-modal.i18n";
+import cx from "classnames";
+
 const Modal = styled.div`
   z-index: 100;
   position: absolute;
@@ -33,6 +35,10 @@ const ModalWrapper = styled.div`
   bottom: 0;
   z-index: 99;
   background: rgba(0, 0, 0, 0.6);
+
+  &.hidden {
+    display: none;
+  }
 `;
 
 const PlayerPreview = styled.div`
@@ -72,10 +78,10 @@ const PlayerList = styled.div`
 
 interface Props {
   close(): void;
-  open: boolean;
+  isOpen: boolean;
 }
 
-const InvitePlayerModalInner = ({ open, close }: Props) => {
+const InvitePlayerModalInner = ({ isOpen, close }: Props) => {
   const [search, setSearch] = useState("");
 
   const { data } = useApi().playerApi.usePlayerControllerSearch(search);
@@ -85,7 +91,7 @@ const InvitePlayerModalInner = ({ open, close }: Props) => {
   useOutsideClick(close, comp);
 
   return (
-    <ModalWrapper>
+    <ModalWrapper className={cx(!isOpen && "hidden")}>
       <Modal ref={comp}>
         <Title>{i18n.title}</Title>
         <Input placeholder={"Никнейм игрока"} value={search} onChange={e => setSearch(e.target.value)} />
@@ -110,8 +116,6 @@ const InvitePlayerModalInner = ({ open, close }: Props) => {
   );
 };
 
-export const InvitePlayerModal = ({ open, close }: Props) => {
-  if (open) return <InvitePlayerModalInner open={open} close={close} />;
-
-  return null;
+export const InvitePlayerModal = ({ isOpen, close }: Props) => {
+  return <InvitePlayerModalInner isOpen={isOpen} close={close} />;
 };

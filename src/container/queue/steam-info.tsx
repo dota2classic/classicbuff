@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { observer } from "mobx-react-lite";
 import styled, { keyframes } from "styled-components";
 import { colors } from "../../shared";
@@ -158,12 +158,14 @@ export default observer(() => {
 
   const [inviteOpen, setInviteOpen] = useState(false);
 
+  const close = useCallback(() => setInviteOpen(false), []);
+
   if (!queue.ready) {
     return <GameCoordinatorConnection />;
   }
   return (
     <InfoRow>
-      <InvitePlayerModal open={inviteOpen} close={() => setInviteOpen(false)} />
+      <InvitePlayerModal isOpen={inviteOpen} close={close} />
 
       <PartyContents>
         {queue.party!!.players.map((t: PlayerInPartyDto) => (
@@ -174,7 +176,13 @@ export default observer(() => {
           </Link>
         ))}
 
-        <PartyItem className={cx("invite")} onClick={() => setInviteOpen(true)}>
+        <PartyItem
+          className={cx("invite")}
+          onClick={(e: any) => {
+            e.nativeEvent.nasty = true;
+            setInviteOpen(true);
+          }}
+        >
           <img src={`${PROD_URL}/static/plus.png`} alt="" />
         </PartyItem>
       </PartyContents>

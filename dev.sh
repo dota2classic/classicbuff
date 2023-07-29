@@ -1,1 +1,1 @@
-DEV=false API_URL=http://5.101.51.116 WS_URL=ws://5.101.51.116/launcher yarn dev
+DEV=false NEXT_PUBLIC_API_URL=https://classicdota.ru NEXT_PUBLIC_WS_URL=wss://classicdota.ru yarn dev
