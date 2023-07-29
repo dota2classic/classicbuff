@@ -1,17 +1,19 @@
 import PlayerMatch from "../components/PlayerMatch";
 import Pagination from "../components/Pagination";
-import React, { useState } from "react";
+import React from "react";
 import { useApi } from "../api/hooks";
 import { AdBanner } from "../components/ads/ads";
 import { Table, Tr } from "../components/UI/Table";
 import i18n from "pages-i18n/profile/profile.i18n";
+import { useTab } from "utils/useTab";
+
 interface Props {
   steam_id: string;
 }
 export default (props: Props) => {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useTab("page", 0);
 
-  const { data } = useApi().matchApi.useMatchControllerPlayerMatches(props.steam_id, page);
+  const { data } = useApi().matchApi.useMatchControllerPlayerMatches(props.steam_id, page!!);
 
   return (
     <>
@@ -46,9 +48,9 @@ export default (props: Props) => {
       {data && (
         <Pagination
           pages={data?.pages}
-          page={page}
-          next={() => setPage(page + 1)}
-          prev={() => setPage(Math.max(0, page - 1))}
+          page={page!!}
+          next={() => setPage(page!! + 1)}
+          prev={() => setPage(Math.max(0, page!! - 1))}
         />
       )}
     </>
