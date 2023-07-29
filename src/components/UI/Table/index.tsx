@@ -10,11 +10,11 @@ export const Table = styled.table`
   width: 100%;
 
   & th {
-    border: 1px solid ${colors.almostBlack};
+    //border: 1px solid ${colors.almostBlack};
   }
 
   & td {
-    border: 1px solid ${colors.evenDarkerBg};
+    //border: 1px solid ${colors.evenDarkerBg};
   }
 
   & th.red,
@@ -45,9 +45,9 @@ export const Table = styled.table`
   &.compact {
     & td,
     th {
-      padding: 2px;
+      padding: 2px 6px;
       font-size: 14px;
-      text-align: center;
+      text-align: left;
     }
   }
   border-top-width: 2px;

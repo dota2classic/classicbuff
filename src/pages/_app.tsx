@@ -93,7 +93,8 @@ export default class MyApp extends App<any> {
       <ModalProvider>
         <SWRConfig
           value={{
-            refreshInterval: typeof window === "undefined" ? 0 : 15000
+            refreshInterval: typeof window === "undefined" ? 0 : 15000,
+            refreshWhenHidden: false
           }}
         >
           <RawIntlProvider value={intl}>

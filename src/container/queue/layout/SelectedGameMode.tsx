@@ -1,6 +1,6 @@
 import { observer } from "mobx-react";
 import styled from "styled-components";
-import React, { ReactNode } from "react";
+import React from "react";
 import formatGameMode, { MatchmakingMode } from "../../../utils/format/formatGameMode";
 import { colors } from "../../../shared";
 import Link from "next/link";
@@ -8,6 +8,8 @@ import { useStores } from "../../../stores";
 import { AdBanner } from "../../../components/ads/ads";
 import { BanStatusInfo } from "../../../components/UI/BanStatusInfo";
 import i18n from "./selected-game-mode.i18n";
+import { AppRouter } from "utils/route";
+
 const Container = styled.div`
   flex: 1;
   flex-direction: column;
@@ -40,7 +42,7 @@ const texts: any = {
     <span>
       {i18n.mostPopularMode} <br />
       <br />
-      <Link href={"/leaderboard"}>
+      <Link {...AppRouter.leaderboard.link}>
         <a>{i18n.viewLeaderboard}</a>
       </Link>
     </span>
