@@ -3,7 +3,8 @@
 {{>licenseInfo}}
 
 import * as runtime from '../runtime';
-import useSWR, { ConfigInterface } from "swr";
+import useSWR from "swr";
+import { SWRConfiguration } from "swr/_internal";
 
 {{#imports.0}}
 import {
@@ -365,7 +366,7 @@ export class {{classname}} extends runtime.BaseAPI {
     {{/useSingleRequestParameter}}
 
     {{^isBodyAllowed}}
-    {{#lambda.camelcase}}use_{{nickname}}{{/lambda.camelcase}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{#isNullable}} | null{{/isNullable}}{{/isEnum}}, {{/allParams}}config?: ConfigInterface<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}, Error>) {
+    {{#lambda.camelcase}}use_{{nickname}}{{/lambda.camelcase}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{#isNullable}} | null{{/isNullable}}{{/isEnum}}, {{/allParams}}config?: SWRConfiguration<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}, Error>) {
         let valid = true
 
         {{#allParams}}
@@ -377,7 +378,7 @@ export class {{classname}} extends runtime.BaseAPI {
         {{/required}}
         {{/allParams}}
         const context = this.{{nickname}}Context({{#allParams.0}}{ {{#allParams}}{{paramName}}: {{paramName}}!{{#hasMore}}, {{/hasMore}}{{/allParams}} }{{/allParams.0}});
-        return useSWR(JSON.stringify(context), valid ? () => this.{{nickname}}({{#allParams}}{{paramName}}!{{#hasMore}}, {{/hasMore}}{{/allParams}}) : undefined, config)
+        return useSWR(JSON.stringify(context), valid ? () => this.{{nickname}}({{#allParams}}{{paramName}}!{{#hasMore}}, {{/hasMore}}{{/allParams}}) : null, config)
     }
     {{/isBodyAllowed}}
 

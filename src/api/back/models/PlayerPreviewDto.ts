@@ -12,58 +12,61 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from "../runtime";
 /**
  *
  * @export
  * @interface PlayerPreviewDto
  */
 export interface PlayerPreviewDto {
-  /**
-   *
-   * @type {string}
-   * @memberof PlayerPreviewDto
-   */
-  name: string;
-  /**
-   *
-   * @type {string}
-   * @memberof PlayerPreviewDto
-   */
-  id: string;
-  /**
-   *
-   * @type {string}
-   * @memberof PlayerPreviewDto
-   */
-  avatar: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PlayerPreviewDto
+     */
+    name: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PlayerPreviewDto
+     */
+    id: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PlayerPreviewDto
+     */
+    avatar: string;
 }
 
 export function PlayerPreviewDtoFromJSON(json: any): PlayerPreviewDto {
-  return PlayerPreviewDtoFromJSONTyped(json, false);
+    return PlayerPreviewDtoFromJSONTyped(json, false);
 }
 
 export function PlayerPreviewDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlayerPreviewDto {
-  if (json === undefined || json === null) {
-    return json;
-  }
-  return {
-    name: json["name"],
-    id: json["id"],
-    avatar: json["avatar"]
-  };
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return {
+
+        'name': json['name'],
+        'id': json['id'],
+        'avatar': json['avatar'],
+    };
 }
 
 export function PlayerPreviewDtoToJSON(value?: PlayerPreviewDto | null): any {
-  if (value === undefined) {
-    return undefined;
-  }
-  if (value === null) {
-    return null;
-  }
-  return {
-    name: value.name,
-    id: value.id,
-    avatar: value.avatar
-  };
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return {
+
+        'name': value.name,
+        'id': value.id,
+        'avatar': value.avatar,
+    };
 }
+
+

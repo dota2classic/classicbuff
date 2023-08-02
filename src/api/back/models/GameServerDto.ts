@@ -12,59 +12,62 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from "../runtime";
 /**
  *
  * @export
  * @interface GameServerDto
  */
 export interface GameServerDto {
-  /**
-   *
-   * @type {string}
-   * @memberof GameServerDto
-   */
-  url: string;
-  /**
-   *
-   * @type {string}
-   * @memberof GameServerDto
-   */
-  version: GameServerDtoVersionEnum;
+    /**
+     *
+     * @type {string}
+     * @memberof GameServerDto
+     */
+    url: string;
+    /**
+     *
+     * @type {string}
+     * @memberof GameServerDto
+     */
+    version: GameServerDtoVersionEnum;
 }
 
 export function GameServerDtoFromJSON(json: any): GameServerDto {
-  return GameServerDtoFromJSONTyped(json, false);
+    return GameServerDtoFromJSONTyped(json, false);
 }
 
 export function GameServerDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): GameServerDto {
-  if (json === undefined || json === null) {
-    return json;
-  }
-  return {
-    url: json["url"],
-    version: json["version"]
-  };
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return {
+
+        'url': json['url'],
+        'version': json['version'],
+    };
 }
 
 export function GameServerDtoToJSON(value?: GameServerDto | null): any {
-  if (value === undefined) {
-    return undefined;
-  }
-  if (value === null) {
-    return null;
-  }
-  return {
-    url: value.url,
-    version: value.version
-  };
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return {
+
+        'url': value.url,
+        'version': value.version,
+    };
 }
 
 /**
- * @export
- * @enum {string}
- */
+* @export
+* @enum {string}
+*/
 export enum GameServerDtoVersionEnum {
-  _681 = "Dota_681",
-  _684 = "Dota_684"
+    _681 = 'Dota_681',
+    _684 = 'Dota_684'
 }
+
+

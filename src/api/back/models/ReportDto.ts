@@ -12,58 +12,61 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from "../runtime";
 /**
  *
  * @export
  * @interface ReportDto
  */
 export interface ReportDto {
-  /**
-   *
-   * @type {string}
-   * @memberof ReportDto
-   */
-  reported: string;
-  /**
-   *
-   * @type {number}
-   * @memberof ReportDto
-   */
-  matchId: number;
-  /**
-   *
-   * @type {string}
-   * @memberof ReportDto
-   */
-  text: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportDto
+     */
+    reported: string;
+    /**
+     *
+     * @type {number}
+     * @memberof ReportDto
+     */
+    matchId: number;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportDto
+     */
+    text: string;
 }
 
 export function ReportDtoFromJSON(json: any): ReportDto {
-  return ReportDtoFromJSONTyped(json, false);
+    return ReportDtoFromJSONTyped(json, false);
 }
 
 export function ReportDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReportDto {
-  if (json === undefined || json === null) {
-    return json;
-  }
-  return {
-    reported: json["reported"],
-    matchId: json["matchId"],
-    text: json["text"]
-  };
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return {
+
+        'reported': json['reported'],
+        'matchId': json['matchId'],
+        'text': json['text'],
+    };
 }
 
 export function ReportDtoToJSON(value?: ReportDto | null): any {
-  if (value === undefined) {
-    return undefined;
-  }
-  if (value === null) {
-    return null;
-  }
-  return {
-    reported: value.reported,
-    matchId: value.matchId,
-    text: value.text
-  };
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return {
+
+        'reported': value.reported,
+        'matchId': value.matchId,
+        'text': value.text,
+    };
 }
+
+

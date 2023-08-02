@@ -114,6 +114,7 @@ export const COLLECTION_FORMATS = {
     pipes: "|",
 };
 
+declare type GlobalFetch = WindowOrWorkerGlobalScope
 export type FetchAPI = {{#typescriptThreePlus}}WindowOrWorkerGlobalScope{{/typescriptThreePlus}}{{^typescriptThreePlus}}GlobalFetch{{/typescriptThreePlus}}['fetch'];
 
 export interface ConfigurationParameters {

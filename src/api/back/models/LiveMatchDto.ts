@@ -12,8 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from "../runtime";
-import { PlayerInfo, PlayerInfoFromJSON, PlayerInfoFromJSONTyped, PlayerInfoToJSON } from "./";
+import { PlayerInfo, PlayerInfoFromJSON, PlayerInfoToJSON } from "./";
 
 /**
  *
@@ -21,93 +20,97 @@ import { PlayerInfo, PlayerInfoFromJSON, PlayerInfoFromJSONTyped, PlayerInfoToJS
  * @interface LiveMatchDto
  */
 export interface LiveMatchDto {
-  /**
-   *
-   * @type {number}
-   * @memberof LiveMatchDto
-   */
-  matchId: number;
-  /**
-   *
-   * @type {string}
-   * @memberof LiveMatchDto
-   */
-  type: LiveMatchDtoTypeEnum;
-  /**
-   *
-   * @type {number}
-   * @memberof LiveMatchDto
-   */
-  duration: number;
-  /**
-   *
-   * @type {string}
-   * @memberof LiveMatchDto
-   */
-  server: string;
-  /**
-   *
-   * @type {number}
-   * @memberof LiveMatchDto
-   */
-  timestamp: number;
-  /**
-   *
-   * @type {Array<PlayerInfo>}
-   * @memberof LiveMatchDto
-   */
-  heroes: Array<PlayerInfo>;
+    /**
+     *
+     * @type {number}
+     * @memberof LiveMatchDto
+     */
+    matchId: number;
+    /**
+     *
+     * @type {string}
+     * @memberof LiveMatchDto
+     */
+    type: LiveMatchDtoTypeEnum;
+    /**
+     *
+     * @type {number}
+     * @memberof LiveMatchDto
+     */
+    duration: number;
+    /**
+     *
+     * @type {string}
+     * @memberof LiveMatchDto
+     */
+    server: string;
+    /**
+     *
+     * @type {number}
+     * @memberof LiveMatchDto
+     */
+    timestamp: number;
+    /**
+     *
+     * @type {Array<PlayerInfo>}
+     * @memberof LiveMatchDto
+     */
+    heroes: Array<PlayerInfo>;
 }
 
 export function LiveMatchDtoFromJSON(json: any): LiveMatchDto {
-  return LiveMatchDtoFromJSONTyped(json, false);
+    return LiveMatchDtoFromJSONTyped(json, false);
 }
 
 export function LiveMatchDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): LiveMatchDto {
-  if (json === undefined || json === null) {
-    return json;
-  }
-  return {
-    matchId: json["matchId"],
-    type: json["type"],
-    duration: json["duration"],
-    server: json["server"],
-    timestamp: json["timestamp"],
-    heroes: (json["heroes"] as Array<any>).map(PlayerInfoFromJSON)
-  };
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return {
+
+        'matchId': json['matchId'],
+        'type': json['type'],
+        'duration': json['duration'],
+        'server': json['server'],
+        'timestamp': json['timestamp'],
+        'heroes': ((json['heroes'] as Array<any>).map(PlayerInfoFromJSON)),
+    };
 }
 
 export function LiveMatchDtoToJSON(value?: LiveMatchDto | null): any {
-  if (value === undefined) {
-    return undefined;
-  }
-  if (value === null) {
-    return null;
-  }
-  return {
-    matchId: value.matchId,
-    type: value.type,
-    duration: value.duration,
-    server: value.server,
-    timestamp: value.timestamp,
-    heroes: (value.heroes as Array<any>).map(PlayerInfoToJSON)
-  };
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return {
+
+        'matchId': value.matchId,
+        'type': value.type,
+        'duration': value.duration,
+        'server': value.server,
+        'timestamp': value.timestamp,
+        'heroes': ((value.heroes as Array<any>).map(PlayerInfoToJSON)),
+    };
 }
 
 /**
- * @export
- * @enum {string}
- */
+* @export
+* @enum {string}
+*/
 export enum LiveMatchDtoTypeEnum {
-  RANKED = "RANKED",
-  UNRANKED = "UNRANKED",
-  SOLOMID = "SOLOMID",
-  DIRETIDE = "DIRETIDE",
-  GREEVILING = "GREEVILING",
-  ABILITYDRAFT = "ABILITY_DRAFT",
-  TOURNAMENT = "TOURNAMENT",
-  BOTS = "BOTS",
-  HIGHROOM = "HIGHROOM",
-  TOURNAMENTSOLOMID = "TOURNAMENT_SOLOMID",
-  CAPTAINSMODE = "CAPTAINS_MODE"
+    RANKED = 'RANKED',
+    UNRANKED = 'UNRANKED',
+    SOLOMID = 'SOLOMID',
+    DIRETIDE = 'DIRETIDE',
+    GREEVILING = 'GREEVILING',
+    ABILITYDRAFT = 'ABILITY_DRAFT',
+    TOURNAMENT = 'TOURNAMENT',
+    BOTS = 'BOTS',
+    HIGHROOM = 'HIGHROOM',
+    TOURNAMENTSOLOMID = 'TOURNAMENT_SOLOMID',
+    CAPTAINSMODE = 'CAPTAINS_MODE'
 }
+
+

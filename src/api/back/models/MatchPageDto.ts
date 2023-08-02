@@ -12,8 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from "../runtime";
-import { MatchDto, MatchDtoFromJSON, MatchDtoFromJSONTyped, MatchDtoToJSON } from "./";
+import { MatchDto, MatchDtoFromJSON, MatchDtoToJSON } from "./";
 
 /**
  *
@@ -21,59 +20,63 @@ import { MatchDto, MatchDtoFromJSON, MatchDtoFromJSONTyped, MatchDtoToJSON } fro
  * @interface MatchPageDto
  */
 export interface MatchPageDto {
-  /**
-   *
-   * @type {Array<MatchDto>}
-   * @memberof MatchPageDto
-   */
-  data: Array<MatchDto>;
-  /**
-   *
-   * @type {number}
-   * @memberof MatchPageDto
-   */
-  page: number;
-  /**
-   *
-   * @type {number}
-   * @memberof MatchPageDto
-   */
-  pages: number;
-  /**
-   *
-   * @type {number}
-   * @memberof MatchPageDto
-   */
-  perPage: number;
+    /**
+     *
+     * @type {Array<MatchDto>}
+     * @memberof MatchPageDto
+     */
+    data: Array<MatchDto>;
+    /**
+     *
+     * @type {number}
+     * @memberof MatchPageDto
+     */
+    page: number;
+    /**
+     *
+     * @type {number}
+     * @memberof MatchPageDto
+     */
+    pages: number;
+    /**
+     *
+     * @type {number}
+     * @memberof MatchPageDto
+     */
+    perPage: number;
 }
 
 export function MatchPageDtoFromJSON(json: any): MatchPageDto {
-  return MatchPageDtoFromJSONTyped(json, false);
+    return MatchPageDtoFromJSONTyped(json, false);
 }
 
 export function MatchPageDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): MatchPageDto {
-  if (json === undefined || json === null) {
-    return json;
-  }
-  return {
-    data: (json["data"] as Array<any>).map(MatchDtoFromJSON),
-    page: json["page"],
-    pages: json["pages"],
-    perPage: json["perPage"]
-  };
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return {
+
+        'data': ((json['data'] as Array<any>).map(MatchDtoFromJSON)),
+        'page': json['page'],
+        'pages': json['pages'],
+        'perPage': json['perPage'],
+    };
 }
 
 export function MatchPageDtoToJSON(value?: MatchPageDto | null): any {
-  if (value === undefined) {
-    return undefined;
-  }
-  if (value === null) {
-    return null;
-  }
-  return {
-    data: (value.data as Array<any>).map(MatchDtoToJSON),
-    page: value.page,
-    pages: value.pages,
-    perPage: value.perPage
-  };
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return {
+
+        'data': ((value.data as Array<any>).map(MatchDtoToJSON)),
+        'page': value.page,
+        'pages': value.pages,
+        'perPage': value.perPage,
+    };
 }
+
+

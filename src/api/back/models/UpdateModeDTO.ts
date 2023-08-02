@@ -12,84 +12,87 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from "../runtime";
 /**
  *
  * @export
  * @interface UpdateModeDTO
  */
 export interface UpdateModeDTO {
-  /**
-   *
-   * @type {string}
-   * @memberof UpdateModeDTO
-   */
-  mode: UpdateModeDTOModeEnum;
-  /**
-   *
-   * @type {string}
-   * @memberof UpdateModeDTO
-   */
-  version: UpdateModeDTOVersionEnum;
-  /**
-   *
-   * @type {boolean}
-   * @memberof UpdateModeDTO
-   */
-  enabled: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof UpdateModeDTO
+     */
+    mode: UpdateModeDTOModeEnum;
+    /**
+     *
+     * @type {string}
+     * @memberof UpdateModeDTO
+     */
+    version: UpdateModeDTOVersionEnum;
+    /**
+     *
+     * @type {boolean}
+     * @memberof UpdateModeDTO
+     */
+    enabled: boolean;
 }
 
 export function UpdateModeDTOFromJSON(json: any): UpdateModeDTO {
-  return UpdateModeDTOFromJSONTyped(json, false);
+    return UpdateModeDTOFromJSONTyped(json, false);
 }
 
 export function UpdateModeDTOFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateModeDTO {
-  if (json === undefined || json === null) {
-    return json;
-  }
-  return {
-    mode: json["mode"],
-    version: json["version"],
-    enabled: json["enabled"]
-  };
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return {
+
+        'mode': json['mode'],
+        'version': json['version'],
+        'enabled': json['enabled'],
+    };
 }
 
 export function UpdateModeDTOToJSON(value?: UpdateModeDTO | null): any {
-  if (value === undefined) {
-    return undefined;
-  }
-  if (value === null) {
-    return null;
-  }
-  return {
-    mode: value.mode,
-    version: value.version,
-    enabled: value.enabled
-  };
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return {
+
+        'mode': value.mode,
+        'version': value.version,
+        'enabled': value.enabled,
+    };
 }
 
 /**
- * @export
- * @enum {string}
- */
+* @export
+* @enum {string}
+*/
 export enum UpdateModeDTOModeEnum {
-  RANKED = "RANKED",
-  UNRANKED = "UNRANKED",
-  SOLOMID = "SOLOMID",
-  DIRETIDE = "DIRETIDE",
-  GREEVILING = "GREEVILING",
-  ABILITYDRAFT = "ABILITY_DRAFT",
-  TOURNAMENT = "TOURNAMENT",
-  BOTS = "BOTS",
-  HIGHROOM = "HIGHROOM",
-  TOURNAMENTSOLOMID = "TOURNAMENT_SOLOMID",
-  CAPTAINSMODE = "CAPTAINS_MODE"
+    RANKED = 'RANKED',
+    UNRANKED = 'UNRANKED',
+    SOLOMID = 'SOLOMID',
+    DIRETIDE = 'DIRETIDE',
+    GREEVILING = 'GREEVILING',
+    ABILITYDRAFT = 'ABILITY_DRAFT',
+    TOURNAMENT = 'TOURNAMENT',
+    BOTS = 'BOTS',
+    HIGHROOM = 'HIGHROOM',
+    TOURNAMENTSOLOMID = 'TOURNAMENT_SOLOMID',
+    CAPTAINSMODE = 'CAPTAINS_MODE'
 }
 /**
- * @export
- * @enum {string}
- */
+* @export
+* @enum {string}
+*/
 export enum UpdateModeDTOVersionEnum {
-  _681 = "Dota_681",
-  _684 = "Dota_684"
+    _681 = 'Dota_681',
+    _684 = 'Dota_684'
 }
+
+

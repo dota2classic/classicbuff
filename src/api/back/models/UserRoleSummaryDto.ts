@@ -12,13 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from "../runtime";
-import {
-  RoleSubscriptionEntryDto,
-  RoleSubscriptionEntryDtoFromJSON,
-  RoleSubscriptionEntryDtoFromJSONTyped,
-  RoleSubscriptionEntryDtoToJSON
-} from "./";
+import { RoleSubscriptionEntryDto, RoleSubscriptionEntryDtoFromJSON, RoleSubscriptionEntryDtoToJSON } from "./";
 
 /**
  *
@@ -26,51 +20,55 @@ import {
  * @interface UserRoleSummaryDto
  */
 export interface UserRoleSummaryDto {
-  /**
-   *
-   * @type {string}
-   * @memberof UserRoleSummaryDto
-   */
-  steamId: string;
-  /**
-   *
-   * @type {string}
-   * @memberof UserRoleSummaryDto
-   */
-  name: string;
-  /**
-   *
-   * @type {Array<RoleSubscriptionEntryDto>}
-   * @memberof UserRoleSummaryDto
-   */
-  entries: Array<RoleSubscriptionEntryDto>;
+    /**
+     *
+     * @type {string}
+     * @memberof UserRoleSummaryDto
+     */
+    steamId: string;
+    /**
+     *
+     * @type {string}
+     * @memberof UserRoleSummaryDto
+     */
+    name: string;
+    /**
+     *
+     * @type {Array<RoleSubscriptionEntryDto>}
+     * @memberof UserRoleSummaryDto
+     */
+    entries: Array<RoleSubscriptionEntryDto>;
 }
 
 export function UserRoleSummaryDtoFromJSON(json: any): UserRoleSummaryDto {
-  return UserRoleSummaryDtoFromJSONTyped(json, false);
+    return UserRoleSummaryDtoFromJSONTyped(json, false);
 }
 
 export function UserRoleSummaryDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserRoleSummaryDto {
-  if (json === undefined || json === null) {
-    return json;
-  }
-  return {
-    steamId: json["steam_id"],
-    name: json["name"],
-    entries: (json["entries"] as Array<any>).map(RoleSubscriptionEntryDtoFromJSON)
-  };
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return {
+
+        'steamId': json['steam_id'],
+        'name': json['name'],
+        'entries': ((json['entries'] as Array<any>).map(RoleSubscriptionEntryDtoFromJSON)),
+    };
 }
 
 export function UserRoleSummaryDtoToJSON(value?: UserRoleSummaryDto | null): any {
-  if (value === undefined) {
-    return undefined;
-  }
-  if (value === null) {
-    return null;
-  }
-  return {
-    steam_id: value.steamId,
-    name: value.name,
-    entries: (value.entries as Array<any>).map(RoleSubscriptionEntryDtoToJSON)
-  };
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return {
+
+        'steam_id': value.steamId,
+        'name': value.name,
+        'entries': ((value.entries as Array<any>).map(RoleSubscriptionEntryDtoToJSON)),
+    };
 }
+
+

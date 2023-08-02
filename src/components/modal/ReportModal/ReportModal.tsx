@@ -1,6 +1,5 @@
 import React, { PropsWithChildren, useRef, useState } from "react";
 import styled from "styled-components";
-import useOutsideClick from "../../../utils/useOutsideClick";
 import Button from "../../UI/Button";
 import { PlayerInMatchDto } from "../../../api/back/models";
 import { Textarea } from "../../UI/Input";
@@ -9,6 +8,7 @@ import { useStores } from "../../../stores";
 import { useApi } from "../../../api/hooks";
 import { NotificationDto } from "../../../stores/notification/notification.service";
 import i18n from "./report-modal.i18n";
+
 const Modal = styled.div`
   z-index: 100;
   position: absolute;
@@ -68,7 +68,7 @@ interface Props {
 
 export const ReportModal = ({ open, close, reported, matchId, children }: PropsWithChildren<Props>) => {
   const comp = useRef(null);
-  useOutsideClick(close, comp);
+  // useOutsideClick(close, comp);
   const [text, setText] = useState("");
   const { notify, auth } = useStores();
   const api = useApi().playerApi;

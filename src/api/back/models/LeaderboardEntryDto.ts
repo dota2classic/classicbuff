@@ -18,87 +18,91 @@
  * @interface LeaderboardEntryDto
  */
 export interface LeaderboardEntryDto {
-  /**
-   *
-   * @type {string}
-   * @memberof LeaderboardEntryDto
-   */
-  steamId: string;
-  /**
-   *
-   * @type {string}
-   * @memberof LeaderboardEntryDto
-   */
-  name: string;
-  /**
-   *
-   * @type {string}
-   * @memberof LeaderboardEntryDto
-   */
-  id: string;
-  /**
-   *
-   * @type {number}
-   * @memberof LeaderboardEntryDto
-   */
-  mmr: number;
-  /**
-   *
-   * @type {number}
-   * @memberof LeaderboardEntryDto
-   */
-  rank: number;
-  /**
-   *
-   * @type {Array<string>}
-   * @memberof LeaderboardEntryDto
-   */
-  roles: Array<LeaderboardEntryDtoRolesEnum>;
+    /**
+     *
+     * @type {string}
+     * @memberof LeaderboardEntryDto
+     */
+    steamId: string;
+    /**
+     *
+     * @type {string}
+     * @memberof LeaderboardEntryDto
+     */
+    name: string;
+    /**
+     *
+     * @type {string}
+     * @memberof LeaderboardEntryDto
+     */
+    id: string;
+    /**
+     *
+     * @type {number}
+     * @memberof LeaderboardEntryDto
+     */
+    mmr: number;
+    /**
+     *
+     * @type {number}
+     * @memberof LeaderboardEntryDto
+     */
+    rank: number;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof LeaderboardEntryDto
+     */
+    roles: Array<LeaderboardEntryDtoRolesEnum>;
 }
 
 export function LeaderboardEntryDtoFromJSON(json: any): LeaderboardEntryDto {
-  return LeaderboardEntryDtoFromJSONTyped(json, false);
+    return LeaderboardEntryDtoFromJSONTyped(json, false);
 }
 
 export function LeaderboardEntryDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): LeaderboardEntryDto {
-  if (json === undefined || json === null) {
-    return json;
-  }
-  return {
-    steamId: json["steam_id"],
-    name: json["name"],
-    id: json["id"],
-    mmr: json["mmr"],
-    rank: json["rank"],
-    roles: json["roles"]
-  };
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return {
+
+        'steamId': json['steam_id'],
+        'name': json['name'],
+        'id': json['id'],
+        'mmr': json['mmr'],
+        'rank': json['rank'],
+        'roles': json['roles'],
+    };
 }
 
 export function LeaderboardEntryDtoToJSON(value?: LeaderboardEntryDto | null): any {
-  if (value === undefined) {
-    return undefined;
-  }
-  if (value === null) {
-    return null;
-  }
-  return {
-    steam_id: value.steamId,
-    name: value.name,
-    id: value.id,
-    mmr: value.mmr,
-    rank: value.rank,
-    roles: value.roles
-  };
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return {
+
+        'steam_id': value.steamId,
+        'name': value.name,
+        'id': value.id,
+        'mmr': value.mmr,
+        'rank': value.rank,
+        'roles': value.roles,
+    };
 }
 
 /**
- * @export
- * @enum {string}
- */
+* @export
+* @enum {string}
+*/
 export enum LeaderboardEntryDtoRolesEnum {
-  PLAYER = "PLAYER",
-  OLD = "OLD",
-  HUMAN = "HUMAN",
-  MODERATOR = "MODERATOR",
-  ADMIN = "ADMIN"
+    PLAYER = 'PLAYER',
+    OLD = 'OLD',
+    HUMAN = 'HUMAN',
+    MODERATOR = 'MODERATOR',
+    ADMIN = 'ADMIN'
 }
+
+

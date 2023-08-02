@@ -3,10 +3,7 @@ import { Tab, Tabs } from "../components/UI/Tabs";
 import Router from "next/router";
 import PlayerHistoryTab from "./PlayerHistoryTab";
 import PlayerHeroesTab from "./PlayerHeroesTab";
-import cx from "classnames";
-import { DiscordBlock } from "../components/UI/DiscordBlock";
 import { useTab } from "../utils/useTab";
-import { PlayerTeamsTab } from "./PlayerTeamsTab";
 import i18n from "pages-i18n/profile/profile.i18n";
 import { useStores } from "../stores";
 
@@ -29,18 +26,6 @@ export default (p: Props) => {
         </Tab>
 
         {isMine && (
-          <Tab className={cx(tab == 2 && "active")} onClick={() => setTabAction(2)}>
-            Discord
-          </Tab>
-        )}
-
-        {isMine && (
-          <Tab className={cx(tab == 3 && "active")} onClick={() => setTabAction(3)}>
-            {i18n.teamInvites}
-          </Tab>
-        )}
-
-        {isMine && (
           <Tab
             onClick={() => {
               auth.logout();
@@ -54,16 +39,6 @@ export default (p: Props) => {
 
       {tab === 0 && <PlayerHistoryTab steam_id={p.steam_id} />}
       {tab === 1 && <PlayerHeroesTab steam_id={p.steam_id} />}
-      {tab === 2 && (
-        <>
-          <DiscordBlock />
-        </>
-      )}
-      {tab === 3 && (
-        <>
-          <PlayerTeamsTab />
-        </>
-      )}
     </>
   );
 };

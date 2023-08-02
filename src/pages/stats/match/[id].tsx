@@ -118,7 +118,7 @@ const Page = (p: InitialProps) => {
   const { id } = useRouter().query;
   const mid = Number(id);
   const { data: match, error } = useApi().matchApi.useMatchControllerMatch(mid, {
-    initialData: p.match
+    fallbackData: p.match
   });
 
   const liveMatch = useEventSource<LiveMatchDto>(

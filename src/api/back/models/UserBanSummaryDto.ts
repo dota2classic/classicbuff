@@ -12,8 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from "../runtime";
-import { BanStatusDto, BanStatusDtoFromJSON, BanStatusDtoFromJSONTyped, BanStatusDtoToJSON } from "./";
+import { BanStatusDto, BanStatusDtoFromJSON, BanStatusDtoToJSON } from "./";
 
 /**
  *
@@ -21,43 +20,47 @@ import { BanStatusDto, BanStatusDtoFromJSON, BanStatusDtoFromJSONTyped, BanStatu
  * @interface UserBanSummaryDto
  */
 export interface UserBanSummaryDto {
-  /**
-   *
-   * @type {string}
-   * @memberof UserBanSummaryDto
-   */
-  steamId: string;
-  /**
-   *
-   * @type {BanStatusDto}
-   * @memberof UserBanSummaryDto
-   */
-  banStatus: BanStatusDto;
+    /**
+     *
+     * @type {string}
+     * @memberof UserBanSummaryDto
+     */
+    steamId: string;
+    /**
+     *
+     * @type {BanStatusDto}
+     * @memberof UserBanSummaryDto
+     */
+    banStatus: BanStatusDto;
 }
 
 export function UserBanSummaryDtoFromJSON(json: any): UserBanSummaryDto {
-  return UserBanSummaryDtoFromJSONTyped(json, false);
+    return UserBanSummaryDtoFromJSONTyped(json, false);
 }
 
 export function UserBanSummaryDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserBanSummaryDto {
-  if (json === undefined || json === null) {
-    return json;
-  }
-  return {
-    steamId: json["steam_id"],
-    banStatus: BanStatusDtoFromJSON(json["banStatus"])
-  };
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return {
+
+        'steamId': json['steam_id'],
+        'banStatus': BanStatusDtoFromJSON(json['banStatus']),
+    };
 }
 
 export function UserBanSummaryDtoToJSON(value?: UserBanSummaryDto | null): any {
-  if (value === undefined) {
-    return undefined;
-  }
-  if (value === null) {
-    return null;
-  }
-  return {
-    steam_id: value.steamId,
-    banStatus: BanStatusDtoToJSON(value.banStatus)
-  };
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return {
+
+        'steam_id': value.steamId,
+        'banStatus': BanStatusDtoToJSON(value.banStatus),
+    };
 }
+
+

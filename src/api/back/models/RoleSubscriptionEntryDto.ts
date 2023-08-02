@@ -12,73 +12,73 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from "../runtime";
 /**
  *
  * @export
  * @interface RoleSubscriptionEntryDto
  */
 export interface RoleSubscriptionEntryDto {
-  /**
-   *
-   * @type {number}
-   * @memberof RoleSubscriptionEntryDto
-   */
-  endTime: number;
-  /**
-   *
-   * @type {string}
-   * @memberof RoleSubscriptionEntryDto
-   */
-  role: RoleSubscriptionEntryDtoRoleEnum;
-  /**
-   *
-   * @type {string}
-   * @memberof RoleSubscriptionEntryDto
-   */
-  steamId: string;
+    /**
+     *
+     * @type {number}
+     * @memberof RoleSubscriptionEntryDto
+     */
+    endTime: number;
+    /**
+     *
+     * @type {string}
+     * @memberof RoleSubscriptionEntryDto
+     */
+    role: RoleSubscriptionEntryDtoRoleEnum;
+    /**
+     *
+     * @type {string}
+     * @memberof RoleSubscriptionEntryDto
+     */
+    steamId: string;
 }
 
 export function RoleSubscriptionEntryDtoFromJSON(json: any): RoleSubscriptionEntryDto {
-  return RoleSubscriptionEntryDtoFromJSONTyped(json, false);
+    return RoleSubscriptionEntryDtoFromJSONTyped(json, false);
 }
 
-export function RoleSubscriptionEntryDtoFromJSONTyped(
-  json: any,
-  ignoreDiscriminator: boolean
-): RoleSubscriptionEntryDto {
-  if (json === undefined || json === null) {
-    return json;
-  }
-  return {
-    endTime: json["end_time"],
-    role: json["role"],
-    steamId: json["steam_id"]
-  };
+export function RoleSubscriptionEntryDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): RoleSubscriptionEntryDto {
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return {
+
+        'endTime': json['end_time'],
+        'role': json['role'],
+        'steamId': json['steam_id'],
+    };
 }
 
 export function RoleSubscriptionEntryDtoToJSON(value?: RoleSubscriptionEntryDto | null): any {
-  if (value === undefined) {
-    return undefined;
-  }
-  if (value === null) {
-    return null;
-  }
-  return {
-    end_time: value.endTime,
-    role: value.role,
-    steam_id: value.steamId
-  };
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return {
+
+        'end_time': value.endTime,
+        'role': value.role,
+        'steam_id': value.steamId,
+    };
 }
 
 /**
- * @export
- * @enum {string}
- */
+* @export
+* @enum {string}
+*/
 export enum RoleSubscriptionEntryDtoRoleEnum {
-  PLAYER = "PLAYER",
-  OLD = "OLD",
-  HUMAN = "HUMAN",
-  MODERATOR = "MODERATOR",
-  ADMIN = "ADMIN"
+    PLAYER = 'PLAYER',
+    OLD = 'OLD',
+    HUMAN = 'HUMAN',
+    MODERATOR = 'MODERATOR',
+    ADMIN = 'ADMIN'
 }
+
+

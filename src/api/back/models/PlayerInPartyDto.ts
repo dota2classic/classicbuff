@@ -12,58 +12,61 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from "../runtime";
 /**
  *
  * @export
  * @interface PlayerInPartyDto
  */
 export interface PlayerInPartyDto {
-  /**
-   *
-   * @type {string}
-   * @memberof PlayerInPartyDto
-   */
-  steamId: string;
-  /**
-   *
-   * @type {string}
-   * @memberof PlayerInPartyDto
-   */
-  avatar: string;
-  /**
-   *
-   * @type {string}
-   * @memberof PlayerInPartyDto
-   */
-  name: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PlayerInPartyDto
+     */
+    steamId: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PlayerInPartyDto
+     */
+    avatar: string;
+    /**
+     *
+     * @type {string}
+     * @memberof PlayerInPartyDto
+     */
+    name: string;
 }
 
 export function PlayerInPartyDtoFromJSON(json: any): PlayerInPartyDto {
-  return PlayerInPartyDtoFromJSONTyped(json, false);
+    return PlayerInPartyDtoFromJSONTyped(json, false);
 }
 
 export function PlayerInPartyDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlayerInPartyDto {
-  if (json === undefined || json === null) {
-    return json;
-  }
-  return {
-    steamId: json["steam_id"],
-    avatar: json["avatar"],
-    name: json["name"]
-  };
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return {
+
+        'steamId': json['steam_id'],
+        'avatar': json['avatar'],
+        'name': json['name'],
+    };
 }
 
 export function PlayerInPartyDtoToJSON(value?: PlayerInPartyDto | null): any {
-  if (value === undefined) {
-    return undefined;
-  }
-  if (value === null) {
-    return null;
-  }
-  return {
-    steam_id: value.steamId,
-    avatar: value.avatar,
-    name: value.name
-  };
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return {
+
+        'steam_id': value.steamId,
+        'avatar': value.avatar,
+        'name': value.name,
+    };
 }
+
+

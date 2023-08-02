@@ -12,108 +12,111 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from "../runtime";
 /**
  *
  * @export
  * @interface MatchInfoDto
  */
 export interface MatchInfoDto {
-  /**
-   *
-   * @type {string}
-   * @memberof MatchInfoDto
-   */
-  mode: MatchInfoDtoModeEnum;
-  /**
-   *
-   * @type {string}
-   * @memberof MatchInfoDto
-   */
-  roomId: string;
-  /**
-   *
-   * @type {Array<string>}
-   * @memberof MatchInfoDto
-   */
-  radiant: Array<string>;
-  /**
-   *
-   * @type {Array<string>}
-   * @memberof MatchInfoDto
-   */
-  dire: Array<string>;
-  /**
-   *
-   * @type {number}
-   * @memberof MatchInfoDto
-   */
-  averageMMR: number;
-  /**
-   *
-   * @type {string}
-   * @memberof MatchInfoDto
-   */
-  version: MatchInfoDtoVersionEnum;
+    /**
+     *
+     * @type {string}
+     * @memberof MatchInfoDto
+     */
+    mode: MatchInfoDtoModeEnum;
+    /**
+     *
+     * @type {string}
+     * @memberof MatchInfoDto
+     */
+    roomId: string;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof MatchInfoDto
+     */
+    radiant: Array<string>;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof MatchInfoDto
+     */
+    dire: Array<string>;
+    /**
+     *
+     * @type {number}
+     * @memberof MatchInfoDto
+     */
+    averageMMR: number;
+    /**
+     *
+     * @type {string}
+     * @memberof MatchInfoDto
+     */
+    version: MatchInfoDtoVersionEnum;
 }
 
 export function MatchInfoDtoFromJSON(json: any): MatchInfoDto {
-  return MatchInfoDtoFromJSONTyped(json, false);
+    return MatchInfoDtoFromJSONTyped(json, false);
 }
 
 export function MatchInfoDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): MatchInfoDto {
-  if (json === undefined || json === null) {
-    return json;
-  }
-  return {
-    mode: json["mode"],
-    roomId: json["roomId"],
-    radiant: json["radiant"],
-    dire: json["dire"],
-    averageMMR: json["averageMMR"],
-    version: json["version"]
-  };
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return {
+
+        'mode': json['mode'],
+        'roomId': json['roomId'],
+        'radiant': json['radiant'],
+        'dire': json['dire'],
+        'averageMMR': json['averageMMR'],
+        'version': json['version'],
+    };
 }
 
 export function MatchInfoDtoToJSON(value?: MatchInfoDto | null): any {
-  if (value === undefined) {
-    return undefined;
-  }
-  if (value === null) {
-    return null;
-  }
-  return {
-    mode: value.mode,
-    roomId: value.roomId,
-    radiant: value.radiant,
-    dire: value.dire,
-    averageMMR: value.averageMMR,
-    version: value.version
-  };
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return {
+
+        'mode': value.mode,
+        'roomId': value.roomId,
+        'radiant': value.radiant,
+        'dire': value.dire,
+        'averageMMR': value.averageMMR,
+        'version': value.version,
+    };
 }
 
 /**
- * @export
- * @enum {string}
- */
+* @export
+* @enum {string}
+*/
 export enum MatchInfoDtoModeEnum {
-  RANKED = "RANKED",
-  UNRANKED = "UNRANKED",
-  SOLOMID = "SOLOMID",
-  DIRETIDE = "DIRETIDE",
-  GREEVILING = "GREEVILING",
-  ABILITYDRAFT = "ABILITY_DRAFT",
-  TOURNAMENT = "TOURNAMENT",
-  BOTS = "BOTS",
-  HIGHROOM = "HIGHROOM",
-  TOURNAMENTSOLOMID = "TOURNAMENT_SOLOMID",
-  CAPTAINSMODE = "CAPTAINS_MODE"
+    RANKED = 'RANKED',
+    UNRANKED = 'UNRANKED',
+    SOLOMID = 'SOLOMID',
+    DIRETIDE = 'DIRETIDE',
+    GREEVILING = 'GREEVILING',
+    ABILITYDRAFT = 'ABILITY_DRAFT',
+    TOURNAMENT = 'TOURNAMENT',
+    BOTS = 'BOTS',
+    HIGHROOM = 'HIGHROOM',
+    TOURNAMENTSOLOMID = 'TOURNAMENT_SOLOMID',
+    CAPTAINSMODE = 'CAPTAINS_MODE'
 }
 /**
- * @export
- * @enum {string}
- */
+* @export
+* @enum {string}
+*/
 export enum MatchInfoDtoVersionEnum {
-  _681 = "Dota_681",
-  _684 = "Dota_684"
+    _681 = 'Dota_681',
+    _684 = 'Dota_684'
 }
+
+
