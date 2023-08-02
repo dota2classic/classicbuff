@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FormattedHTMLMessage as FormattedHTMLMessageOrigin } from "react-intl";
+import { FormattedMessage as FormattedHTMLMessageOrigin } from "react-intl";
 
 export const FormattedHTMLMessage = (props: any) => <FormattedHTMLMessageOrigin tagName="span" {...props} />;
 

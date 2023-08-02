@@ -6,7 +6,7 @@ import React from "react";
 import cx from "classnames";
 import { AppRouter } from "utils/route";
 
-const Card = styled.a`
+const Card = styled.div`
   display: flex;
   flex-direction: row;
   color: ${colors.primaryText};

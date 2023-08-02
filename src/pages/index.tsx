@@ -226,7 +226,7 @@ const LeadingText = styled.div`
   }
 `;
 
-const CenterText = styled.a`
+const CenterText = styled.span`
   text-decoration: none;
   position: absolute;
   text-align: center;
@@ -299,7 +299,74 @@ const SecondaryText = styled.div`
   }
 `;
 
-export const PlayButton = styled.a`
+export const PlayButton = styled.span`
+  &.inline {
+    font-size: 18px;
+    border: 1px solid ${colors.primaryTextDark};
+
+    position: relative;
+    display: block;
+    text-decoration: none;
+    padding: 10px 15px;
+    top: 0;
+    left: 0;
+    color: ${colors.position.foreground.silver};
+
+    &:hover {
+      color: ${colors.position.foreground.gold};
+    }
+
+    @media (max-width: 1200px) {
+      padding: 10px;
+      font-size: 16px !important;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    font-size: 20px !important;
+    padding: 10px;
+    border-width: 1px;
+    text-decoration: none;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 20px;
+    top: 60%;
+  }
+
+  outline: none;
+  text-transform: uppercase;
+
+  z-index: 10;
+  position: absolute;
+  top: 40%;
+  white-space: pre;
+  left: 5%;
+
+  border: 2px solid ${colors.primaryText};
+  border-radius: 6px;
+
+  font-size: 28px;
+  letter-spacing: 2.5px;
+
+  text-decoration: underline;
+
+  font-weight: bold;
+
+  padding: 20px 20px 20px 20px;
+  color: #ed3b1c;
+  //text-decoration: underline;
+  //text-underline-position: under;
+  transition: 0.2s ease;
+  &:hover {
+    color: #ee2c0a;
+    border-color: ${colors.primaryTextHighlight};
+  }
+  cursor: pointer;
+  text-align: left;
+`;
+
+export const PlayButtonLink = styled.a`
   &.inline {
     font-size: 18px;
     border: 1px solid ${colors.primaryTextDark};

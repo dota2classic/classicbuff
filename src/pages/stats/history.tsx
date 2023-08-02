@@ -18,7 +18,7 @@ export const Heroes = styled.div`
   flex-direction: row;
 `;
 
-export const MatchIdCol = styled.a`
+export const MatchIdCol = styled.span`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -73,24 +73,12 @@ const Page = observer(() => {
         >
           {formatGameMode(MatchmakingMode.UNRANKED)}
         </Tab>
-        {/*<Tab*/}
-        {/*  onClick={() => setTabAction(MatchmakingMode.UNRANKED)}*/}
-        {/*  className={(mode === MatchmakingMode.UNRANKED && "active") || undefined}*/}
-        {/*>*/}
-        {/*  {formatGameMode(MatchmakingMode.UNRANKED)}*/}
-        {/*</Tab>*/}
         <Tab
           onClick={() => setTabAction(MatchmakingMode.SOLOMID)}
           className={(mode === MatchmakingMode.SOLOMID && "active") || undefined}
         >
           {formatGameMode(MatchmakingMode.SOLOMID)}
         </Tab>
-        {/*<Tab*/}
-        {/*  onClick={() => setTabAction(MatchmakingMode.BOTS)}*/}
-        {/*  className={(mode === MatchmakingMode.BOTS && "active") || undefined}*/}
-        {/*>*/}
-        {/*  {formatGameMode(MatchmakingMode.BOTS)}*/}
-        {/*</Tab>*/}
         <Tab onClick={() => setTabAction(undefined)} className={(mode === undefined && "active") || undefined}>
           {historyI18n.allModes}
         </Tab>

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import React from "react";
+import Image from "next/image";
 
-export const DotaIcon = styled.img`
+export const DotaIcon = styled(Image)`
   height: 40px;
   object-fit: contain;
 
@@ -19,4 +20,6 @@ export const DotaIcon = styled.img`
 interface Props {
   hero: string;
 }
-export const HeroIcon = (p: Props) => <DotaIcon src={`/static/heroes/${p.hero.replace("npc_dota_hero_", "")}.webp`} />;
+export const HeroIcon = (p: Props) => (
+  <DotaIcon width={70} height={40} alt={p.hero} src={`/static/heroes/${p.hero.replace("npc_dota_hero_", "")}.webp`} />
+);

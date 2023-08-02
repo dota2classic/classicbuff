@@ -1,7 +1,6 @@
 import React from "react";
 import { Tab, Tabs } from "../components/UI/Tabs";
 import Router from "next/router";
-import AuthService from "../service/AuthServiceService";
 import PlayerHistoryTab from "./PlayerHistoryTab";
 import PlayerHeroesTab from "./PlayerHeroesTab";
 import cx from "classnames";
