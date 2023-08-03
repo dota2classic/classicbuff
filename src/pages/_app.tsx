@@ -86,9 +86,6 @@ export default class MyApp extends App<any> {
     const intl = createIntl({ locale: loc, messages: getMessages(loc), defaultLocale: "ru" }, cache);
 
     const defaultHydration = {
-      lang: {
-        language: loc
-      }
     };
     return (
       <StyledComponentsRegistry>

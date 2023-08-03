@@ -319,10 +319,10 @@ const DefaultHeader = observer(() => {
               <span style={{ textTransform: "uppercase" }}>dota2classic</span>
             </Tab>
           </Link>
-          <div className="divider" />
           <Link {...AppRouter.queue.link}>
             <Tab className={cx(asPath.startsWith("/queue") && "active")}>{layoutI18n.play}</Tab>
           </Link>
+          <div className="divider" />
 
           <Link {...AppRouter.download.link}>
             <Tab className={cx(asPath.startsWith("/download") && "active")}>{layoutI18n.download}</Tab>
