@@ -1,23 +1,13 @@
-import {
-  AdminApi,
-  AdminTournamentApi,
-  LiveApi,
-  MatchApi,
-  MetaApi,
-  PlayerApi,
-  StatsApi,
-  TeamApi,
-  TournamentApi
-} from "./back/apis";
+import { AdminApi, LiveApi, MatchApi, MetaApi, PlayerApi, StatsApi } from "./back/apis";
 import { Configuration, ConfigurationParameters } from "./back";
-import { local, PROD_URL } from "../config";
+import { PROD_URL } from "../config";
 import { create } from "apisauce";
 import Qs from "qs";
 
 export class AppApi {
   apiParams: ConfigurationParameters = {
-    basePath: local ? "http://localhost:6001" : `${PROD_URL}/api`,
-    fetchApi: (input, init) => {
+    basePath: `${PROD_URL}/api`,
+    fetchApi: (input: any, init: any) => {
       return fetch(input, init)
         .then(t => {
           // if (t.status === 401 && AuthService.authorized && typeof window !== "undefined") {
@@ -40,9 +30,6 @@ export class AppApi {
   readonly adminApi = new AdminApi(this.apiConfig);
   readonly statsApi = new StatsApi(this.apiConfig);
   readonly metaApi = new MetaApi(this.apiConfig);
-  readonly tournament = new TournamentApi(this.apiConfig);
-  readonly team = new TeamApi(this.apiConfig);
-  readonly adminTournament = new AdminTournamentApi(this.apiConfig);
 }
 
 export const appApi = new AppApi();
@@ -50,6 +37,6 @@ export const appApi = new AppApi();
 export const useApi = () => appApi;
 
 export const apiInner = create({
-  baseURL: local ? "http://localhost:6001" : `${PROD_URL}/api`,
+  baseURL: `${PROD_URL}/api`,
   paramsSerializer: params => Qs.stringify(params, { arrayFormat: "repeat" })
 });

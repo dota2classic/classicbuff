@@ -12,113 +12,116 @@
  * Do not edit the class manually.
  */
 
-import * as runtime from "../runtime";
-import useSWR, { ConfigInterface } from "swr";
 
-import {
-  CurrentOnlineDto,
-  CurrentOnlineDtoFromJSON,
-  CurrentOnlineDtoToJSON,
-  MatchmakingInfo,
-  MatchmakingInfoFromJSON,
-  MatchmakingInfoToJSON
-} from "../models";
+import * as runtime from "../runtime";
+import useSWR from "swr";
+import { SWRConfiguration } from "swr/_internal";
+
+import { CurrentOnlineDto, CurrentOnlineDtoFromJSON, MatchmakingInfo, MatchmakingInfoFromJSON } from "../models";
 
 /**
  *
  */
 export class StatsApi extends runtime.BaseAPI {
-  /**
-   */
-  private async statsControllerGetMatchmakingInfoRaw(): Promise<runtime.ApiResponse<Array<MatchmakingInfo>>> {
-    this.statsControllerGetMatchmakingInfoValidation();
-    const context = this.statsControllerGetMatchmakingInfoContext();
-    const response = await this.request(context);
 
-    return new runtime.JSONApiResponse(response, jsonValue => jsonValue.map(MatchmakingInfoFromJSON));
-  }
+    /**
+     */
+    private async statsControllerGetMatchmakingInfoRaw(): Promise<runtime.ApiResponse<Array<MatchmakingInfo>>> {
+        this.statsControllerGetMatchmakingInfoValidation();
+        const context = this.statsControllerGetMatchmakingInfoContext();
+        const response = await this.request(context);
 
-  /**
-   */
-  private statsControllerGetMatchmakingInfoValidation() {}
-
-  /**
-   */
-  statsControllerGetMatchmakingInfoContext(): runtime.RequestOpts {
-    const queryParameters: any = {};
-
-    const headerParameters: runtime.HTTPHeaders = {};
-
-    return {
-      path: `/v1/stats/matchmaking`,
-      method: "GET",
-      headers: headerParameters,
-      query: queryParameters
-    };
-  }
-
-  /**
-   */
-  statsControllerGetMatchmakingInfo = async (): Promise<Array<MatchmakingInfo>> => {
-    const response = await this.statsControllerGetMatchmakingInfoRaw();
-    return await response.value();
-  };
-
-  useStatsControllerGetMatchmakingInfo(config?: ConfigInterface<Array<MatchmakingInfo>, Error>) {
-    let valid = true;
-
-    const context = this.statsControllerGetMatchmakingInfoContext();
-    return useSWR(JSON.stringify(context), valid ? () => this.statsControllerGetMatchmakingInfo() : undefined, config);
-  }
-
-  /**
-   */
-  private async statsControllerOnlineRaw(): Promise<runtime.ApiResponse<CurrentOnlineDto>> {
-    this.statsControllerOnlineValidation();
-    const context = this.statsControllerOnlineContext();
-    const response = await this.request(context);
-
-    return new runtime.JSONApiResponse(response, jsonValue => CurrentOnlineDtoFromJSON(jsonValue));
-  }
-
-  /**
-   */
-  private statsControllerOnlineValidation() {}
-
-  /**
-   */
-  statsControllerOnlineContext(): runtime.RequestOpts {
-    const queryParameters: any = {};
-
-    const headerParameters: runtime.HTTPHeaders = {};
-
-    if (this.configuration && this.configuration.accessToken) {
-      const token = this.configuration.accessToken;
-      const tokenString = typeof token === "function" ? token("bearer", []) : token;
-
-      if (tokenString) {
-        headerParameters["Authorization"] = `Bearer ${tokenString}`;
-      }
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(MatchmakingInfoFromJSON));
     }
-    return {
-      path: `/v1/stats/online`,
-      method: "GET",
-      headers: headerParameters,
-      query: queryParameters
-    };
-  }
 
-  /**
-   */
-  statsControllerOnline = async (): Promise<CurrentOnlineDto> => {
-    const response = await this.statsControllerOnlineRaw();
-    return await response.value();
-  };
 
-  useStatsControllerOnline(config?: ConfigInterface<CurrentOnlineDto, Error>) {
-    let valid = true;
 
-    const context = this.statsControllerOnlineContext();
-    return useSWR(JSON.stringify(context), valid ? () => this.statsControllerOnline() : undefined, config);
-  }
+    /**
+     */
+    private statsControllerGetMatchmakingInfoValidation() {
+    }
+
+    /**
+     */
+    statsControllerGetMatchmakingInfoContext(): runtime.RequestOpts {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        return {
+            path: `/v1/stats/matchmaking`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    statsControllerGetMatchmakingInfo = async (): Promise<Array<MatchmakingInfo>> => {
+        const response = await this.statsControllerGetMatchmakingInfoRaw();
+        return await response.value();
+    }
+
+    useStatsControllerGetMatchmakingInfo(config?: SWRConfiguration<Array<MatchmakingInfo>, Error>) {
+        let valid = true
+
+        const context = this.statsControllerGetMatchmakingInfoContext();
+        return useSWR(JSON.stringify(context), valid ? () => this.statsControllerGetMatchmakingInfo() : null, config)
+    }
+
+    /**
+     */
+    private async statsControllerOnlineRaw(): Promise<runtime.ApiResponse<CurrentOnlineDto>> {
+        this.statsControllerOnlineValidation();
+        const context = this.statsControllerOnlineContext();
+        const response = await this.request(context);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CurrentOnlineDtoFromJSON(jsonValue));
+    }
+
+
+
+    /**
+     */
+    private statsControllerOnlineValidation() {
+    }
+
+    /**
+     */
+    statsControllerOnlineContext(): runtime.RequestOpts {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = typeof token === 'function' ? token("bearer", []) : token;
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        return {
+            path: `/v1/stats/online`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    statsControllerOnline = async (): Promise<CurrentOnlineDto> => {
+        const response = await this.statsControllerOnlineRaw();
+        return await response.value();
+    }
+
+    useStatsControllerOnline(config?: SWRConfiguration<CurrentOnlineDto, Error>) {
+        let valid = true
+
+        const context = this.statsControllerOnlineContext();
+        return useSWR(JSON.stringify(context), valid ? () => this.statsControllerOnline() : null, config)
+    }
+
 }

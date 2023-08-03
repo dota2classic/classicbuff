@@ -14,7 +14,7 @@ import { NotificationHold } from "../UI/NotificationHold";
 import { SearchGameBar } from "../UI/SearchGameBar/SearchGameBar";
 import layoutI18n from "./layout.i18n";
 import { useStores } from "stores";
-import { PlayButton } from "pages";
+import { PlayButton, PlayButtonLink } from "pages";
 import { loginEvent } from "utils/ga";
 import { PROD_URL } from "config";
 
@@ -210,7 +210,7 @@ const Sidebar = styled.div`
   }
 `;
 
-const MenuItem = styled.a`
+const MenuItem = styled.span`
   text-decoration: none;
   color: ${colors.primaryText};
   padding: 10px;
@@ -290,75 +290,12 @@ const MobileMenu = observer(() => {
             <PlayButton className="inline">{layoutI18n.profile}</PlayButton>
           </Link>
         ) : (
-          <PlayButton onClick={loginEvent} className="inline" href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
+          <PlayButtonLink onClick={loginEvent} className="inline" href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
             {layoutI18n.loginViaSteam}
-          </PlayButton>
+          </PlayButtonLink>
         )}
       </div>
     </Sidebar>
-  );
-});
-
-const StatsHeader = observer(() => {
-  const router = useRouter();
-
-  const asPath = router.asPath.replace("/stats", "");
-
-  const { lang, auth } = useStores();
-
-  const { data: liveData } = useApi().liveApi.useLiveMatchControllerListMatches({
-    refreshInterval: 30_000
-  });
-
-  return (
-    <HeaderWrapper>
-      <Tabs className="heading wide">
-        <Link {...AppRouter.index.link}>
-          <Tab className={cx(asPath === "/" && "active", "primary")}>
-            <span style={{ textTransform: "uppercase" }}>dota2classic</span>
-          </Tab>
-        </Link>
-
-        <Link {...AppRouter.queue.link}>
-          <Tab className={cx(asPath.startsWith("/queue") && "active")}>{layoutI18n.play}</Tab>
-        </Link>
-
-        <div className="divider" />
-
-        <Link {...AppRouter.live.link}>
-          <Tab className={cx(asPath.startsWith("/live") && "active")}>
-            {layoutI18n.live}
-            {liveData && <span className="badge">{liveData?.length}</span>}
-          </Tab>
-        </Link>
-
-        <div style={{ flex: 1 }} />
-        <Tab className="accent no-underline" onClick={() => lang.toggle(router)}>
-          {lang.language === "ru" ? (
-            <img
-              src="https://raw.githubusercontent.com/hampusborgos/country-flags/main/png100px/us.png"
-              alt=""
-              className="flag"
-            />
-          ) : (
-            <img
-              src="https://raw.githubusercontent.com/hampusborgos/country-flags/main/png100px/ru.png"
-              alt=""
-              className="flag"
-            />
-          )}
-        </Tab>
-        {auth.authorized ? (
-          <Link {...AppRouter.player(auth.steamID || "").link}>
-            <PlayButton className="inline">{layoutI18n.profile}</PlayButton>
-          </Link>
-        ) : (
-          <PlayButton onClick={loginEvent} className="inline" href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
-            {layoutI18n.loginViaSteam}
-          </PlayButton>
-        )}
-      </Tabs>
-    </HeaderWrapper>
   );
 });
 
@@ -372,20 +309,21 @@ const DefaultHeader = observer(() => {
   const { data: liveData } = useApi().liveApi.useLiveMatchControllerListMatches({
     refreshInterval: 30_000
   });
+
   return (
     <>
       <HeaderWrapper>
         <Tabs className="heading wide">
           <Link {...AppRouter.index.link}>
-            <Tab className={cx((asPath === "/" || asPath === "/en-us") && "active", "primary")}>
+            <Tab className={cx(asPath === "/" && "active", "primary")}>
               <span style={{ textTransform: "uppercase" }}>dota2classic</span>
             </Tab>
           </Link>
           <Link {...AppRouter.queue.link}>
             <Tab className={cx(asPath.startsWith("/queue") && "active")}>{layoutI18n.play}</Tab>
           </Link>
-
           <div className="divider" />
+
           <Link {...AppRouter.download.link}>
             <Tab className={cx(asPath.startsWith("/download") && "active")}>{layoutI18n.download}</Tab>
           </Link>
@@ -437,9 +375,9 @@ const DefaultHeader = observer(() => {
               <PlayButton className="inline">{layoutI18n.profile}</PlayButton>
             </Link>
           ) : (
-            <PlayButton onClick={loginEvent} className="inline" href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
+            <PlayButtonLink onClick={loginEvent} className="inline" href={`${appApi.apiParams.basePath}/v1/auth/steam`}>
               {layoutI18n.loginViaSteam}
-            </PlayButton>
+            </PlayButtonLink>
           )}
         </Tabs>
       </HeaderWrapper>
@@ -460,7 +398,6 @@ export default observer((p: PropsWithChildren<{ landing?: boolean; noScroll?: bo
   return (
     <LayoutContainer className={cx(p.noScroll && "no-scroll", p.landing && "landing")}>
       <DefaultHeader />
-      <MobileMenu />
       <NotificationHold />
       <Content className={cx(p.landing && "landing")}>
         {p.title && <Title>{p.title && <span>{p.title}</span>}</Title>}

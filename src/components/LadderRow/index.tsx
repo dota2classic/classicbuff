@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { colors } from "../../shared";
 import { LeaderboardEntryDto } from "../../api/back/models";
-import { RoleNames, RoleValue } from "../../utils/format/roles";
 import { Tr } from "../UI/Table";
 import Link from "next/link";
 import React from "react";
 import i18n from "./ladder-row.i18n";
 import { AppRouter } from "../../utils/route";
+
 export const Role = styled.div`
   width: 10px;
   height: 10px;
@@ -58,7 +58,7 @@ export const Role = styled.div`
   }
 `;
 
-const NameContainer = styled.a`
+const NameContainer = styled.span`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -70,15 +70,11 @@ export default (props: LeaderboardEntryDto) => {
   return (
     <Tr>
       <td>
-        <Link {...AppRouter.player(numId).link}>
-          <a>{props.rank + 1}</a>
-        </Link>
+        <Link {...AppRouter.player(numId).link}>{props.rank + 1}</Link>
       </td>
       <td>
         <Link {...AppRouter.player(numId).link} passHref>
-          <NameContainer>
-            <span>{props.name}</span>
-          </NameContainer>
+          <NameContainer>{props.name}</NameContainer>
         </Link>
       </td>
       <td style={{ textAlign: "center" }}>{props.mmr}</td>

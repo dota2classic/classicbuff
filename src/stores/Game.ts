@@ -16,7 +16,8 @@ import { GameCoordinatorListener } from "./queue/game-coordinator.listener";
 import { QueueState } from "stores/queue/queue.service";
 import { WSS_PROD_URL } from "config";
 
-export const isDev = process.env.DEV === "true";
+// export const isDev = process.env.DEV === "true";
+export const isDev = false;
 
 interface PendingGameInfo {
   mode: MatchmakingMode;
@@ -171,12 +172,10 @@ export class Game {
     if (this.socket && this.socket.connected) return;
 
     console.log(isDev, WSS_PROD_URL);
-    this.socket = isDev
-      ? io("ws://localhost:5010", { transports: ["websocket"] })
-      : io(WSS_PROD_URL, {
-          path: "/launcher",
-          transports: ["websocket"]
-        });
+    this.socket = io(WSS_PROD_URL, {
+      path: "/launcher",
+      transports: ["websocket"]
+    });
 
     observe(this.authService, "steamID", async steamId => {
       if (steamId) {

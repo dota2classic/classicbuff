@@ -12,8 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from "../runtime";
-import { MatchInfoDto, MatchInfoDtoFromJSON, MatchInfoDtoFromJSONTyped, MatchInfoDtoToJSON } from "./";
+import { MatchInfoDto, MatchInfoDtoFromJSON, MatchInfoDtoToJSON } from "./";
 
 /**
  *
@@ -21,51 +20,55 @@ import { MatchInfoDto, MatchInfoDtoFromJSON, MatchInfoDtoFromJSONTyped, MatchInf
  * @interface GameSessionDto
  */
 export interface GameSessionDto {
-  /**
-   *
-   * @type {string}
-   * @memberof GameSessionDto
-   */
-  url: string;
-  /**
-   *
-   * @type {number}
-   * @memberof GameSessionDto
-   */
-  matchId: number;
-  /**
-   *
-   * @type {MatchInfoDto}
-   * @memberof GameSessionDto
-   */
-  info: MatchInfoDto;
+    /**
+     *
+     * @type {string}
+     * @memberof GameSessionDto
+     */
+    url: string;
+    /**
+     *
+     * @type {number}
+     * @memberof GameSessionDto
+     */
+    matchId: number;
+    /**
+     *
+     * @type {MatchInfoDto}
+     * @memberof GameSessionDto
+     */
+    info: MatchInfoDto;
 }
 
 export function GameSessionDtoFromJSON(json: any): GameSessionDto {
-  return GameSessionDtoFromJSONTyped(json, false);
+    return GameSessionDtoFromJSONTyped(json, false);
 }
 
 export function GameSessionDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): GameSessionDto {
-  if (json === undefined || json === null) {
-    return json;
-  }
-  return {
-    url: json["url"],
-    matchId: json["matchId"],
-    info: MatchInfoDtoFromJSON(json["info"])
-  };
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return {
+
+        'url': json['url'],
+        'matchId': json['matchId'],
+        'info': MatchInfoDtoFromJSON(json['info']),
+    };
 }
 
 export function GameSessionDtoToJSON(value?: GameSessionDto | null): any {
-  if (value === undefined) {
-    return undefined;
-  }
-  if (value === null) {
-    return null;
-  }
-  return {
-    url: value.url,
-    matchId: value.matchId,
-    info: MatchInfoDtoToJSON(value.info)
-  };
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return {
+
+        'url': value.url,
+        'matchId': value.matchId,
+        'info': MatchInfoDtoToJSON(value.info),
+    };
 }
+
+

@@ -28,7 +28,7 @@ const Body = styled.div`
   margin-right: 200px;
 `;
 
-const SidebarItem = styled.a`
+const SidebarItem = styled.span`
   font-size: 18px;
   color: white;
   text-decoration: none;
@@ -48,9 +48,9 @@ export const AdminLayout = (p: PropsWithChildren<{}>) => {
         <Link passHref href={"/admin/servers"}>
           <SidebarItem>Сервера</SidebarItem>
         </Link>
-        <Link passHref href={"/admin/tournament"}>
-          <SidebarItem>Турниры</SidebarItem>
-        </Link>
+        {/*<Link passHref href={"/admin/tournament"}>*/}
+        {/*  <SidebarItem>Турниры</SidebarItem>*/}
+        {/*</Link>*/}
       </Sidebar>
       <Body>{p.children}</Body>
     </ALayout>

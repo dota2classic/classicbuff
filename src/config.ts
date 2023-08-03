@@ -1,4 +1,5 @@
-export const local = process.env.DEV === "true";
+// export const local = process.env.DEV === "true";
+export const local = false;
 
 // export const PROD_URL = "http://localhost:6001";
 export const PROD_URL = process.env.NEXT_PUBLIC_API_URL as string;

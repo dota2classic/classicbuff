@@ -124,3 +124,7 @@ body {
 /*  font-weight: 900;*/
 /*  font-style: normal;*/
 /*}*/
+
+a {
+  text-decoration: none;
+}

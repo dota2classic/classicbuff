@@ -28,7 +28,7 @@ const PlayerMatch = ({ match, player, index }: PlayerMatchInfo) => {
     <Tr className={cx(index % 2 === 0 ? "even" : "odd")} onClick={() => AppRouter.match(match.id).open()}>
       <td className={"green"}>
         <Link {...AppRouter.match(match.id).link}>
-          <MatchIdCol href={AppRouter.match(match.id).link.href}>
+          <MatchIdCol>
             <span style={{ color: colors.dota.green }}>{match.id}</span>
             <span style={{ fontSize: 12, marginTop: 2, color: "#c2c2c2" }}>
               <DateFormatter date={match.timestamp} />
@@ -40,9 +40,7 @@ const PlayerMatch = ({ match, player, index }: PlayerMatchInfo) => {
       <td>{formatDuration(match.duration)}</td>
       <td>
         <Link {...AppRouter.match(match.id).link}>
-          <a href={AppRouter.match(match.id).link.href}>
-            <HeroIcon hero={pim.hero} />
-          </a>
+          <HeroIcon hero={pim.hero} />
         </Link>
       </td>
       <td className={"omit"}>

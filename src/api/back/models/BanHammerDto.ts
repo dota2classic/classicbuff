@@ -12,42 +12,45 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from "../runtime";
 /**
  *
  * @export
  * @interface BanHammerDto
  */
 export interface BanHammerDto {
-  /**
-   *
-   * @type {number}
-   * @memberof BanHammerDto
-   */
-  endTime: number;
+    /**
+     *
+     * @type {number}
+     * @memberof BanHammerDto
+     */
+    endTime: number;
 }
 
 export function BanHammerDtoFromJSON(json: any): BanHammerDto {
-  return BanHammerDtoFromJSONTyped(json, false);
+    return BanHammerDtoFromJSONTyped(json, false);
 }
 
 export function BanHammerDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): BanHammerDto {
-  if (json === undefined || json === null) {
-    return json;
-  }
-  return {
-    endTime: json["endTime"]
-  };
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return {
+
+        'endTime': json['endTime'],
+    };
 }
 
 export function BanHammerDtoToJSON(value?: BanHammerDto | null): any {
-  if (value === undefined) {
-    return undefined;
-  }
-  if (value === null) {
-    return null;
-  }
-  return {
-    endTime: value.endTime
-  };
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return {
+
+        'endTime': value.endTime,
+    };
 }
+
+

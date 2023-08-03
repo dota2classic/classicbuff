@@ -12,87 +12,87 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from "../runtime";
 /**
  *
  * @export
  * @interface MatchmakingModeStatusEntity
  */
 export interface MatchmakingModeStatusEntity {
-  /**
-   *
-   * @type {string}
-   * @memberof MatchmakingModeStatusEntity
-   */
-  mode: MatchmakingModeStatusEntityModeEnum;
-  /**
-   *
-   * @type {string}
-   * @memberof MatchmakingModeStatusEntity
-   */
-  version: MatchmakingModeStatusEntityVersionEnum;
-  /**
-   *
-   * @type {boolean}
-   * @memberof MatchmakingModeStatusEntity
-   */
-  enabled: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof MatchmakingModeStatusEntity
+     */
+    mode: MatchmakingModeStatusEntityModeEnum;
+    /**
+     *
+     * @type {string}
+     * @memberof MatchmakingModeStatusEntity
+     */
+    version: MatchmakingModeStatusEntityVersionEnum;
+    /**
+     *
+     * @type {boolean}
+     * @memberof MatchmakingModeStatusEntity
+     */
+    enabled: boolean;
 }
 
 export function MatchmakingModeStatusEntityFromJSON(json: any): MatchmakingModeStatusEntity {
-  return MatchmakingModeStatusEntityFromJSONTyped(json, false);
+    return MatchmakingModeStatusEntityFromJSONTyped(json, false);
 }
 
-export function MatchmakingModeStatusEntityFromJSONTyped(
-  json: any,
-  ignoreDiscriminator: boolean
-): MatchmakingModeStatusEntity {
-  if (json === undefined || json === null) {
-    return json;
-  }
-  return {
-    mode: json["mode"],
-    version: json["version"],
-    enabled: json["enabled"]
-  };
+export function MatchmakingModeStatusEntityFromJSONTyped(json: any, ignoreDiscriminator: boolean): MatchmakingModeStatusEntity {
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return {
+
+        'mode': json['mode'],
+        'version': json['version'],
+        'enabled': json['enabled'],
+    };
 }
 
 export function MatchmakingModeStatusEntityToJSON(value?: MatchmakingModeStatusEntity | null): any {
-  if (value === undefined) {
-    return undefined;
-  }
-  if (value === null) {
-    return null;
-  }
-  return {
-    mode: value.mode,
-    version: value.version,
-    enabled: value.enabled
-  };
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return {
+
+        'mode': value.mode,
+        'version': value.version,
+        'enabled': value.enabled,
+    };
 }
 
 /**
- * @export
- * @enum {string}
- */
+* @export
+* @enum {string}
+*/
 export enum MatchmakingModeStatusEntityModeEnum {
-  RANKED = "RANKED",
-  UNRANKED = "UNRANKED",
-  SOLOMID = "SOLOMID",
-  DIRETIDE = "DIRETIDE",
-  GREEVILING = "GREEVILING",
-  ABILITYDRAFT = "ABILITY_DRAFT",
-  TOURNAMENT = "TOURNAMENT",
-  BOTS = "BOTS",
-  HIGHROOM = "HIGHROOM",
-  TOURNAMENTSOLOMID = "TOURNAMENT_SOLOMID",
-  CAPTAINSMODE = "CAPTAINS_MODE"
+    RANKED = 'RANKED',
+    UNRANKED = 'UNRANKED',
+    SOLOMID = 'SOLOMID',
+    DIRETIDE = 'DIRETIDE',
+    GREEVILING = 'GREEVILING',
+    ABILITYDRAFT = 'ABILITY_DRAFT',
+    TOURNAMENT = 'TOURNAMENT',
+    BOTS = 'BOTS',
+    HIGHROOM = 'HIGHROOM',
+    TOURNAMENTSOLOMID = 'TOURNAMENT_SOLOMID',
+    CAPTAINSMODE = 'CAPTAINS_MODE'
 }
 /**
- * @export
- * @enum {string}
- */
+* @export
+* @enum {string}
+*/
 export enum MatchmakingModeStatusEntityVersionEnum {
-  _681 = "Dota_681",
-  _684 = "Dota_684"
+    _681 = 'Dota_681',
+    _684 = 'Dota_684'
 }
+
+

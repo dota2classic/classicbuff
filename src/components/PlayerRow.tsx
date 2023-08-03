@@ -11,9 +11,8 @@ import { PlayerHover } from "./UI/PlayerHover";
 import styled from "styled-components";
 import Button from "./UI/Button";
 import { ReportModal } from "./modal/ReportModal/ReportModal";
-import { useModal } from "react-modal-hook";
 
-const UserName = styled.a`
+const UserName = styled.span`
   white-space: nowrap;
   flex: 1;
   overflow: hidden;
@@ -32,9 +31,7 @@ export default (p: PlayerInMatchDto & { reportable: boolean; matchId: number }) 
       <td>{p.level}</td>
       <td>
         <Link href={playerUrl}>
-          <a>
-            <HeroIcon hero={p.hero} />
-          </a>
+          <HeroIcon hero={p.hero} />
         </Link>
       </td>
       <td style={{ maxWidth: 250 }}>

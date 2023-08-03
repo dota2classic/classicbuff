@@ -24,7 +24,7 @@ export default (match: MatchDto) => {
     <Tr>
       <td className={"green tiny"}>
         <Link {...AppRouter.match(match.id).link}>
-          <MatchIdCol href={AppRouter.match(match.id).link.href}>
+          <MatchIdCol>
             <span style={{ color: colors.dota.green }}>{match.id}</span>
             <span style={{ fontSize: 14, marginTop: 2, color: "#c2c2c2" }}>
               <DateFormatter date={match.timestamp} />
@@ -38,10 +38,8 @@ export default (match: MatchDto) => {
       <td className={cx(match.winner === 2 ? "green" : "red", "omit")}>
         <Heroes>
           {radiant.map(it => (
-            <Link {...AppRouter.match(match.id).link}>
-              <a href={AppRouter.match(match.id).link.href}>
-                <HeroIcon key={it.hero} hero={it.hero} />
-              </a>
+            <Link {...AppRouter.match(match.id).link} key={it.hero}>
+              <HeroIcon key={it.hero} hero={it.hero} />
             </Link>
           ))}{" "}
         </Heroes>
@@ -49,7 +47,9 @@ export default (match: MatchDto) => {
       <td className={cx(match.winner === 2 ? "green" : "red", "omit")}>
         <Heroes>
           {dire.map(it => (
-            <HeroIcon key={it.hero} hero={it.hero} />
+            <Link {...AppRouter.match(match.id).link} key={it.hero}>
+              <HeroIcon key={it.hero} hero={it.hero} />
+            </Link>
           ))}{" "}
         </Heroes>
       </td>

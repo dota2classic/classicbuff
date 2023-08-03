@@ -12,74 +12,77 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from "../runtime";
 /**
  *
  * @export
  * @interface ConnectionDto
  */
 export interface ConnectionDto {
-  /**
-   *
-   * @type {string}
-   * @memberof ConnectionDto
-   */
-  connection: ConnectionDtoConnectionEnum;
-  /**
-   *
-   * @type {string}
-   * @memberof ConnectionDto
-   */
-  avatar: string;
-  /**
-   *
-   * @type {string}
-   * @memberof ConnectionDto
-   */
-  id: string;
-  /**
-   *
-   * @type {string}
-   * @memberof ConnectionDto
-   */
-  name: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConnectionDto
+     */
+    connection: ConnectionDtoConnectionEnum;
+    /**
+     *
+     * @type {string}
+     * @memberof ConnectionDto
+     */
+    avatar: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConnectionDto
+     */
+    id: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConnectionDto
+     */
+    name: string;
 }
 
 export function ConnectionDtoFromJSON(json: any): ConnectionDto {
-  return ConnectionDtoFromJSONTyped(json, false);
+    return ConnectionDtoFromJSONTyped(json, false);
 }
 
 export function ConnectionDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): ConnectionDto {
-  if (json === undefined || json === null) {
-    return json;
-  }
-  return {
-    connection: json["connection"],
-    avatar: json["avatar"],
-    id: json["id"],
-    name: json["name"]
-  };
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return {
+
+        'connection': json['connection'],
+        'avatar': json['avatar'],
+        'id': json['id'],
+        'name': json['name'],
+    };
 }
 
 export function ConnectionDtoToJSON(value?: ConnectionDto | null): any {
-  if (value === undefined) {
-    return undefined;
-  }
-  if (value === null) {
-    return null;
-  }
-  return {
-    connection: value.connection,
-    avatar: value.avatar,
-    id: value.id,
-    name: value.name
-  };
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return {
+
+        'connection': value.connection,
+        'avatar': value.avatar,
+        'id': value.id,
+        'name': value.name,
+    };
 }
 
 /**
- * @export
- * @enum {string}
- */
+* @export
+* @enum {string}
+*/
 export enum ConnectionDtoConnectionEnum {
-  DISCORD = "DISCORD"
+    DISCORD = 'DISCORD'
 }
+
+

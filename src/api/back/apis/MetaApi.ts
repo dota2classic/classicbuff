@@ -12,55 +12,62 @@
  * Do not edit the class manually.
  */
 
-import * as runtime from "../runtime";
-import useSWR, { ConfigInterface } from "swr";
 
-import { HeroSummaryDto, HeroSummaryDtoFromJSON, HeroSummaryDtoToJSON } from "../models";
+import * as runtime from "../runtime";
+import useSWR from "swr";
+import { SWRConfiguration } from "swr/_internal";
+
+import { HeroSummaryDto, HeroSummaryDtoFromJSON } from "../models";
 
 /**
  *
  */
 export class MetaApi extends runtime.BaseAPI {
-  /**
-   */
-  private async metaControllerHeroesRaw(): Promise<runtime.ApiResponse<Array<HeroSummaryDto>>> {
-    this.metaControllerHeroesValidation();
-    const context = this.metaControllerHeroesContext();
-    const response = await this.request(context);
 
-    return new runtime.JSONApiResponse(response, jsonValue => jsonValue.map(HeroSummaryDtoFromJSON));
-  }
+    /**
+     */
+    private async metaControllerHeroesRaw(): Promise<runtime.ApiResponse<Array<HeroSummaryDto>>> {
+        this.metaControllerHeroesValidation();
+        const context = this.metaControllerHeroesContext();
+        const response = await this.request(context);
 
-  /**
-   */
-  private metaControllerHeroesValidation() {}
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(HeroSummaryDtoFromJSON));
+    }
 
-  /**
-   */
-  metaControllerHeroesContext(): runtime.RequestOpts {
-    const queryParameters: any = {};
 
-    const headerParameters: runtime.HTTPHeaders = {};
 
-    return {
-      path: `/v1/meta/heroes`,
-      method: "GET",
-      headers: headerParameters,
-      query: queryParameters
-    };
-  }
+    /**
+     */
+    private metaControllerHeroesValidation() {
+    }
 
-  /**
-   */
-  metaControllerHeroes = async (): Promise<Array<HeroSummaryDto>> => {
-    const response = await this.metaControllerHeroesRaw();
-    return await response.value();
-  };
+    /**
+     */
+    metaControllerHeroesContext(): runtime.RequestOpts {
+        const queryParameters: any = {};
 
-  useMetaControllerHeroes(config?: ConfigInterface<Array<HeroSummaryDto>, Error>) {
-    let valid = true;
+        const headerParameters: runtime.HTTPHeaders = {};
 
-    const context = this.metaControllerHeroesContext();
-    return useSWR(JSON.stringify(context), valid ? () => this.metaControllerHeroes() : undefined, config);
-  }
+        return {
+            path: `/v1/meta/heroes`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    metaControllerHeroes = async (): Promise<Array<HeroSummaryDto>> => {
+        const response = await this.metaControllerHeroesRaw();
+        return await response.value();
+    }
+
+    useMetaControllerHeroes(config?: SWRConfiguration<Array<HeroSummaryDto>, Error>) {
+        let valid = true
+
+        const context = this.metaControllerHeroesContext();
+        return useSWR(JSON.stringify(context), valid ? () => this.metaControllerHeroes() : null, config)
+    }
+
 }

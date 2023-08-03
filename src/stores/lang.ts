@@ -1,6 +1,6 @@
 import { computed, observable } from "mobx";
 import cookies from "browser-cookies";
-import { NextRouter, Router } from "next/router";
+import { NextRouter } from "next/router";
 
 export class Lang {
   @observable
@@ -12,7 +12,7 @@ export class Lang {
 
       console.log("Constructor: cookie lang is", cookieLang);
 
-      if (cookieLang) this.language = cookieLang;
+      // if (cookieLang) this.language = cookieLang;
     }
   }
 
@@ -40,15 +40,15 @@ export class Lang {
   };
 
   public setLang(lang: string) {
-    if (typeof window !== "undefined") {
-      cookies.set("d2c_user_lang", lang);
-    }
-
-    if (lang !== this.language) {
-      this.language = lang;
-      if (typeof window !== "undefined") {
-        window.location.reload();
-      }
-    }
+    // if (typeof window !== "undefined") {
+    //   cookies.set("d2c_user_lang", lang);
+    // }
+    //
+    // if (lang !== this.language) {
+    //   this.language = lang;
+    //   if (typeof window !== "undefined") {
+    //     window.location.reload();
+    //   }
+    // }
   }
 }

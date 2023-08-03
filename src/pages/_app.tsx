@@ -10,6 +10,7 @@ import Cookies from "cookies";
 import { AuthServiceService } from "../service/AuthServiceService";
 import { RootStoreProvider } from "../stores/StoreProvider";
 import { initializeStore } from "../stores";
+import StyledComponentsRegistry from "lib/registry";
 
 const cache = createIntlCache();
 
@@ -85,32 +86,31 @@ export default class MyApp extends App<any> {
     const intl = createIntl({ locale: loc, messages: getMessages(loc), defaultLocale: "ru" }, cache);
 
     const defaultHydration = {
-      lang: {
-        language: loc
-      }
     };
     return (
-      <ModalProvider>
-        <SWRConfig
-          value={{
-            refreshInterval: typeof window === "undefined" ? 0 : 15000,
-            refreshWhenHidden: false
-          }}
-        >
-          <RawIntlProvider value={intl}>
-            <RootStoreProvider
-              token={token}
-              hydrationData={{
-                ...defaultHydration,
-                ...(this.props.pageProps.hydrationData || {})
-              }}
-            >
-              <TokenSniffer />
-              <Component {...pageProps} />
-            </RootStoreProvider>
-          </RawIntlProvider>
-        </SWRConfig>
-      </ModalProvider>
+      <StyledComponentsRegistry>
+        <ModalProvider>
+          <SWRConfig
+            value={{
+              refreshInterval: typeof window === "undefined" ? 0 : 15000,
+              refreshWhenHidden: false
+            }}
+          >
+            <RawIntlProvider value={intl}>
+              <RootStoreProvider
+                token={token}
+                hydrationData={{
+                  ...defaultHydration,
+                  ...(this.props.pageProps.hydrationData || {})
+                }}
+              >
+                <TokenSniffer />
+                <Component {...pageProps} />
+              </RootStoreProvider>
+            </RawIntlProvider>
+          </SWRConfig>
+        </ModalProvider>
+      </StyledComponentsRegistry>
     );
   }
 }

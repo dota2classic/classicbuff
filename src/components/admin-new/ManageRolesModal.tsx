@@ -3,13 +3,9 @@ import { RoleSubscriptionEntryDto, RoleSubscriptionEntryDtoRoleEnum, UserRoleSum
 import React, { useEffect, useRef, useState } from "react";
 import useOutsideClick, { useEscapePress } from "../../utils/useOutsideClick";
 import { RoleNames } from "../../utils/format/roles";
-import { formatDateFullStr, numericDate } from "../../utils/format/formateDateStr";
+import { numericDate } from "../../utils/format/formateDateStr";
 import Button from "../UI/Button";
-import Input from "../UI/Input";
-import InputMask from "react-input-mask";
 import { appApi } from "../../api/hooks";
-import Router from "next/router";
-import { CloseIcon } from "../Layout";
 import { Table, Tr } from "../UI/Table";
 
 const Modal = styled.div`
@@ -69,15 +65,7 @@ const RoleRow = (it: RoleSubscriptionEntryDto) => {
   return (
     <Tr>
       <td>{RoleNames[it.role]}</td>
-      <td>
-        {editMode ? (
-          <InputMask mask={"99.99.9999"} value={maskValue} onChange={onChange}>
-            <Input className={"small"} />
-          </InputMask>
-        ) : (
-          <span>{formatDateFullStr(it.endTime)}</span>
-        )}
-      </td>
+      <td>helo</td>
       <td>
         {editMode ? (
           <>

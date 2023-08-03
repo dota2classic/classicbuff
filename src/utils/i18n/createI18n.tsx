@@ -1,34 +1,9 @@
 import * as React from "react";
 import { FunctionComponent, ReactElement } from "react";
 import "intl-pluralrules";
-
-import {
-  FormattedDate,
-  FormattedHTMLMessage,
-  FormattedNumber,
-  FormattedPlural,
-  FormattedRelativeTime,
-  FormattedTime,
-  IntlContext
-} from "react-intl";
-import { FormattedMessage } from "./FormattedMessage";
-import { isServer } from "../ssr";
+import { FormattedMessage } from "react-intl";
 
 export { defineMessages } from "react-intl";
-const SSRFormatted = (props: any) => {
-  return <IntlContext.Consumer>{val => <span>{val.messages[props.id] as any}</span>}</IntlContext.Consumer>;
-};
-
-const types: any = {
-  html: (props: { id: string }) => <FormattedHTMLMessage tagName="span" {...props} />,
-  date: FormattedDate,
-  time: FormattedTime,
-  relative: FormattedRelativeTime,
-  number: FormattedNumber,
-  plural: FormattedPlural
-};
-
-const getFormatted = (type: any) => ((type && types[type]) || isServer ? SSRFormatted : FormattedMessage);
 
 export interface MessageDescriptor {
   id: string;
@@ -65,17 +40,14 @@ function createI18n<T>(messages: Messages<T>): FormattedMessages<T> {
 
   Object.keys(messages).forEach(_key => {
     const key = _key as Names;
-    const initType = "";
     const { ...message } = messages[key];
-    let Formatted = getFormatted("");
-    values[key] = <Formatted {...message} />;
+    values[key] = <FormattedMessage {...message} />;
 
     withProps[key] = ({ type = "", ...props }: any = {}) => {
-      Formatted = getFormatted(type || initType);
-      return <Formatted {...message} {...props} />;
+      return <FormattedMessage {...message} {...props} />;
     };
 
-    withValues[key] = (values: any) => <Formatted {...message} values={values} />;
+    withValues[key] = (values: any) => <FormattedMessage {...message} values={values} />;
   });
 
   return {

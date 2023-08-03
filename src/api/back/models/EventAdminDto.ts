@@ -12,50 +12,53 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from "../runtime";
 /**
  *
  * @export
  * @interface EventAdminDto
  */
 export interface EventAdminDto {
-  /**
-   *
-   * @type {string}
-   * @memberof EventAdminDto
-   */
-  name: string;
-  /**
-   *
-   * @type {object}
-   * @memberof EventAdminDto
-   */
-  body: object;
+    /**
+     *
+     * @type {string}
+     * @memberof EventAdminDto
+     */
+    name: string;
+    /**
+     *
+     * @type {object}
+     * @memberof EventAdminDto
+     */
+    body: object;
 }
 
 export function EventAdminDtoFromJSON(json: any): EventAdminDto {
-  return EventAdminDtoFromJSONTyped(json, false);
+    return EventAdminDtoFromJSONTyped(json, false);
 }
 
 export function EventAdminDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): EventAdminDto {
-  if (json === undefined || json === null) {
-    return json;
-  }
-  return {
-    name: json["name"],
-    body: json["body"]
-  };
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return {
+
+        'name': json['name'],
+        'body': json['body'],
+    };
 }
 
 export function EventAdminDtoToJSON(value?: EventAdminDto | null): any {
-  if (value === undefined) {
-    return undefined;
-  }
-  if (value === null) {
-    return null;
-  }
-  return {
-    name: value.name,
-    body: value.body
-  };
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return {
+
+        'name': value.name,
+        'body': value.body,
+    };
 }
+
+

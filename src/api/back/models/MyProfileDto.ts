@@ -12,8 +12,8 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from "../runtime";
-import { ConnectionDto, ConnectionDtoFromJSON, ConnectionDtoFromJSONTyped, ConnectionDtoToJSON } from "./";
+import { exists } from "../runtime";
+import { ConnectionDto, ConnectionDtoFromJSON, ConnectionDtoToJSON } from "./";
 
 /**
  *
@@ -21,43 +21,47 @@ import { ConnectionDto, ConnectionDtoFromJSON, ConnectionDtoFromJSONTyped, Conne
  * @interface MyProfileDto
  */
 export interface MyProfileDto {
-  /**
-   *
-   * @type {ConnectionDto}
-   * @memberof MyProfileDto
-   */
-  discord?: ConnectionDto;
-  /**
-   *
-   * @type {boolean}
-   * @memberof MyProfileDto
-   */
-  error?: boolean;
+    /**
+     *
+     * @type {ConnectionDto}
+     * @memberof MyProfileDto
+     */
+    discord?: ConnectionDto;
+    /**
+     *
+     * @type {boolean}
+     * @memberof MyProfileDto
+     */
+    error?: boolean;
 }
 
 export function MyProfileDtoFromJSON(json: any): MyProfileDto {
-  return MyProfileDtoFromJSONTyped(json, false);
+    return MyProfileDtoFromJSONTyped(json, false);
 }
 
 export function MyProfileDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): MyProfileDto {
-  if (json === undefined || json === null) {
-    return json;
-  }
-  return {
-    discord: !exists(json, "discord") ? undefined : ConnectionDtoFromJSON(json["discord"]),
-    error: !exists(json, "error") ? undefined : json["error"]
-  };
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
+    return {
+
+        'discord': !exists(json, 'discord') ? undefined : ConnectionDtoFromJSON(json['discord']),
+        'error': !exists(json, 'error') ? undefined : json['error'],
+    };
 }
 
 export function MyProfileDtoToJSON(value?: MyProfileDto | null): any {
-  if (value === undefined) {
-    return undefined;
-  }
-  if (value === null) {
-    return null;
-  }
-  return {
-    discord: ConnectionDtoToJSON(value.discord),
-    error: value.error
-  };
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
+    }
+    return {
+
+        'discord': ConnectionDtoToJSON(value.discord),
+        'error': value.error,
+    };
 }
+
+

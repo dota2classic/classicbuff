@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colors } from "../../../shared";
 
-export const Tab = styled.a`
+export const Tab = styled.span`
   position: relative;
   font-size: 16px;
   padding: 12px;
@@ -46,7 +46,7 @@ export const Tab = styled.a`
     top: 5px;
   }
 
-  ::before {
+  &::before {
     content: "";
     background: ${colors.transparentTint};
     height: 2px;
@@ -92,7 +92,7 @@ export const Tab = styled.a`
     }
   }
   &.active {
-    ::before {
+    &::before {
       content: "";
       background: ${colors.blueHighlight} !important;
       height: 2px;
@@ -121,6 +121,7 @@ export const Tabs = styled.div`
   display: flex;
   flex-direction: row;
   margin: 10px;
+  align-items: center;
 
   &.wide {
     width: 100%;

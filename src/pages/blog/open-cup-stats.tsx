@@ -1,6 +1,5 @@
 import React from "react";
 import Layout from "components/Layout";
-import { useApi } from "api/hooks";
 import GenericTournamentBlock from "components/UI/blog/tournament/GenericTournamentBlock";
 import styled from "styled-components";
 import { AppRouter } from "utils/route";
@@ -55,8 +54,6 @@ const PrizePoolDistribution = styled.div`
 `;
 
 export default () => {
-  const { data } = useApi().tournament.useTournamentControllerGetTournament(41);
-
   return (
     <Layout landing>
       <Head>
