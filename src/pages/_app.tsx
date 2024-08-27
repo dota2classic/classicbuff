@@ -1,15 +1,15 @@
 import React from "react";
 import App, { AppContext } from "next/app";
-import { TokenSniffer } from "../utils/sniffToken";
+import { TokenSniffer } from "utils/sniffToken";
 import { ModalProvider } from "react-modal-hook";
 import "react-datepicker/dist/react-datepicker.css";
 import { SWRConfig } from "swr";
 import { createIntl, createIntlCache, RawIntlProvider } from "react-intl";
 import { NextPageContext } from "next";
 import Cookies from "cookies";
-import { AuthServiceService } from "../service/AuthServiceService";
-import { RootStoreProvider } from "../stores/StoreProvider";
-import { initializeStore } from "../stores";
+import { AuthServiceService } from "service/AuthServiceService";
+import { RootStoreProvider } from "stores/StoreProvider";
+import { initializeStore } from "stores";
 import StyledComponentsRegistry from "lib/registry";
 
 const cache = createIntlCache();

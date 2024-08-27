@@ -173,7 +173,7 @@ export class Game {
 
     console.log(isDev, WSS_PROD_URL);
     this.socket = io(WSS_PROD_URL, {
-      path: "/launcher",
+      // path: "/launcher",
       transports: ["websocket"]
     });
 

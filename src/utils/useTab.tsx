@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import Router, { useRouter } from "next/router";
 import * as Qs from "querystring";
+import { parse, stringify } from "querystring";
 
+
+console.log(stringify, parse, Qs);
 const preservedQuery = () => {
   if (typeof window === "undefined") return {};
   else {
     const q = Router.asPath.split("?");
     if (q.length > 1) {
-      return Qs.parse(q[1]);
+      return parse(q[1]);
     } else {
       return {};
     }
@@ -41,7 +44,7 @@ export const useTab = (
       pQuery[tabName] = tab.toString();
     }
 
-    const queryPart = Qs.stringify(pQuery);
+    const queryPart = stringify(pQuery);
 
     Router.replace(href + `?${queryPart}`, asPath + `?${queryPart}`, {
       shallow: true

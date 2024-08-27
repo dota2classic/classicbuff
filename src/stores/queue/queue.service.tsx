@@ -1,17 +1,17 @@
 import { action, computed, observable, observe } from "mobx";
-import { Dota2Version, MatchmakingMode } from "../../utils/format/formatGameMode";
+import { Dota2Version, MatchmakingMode } from "utils/format/formatGameMode";
 import { Game } from "../Game";
 import { GameCoordinatorListener } from "./game-coordinator.listener";
 import { GameCoordinatorState } from "./game-coordinator.state";
 import { DefaultQueueHolder } from "./mock";
-import { AuthServiceService } from "../../service/AuthServiceService";
-import { appApi } from "../../api/hooks";
-import { PartyDto } from "../../api/back/models";
+import { AuthServiceService } from "service/AuthServiceService";
+import { appApi } from "api/hooks";
+import { PartyDto } from "api/back";
 import { GameFound, LauncherServerStarted, PartyInviteReceivedMessage, ReadyCheckUpdate, RoomState } from "../messages";
 import { Sound } from "../sound";
-import { blinkTab } from "../../utils/blinkTab";
+import { blinkTab } from "utils/blinkTab";
 import { NotificationDto, NotificationService } from "../notification/notification.service";
-import { PendingPartyInvite } from "../../container/queue/PendingPartyInvite";
+import { PendingPartyInvite } from "container/queue/PendingPartyInvite";
 import React from "react";
 
 export type QueueHolder = {

@@ -5,5 +5,5 @@ export const local = false;
 export const PROD_URL = process.env.NEXT_PUBLIC_API_URL as string;
 
 // export const WSS_PROD_URL = "ws://localhost:5010";
-export const WSS_PROD_URL = process.env.NEXT_PUBLIC_WS_URL as string;
-// export const WSS_PROD_URL = 'ws://5.101.51.116'
+// export const WSS_PROD_URL = process.env.NEXT_PUBLIC_WS_URL as string;
+export const WSS_PROD_URL = "ws://31.129.56.220:5010";

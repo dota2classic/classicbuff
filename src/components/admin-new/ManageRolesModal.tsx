@@ -3,7 +3,6 @@ import { RoleSubscriptionEntryDto, RoleSubscriptionEntryDtoRoleEnum, UserRoleSum
 import React, { useEffect, useRef, useState } from "react";
 import useOutsideClick, { useEscapePress } from "../../utils/useOutsideClick";
 import { RoleNames } from "../../utils/format/roles";
-import { numericDate } from "../../utils/format/formateDateStr";
 import Button from "../UI/Button";
 import { appApi } from "../../api/hooks";
 import { Table, Tr } from "../UI/Table";
@@ -45,23 +44,7 @@ interface Props {
 const RoleRow = (it: RoleSubscriptionEntryDto) => {
   const [editMode, setEditMode] = useState(false);
   const [hiddenDate, setHiddenDate] = useState(it.endTime);
-  const [maskValue, setMaskValue] = useState(numericDate(hiddenDate));
 
-  const onChange = (e: any) => {
-    const mask: string = e.target.value;
-    setMaskValue(mask);
-
-    if (!mask.includes("_")) {
-      // still writing
-      const d = new Date();
-      const numbers = mask.split(".").map(z => parseInt(z));
-
-      d.setDate(numbers[0]);
-      d.setMonth(numbers[1] - 1);
-      d.setFullYear(numbers[2]);
-      setHiddenDate(d.getTime());
-    }
-  };
   return (
     <Tr>
       <td>{RoleNames[it.role]}</td>

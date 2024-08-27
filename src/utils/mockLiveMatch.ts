@@ -1,4 +1,4 @@
-import { LiveMatchDto, LiveMatchDtoTypeEnum } from "../api/back/models";
+import { LiveMatchDto } from "../api/back/models";
 
 export const mockLiveMatch: LiveMatchDto = {
   matchId: 49,
@@ -10,7 +10,7 @@ export const mockLiveMatch: LiveMatchDto = {
     {
       hero: "npc_dota_hero_lion",
       team: 2,
-      steamId: "[U:1:0]",
+      steamId: "0",
       name: "$$ ABTOBOT $$",
       level: 1,
       posX: 0.060895442962646484,
@@ -24,7 +24,7 @@ export const mockLiveMatch: LiveMatchDto = {
     {
       hero: "npc_dota_hero_antimage",
       team: 2,
-      steamId: "[U:1:1062901073]",
+      steamId: "1062901073",
       name: "$$ ABTOBOTasdfasfasdfasas $$",
       level: 1,
       posX: 0.41663986444473267,
@@ -45,7 +45,7 @@ export const mockLiveMatch: LiveMatchDto = {
     {
       hero: "npc_dota_hero_warlock",
       team: 3,
-      steamId: "[U:1:0]",
+      steamId: "0",
       name: "$$ ABTOBOT $$",
       level: 1,
       posX: 0.91616368293762207,
@@ -59,7 +59,7 @@ export const mockLiveMatch: LiveMatchDto = {
     {
       hero: "npc_dota_hero_jakiro",
       team: 3,
-      steamId: "[U:1:0]",
+      steamId: "0",
       name: "$$ ABTOBOT $$",
       level: 1,
       posX: 0.92103564739227295,
@@ -73,7 +73,7 @@ export const mockLiveMatch: LiveMatchDto = {
     {
       hero: "npc_dota_hero_drow_ranger",
       team: 3,
-      steamId: "[U:1:0]",
+      steamId: "0",
       name: "$$ ABTOBOT $$",
       level: 1,
       posX: 0.77076977491378784,
@@ -87,7 +87,7 @@ export const mockLiveMatch: LiveMatchDto = {
     {
       hero: "npc_dota_hero_zuus",
       team: 3,
-      steamId: "[U:1:0]",
+      steamId: "0",
       name: "$$ ABTOBOT $$",
       level: 1,
       posX: 0.79752624034881592,
@@ -101,7 +101,7 @@ export const mockLiveMatch: LiveMatchDto = {
     {
       hero: "npc_dota_hero_earthshaker",
       team: 3,
-      steamId: "[U:1:0]",
+      steamId: "0",
       name: "$$ ABTOBOT $$",
       level: 1,
       posX: 0.92382913827896118,
@@ -115,7 +115,7 @@ export const mockLiveMatch: LiveMatchDto = {
     {
       hero: "npc_dota_hero_dazzle",
       team: 2,
-      steamId: "[U:1:0]",
+      steamId: "0",
       name: "$$ ABTOBOT $$",
       level: 1,
       posX: 0.16851361095905304,
@@ -129,7 +129,7 @@ export const mockLiveMatch: LiveMatchDto = {
     {
       hero: "npc_dota_hero_death_prophet",
       team: 2,
-      steamId: "[U:1:0]",
+      steamId: "0",
       name: "$$ ABTOBOT $$",
       level: 1,
       posX: 0.16510152816772461,
@@ -150,7 +150,7 @@ export const mockLiveMatch: LiveMatchDto = {
     {
       hero: "npc_dota_hero_razor",
       team: 2,
-      steamId: "[U:1:0]",
+      steamId: "0",
       name: "$$ ABTOBOT $$",
       level: 1,
       posX: 0.1322016566991806,

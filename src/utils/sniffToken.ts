@@ -1,4 +1,3 @@
-import useWillMount from "./useWillMount";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useStores } from "../stores";

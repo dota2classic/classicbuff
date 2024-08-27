@@ -1,7 +1,7 @@
 const TsConfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
-const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
+const withBundleAnalyzer = require("@next/bundle-analyzer");
 
-module.exports = withBundleAnalyzer({
+module.exports = {
   i18n: {
     locales: ["en-us", "ru-ru"],
     defaultLocale: "ru-ru"
@@ -36,9 +36,10 @@ module.exports = withBundleAnalyzer({
     return config;
   },
   experimental: {
-    appDir: true
+    appDir: true,
+    fallbackNodePolyfills: false
   },
   compiler: {
     styledComponents: true
   }
-});
+}

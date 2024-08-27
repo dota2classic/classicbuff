@@ -102,22 +102,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <link rel="stylesheet" href={`/static/style.css`} />
           <link rel="stylesheet" href={`/static/minimap.css`} />
           <script src="/static/build_info.js" />
-          <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/brackets-viewer@1.3.3/dist/brackets-viewer.min.css"
-          />
-          <script
-            type="text/javascript"
-            src="https://cdn.jsdelivr.net/npm/brackets-viewer/dist/brackets-viewer.min.js"
-          />
 
-          <span dangerouslySetInnerHTML={{ __html: this.gTag() }} />
+          {/*<span dangerouslySetInnerHTML={{ __html: this.gTag() }} />*/}
         </Head>
         <body>
-          <span dangerouslySetInnerHTML={{ __html: this.gTag2() }} />
+        {/*<span dangerouslySetInnerHTML={{ __html: this.gTag2() }} />*/}
           <Main />
           <NextScript />
-          <span dangerouslySetInnerHTML={{ __html: this.ga() }} />
+        {/*<span dangerouslySetInnerHTML={{ __html: this.ga() }} />*/}
           {/*<span dangerouslySetInnerHTML={{ __html: this.ym() }} />*/}
         </body>
       </Html>

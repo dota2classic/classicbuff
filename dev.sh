@@ -1,1 +1,1 @@
-NEXT_PUBLIC_API_URL=https://classicdota.ru NEXT_PUBLIC_WS_URL=wss://classicdota.ru yarn dev
+NEXT_PUBLIC_API_URL=http://31.129.56.220 NEXT_PUBLIC_WS_URL=ws://31.129.56.220:5010 yarn dev
