@@ -66,14 +66,13 @@ const NameContainer = styled.span`
 `;
 
 export default (props: LeaderboardEntryDto) => {
-  const numId = Number(props.id);
   return (
     <Tr>
       <td>
-        <Link {...AppRouter.player(numId).link}>{props.rank + 1}</Link>
+        <Link {...AppRouter.player(props.steamId).link}>{props.rank + 1}</Link>
       </td>
       <td>
-        <Link {...AppRouter.player(numId).link} passHref>
+        <Link {...AppRouter.player(props.steamId).link} passHref>
           <NameContainer>{props.name}</NameContainer>
         </Link>
       </td>

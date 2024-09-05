@@ -6,6 +6,7 @@ import Head from "next/head";
 import { useApi } from "api/hooks";
 import { Table } from "components/UI/Table";
 import i18n from "pages-i18n/leaderboard.i18n";
+
 const Thin = styled.div`
   max-width: 800px;
   width: 100%;
@@ -13,6 +14,7 @@ const Thin = styled.div`
 export default () => {
   const { data } = useApi().playerApi.usePlayerControllerLeaderboard();
 
+  console.log(data);
   return (
     <Layout title={i18n.title}>
       <Head>

@@ -173,22 +173,42 @@ export class Game {
 
     console.log(isDev, WSS_PROD_URL);
     this.socket = io(WSS_PROD_URL, {
-      // path: "/launcher",
-      transports: ["websocket"]
+      transports: ["websocket"],
+      autoConnect: false
+      // auth: {
+      //   token: this.authService.token
+      // }
     });
 
-    observe(this.authService, "steamID", async steamId => {
+    console.log("cnnect call twf??");
+    this.socket.on("connect", () => {
+      console.log("we connected, wtF???");
+      this.authorize();
+      console.log("Authorize cause connect");
+      this.listeners.forEach(t => t.onConnected());
+    });
+
+    this.socket.connect();
+
+
+    console.log("REgister observe");
+
+    observe(this.authService, "steamID", steamId => {
+      console.log("Authorize cause steamID observe", steamId);
       if (steamId) {
-        await this.authorize();
+        this.authorize();
+        console.log("Authorize cause steamID observe", steamId);
+
       } else {
         // console.log(`No steam id, no auth yet`);
       }
     });
 
-    this.socket.on("connect", () => {
+    if (this.authService.steamID) {
       this.authorize();
-      this.listeners.forEach(t => t.onConnected());
-    });
+    }
+
+
 
     this.socket.on("disconnect", () => {
       this.listeners.forEach(t => t.onDisconnected());

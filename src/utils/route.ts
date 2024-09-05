@@ -1,5 +1,4 @@
 import Router from "next/router";
-import { steamIdToNum } from "./numSteamId";
 
 export interface IRouterPage {
   link: { href: string; as?: string; shallow?: boolean; passHref: boolean };
@@ -49,7 +48,7 @@ export const AppRouter = {
     index: spage("/stats/meta/heroes"),
     hero: (hero: string) => page("/stats/meta/heroes/[id]", `/stats/meta/heroes/${hero}`)
   },
-  player: (id: string | number) => page(`/player/[id]`, `/player/${typeof id === "string" ? steamIdToNum(id) : id}`),
+  player: (id: string | number) => page(`/player/[id]`, `/player/${id}`),
 
   admin: {
     tournamentMatch: {
